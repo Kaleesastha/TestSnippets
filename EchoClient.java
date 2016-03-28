@@ -1,3 +1,8 @@
+/* USAGE:
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin/java -Dssl.Protocol="TLSv1.2"  -Djavax.net.ssl.trustStore=Truststore.truststore  EchoClient localhost 9999
+
+ */
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
@@ -11,10 +16,7 @@ public class EchoClient {
 			SSLSocket sslsocket = (SSLSocket) sslsocketfactory.createSocket(arstring[0],Integer.parseInt(arstring[1]));
 			//String[] enabledCipherSuites = {"TLS_DHE_RSA_WITH_AES_128_CBC_SHA", "SSL_RSA_WITH_RC4_128_MD5", "SSL_RSA_WITH_RC4_128_SHA", "TLS_RSA_WITH_AES_128_CBC_SHA", "SSL_RSA_WITH_3DES_EDE_CBC_SHA"};
 			//String[] enabledCipherSuites = {"TLS_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_AES_256_CBC_SHA"};
-			String protocol = arstring[2];
-			String[] protocols={protocol};
 			//sslsocket.setEnabledCipherSuites(enabledCipherSuites);
-			sslsocket.setEnabledProtocols(protocols);
 
 			String[] b = sslsocket.getEnabledCipherSuites();             
 			if (b != null)
