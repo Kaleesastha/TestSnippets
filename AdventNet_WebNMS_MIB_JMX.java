@@ -115,6 +115,9 @@ import com.adventnet.management.log.*;
 import com.adventnet.agent.tl1.*;
 import com.adventnet.nms.persistence.StorageAPI;
 
+import java.util.*;
+import java.io.*;
+
 /**
  * This class is the main JMXAgent application.
  */
@@ -1202,6 +1205,7 @@ public class AdventNet_WebNMS_MIB_JMX
 					api.setV3DatabaseFlag(true);
 					api.initJdbcParams(rlAPI.driverName,rlAPI.url,rlAPI.userName,rlAPI.password);
 					initUSMEntries(api,snmpadaptor.getSnmpAgent());
+					initVacmEntries (api);
 
 
 				}
@@ -2796,6 +2800,127 @@ String getTableOid(String className)
     String privPassword = "privUser";//No I18N
 
     String engineId = null;
+
+    private void initVacmEntries (SnmpAPI api){
+
+	    int [] subTree = {1,3,6};
+	    byte [] mask = {(byte) 0xFF};
+	    String [] familyNames = {"noAuthView","authView","privView", "authView", "privView"};
+	    String [] groupNames = {"noAuthGrp","authGrp","privGrp"};
+	    //byte [] authMask = {(byte) FF};
+	    //byte [] myMask = {(byte)0xFF};
+
+	    VacmContextEntry[] vacmContextEntries = new VacmContextEntry[3];
+	    VacmGroupEntry[] groupEntries = new VacmGroupEntry[5];
+	    VacmAccessEntry[] groupAccessEntries = new VacmAccessEntry[5];
+	    VacmFamilyEntry[] viewFamilyEntries = new VacmFamilyEntry[5];
+
+
+	    /**/
+	    vacmContextEntries[0] = new VacmContextEntry(new String("noAuth").getBytes());
+	    vacmContextEntries[1] = new VacmContextEntry(new String("auth").getBytes());
+	    vacmContextEntries[2] = new VacmContextEntry(new String("priv").getBytes());
+
+	    //There will be five group entries. one of the entries will have a securityModel
+	    //of 1 one will have the security model of 2. These entries will be used when
+	    //Community Authentication for V1 /V2 request has to be done.
+	    //When a V1 request comes, the entry with the securityModel 1 will be considered.
+
+	    groupEntries[0] = new VacmGroupEntry(3,new String("noAuthUser").getBytes());
+	    groupEntries[0].setVacmGroupName(new String("noAuthGrp").getBytes());
+	    groupEntries[1] = new VacmGroupEntry(3,new String("authUser").getBytes());
+	    groupEntries[1].setVacmGroupName(new String("authGrp").getBytes());
+	    groupEntries[2] = new VacmGroupEntry(3,new String("privUser").getBytes());
+	    groupEntries[2].setVacmGroupName(new String("privGrp").getBytes());
+	    groupEntries[3] = new VacmGroupEntry(1,new String("noAuthUser").getBytes());
+	    groupEntries[3].setVacmGroupName(new String("noAuthGrp").getBytes());
+	    groupEntries[4] = new VacmGroupEntry(2,new String("noAuthUser").getBytes());
+	    groupEntries[4].setVacmGroupName(new String("noAuthGrp").getBytes());
+
+	    //This again complements the GroupTable Entries. two entires for hanlding the
+	    //CommunityAuthentication is present with securityModel 1 and securityModel 2.
+	    groupAccessEntries[0] = new VacmAccessEntry(3,new String("noAuth").getBytes(),Snmp3Message.NO_AUTH_NO_PRIV);
+	    groupAccessEntries[0].setContextMatch(VacmAccessEntry.EXACT_MATCH);
+	    groupAccessEntries[0].setReadView(new String("noAuthView").getBytes());
+	    groupAccessEntries[0].setWriteView(new String("noAuthView").getBytes());
+	    groupAccessEntries[0].setNotifyView(new String("noAuthView").getBytes());
+
+	    groupAccessEntries[1] = new VacmAccessEntry(3,new String("auth").getBytes(),Snmp3Message.AUTH_NO_PRIV);
+	    groupAccessEntries[1].setContextMatch(VacmAccessEntry.EXACT_MATCH);
+	    groupAccessEntries[1].setReadView(new String("authView").getBytes());
+	    groupAccessEntries[1].setWriteView(new String("authView").getBytes());
+	    groupAccessEntries[1].setNotifyView(new String("authView").getBytes());
+
+	    groupAccessEntries[2] = new VacmAccessEntry(3,new String("priv").getBytes(),Snmp3Message.AUTH_PRIV);
+	    groupAccessEntries[2].setContextMatch(VacmAccessEntry.EXACT_MATCH);
+	    groupAccessEntries[2].setReadView(new String("privView").getBytes());
+	    groupAccessEntries[2].setWriteView(new String("privView").getBytes());
+	    groupAccessEntries[2].setNotifyView(new String("privView").getBytes());		
+
+	    groupAccessEntries[3] = new VacmAccessEntry(1,new String("noAuth").getBytes(),Snmp3Message.NO_AUTH_NO_PRIV);
+	    groupAccessEntries[3].setContextMatch(VacmAccessEntry.EXACT_MATCH);
+	    groupAccessEntries[3].setReadView(new String("noAuthView").getBytes());
+	    groupAccessEntries[3].setWriteView(new String("noAuthView").getBytes());
+	    groupAccessEntries[3].setNotifyView(new String("noAuthView").getBytes());
+
+	    groupAccessEntries[4] = new VacmAccessEntry(2,new String("noAuth").getBytes(),Snmp3Message.NO_AUTH_NO_PRIV);
+	    groupAccessEntries[4].setContextMatch(VacmAccessEntry.EXACT_MATCH);
+	    groupAccessEntries[4].setReadView(new String("noAuthView").getBytes());
+	    groupAccessEntries[4].setWriteView(new String("noAuthView").getBytes());
+	    groupAccessEntries[4].setNotifyView(new String("noAuthView").getBytes());
+
+	    //Defining the values for the various views provided .
+	    viewFamilyEntries[0] = new VacmFamilyEntry(new String("noAuthView").getBytes(),subTree);
+	    viewFamilyEntries[0].setFamilyMask(mask);
+	    viewFamilyEntries[0].setFamilyStatus(SnmpAPI.ACTIVE);		
+	    viewFamilyEntries[0].setFamilyType(VacmFamilyEntry.INCLUDED);
+
+	    viewFamilyEntries[1] = new VacmFamilyEntry(new String("authView").getBytes(),subTree);
+	    viewFamilyEntries[1].setFamilyMask(mask);
+	    viewFamilyEntries[1].setFamilyStatus(SnmpAPI.ACTIVE);
+	    viewFamilyEntries[1].setFamilyType(VacmFamilyEntry.INCLUDED);
+
+	    viewFamilyEntries[2] = new VacmFamilyEntry(new String("privView").getBytes(),subTree);
+	    viewFamilyEntries[2].setFamilyMask(mask);
+	    viewFamilyEntries[2].setFamilyStatus(SnmpAPI.ACTIVE);
+	    viewFamilyEntries[2].setFamilyType(VacmFamilyEntry.INCLUDED);
+
+	    viewFamilyEntries[3] = new VacmFamilyEntry(new String("authView").getBytes(),new int[] {1,3,6,1,4,1,2162,4,1,1});
+	    viewFamilyEntries[3].setFamilyMask(mask);
+	    viewFamilyEntries[3].setFamilyStatus(SnmpAPI.ACTIVE);		
+	    viewFamilyEntries[3].setFamilyType(VacmFamilyEntry.EXCLUDED);
+
+	    viewFamilyEntries[4] = new VacmFamilyEntry(new String("privView").getBytes(),new int[] {1,3,6,1,4,1,2162,4,1,6});
+	    viewFamilyEntries[4].setFamilyMask(mask);
+	    viewFamilyEntries[4].setFamilyStatus(SnmpAPI.ACTIVE);		
+	    viewFamilyEntries[4].setFamilyType(VacmFamilyEntry.EXCLUDED);
+	    /**/
+	    //There will be three context names, noAuth,auth,priv.
+	    ///////////////////// INITIALISING THE VACM TABLES ///////////////////
+
+	    //VacmContextTable contextTable = (SnmpVacm)api.getACMProvider()
+	    VacmContextTable contextTable =((SnmpVacm)api.getACMProvider().getAccessControlModel(api.SNMP_VERSION_3)).getContextTable();
+	    VacmGroupTable groupTable = ((SnmpVacm)api.getACMProvider().getAccessControlModel(api.SNMP_VERSION_3)).getGroupTable();
+	    VacmGroupAccessTable accessTable =((SnmpVacm)api.getACMProvider().getAccessControlModel(api.SNMP_VERSION_3)).getGroupAccessTable();
+	    VacmViewTreeTable viewTreeTable =((SnmpVacm)api.getACMProvider().getAccessControlModel(api.SNMP_VERSION_3)).getViewTable();
+
+	    for(int i=0;i<3;i++){
+		    contextTable.addEntry(vacmContextEntries[i]);
+	    }   
+	    for(int i=0;i<groupEntries.length;i++){
+		    groupTable.addEntry(groupEntries[i]);
+	    }   
+	    for(int i=0;i<3;i++){
+		    accessTable.addEntry(groupAccessEntries[i],groupNames[i].getBytes());
+	    }   
+	    accessTable.addEntry(groupAccessEntries[3],groupNames[0].getBytes());
+	    accessTable.addEntry(groupAccessEntries[4],groupNames[0].getBytes());
+
+	    for(int i=0;i<5;i++){
+		    viewTreeTable.addEntry(viewFamilyEntries[i],familyNames[i].getBytes(),
+				    viewTreeTable.getSpinLock());
+	    }
+    }
 
     private void initUSMEntries(SnmpAPI api,SnmpAgent agentName)
     {
