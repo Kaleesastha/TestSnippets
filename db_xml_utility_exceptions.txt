@@ -98,4 +98,24 @@ java.lang.NullPointerException
         at com.genband.gvm.server.deviceadapter.device.siren.SirenDevice.process(SirenDevice.java:319)
         at com.genband.gvm.server.deviceadapter.util.QueueWatcher.fireProcess(QueueWatcher.java:236)
         at com.genband.gvm.server.deviceadapter.util.QueueWatcher.run(QueueWatcher.java:203)
+---
+at org.postgresql.jdbc2.AbstractJdbc2Connection.checkClosed(AbstractJdbc2Connection.java:714)
+at org.postgresql.jdbc3.AbstractJdbc3Connection.createStatement(AbstractJdbc3Connection.java:230)
+at org.postgresql.jdbc2.AbstractJdbc2Connection.createStatement(AbstractJdbc2Connection.java:191)
+at com.mchange.v2.c3p0.impl.NewProxyConnection.createStatement(NewProxyConnection.java:96)
+at test.ConnectionBreakHandlerImpl.handleConnectionFail(ConnectionBreakHandlerImpl.java:203)
+at test.ConnectionBreakHandlerImpl$1.run(ConnectionBreakHandlerImpl.java:172)
 
+---
+java.lang.NullPointerException
+        at test.ConnectionBreakHandlerImpl.handleConnectionFail(ConnectionBreakHandlerImpl.java:124)
+        at com.adventnet.management.transaction.ConnectionPool.handleConnectionFail(ConnectionPool.java:1586)
+        at com.adventnet.management.transaction.ConnectionPool.executeQueryStmt(ConnectionPool.java:743)
+---
+org.postgresql.util.PSQLException: This connection has been closed.
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.checkClosed(AbstractJdbc2Connection.java:714)
+        at org.postgresql.jdbc3.AbstractJdbc3Connection.createStatement(AbstractJdbc3Connection.java:230)
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.createStatement(AbstractJdbc2Connection.java:191)
+        at com.mchange.v2.c3p0.impl.NewProxyConnection.createStatement(NewProxyConnection.java:96)
+        at test.ConnectionBreakHandlerImpl.handleConnectionFail(ConnectionBreakHandlerImpl.java:203)
+        at test.ConnectionBreakHandlerImpl$1.run(ConnectionBreakHandlerImpl.java:172)
