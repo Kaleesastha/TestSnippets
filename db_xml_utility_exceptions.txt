@@ -1,0 +1,76 @@
+at org.postgresql.jdbc2.AbstractJdbc2Connection.checkClosed(AbstractJdbc2Connection.java:714)
+at org.postgresql.jdbc3.AbstractJdbc3Connection.createStatement(AbstractJdbc3Connection.java:230)
+at org.postgresql.jdbc2.AbstractJdbc2Connection.createStatement(AbstractJdbc2Connection.java:191)
+at com.mchange.v2.c3p0.impl.NewProxyConnection.createStatement(NewProxyConnection.java:96)
+at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:283)
+at com.adventnet.nms.db.util.DBXmlUtility.getTableName(DBXmlUtility.java:3275)
+---
+com.adventnet.nms.store.NmsStorageException: This connection has been closed.
+        at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:299)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1390)
+        at com.adventnet.nms.mapdb.MapHandler.handleTreeUpdate(MapHandler.java:416)
+        at com.adventnet.nms.mapdb.MapHandler.updateMap(MapHandler.java:390)
+---
+java.lang.NullPointerException
+        at com.adventnet.nms.db.util.DBXmlUtility.updatePropTable(DBXmlUtility.java:3200)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyOneNode(DBXmlUtility.java:1467)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1424)
+        at com.adventnet.nms.mapdb.MapHandler.handleTreeUpdate(MapHandler.java:416)
+        at com.adventnet.nms.mapdb.MapHandler.updateMap(MapHandler.java:390)
+---
+at com.adventnet.nms.db.util.DBConnectionUtil.refreshConnection(DBConnectionUtil.java:106)
+at com.adventnet.nms.db.util.DBXmlUtility.repairConnection(DBXmlUtility.java:3717)
+at com.adventnet.nms.db.util.DBXmlUtility.executeUpdate(DBXmlUtility.java:247)
+at com.adventnet.nms.db.util.DBXmlUtility.updatePropTable(DBXmlUtility.java:3228)
+at com.adventnet.nms.db.util.DBXmlUtility.modifyOneNode(DBXmlUtility.java:1467)
+at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1424)
+at com.adventnet.nms.mapdb.MapHandler.handleTreeUpdate(MapHandler.java:416)
+---
+com.adventnet.nms.store.NmsStorageException: This connection has been closed.
+        at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:299)
+        at com.adventnet.nms.db.util.DBXmlUtility.isNodeExist(DBXmlUtility.java:2678)
+---
+com.adventnet.nms.store.NmsStorageException: This connection has been closed.
+        at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:299)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1390)
+---
+[20 May 2016 05:16:38:701] SYS_ERR: [WARNING] [c3p0] Another error has occurred [ org.postgresql.util.PSQLException: This connection has been closed. ] which will not be reported to listeners!org.postgresql.util.PSQLException: This connection has been closed.
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.checkClosed(AbstractJdbc2Connection.java:714)
+        at org.postgresql.jdbc3.AbstractJdbc3Connection.createStatement(AbstractJdbc3Connection.java:230)
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.createStatement(AbstractJdbc2Connection.java:191)
+        at com.mchange.v2.c3p0.impl.NewProxyConnection.createStatement(NewProxyConnection.java:96)
+        at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:283)
+        at com.adventnet.nms.db.util.DBXmlUtility.updatePropTable(DBXmlUtility.java:3180)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyOneNode(DBXmlUtility.java:1467)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1437)
+---
+[20 May 2016 05:16:38:690] SYS_ERR: [WARNING] [c3p0] Another error has occurred [ org.postgresql.util.PSQLException: This connection has been closed. ] which will not be reported to listeners!org.postgresql.util.PSQLException: This connection has been closed.
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.checkClosed(AbstractJdbc2Connection.java:714)
+        at org.postgresql.jdbc3.AbstractJdbc3Connection.createStatement(AbstractJdbc3Connection.java:230)
+        at org.postgresql.jdbc2.AbstractJdbc2Connection.createStatement(AbstractJdbc2Connection.java:191)
+        at com.mchange.v2.c3p0.impl.NewProxyConnection.createStatement(NewProxyConnection.java:96)
+        at com.adventnet.nms.db.util.DBXmlUtility.execute(DBXmlUtility.java:283)
+        at com.adventnet.nms.db.util.DBXmlUtility.getTableName(DBXmlUtility.java:3275)
+        at com.adventnet.nms.db.util.DBXmlUtility.getAllAttributes(DBXmlUtility.java:2158)
+        at com.adventnet.nms.commonfe.GenericFESession.update(GenericFESession.java:446)
+        at com.adventnet.nms.commonfe.GenericFESession.update(GenericFESession.java:497)
+        at java.util.Observable.notifyObservers(Unknown Source)
+        at com.adventnet.nms.db.util.TreeEventNotifier.notifyObservers(TreeEventNotifier.java:59)
+        at com.adventnet.nms.db.util.DBXmlUtility.notifyTheListeners(DBXmlUtility.java:494)
+---
+com.adventnet.security.authorization.AuthorizationException: An I/O error occured while sending to the backend. ; nested exception is: 
+        com.adventnet.nms.store.NmsStorageException: An I/O error occured while sending to the backend., 
+        Cause: 
+        com.adventnet.nms.store.NmsStorageException: An I/O error occured while sending to the backend.
+        at com.adventnet.security.authorization.RelationalAuthData.getOperationsForView(RelationalAuthData.java:1209)
+        at com.adventnet.security.authorization.NortelAuthorizationEngineImpl.getOperationsForUser(NortelAuthorizationEngineImpl.java:613)
+        at com.adventnet.nms.util.GenericUtility.getOperationsForUser(GenericUtility.java:461)
+        at com.adventnet.nms.commonfe.GenericFESession.update(GenericFESession.java:462)
+        at com.adventnet.nms.commonfe.GenericFESession.update(GenericFESession.java:497)
+        at java.util.Observable.notifyObservers(Unknown Source)
+        at com.adventnet.nms.db.util.TreeEventNotifier.notifyObservers(TreeEventNotifier.java:59)
+        at com.adventnet.nms.db.util.DBXmlUtility.notifyTheListeners(DBXmlUtility.java:494)
+        at com.adventnet.nms.db.util.DBXmlUtility.modifyNode(DBXmlUtility.java:1428)
+        at com.adventnet.nms.mapdb.MapHandler.handleTreeUpdate(MapHandler.java:416)
+
+
