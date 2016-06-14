@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<!-- $Id: SchemaChanges.xml,v 1.3 2009/02/12 08:26:24 govardhini Exp $ -->
+<!DOCTYPE SCHEMA_CHANGES SYSTEM "../../conf/SchemaChanges.dtd" >
+
+<SCHEMA_CHANGES>
+	<COMMON_TO_ALL>
+	    <APPEND startingWord="BeginModules" value="-ApplnDB" />
+	    <APPEND startingWord="EndModules" value="-ApplnDB" />
+	</COMMON_TO_ALL>
+
+	<DB RDBMS_ENGINE="MYSQL">
+
+		<ADDED_TABLE DEFINITION="create table CollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL , &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL , &quot;DISPLAYNAME&quot; VARCHAR(100), &quot;TARGETADDRESS&quot; VARCHAR(50), &quot;RESOURCETYPE&quot; VARCHAR(50), &quot;CONFIGCLASS&quot; VARCHAR(100), &quot;DCCLASS&quot; VARCHAR(100), &quot;DCXMLNAME&quot; VARCHAR(50), &quot;DCDTDNAME&quot; VARCHAR(50), &quot;ACTIVE&quot; VARCHAR(10), &quot;STOREDATA&quot; VARCHAR(10), &quot;CONFIGURED&quot; VARCHAR(10), &quot;POLLINTERVAL&quot; INTEGER , &quot;APPLNDISCPORT&quot; INTEGER , &quot;WEBNMS&quot; VARCHAR(50),  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="CollectData">
+		</ADDED_TABLE>
+			<ADDED_TABLE DEFINITION="create table OracleCollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(100) NOT NULL, &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;INSTANCENAME&quot; VARCHAR(50), &quot;DRIVERNAME&quot; VARCHAR(100), &quot;STATE&quot; INTEGER , &quot;COLLECTSTATICDATA&quot; VARCHAR(10), &quot;ERRORMSG&quot; VARCHAR(250), PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="OracleCollectData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;VERSION&quot; VARCHAR(17), &quot;STARTUPTIME&quot; VARCHAR(50), &quot;CREATED&quot; VARCHAR(50), &quot;OPENMODE&quot; VARCHAR(20), &quot;LOGMODE&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; BIGINT,  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="InstanceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;DBSIZE&quot; BIGINT, &quot;AVGEXECS&quot; INTEGER, &quot;AVGUSERS&quot; INTEGER, &quot;InstanceREADS&quot; INTEGER, &quot;InstanceWRITES&quot; INTEGER, &quot;BLOCKSIZE&quot; INTEGER, &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="InstanceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;BUFFERCACHESIZE&quot; INTEGER, &quot;SHAREDPOOLSIZE&quot; INTEGER , &quot;REDOLOGBUFFERSIZE&quot; INTEGER , &quot;LIBRARYCACHESIZE&quot; INTEGER , &quot;DATADICTCACHESIZE&quot; INTEGER , &quot;SQLAREASIZE&quot; INTEGER , &quot;FIXEDSIZE&quot; INTEGER , &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="SgaDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FREEMEMORYSIZE&quot; INTEGER, &quot;BUFFERHITRATIO&quot; INTEGER, &quot;DICTIONARYHITRATIO&quot; INTEGER, &quot;LIBRARYHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="SgaStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SessionInfo (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SESSIONID&quot; INTEGER , &quot;STATUS&quot; VARCHAR(25), &quot;MACHINE&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(25), &quot;ELAPSEDTIME&quot; INTEGER, &quot;CPUUSED&quot; INTEGER , &quot;MEMORYSORTS&quot; INTEGER , &quot;TABLESCANS&quot; INTEGER , &quot;PHYSICALREADS&quot; INTEGER , &quot;LOGICALREADS&quot; INTEGER , &quot;DISKSORTS&quot; INTEGER , &quot;BLOCKSCHANGED&quot; INTEGER , &quot;CHAINEDROWS&quot; INTEGER , &quot;COMMITS&quot; INTEGER , &quot;CURSORS&quot; INTEGER , &quot;BUFFERCACHEHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="SessionInfo">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RollbackData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SEGMENTNAME&quot; VARCHAR(25), &quot;TABLESPACENAME&quot; VARCHAR(20), &quot;INITIALEXTENT&quot; INTEGER , &quot;NEXTEXTENT&quot; INTEGER , &quot;MINEXTENT&quot; INTEGER , &quot;MAXEXTENT&quot; INTEGER , &quot;STATUS&quot; VARCHAR(50), &quot;CURRENTSIZE&quot; INTEGER , &quot;BLOCKS&quot; INTEGER , &quot;GETS&quot; INTEGER , &quot;WAITS&quot; INTEGER , &quot;HWMSIZE&quot; INTEGER , &quot;SHRINKS&quot; INTEGER , &quot;WRAPS&quot; INTEGER , &quot;EXTEND&quot; INTEGER , &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="RollbackData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table DataFiles (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FILE_NAME&quot; VARCHAR(100), &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;CREATEBYTES&quot; INTEGER , &quot;DataFilesREADS&quot; INTEGER , &quot;DataFilesWRITES&quot; INTEGER , &quot;AVGRDTIME&quot; INTEGER , &quot;AVGWRTIME&quot; INTEGER , &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="DataFiles">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RedoLogs (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;GROUPNAME&quot; VARCHAR(25), &quot;THREAD&quot; VARCHAR(20), &quot;SEQUENCE&quot; INTEGER , &quot;BYTES&quot; INTEGER , &quot;MEMBERS&quot; INTEGER , &quot;ARCHIVE&quot; VARCHAR(10), &quot;STATUS&quot; VARCHAR(20), &quot;FIRSTTIME&quot; VARCHAR(50), &quot;MEMBER&quot; VARCHAR(100), &quot;MSTATUS&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="RedoLogs">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(50), &quot;ALLOCATEDBYTES&quot; BIGINT , &quot;ALLOCATEDBLOCKS&quot; INTEGER , &quot;DATAFILES&quot; INTEGER , &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="TableSpaceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;FREEBYTES&quot; BIGINT , &quot;FREEBLOCKS&quot; INTEGER , &quot;TableSpaceREADS&quot; INTEGER , &quot;TableSpaceWRITES&quot; INTEGER , &quot;TableSpaceREADTIME&quot; BIGINT, &quot;TableSpaceWRITETIME&quot; BIGINT, &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="TableSpaceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;USERNAME&quot; VARCHAR(25), &quot;PASSWORD&quot; VARCHAR(50), &quot;PROMPT&quot; VARCHAR(50), &quot;CATEGORY&quot; VARCHAR(250), &quot;ERRORMSG&quot; VARCHAR(200), &quot;LOGINPROMPT&quot; VARCHAR(50), &quot;PASSWORDPROMPT&quot; VARCHAR(50), &quot;CLIPROTOCOL&quot; VARCHAR(25), PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="HostDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;CATEGORY&quot; VARCHAR(250), &quot;ENTITY&quot; VARCHAR(50), &quot;CURVALUE&quot; BIGINT, &quot;COLLECTIONTIME&quot; BIGINT, index HostDataCollected0_ndx(&quot;COLLECTIONTIME&quot;), index HostDataCollected1_ndx(&quot;RESOURCENAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;,&quot;COLLECTIONTIME&quot;), index HostDataCollected2_ndx(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;COLLECTIONTIME&quot;), index HostDataCollected3_ndx(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;), index HostDataCollected4_ndx(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;))"
+			TABLE_NAME="HostDataCollected">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataHourlyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; BIGINT, &quot;MAXVALUE&quot; BIGINT, &quot;AVGVALUE&quot; BIGINT, &quot;TIMEINTERVAL&quot; BIGINT, &quot;COLLECTIONTIME&quot; BIGINT)"			TABLE_NAME="HostDataHourlyCollected">
+		</ADDED_TABLE>
+
+		<ADDED_TABLE DEFINITION="create table HostDataDailyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; BIGINT, &quot;MAXVALUE&quot; BIGINT, &quot;AVGVALUE&quot; BIGINT, &quot;TIMEINTERVAL&quot; BIGINT, &quot;COLLECTIONTIME&quot; BIGINT)"
+			TABLE_NAME="HostDataDailyCollected">
+		</ADDED_TABLE>
+
+
+	
+	</DB>
+	
+	<DB RDBMS_ENGINE="ORACLE">
+	
+
+		<ADDED_TABLE DEFINITION="create table CollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL , &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL , &quot;DISPLAYNAME&quot; VARCHAR(100), &quot;TARGETADDRESS&quot; VARCHAR(50), &quot;RESOURCETYPE&quot; VARCHAR(50), &quot;CONFIGCLASS&quot; VARCHAR(100), &quot;DCCLASS&quot; VARCHAR(100), &quot;DCXMLNAME&quot; VARCHAR(50), &quot;DCDTDNAME&quot; VARCHAR(50), &quot;ACTIVE&quot; VARCHAR(10), &quot;STOREDATA&quot; VARCHAR(10), &quot;CONFIGURED&quot; VARCHAR(10), &quot;POLLINTERVAL&quot; INTEGER , &quot;APPLNDISCPORT&quot; INTEGER , &quot;WEBNMS&quot; VARCHAR(50),  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="CollectData">
+		</ADDED_TABLE>
+
+		<ADDED_TABLE DEFINITION="create table OracleCollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(100) NOT NULL, &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;INSTANCENAME&quot; VARCHAR(50), &quot;DRIVERNAME&quot; VARCHAR(100), &quot;STATE&quot; INTEGER , &quot;COLLECTSTATICDATA&quot; VARCHAR(10), &quot;ERRORMSG&quot; VARCHAR(250), PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="OracleCollectData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;VERSION&quot; VARCHAR(17), &quot;STARTUPTIME&quot; VARCHAR(50), &quot;CREATED&quot; VARCHAR(50), &quot;OPENMODE&quot; VARCHAR(20), &quot;LOGMODE&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; NUMBER(19),  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="InstanceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;DBSIZE&quot; NUMBER(19), &quot;AVGEXECS&quot; INTEGER, &quot;AVGUSERS&quot; INTEGER, &quot;InstanceREADS&quot; INTEGER, &quot;InstanceWRITES&quot; INTEGER, &quot;BLOCKSIZE&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="InstanceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;BUFFERCACHESIZE&quot; INTEGER, &quot;SHAREDPOOLSIZE&quot; INTEGER , &quot;REDOLOGBUFFERSIZE&quot; INTEGER , &quot;LIBRARYCACHESIZE&quot; INTEGER , &quot;DATADICTCACHESIZE&quot; INTEGER , &quot;SQLAREASIZE&quot; INTEGER , &quot;FIXEDSIZE&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="SgaDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FREEMEMORYSIZE&quot; INTEGER, &quot;BUFFERHITRATIO&quot; INTEGER, &quot;DICTIONARYHITRATIO&quot; INTEGER, &quot;LIBRARYHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="SgaStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SessionInfo (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SESSIONID&quot; INTEGER , &quot;STATUS&quot; VARCHAR(25), &quot;MACHINE&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(25), &quot;ELAPSEDTIME&quot; INTEGER, &quot;CPUUSED&quot; INTEGER , &quot;MEMORYSORTS&quot; INTEGER , &quot;TABLESCANS&quot; INTEGER , &quot;PHYSICALREADS&quot; INTEGER , &quot;LOGICALREADS&quot; INTEGER , &quot;DISKSORTS&quot; INTEGER , &quot;BLOCKSCHANGED&quot; INTEGER , &quot;CHAINEDROWS&quot; INTEGER , &quot;COMMITS&quot; INTEGER , &quot;CURSORS&quot; INTEGER , &quot;BUFFERCACHEHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="SessionInfo">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RollbackData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SEGMENTNAME&quot; VARCHAR(25), &quot;TABLESPACENAME&quot; VARCHAR(20), &quot;INITIALEXTENT&quot; INTEGER , &quot;NEXTEXTENT&quot; INTEGER , &quot;MINEXTENT&quot; INTEGER , &quot;MAXEXTENT&quot; INTEGER , &quot;STATUS&quot; VARCHAR(50), &quot;CURRENTSIZE&quot; INTEGER , &quot;BLOCKS&quot; INTEGER , &quot;GETS&quot; INTEGER , &quot;WAITS&quot; INTEGER , &quot;HWMSIZE&quot; INTEGER , &quot;SHRINKS&quot; INTEGER , &quot;WRAPS&quot; INTEGER , &quot;EXTEND&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="RollbackData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table DataFiles (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FILE_NAME&quot; VARCHAR(100), &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;CREATEBYTES&quot; INTEGER , &quot;DataFilesREADS&quot; INTEGER , &quot;DataFilesWRITES&quot; INTEGER , &quot;AVGRDTIME&quot; INTEGER , &quot;AVGWRTIME&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="DataFiles">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RedoLogs (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;GROUPNAME&quot; VARCHAR(25), &quot;THREAD&quot; VARCHAR(20), &quot;SEQUENCE&quot; INTEGER , &quot;BYTES&quot; INTEGER , &quot;MEMBERS&quot; INTEGER , &quot;ARCHIVE&quot; VARCHAR(10), &quot;STATUS&quot; VARCHAR(20), &quot;FIRSTTIME&quot; VARCHAR(50), &quot;MEMBER&quot; VARCHAR(100), &quot;MSTATUS&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="RedoLogs">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(50), &quot;ALLOCATEDBYTES&quot; NUMBER(19) , &quot;ALLOCATEDBLOCKS&quot; INTEGER , &quot;DATAFILES&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="TableSpaceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;FREEBYTES&quot; NUMBER(19) , &quot;FREEBLOCKS&quot; INTEGER , &quot;TableSpaceREADS&quot; INTEGER , &quot;TableSpaceWRITES&quot; INTEGER , &quot;TableSpaceREADTIME&quot; NUMBER(19), &quot;TableSpaceWRITETIME&quot; NUMBER(19), &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="TableSpaceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;USERNAME&quot; VARCHAR(25), &quot;PASSWORD&quot; VARCHAR(50), &quot;PROMPT&quot; VARCHAR(50),  &quot;CATEGORY&quot; VARCHAR(250), &quot;ERRORMSG&quot; VARCHAR(200), &quot;LOGINPROMPT&quot; VARCHAR(50), &quot;PASSWORDPROMPT&quot; VARCHAR(50), &quot;CLIPROTOCOL&quot; VARCHAR(25),PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="HostDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;CATEGORY&quot; VARCHAR(250), &quot;ENTITY&quot; VARCHAR(50), &quot;CURVALUE&quot; NUMBER(19), &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="HostDataCollected">
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected0_ndx ON HostDataCollected(&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected1_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;,&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected2_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected3_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected4_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;)"/>
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataHourlyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; NUMBER(19), &quot;MAXVALUE&quot; NUMBER(19), &quot;AVGVALUE&quot; NUMBER(19), &quot;TIMEINTERVAL&quot; NUMBER(19), &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="HostDataHourlyCollected">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataDailyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; NUMBER(19), &quot;MAXVALUE&quot; NUMBER(19), &quot;AVGVALUE&quot; NUMBER(19), &quot;TIMEINTERVAL&quot; NUMBER(19), &quot;COLLECTIONTIME&quot; NUMBER(19))"
+			TABLE_NAME="HostDataDailyCollected">
+		</ADDED_TABLE>
+
+
+
+
+	</DB>	
+
+	<DB RDBMS_ENGINE="SYBASE">
+	
+
+		<ADDED_TABLE DEFINITION="create table CollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL , &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL , &quot;DISPLAYNAME&quot; VARCHAR(100), &quot;TARGETADDRESS&quot; VARCHAR(50), &quot;RESOURCETYPE&quot; VARCHAR(50), &quot;CONFIGCLASS&quot; VARCHAR(100), &quot;DCCLASS&quot; VARCHAR(100), &quot;DCXMLNAME&quot; VARCHAR(50), &quot;DCDTDNAME&quot; VARCHAR(50), &quot;ACTIVE&quot; VARCHAR(10), &quot;STOREDATA&quot; VARCHAR(10), &quot;CONFIGURED&quot; VARCHAR(10), &quot;POLLINTERVAL&quot; INTEGER , &quot;APPLNDISCPORT&quot; INTEGER , &quot;WEBNMS&quot; VARCHAR(50),  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="CollectData">
+		</ADDED_TABLE>
+
+		<ADDED_TABLE DEFINITION="create table OracleCollectData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(100) NOT NULL, &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;INSTANCENAME&quot; VARCHAR(50), &quot;DRIVERNAME&quot; VARCHAR(100), &quot;STATE&quot; INTEGER , &quot;COLLECTSTATICDATA&quot; VARCHAR(10), &quot;ERRORMSG&quot; VARCHAR(250), PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="OracleCollectData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;VERSION&quot; VARCHAR(17), &quot;STARTUPTIME&quot; VARCHAR(50), &quot;CREATED&quot; VARCHAR(50), &quot;OPENMODE&quot; VARCHAR(20), &quot;LOGMODE&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; NUMERIC(19,0),  PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="InstanceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table InstanceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;DBSIZE&quot; NUMERIC(19,0), &quot;AVGEXECS&quot; INTEGER, &quot;AVGUSERS&quot; INTEGER, &quot;InstanceREADS&quot; INTEGER, &quot;InstanceWRITES&quot; INTEGER, &quot;BLOCKSIZE&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="InstanceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;BUFFERCACHESIZE&quot; INTEGER, &quot;SHAREDPOOLSIZE&quot; INTEGER , &quot;REDOLOGBUFFERSIZE&quot; INTEGER , &quot;LIBRARYCACHESIZE&quot; INTEGER , &quot;DATADICTCACHESIZE&quot; INTEGER , &quot;SQLAREASIZE&quot; INTEGER , &quot;FIXEDSIZE&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="SgaDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SgaStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FREEMEMORYSIZE&quot; INTEGER, &quot;BUFFERHITRATIO&quot; INTEGER, &quot;DICTIONARYHITRATIO&quot; INTEGER, &quot;LIBRARYHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="SgaStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table SessionInfo (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SESSIONID&quot; INTEGER , &quot;STATUS&quot; VARCHAR(25), &quot;MACHINE&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(25), &quot;ELAPSEDTIME&quot; INTEGER, &quot;CPUUSED&quot; INTEGER , &quot;MEMORYSORTS&quot; INTEGER , &quot;TABLESCANS&quot; INTEGER , &quot;PHYSICALREADS&quot; INTEGER , &quot;LOGICALREADS&quot; INTEGER , &quot;DISKSORTS&quot; INTEGER , &quot;BLOCKSCHANGED&quot; INTEGER , &quot;CHAINEDROWS&quot; INTEGER , &quot;COMMITS&quot; INTEGER , &quot;CURSORS&quot; INTEGER , &quot;BUFFERCACHEHITRATIO&quot; INTEGER, &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="SessionInfo">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RollbackData (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;SEGMENTNAME&quot; VARCHAR(25), &quot;TABLESPACENAME&quot; VARCHAR(20), &quot;INITIALEXTENT&quot; INTEGER , &quot;NEXTEXTENT&quot; INTEGER , &quot;MINEXTENT&quot; INTEGER , &quot;MAXEXTENT&quot; INTEGER , &quot;STATUS&quot; VARCHAR(50), &quot;CURRENTSIZE&quot; INTEGER , &quot;BLOCKS&quot; INTEGER , &quot;GETS&quot; INTEGER , &quot;WAITS&quot; INTEGER , &quot;HWMSIZE&quot; INTEGER , &quot;SHRINKS&quot; INTEGER , &quot;WRAPS&quot; INTEGER , &quot;EXTEND&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="RollbackData">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table DataFiles (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;FILE_NAME&quot; VARCHAR(100), &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;CREATEBYTES&quot; INTEGER , &quot;DataFilesREADS&quot; INTEGER , &quot;DataFilesWRITES&quot; INTEGER , &quot;AVGRDTIME&quot; INTEGER , &quot;AVGWRTIME&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="DataFiles">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table RedoLogs (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;GROUPNAME&quot; VARCHAR(25), &quot;THREAD&quot; VARCHAR(20), &quot;SEQUENCE&quot; INTEGER , &quot;BYTES&quot; INTEGER , &quot;MEMBERS&quot; INTEGER , &quot;ARCHIVE&quot; VARCHAR(10), &quot;STATUS&quot; VARCHAR(20), &quot;FIRSTTIME&quot; VARCHAR(50), &quot;MEMBER&quot; VARCHAR(100), &quot;MSTATUS&quot; VARCHAR(50), &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="RedoLogs">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(50), &quot;ALLOCATEDBYTES&quot; NUMERIC(19,0) , &quot;ALLOCATEDBLOCKS&quot; INTEGER , &quot;DATAFILES&quot; INTEGER , &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="TableSpaceDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table TableSpaceStatus (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;TABLESPACENAME&quot; VARCHAR(25), &quot;STATUS&quot; VARCHAR(50), &quot;FREEBYTES&quot; NUMERIC(19,0) , &quot;FREEBLOCKS&quot; INTEGER , &quot;TableSpaceREADS&quot; INTEGER , &quot;TableSpaceWRITES&quot; INTEGER , &quot;TableSpaceREADTIME&quot; NUMERIC(19,0), &quot;TableSpaceWRITETIME&quot; NUMERIC(19,0), &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="TableSpaceStatus">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDetails (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;USERNAME&quot; VARCHAR(25), &quot;PASSWORD&quot; VARCHAR(50), &quot;PROMPT&quot; VARCHAR(50),  &quot;CATEGORY&quot; VARCHAR(250), &quot;ERRORMSG&quot; VARCHAR(200), &quot;LOGINPROMPT&quot; VARCHAR(50), &quot;PASSWORDPROMPT&quot; VARCHAR(50), &quot;CLIPROTOCOL&quot; VARCHAR(25),PRIMARY KEY (&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;))"
+			TABLE_NAME="HostDetails">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;COMPONENTNAME&quot; VARCHAR(50) NOT NULL, &quot;CATEGORY&quot; VARCHAR(250), &quot;ENTITY&quot; VARCHAR(50), &quot;CURVALUE&quot; NUMERIC(19,0), &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="HostDataCollected">
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected0_ndx ON HostDataCollected(&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected1_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;,&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected2_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;COLLECTIONTIME&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected3_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX HostDataCollected4_ndx ON HostDataCollected(&quot;RESOURCENAME&quot;,&quot;COMPONENTNAME&quot;,&quot;CATEGORY&quot;,&quot;ENTITY&quot;)"/>
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataHourlyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; NUMERIC(19,0), &quot;MAXVALUE&quot; NUMERIC(19,0), &quot;AVGVALUE&quot; NUMERIC(19,0), &quot;TIMEINTERVAL&quot; NUMERIC(19,0), &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="HostDataHourlyCollected">
+		</ADDED_TABLE>
+		<ADDED_TABLE DEFINITION="create table HostDataDailyCollected (&quot;RESOURCENAME&quot; VARCHAR(100) NOT NULL, &quot;ENTITY&quot; VARCHAR(50), &quot;MINVALUE&quot; NUMERIC(19,0), &quot;MAXVALUE&quot; NUMERIC(19,0), &quot;AVGVALUE&quot; NUMERIC(19,0), &quot;TIMEINTERVAL&quot; NUMERIC(19,0), &quot;COLLECTIONTIME&quot; NUMERIC(19,0))"
+			TABLE_NAME="HostDataDailyCollected">
+		</ADDED_TABLE>
+
+
+
+
+	</DB>		
+
+</SCHEMA_CHANGES>

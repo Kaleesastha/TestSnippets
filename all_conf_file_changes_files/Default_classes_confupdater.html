@@ -1,0 +1,1669 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0079)file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+   <meta name="Author" content="Romi">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (WinNT; U) [Netscape]">
+   <title>Default_classes_confupdater</title>
+</head>
+<body>
+
+<center><b>Default Implementation Classes of Configuration Updater framework</b></center>
+
+<p>
+</p><hr align="LEFT" size="1" width="100%">
+<ul>
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#Intro">Introduction</a></li>
+
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#Types of Default Imple classs">Types of Default Implementation
+Classes</a></li>
+
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#Representation">Representation and Definition of Actions of Default
+Impl Classes</a></li>
+</ul>
+
+<hr align="LEFT" size="1" width="100%">
+<br><a name="Intro"></a><b>Introduction</b>
+<p>This topic deals with all the default implementation classes handled
+by the Configuration Updater framework.
+</p><p><a name="Types of Default Imple classs"></a><b>Types of Default Implementation
+Classes</b>
+</p><p>The five different types of default implementation classes are as follows:
+</p><ol>
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#NmsProcessesBE"><b>NmsProcessesBEChanges</b>:</a></li>
+
+<ol>&nbsp;This class handles the modifications of the NmsProcessesBE.conf
+file located in <i>&lt;Web NMS Home&gt;/conf </i>directory</ol>
+
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#ServerParameter"><b>ServerParameterChanges</b>:</a></li>
+
+<ol>This class handles the modifications of the serverparameters.conf file
+located in <i>&lt;Web NMS Home&gt;/conf</i> directory</ol>
+
+<li>
+<a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#SetEnv"><b>SetEnvChanges</b>:</a></li>
+
+<ol>This class handles the modifications of the setEnv.bat/sh file located
+in <i>&lt;Web NMS Home&gt;</i> directory</ol>
+
+<li>
+<b><a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#StartApplication">StartApplicationChanges</a></b>:</li>
+
+<ol>This class handles the modifications of the startApplicationClient.bat/sh
+file located in <i>&lt;Web NMS Home&gt;/bin
+</i>directory</ol>
+
+<li>
+<b><a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#StartNMS">StartnmsChanges</a>:</b></li>
+
+<ol>This class handles the modifications of the startnms.bat/sh file located
+in <i>&lt;Web NMS Home&gt;/bin</i> directory</ol>
+
+<li>
+<b><a href="file:///home/local/ZOHOCORP/venkat-0773/kbase/Docs/Conf_Updation_Framework.html#XMLConf">XMLConfChanges</a></b>:</li>
+
+<ol>This class handles the modifications of all XML based (i.e., files
+with ".xml", ".conf" etc. extension)&nbsp; files.</ol>
+</ol>
+<a name="Representation"></a><b>Representation and Definition of Actions
+of Default Impl Classes</b>
+<p>The various actions handled by each default class and their representations
+in the ConfFileChanges.xml file are given in the table below:
+</p><p><i><b>Note: </b>All the words in italics (<b>bold</b>) are parameters
+which are hardcoded.</i>
+</p><p><a name="NmsProcessesBE"></a><b>NmsProcessesBEChanges :</b>
+</p><p>This class handles definition of the process name for the &lt;update_node&gt;
+tag in ConfFileChanges.xml file.
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center><b>Representation in ConfFileChanges.xml&nbsp;</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Actions(Attribute Values)&nbsp;</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Process</td>
+
+<td>&lt;update_node name="Name of the process to be added" description="desc"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>Add_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>COMMENT</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;property&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="<i>ADDITIONAL_COMMENT</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value="Comments to be added"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>PROCESS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>PROCESS_NAME</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="Process&nbsp; name "/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;
+<br>&nbsp;&lt;property_set name="<i>ARGS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="args1" value="value1"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="args2" value="value2"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>You must specify the name of the process which is to be added in the
+NmsProcessesBE.conf file for the &lt;update_node&gt; e.g., <b>com.adventnet.nms.topodb.DBServer</b>
+<p>"<b><i>Add_Process</i></b>": Action command for adding a process in
+the NmsProcessesBE.conf file. This action command is used for adding a
+COMMENT, PROCESS, and ARGS in the file.&nbsp;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br>"<b><i>COMMENT</i></b>": Command for commenting a process in the&nbsp;
+NmsProcessesBE.conf file.&nbsp;
+<br>"<b><i>ADDITIONAL_COMMENT</i></b>": This command is supportive to the
+"COMMENT" command. The value specified for this command is the name of
+the process which is to be commented.
+<br>For example,
+<blockquote>&lt;property&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name="<i>ADDITIONAL_COMMENT</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value="<b>##java com.adventnet.nms.topodb.DBServer</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br>"<b><i>PROCESS</i></b>": Command for distinguishing the addition of
+a process in the file.&nbsp;
+<br>"<b><i>PROCESS_NAME</i></b>": This command is supportive to the "PROCESS"
+command. The value specified for this command is the name of the process
+to be added.&nbsp;
+<br>For example,&nbsp;
+<blockquote>&lt;property_set name="<i>PROCESS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>PROCESS_NAME</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="<b>com.adventnet.nms.topodb.DBServer</b>"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br>"<b><i>ARGS</i></b>": Command for distinguishing the addition of the
+arguments for a given process.You can specify as many number of arguments
+for a given process.&nbsp;
+<p>For example, entries of arguments and their values for the process <i>com.adventnet.nms.topodb.DBServer
+</i>are
+specified as,&nbsp;
+</p><blockquote>&lt;property_set name="<i>ARGS</i>"&gt;&nbsp;
+<br>&nbsp;&lt;property name="<b>TOPO_OBJECTS_IN_MEMORY</b>" value="<b>50</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<b>TOPO_JDBC</b> " value="<b>true</b>"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Removing a Process</td>
+
+<td>&lt;update_node name="Name of the process to be removed" description="desc"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Remove_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>You must specify the name of the process which is to be removed from
+the NmsProcessesBE.conf file for the &lt;update_node&gt; e.g., <b>com.adventnet.nms.util.RunRmiRegistry</b>
+<p>"<b><i>Remove_Process</i></b>": Action command to remove a process from
+the NmsProcessesBE.conf file.&nbsp;
+<br><b><font color="#3366FF">(No Property for the property_set??)</font></b>
+<br>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Modifying a Process</td>
+
+<td>&lt;update_node&nbsp; name="Process name to be modified" description="desc"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="OldValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="<i>newEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="NewValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/update_node&gt;&nbsp;
+<br>
+<hr align="LEFT" size="1" width="100%">
+<br><b><i>a)Adding a&nbsp; variable&nbsp;</i></b>
+<p><b><i>For Comment</i></b>
+</p><p>&lt;update_node&nbsp; name="Process name to be modified" description="desc"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>AddVariable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set
+name="<i>COMMENT</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;property name="[args1 " value= " value1 ]"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/update_node&gt;&nbsp;
+</p><p><b><i>For Args</i></b>
+</p><p>&lt;update_node&nbsp; name="Process name " description="desc"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set
+name="<i>AddVariable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;property_set name="<i>ARGS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;property name="args1 " value= " value1"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/update_node&gt;&nbsp;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>b)Removing a variable</b>
+<p><b><i>For Comment</i></b>
+</p><p>&lt;update_node&nbsp; name="Process name" description="desc"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>RemoveVariable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>COMMENT</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="args1"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value="value1"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/update_node&gt;&nbsp;
+</p><p><b><i>For Args</i></b>
+</p><p>&lt;update_node name="Process name" description="desc"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>RemoveVariable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>ARGS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="args1" value="value1"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</p></td>
+
+<td>You must specify the name of the process which is to be modified in
+the NmsProcessesBE.conf file for the &lt;update_node&gt; e.g., For example,&nbsp;
+<blockquote>&lt;update_node&nbsp;
+<br>&nbsp;&nbsp; name="<b>com.adventnet.nms.util.RunRmiRegistry</b>"&nbsp;
+<br>&nbsp;&nbsp; description="Process added for RMI registry"&gt;&nbsp;</blockquote>
+"<b><i>Modify_Process</i></b>": Action command for modifying a given process,
+a comment or an argument of the process.&nbsp;
+<br>"<b><i>Modify_entry</i></b>": Command for identifying the entries for
+modification.&nbsp;
+<br>"<b><i>oldEntry</i></b>": Command to identify the old entry, which
+is to be modified for a given process.
+<br>"<b><i>newEntry</i></b>": Command to identify the new entry, which
+is to replace the "olEntry".&nbsp;
+<p>For example, if the process <b><i>com.adventnet.nms.topodb.DBServer
+</i></b>is to be modified to "<i>com.adventnet.nms.topodb.MyDBServer" </i>then
+the values for the following entries will be,&nbsp;
+</p><blockquote>&lt;property_set name="<i>Modify_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="<b><i>com.adventnet.nms.topodb.DBServer</i></b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="<i>newEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="<b><i>com.adventnet.nms.topodb.MyDBServer</i></b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b><i>a)Adding a&nbsp; variable: </i></b>When you want to modify a
+process by adding an argument (i.e.,variable) the following commands can
+be used.&nbsp;
+<p><b>For Comment<i>: </i></b>This is for adding a variable to the comment
+of a process.
+</p><blockquote>"<b><i>AddVariable</i></b>": Action command to add arguments
+(i.e. variables) to the comment of a given process.&nbsp;
+<br>"<b><i>COMMENT</i></b>": Command to identify a COMMENT of a process
+for adding the arguments to it. The argument to be added and its value
+must be specified for the corresponding entries.&nbsp;
+<p>For example, the argument and its value added for the comment of a process
+namely <i>#java com.adventnet.nms.topodb.DBServer, </i>is given below:&nbsp;
+</p><p>&lt;property_set name="<i>AddVariable</i>"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>COMMENT</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="[<b>TOPO_OBJECTS_IN_MEMORY&nbsp;</b>
+"value=&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<b>number</b> ]"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/property_set&gt;</p></blockquote>
+<b>For Args:</b>This is for adding an argument to a given process.&nbsp;
+<blockquote>"<b><i>ARGS</i></b>": Command to identify arguments, which
+are added to a given process.
+<p>For example, if an argument is to be added to a&nbsp; process namely
+<i>com.adventnet.nms.topodb.DBServer,
+</i>then
+it must be specified as given below:&nbsp;
+</p><p>&lt;property_set name="<i>AddVariable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>ARGS</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>TOPO_OBJECTS_IN_MEMORY</b>"
+value= "&nbsp;
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50</b>"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/property_set&gt;</p></blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>b)Removing a variable: </b>When you want to modify a process by
+removing an argument (i.e.,variable) the following commands can be used.
+<p><b>For Comment: </b>Removes an argument from the comment of the given
+process.
+</p><blockquote>"<b><i>RemoveVariable</i></b>": Action command to remove an
+argument from the comment of a process.&nbsp;
+<br>"<b><i>COMMENT</i></b>": Command to identify the comment of the given
+process from which the argument is to be removed. The argument to be removed
+and its value must be specified for the corresponding entries.&nbsp;
+<p>For example, if you want to remove the argument SAS_DEBUG from the comment
+of the process namely&nbsp;
+<br><i># java com.adventnet.nms.sas.NMSSAServer</i>, then the entries will
+be as shown below:&nbsp;
+</p><p>&lt;property_set name="<i>COMMENT</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>SAS_DEBUG</b>" value="<b>true/false</b>"/&gt;&nbsp;
+<br>&lt;/property_set&gt;</p></blockquote>
+<b>For Args: </b>Removes an argument from a given process.&nbsp;
+<blockquote>"<b><i>ARGS</i></b>":Command to identify arguments, which are
+removed from a given process.</blockquote>
+
+<blockquote>For example, if an argument is to be removed from a given process
+namely <i>com.adventnet.nms.sas.NMSSAServer,
+</i>then it must be specified
+for "args1" and "value1" as shown below:&nbsp;
+<blockquote>&lt;property_set name="<i>ARGS</i>"&gt;
+<br>&nbsp;&nbsp; &lt;property name="<b>SAS_PORT</b> " value= " <b>port</b>"/&gt;&nbsp;
+<br>&lt;/property_set&gt;</blockquote>
+</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Commenting a Process</td>
+
+<td>&lt;update_node name="Name of the process to be commented" description="desc"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Comment_Process</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>You must specify the name of the process which is to be commented in
+the NmsProcessesBE.conf file, for the &lt;update_node&gt;. For example,&nbsp;
+<blockquote>&lt;update_node&nbsp;
+<br>&nbsp;&nbsp; name="<b>com.adventnet.nms.util.RunRmiRegistry</b>"&nbsp;
+<br>&nbsp;&nbsp; description="Process added for RMI registry"&gt;</blockquote>
+"<b><i>Comment_Process</i></b>": Action command for commenting the process
+specified in the parent node (i.e. &lt;update_node&gt;). This leads to commenting
+the process in the NmsProcessesBE.conf file thereby disabling the process.</td>
+</tr>
+
+<tr>
+<td>UnCommenting a Process</td>
+
+<td>&lt;update_node name="Name of the process to be&nbsp; uncommented"
+description="desc"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>UnComment_Process</i>"&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>You must specify the name of the process which is to be uncommented
+in the NmsProcessesBE.conf file, for the &lt;update_node&gt;. For example,&nbsp;
+<blockquote>&lt;update_node&nbsp;
+<br>&nbsp;&nbsp; name="<b>com.adventnet.nms.util.RunRmiRegistry</b>"&nbsp;
+<br>&nbsp;&nbsp; description="Process added for RMI registry"&gt;</blockquote>
+<b><i>"UnComment_Process</i></b>": Action command to uncomment a process
+specified in the parent node ( i.e., &lt;update_node&gt;). This leads to uncommenting
+the existing process in the NmsProcessesBE.conf file.&nbsp;</td>
+</tr>
+</tbody></table>
+
+</p><p><a name="ServerParameter"></a><b>ServerParameterChanges</b>
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center><b>Representation in ConfFileChanges.xml</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Attribute Values(i.e., Actions)&nbsp;</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Line</td>
+
+<td><b>(a) Adding a line</b>
+<p>&lt;update_node&nbsp; name="<i>Add_line</i>"&nbsp; description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="specify the line to add"
+/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;
+</p><p><b>(b) Adding a line after a given line</b>
+</p><p>&lt;update_node&nbsp; name="Add_line"&nbsp;
+<br>description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>Add_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="specify the line
+to add" value="value1" after="Given line"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>(a) Adding a line: </b>When you want to add a line in the serverparameters.conf
+file then you can use the below given commands.&nbsp;
+<p>"<b><i>Add_line</i></b>": Action command for adding a line in the serverparameters.conf
+file. This action is used to add a process, an argument and an argument
+value to the file.
+<br>For example:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Add_line</i>"&nbsp;
+<br>&nbsp;description="Adding a new process to the file"&gt;
+<br>&lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<b>#java com.adventnet.nms.startnms.NmsMainFE</b>"
+/&gt;&nbsp;
+<br>&lt;/property_set&gt;</blockquote>
+<b>(b) Adding a line after a given line: </b>When you want to add a line
+after a given line in the serverparameters.conf file, then specify the
+entry as shown below in the example:&nbsp;
+<blockquote>&lt;update_node&nbsp; name="<i>Add_line</i>"&nbsp;
+<br>&nbsp;description="Adding a new process to the file"&gt;
+<br>&lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<b>#java com.adventnet.nms.startnms.NmsMainFE</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="<font color="#3333FF">value1"
+</font>after="
+" /&gt;&nbsp;
+<br>&lt;/property_set&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Removing a Line</td>
+
+<td>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp;
+<br>&nbsp;description="desc"&gt;
+<br>&lt;property_set name="<i>Remove_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="specify the line to&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; remove" /&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>"<b>Remove_line</b>": Action command for removing a line from the serverparameters.conf
+file. This action is used for removing a process, an argument and an argument
+value from the file.&nbsp;
+<br>For example:&nbsp;
+<blockquote>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp;
+<br>&nbsp;description="Removing a process from the file"&gt;
+<br>&lt;property_set name="<i>Remove_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<b>#java com.adventnet.nms.startnms.NmsMainFE</b>"
+/&gt;&nbsp;
+<br>&lt;/property_set&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Modifying Entry&nbsp;</td>
+
+<td>&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp;
+<br>&nbsp;description="desc"&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="OldValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>newEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="NewValue"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>"<b><i>Modify_entry</i></b>": Action command for modifying an entry
+of the serverparameters.conf file. The entry can be a process, an argument
+or an argument value, which is to be modified.&nbsp;
+<br>"<b><i>oldEntry</i></b>": It is the existing entry (i.e., process or
+argument or argument value) in the file, which is to be modified.&nbsp;
+<br>"<b>newEntry</b>": It is the new entry, which is to replace the existing
+entry(i.e.oldEntry).&nbsp;
+<p>For example, if you want to remove NMS_FE_SECONDARY_PORT argument and
+replace it with ABC_FE_SECONDARY_PORT argument then the entry is as given
+below:&nbsp;
+</p><blockquote>&nbsp;&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp;
+description="modify the argument of a process&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>"&nbsp;
+value="<b>NMS_FE_SECONDARY_PORT </b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>newEntry</i>"
+value="<b>ABC_FE_SECONDARY_PORT</b>"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Inserting a Line</td>
+
+<td>&lt;update_node&nbsp; name="<i>Insert_line</i>"&nbsp;
+<br>&nbsp;description="desc"&gt;
+<br>&lt;property_set name="<i>Insert_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>previous</i>"&nbsp; value=&nbsp;
+<br>&nbsp;&nbsp;&nbsp; "previous exsiting line"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>" value="Line&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; be inserted"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>next</i>" value="next line"/&gt;&nbsp;
+<br>&lt;/property_set&gt;
+<br>&lt;/update_node&gt;</td>
+
+<td>"<b><i>Insert_line</i></b>": Action command to insert a line in-between
+two existing lines in the serverparameters.conf file. The inserting line
+can be a process, an argument, or an argument value.&nbsp;
+<br>"<b><i>previous</i></b>": It is the line, which is before the inserting
+line.&nbsp;
+<br>"<b><i>current</i></b>": It is the new line which is to be inserted.&nbsp;
+<br>"<b><i>next</i></b>": It is the line which is after the inserting line.&nbsp;
+<p>For example, in the below given snippet, the&nbsp; <b>ABC_FE_SECONDARY_PORT
+</b>gets
+inserted in-between the two other arguments.&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Insert_line</i>"&nbsp; description="desc"&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Insert_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>previous</i>"&nbsp;
+value=&nbsp; "NMS_FE_SECONDARY_PORT&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; portNumber"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>" value="<b>ABC_FE_SECONDARY_PORT</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>" value="NMS_FE_SECONDARY_PORT_DIR&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; directoryName"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+<font color="#3333FF">Difference in inserting an argument/process/value?</font></td>
+</tr>
+</tbody></table>
+
+</p><p><a name="SetEnv"></a><b>SetEnvChanges</b>
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center><b>Representation in ConfFileChanges.xml</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Attribute Values(i.e., Actions)</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Line&nbsp;</td>
+
+<td><b>(a) Adding a line</b>
+<p>&lt;update_node&nbsp; name="<i>Add_line</i>" description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>Add_line</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="give
+line to add" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+</p><p><b>(b) Adding a line after a given line&nbsp;</b>
+</p><p>&lt;update_node&nbsp; name="<i>Add_line</i>"&nbsp; description="desc"&gt;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>Add_line</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i><font color="#3366FF">ENV.
+VARIABLE</font>=</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" after="Given line"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>(a) Adding a line: </b>When you want to add a line in the setEnv.bat/sh
+file then you can use the below given commands
+<p>"<b><i>Add_line</i></b>": Action command for adding a line in the setEnv.bat/sh
+file. This action is used to add a classpath or an environment variable
+to the file. It is important to specify the operating system(os) too for
+the coresponding specified classpath or variable.&nbsp;
+</p><p>For example: If you want to add a classpath for migration specific to
+Windows NT OS in the file, then the entries must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Add_line</i>" description="Setting
+migration&nbsp;
+<br>&nbsp;&nbsp; classpath"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>set MIGRATION_CLASSPATH</b>"
+/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b) Adding a line after a given line</b>
+<p>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Removing a Line</td>
+
+<td>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp;
+<br>&nbsp;&nbsp; description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>Remove_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="give line to remove"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</td>
+
+<td>"<b><i>Remove_line</i></b>": Action command to remove a line from the
+setEnv.bat/sh file.&nbsp;
+<p>For example, if you want to remove a line namely "set NMS_ARC=%NMS_CLASSES%\NmsClientClasses.jar",
+which is specific to WinNT OS, then the entries must be as follows:&nbsp;
+</p><p>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp; description="Removing
+env. variable"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Remove_line</i>"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name<font color="#000000">="<b>set
+NMS_ARC=%NMS_CLASSES%\NmsClientClasses.jar</b></font>" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;
+</p><p>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Inserting a Line</td>
+
+<td>&lt;update_node&nbsp; name="<i>Insert_line</i>"&nbsp;
+<br>&nbsp;&nbsp; description="desc"&gt;
+<br>&lt;property_set name="<i>Insert_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>previous</i>" value="previous
+line"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>" value="Line to
+be inserted"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>" value="next line"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</td>
+
+<td>"<b><i>Insert_line</i></b>":&nbsp; Action command to insert a line
+in-between two lines in the setEnv.bat/sh file. The line to be inserted
+can be a classpath or an environment variable.&nbsp;
+<p>"<b><i>previous</i></b>":It is the line, which is before the inserting
+line.&nbsp;
+<br>"<b><i>current</i></b>": : It is the new line which is to be inserted.&nbsp;
+<br>"<b><i>next</i></b>":&nbsp; It is the line which is after the inserting
+line.
+</p><p>For example, if you want to insert a variable %ABC_CLASSPATH%, then
+the entry must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Insert_line</i>" description="Inserting
+variable"&gt;
+<br>&nbsp; &lt;property_set name="<i>Insert_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>previous</i>"
+value="%UMGR_INSTALLER_CLASSPATH%"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>" value="<b>ABC_CLASSPATH</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>" value="%NMS_CLASSES%"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Remove</td>
+
+<td><b>(a) Variable</b>
+<p>&lt;update_node&nbsp; name="<i>Remove_entry</i>"&nbsp;
+<br>description="Removing variable"&gt;
+<br>&nbsp;&lt;property_set name="<i>remove_entry</i>"&nbsp;
+<br>&nbsp;&nbsp; os="OS"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=" give env. variable
+"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE"&nbsp; use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+</p><p>&nbsp;<b>(b)Entry</b>
+</p><p>&lt;update_node&nbsp; name="<i>Remove_entry</i>"&nbsp;
+<br>description="Removing variable"&gt;
+<br>&lt;property_set name="<i>remove_entry</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="Give env<i>. variable</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE"
+use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>(a) Variable:</b> If you want to remove a variable from the setEnv.bat/sh
+file, then you can use the below given commands.&nbsp;
+<p>"<b><i>remove_entry</i></b>":Action command to remove a variable from
+the setEnv.bat/sh file.&nbsp;
+<br>"<b><i>variable</i></b>":&nbsp; Command to identify the variable, which
+is to be removed from the file.
+</p><p>For example, if you want to remove the variable "set FTP_CLASSPATH"
+from the file, then the entry must be as follows:&nbsp;
+</p><p>&lt;update_node&nbsp; name="<i>Remove_entry</i>"&nbsp; description="Removing
+variable"&gt;
+<br>&nbsp;&lt;property_set name="<i>remove_entry</i>"&nbsp; os="Solaris"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>set FTP_CLASSPATH</b>
+"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE"&nbsp; use="os"
+doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)Entry: </b>If you want to remove an entry from the file, then
+you can use the below given commands. Here, entry can be any jar or file
+required to specify in the classpath for running the application.&nbsp;
+<p>"<b><i>entry</i></b>": Command to identify the "entry" of the file which
+is to be removed.&nbsp;
+</p><p>For example, if you want to remove the entry of the "MigrationUtil.jar",
+then the entry must be&nbsp;
+</p><p>&lt;update_node&nbsp; name="<i>Remove_entry</i>"&nbsp; description="Removing
+variable"&gt;
+<br>&lt;property_set name="<i>remove_entry</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>MigrationUtil.jar</b>"
+value="<font color="#3366FF">VALU</font>E" use="WinNT" <font color="#3366FF">doOnce="false"/&gt;&nbsp;</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Modify Entry</td>
+
+<td>&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp;
+<br>description="desc"&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp; value="OldValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>newEntry</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp; value="NewValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/update_node&gt;</td>
+
+<td>"<b><i>Modify_entry</i></b>": Action command to modify a variable from
+the setEnv.bat/sh file.You can modify the classpath setting or the variable
+specified in the file.&nbsp;
+<br>"<b><i>oldEntry</i></b>": It is the existing entry (i.e., classpath
+setting or variable) in the file, which is to be modified.&nbsp;
+<br>"<b><i>newEntry</i></b>": It is the new entry, which is to replace
+the existing entry(i.e.oldEntry).&nbsp;
+<p>For example, if you want to remove <b>set TL1AGENT_CLASSPATH</b> entry
+and replace it with <b>set CLIAGENT_CLASSPATH </b>entry then the entry
+in the file will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp; description="modifying
+a classpath setting"&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>" value="<b>set TL1AGENT_CLASSPATH</b>
+"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>newEntry</i>" value="<b>set CLIAGENT_CLASSPATH
+</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Append</td>
+
+<td><b>(a)</b> <b>Variable</b>
+<p>&lt;update_node&nbsp; name="<i>append</i>"&nbsp;
+<br>description="desc"&gt;
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>ENV. VARIABLE
+</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)Entry</b>
+<p>&lt;update_node&nbsp; name="<i>append</i>"&nbsp;
+<br>description="desc"&gt;
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="Give env. variable "&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>a) Variable</b>: If you want to append a variable (e.g. NMS_CLASSES)
+to a line (i.e., set classpath) in the setEnv.bat/sh file, then you can
+use the below given command.&nbsp;
+<p>"<b><i>append</i></b>": Action command to append a variable to a line
+or an entry in the setEnv.bat/sh file.
+<br>"<b><i>variable</i></b>": Command to identify the entry of a variable
+for appending to a line.
+</p><p>For example, if you want to append a variable<b> NMS_CLASSES </b>to
+"set TL1AGENT_CLASSPATH" entry in the file, then the entry in the file
+will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+a variable"&gt;
+<br>&lt;property_set name="<i>append</i>" os="Win"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="set TL1AGENT_CLASSPATH"
+value="<b>NMS_CLASSES</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use="Win"&nbsp; <font color="#3333FF">doOnce="true</font>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>b)Entry</b>: If you want to append an entry (e.g. AdventNetJta.jar)
+to a line (i.e., set classpath) or variable in the setEnv.bat/sh file,
+then you can use the below given command.&nbsp;
+<p>"<b><i>entry</i></b>": Command to identify an entry, which is appended
+to a line in the file.&nbsp;
+</p><p>For example, For example, if you want to append an entry <b>AdventNetJta.jar
+</b>to
+"set TL1AGENT_CLASSPATH" entry in the file, then the entry in the file
+will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+an entry"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>append</i>" os="Win"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="set TL1AGENT_CLASSPATH"
+value="<b>AdventNetJta.jar</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use="Win"&nbsp; <font color="#3333FF">doOnce="true</font>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Prepend</td>
+
+<td><b>(a) Variable</b>
+<p>&lt;update_node&nbsp; name="<i>prepend</i>"&nbsp;
+<br>description="desc"&gt;
+<br>&lt;property_set name="<i>prepend</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="Give env. variable "&nbsp;
+<br>&nbsp;&nbsp;&nbsp; value="VALUE" use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp; doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)Entry</b>
+<p>&lt;update_node&nbsp; name="<i>prepend</i>"&nbsp;
+<br>description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>prepend</i>"&nbsp;
+<br>&nbsp; os="OS"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="Give env. variable&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>(a) Variable: </b>If you want to prepend&nbsp; (i.e., add before)
+a line (i.e., set classpath) or an entry with a variable (e.g. NMS_CLASSES)
+in the setEnv.bat/sh file, then you can use the below given command.&nbsp;
+<p>"<b><i>prepend</i></b>": Action command to prepend a line or an entry
+with a variable in the setEnv.bat/sh file.
+<br>"<b><i>variable</i></b>": Command to identify the entry of a variable
+for prepending to a line.
+</p><p>For example, if you want to prepend a variable<b> JIMI_CLASSPATH </b>to
+another variable <b>NMS_CLASSES, </b>then the entry in the file will be
+as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>prepend</i>"&nbsp; description="appending
+a variable"&gt;
+<br>&lt;property_set name="<i>prepend</i>" os="Win"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>NMS_CLASSES</b>"
+value="<b>JIMI_CLASSPATH</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use="Win"&nbsp; <font color="#3333FF">doOnce="true</font>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<p><b>(b)Entry: </b>If you want to prepend a line (i.e., set classpath)
+or a variable (e.g. NMS_CLASSES<b>) </b>with any entry (e.g. AdventNetJta.jar)
+in the setEnv.bat/sh file, then you can use the below given command.
+</p><p>"<b><i>entry</i></b>": Command to identify any entry for prepending
+to a line or variable in the file.&nbsp;
+</p><p>For example, if you want to prepend an entry<b> AdventNetJta.jar </b>to
+a variable <b>NMS_CLASSES</b>, then the entry in the file will be as given
+below:
+</p><blockquote>&lt;update_node&nbsp; name="<i>prepend</i>" description="prepending
+a jar to a variable"&gt;
+<br>&nbsp; &lt;property_set name="<i>prepend</i>"&nbsp; os="Win"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="NMS_CLASSES" value="<b>AdventNetJta.jar</b>"
+use="Win"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+</tbody></table>
+
+</p><p><a name="StartApplication"></a><b>StartApplicationChanges</b>
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center>&nbsp;<b>Representation in ConfFileChanges.xml</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Attribute Values(i.e., Actions)</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Line</td>
+
+<td><b>(a)Adding a line</b>
+<p>&lt;update_node&nbsp; name="<i>Add_line</i>" description="desc"&gt;
+<br>&lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="Give line to add" /&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+</p><p><b>(b) Adding a line after a given line:&nbsp;</b>
+</p><p>&lt;property_set name="<i>Add_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="ENV. VARIABLE="&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" after="Given line"/&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;</p></td>
+
+<td><b>a)Adding a line: </b>If you want to add a line in the startApplicationClient.bat/sh
+file then you can use the below given commands
+<p>"<b><i>Add_line</i></b>": Action command for adding a line in the startApplicationClient.bat/sh
+file. This action is used to add default arguments or classpath to the
+file.&nbsp;
+</p><p>For example: If you want to add the classpath <b>set CUSTOMPATH=</b>for
+the deployment wizard in the file, then the entries must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Add_line</i>" description="Setting
+classpath for Deploy wizard"&gt;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>set CUSTOMPATH=</b>"
+/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+The above given line is appended to the entries of the startApplicationClient.bat/sh
+file.&nbsp;
+<br>
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b) Adding a line after a given line</b>
+<p>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Removing a Line</td>
+
+<td>
+<br>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp; description="desc"&gt;
+<br>&nbsp;&lt;property_set name="<i>Remove_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="Give line to&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; remove"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</td>
+
+<td>"<b><i>Remove_line</i></b>": Action command to remove a line from the
+startApplicationClient.bat/sh file.&nbsp;
+<p>For example, if you want to remove a line namely "<b>set clientexit=%errorlevel%</b>",
+from the file, then the entries must be as follows:&nbsp;
+</p><p>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp; description="Removing
+a line"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Remove_line</i>"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name<font color="#000000">="<b>set
+clientexit=%errorlevel%</b></font>" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;
+<br>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Inserting a Line</td>
+
+<td>&lt;update_node&nbsp; name="<i>Insert_line</i>" description="desc"&gt;
+<br>&lt;property_set name="<i>Insert_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>previous</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp; value="previous line"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; value="Line to be inserted"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>" value="next&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; line"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</td>
+
+<td>"<b><i>Insert_line</i></b>":&nbsp; Action command to insert a line
+in-between two lines in the startApplicationClient.bat/sh file. The line
+to be inserted can be a classpath or default arguments.&nbsp;
+<br>"<b><i>previous</i></b>":It is the line, which is before the inserting
+line.&nbsp;
+<br>"<b><i>current</i></b>": : It is the new line which is to be inserted.&nbsp;
+<br>"<b><i>next</i></b>":&nbsp; It is the line which is after the inserting
+line.
+<p>For example, if you want to insert a line <b>if %umexit% EQU 0 goto
+start,&nbsp;</b> then the entry must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Insert_line</i>" description="Inserting
+variable"&gt;
+<br>&nbsp; &lt;property_set name="<i>Insert_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>previous</i>"
+value="set umexit=%errorlevel%"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>"
+value=" <b>if %umexit% EQU 0 goto start</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>"&nbsp;
+value="goto end"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Modify Entry</td>
+
+<td>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&lt;property name="<i>oldEntry</i>" value="OldValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>newEntry</i>" value="NewValue"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>"<b><i>Modify_entry</i></b>": Action command to modify an entry in
+the startApplicationClient.bat/sh&nbsp; file.You can modify the classpath
+setting or the variable specified in the file.&nbsp;
+<br>"<b><i>oldEntry</i></b>": It is the existing entry (i.e., classpath
+setting or variable) in the file, which is to be modified.&nbsp;
+<br>"<b><i>newEntry</i></b>": It is the new entry, which is to replace
+the existing entry (i.e.oldEntry).&nbsp;
+<p>For example, if you want to modify <b>set TL1AGENT_CLASSPATH</b> and
+replace it with <b>set CLIAGENT_CLASSPATH </b>then the entry in the file
+will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp; description="modifying
+a classpath setting"&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>" value="<b>set TL1AGENT_CLASSPATH</b>
+"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>newEntry</i>" value="<b>set CLIAGENT_CLASSPATH
+</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Append&nbsp;</td>
+
+<td><b>(a) Variable</b>
+<p>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="desc"&gt;
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="VARIABLE "&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os" doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)Entry</b>
+<p>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="desc"&gt;
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=" VARIABLE "&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>a) Variable</b>: If you want to append a variable (e.g. UPDATE_MANAGER_CLASSPATH)
+to a line in the startApplicationClient.bat/sh file, then you can use the
+below given command.&nbsp;
+<p>"<b><i>append</i></b>": Action command to append a variable in the startApplicationClient.bat/sh
+file.
+<br>"<b><i>variable</i></b>": Command to identify the entry of a variable
+for appending to a line.
+</p><p>For example, if you want to append a variable<b> UPDATE_MANAGER_CLASSPATH
+</b>to
+the line "JAVA_HOME%\bin\java -classpath" in the file, then the entry in
+the file will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+a variable"&gt;
+<br>&lt;property_set name="<i>append</i>" os="Win" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="JAVA_HOME%\bin\java
+-classpath"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value="<b>UPDATE_MANAGER_CLASSPATH</b>" use="Win" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>b)Entry</b>: If you want to append an entry (e.g. PORT) to a line
+(i.e., echo "USAGE: startApplicationClient [HOST]) in the startApplicationClient.bat/sh
+file, then you can use the below given command.&nbsp;
+<p>"<b><i>entry</i></b>": Command to identify an entry, which is appended
+to a line in the file.&nbsp;
+</p><p>For example, For example, if you want to append an entry <b>PORT
+</b>to
+the line "echo "USAGE: startApplicationClient [HOST]" in the file, then
+the entry in the file will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+an entry"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>append</i>" os="Win"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="echo "USAGE: startApplicationClient
+[HOST]" value="<b>PORT</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use="Win"&nbsp; <font color="#3333FF">doOnce="true</font>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+</tbody></table>
+
+</p><p><a name="StartNMS"></a><b>StartnmsChanges</b>
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center>&nbsp;<b>Representation in ConfFileChanges.xml</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Attribute Values(i.e., Actions)</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Line</td>
+
+<td><b>(a) Adding a line</b>
+<p>&lt;update_node&nbsp; name="Add<i>_line</i>"&nbsp; description="desc"&gt;
+<br>&nbsp; &lt;property_set name="<i>Add_line</i>"&nbsp;
+<br>&nbsp;&nbsp; os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="Give line to add" /&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b) Adding a line after a given line&nbsp;</b>
+<br>&nbsp;&lt;property_set name="<i>Add_line</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>VARIABLE=</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE"&nbsp; after="Given line"/&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<p><b>(c) Adding a line before a given line</b>
+<br>&lt;property_set name="<i>Add_line</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=" <i>VARIABLE="&nbsp;</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" before="Given line"/&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;</p></td>
+
+<td><b>a)Adding a line: </b>If you want to add a line in the startnms.bat/sh
+file then you can use the below given commands
+<p>"<b><i>Add_line</i></b>": Action command for adding a line in the startnms.bat/sh
+file. This action is used to add default arguments or classpath to the
+file.&nbsp;
+</p><p>For example: If you want to add the line "-Dwebserver.port=%WEBSERVER_PORT%
+-Xmx100m" in the file, then the entries must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Add_line</i>" description="adding
+webserver port"&gt;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>Add_line</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="-<b>Dwebserver.port=%WEBSERVER_PORT%
+-Xmx100m</b>" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+The added line is appended to the entries of the startnms.bat/sh file.&nbsp;
+<br>
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b) Adding a line after a given line</b>
+<p>"VARIABLE=":
+<br>after:&nbsp;
+</p><p><b>(c) Adding a line before a given line</b>
+</p><p>"VARIABLE=":
+<br>before:&nbsp;
+<br>&nbsp;</p></td>
+</tr>
+
+<tr>
+<td>Removing a Line</td>
+
+<td>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp; description="desc"&gt;
+<br>&lt;property_set name="<i>Remove_line</i>" &gt;&nbsp;
+<br>&nbsp;&lt;property name="give line to remove"/&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</td>
+
+<td><b><i>Remove_line</i></b>": Action command to remove a line from the
+startnms.bat/sh file.&nbsp;
+<p>For example, if you want to remove a line namely "<b>set umexit=%errorlevel%</b>",
+from the file, then the entries must be as follows:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="Remove<i>_line</i>"&nbsp; description="Removing
+a line"&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Remove_line</i>"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name<font color="#000000">="<b>set
+</b></font><b>umexit<font color="#000000">=%errorlevel%</font></b>"
+/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Inserting a Line</td>
+
+<td>&lt;property_set name="<i>Insert_line</i>" &gt;&nbsp;
+<br>&nbsp; &lt;property name="<i>previous</i>" value="previous line"/&gt;&nbsp;
+<br>&nbsp; &lt;property name="<i>current</i>" value="Line to be inserted"/&gt;&nbsp;
+<br>&nbsp; &lt;property name="<i>next</i>" value="next line"/&gt;&nbsp;
+<br>&lt;/property_set&gt;</td>
+
+<td>"<b><i>Insert_line</i></b>":&nbsp; Action command to insert a line
+in-between two lines in the startnms.bat/sh file. The line to be inserted
+can be a classpath or default arguments.&nbsp;
+<br>"<b><i>previous</i></b>":It is the line, which is before the inserting
+line.&nbsp;
+<br>"<b><i>current</i></b>": : It is the new line which is to be inserted.&nbsp;
+<br>"<b><i>next</i></b>":&nbsp; It is the line which is after the inserting
+line.
+<p>For example, if you want to insert a line <b>if %umexit% EQU 0 goto
+start1</b>,<b> </b>then the entry must be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Insert_line</i>" description="Inserting
+variable"&gt;
+<br>&nbsp; &lt;property_set name="<i>Insert_line</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>previous</i>"
+value="set umexit=%errorlevel%"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>current</i>"
+value="<b>if %umexit% EQU 0 goto start1</b>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>next</i>"&nbsp;
+value="goto end"/&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>ModifyEntry</td>
+
+<td>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>" value="OldValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>newEntry</i>"
+value="NewValue"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>"<b><i>Modify_entry</i></b>": Action command to modify an entry in
+the startApplicationClient.bat/sh&nbsp; file.You can modify the classpath
+setting or the variable specified in the file.&nbsp;
+<br>"<b><i>oldEntry</i></b>": It is the existing entry (i.e., classpath
+setting or variable) in the file, which is to be modified.&nbsp;
+<br>"<b><i>newEntry</i></b>": It is the new entry, which is to replace
+the existing entry (i.e.oldEntry).&nbsp;
+<p>For example, if you want to modify <b>set PATH=%NMS_HOME%\lib;%PATH%
+</b>and
+replace it with <b>set PATH=%NMS_HOME%\abs;%PATH%, </b>then the entry in
+the file will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>Modify_entry</i>"&nbsp; description="modifying
+a classpath setting"&gt;
+<br>&lt;property_set name="<i>Modify_entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>oldEntry</i>" value="set PATH=%NMS_HOME%<b>\lib</b>;%PATH%"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property name="<i>newEntry</i>" value="set PATH=%NMS_HOME%\<b>abc</b>;%PATH%"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Append</td>
+
+<td><b>(a) Variable</b>
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=" variable name"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os" doOnce="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b)Entry</b>
+<br>&lt;property_set name="<i>append</i>" os="OS"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name=" VARIABLE "&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="VALUE" use="os" doOnce="false"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;</td>
+
+<td><b>a) Variable</b>: If you want to append a variable (e.g. <b>SUM_CLIENT_CLASSPATH</b>)
+to a line in the startnms.bat/sh file, then you can use the below given
+command.&nbsp;
+<p>"<b><i>append</i></b>": Action command to append a variable in the startApplicationClient.bat/sh
+file.
+<br>"<b><i>variable</i></b>": Command to identify the entry of a variable
+for appending to a line.
+</p><p>For example, if you want to append a variable<b> SUM_CLIENT_CLASSPATH
+</b>to
+the line "<b>set CLASS_PATH=</b>" in the file, then the entry in the file
+will be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+a variable"&gt;
+<br>&lt;property_set name="<i>append</i>" os="Win" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>variable</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>set CLASS_PATH=</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value="<b>SUM_CLIENT_CLASSPATH
+</b>" use="Win" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>b)Entry</b>: If you want to append an entry (e.g.AdventNetUI.jar)
+to a line or variable in the startnms.bat/sh file, then you can use the
+below given command.&nbsp;
+<p>"<b><i>entry</i></b>": Command to identify an entry, which is appended
+to a line in the file.&nbsp;
+</p><p>For example, For example, if you want to append an entry <b>AdventNetUI.jar
+</b>to
+the variable "NMS_CLASSES" in the file, then the entry in the file will
+be as given below:&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>append</i>"&nbsp; description="appending
+an entry"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>append</i>" os="Win"&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>entry</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="echo "NMS_CLASSES"
+value="<b>AdventNetUI.jar</b>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use="Win"&nbsp; <font color="#3333FF">doOnce="true</font>"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+</tbody></table>
+
+</p><p><a name="XMLConf"></a><b>XMLConfChangesUtil</b>
+<br>&nbsp;
+<table border="" width="100%">
+<tbody><tr>
+<td>
+<center><b>Actions Defined&nbsp;</b></center>
+</td>
+
+<td>
+<center>&nbsp;<b>Representation in ConfFileChanges.xml</b></center>
+</td>
+
+<td>
+<center><b>Explanation of Attribute Values(i.e., Actions)</b></center>
+</td>
+</tr>
+
+<tr>
+<td>Adding a Node</td>
+
+<td><b>(a)To Add a Node</b>
+<p>&lt;update_node name="<i>Add</i>" description="desc" &gt;&nbsp;
+<br>&lt;property_set name="Node names in hierarchial order" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>" value="true" /&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="<i>Node</i>" &gt;&nbsp;
+<br>&nbsp; &lt;"Give the node name that is to be added"/&gt;&nbsp;
+<br>&nbsp;&lt;/property_set&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Add an Attribute&nbsp;</b>
+<p>&lt;update_node name="<i>Add</i>" description="add help for updating
+a new attribute"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="Node names in hierarchial order"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>attribute</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="attribute name" value="value" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;&nbsp;</p></td>
+
+<td><b>(a)To Add a Node: </b>If you want to add an XML node in a given&nbsp;
+configuration file then you can use the below given command.&nbsp;
+<p>"<b><i>Add</i></b>": Action command to add a node in the given configuration
+file. You must specify the existing node hierarchies (i.e., parent and
+child nodes) of the configuration file, to locate the exact position in
+which the node is to be added
+<br>"<b><i>parent</i></b>": Command to indicate the node specified for
+the &lt;property_set&gt; tag as the parent node.&nbsp;
+<br>"<b><i>Node</i></b>": Command to identify the entry in the file as
+a Node.&nbsp;
+</p><p>For example, if you want to add an XML node namely "&lt;FILTER className=""/&gt;
+under a node namely "DISCOVERY_FILTERS" in the <b>discovery.filters</b>
+configuration file, then the entry in the file will be as,&nbsp;
+</p><blockquote>&lt;update_node name="<i>Add</i>" description="add a node "
+&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<b>DISCOVERY_FILTERS</b>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Node</i>" &gt;&nbsp;
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;FILTER className=""/&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Add an Attribute:&nbsp; </b>If you want to add an attribute
+along with its value in a configuration file, then you can use the following
+command. The definition of all other commands are same as that specified
+for adding a Node.&nbsp;
+<p><b>"attribute</b>": Command to identify the entry of an attribute in
+the file.&nbsp;
+</p><p>For example, if you want to add an attribute namely <b>DISCOVER="true"</b>
+in the <b>seed.conf </b>file, then the entry will be as given below,&nbsp;
+</p><blockquote>&lt;update_node name="<i>Add</i>" description="add attribute"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="DISCOVERY" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>attribute</i>"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property
+name="<b>DISCOVER</b>" value="<b>true</b>" /&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Modifying a Node</td>
+
+<td><b>(a)To Modify a Node&nbsp;</b>
+<p>&lt;update_node name="<i>Modify</i>" description="desc"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="Node name in&nbsp;
+<br>&nbsp;&nbsp; hierarchial order"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="true" /&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>oldNode</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;Give the old node&gt;&nbsp;
+<br>&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>newNode</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Give the new node&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&lt;/property_set&gt;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Modify an Attribute</b>
+<p>&lt;update_node name="<i>Modify</i>" description="desc"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="Node names in&nbsp;
+<br>&nbsp;&nbsp; hierarchial order"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="true" /&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>attribute</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="attribute name"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subset="true" <i>existingValue</i>="Give
+the existing value" <i>newValue</i>="Give the new value"/&gt;
+<br>&nbsp; &lt;/property_set &gt;
+<br>&nbsp; &lt;/property_set &gt;
+<br>&lt;/update_node&gt;</p></td>
+
+<td><b>(a)To Modify a Node: </b>If you want to modify an XML node in a
+configuration file then you can use the below given command.
+<p>"<b><i>Modify</i></b>":Action command to modify an existing XML node
+in a configuration file. You must specify the existing node hierarchies
+(i.e., parent and child nodes) of the configuration file, to locate the
+exact position in which the node is to be added.
+<br>"<b><i>parent</i></b>": Command to indicate the node specified for
+the &lt;property_set&gt; tag as the parent node.&nbsp;
+<br>"<b><i>oldNode</i></b>": Command to identify the entry of an existing
+node in the file.
+<br>"<b><i>newNode</i></b>": Command to identify the entry of the new node
+replacing the old one.&nbsp;
+<br>For example, if you want to modify the XML node<b> &lt;PANEL&gt;</b> of
+NmsPanels.conf file and replace it with <b>&lt;PANEL_CONF&gt;</b> node, then
+the entry will be as given below,&nbsp;
+</p><blockquote>&lt;update_node name="<i>Modify</i>" description="Modify Node"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="NMS_PANELS_CONF"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;property name="<i>parent</i>" value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>oldNode</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;<b>PANEL</b>&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>newNode</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;<b>PANEL_CONF</b>&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Modify an Attribute: </b>If you want to modify an attribute
+along with its value in a configuration file, then you can use the following
+command. The definition of all other commands are same as that speciifed
+for modifying a Node
+<p>"<b><i>attribute</i></b>":Command to identify the entry of an attribute
+in the file.&nbsp;
+</p><p>For example, For example, if you want to modify an attribute namely
+<b>DISCOVER="true"</b>
+in the <b>seed.conf </b>file, then the entry will be as given below,&nbsp;
+</p><blockquote>&lt;update_node name="<i>Modify</i>" description="Modify attribute"&gt;&nbsp;
+<br>&nbsp;&lt;property_set name="DISCOVERY"&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>attribute</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>DISCOVER</b>"
+subset="true"&nbsp;
+<br><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; existingValue</i>="<b>true</b>"
+
+<i>newValue</i>="<b>false</b>"/&gt;
+<br>&nbsp; &lt;/property_set &gt;
+<br>&nbsp; &lt;/property_set &gt;
+<br>&lt;/update_node&gt;&nbsp;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Removing a If you want to add an XML node in the specific configuration
+file&nbsp; then you can use the below given command.&nbsp;
+<p>Node</p></td>
+
+<td><b>(a)To Remove a Node</b>
+<p>&lt;update_node name="<i>remove</i>" description=" deleting a node "
+&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="Node name in&nbsp;
+<br>&nbsp;&nbsp;&nbsp; hierarchial order"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="true" /&gt;&nbsp;
+<br>&nbsp; &lt;property_set name="<i>Node</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Give the node to be removed&gt;&nbsp;
+<br>&lt;/property_set&gt;
+<br>&lt;/property_set&gt;
+<br>&lt;/update_node&gt;
+<br>
+</p><hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Remove an Attribute</b>
+<p>&lt;update_node name="<i>remove</i>" description=" desc " &gt;&nbsp;
+<br>&nbsp;&lt;property_set name="Node names in&nbsp;
+<br>&nbsp;&nbsp; hierarchial order"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>attribute</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="attribute name"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="value" /&gt;&nbsp;
+<br>&lt;/property_set&gt;
+<br>&lt;/property_set&gt;
+<br>&lt;/update_node&gt;&nbsp;</p></td>
+
+<td><b>(a)To Remove a Node: </b>If you want to remove an XML node in a
+configuration file then you can use the below given command.
+<p>"<b><i>remove</i></b>": Action command to remove an existing XML node
+in a configuration file. You must specify the existing node hierarchies
+(i.e., parent and child nodes) of the configuration file, to locate the
+exact position in which the node is to be removed.
+<br>"<b><i>parent</i></b>":Command to indicate the node specified for the
+&lt;property_set&gt; tag as the parent node.&nbsp;
+<br>"<b><i>Node</i></b>":Command to identify the entry in the file as a
+Node
+</p><p>For example, if you want to remove an XML node namely <b>&lt;MENU-ITEM
+name="Back"&gt; </b>from <b>framemenu.xml </b>file, then the entry will be
+as given below,&nbsp;
+</p><blockquote>&lt;update_node name="<i>remove</i>" description=" Remove node"&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="&lt;PANELMENUBAR&gt;"/&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set name="&lt;MENU&gt;"/&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set name="<i>Node</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;<b>MENU-ITEM name="Back"&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+
+<hr align="LEFT" size="1" width="100%">
+<br><b>(b)To Remove an Attribute: </b>If you want to remove an attribute
+along with its value in a configuration file, then you can use the following
+command. The definition of all other commands are same as that specified
+for removing a Node.
+<p>"<b><i>attribute</i></b>": Command to identify the entry of an attribute
+in the file.
+</p><p>For example, if you want to remove the attribute namely <b>DISCOVER="true"</b>
+in the <b>seed.conf </b>file, then the entry will be as given below,&nbsp;
+</p><blockquote>&lt;update_node name="<i>remove</i>" description=" Remove attr.
+" &gt;&nbsp; &lt;property_set name="DISCOVERY"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<i>parent</i>"
+value="true" /&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;property_set name="<i>attribute</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="<b>DISCOVER</b>"
+value="<b>true</b>" /&gt;&nbsp;
+<br>&lt;/property_set&gt;
+<br>&lt;/property_set&gt;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+
+<tr>
+<td>Inserting an Entry</td>
+
+<td>&lt;update_node&nbsp; name="<i>insert</i>" description="desc" &gt;&nbsp;
+<br>&nbsp; &lt;property_set&nbsp; name="Node names in&nbsp;
+<br>&nbsp;&nbsp; hierarchial order" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property&nbsp; name="<i>parent</i>"&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="true"/&gt;&nbsp;
+<br>&nbsp; &lt;property_set&nbsp; name="<i>previousNode</i>" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;"Node to be inserted"/&gt;&nbsp;
+<br>&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;property_set&nbsp; name="<i>currentNode</i>" &gt;&nbsp;
+<br>&nbsp; &lt;"Node to be inserted"/&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;&nbsp;</td>
+
+<td>"<b><i>insert</i></b>":Action command to insert an entry in-between
+two lines in a configuration file. The entry to be inserted can be a node
+or an attribute.&nbsp;
+<br>"<b><i>parent</i></b>":Command to indicate the node specified for the
+&lt;property_set&gt; tag as the parent node
+<br>"<b><i>previousNode</i></b>":Command to indicate the node before the
+inserting node. "<b><i>currentNode</i></b>": Command to indicate the inserting
+node.&nbsp;
+<p>For example, if you want to insert a node namely&nbsp; <b>&lt;DIR NAME="projectconf"&gt;</b>
+after the<b> &lt;FILE NAME="conf/DBObjects.conf"/&gt;</b> node in Deployment.xml
+file, then the entry will be as given below,&nbsp;
+</p><blockquote>&lt;update_node&nbsp; name="<i>insert</i>" description="desc"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set&nbsp; name="BEFE" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;property_set&nbsp; name="FILELIST" &gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property&nbsp;
+name="<i>parent</i>" value="true"/&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set&nbsp; name="<i>previousNode</i>"
+&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> &lt;FILE
+NAME="conf/DBObjects.conf"/&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property_set&nbsp; name="<i>currentNode</i>"
+&gt;&nbsp;
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;DIR NAME="projectconf"&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; &lt;/property_set&gt;&nbsp;
+<br>&lt;/update_node&gt;</blockquote>
+</td>
+</tr>
+</tbody></table>
+
+<br>&nbsp;
+
+
+</p></body></html>

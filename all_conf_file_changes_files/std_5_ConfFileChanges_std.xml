@@ -1,0 +1,2051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: ConfFileChanges_std.xml,v 1.5 2007/10/30 08:29:17 venkatramanan Exp $ -->
+<configuration_changes>
+<configuration_file       
+	name          = "configprovider.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging CORBA from from configprovider.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove CorbaConfigProvider from CORBA PROTOCOLLIST" >
+		<PropertySet name="PROTOCOLLIST" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<protocol NAME="CORBA" CONFIGPROVIDER="com.adventnet.management.config.corba.CorbaConfigProvider"/>
+	                </PropertySet>
+		</PropertySet>
+	</update_node>
+	
+<configuration_file       
+	name          = "configprovider.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from configprovider.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1ConfigProvider" >
+	      <PropertySet name="PROTOCOLLIST" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<protocol NAME="tl1" CONFIGPROVIDER="com.adventnet.management.config.tl1.TL1ConfigProvider"/>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+	
+</configuration_file>
+
+<configuration_file 
+	name          = "DatabaseAliases.conf" 
+	path          = "conf" 
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description   = "Unplugging CORBA from from DatabaseAliases.conf" 
+	required      = "true" 
+	priority      = "0">
+
+	<update_node name="Update" description="Remove CORBA related lines from DatabaseAliases.conf">
+		<property_set name="Remove_line" >
+			<property name="#In Table CORBANode" value="" />
+			<property name="orbClassName  ORBCLASSNAME" value="" />
+			<property name="#In Table CORBANode" value="" />
+			<property name="nameServiceHost  NAMESERVICEHOST" value="" />
+			<property name="nameServicePort  NAMESERVICEPORT" value="" />
+			<property name="nameRef  NAMEREF" value="" />
+			<property name="interfaceName  INTERFACENAME" value="" />
+			<property name="statusPollCommand  STATUSPOLLCOMMAND" value="" />
+			<property name="statusPollIOR  STATUSPOLLIOR" value="" />
+			<property name="dataPollIOR  DATAPOLLIOR" value="" />
+		</property_set>
+	</update_node> 
+
+</configuration_file>
+<configuration_file 
+	name          = "DatabaseAliases.conf" 
+	path          = "conf" 
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description   = "Unplugging JMX from DatabaseAliases.conf"
+	required      = "true" 
+	priority      = "0">
+
+	<update_node name="Update" description="Remove NotificationLogs and VarBindLog">
+		<property_set name="Remove_line" >
+			<property name="#In Table NotificationLog" value="" />
+			<property name="notiIndex  NOTIINDEX" value="" />
+			<property name="#In Table NotificationLog" value="" />
+			<property name="logTime  LOGTIME" value="" />
+			<property name="#In Table NotificationLog" value="" />
+			<property name="noVarBinds  NOVARBINDS" value="" />
+			<property name="#In Table NotificationLog" value="" />
+			<property name="notiOID  NOTIOID" value="" />
+			<property name="#In Table VarBindLog" value="" />
+			<property name="varIndex  VARINDEX" value="" />
+			<property name="#In Table VarBindLog" value="" />
+			<property name="varType  VARTYPE" value="" />
+			<property name="#In Table VarBindLog" value="" />
+			<property name="varValue  VARVALUE" value="" />
+		</property_set>
+	</update_node> 
+
+</configuration_file>
+<configuration_file 
+	name          = "DatabaseAliases.conf" 
+	path          = "conf" 
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description   = "Unplugging Provisionig service from DatabaseAliases.conf" 
+	required      = "true" 
+	priority      = "0">
+
+	<update_node name="Update" description="Remove Provisioning related entries">
+		<property_set name="Remove_line" >
+			<property name="lastModifiedTime  LASTMODIFIEDTIME" value="" />
+			<property name="model  MODEL" value="" />
+			<property name="contact  CONTACT" value="" />
+			<property name="managedObjectName  MANAGEDOBJECTNAME" value="" />
+			<property name="operationalStatus  OPERATIONALSTATUS" value="" />
+			<property name="location  LOCATION" value="" />
+			<property name="adminStatus  ADMINSTATUS" value="" />
+			<property name="vendor  VENDOR" value="" />
+			<property name="description  DESCRIPTION" value="" />
+			<property name="variantId  VARIANTID" value="" />
+		</property_set>
+	</update_node> 
+
+</configuration_file>
+
+<configuration_file 
+	name          = "DatabaseAliases.conf" 
+	path          = "conf" 
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description   = "Unplugging TL1 service from DatabaseAliases"
+	required      = "true" 
+	priority      = "0">
+
+	<update_node name="Update" description="Remove TL1Node and TL1Interface">
+		<property_set name="Remove_line" >
+			<property name="#In Table TL1Node" value="" />
+			<property name="loginCommand  LOGINCOMMAND" value="" />
+			<property name="initCommand  INITCOMMAND" value="" />
+			<property name="connectionHandler  CONNECTIONHANDLER" value="" />
+			<property name="infoCommand  INFOCOMMAND" value="" />
+			<property name="dictionary  DICTIONARY" value="" />
+			<property name="sessionId  SESSIONID" value="" />
+			<property name="tl1port  TL1PORT" value="" />
+			<property name="statusPollIOR  STATUSPOLLIOR" value="" />
+			<property name="notifyId  NOTIFYID" value="" />
+			<property name="#In Table TL1Interface" value="" />
+			<property name="statpollCommand  STATPOLLCOMMAND" value="" />
+			<property name="connectionHandler  CONNECTIONHANDLER" value="" />
+			<property name="dictionary  DICTIONARY" value="" />
+			<property name="sessionId  SESSIONID" value="" />
+			<property name="tl1port  TL1PORT" value="" />
+		</property_set>
+	</update_node> 
+
+</configuration_file>
+<configuration_file       
+	name          = "discovery.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging CORBA from from discovery.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove CORBADiscoveryFilter from discovery.filters" >
+		<PropertySet name="DISCOVERY_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER className="com.adventnet.nms.topodb.corba.CORBADiscoveryFilter"/>
+	                </PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "discovery.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from discovery.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1DiscFilter" >
+	      <PropertySet name="DISCOVERY_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER className="com.adventnet.nms.topodb.tl1.TL1DiscFilter"/>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove TL1GatewayFilter" >
+	      <PropertySet name="DISCOVERY_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER className="com.adventnet.nms.topodb.tl1.TL1GatewayFilter"/>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+<configuration_file       
+	name          = "NmsProcessesBE.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+	description   = "Unplugging CORBA from from NmsProcessesBE.conf"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.util.SnmpCorbaServer" description="Remove SnmpCorbaServer process">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+	
+	<update_node name="com.adventnet.nms.topodb.corba.CORBADiscProcess" description="Remove CORBADiscProcess">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file> 
+
+<configuration_file       
+	name          = "NmsProcessesBE.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+	description   = "Unplugging JMX from NmsProcessesBE.conf"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.jmxagent.WebNMSAgentApp" description="Remove WebNMSAgentApp">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file> 
+
+<configuration_file       
+	name          = "NmsProcessesBE.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+	description   = "Unplugging LDAP service from NmsProcessesBE.conf"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="com.adventnet.management.authorization.AuthMgr" description="Remove AuthMgr">
+		<property_set name="Remove_Process"/>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+      name          = "NmsProcessesBE.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+      description   = "Unplugging Provisionig service from NmsProcessesBE.conf"
+      required      = "true"
+      priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.provisioning.server.StartProvModule" description="Remove StartProvModlue">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file>
+
+<configuration_file       
+	name          = "NmsProcessesBE.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+	description   = "Unplugging TL1 service from NmsProcessesBE.conf"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.topodb.tl1.TL1DiscProcess" description="Remove TL1DiscProcess">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+	
+	<update_node name="com.adventnet.nms.eventdb.tl1.TL1EventProcess" description="Remove TL1EventProcess">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+	<update_node name="com.adventnet.nms.topodb.tl1.TL1CustomViewsMgr" description="Remove TL1CustomViewsMgr">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+	<update_node name="com.adventnet.nms.tl1.NMSTAServer" description="Remove NMSTAServer">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+	<update_node name="com.adventnet.nms.topodb.tl1.TL1GatewayProcess" description="Remove TL1GatewayProcess">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file> 
+
+<configuration_file       
+	name          = "Polling.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging CORBA from from Polling.conf"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove CorbaPollProvider" >
+		<PropertySet name="POLLING_CONF" >
+			<PropertySet name="PROVIDER" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<PROTOCOL CORBA="com.adventnet.nms.poll.corba.CorbaPollProvider"/>
+		                </PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "Polling.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from Polling.conf"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1DataCollectorAsync" >
+	      <PropertySet name="POLLING_CONF" >
+			<PropertySet name="PROVIDER">
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<PROTOCOL TL1="com.adventnet.nms.poll.tl1.TL1DataCollectorAsync"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+
+<configuration_file       
+      name          = "relationalclasses.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.RelationalClassesChanges"
+      description   = "Unplugging CORBA from from relationalclasses.conf"
+      required      = "true"
+      priority      = "1" >      
+
+<update_node name="Remove_line" description="Remove RelationalCORBANode">
+	
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.topodb.corba.CORBANode topodb RelationalCORBANode  CORBANode" value=""/>
+	</property_set>
+
+</update_node>                    
+<update_node name="Remove_line" description="Remove RelationalAgentObject">
+	
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.jmxagent.AgentDefValObject  userstoragedb  RelationalAgentObject AgentDefValObject" value=""/>
+	</property_set>
+
+</update_node>
+<update_node name="Remove_line" description="Remove NetworkInventory">
+	
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.provisioning.inventorydb.NetworkInventory inventorydb RelationalNetworkInventory NetworkInventory" value=""/>
+	</property_set>
+
+</update_node>                    
+
+<update_node name="Remove_line" description="Remove ProvisioningVariant">
+	
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.provisioning.inventorydb.ProvisioningVariant inventorydb RelationalProvisioningVariant ProvisioningVariant" value=""/>
+	</property_set>
+
+</update_node>
+
+<update_node name="Remove_line" description="Remove TL1Node, TL1Interface, TL1GatewayNode and TL1GatewayAccessSession">
+	
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.topodb.tl1.TL1GatewayNode topodb RelationalTL1Node TL1Node" value=""/>
+	</property_set>
+
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.topodb.tl1.TL1GatewayAccessSession topodb RelationalTL1Node TL1Node" value=""/>
+	</property_set>
+
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.topodb.tl1.TL1Node       topodb  RelationalTL1Node       TL1Node" value=""/>
+	</property_set>
+
+	<property_set name="Remove_line">
+		<property name="com.adventnet.nms.topodb.tl1.TL1Interface  topodb  RelationalTL1Interface  TL1Interface" value=""/>
+	</property_set>
+
+</update_node>
+	
+</configuration_file>
+
+<!--commented as of Standard Version of WebNMS 4.7. Since it is not supported. Saravanakumar
+<configuration_file       
+	name          = "services.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging CORBA from from services.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove CorbaServiceProvider" >
+		<PropertySet name="servicelist" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<service>
+					<param name="TYPE" value="CORBA" />
+					<param name="SERVICE" value="com.adventnet.management.corba.CorbaServiceProvider" />
+				</service>
+	             </PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+-->
+
+<configuration_file       
+	name          = "dbmenu.xml"
+	path          = "html/defaultsToAllUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging CORBA service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Modify" description="remove node" >
+		<PropertySet name="PANELMENUBAR" >
+			<PropertySet name="MENU" >
+				<Property name="name" value="Edit"/>
+				<PropertySet name="MENU-ITEM">	
+					<Property name="name" value="Add Node"/>
+					<PropertySet name="JAVA-UI">
+						<Property name="parent" value="true" />
+						<PropertySet name="Attribute" >
+							<Property name="action_value" value="com.adventnet.nms.topoui.example.AddNode?PROTOCOL=SNMP"/>
+					      </PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "dbmenu.xml"
+	path          = "html/defaultsToAllUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging TL1 service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Modify" description="remove node" >
+		<PropertySet name="PANELMENUBAR" >
+			<PropertySet name="MENU" >
+				<Property name="name" value="Edit"/>
+				<PropertySet name="MENU-ITEM">	
+					<Property name="name" value="Add Node"/>
+					<PropertySet name="JAVA-UI">
+						<Property name="parent" value="true" />
+						<PropertySet name="Attribute" >
+							<Property name="action_value" value="com.adventnet.nms.topoui.example.AddNode?PROTOCOL=SNMP"/>
+					      </PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "Deployment.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging CORBA service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="remove" description="remove node" >
+		<PropertySet name="DEPLOYMENT" >
+			<PropertySet name="MODULE" >
+				<PropertySet name="OPTIONAL_FEATURES" >
+					<Property name="parent" value="true" />
+					<PropertySet name="Node" >
+						<FEATURE DEFAULT_SELECTION="false" MODE="BE" NAME="Corba IDLS" CONFILE="CORBAConfChanges.xml">
+							<SELECTION SELECTED="true">
+								<FILELIST>
+									<DIR NAME="idls"/>
+									<FILE NAME="bin/IDLtoJObjectsTool.bat"/>
+									<FILE NAME="bin/IDLtoJObjectsTool.sh"/>
+									<FILE NAME="bin/idltoxml.bat"/>
+									<FILE NAME="bin/idltoxml.sh"/>
+									<FILE NAME="conf/corba_parameters.conf"/>
+									<FILE NAME="conf/corbaseed.file"/>
+									<FILE NAME="conf/idltoxml.conf"/>
+									<FILE NAME="classes/AdventNetCorbaSimulator.jar"/>
+									<FILE NAME="classes/AdventNetIDLtoJObjects.jar"/>
+									<FILE NAME="classes/AdventNetIdlToXml.jar"/>
+									<FILE NAME="classes/openorb-1.2.0.jar"/>
+									<FILE NAME="classes/openorb_tools-1.2.0.jar"/>
+								</FILELIST>
+							</SELECTION>
+						</FEATURE>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+		name          = "Deployment.xml"
+		path          = "conf"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description   = "conf changes for unplugging JMX service"
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="remove" description="remove node" >
+			<PropertySet name="DEPLOYMENT" >
+				<PropertySet name="MODULE" >
+					<PropertySet name="OPTIONAL_FEATURES" >
+						<Property name="parent" value="true" />
+						<PropertySet name="Node" >
+							<FEATURE DEFAULT_SELECTION="false" MODE="BEFE" NAME="JMX" CONFILE="JMXConfChanges.xml">
+								<SELECTION SELECTED="true">
+									<FILELIST>
+										<DIR NAME="jmxstore"/>
+										<DIR NAME="conf/jmx_agent"/>
+										<DIR NAME="classes/com/adventnet/nms/jmxagent"/>
+										<FILE NAME="conf/HtmlAdaptor.prp"/>
+										<FILE NAME="classes/AdventNetJmx.jar"/>
+										<FILE NAME="classes/AdventNetJmxAgent.jar"/>
+										<FILE NAME="classes/xmojo.jar"/>
+										<FILE NAME="classes/AdventNetWebNmsAgent.jar"/>
+									</FILELIST>
+								</SELECTION>
+							</FEATURE>
+						</PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</update_node>
+</configuration_file>
+
+<configuration_file
+		name          = "Deployment.xml"
+		path          = "conf"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description   = "conf changes for unplugging JMX service"
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="remove" description="remove node" >
+			<PropertySet name="DEPLOYMENT" >
+				<PropertySet name="MODULE" >
+					<PropertySet name="OPTIONAL_FEATURES" >
+						<Property name="parent" value="true" />
+						<PropertySet name="Node" >
+							<FEATURE DEFAULT_SELECTION="false" MODE="BEFE" NAME="LDAP" CONFILE="LDAPConfChanges.xml">
+								<SELECTION SELECTED="true">
+									<FILELIST>
+										<DIR NAME="classes/ldap_jars"/>
+										<FILE NAME="bin/ldapgui.bat"/>
+										<FILE NAME="bin/ldapgui.sh"/>
+										<FILE NAME="conf/ldap.conf"/>
+									</FILELIST>
+								</SELECTION>
+							</FEATURE>
+						</PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</update_node>
+</configuration_file>
+
+<configuration_file
+		name          = "Deployment.xml"
+		path          = "conf"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description   = "conf changes for unplugging Provisioning service"
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="remove" description="remove node" >
+			<PropertySet name="DEPLOYMENT" >
+				<PropertySet name="MODULE" >
+					<PropertySet name="OPTIONAL_FEATURES" >
+						<Property name="parent" value="true" />
+						<PropertySet name="Node" >
+							<FEATURE DEFAULT_SELECTION="false" MODE="BEFE" NAME="Provisioning" CONFILE="ProvisioningConfChanges.xml">
+								<SELECTION SELECTED="true">
+									<FILELIST>
+									<DIR NAME="bsh-scripts"/>
+									<DIR NAME="provisioningtemplates">
+									<EXCLUDELIST>
+									<FILE NAME="IPRoutingConfiguration.xml"/>
+									<FILE NAME="help/IPRoutingConfiguration.html"/>
+									<FILE NAME="CrossConnect.xml"/>
+									</EXCLUDELIST>
+									</DIR>
+									<DIR NAME="provisioningresults"/>
+									<DIR NAME="stylesheets"/>
+									<DIR NAME="bin/provisioning"/>
+									<DIR NAME="classes/com/adventnet/nms/provisioning"/>
+									<FILE NAME="conf/EmsInventoryAPIs.xml"/>
+									<FILE NAME="conf/EmsInventoryAPIs.dtd"/>
+									<FILE NAME="conf/JmsConfiguration.dtd"/>
+									<FILE NAME="conf/JmsConfiguration.xml"/>
+									<FILE NAME="conf/ProvisioningExtensions.dtd"/>
+									<FILE NAME="conf/ProvisioningExtensions.xml"/>
+									<FILE NAME="conf/ProvisioningExtensionProxies.xml"/>
+									<FILE NAME="conf/ProvisioningFilters.xml"/>
+									<FILE NAME="conf/ProvisioningFilters.dtd"/>
+									<FILE NAME="html/TemplateTesterApplet.html"/>
+									<FILE NAME="html/ProvisioningClientResources.properties"/>
+									<FILE NAME="html/defaultsToAllUsers/provisioningmenu.xml"/>
+									<FILE NAME="html/defaultsToAllUsers/provisioningoperationsmenu.xml"/>
+									<FILE NAME="images/deleteResultToolButton.png"/>
+									<FILE NAME="images/deleteResultToolButton_mo.png"/>
+									<FILE NAME="images/deleteTemplateToolButton.png"/>
+									<FILE NAME="images/deleteTemplateToolButton_mo.png"/>
+									<FILE NAME="images/LayoutManager.png"/>
+									<FILE NAME="images/loadtemplate.png"/>
+									<FILE NAME="images/operationsTreeIcon.png"/>
+									<FILE NAME="images/provisioningMain.png"/>
+									<FILE NAME="images/provisionToolButton.png"/>
+									<FILE NAME="images/provisionToolButton_mo.png"/>
+									<FILE NAME="images/provisioningTreeIcon.png"/>
+									<FILE NAME="images/reloadTemplatesToolButton.png"/>
+									<FILE NAME="images/reloadTemplatesToolButton_mo.png"/>
+									<FILE NAME="images/stopOperationToolButton.png"/>
+									<FILE NAME="images/stopOperationToolButton_mo.png"/>
+									<FILE NAME="images/templatedetails.png"/>
+									<FILE NAME="images/templatedetails_small.png"/>
+									<FILE NAME="images/templatesTreeIcon.png"/>
+									<FILE NAME="images/viewResultToolButton.png"/>
+									<FILE NAME="images/viewResultToolButton_mo.png"/>
+									<FILE NAME="images/viewTemplateToolButton.png"/>
+									<FILE NAME="images/viewTemplateToolButton_mo.png"/>
+									<FILE NAME="mibs/ATM-MIB"/>
+								</FILELIST>
+							</SELECTION>
+						</FEATURE>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "Deployment.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging CORBA service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="remove" description="remove node" >
+		<PropertySet name="DEPLOYMENT" >
+			<PropertySet name="MODULE" >
+				<PropertySet name="OPTIONAL_FEATURES" >
+					<Property name="parent" value="true" />
+					<PropertySet name="Node" >
+                         <FEATURE DEFAULT_SELECTION="false" MODE="BEFE" NAME="TL1" CONFILE="TL1ConfChanges.xml">
+							<SELECTION SELECTED="true">
+								<FILELIST>
+									<DIR NAME="data"/>
+									<DIR NAME="classes/com/adventnet/nms/tools/tl1browser"/>
+									<FILE NAME="bin/TL1Browser.bat"/>
+									<FILE NAME="bin/TL1Browser.sh"/>
+									<FILE NAME="bin/TL1CraftInterface.bat"/>
+									<FILE NAME="bin/TL1CraftInterface.sh"/>
+									<FILE NAME="conf/TL1DefaultProperties.xml"/>
+									<FILE NAME="conf/tl1notification.filters"/>
+									<FILE NAME="conf/tl1seed.file"/>
+									<FILE NAME="conf/tl1browser.conf"/>
+									<FILE NAME="conf/tl1craftinterface.config"/>
+									<FILE NAME="conf/tl1craftinterface_csh.sml"/>
+									<FILE NAME="configtasks/root/AcmeCardConfiguration.xml"/>
+									<FILE NAME="configtasks/root/SystemDateConfiguration.xml"/>
+									<FILE NAME="html/TL1Browser.properties"/>
+									<FILE NAME="html/tl1craftinterface_i18n.properties"/>
+									<FILE NAME="icons/tl1_cyan.png"/>
+									<FILE NAME="icons/tl1_gray.png"/>
+									<FILE NAME="icons/tl1_green.png"/>
+									<FILE NAME="icons/tl1_orange.png"/>
+									<FILE NAME="icons/tl1_red.png"/>
+									<FILE NAME="icons/tl1_yellow.png"/>
+									<FILE NAME="images/gatewayacc.png"/>
+									<FILE NAME="images/gatewayacc_cyan.png"/>
+									<FILE NAME="images/gatewayacc_gray.png"/>
+									<FILE NAME="images/gatewayacc_green.png"/>
+									<FILE NAME="images/gatewayacc_orange.png"/>
+									<FILE NAME="images/gatewayacc_red.png"/>
+									<FILE NAME="images/gatewayacc_yellow.png"/>
+									<FILE NAME="images/gatewaynode.png"/>
+									<FILE NAME="images/gatewaynode_cyan.png"/>
+									<FILE NAME="images/gatewaynode_gray.png"/>
+									<FILE NAME="images/gatewaynode_green.png"/>
+									<FILE NAME="images/gatewaynode_orange.png"/>
+									<FILE NAME="images/gatewaynode_red.png"/>
+									<FILE NAME="images/gatewaynode_yellow.png"/>
+									<FILE NAME="images/tl1.png"/>
+									<FILE NAME="images/tl1alert.png"/>
+									<FILE NAME="images/tl1event.png"/>
+									<FILE NAME="images/tl1interface.png"/>
+									<FILE NAME="images/tl1map.png"/>
+									<FILE NAME="images/tl1mapRoot.png"/>
+									<FILE NAME="images/tl1node.png"/>
+									<FILE NAME="images/tl1task.png"/>
+									<FILE NAME="images/tl1toolsmain.png"/>
+									<FILE NAME="images/tl1treeicon.png"/>
+									<FILE NAME="images/world.png"/>
+									<FILE NAME="listmenus/acmemenu.xml"/>
+									<FILE NAME="listmenus/gasmenu.xml"/>
+									<FILE NAME="listmenus/gatewaymenu.xml"/>
+									<FILE NAME="listmenus/tl1menu.xml"/>
+									<FILE NAME="mapdata/menus/acmemenu.xml"/>
+									<FILE NAME="mapdata/menus/gasmenu.xml"/>
+									<FILE NAME="mapdata/menus/gatewaymenu.xml"/>
+									<FILE NAME="mapdata/menus/tl1menu.xml"/>
+									<FILE NAME="provisioningtemplates/CrossConnect.xml"/>
+									<FILE NAME="classes/AdventNetTL1.jar"/>
+									<FILE NAME="classes/AdventNetTL1Tools.jar"/>
+									</FILELIST>
+								</SELECTION>
+							</FEATURE>
+						</PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</update_node>
+</configuration_file>
+
+<process_unit       
+		name          = "DatabaseSchema.conf"
+        path          = "conf"
+	schemafile    = "conf/CORBASchemaChanges.xml"
+		schemapath    = "."
+        classname     = "com.adventnet.nms.tools.confchanges.SchemaChanges"
+        description   = "Unplugging CORBA service from DatabaseSchema.conf"
+        required      = "true"
+        priority      = "1" />
+
+<process_unit       
+        name          = "launcher_conf.txt"
+        path          = "conf"
+        classname     = "com.adventnet.nms.tools.confchanges.LauncherConfUpdater"
+        description   = "Unplugging TL1 service from launcher_conf.txt"
+        required      = "true"
+        priority      = "1" >
+<data application="Start Web NMS Server" parameter="AppJavaOption_-Djava.rmi.server.codebase" value="http://localhost:9090/classes/AdventNetJmxAgent.jar" operation="remove"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/AdventNetJmxAgent.jar" operation="remove"/>
+<data application="Start Web NMS Server" parameter="AppJavaOption_-Djava.rmi.server.codebase" value="http://localhost:9090/classes/xmojo.jar" operation="remove"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/xmojo.jar" operation="remove"/>
+<data application="Status Viewer" parameter="null" value="null" operation="remove"/>
+<data application="TL1 Agent Simulator" parameter="null" value="null" operation="remove"/>
+<data application="TL1 Message Builder" parameter="null" value="null" operation="remove"/>
+<data application="TL1CraftInterface" parameter="null" value="null" operation="remove"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="Application Client" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/AdventNetTL1Tools.jar" operation="remove"/>
+<data application="Application Client" parameter="Classpath" value="./classes/AdventNetTL1Tools.jar" operation="remove"/>
+<data application="Reinitialize Web NMS" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="Menu Configurator" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="Application Client" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+<data application="SNMP V3 Security" parameter="Classpath" value="./classes/AdventNetTL1.jar" operation="remove"/>
+
+<data application="TL1 Agent Simulator" parameter="null" value="null" operation="remove"/>
+<data application="TL1 Message Builder" parameter="null" value="null" operation="remove"/>
+<data application="Migration Wizard" parameter="null" value="null" operation="remove"/>
+<data application="ObjectToRelational" parameter="null" value="null" operation="remove"/>
+<data application="Migration Wizard" parameter="null" value="null" operation="remove"/>
+<data application="ObjectToRelational" parameter="null" value="null" operation="remove"/>
+<data application="TL1 Agent Simulator" parameter="null" value="null" operation="remove"/>
+<data application="TL1 Message Builder" parameter="null" value="null" operation="remove"/>
+</process_unit>
+
+<configuration_file       
+	name          = "setEnv"
+        path          = "./"
+        classname     = "com.adventnet.nms.tools.confchanges.SetEnvChanges"
+        description   = "Unplugging JMX from setEnv"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="JMX_AGENT_CLASSPATH, AdventNetJmxAgent.jar and xmojo.jar">
+
+		<property_set name="Remove_line" os="WIN">
+			<property name="set JMX_AGENT_CLASSPATH=%NMS_CLASSES%\AdventNetSnmpAgent.jar;%NMS_CLASSES%\xmojo.jar;%NMS_CLASSES%\AdventNetWebNmsAgent.jar;%NMS_CLASSES%\AdventNetJmxAgent.jar;%NMS_CLASSES%\AdventNetARUtils.jar;%NMS_CLASSES%\AdventNetTL1Agent.jar" value=""  />
+		</property_set>
+
+		<property_set name="Remove_line" os="LINUX">
+			<property name="JMX_AGENT_CLASSPATH=$NMS_CLASSES/AdventNetSnmpAgent.jar:$NMS_CLASSES/xmojo.jar:$NMS_CLASSES/AdventNetWebNmsAgent.jar:$NMS_CLASSES/AdventNetJmxAgent.jar:$NMS_CLASSES/AdventNetARUtils.jar:$NMS_CLASSES/AdventNetTL1Agent.jar" value=""  />
+		</property_set>
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="http://localhost:%WEBSERVER_PORT%/classes/AdventNetJmxAgent.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="file:///$NMS_HOME/classes/AdventNetJmxAgent.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="file:///$NMS_HOME/classes/xmojo.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+<configuration_file       
+	name          = "setEnv"
+        path          = "./"
+        classname     = "com.adventnet.nms.tools.confchanges.SetEnvChanges"
+        description   = "Unplugging TL1 service from setEnv"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove TL1AGENT_CLASSPATH AND TL1_CLASSPATH">
+		<property_set name="Remove_line" os="WIN">
+			<property name="set TL1AGENT_CLASSPATH=%NMS_HOME%\TL1AgentSimulator\classes" value=""  />
+		</property_set>
+
+		<property_set name="Remove_line" os="LINUX">
+			<property name="TL1AGENT_CLASSPATH=${NMS_HOME}/TL1AgentSimulator/classes" value=""  />
+		</property_set>
+
+		<property_set name="Remove_line" os="WIN">
+			<property name="set TL1_CLASSPATH=%NMS_CLASSES%\AdventNetTL1.jar;%NMS_CLASSES%\AdventNetTL1Tools.jar" value=""  />
+		</property_set>
+
+		<property_set name="Remove_line" os="LINUX">
+			<property name="TL1_CLASSPATH=$NMS_CLASSES/AdventNetTL1.jar:$NMS_CLASSES/AdventNetTL1Tools.jar" value=""  />
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "compileJSP"
+        path          = "bin"
+        classname     = "com.adventnet.nms.tools.confchanges.StartApplicationChanges"
+        description   = "Unplugging JMX from compileJSP"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove JMX_AGENT_CLASSPATH">
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%JMX_AGENT_CLASSPATH%%"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="${JMX_AGENT_CLASSPATH}"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "IDLtoJObjectsTool"
+        path          = "bin"
+        classname     = "com.adventnet.nms.tools.confchanges.StartApplicationChanges"
+        description   = "Unplugging JMX from IDLtoJObjectsTool"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove AdventNetJmxAgent.jar and xmojo.jar">
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%NMS_CLASSES%\AdventNetJmxAgent.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$NMS_CLASSES/AdventNetJmxAgent.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%NMS_CLASSES%\xmojo.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$NMS_CLASSES/xmojo.jar"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "startnms"
+        path          = "bin"
+        classname     = "com.adventnet.nms.tools.confchanges.StartnmsChanges"
+        description   = "Unplugging JMX and TL1 from startnms"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove JMX_AGENT_CLASSPATH">
+
+		<property_set name="Remove_line" os="WIN">
+			<property name="set CLASS_PATH=%CLASS_PATH%;%JMX_AGENT_CLASSPATH%" value=""  />
+		</property_set>
+
+		<property_set name="Remove_line" os="LINUX">
+			<property name="CLASS_PATH=$CLASS_PATH:$JMX_AGENT_CLASSPATH" value=""  />
+		</property_set>
+
+	</update_node>
+	<update_node name="Modify_entry" description="Remove TL1_CLASSPATH">
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%TL1_CLASSPATH%"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$TL1_CLASSPATH"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>	
+
+</configuration_file>
+
+<configuration_file       
+	name          = "DownloadFiles.xml"
+	path          = "conf/feDeployment"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging LDAP service from DownloadFiles.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove ladp.conf entry" >
+	      <PropertySet name="DOWNLOAD-CONF-FILES" >
+			<PropertySet name="SERVER-FILES" >
+			<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<FILE> conf/ldap.conf </FILE>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+<configuration_file       
+	name          = "DownloadFiles.xml"
+	path          = "conf/feDeployment"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from DownloadFiles.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove tl1browser.conf entry" >
+	      <PropertySet name="DOWNLOAD-CONF-FILES" >
+			<PropertySet name="CLIENT-FILES">
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<FILE> conf/tl1browser.conf</FILE> 
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove TL1DefaultProperties.xml" >
+	      <PropertySet name="DOWNLOAD-CONF-FILES" >
+			<PropertySet name="CLIENT-FILES">
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<FILE> conf/TL1DefaultProperties.xml</FILE>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file
+		name          = "StudioTree.xml"
+		path          = "StudioTools/Studio/conf"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description   = "Unplugging ldap.conf from StudioTree.xml"
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="Remove" description="Remove ldap.conf from Studio" >
+			<PropertySet name="STUDIO_PROJECT" >
+				<PropertySet name="DEFAULTDOWNLOAD" >
+					<PropertySet name="PROTOCOLNEUTRAL">
+						<Property name="parent" value="true" />
+						<PropertySet name="Node" >
+							<FILE SOURCE="conf/ldap.conf" VISIBLE="false"  PACKAGE="false" EDITABLE="true"/>
+						</PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</update_node>
+</configuration_file>
+<configuration_file       
+	name          = "StudioTree.xml"
+	path          = "StudioTools/Studio/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from StudioTree.xml"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="remove" description="remove node">
+		<property_set name="STUDIO_PROJECT">
+			<property_set name="SERVICES">
+				<property name="DISPLAYNAME" value="SERVICES"/>
+				<property name="parent" value="true"/>
+					<property_set name="Node" >
+						<SERVICE NAME="PROVISIONING" DISPLAYNAME="PROVISIONING"  VISIBLE="true" DESCRIPTION="ProjectWizard.Provisioning" TYPE="104">
+							<PROTOCOLNEUTRAL>
+								<FILE SOURCE="conf/ProvisioningFilters.xml" VISIBLE="true" DISPLAYNAME="ProvisioningFilters.xml" TYPE="205" PACKAGE="true" EDITABLE="false"/>
+								<FILE SOURCE="conf/ProvisioningFilters.dtd" VISIBLE="false" PACKAGE="false" EDITABLE="true"/>
+								<FILE SOURCE="conf/ProvisioningExtensions.xml" VISIBLE="true" DISPLAYNAME="ProvisioningExtensions.xml" TYPE="205" PACKAGE="true" EDITABLE="false"/>
+								<FILE SOURCE="conf/ProvisioningExtensions.dtd" VISIBLE="false" PACKAGE="false" EDITABLE="true"/>
+							</PROTOCOLNEUTRAL>
+						</SERVICE>
+
+					</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+<configuration_file       
+	name          = "StudioTree.xml"
+	path          = "StudioTools/Studio/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from StudioTree.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 related stuff from Studio" >
+	      <PropertySet name="STUDIO_PROJECT" >
+		  	<PropertySet name="SERVICES" >
+				<PropertySet name="SERVICE" >
+					<Property name="NAME" value="REBRANDING"/>
+					<PropertySet name="PROTOCOLNEUTRAL">
+						<Property name="parent" value="true" />
+							<PropertySet name="Node" >
+								<FILE SOURCE="conf/tl1craftinterface.config"  VISIBLE="false" PACKAGE="true" EDITABLE="true" />
+							</PropertySet>
+						</PropertySet>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "StudioTree.xml"
+	path          = "StudioTools/Studio/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from StudioTree.xml"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="remove" description="remove node">
+		<property_set name="STUDIO_PROJECT">
+			<property_set name="RDBMS">
+				<property name="parent" value="true"/>
+					<property_set name="Node" >
+						<DB NAME="MSSQL" VISIBLE="false">
+							<DIR SOURCE="conf/MSSQL" VISIBLE="false" RECURSIVE="false" PACKAGE="false"/>
+						</DB>
+					</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+	<update_node name="remove" description="remove node">
+		<property_set name="STUDIO_PROJECT">
+			<property_set name="RDBMS">
+				<property name="parent" value="true"/>
+					<property_set name="Node" >
+						<DB NAME="SOLID" VISIBLE="false">
+							<DIR SOURCE="conf/solid" VISIBLE="false" RECURSIVE="false" PACKAGE="false"/>
+						</DB>
+						<DB NAME="SYBASE" VISIBLE="false">
+							<DIR SOURCE="conf/sybase" VISIBLE="false" RECURSIVE="false" PACKAGE="false"/>
+						</DB>
+						<DB NAME="TIMESTEN" VISIBLE="false">
+							<DIR SOURCE="conf/TimesTen" VISIBLE="false" RECURSIVE="false" PACKAGE="false"/>
+						</DB>
+					</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "StudioTree.xml"
+	path          = "StudioTools/Studio/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Failover service from StudioTree.xml"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="remove" description="remove node">
+		<property_set name="STUDIO_PROJECT">
+			<property_set name="SERVICES">
+				<property name="DISPLAYNAME" value="SERVICES"/>
+				<property name="parent" value="true"/>
+					<property_set name="Node" >
+						<SERVICE NAME="FAILOVER" DISPLAYNAME="FAILOVER" VISIBLE="true" DESCRIPTION="ProjectWizard.Failover" TYPE="111"> 	
+							<PROTOCOLNEUTRAL> 
+								<FILE SOURCE="conf/FailOver.xml" VISIBLE="true" DISPLAYNAME="FailOver.xml" TYPE="205" PACKAGE="true" EDITABLE="false"/> 
+								<FILE SOURCE="conf/FailOver.dtd" VISIBLE="false" PACKAGE="false" EDITABLE="true"/> 						
+							</PROTOCOLNEUTRAL> 
+						</SERVICE>	
+					</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "logging_parameters.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from logging_parameters.conf"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove PROVERR node" >
+	      <PropertySet name="LOGGING_PARAMETERS_CONF" >
+			<PropertySet name="LOG_USER" >
+				<Property name="FileName" value="nmserr.txt"/>
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<KEY Logging="true" Name="PROVERR" DisplayName="PROV" LogLevel="3"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove PROVUSER node" >
+	      <PropertySet name="LOGGING_PARAMETERS_CONF" >
+			<PropertySet name="LOG_USER" >
+				<Property name="FileName" value="nmsout.txt"/>
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<KEY Logging="true" Name="PROVUSER" DisplayName="PROV" LogLevel="3"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file           
+	name          = "nmsInterfaces.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from nmsInterfaces.conf"
+	required      = "true"
+	priority      = "1" >    
+
+	<update_node name="remove" description="ProvToTopofc and ProvToConfigIfc">
+     		<property_set name="NMS_INTERFACES_CONF">
+			<property_set name="INTERFACES">
+				<property name="parent" value="true"/>
+				<property_set name="attribute">
+					<property name="ProvToTopoIfc" value="com.adventnet.nms.provisioning.server.ProvToTopoIfcImpl"/>
+				</property_set>
+			</property_set>
+		</property_set>
+
+     		<property_set name="NMS_INTERFACES_CONF">
+			<property_set name="INTERFACES">
+				<property name="parent" value="true"/>
+				<property_set name="attribute">
+					<property name="ProvToConfigIfc" value="com.adventnet.nms.provisioning.server.ProvToConfigIfcImpl"/>
+				</property_set>
+			</property_set>
+		</property_set>
+
+
+	</update_node>                     
+
+</configuration_file> 
+
+
+<configuration_file       
+      name          = "NmsProcessesFE.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+      description   = "Unplugging Provisionig service from NmsProcessesFE.conf"
+      required      = "true"
+      priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.fe.provisioning.ProvisioningFE" description="Remove ProvisioningFE">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file>
+<configuration_file       
+	name          = "NmsProcessesFE.conf"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+	description   = "Unplugging TL1 service from NmsProcessesFE.conf"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="com.adventnet.nms.fe.tas.TAServerFE" description="Remove TAServerFE">
+		<property_set name="Remove_Process"/>
+	</update_node> 
+
+</configuration_file>
+
+<configuration_file       
+	name          = "securitydbData.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from securitydbData.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove Provisioning from default Admin View" >
+	      <PropertySet name="AUTHORIZATION-DATA" >
+			<PropertySet name="VIEW-OPERATION" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DATA operationname="Provisioning" operationtype="1" viewname="default Admin View"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove Provisioning operation" >
+	      <PropertySet name="AUTHORIZATION-DATA" >
+			<PropertySet name="OPERATION-TREE" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DATA leaf="1" parent="Operation Tree Root" child="Provisioning"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove Provisioning from View TemplateResult" >
+	      <PropertySet name="AUTHORIZATION-DATA" >
+			<PropertySet name="OPERATION-TREE" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DATA leaf="0" parent="Provisioning" child="View TemplateResult"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove Provisioining from authorization view" >
+	      <PropertySet name="AUTHORIZATION-DATA" >
+			<PropertySet name="NAMED-AUTH" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DATA authorizedview="NULL" namedview="Provisioning"/>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file 
+
+	name="threads.conf" 
+	path="conf" 
+	classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description="Unplugging Provisionig service from threads.conf" 
+	required="true" 
+	priority="0">
+
+	<update_node name="Update" description="Remove provisioning entry">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="provisioning 4"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "toolbar.xml"
+	path          = "html/defaultsToAllUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from toolbar.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove ProvisioningTemplatesPanel" >
+	      <PropertySet name="TOOLBARS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<PANEL-KEY name="ProvisioningTemplatesPanel">
+					<TOOLBAR-BUTTON action_command="Back" mouseoverimage="../images/goback_mo.png" image="../images/goback.png" tooltip="Go Back to Previous"/>
+					<TOOLBAR-BUTTON action_command="Forward" mouseoverimage="../images/goforward_mo.png" image="../images/goforward.png" tooltip="Go Forward to Next"/>
+					<TOOLBAR-BUTTON name="Separator"/>
+					<TOOLBAR-BUTTON action_command="Provision" mouseoverimage="../images/provisionToolButton_mo.png" image="../images/provisionToolButton.png" tooltip="Provision Selected Template"/>
+					<TOOLBAR-BUTTON action_command="Schedule" mouseoverimage="../images/scheduleToolButton_mo.png" image="../images/scheduleToolButton.png" tooltip="Schedule Selected Template"/>
+					<TOOLBAR-BUTTON action_command="View" mouseoverimage="../images/viewTemplateToolButton_mo.png" image="../images/viewTemplateToolButton.png" tooltip="View Selected Template"/>
+					<TOOLBAR-BUTTON action_command="Delete" mouseoverimage="../images/deleteTemplateToolButton_mo.png" image="../images/deleteTemplateToolButton.png" tooltip="Delete Selected Template"/>
+					<TOOLBAR-BUTTON action_command="Refresh" mouseoverimage="../images/reloadTemplatesToolButton_mo.png" image="../images/reloadTemplatesToolButton.png" tooltip="Refresh Templates from Server"/>
+					<TOOLBAR-BUTTON name="Separator"/>
+					<TOOLBAR-BUTTON action_command="Detach" mouseoverimage="../images/detach_mo.png" image="../images/detach.png" tooltip="Detach Current Window"/>
+					<TOOLBAR-BUTTON action_command="SystemAdmin" mouseoverimage="../images/sysadmin_mo.png" image="../images/sysadmin.png" tooltip="System Administration">
+					<OPERATION name="System Administration"/>
+					</TOOLBAR-BUTTON>
+					<TOOLBAR-BUTTON action_command="provTemplatesHelp" mouseoverimage="../images/toolhelp_mo.png" image="../images/toolhelp.png" tooltip="Help"/>
+				</PANEL-KEY>
+			</PropertySet>				
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove ProvisioningOperationsPanel" >
+	      <PropertySet name="TOOLBARS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<PANEL-KEY name="ProvisioningOperationsPanel">
+					<TOOLBAR-BUTTON action_command="Back" mouseoverimage="../images/goback_mo.png" image="../images/goback.png" tooltip="Go Back to Previous"/>
+					<TOOLBAR-BUTTON action_command="Forward" mouseoverimage="../images/goforward_mo.png" image="../images/goforward.png" tooltip="Go Forward to Next"/>
+					<TOOLBAR-BUTTON name="Separator"/>
+					<TOOLBAR-BUTTON action_command="View Result" mouseoverimage="../images/viewResultToolButton_mo.png" image="../images/viewResultToolButton.png" tooltip="Fetch Result"/>
+					<TOOLBAR-BUTTON action_command="Delete" mouseoverimage="../images/deleteResultToolButton_mo.png" image="../images/deleteResultToolButton.png" tooltip="Delete operation from server database"/>
+					<TOOLBAR-BUTTON action_command="Stop" mouseoverimage="../images/stopOperationToolButton_mo.png" image="../images/stopOperationToolButton.png" tooltip="Stop scheduled operation"/>
+					<TOOLBAR-BUTTON name="Separator"/>
+					<TOOLBAR-BUTTON action_command="Detach" mouseoverimage="../images/detach_mo.png" image="../images/detach.png" tooltip="Detach Current Window"/>
+					<TOOLBAR-BUTTON action_command="SystemAdmin" mouseoverimage="../images/sysadmin_mo.png" image="../images/sysadmin.png" tooltip="System Administration">
+					<OPERATION name="System Administration"/>
+					</TOOLBAR-BUTTON>
+					<TOOLBAR-BUTTON action_command="provOperationsHelp" mouseoverimage="../images/toolhelp_mo.png" image="../images/toolhelp.png" tooltip="Help"/>
+				</PANEL-KEY>
+			</PropertySet>
+		</PropertySet>
+	</update_node>	
+
+</configuration_file>
+
+<configuration_file       
+	name          = "Tree.xml"
+	path          = "html/defaultsToNewUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging Provisionig service from Tree.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove ProvisioningPanelKey" >
+	      <PropertySet name="DEVICE-DATA" >
+			<PropertySet name="DEVICE-GROUP" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DEVICE DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" INIT-ON-STARTUP="false" IMAGE-NAME="images/provisioningMain.gif" PANEL-KEY="Provisioning" TREE-NAME="Provisioning" FRAME-TITLE="Provisioning Framework" TARGET="center" Client="Java" URL="jsp/ShowImage.jsp?imageName=../images/provisioningMain.gif" ID="Provisioning" MODULE-NAME="Default" PANEL-NAME="com.adventnet.nms.util.ImagePanel" ICON-FILE="images/provisioningTreeIcon.png">
+						<LEVEL-1 MODULE-NAME="Default" ICON-FILE="images/templatesTreeIcon.png" TABLE-POPUP-MENU="Templates" PANEL-KEY="ProvisioningTemplatesPanel" TREE-POPUP-MENU="provisioningmenu.xml" MENU-FILE-NAME="provisioningmenu.xml" PANEL-NAME="com.adventnet.nms.provisioning.ui.ProvisioningTemplatesPanel" Client="Java" TREE-NAME="Templates" ID="Templates"/>
+						<LEVEL-1 MODULE-NAME="Default" ICON-FILE="images/operationsTreeIcon.png" TABLE-POPUP-MENU="ActivityList" PANEL-KEY="ProvisioningOperationsPanel" TREE-POPUP-MENU="provisioningoperationsmenu.xml" MENU-FILE-NAME="provisioningoperationsmenu.xml" PANEL-NAME="com.adventnet.nms.provisioning.ui.ProvisioningOperationsPanel" Client="Java" TREE-NAME="ActivityList" ID="ActivityList"/>
+					</DEVICE>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "Tree.xml"
+	path          = "users/$users_specific"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+	description   = "Unplugging Provisionig service from Tree.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove ProvisioningPanelKey" >
+	      <PropertySet name="DEVICE-DATA" >
+			<PropertySet name="DEVICE-GROUP" >
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DEVICE DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" INIT-ON-STARTUP="false" IMAGE-NAME="images/provisioningMain.gif" PANEL-KEY="Provisioning" TREE-NAME="Provisioning" FRAME-TITLE="Provisioning Framework" TARGET="center" Client="Java" URL="jsp/ShowImage.jsp?imageName=../images/provisioningMain.gif" ID="Provisioning" MODULE-NAME="Default" PANEL-NAME="com.adventnet.nms.util.ImagePanel" ICON-FILE="images/provisioningTreeIcon.png">
+						<LEVEL-1 MODULE-NAME="Default" ICON-FILE="images/templatesTreeIcon.png" TABLE-POPUP-MENU="Templates" PANEL-KEY="ProvisioningTemplatesPanel" TREE-POPUP-MENU="provisioningmenu.xml" MENU-FILE-NAME="provisioningmenu.xml" PANEL-NAME="com.adventnet.nms.provisioning.ui.ProvisioningTemplatesPanel" Client="Java" TREE-NAME="Templates" ID="Templates"/>
+						<LEVEL-1 MODULE-NAME="Default" ICON-FILE="images/operationsTreeIcon.png" TABLE-POPUP-MENU="ActivityList" PANEL-KEY="ProvisioningOperationsPanel" TREE-POPUP-MENU="provisioningoperationsmenu.xml" MENU-FILE-NAME="provisioningoperationsmenu.xml" PANEL-NAME="com.adventnet.nms.provisioning.ui.ProvisioningOperationsPanel" Client="Java" TREE-NAME="ActivityList" ID="ActivityList"/>
+					</DEVICE>
+				</PropertySet>				
+		     	</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+<configuration_file       
+	name          = "Tree.xml"
+	path          = "html/defaultsToNewUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from Tree.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 related DEVICE Panel" >
+	      <PropertySet name="DEVICE-DATA" >
+			<PropertySet name="DEVICE-GROUP">
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DEVICE PANEL-NAME="com.adventnet.nms.util.ImagePanel" DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" ICON-FILE="images/tl1treeicon.png" TARGET="center" IMAGE-NAME="images/tl1toolsmain.gif" MODULE-NAME="Default" ID="TL1" INIT-ON-STARTUP="false" URL="jsp/ShowImage.jsp?imageName=../images/tl1toolsmain.gif" PANEL-KEY="TL1" Client="Java" TREE-NAME="TL1 Tools">
+					<LEVEL-1 INIT-ON-STARTUP="false" DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" ICON-FILE="images/webcrafttreeicon.png" TREE-NAME="Web Craft Interface" CLIENT="Java" MENU-FILE-NAME="tl1browsermenu.xml" ID="TL1 Browser" PANEL-NAME="com.adventnet.nms.tl1.TL1NMSBrowser"/>
+					</DEVICE>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "Tree.xml"
+	path          = "users/$users_specific"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+	description   = "Unplugging TL1 service from Tree.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 related DEVICE Panel" >
+	      <PropertySet name="DEVICE-DATA" >
+			<PropertySet name="DEVICE-GROUP">
+				<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<DEVICE PANEL-NAME="com.adventnet.nms.util.ImagePanel" DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" ICON-FILE="images/tl1treeicon.png" TARGET="center" IMAGE-NAME="images/tl1toolsmain.gif" MODULE-NAME="Default" ID="TL1" INIT-ON-STARTUP="false" URL="jsp/ShowImage.jsp?imageName=../images/tl1toolsmain.gif" PANEL-KEY="TL1" Client="Java" TREE-NAME="TL1 Tools">
+					<LEVEL-1 INIT-ON-STARTUP="false" DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE" ICON-FILE="images/webcrafttreeicon.png" TREE-NAME="Web Craft Interface" CLIENT="Java" MENU-FILE-NAME="tl1browsermenu.xml" ID="TL1 Browser" PANEL-NAME="com.adventnet.nms.tl1.TL1NMSBrowser"/>
+					</DEVICE>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "root_project_node.xml"
+	path          = "StudioTools/Studio/classes/com/adventnet/studio/framework/xml"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging Provisioning service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="remove" description="remove eBon project" >
+		<PropertySet name="linkpanel" >
+			<PropertySet name="linklabel" >
+				<Property name="text" value="Load Sample Projects"/>
+				<Property name="parent" value="true"/>
+				 <PropertySet name="Node">	
+					<linklabel text="eBon Tutorial" linkcommand="eBon.proj" icontextgap="4" backgroundColor="255,255,255" foregroundcolor="0,0,0" rolloverforegroundcolor="0,0,255" handcursorneeded="T" linkenabled="T" linkicon="./classes/com/adventnet/studio/framework/xml/images/sample_proj.png" rollovericon="./classes/com/adventnet/studio/framework/xml/images/sample_proj_over.png"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	<update_node name="remove" description="remove XML project" >
+		<PropertySet name="linkpanel" >
+			<PropertySet name="linklabel" >
+				<Property name="text" value="Load Sample Projects"/>
+				<Property name="parent" value="true"/>
+				 <PropertySet name="Node">	
+					<linklabel text="XML_Tutorial" linkcommand="XML_Tutorial.proj" icontextgap="4" backgroundColor="255,255,255" foregroundcolor="0,0,0" rolloverforegroundcolor="0,0,255" handcursorneeded="T" linkenabled="T" linkicon="./classes/com/adventnet/studio/framework/xml/images/sample_proj.png" rollovericon="./classes/com/adventnet/studio/framework/xml/images/sample_proj_over.png"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+<configuration_file       
+	name          = "root_project_node.xml"
+	path          = "StudioTools/Studio/classes/com/adventnet/studio/framework/xml"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging TL1 service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="remove" description="remove TL1 node" >
+		<PropertySet name="linkpanel" >
+			<PropertySet name="linklabel" >
+				<Property name="text" value="Load Sample Projects"/>
+				<Property name="parent" value="true"/>
+				 <PropertySet name="Node">	
+					<linklabel text="TL1_Tutorial"  linkcommand="TL1_Tutorial.proj"  icontextgap="4"  backgroundColor="255,255,255"  foregroundcolor="0,0,0"  rolloverforegroundcolor="0,0,255"  handcursorneeded="T"  linkenabled="T" linkicon="./classes/com/adventnet/studio/framework/xml/images/sample_proj.png" rollovericon="./classes/com/adventnet/studio/framework/xml/images/sample_proj_over.png"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "startApplicationClient"
+        path          = "bin"
+        classname     = "com.adventnet.nms.tools.confchanges.StartApplicationChanges"
+        description   = "Unplugging TL1 service from startApplicationClient"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove TL1_CLASSPATH">
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%TL1_CLASSPATH%"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$TL1_CLASSPATH"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+	name          = "alert.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from alert.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1EventFilter4CustomView" >
+	      <PropertySet name="ALERT_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER enable="true" name="CustomViewFilter">
+				<FILTER_ACTION className="com.adventnet.nms.eventdb.UserFilter" userclass="com.adventnet.nms.eventdb.tl1.TL1EventFilter4CustomView" name="AlertFilter_4_TL1CustomView" />
+				</FILTER>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+
+<configuration_file
+	name="clientparameters.conf"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Unplugging TL1 service from clientparameters.conf"
+	required="true"
+	priority="1" >
+	<update_node name="Remove" description="replacing the ARCHIVE attribute" >
+		<property_set name="CLIENT_PARAMETERS_CONF" >
+			<property_set name="PARAMETERS" >			
+				<property name="parent" value="true" />		
+				<property_set name="attribute" >
+	                        <property name="ARCHIVE" subset="true" value="../classes/AdventNetTL1.jar" /> 
+					<property name="ARCHIVE" subset="true" value="../classes/AdventNetTL1Tools.jar" />	 
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+<configuration_file
+    name="clientparameters.conf"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Unplugging TL1 service from clientparameters.conf"
+	required="true"
+	priority="1" >
+	
+	<update_node name="Remove" description="replacing the ARCHIVE attribute" >
+	      <property_set name="CLIENT_PARAMETERS_CONF" >
+	          <property_set name="PARAMETERS" >
+	               <property name="parent" value="true" />
+			           <property_set name="attribute" >
+                	       <property name="ARCHIVE" subset="true" value="../classes/jaxp.jar" />
+	                	   <property name="ARCHIVE" subset="true" value="../classes/crimson.jar" />
+					   	   <property name="ARCHIVE" subset="true" value="../classes/xalan.jar" />
+				      </property_set>
+			  </property_set>
+		  </property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "event.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from event.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1EventFilter4CustomView" >
+	      <PropertySet name="EVENT_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER name="CustomViewFilter">
+				<FILTER_ACTION userclass="com.adventnet.nms.eventdb.tl1.TL1EventFilter4CustomView" name="EventFilter_4_TL1CustomView" className="com.adventnet.nms.eventdb.UserFilter"/>
+				</FILTER>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+
+<configuration_file       
+	name          = "map.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from map.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1MapFilter" >
+	      <PropertySet name="FILTER_LIST" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER className="test.TL1MapFilter"/>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+
+<configuration_file       
+	name          = "Polling.filters"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from Polling.filters"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1PollFilter" >
+	      <PropertySet name="POLL_FILTERS" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<FILTER className="com.adventnet.nms.poll.tl1.TL1PollFilter" />
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file> 
+
+<configuration_file       
+	name          = "provider.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from provider.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 provider" >
+	      <PropertySet name="providerlist" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<provider>
+				<param name="TYPE" value="TL1"/>
+				<param name="PROVIDER" value="com.adventnet.management.tl1.TL1ProtocolProvider"/>
+				<param name="PROPERTY" value="com.adventnet.management.tl1.TL1Property"/>
+				<param name="EVENT" value="com.adventnet.management.tl1.TL1Event"/>
+				<param name="EVENT_FILTER" value="com.adventnet.management.tl1.TL1EventFilter"/>
+				<param name="DefaultPropertyFile" value="TL1DefaultProperties.xml"/>
+				</provider>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+
+<configuration_file       
+	name          = "provider.xml"
+	path          = "StudioTools/ClientBuilder/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from provider.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 provider" >
+	      <PropertySet name="providerlist" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<provider>
+				<param name="TYPE" value="TL1"/>
+				<param name="PROVIDER" value="com.adventnet.management.tl1.TL1ProtocolProvider"/>
+				<param name="PROPERTY" value="com.adventnet.management.tl1.TL1Property"/>
+				<param name="EVENT" value="com.adventnet.management.tl1.TL1Event"/>
+				<param name="EVENT_FILTER" value="com.adventnet.management.tl1.TL1EventFilter"/>
+				<param name="DefaultPropertyFile" value="TL1DefaultProperties.xml"/>
+				</provider>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "provider.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging CORBA from from provider.xml"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="remove node" >
+		<PropertySet name="providerlist" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<provider>
+					<param name="TYPE" value="CORBA"/>
+					<param name="PROVIDER" value="com.adventnet.management.corba.CorbaProtocolProvider"/>
+					<param name="PROPERTY" value="com.adventnet.management.corba.CorbaProperty"/>
+				</provider>
+	                </PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>
+
+<configuration_file       
+	name          = "WebNMS.jnlp"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from WebNMS.jnlp"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove AdventNetTL1.jar" >
+	      <PropertySet name="jnlp" >
+			<PropertySet name="resources">
+			<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<jar href="classes/AdventNetTL1.jar"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+
+	<update_node name="Remove" description="Remove AdventNetTL1Tools.jar" >
+	      <PropertySet name="jnlp" >
+			<PropertySet name="resources">
+			<Property name="parent" value="true" />
+				<PropertySet name="Node" >
+					<jar href="classes/AdventNetTL1Tools.jar"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+	
+</configuration_file>      
+
+<configuration_file       
+	name          = "startnmsFE"
+        path          = "conf/feDeployment"
+        classname     = "com.adventnet.nms.tools.confchanges.SetEnvChanges"
+        description   = "Unplugging TL1 service from startnmsFE"
+        required      = "true"
+        priority      = "1" >
+
+	<update_node name="Modify_entry" description="Remove TL1CLASSPATH">
+
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%TL1_CLASSPATH%"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$TL1_CLASSPATH"/>
+			<property name="newEntry" value=""/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+
+
+
+<configuration_file       
+	name          = "template_ProjectProperties.proj"
+	path          = "StudioTools/Studio/template"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging TL1 service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="add" description="add Protocols node" >
+		<PropertySet name="project" >
+			<Property name="parent" value="true"/>
+				<PropertySet name="Node">	
+					<property name="Protocols" value="SNMP,CLI"/>
+				</PropertySet>
+		</PropertySet>
+	</update_node>
+	<update_node name="Modify" description="to delete AdventNetTL1.jar from ExtraClassPaths" >
+		<PropertySet name="project" >
+			<PropertySet name="property" >
+				<Property name="parent" value="true"/>
+				<Property name="name" value="ExtraClassPaths"/>
+				<PropertySet name="attribute">	
+					<Property name="value"	subset="true" existingValue="$WEBNMSHOME/classes;$WEBNMSHOME/classes/AdventNetSnmp.jar;$WEBNMSHOME/classes/ManagementServer.jar;$WEBNMSHOME/classes/AdventNetTL1.jar;$TOOLHOME/jars/StudioUtils.jar;$PROJECTHOME/classes"	newValue="$WEBNMSHOME/classes;$WEBNMSHOME/classes/AdventNetSnmp.jar;$WEBNMSHOME/classes/ManagementServer.jar;$TOOLHOME/jars/StudioUtils.jar;$PROJECTHOME/classes"/>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+
+<configuration_file       
+	name          = "USER_SERVICE_Template.xml"
+	path          = "StudioTools/Studio/template"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "conf changes for unplugging TL1 service"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="remove" description="remove TL1 related classpath" >
+		<PropertySet name="USER_DETAILS">
+			<PropertySet name="DATA">
+				<PropertySet name="CLASSPATH">
+					<Property name="parent" value="true"/>
+					<PropertySet name="Node">	
+						<ENTRY PATH="$WEBNMSHOME/classes/AdventNetTL1.jar"/>
+					</PropertySet>
+				</PropertySet>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "RebrandingConf.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 service from Rebranding"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 related stuff from Rebranding" >
+		<PropertySet name="configuration_changes" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+				<configuration_file name="tl1craftinterface.config"  path=  "conf" classname = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description  = "" required= "true" priority= "1" >
+        			<update_node name="Modify" description="" >
+                  		<property_set name="TL1CraftInterface" >
+                        	<property_set name="PropertySet" >
+                            	<property name="name" value="UI:Images:aboutproduct"/>
+                            	<property_set name="Property" >	
+                        	        <property name="parent" value="true" />
+				 					<property_set name="attribute" >
+                                      <property name="value"  value="$NEWSPLASH" />
+                                 	</property_set>
+                            	</property_set>
+                       		</property_set>
+                   		</property_set>
+        			</update_node>
+        			<update_node name="Modify" description="" >
+                  		<property_set name="TL1CraftInterface" >
+                        	<property_set name="PropertySet" >
+                            	<property name="name" value="Company"/>
+                            	<property_set name="Property" >	
+                                	<property name="name" value="url" />
+                                	<property name="parent" value="true" />
+				 					<property_set name="attribute" >
+                                      <property name="value"  value="$NEWURL" />
+                                 	</property_set>
+                           		</property_set>
+                       		</property_set>
+                   		</property_set>
+        			</update_node>
+        			<update_node name="Modify" description="" >
+                  		<property_set name="TL1CraftInterface" >
+                        	<property_set name="PropertySet" >
+                            	<property name="name" value="Company"/>
+                            	<property_set name="Property" >	
+                                	<property name="name" value="logo" />
+                                	<property name="parent" value="true" />
+				 					<property_set name="attribute" >
+                                      <property name="value"  value="$NEWLOGO" />
+                                 	</property_set>
+                           		</property_set>
+                       		</property_set>
+                   		</property_set>
+        			</update_node>
+				</configuration_file>
+			</PropertySet>
+		</PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "RebrandingProperties.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Unplugging TL1 related stuff from Rebranding tool"
+	required      = "true"
+	priority      = "1" >                          
+		
+	<update_node name="Remove" description="Remove TL1 related stuff from Studio" >
+	   <PropertySet name="properties" >
+			<Property name="parent" value="true" />
+			<PropertySet name="Node" >
+			    <file source="$PROJECTHOME/html/tl1craftinterface_i18n" destination="$PROJECTHOME/html/tl1craftinterface_i18n">
+			       <parameter key="AdventNet"  oldValue="$COMPANY" newValue="$NEWCOMPANY"/>
+			    </file>
+			</PropertySet>
+	   </PropertySet>
+	</update_node>
+</configuration_file>
+
+<configuration_file       
+	name          = "startStudioTools"
+	path          = "."
+	classname     = "com.adventnet.nms.tools.confchanges.StudioToolsConfChanges"
+	description   = "conf changes for unplugging TL1 service"
+	required      = "true"
+	priority      = "1" >                          
+
+	<update_node name="remove" description="removing TL1 stuff from Studio">
+		<property_set name="Remove_Lines" os="LINUX">
+			<property name="test" value="echo &quot;TL1AgentSimulator&quot;"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="LINUX">
+			<property name="test" value="echo &quot;TL1MessageBuilder&quot;"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="LINUX">
+			<property name="test" value="elif [ &quot;${MODULE}&quot; = &quot;TL1AgentSimulator&quot; ]"/>
+			<property name="test" value="then"/>
+			<property name="test" value="cd StudioTools/ClientBuilder/bin"/>
+			<property name="test" value="sh startTL1AgentSimulator.sh"/>
+			<property name="test" value="cd ../../.."/>
+		</property_set>
+		<property_set name="Remove_Lines" os="LINUX">
+			<property name="test" value="elif [ &quot;${MODULE}&quot; = &quot;TL1MessageBuilder&quot; ]"/>
+			<property name="test" value="then"/>
+			<property name="test" value="cd StudioTools/ClientBuilder/bin"/>
+			<property name="test" value="sh startTL1MessageBuilder.sh"/>
+			<property name="test" value="cd ../../.."/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="if &quot;%1&quot; EQU &quot;TL1AgentSimulator&quot; goto TL1AgentSimulator"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="if &quot;%1&quot; EQU &quot;TL1MessageBuilder&quot; goto TL1MessageBuilder"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="if &quot;%1&quot; EQU &quot;tl1agentsimulator&quot; goto TL1AgentSimulator"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="if &quot;%1&quot; EQU &quot;tl1messagebuilder&quot; goto TL1MessageBuilder"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value=":TL1AgentSimulator"/>
+			<property name="test" value="cd StudioTools"/>
+			<property name="test" value="cd ClientBuilder"/>
+			<property name="test" value=""/>
+			<property name="test" value="cd bin"/>
+			<property name="test" value=""/>
+			<property name="test" value="call startTL1AgentSimulator.bat"/>
+			<property name="test" value=""/>
+			<property name="test" value="cd .."/>
+			<property name="test" value="cd .."/>
+			<property name="test" value=""/>
+			<property name="test" value="goto End"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value=":TL1MessageBuilder"/>
+			<property name="test" value="cd StudioTools"/>
+			<property name="test" value="cd ClientBuilder"/>
+			<property name="test" value=""/>
+			<property name="test" value="cd bin"/>
+			<property name="test" value=""/>
+			<property name="test" value="call startTL1MessageBuilder.bat"/>
+			<property name="test" value=""/>
+			<property name="test" value="cd .."/>
+			<property name="test" value="cd .."/>
+			<property name="test" value=""/>
+			<property name="test" value="goto End"/>
+		</property_set>
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="echo &quot;TL1AgentSimulator&quot;"/>
+		</property_set>	
+		<property_set name="Remove_Lines" os="WINDOWS">
+			<property name="test" value="echo &quot;TL1MessageBuilder&quot;"/>
+		</property_set>	
+	</update_node>
+</configuration_file>
+
+
+
+<configuration_file
+	name          =  "framemenu.xml"
+	path          =  "html/defaultsToAllUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "html/confchanges/framemenu_change.html"
+	required      = "true"
+	priority      = "0" >
+	<update_node name="Modify" description="Operation tag for system Administration Menu item added">
+	    <property_set name="PANELMENUBAR">
+		    <property_set name="MENU">
+			    <property name="name"  value="Tools"/>
+			    <property_set name="MENU-ITEM">
+				    <property name="parent" value="true" />
+		            <property name="name" value="Runtime Administration"/>
+			        <property_set name="Attribute">
+						<Property name="action_value" value="com.adventnet.nms.runtimeconfig.RuntimeConfigFrame?NMS_RESOURCE_DIRECTORY=../html&amp;CONFIG_CLIENT_IMPL=com.adventnet.nms.config.NmsConfigClient&amp;PROTOCOL=SNMP,ICMP,NativePing"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "update_conf.xml"
+	path          =  "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Sub Product name changed To STD_BE"
+	required      = "true"
+	priority      = "1" >
+
+	<update_node name="Modify" description="Sub Product name changed To STD_BE">
+		<property_set name="properties">
+			<property_set name="property">
+				<property name="name" value="SubProductName"/>
+				<property name="parent" value="true" />
+				<property_set name="Attribute">
+					<property_set name="value" value="STD_BE"/>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file 
+	name          = "hibernate.cfg.xml" 
+	path="classes/hbnlib"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" 
+	description   = "Unplugging TL1 service from hibernate.cfg.xml"
+	required      = "true" 
+	priority      = "0">
+
+	<update_node name="Update" description="Remove TL1Node and TL1Interface">
+		<property_set name="Remove_line" >
+			<property name="&lt;mapping resource=&quot;com/adventnet/nms/topodb/tl1/TL1Node.hbm.xml&quot;/&gt;" value="" />
+			<property name="&lt;mapping resource=&quot;com/adventnet/nms/topodb/tl1/TL1Interface.hbm.xml&quot;/&gt;" value="" />
+		</property_set>
+	</update_node> 
+
+</configuration_file>
+</configuration_changes>

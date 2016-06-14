@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<configuration_changes home_directory="." >
+
+	   <configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="0">
+                <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                        <property_set name="append" os="WIN">
+                                <property_set name="variable">
+                                        <property name="set CLASSPATH=" value="APPLN_MON_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+                        <property_set name="append" os="LINUX">
+                                <property_set name="variable">
+                                        <property name="CLASSPATH=" value="APPLN_MON_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+               </update_node>
+       </configuration_file>
+
+<!--configuration_file       
+	name          = "help.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+      description   = "description"
+      required      = "true"
+      priority      = "0" >
+
+      <update_node name="Add" description="add help  for updating a new node ">
+		<property_set name="NMS_HELP_CONF">
+		<property_set name="HELP_LIST">
+		<property name="parent" value="true" />
+            <property_set name="Node" >
+
+			<HELP key="Runtime_Admin_Application_Main_Help" value="appln_mon/help/index.html"/>
+			<HELP key="Runtime_Admin_Application_AppDiscovery_Help" value="appln_mon/help/disc_appln/disc_intro.html"/>
+			<HELP key="Runtime_Admin_Application_Threshold_Help" value="appln_mon/help/thresholds/thresh_intro.html"/>
+			<HELP key="Runtime_Admin_Application_AppStatusPolling_Help" value="appln_mon/help/manage_appln/app_sp_intro.html"/>			
+			<HELP key="Runtime_Admin_Application_DataCollection_Help" value="appln_mon/help/monitor_orcl/orcl_intro.html"/>
+			<HELP key="Runtime_Admin_Application_OracleConf_Help" value="appln_mon/help/monitor_orcl/orcl_intro.html"/>
+			<HELP key="Runtime_Admin_Application_HostResource_Help" value="appln_mon/help/monitor_hr/host_res_intro.html"/>
+			<HELP key="Oracle_Systems" value="appln_mon/help/monitor_orcl/orcl_app_data_colln.html"/>
+			<HELP key="Host_Resources" value="appln_mon/help/monitor_hr/host_res_data_colln.html"/>
+		</property_set>
+		</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file-->
+
+	<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="0">
+	   <update_node name="Modify_entry" description="New Variable is added">
+                <property_set name="Add_line" os="WIN">
+                	<property name="set APPLN_MON_CLIENT_CLASSPATH=%NMS_HOME%\classes\ApplnMonitorClientExtn.jar" value=""  />
+		</property_set>
+                <property_set name="Add_line" os="LINUX">
+			<property name="APPLN_MON_CLIENT_CLASSPATH=$NMS_HOME/classes/ApplnMonitorClientExtn.jar" value="" />
+		</property_set>
+	   </update_node>
+	</configuration_file>
+</configuration_changes>
+<!-- $Id: ConfFileChanges.xml.std.client,v 1.3 2009/01/08 15:32:44 govardhini Exp $ -->

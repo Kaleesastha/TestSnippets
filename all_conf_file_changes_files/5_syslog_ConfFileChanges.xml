@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<configuration_changes home_directory="." >
+
+	   <configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="0">
+                <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                        <property_set name="append" os="WIN">
+                                <property_set name="variable">
+                                        <property name="set CLASSPATH=" value="SYSLOG_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+                        <property_set name="append" os="LINUX">
+                                <property_set name="variable">
+                                        <property name="CLASSPATH=" value="SYSLOG_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+               </update_node>
+       </configuration_file>
+
+
+	<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="0">
+	   <update_node name="Modify_entry" description="New Variable is added">
+                <property_set name="Add_line" os="WIN">
+                	<property name="set SYSLOG_CLIENT_CLASSPATH=%NMS_HOME%\classes\SyslogClientExtn.jar" value=""  />
+		</property_set>
+                <property_set name="Add_line" os="LINUX">
+		         <property name="SYSLOG_CLIENT_CLASSPATH=$NMS_HOME/classes/SyslogClientExtn.jar" value="" />
+		</property_set>
+	   </update_node>
+	</configuration_file>
+
+
+</configuration_changes>
+<!-- $Id: ConfFileChanges.xml.client,v 1.2 2009/01/05 11:57:36 govardhini Exp $ -->
