@@ -14,7 +14,7 @@
 | FRU              | varchar(10)  | YES  |     | NULL    |       |
 | USERNAME         | varchar(50)  | YES  |     | NULL    |       |
 +------------------+--------------+------+-----+---------+-------+
-CNEOMIManagementEvent==========
+
 ============================PhysicalContainer====================
 +--------------------+--------------+------+-----+---------+-------+
 | Field              | Type         | Null | Key | Default | Extra |
