@@ -981,3 +981,176 @@
 | USERDEVICENAME           | varchar(100) | YES  |     | NULL    |       |
 | CORRELATED               | int(11)      | YES  |     | NULL    |       |
 +--------------------------+--------------+------+-----+---------+-------+
+
+
+============================CNEOMIManagementEvent====================
++-----------------------------+---------------+------+-----+---------+-------+
+| Field                       | Type          | Null | Key | Default | Extra |
++-----------------------------+---------------+------+-----+---------+-------+
+| ID                          | int(11)       | NO   | PRI | NULL    |       |
+| OWNERNAME                   | varchar(25)   | NO   | PRI | NULL    |       |
+| CNEOMIEVENTTYPE             | int(11)       | YES  |     | NULL    |       |
+| MGMTREASONCODE              | int(11)       | YES  |     | NULL    |       |
+| ADDITIONALDATA              | varchar(8192) | YES  |     | NULL    |       |
+| AUDITMISSEDAUTOPROVOUT      | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDALARMSOUT        | int(11)       | YES  |     | NULL    |       |
+| AUDITEVENTBUFFEROVERFLOWOUT | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDSTATECHANGESOUT  | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDKEYSTATSOUT      | int(11)       | YES  |     | NULL    |       |
+| AUDITLASTCONNECTIONTIMEOUT  | bigint(20)    | YES  |     | NULL    |       |
+| AUDITMISSEDNEOWNEDDATAOUT   | int(11)       | YES  |     | NULL    |       |
+| COMPLETIONPERCENTAGE        | int(11)       | YES  |     | NULL    |       |
++-----------------------------+---------------+------+-----+---------+-------+
+
+============================EMHEvent====================
++--------------------------+--------------+------+-----+---------+-------+
+| Field                    | Type         | Null | Key | Default | Extra |
++--------------------------+--------------+------+-----+---------+-------+
+| ID                       | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)  | NO   | PRI | NULL    |       |
+| PROBABLECAUSE            | bigint(20)   | YES  |     | NULL    |       |
+| SPECIFICPROBLEMS         | bigint(20)   | YES  |     | NULL    |       |
+| BACKEDUPSTATUS           | int(11)      | YES  |     | NULL    |       |
+| BACKUPOBJECTCLASS        | varchar(50)  | YES  |     | NULL    |       |
+| BACKUPOBJECTID           | varchar(50)  | YES  |     | NULL    |       |
+| TRENDINDICATION          | bigint(20)   | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLD       | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDOBSERVEDVALUE   | varchar(50)  | YES  |     | NULL    |       |
+| THRESHOLDUPDOWNINDICATOR | int(11)      | YES  |     | NULL    |       |
+| THRESHOLDHIGH            | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDLOW             | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDARMTIME         | bigint(20)   | YES  |     | NULL    |       |
++--------------------------+--------------+------+-----+---------+-------+
+
+============================EMHInfoEvent====================
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| ID                     | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME              | varchar(25)  | NO   | PRI | NULL    |       |
+| INVOKEDIDENTIFIER      | int(11)      | YES  |     | NULL    |       |
+| MANAGEDOBJECTCLASS     | varchar(100) | YES  |     | NULL    |       |
+| MANAGEDOBJECTID        | varchar(100) | YES  |     | NULL    |       |
+| MODE                   | int(11)      | YES  |     | NULL    |       |
+| NOTIFICATIONID         | bigint(20)   | YES  |     | NULL    |       |
+| CORRELATEDNOTIFICATION | bigint(20)   | YES  |     | NULL    |       |
+| ADDITIONALINFORMATION  | varchar(256) | YES  |     | NULL    |       |
+| CORRELATIONTAG         | bigint(20)   | YES  |     | NULL    |       |
+| SEQUENCETAG            | bigint(20)   | YES  |     | NULL    |       |
+| USERDEVICENAME         | varchar(100) | YES  |     | NULL    |       |
+| CORRELATED             | int(11)      | YES  |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+
+============================ObjectCreationDeletionEvent====================
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| ID              | int(11)     | NO   | PRI | NULL    |       |
+| OWNERNAME       | varchar(25) | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR | int(11)     | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+
+============================StateChangeEvent====================
++-----------------------+-------------+------+-----+---------+-------+
+| Field                 | Type        | Null | Key | Default | Extra |
++-----------------------+-------------+------+-----+---------+-------+
+| ID                    | int(11)     | NO   | PRI | NULL    |       |
+| OWNERNAME             | varchar(25) | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR       | int(11)     | YES  |     | NULL    |       |
+| OLDADMINSTATE         | int(11)     | YES  |     | NULL    |       |
+| NEWADMINSTATE         | int(11)     | YES  |     | NULL    |       |
+| OLDOPERATIONALSTATE   | int(11)     | YES  |     | NULL    |       |
+| NEWOPERATIONALSTATE   | int(11)     | YES  |     | NULL    |       |
+| OLDUSAGESTATE         | int(11)     | YES  |     | NULL    |       |
+| NEWUSAGESTATE         | int(11)     | YES  |     | NULL    |       |
+| OLDAVAILABILITYSTATUS | int(11)     | YES  |     | NULL    |       |
+| NEWAVAILABILITYSTATUS | int(11)     | YES  |     | NULL    |       |
+| OLDCONTROLSTATUS      | int(11)     | YES  |     | NULL    |       |
+| NEWCONTROLSTATUS      | int(11)     | YES  |     | NULL    |       |
+| OLDREASONCODE         | int(11)     | YES  |     | NULL    |       |
+| NEWREASONCODE         | int(11)     | YES  |     | NULL    |       |
++-----------------------+-------------+------+-----+---------+-------+
+
+============================UserDefinedEvent====================
++--------------------------+---------------+------+-----+---------+-------+
+| Field                    | Type          | Null | Key | Default | Extra |
++--------------------------+---------------+------+-----+---------+-------+
+| ID                       | int(11)       | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)   | NO   | PRI | NULL    |       |
+| USERDEFINEDEVENTCATEGORY | bigint(20)    | YES  |     | NULL    |       |
+| USERDEFINEDEVENTID       | bigint(20)    | YES  |     | NULL    |       |
+| ADDITIONALDATA           | varchar(8192) | YES  |     | NULL    |       |
++--------------------------+---------------+------+-----+---------+-------+
+
+============================AttributeValueChangeEvent====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| ID                | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(25)  | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR   | int(11)      | YES  |     | NULL    |       |
+| ATTRIBUTEID       | varchar(100) | YES  |     | NULL    |       |
+| OLDATTRIBUTEVALUE | varchar(100) | YES  |     | NULL    |       |
+| NEWATTRIBUTEVALUE | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================AvailabilityEvent====================
++----------------------------+--------------+------+-----+---------+-------+
+| Field                      | Type         | Null | Key | Default | Extra |
++----------------------------+--------------+------+-----+---------+-------+
+| ID                         | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME                  | varchar(25)  | NO   | PRI | NULL    |       |
+| IMPACTEDMANAGEDOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| IMPACTEDMANAGEDOBJECTID    | varchar(100) | YES  |     | NULL    |       |
+| OUTAGEIMPACT               | int(11)      | YES  |     | NULL    |       |
+| OUTAGECAUSE                | int(11)      | YES  |     | NULL    |       |
+| OUTAGEDURATION             | int(11)      | YES  |     | NULL    |       |
++----------------------------+--------------+------+-----+---------+-------+
+
+============================RelationshipChangeEvent====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| ID                | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(25)  | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR   | int(11)      | YES  |     | NULL    |       |
+| OLDRELATIONSHIPID | bigint(20)   | YES  |     | NULL    |       |
+| NEWRELATIONSHIPID | bigint(20)   | YES  |     | NULL    |       |
+| SOURCEOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| SOURCEOBJECTID    | varchar(100) | YES  |     | NULL    |       |
+| TARGETOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| TARGETOBJECTID    | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================EMHAlert====================
++--------------------------+--------------+------+-----+---------+-------+
+| Field                    | Type         | Null | Key | Default | Extra |
++--------------------------+--------------+------+-----+---------+-------+
+| ENTITY                   | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)  | NO   | PRI | NULL    |       |
+| PROBABLECAUSE            | bigint(20)   | YES  |     | NULL    |       |
+| SPECIFICPROBLEMS         | bigint(20)   | YES  |     | NULL    |       |
+| BACKEDUPSTATUS           | int(11)      | YES  |     | NULL    |       |
+| BACKUPOBJECTCLASS        | varchar(50)  | YES  |     | NULL    |       |
+| BACKUPOBJECTID           | varchar(50)  | YES  |     | NULL    |       |
+| TRENDINDICATION          | int(11)      | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLDCLASS  | varchar(100) | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLDID     | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDOBSERVEDVALUE   | varchar(50)  | YES  |     | NULL    |       |
+| THRESHOLDUPDOWNINDICATOR | int(11)      | YES  |     | NULL    |       |
+| THRESHOLDHIGH            | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDLOW             | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDARMTIME         | bigint(20)   | YES  |     | NULL    |       |
+| INVOKEDIDENTIFIER        | int(11)      | YES  |     | NULL    |       |
+| MANAGEDOBJECTCLASS       | varchar(100) | YES  |     | NULL    |       |
+| MANAGEDOBJECTID          | varchar(100) | YES  |     | NULL    |       |
+| MODE                     | int(11)      | YES  |     | NULL    |       |
+| NOTIFICATIONID           | bigint(20)   | YES  |     | NULL    |       |
+| CORRELATEDNOTIFICATION   | bigint(20)   | YES  |     | NULL    |       |
+| ADDITIONALINFORMATION    | varchar(256) | YES  |     | NULL    |       |
+| CORRELATIONTAG           | bigint(20)   | YES  |     | NULL    |       |
+| SEQUENCETAG              | bigint(20)   | YES  |     | NULL    |       |
+| USERDEVICENAME           | varchar(100) | YES  |     | NULL    |       |
+| CORRELATED               | int(11)      | YES  |     | NULL    |       |
++--------------------------+--------------+------+-----+---------+-------+
+
