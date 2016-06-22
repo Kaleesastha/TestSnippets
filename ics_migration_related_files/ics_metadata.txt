@@ -1,0 +1,983 @@
+============================PhysicalEntity====================
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| NAME             | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME        | varchar(25)  | NO   | PRI | NULL    |       |
+| ENTITYIDENTIFIER | bigint(20)   | YES  |     | NULL    |       |
+| ENTITYTYPE       | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE          | bigint(20)   | YES  |     | NULL    |       |
+| CONTROLSTATUS    | bigint(20)   | YES  |     | NULL    |       |
+| SERIALNUMBER     | varchar(50)  | YES  |     | NULL    |       |
+| HARDWAREREVISION | varchar(50)  | YES  |     | NULL    |       |
+| MANUFACTURERNAME | varchar(50)  | YES  |     | NULL    |       |
+| FRU              | varchar(10)  | YES  |     | NULL    |       |
+| USERNAME         | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+============================PhysicalContainer====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(25)  | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| IPADDRESS          | varchar(50)  | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================PhysicalElement====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(25)  | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================PhysicalSubUnit====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(25)  | NO   | PRI | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REVERTIVEUNIT      | varchar(100) | YES  |     | NULL    |       |
+| PROTECTING         | varchar(100) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================PhysicalUnit====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(25)  | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| REVERTIVEUNIT      | varchar(100) | YES  |     | NULL    |       |
+| PROTECTING         | varchar(100) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================LogicalContainer====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(25)  | NO   | PRI | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================LogicalElement====================
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| NAME             | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME        | varchar(25)  | NO   | PRI | NULL    |       |
+| ENTITYIDENTIFIER | bigint(20)   | YES  |     | NULL    |       |
+| ENTITYTYPE       | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE          | bigint(20)   | YES  |     | NULL    |       |
+| ADMINSTATE       | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE       | bigint(20)   | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+============================LogicalUnit====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(25)  | NO   | PRI | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================ProtectionGroup====================
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| NAME             | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME        | varchar(25)  | NO   | PRI | NULL    |       |
+| NVALUE           | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE          | int(11)      | YES  |     | NULL    |       |
+| ENTITYIDENTIFIER | bigint(20)   | YES  |     | NULL    |       |
+| ENTITYTYPE       | bigint(20)   | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+============================SBNE====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| NAME              | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(25)  | NO   | PRI | NULL    |       |
+| SWUPGRADETYPE     | int(11)      | YES  |     | NULL    |       |
+| SWUPGRADESTATE    | int(11)      | YES  |     | NULL    |       |
+| RUNNINGSWVERSION  | varchar(100) | YES  |     | NULL    |       |
+| NEXTLOADSWVERSION | varchar(100) | YES  |     | NULL    |       |
+| CONFIGSYNCHSTATE  | int(11)      | YES  |     | NULL    |       |
+| ALARMSYNCHSTATE   | int(11)      | YES  |     | NULL    |       |
+| STATUSSYNCHSTATE  | int(11)      | YES  |     | NULL    |       |
+| ENTITYIDENTIFIER  | bigint(20)   | YES  |     | NULL    |       |
+| ENTITYTYPE        | bigint(20)   | YES  |     | NULL    |       |
+| CURRENTSWVERSION  | varchar(100) | YES  |     | NULL    |       |
+| PREVIOUSSWVERSION | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================NetworkElementManagement====================
++--------------------------------+--------------+------+-----+---------+-------+
+| Field                          | Type         | Null | Key | Default | Extra |
++--------------------------------+--------------+------+-----+---------+-------+
+| NAME                           | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME                      | varchar(25)  | NO   |     | NULL    |       |
+| NETWORKELEMENTID               | varchar(100) | YES  |     | NULL    |       |
+| NEDATALOCDIRPATH               | varchar(100) | YES  |     | NULL    |       |
+| KEYSTATSGRANULARITYPERIOD      | int(11)      | YES  |     | NULL    |       |
+| RUNNINGSWVERSION               | varchar(100) | YES  |     | NULL    |       |
+| CONNECTIONAUDIT                | int(11)      | YES  |     | NULL    |       |
+| NERMIVERSION                   | int(11)      | YES  |     | NULL    |       |
+| NEMANAGERLOCATION              | varchar(100) | YES  |     | NULL    |       |
+| SWUPGRADESTATE                 | int(11)      | YES  |     | NULL    |       |
+| NEDATALOCIPADDRESS             | varchar(100) | YES  |     | NULL    |       |
+| ALTERNATETIMESERVER2           | varchar(100) | YES  |     | NULL    |       |
+| ALTERNATETIMESERVER1           | varchar(100) | YES  |     | NULL    |       |
+| SYNCHREQUIREDNOTIFICATIONTIMER | int(11)      | YES  |     | NULL    |       |
+| NEXTLOADSWVERSION              | varchar(100) | YES  |     | NULL    |       |
+| COMMVERIFICATIONTIMER          | int(11)      | YES  |     | NULL    |       |
+| SOFTWARESYNCHRETRYTHRESHOLD    | int(11)      | YES  |     | NULL    |       |
+| TIMESERVER                     | varchar(100) | YES  |     | NULL    |       |
+| INFORMATIONAUDIT               | int(11)      | YES  |     | NULL    |       |
+| SANITYNOTIFICATIONRETRYCOUNT   | int(11)      | YES  |     | NULL    |       |
+| RETRYRESPONSETIMER             | int(11)      | YES  |     | NULL    |       |
+| SYNCHREQUESTWAITTIMER          | int(11)      | YES  |     | NULL    |       |
+| PRIMARYCODESERVER              | varchar(100) | YES  |     | NULL    |       |
+| NOTIFICATIONRESPONSETIMER      | int(11)      | YES  |     | NULL    |       |
+| NOTIFICATIONRESPONSEMAXCOUNTER | int(11)      | YES  |     | NULL    |       |
+| SWUPGRADETYPE                  | int(11)      | YES  |     | NULL    |       |
+| SECONDARYCODESERVER            | varchar(100) | YES  |     | NULL    |       |
+| PRIMARYDATASERVER              | varchar(100) | YES  |     | NULL    |       |
+| NESNMPVERSION                  | int(11)      | YES  |     | NULL    |       |
+| SECONDARYDATASERVER            | varchar(50)  | YES  |     | NULL    |       |
++--------------------------------+--------------+------+-----+---------+-------+
+
+============================DataObject====================
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| NAME             | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME        | varchar(50)  | NO   | PRI | NULL    |       |
+| ENTITYIDENTIFIER | bigint(20)   | YES  |     | NULL    |       |
+| MONAME           | varchar(100) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+============================IpConfig====================
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| NAME         | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME    | varchar(50)  | NO   | PRI | NULL    |       |
+| IPFRAGTTL    | int(11)      | YES  |     | NULL    |       |
+| IPDEFAULTTTL | int(11)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+============================EventControl====================
++--------------------------------------+--------------+------+-----+---------+-------+
+| Field                                | Type         | Null | Key | Default | Extra |
++--------------------------------------+--------------+------+-----+---------+-------+
+| NAME                                 | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME                            | varchar(50)  | NO   | PRI | NULL    |       |
+| EVENTSPERINTERVAL                    | int(11)      | YES  |     | NULL    |       |
+| EVENTDELIVERYFLAG                    | int(11)      | YES  |     | NULL    |       |
+| PROGRESSINDICATIONGENERATIONINTERVAL | int(11)      | YES  |     | NULL    |       |
+| EVENTSECONDARYDESTINATION            | varchar(100) | YES  |     | NULL    |       |
++--------------------------------------+--------------+------+-----+---------+-------+
+
+============================RelationObject====================
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| NAME            | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME       | varchar(25)  | NO   | PRI | NULL    |       |
+| SOURCE          | varchar(100) | YES  |     | NULL    |       |
+| TARGET          | varchar(100) | YES  |     | NULL    |       |
+| MAPPINGPRIORITY | int(11)      | YES  |     | NULL    |       |
+| RELATIONSHIP    | varchar(50)  | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+
+============================PhysicalUnitStream====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| CURRENTSTREAMLEVEL | bigint(20)   | YES  |     | NULL    |       |
+| CONFIGSTREAMLEVEL  | bigint(20)   | YES  |     | NULL    |       |
+| STREAMDESTINATION  | varchar(128) | YES  |     | NULL    |       |
+| STREAMDATACONFIG   | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================LogicalUnitStream====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| CURRENTSTREAMLEVEL | bigint(20)   | YES  |     | NULL    |       |
+| CONFIGSTREAMLEVEL  | bigint(20)   | YES  |     | NULL    |       |
+| STREAMDESTINATION  | varchar(128) | YES  |     | NULL    |       |
+| STREAMDATACONFIG   | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================LogStreamDataConfig====================
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| NAME          | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME     | varchar(128) | NO   | PRI | NULL    |       |
+| STARTXMIT     | varchar(128) | YES  |     | NULL    |       |
+| STOPXMIT      | varchar(128) | YES  |     | NULL    |       |
+| PERIODICITY   | bigint(20)   | YES  |     | NULL    |       |
+| FILTERCONFIG  | varchar(128) | YES  |     | NULL    |       |
+| CONTROLCONFIG | varchar(128) | YES  |     | NULL    |       |
+| ACTIVE        | varchar(10)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+============================LogStream====================
++---------------------------+--------------+------+-----+---------+-------+
+| Field                     | Type         | Null | Key | Default | Extra |
++---------------------------+--------------+------+-----+---------+-------+
+| NAME                      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME                 | varchar(128) | NO   | PRI | NULL    |       |
+| LOGGINGENABLED            | varchar(10)  | YES  |     | NULL    |       |
+| NUMBEROFLOGSAVAILABLE     | bigint(20)   | YES  |     | NULL    |       |
+| CURRENTSTREAMLEVEL        | bigint(20)   | YES  |     | NULL    |       |
+| CONFIGSTREAMLEVEL         | bigint(20)   | YES  |     | NULL    |       |
+| STREAMDESTINATION         | varchar(128) | YES  |     | NULL    |       |
+| CAPABLEOFSTREAMING        | varchar(10)  | YES  |     | NULL    |       |
+| CAPABLEOFLOGGING          | varchar(10)  | YES  |     | NULL    |       |
+| CAPABLEOFDISABLINGLOGGING | varchar(10)  | YES  |     | NULL    |       |
+| DECODINGSCHEME            | varchar(128) | YES  |     | NULL    |       |
++---------------------------+--------------+------+-----+---------+-------+
+
+============================Constituent====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================ConnectivityData====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE            | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| USERNAME           | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================Interface====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE            | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| USERNAME           | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================InterfaceContainer====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE            | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| USERNAME           | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================Endpoint====================
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| NAME               | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME          | varchar(128) | NO   | PRI | NULL    |       |
+| ADMINSTATE         | bigint(20)   | YES  |     | NULL    |       |
+| OPSTATE            | bigint(20)   | YES  |     | NULL    |       |
+| USAGESTATE         | bigint(20)   | YES  |     | NULL    |       |
+| CONTROLSTATUS      | bigint(20)   | YES  |     | NULL    |       |
+| AVAILABILITYSTATUS | bigint(20)   | YES  |     | NULL    |       |
+| REASONCODE         | bigint(20)   | YES  |     | NULL    |       |
+| USERNAME           | varchar(128) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+============================BlackBoxLogStream====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CoreFileMgmtLogStream====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================HapNeControl====================
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| NAME         | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME    | varchar(128) | NO   | PRI | NULL    |       |
+| AGENTADDRESS | varchar(128) | YES  |     | NULL    |       |
+| LATITUDE     | bigint(20)   | YES  |     | NULL    |       |
+| LONGITUDE    | bigint(20)   | YES  |     | NULL    |       |
+| LOADTIMEOUT  | bigint(20)   | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+============================CnpEthernetPortGroup====================
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| NAME           | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME      | varchar(128) | NO   | PRI | NULL    |       |
+| GROUPNAME      | varchar(128) | YES  |     | NULL    |       |
+| MAC            | varchar(128) | YES  |     | NULL    |       |
+| MONITORINGMODE | varchar(128) | YES  |     | NULL    |       |
+| ARPINTERVAL    | bigint(20)   | YES  |     | NULL    |       |
+| ARPIPTARGET    | varchar(128) | YES  |     | NULL    |       |
+| DOWNDELAY      | bigint(20)   | YES  |     | NULL    |       |
+| LACPRATE       | varchar(10)  | YES  |     | NULL    |       |
+| MAXBONDS       | bigint(20)   | YES  |     | NULL    |       |
+| MIIMON         | bigint(20)   | YES  |     | NULL    |       |
+| MODE           | bigint(20)   | YES  |     | NULL    |       |
+| UPDELAY        | bigint(20)   | YES  |     | NULL    |       |
+| USECARRIER     | varchar(10)  | YES  |     | NULL    |       |
+| XMITHASHPOLICY | varchar(128) | YES  |     | NULL    |       |
+| ARPVALIDATE    | bigint(20)   | YES  |     | NULL    |       |
+| BOOTPROTO      | varchar(128) | YES  |     | NULL    |       |
+| STARTMODE      | varchar(128) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+
+============================CnpFileSystemInfo====================
++----------------------+--------------+------+-----+---------+-------+
+| Field                | Type         | Null | Key | Default | Extra |
++----------------------+--------------+------+-----+---------+-------+
+| NAME                 | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME            | varchar(128) | NO   | PRI | NULL    |       |
+| FSEXISTS             | varchar(10)  | YES  |     | NULL    |       |
+| DEVICE               | varchar(128) | YES  |     | NULL    |       |
+| MOUNTPOINT           | varchar(128) | YES  |     | NULL    |       |
+| FSTYPE               | varchar(128) | YES  |     | NULL    |       |
+| MODE                 | varchar(128) | YES  |     | NULL    |       |
+| SIZE                 | varchar(128) | YES  |     | NULL    |       |
+| BRDMGRFSWARNTH       | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRFSCRITTH       | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRFSCURSEVERITY  | varchar(128) | YES  |     | NULL    |       |
+| BRDMGRFSPREVSEVERITY | varchar(128) | YES  |     | NULL    |       |
++----------------------+--------------+------+-----+---------+-------+
+
+============================CnpRaidPortGroup====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpServerInfo====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| NAME              | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(128) | NO   | PRI | NULL    |       |
+| BRDMGRCPUWARNTH   | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRCPUCRITTH   | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRMEMWARNTH   | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRMEMCRITTH   | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRFCCRITTH    | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRETHCRITTH   | bigint(20)   | YES  |     | NULL    |       |
+| BRDMGRIPDIAGLIST  | varchar(128) | YES  |     | NULL    |       |
+| ASSOCIATEDDEVICES | varchar(128) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================CnpEthernetPort====================
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| NAME         | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME    | varchar(128) | NO   | PRI | NULL    |       |
+| PRIMARYSLAVE | varchar(10)  | YES  |     | NULL    |       |
+| DEVICE       | varchar(128) | YES  |     | NULL    |       |
+| MAC          | varchar(128) | YES  |     | NULL    |       |
+| ONBOOT       | varchar(10)  | YES  |     | NULL    |       |
+| BOOTPROTO    | varchar(128) | YES  |     | NULL    |       |
+| USERCTL      | varchar(10)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+============================CnpRaidPort====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
+| DEVICE    | varchar(128) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpCageInfo====================
++----------------------+--------------+------+-----+---------+-------+
+| Field                | Type         | Null | Key | Default | Extra |
++----------------------+--------------+------+-----+---------+-------+
+| NAME                 | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME            | varchar(128) | NO   | PRI | NULL    |       |
+| SOURCEHOSTIP         | varchar(128) | YES  |     | NULL    |       |
+| READCOMMUNITYSTRING  | varchar(128) | YES  |     | NULL    |       |
+| WRITECOMMUNITYSTRING | varchar(128) | YES  |     | NULL    |       |
+| SNMPTIMEOUT          | bigint(20)   | YES  |     | NULL    |       |
+| SNMPRETRIES          | bigint(20)   | YES  |     | NULL    |       |
+| POLLINGINTERVAL      | bigint(20)   | YES  |     | NULL    |       |
+| SECURITYLEVEL        | varchar(128) | YES  |     | NULL    |       |
+| V3CONTEXTNAME        | varchar(128) | YES  |     | NULL    |       |
+| V3USERNAME           | varchar(128) | YES  |     | NULL    |       |
+| V3AUTHPROTOCOL       | varchar(128) | YES  |     | NULL    |       |
+| V3PRIVPROTOCOL       | varchar(128) | YES  |     | NULL    |       |
+| V3PRIVPASSWORD       | varchar(128) | YES  |     | NULL    |       |
++----------------------+--------------+------+-----+---------+-------+
+
+============================CnpACL====================
++----------------------+--------------+------+-----+---------+-------+
+| Field                | Type         | Null | Key | Default | Extra |
++----------------------+--------------+------+-----+---------+-------+
+| NAME                 | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME            | varchar(128) | NO   | PRI | NULL    |       |
+| IPCHAIN              | varchar(128) | YES  |     | NULL    |       |
+| RULENUMBER           | bigint(20)   | YES  |     | NULL    |       |
+| PROTOCOL             | varchar(128) | YES  |     | NULL    |       |
+| INIFACE              | varchar(128) | YES  |     | NULL    |       |
+| OUTIFACE             | varchar(128) | YES  |     | NULL    |       |
+| SOURCEIP             | varchar(128) | YES  |     | NULL    |       |
+| SOURCEMASK           | varchar(128) | YES  |     | NULL    |       |
+| SOURCEPORTSTART      | varchar(128) | YES  |     | NULL    |       |
+| SOURCEPORTEND        | varchar(128) | YES  |     | NULL    |       |
+| ICMPTYPE             | varchar(128) | YES  |     | NULL    |       |
+| DESTINATIONIP        | varchar(128) | YES  |     | NULL    |       |
+| DESTINATIONMASK      | varchar(128) | YES  |     | NULL    |       |
+| DESTINATIONPORTSTART | varchar(128) | YES  |     | NULL    |       |
+| DESTINATIONPORTEND   | varchar(128) | YES  |     | NULL    |       |
+| TARGET               | varchar(128) | YES  |     | NULL    |       |
++----------------------+--------------+------+-----+---------+-------+
+
+============================CnpFruInfo====================
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| NAME             | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME        | varchar(128) | NO   | PRI | NULL    |       |
+| MFGDATETIME      | varchar(128) | YES  |     | NULL    |       |
+| MANUFACTURERNAME | varchar(128) | YES  |     | NULL    |       |
+| PRODUCTNAME      | varchar(128) | YES  |     | NULL    |       |
+| SERIALNUMBER     | varchar(128) | YES  |     | NULL    |       |
+| PARTNUMBER       | varchar(128) | YES  |     | NULL    |       |
+| MODELNUMBER      | varchar(128) | YES  |     | NULL    |       |
+| PRODUCTVERSION   | varchar(128) | YES  |     | NULL    |       |
+| ASSETTAG         | varchar(128) | YES  |     | NULL    |       |
+| PRESENCESTATUS   | varchar(10)  | YES  |     | NULL    |       |
+| HOTSWAPSTATE     | varchar(128) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+============================CnpSystemInfo====================
++-------------------------------+--------------+------+-----+---------+-------+
+| Field                         | Type         | Null | Key | Default | Extra |
++-------------------------------+--------------+------+-----+---------+-------+
+| NAME                          | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME                     | varchar(128) | NO   | PRI | NULL    |       |
+| ALARMPROXYSNMPPORT            | bigint(20)   | YES  |     | NULL    |       |
+| ALARMPROXYTRAPCOMMUNITYSTRING | varchar(128) | YES  |     | NULL    |       |
++-------------------------------+--------------+------+-----+---------+-------+
+
+============================CnpLocationInfo====================
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| NAME          | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME     | varchar(128) | NO   | PRI | NULL    |       |
+| SITEID        | varchar(128) | YES  |     | NULL    |       |
+| BUILDINGID    | varchar(128) | YES  |     | NULL    |       |
+| FLOORID       | varchar(128) | YES  |     | NULL    |       |
+| CABINETID     | varchar(128) | YES  |     | NULL    |       |
+| MOUNTEDHEIGHT | bigint(20)   | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+============================CnpMonDevInfo====================
++----------------------+--------------+------+-----+---------+-------+
+| Field                | Type         | Null | Key | Default | Extra |
++----------------------+--------------+------+-----+---------+-------+
+| NAME                 | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME            | varchar(128) | NO   | PRI | NULL    |       |
+| MONITORINGMETHOD     | bigint(20)   | YES  |     | NULL    |       |
+| SOURCEHOSTIP         | varchar(128) | YES  |     | NULL    |       |
+| READCOMMUNITYSTRING  | varchar(128) | YES  |     | NULL    |       |
+| WRITECOMMUNITYSTRING | varchar(128) | YES  |     | NULL    |       |
+| SNMPTIMEOUT          | bigint(20)   | YES  |     | NULL    |       |
+| SNMPRETRIES          | bigint(20)   | YES  |     | NULL    |       |
+| POLLINGINTERVAL      | bigint(20)   | YES  |     | NULL    |       |
+| SECURITYLEVEL        | varchar(128) | YES  |     | NULL    |       |
+| V3CONTEXTNAME        | varchar(128) | YES  |     | NULL    |       |
+| V3USERNAME           | varchar(128) | YES  |     | NULL    |       |
+| V3AUTHPROTOCOL       | varchar(128) | YES  |     | NULL    |       |
+| V3PRIVPROTOCOL       | varchar(128) | YES  |     | NULL    |       |
+| V3PRIVPASSWORD       | varchar(128) | YES  |     | NULL    |       |
++----------------------+--------------+------+-----+---------+-------+
+
+============================CnpCage====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpClusterManager====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpClusterManagerPG====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpEmsServer====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpEmsServerPG====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpExtSwitch====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpFan====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPEM====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaid====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidController====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidFan====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidLogicalDrive====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidLogicalUnit====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidPEM====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRaidPhysicalDrive====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpShmm====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpSwitch====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpTermServer====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpSwitchUnit====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpRTM====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================BlackBoxDataConfig====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpAirFilter====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpSystemAlarmPanel====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpShelfEEPROM====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpShmmBMC====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpEmsSensor====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpExternalServer====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPSBlackBoxLS====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPSCoreFileMgmtLS====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPayloadServer====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPayloadServerPG====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CnpPSBlackBoxDC====================
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| NAME      | varchar(128) | NO   | PRI | NULL    |       |
+| OWNERNAME | varchar(128) | NO   | PRI | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+============================CNEOMIManagementEvent====================
++-----------------------------+---------------+------+-----+---------+-------+
+| Field                       | Type          | Null | Key | Default | Extra |
++-----------------------------+---------------+------+-----+---------+-------+
+| ID                          | int(11)       | NO   | PRI | NULL    |       |
+| OWNERNAME                   | varchar(25)   | NO   | PRI | NULL    |       |
+| CNEOMIEVENTTYPE             | int(11)       | YES  |     | NULL    |       |
+| MGMTREASONCODE              | int(11)       | YES  |     | NULL    |       |
+| ADDITIONALDATA              | varchar(8192) | YES  |     | NULL    |       |
+| AUDITMISSEDAUTOPROVOUT      | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDALARMSOUT        | int(11)       | YES  |     | NULL    |       |
+| AUDITEVENTBUFFEROVERFLOWOUT | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDSTATECHANGESOUT  | int(11)       | YES  |     | NULL    |       |
+| AUDITMISSEDKEYSTATSOUT      | int(11)       | YES  |     | NULL    |       |
+| AUDITLASTCONNECTIONTIMEOUT  | bigint(20)    | YES  |     | NULL    |       |
+| AUDITMISSEDNEOWNEDDATAOUT   | int(11)       | YES  |     | NULL    |       |
+| COMPLETIONPERCENTAGE        | int(11)       | YES  |     | NULL    |       |
++-----------------------------+---------------+------+-----+---------+-------+
+
+============================EMHEvent====================
++--------------------------+--------------+------+-----+---------+-------+
+| Field                    | Type         | Null | Key | Default | Extra |
++--------------------------+--------------+------+-----+---------+-------+
+| ID                       | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)  | NO   | PRI | NULL    |       |
+| PROBABLECAUSE            | bigint(20)   | YES  |     | NULL    |       |
+| SPECIFICPROBLEMS         | bigint(20)   | YES  |     | NULL    |       |
+| BACKEDUPSTATUS           | int(11)      | YES  |     | NULL    |       |
+| BACKUPOBJECTCLASS        | varchar(50)  | YES  |     | NULL    |       |
+| BACKUPOBJECTID           | varchar(50)  | YES  |     | NULL    |       |
+| TRENDINDICATION          | bigint(20)   | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLD       | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDOBSERVEDVALUE   | varchar(50)  | YES  |     | NULL    |       |
+| THRESHOLDUPDOWNINDICATOR | int(11)      | YES  |     | NULL    |       |
+| THRESHOLDHIGH            | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDLOW             | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDARMTIME         | bigint(20)   | YES  |     | NULL    |       |
++--------------------------+--------------+------+-----+---------+-------+
+
+============================EMHInfoEvent====================
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| ID                     | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME              | varchar(25)  | NO   | PRI | NULL    |       |
+| INVOKEDIDENTIFIER      | int(11)      | YES  |     | NULL    |       |
+| MANAGEDOBJECTCLASS     | varchar(100) | YES  |     | NULL    |       |
+| MANAGEDOBJECTID        | varchar(100) | YES  |     | NULL    |       |
+| MODE                   | int(11)      | YES  |     | NULL    |       |
+| NOTIFICATIONID         | bigint(20)   | YES  |     | NULL    |       |
+| CORRELATEDNOTIFICATION | bigint(20)   | YES  |     | NULL    |       |
+| ADDITIONALINFORMATION  | varchar(256) | YES  |     | NULL    |       |
+| CORRELATIONTAG         | bigint(20)   | YES  |     | NULL    |       |
+| SEQUENCETAG            | bigint(20)   | YES  |     | NULL    |       |
+| USERDEVICENAME         | varchar(100) | YES  |     | NULL    |       |
+| CORRELATED             | int(11)      | YES  |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+
+============================ObjectCreationDeletionEvent====================
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| ID              | int(11)     | NO   | PRI | NULL    |       |
+| OWNERNAME       | varchar(25) | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR | int(11)     | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+
+============================StateChangeEvent====================
++-----------------------+-------------+------+-----+---------+-------+
+| Field                 | Type        | Null | Key | Default | Extra |
++-----------------------+-------------+------+-----+---------+-------+
+| ID                    | int(11)     | NO   | PRI | NULL    |       |
+| OWNERNAME             | varchar(25) | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR       | int(11)     | YES  |     | NULL    |       |
+| OLDADMINSTATE         | int(11)     | YES  |     | NULL    |       |
+| NEWADMINSTATE         | int(11)     | YES  |     | NULL    |       |
+| OLDOPERATIONALSTATE   | int(11)     | YES  |     | NULL    |       |
+| NEWOPERATIONALSTATE   | int(11)     | YES  |     | NULL    |       |
+| OLDUSAGESTATE         | int(11)     | YES  |     | NULL    |       |
+| NEWUSAGESTATE         | int(11)     | YES  |     | NULL    |       |
+| OLDAVAILABILITYSTATUS | int(11)     | YES  |     | NULL    |       |
+| NEWAVAILABILITYSTATUS | int(11)     | YES  |     | NULL    |       |
+| OLDCONTROLSTATUS      | int(11)     | YES  |     | NULL    |       |
+| NEWCONTROLSTATUS      | int(11)     | YES  |     | NULL    |       |
+| OLDREASONCODE         | int(11)     | YES  |     | NULL    |       |
+| NEWREASONCODE         | int(11)     | YES  |     | NULL    |       |
++-----------------------+-------------+------+-----+---------+-------+
+
+============================UserDefinedEvent====================
++--------------------------+---------------+------+-----+---------+-------+
+| Field                    | Type          | Null | Key | Default | Extra |
++--------------------------+---------------+------+-----+---------+-------+
+| ID                       | int(11)       | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)   | NO   | PRI | NULL    |       |
+| USERDEFINEDEVENTCATEGORY | bigint(20)    | YES  |     | NULL    |       |
+| USERDEFINEDEVENTID       | bigint(20)    | YES  |     | NULL    |       |
+| ADDITIONALDATA           | varchar(8192) | YES  |     | NULL    |       |
++--------------------------+---------------+------+-----+---------+-------+
+
+============================AttributeValueChangeEvent====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| ID                | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(25)  | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR   | int(11)      | YES  |     | NULL    |       |
+| ATTRIBUTEID       | varchar(100) | YES  |     | NULL    |       |
+| OLDATTRIBUTEVALUE | varchar(100) | YES  |     | NULL    |       |
+| NEWATTRIBUTEVALUE | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================AvailabilityEvent====================
++----------------------------+--------------+------+-----+---------+-------+
+| Field                      | Type         | Null | Key | Default | Extra |
++----------------------------+--------------+------+-----+---------+-------+
+| ID                         | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME                  | varchar(25)  | NO   | PRI | NULL    |       |
+| IMPACTEDMANAGEDOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| IMPACTEDMANAGEDOBJECTID    | varchar(100) | YES  |     | NULL    |       |
+| OUTAGEIMPACT               | int(11)      | YES  |     | NULL    |       |
+| OUTAGECAUSE                | int(11)      | YES  |     | NULL    |       |
+| OUTAGEDURATION             | int(11)      | YES  |     | NULL    |       |
++----------------------------+--------------+------+-----+---------+-------+
+
+============================RelationshipChangeEvent====================
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| ID                | int(11)      | NO   | PRI | NULL    |       |
+| OWNERNAME         | varchar(25)  | NO   | PRI | NULL    |       |
+| SOURCEINDICATOR   | int(11)      | YES  |     | NULL    |       |
+| OLDRELATIONSHIPID | bigint(20)   | YES  |     | NULL    |       |
+| NEWRELATIONSHIPID | bigint(20)   | YES  |     | NULL    |       |
+| SOURCEOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| SOURCEOBJECTID    | varchar(100) | YES  |     | NULL    |       |
+| TARGETOBJECTCLASS | varchar(100) | YES  |     | NULL    |       |
+| TARGETOBJECTID    | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+
+============================EMHAlert====================
++--------------------------+--------------+------+-----+---------+-------+
+| Field                    | Type         | Null | Key | Default | Extra |
++--------------------------+--------------+------+-----+---------+-------+
+| ENTITY                   | varchar(100) | NO   | PRI | NULL    |       |
+| OWNERNAME                | varchar(25)  | NO   | PRI | NULL    |       |
+| PROBABLECAUSE            | bigint(20)   | YES  |     | NULL    |       |
+| SPECIFICPROBLEMS         | bigint(20)   | YES  |     | NULL    |       |
+| BACKEDUPSTATUS           | int(11)      | YES  |     | NULL    |       |
+| BACKUPOBJECTCLASS        | varchar(50)  | YES  |     | NULL    |       |
+| BACKUPOBJECTID           | varchar(50)  | YES  |     | NULL    |       |
+| TRENDINDICATION          | int(11)      | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLDCLASS  | varchar(100) | YES  |     | NULL    |       |
+| TRIGGEREDTHRESHOLDID     | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDOBSERVEDVALUE   | varchar(50)  | YES  |     | NULL    |       |
+| THRESHOLDUPDOWNINDICATOR | int(11)      | YES  |     | NULL    |       |
+| THRESHOLDHIGH            | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDLOW             | varchar(100) | YES  |     | NULL    |       |
+| THRESHOLDARMTIME         | bigint(20)   | YES  |     | NULL    |       |
+| INVOKEDIDENTIFIER        | int(11)      | YES  |     | NULL    |       |
+| MANAGEDOBJECTCLASS       | varchar(100) | YES  |     | NULL    |       |
+| MANAGEDOBJECTID          | varchar(100) | YES  |     | NULL    |       |
+| MODE                     | int(11)      | YES  |     | NULL    |       |
+| NOTIFICATIONID           | bigint(20)   | YES  |     | NULL    |       |
+| CORRELATEDNOTIFICATION   | bigint(20)   | YES  |     | NULL    |       |
+| ADDITIONALINFORMATION    | varchar(256) | YES  |     | NULL    |       |
+| CORRELATIONTAG           | bigint(20)   | YES  |     | NULL    |       |
+| SEQUENCETAG              | bigint(20)   | YES  |     | NULL    |       |
+| USERDEVICENAME           | varchar(100) | YES  |     | NULL    |       |
+| CORRELATED               | int(11)      | YES  |     | NULL    |       |
++--------------------------+--------------+------+-----+---------+-------+
