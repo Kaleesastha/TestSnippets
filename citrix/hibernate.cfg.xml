@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+<session-factory>
+
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+<property name="connection.url">jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=LENZI)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=LENZI)(Port=1526)))(CONNECT_DATA=(SID=LENZI)))</property>
+<property name="connection.username">scott</property>
+<property name="connection.password">tiger</property>
+<property name="dbHost">LENZI</property>
+<property name="dbPort">1526</property>
+<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+<property name="databasename">ORACLE</property>
+
+<property name="hibernate.c3p0.min_size">6</property>
+<property name="hibernate.c3p0.max_size">15</property>
+<property name="nontransaction.connection">3</property>
+<property name="hibernate.connection.autocommit">true</property>
+<!--property name="hibernate.c3p0.max_statements">1000</property-->
+<property name="hibernate.c3p0.acquire_increment">1</property>
+<property name="hibernate.jdbc.batch_size">1000</property>
+<property name="hibernate.connection.isolation">2</property>
+<property name="enablecache">true</property>
+<!-- Enable Hibernate's automatic session context management -->
+<property name="current_session_context_class">thread</property>
+<!-- Disable the second-level cache -->
+<!--<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+<property name="hibernate.cache.use_query_cache">true</property>
+<!-- Echo all executed SQL to stdout -->
+<property name="show_sql">false</property>
+<!-- Drop and re-create the database schema on startup -->
+<property name="hbm2ddl.auto">update</property>
+<!-- used internally by WebNMS and also used for database re-connection-->
+<property name="testQuery">select HOSTADDRESS from BEFailOver</property>
+<!-- c3p0 DB-Reconnection Properties -->
+<property name="hibernate.c3p0.acquireRetryAttempts">2</property>
+<property name="hibernate.c3p0.acquireRetryDelay">20000</property>
+<property name="hibernate.c3p0.breakAfterAcquireFailure">false</property>
+<!--
+-->
+<!-- End of c3p0 DB-Reconnection Properties. For more details:http://www.mchange.com/projects/c3p0/index.html#configuring_recovery-->
+
+<!-- ************************************** -->
+<!-- TOPOLOGY MODULE OBJECT MAPPING ENTRIES -->
+<!-- ************************************** -->
+<mapping resource="com/adventnet/nms/topodb/ManagedObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/TopoObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Network.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/IpAddress.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpInterface.hbm.xml"/>
+<mapping resource="test/SwitchObject.hbm.xml"/>
+<mapping resource="test/PortObject.hbm.xml"/>
+<mapping resource="test/Printer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Interface.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/ManagedGroupObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/corba/CORBANode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayAccessSession.hbm.xml"/>
+<!-- *********************************** -->
+<!-- FAULT MODULE OBJECT MAPPING ENTRIES -->
+<!-- *********************************** -->
+<mapping resource="com/adventnet/nms/eventdb/Event.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/Alert.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/AlertHistory.hbm.xml"/>
+
+<!-- ***************************************** -->
+<!-- PERFORMANCE MODULE OBJECT MAPPING ENTRIES -->
+<!-- ***************************************** -->
+<mapping resource="com/adventnet/nms/poll/PolledData.hbm.xml"/>
+
+<!-- ******************************** -->
+<!-- MAP MODULE OBJECT MAPPING ENTRIES -->
+<!-- ******************************** -->
+<mapping resource="com/adventnet/nms/mapdb/MapContainer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapSymbol.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapLink.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapGroup.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapDB.hbm.xml"/>
+
+<!-- ********JMX AGENT RELATED ENTRIES -->
+<!--mapping resource="com/adventnet/nms/jmxagent/AgentDefValObject.hbm.xml"/-->
+
+</session-factory>
+
+</hibernate-configuration>
