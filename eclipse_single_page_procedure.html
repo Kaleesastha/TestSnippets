@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Eclipse Help</title>
+  
+  <meta name="author" content="Karen.R"></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#990000" link="#000000" vlink="#999999">
+<div style="text-align: center;">
+<h1>Working with the Eclipse Plugin</h1>
+<div style="text-align: left;">
+<h2>Software Requirement:</h2>
+You will need the following software for working with WebNMS Eclipse
+plugin:<br>
+<ol>
+  <li>Eclipse version 3.3 or higher<br>
+  </li>
+  <li>JDK version 1.5</li>
+  <li>WebNMS 5</li>
+  <li>WebNMS Eclipse plugin version 1.0.0 (This is bundled along with
+WebNMS 5)</li>
+</ol>
+<h2>Installation Procedure:</h2>
+<ol>
+  <li>Install eclipse version 3.3 (or higher) in your machine.</li>
+  <li>Install WebNMS 5 in your machine</li>
+  <li>The WebNMS Eclipse plugin&nbsp; JAR (WebNMSEclipsePlugin.jar) is
+available in the <span style="font-weight: bold;">&lt;WebNMS
+Home&gt;/StudioTools/Studio/jars</span> directory. Extract this jar in
+the &lt;Eclipse Installation Directory&gt;</li>
+  <li>Start the Eclipse IDE. Use the script with the - vm option as
+given below:<br>
+    <p class="Bulletted" style="margin-left: 40px;">Command for Linux
+machine</p>
+<!--(Table)=========================================================-->
+    <table x-use-null-cells="" class="whs2" border="1" bordercolor="#000000" cellspacing="0" height="22" width="565">
+      <script language="JavaScript"><!--
+if ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) == 4)) document.write("</table><table border=1 bordercolor=#000000 x-use-null-cells cellspacing='0' height='22' width='565' border='1' bordercolor='black' bordercolorlight='black' bordercolordark='black'>");
+//--></script>
+      <col class="whs3"><tbody style="font-weight: bold;">
+        <tr class="whs4" valign="top">
+          <td class="whs5" width="100%">
+          <p class="whs6">./eclipse&nbsp; -vm &lt;JDK 1.5
+Home&gt;/bin/java</p>
+          </td>
+        </tr>
+        <script language="JavaScript"><!--
+if ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) == 4)) document.write("</table></table><table>");
+//--></script>
+      </tbody>
+    </table>
+    <p>&nbsp;</p>
+    <p class="Bulletted" style="margin-left: 40px;">Command for Windows
+machine</p>
+<!--(Table)=========================================================-->
+    <script language="JavaScript"><!--
+if ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) == 4)) document.write("</table><table border=1 bordercolor=#000000 x-use-null-cells cellspacing='0' height='22' width='565' border='1' bordercolor='black' bordercolorlight='black' bordercolordark='black'>");
+//--></script>
+    <table x-use-null-cells="" class="whs2" border="1" bordercolor="#000000" cellspacing="0" height="22" width="565">
+      <col class="whs3"><tbody style="font-weight: bold;">
+        <tr class="whs4" valign="top">
+          <td class="whs5" width="100%">
+          <p class="whs6">eclipse&nbsp; -vm &lt;JDK 1.5
+Home&gt;\bin\java</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+<br>
+<h2>Creating an EMS Development Project :</h2>
+<ol>
+  <li class="kadov-p-CBulletted">
+    <p class="Sub-level-Bullet">In the Eclipse IDE screen, select <span style="font-weight: bold;"><b>File &gt; New &gt; Create EMS Project</b></span>
+menu. Alternatively, you can click the <span style="font-weight: bold;"><b>Create
+EMS Project</b></span> <img src="Eclipse_Help%5B1%5D_files/project.htm" x-maintain-ratio="TRUE" class="img_whs2" border="0" height="18" width="18"><span style="font-weight: bold;"> </span>toolbar button.<br>
+    </p>
+  </li>
+  <ul>
+    <li class="kadov-p-CBulletted">
+      <p class="Sub-level-Bullet"><span style="font-weight: bold;"><b>EMS
+Development Project Wizard</b></span> screen pops up.</p>
+    </li>
+    <li class="kadov-p-CBulletted">
+      <p class="Sub-level-Bullet">In the <span style="font-weight: bold;"><b>Project Properties</b></span> screen,
+enter a name for the project in <span style="font-weight: bold;"><b>Project
+Name</b></span> text field and use the <span style="font-weight: bold;"><b>Browse
+      </b></span>button<span style="font-weight: bold;"> </span>to
+select the <span style="font-weight: bold;"><b>&lt;WebNMS Home&gt;</b></span>
+directory.</p>
+    </li>
+    <li class="kadov-p-CBulletted">
+      <p class="Bulletted">Click <span style="font-weight: bold;"><b>Finish</b></span>
+button.&nbsp; <br>
+      </p>
+    </li>
+  </ul>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">You will find the created project under the <span style="font-weight: bold;"><b>Package Explorer</b></span> tree.</p>
+  </li>
+</ol>
+<br>
+<h2>Modelling ManagedObject:</h2>
+<ol>
+  <li>Select the project in the Package Explorer.</li>
+  <li>The <span style="font-weight: bold;">NMS
+Menus&gt;Modelling&gt;Object Modelling Tool</span> menu will get
+enabled. Also the Object Modelling Tool icon will get enabled in the
+Toolbar.</li>
+  <li>Invoke the <span style="font-weight: bold;">Object Modelling Tool</span>
+menu, this will open the Wizard for modelling the MO.</li>
+  <ol>
+    <li>In the first screen enter the <span style="font-weight: bold;">PackageName
+      </span>and the <span style="font-weight: bold;">ClassName </span>for
+the Managed Object that you are modelling.</li>
+    <li>In the second screen, select the "TOPO" combobox. This
+corresponds to the TOPOLOGY module in WebNMS where the ManagedObjects
+are processed. (The other two options EVENT, ALERT correspond to the
+fault module where users can model their custom/extended Event or Alert
+objects.)<br>
+    </li>
+    <li>In the <span style="font-weight: bold;">Parent MO/Extended
+Object name</span> field you will need to select the name of the class
+that the modelled MO has to extend. (Say you are designing an
+CISCORouter which will basically extend an SNMPNode object, then select
+the com.adventnet.nms.topodb.SnmpNode as the ParentMO from the dropdown
+list.)</li>
+    <li>The rest of the inputs in this screen are HIBERNATE specific
+configurations (WebNMS 5 uses Hibernate as the persistence layer. As
+each modelled MO will have a separate table in the database, you need
+to configure the HIBERNATE specific configurations for each of these
+table).&nbsp; <br>
+    </li>
+    <ul>
+      <li><span style="font-weight: bold;">Discriminator Value:</span>&nbsp;
+        <font style="font-family: helvetica,arial,sans-serif;" face="Verdana, Arial, Helvetica">The discriminator
+column is what Hibernate uses to tell the different sub-classes apart
+when retrieving classes from the database.&nbsp; </font> Example: In
+case you have a SwitchObject and you are having 2 sub classes:
+CISCOSwitch and ACMESwitch.&nbsp; Then you&nbsp; can just have a column
+"SwitchType" which will specify which type of object corresponds to
+that row of data. Hibernate will internally use this column to
+discriminate between the 2 objects i.e. CISCOSwitch and
+ACMESwitch.&nbsp; Hence the discriminator can just be a unique string
+to differentiate the 2 classes or it can just be the class name of the
+subclass.<br>
+      </li>
+      <li><span style="font-weight: bold;">Is dynamic update required:</span>
+dynamic-update property in hibernate specifies whether <tt class="literal">UPDATE</tt> SQL should be generated at runtime and
+contain only those columns whose values have changed.</li>
+      <li><span style="font-weight: bold;">Is select before update
+required:</span> <tt class="literal">select-before-update</tt>
+(optional, defaults to <tt class="literal">false</tt>): Specifies that
+Hibernate should <span class="emphasis"><em>never</em></span> perform
+an SQL <tt class="literal">UPDATE</tt> unless it is certain that an
+object is actually modified. In certain cases (actually, only when a
+transient object has been associated with a new session using <tt class="literal">update()</tt>), this means that Hibernate will perform
+an extra SQL <tt class="literal">SELECT</tt> to determine if an <tt class="literal">UPDATE</tt> is actually required.</li>
+      <li><span style="font-weight: bold;">Enable lazy fetching:&nbsp;</span>
+This is to specify that the attributes and collection mappings can be
+fetch at the time when they are actually used rather than fetching the
+whole object.</li>
+      <li><span style="font-weight: bold;">Is dynamic insert required:</span>
+Specifies that <tt class="literal">INSERT</tt> SQL should be generated
+at runtime and contain only the columns whose values are not null.</li>
+      <li><span style="font-weight: bold;">Mark superclass as abstract:</span>
+Used to mark abstract superclasses in <tt class="literal">&lt;union-subclass&gt;</tt>
+hierarchies. This is used when the superclass for this class is
+abstract (This means the superclass will not have a separate database
+table).</li>
+      <li>You can configure other hibernate mapping file poperties by
+clicking on the <span style="font-weight: bold;">Configure other
+Mapping Properties</span> button. However this is optional. Also please
+refer section 5.1.3 of the following hibernate document for more
+details on the hibernate mapping properties:
+http://www.hibernate.org/hib_docs/v3/reference/en/html/mapping.html#mapping-declaration</li>
+    </ul>
+    <li>The next screen allows you to specify the MO properties. <br>
+    </li>
+    <ol>
+      <li><span style="font-weight: bold;">Name</span>: This denotes
+the name of the property in the MO class.</li>
+      <li><span style="font-weight: bold;">Type</span>: This denotes
+the type of the property.<br>
+      </li>
+      <ul>
+        <li>
+          <p> The name of a Hibernate basic type (eg. <tt class="literal">integer, string, character, date, timestamp, float,
+binary, serializable, object, blob</tt>). </p>
+        </li>
+        <li>
+          <p> The name of a Java class with a default basic type (eg. <tt class="literal">int, float, char, java.lang.String, java.util.Date,
+java.lang.Integer, java.sql.Clob</tt>). </p>
+        </li>
+      </ul>
+      <li><span style="font-weight: bold;">Column</span>: This
+specifies the name of the column in the database table.</li>
+      <li><span style="font-weight: bold;">length</span>: This denotes
+the length for the column.</li>
+      <li>Other hibernate specific attributes can be specified for each
+column. These can be added using the Add New Property button. For more
+details regarding configuring these properties, please refer the
+section 5.1.9 of hibernate documentation:
+http://www.hibernate.org/hib_docs/v3/reference/en/html/mapping.html#mapping-declaration-property</li>
+    </ol>
+    <li>Click finish once all the column details are added.</li>
+  </ol>
+  <li>The above step will generate an hibernate mapping file<span style="font-weight: bold;"> &lt;classname&gt;.hbm.xml </span>which
+will be placed in the<span style="font-weight: bold;">
+&lt;EMSProject&gt;/resources/classes/hbnlib/&lt;packageStructure&gt;/&nbsp;
+    </span>directory.<br>
+  </li>
+  <li>To generate the Java source for this MO, please select this
+generated XML file, right click on it and invoke the <span style="font-weight: bold;">NMS Mapping Synchronizer&gt;Generate Java
+Source </span>menu item.</li>
+  <li><font color="#000025">When you use the <span style="font-weight: bold;">NMS Mapping Synchronizer&gt;Generate Java
+Source </span>menu, a Folder Selection dialog is opened. Here you will
+need to select any of the <span style="font-style: italic; font-weight: bold;">Source Folders</span>
+(TOPOLOGY, MAP, FAULT). Source folders are the folders that eclipse
+will place its java files in. You can even create your own source
+folder by selecting the project, right click and invoke the <span style="font-weight: bold;">New&gt;Source Folder</span> menu. Then you
+can select your Source Folder in the Folder Selection dialog. </font></li>
+</ol>
+<br>
+<h2>Implementing Discovery Filter:</h2>
+<ol>
+  <li>Select the TOPOLOGY source folder in the Package Explorer in
+eclipse. This will enable the Create Discovery Filter icon and <span style="font-weight: bold;">NMS
+Menus&gt;Filters&gt;CreateDiscoveryFilter</span>&nbsp; menu item.</li>
+  <li>Selecting
+this will generate an implementation class for the
+Discovery filter. The generated filter is just the wrapper code, you
+can write your custom code to discover the MO that you have modelled.
+The comments given in the generated Filter code should help you
+implement your&nbsp; discovery logic in the filter class.&nbsp; For
+more details on writing discovery filters, please refer the following
+section of our documentation:
+http://www.adventnet.com/products/webnms/help/developer_guide/discovery/extending_discservices/discapi_overview.html#disc%20filters</li>
+  <li>The create discovery filter action will also place an entry in
+the <span style="font-weight: bold;">discovery.filters</span> file
+(found in <span style="font-weight: bold;">&lt;projName&gt;/resources/conf/</span>
+directory ) for this Discovery filter.</li>
+</ol>
+<br>
+<h2>Packaging&nbsp; and Deploying</h2>
+<ol>
+  <li>For packaging the project, invoke the <span style="font-weight: bold;">NMS Menus&gt;Package Project </span>menu.
+Note this menu will get enabled on selecting the EMS project.</li>
+  <li>A dialog will popup asking for the NAR file name , the output
+directory where this project should be packaged as a NAR file and
+placed, version of the NAR file. Once these details are provided the
+NAR is generated and placed in specified directory.</li>
+  <li>For deploying the NAR file use the <span style="font-weight: bold;">Deployment Wizard</span> tool provided in
+WebNMS. Invoke the <span style="font-weight: bold;">DeploymentWizard.bat
+or sh</span> file present in <span style="font-weight: bold;">&lt;WebNMS
+Home&gt;/bin/developertools.&nbsp;</span> It is advisable that the
+WebNMS server is not running while you install the NAR file as
+installation during server running may cause some inconsistency.<br>
+  </li>
+  <li>Select the Nar install / uninstall tab in the Deployment Wizard
+tool. Browse and select the NAR file created in step 2. And select
+install.</li>
+  <li>Now the NAR is installed in WebNMS. <br>
+  </li>
+  <li>Now you can see that a&nbsp; <span style="font-weight: bold;">&lt;projName&gt;_Server.jar</span>
+file is placed in the <span style="font-weight: bold;">&lt;WebNMS
+Home&gt;/NetMonitor/builds</span> directory. You will need to include
+this jar in the server classpath (i.e. in the startNMS.bat or sh file
+present in&nbsp; <span style="font-weight: bold;">&lt;WebNMS
+Home&gt;/bin</span> directory)</li>
+  <li>Start the NMS Server, this will have your Modelled mos. <br>
+  </li>
+  <li>Please note that for other functionality like displaying the
+discovered MO in the Map, you will need to implement the MAP filter.
+Please use the existing WebNMS Eclipse plugin documentation for steps
+to do this.<br>
+  </li>
+</ol>
+</div>
+<br>
+</div>
+</body></html>
