@@ -4,14 +4,15 @@ import com.adventnet.snmp.beans.*;
 public class SnmpSet {
 
 	public static void main(String[] args) {
-
+                System.err.println("Usage : java SnmpSet -Droot.dir=<NMS_HOME> <IPAddress_of_NMS_Server> <authuser / privuser / noauthuser> ");
 		SnmpTarget target = new SnmpTarget();
 		target.setDebug(true);
-		try {
-			target.loadMibs("/Volumes/Official/venkat/webnms/ciena_52sp1_int2long/mibs/AdventNet-WebNMS-MIB /Volumes/Official/venkat/webnms/ciena_52sp1_int2long/mibs/RFC1213-MIB");
-		} catch(Exception exc) {
-			System.out.println("Error loading Mibs :: " + exc.getMessage());
-		}
+                try {
+                        String nmsDir = System.getProperty("root.dir");
+                        target.loadMibs(nmsDir+"/mibs/AdventNet-WebNMS-MIB"+ " "+nmsDir+"/mibs/RFC1213-MIB");
+                } catch(Exception exc) {
+                        System.out.println("Error loading Mibs :: " + exc.getMessage());
+                }   
 
 		target.setSnmpVersion(SnmpServer.VERSION3);
 		//target.setTargetHost("192.168.57.44");
