@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!-- $Id: Alert.hbm.xml,v 1.11 2008/11/24 12:07:30 sudharshan Exp $ -->
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.adventnet.nms.alertdb">
+
+	<class name="Alert"
+		table="Alert" dynamic-insert="true" dynamic-update="true" select-before-update="true" discriminator-value="Alert">
+		<cache usage="read-write"/>
+		<id name="entity" type="string" column="ENTITY" length="100">
+			<generator class="com.adventnet.nms.alertdb.HbnAlertIdGenerator"/>
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" length="30"/>
+	<property name="id" 
+		type="integer"
+		column="ID"
+		length="11"/>
+	<property name="groupName"
+		type="string"
+		column="GROUPNAME"
+		length="100" />
+	<property name="category"
+		type="string"
+		column="CATEGORY"
+		length="100" />
+	<property name="severity"
+		type="integer"
+		column="SEVERITY"
+		length="11" />
+	<property name="previousSeverity"
+		type="integer"
+		column="PREVIOUSSEVERITY"
+		length="11" />
+	<property name="createTime"
+		type="long"
+		column="CREATETIME"
+		length="25" />
+	<property name="modTime"
+		type="long"
+		column="MODTIME"
+		length="25" />
+	<property name="message"
+		type="string"
+		column="MMESSAGE"
+		length="250" />
+	<property name="source"
+		type="string"
+		column="SOURCE"
+		length="100" />
+	<!--property name="mapname"
+		type="string"
+		column="MAPNAMES"
+		length="100" / not much used and hence removed. can be retrived from dynamic schema extension-->
+	<property name="who"
+		type="string"
+		column="WHO"
+		length="100" />
+	<!-- property name="stage"
+		type="integer"
+		column="STAGE"
+		length="11" /  not much used and hence removed. can be retrived from dynamic schema extension-->
+	<property name="webNMS"
+		type="string"
+		column="WEBNMS"
+		length="100" />
+
+		<!-- ##### ASTRO : DEVICETIMESTAMP ACKDATE ALARMID added as new date columns -->
+		<property name="deviceTimeStamp" type="long" column="DEVICETIMESTAMP" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+		<property name="AckDate" type="long" column="ACKDATE" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+		<property name="alarmid" type="long" column="ALARMID" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+	<!--property name="priority"
+		type="integer"
+		column="PRIORITY"
+		length="11" / not much used and hence removed. can be retrived from dynamic schema extension-->
+        <!--property name="DYNAMICSTR" type="string" column="DYNAMICSTR" length="100" access="com.adventnet.nms.store.relational.hbn.DynamicPropertyAccessor"/-->
+        <!--property name="DYNAMICINT" type="integer" column="DYNAMICINT" length="100" access="com.adventnet.nms.store.relational.hbn.IntegerDynamicPropertyAccessor"/-->
+	<!--map name="mappedProperties" table="ALERTUSERPROPS" lazy="false">
+		<cache usage="read-write"/>
+        <key column="ENTITY"/>
+        <map-key column="PROPNAME" type="string"/>
+        <element column="PROPVAL" type="string"/>
+    </map-->	
+</class>
+	</hibernate-mapping>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- $Id: Event.hbm.xml,v 1.11 2008/11/24 12:08:27 sudharshan Exp $ -->
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.adventnet.nms.eventdb">
+
+        <class name="Event"
+				table="Event" dynamic-insert="true" dynamic-update="true" select-before-update="true" discriminator-value="Event">
+		<cache usage="read-write"/>
+		<id name="id" column="ID" type="int" length="11">
+			<generator class="assigned"/>
+		</id>
+
+		<discriminator column="DISCRIMINATOR" type="string" length="30"/>
+        <property name="text"
+                          type="string"
+                          column="TEXT"
+                          length="250" />
+        <property name="category"
+                          type="string"
+                          column="CATEGORY"
+                          length="100" />
+        <!-- property name="domain"
+                          type="string"
+                          column="DDOMAIN"
+                          length="100" / not much used and hence removed. can be retrived from dynamic schema extension-->
+        <property name="network"
+                          type="string"
+                          column="NETWORK"
+                          length="100" />
+        <property name="node"
+                          type="string"
+                          column="NODE"
+                          length="100" />
+        <property name="entity"
+                          type="string"
+                          column="ENTITY"
+			  length="100" />
+        <property name="severity"
+                          type="integer"
+                          column="SEVERITY"
+                          length="11" />
+        <property name="time"
+                          type="long"
+						  column="TTIME"
+						  index="Event0_ndx"
+                          length="25" />
+        <property name="source"
+                          type="string"
+                          column="SOURCE"
+                          length="100" />
+        <!-- property name="helpURL"
+                          type="string"
+                          column="HELPURL"
+                          length="100" / not much used and hence removed. can be retrived from dynamic schema extension-->
+        <property name="webNMS"
+                          type="string"
+                          column="WEBNMS"
+                          length="100" />
+        <property name="groupName"
+                          type="string"
+                          column="GROUPNAME"
+			  length="100" />
+
+
+        <!--property name="DYNAMICSTR" type="string" column="DYNAMICSTR" length="100" access="com.adventnet.nms.store.relational.hbn.DynamicPropertyAccessor"/-->
+        <!--property name="DYNAMICINT" type="integer" column="DYNAMICINT" length="100" access="com.adventnet.nms.store.relational.hbn.IntegerDynamicPropertyAccessor"/-->
+	<!-- ##### ASTRO : DEVICETIMESTAMP ACKDATE ALARMID added as new date columns -->
+	<property name="deviceTimeStamp" type="long" column="DEVICETIMESTAMP" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+	<property name="AckDate" type="long" column="ACKDATE" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+	<property name="alarmid" type="long" column="ALARMID" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+	  <!--map name="mappedProperties" table="EVENTUSERPROPS" lazy="false">
+		  <cache usage="read-write"/>
+            <key column="ID"/>
+            <map-key column="PROPNAME" type="string"/>
+            <element column="PROPVAL" type="string"/>
+        </map-->
+	</class>
+</hibernate-mapping>

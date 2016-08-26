@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!-- $Id: ManagedObject.hbm.xml,v 1.13 2008/12/15 17:12:19 sudharshan Exp $ -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.adventnet.nms.topodb">
+
+	<class name="ManagedObject" 
+		   table="ManagedObject" dynamic-insert="true" dynamic-update="true" select-before-update="true" discriminator-value="ManagedObject">
+	<cache usage="read-write"/>
+		<id name="moid" column="MOID">
+			<generator class="increment"/>
+	</id>
+	<discriminator column="DISCRIMINATOR" type="string" length="30"/>
+	<natural-id>
+	<property name="name"
+			  type="string" 
+			  column="NAME"
+			  not-null="true"
+			  length="100" />
+	</natural-id>
+    <!--property name="ownerName" 
+	    		  type="string" 
+	    		  column="OWNERNAME" 
+	    		  length="100"/-->
+
+	<property name="classname" 
+			  type="string" 
+			  column="CLASSNAME"
+			  length="100" />
+
+	<property name="displayName" 
+			  type="string" 
+			  column="DISPLAYNAME"
+			  not-null="true" 
+			  length="100" />
+
+	<property name="failureCount" 
+			  type="integer"
+			  column="FAILURECOUNT" 
+			  length="11" />
+
+	<property name="failureThreshold" 
+			  type="integer"
+			  column="FAILURETHRESHOLD" 
+			  length="11" />
+
+	<property name="isContainer" 
+			  type="boolean" 
+			  column="ISCONTAINER"
+			  length="10" />
+
+	<property name="isGroup" 
+			  type="boolean" 
+			  column="ISGROUP"
+			  length="10" />
+
+	<property name="managed" 
+			  type="boolean" 
+			  column="MANAGED"
+			  length="10" />
+
+	<property name="parentKey" 
+			  type="string" 
+			  column="PARENTKEY"
+			  not-null="true" 
+			  length="100" />
+
+	<property name="pollInterval" 
+			  type="integer"
+			  column="POLLINTERVAL" 
+			  length="11" />
+
+	<property name="status" 
+			  type="integer" 
+			  column="STATUS"
+			  length="11" />
+
+	<property name="statusChangeTime" 
+			  type="long"
+			  column="STATUSCHANGETIME" 
+			  length="25" />
+	<property name="statusPollEnabled" 
+			  type="boolean"
+			  column="STATUSPOLLENABLED" 
+			  length="10" />
+
+	<property name="statusUpdateTime" 
+			  type="long"
+			  column="STATUSUPDATETIME" 
+			  length="25" />
+
+	<property name="tester" 
+			  type="string" 
+			  column="TESTER"
+			  length="100" />
+
+	<property name="type" 
+			  type="string" 
+			  column="TYPE" 
+			  length="100" />
+
+	<property name="UClass" 
+			  type="string" 
+			  column="UCLASS"
+			  length="100" />
+
+	<property name="webNMS" 
+			  type="string" 
+			  column="WEBNMS"
+			  length="100" />
+
+		  <set name="members" table="GroupTable" lazy="true">
+			  <cache usage="read-write"/>
+			  <key column="NAME" property-ref="name"/>
+			  <element column="MEMBERNAME" type="string" not-null="true"/>
+		  </set>
+
+		  <set name="groups" table="GroupTable" lazy="true">
+			  <cache usage="read-write"/>
+			  <key column="MEMBERNAME" property-ref="name" />
+			  <element column="NAME" type="string" not-null="true"/>
+		  </set>
+
+		  <!-- <list name="children" inverse="true" lazy="true">
+			  <key column="PARENTID" on-delete="cascade"/>
+			  <list-index column="MOID"/>
+			  <one-to-many class="ManagedObject" />
+		  </list> 
+		<many-to-one name="parentId" column="PARENTID" class="ManagedObject"/>	-->
+
+		<!-- ##### ASTRO : SAMPLEDATE added as new date column -->
+		<property name="sampleDate" type="long" column="SAMPLEDATE" length="25" access="com.adventnet.nms.store.relational.hbn.LongDynamicPropertyAccessor"/>
+		<property name="parentId" type="long" column="PARENTID" length="100" access="com.adventnet.nms.store.relational.hbn.PropertyAccessorExt"/>
+		<!--
+		-->
+		<property name="DYNAMICSTR" type="string" column="DYNAMICSTR" length="100" access="com.adventnet.nms.store.relational.hbn.DynamicPropertyAccessor"/>
+		<!--property name="DYNAMICINT" type="integer" column="DYNAMICINT" length="100" access="com.adventnet.nms.store.relational.hbn.IntegerDynamicPropertyAccessor"/-->
+		<!--
+		-->
+<map name="mappedProperties" table="TOPOUSERPROPS" lazy="true">
+		<cache usage="read-write"/>
+        <key column="MOID"/>
+        <map-key column="PROPNAME" type="string"/>
+        <element column="PROPVAL" type="string"/>
+    </map>	
+</class>
+
+</hibernate-mapping>
