@@ -1,0 +1,3054 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration_changes home_directory="." >
+
+<process_unit name="SetLocale" path="" classname="com.adventnet.nms.tools.confchanges.SetLanguageAndCountry" description="html/confchanges/SetLocaleProcess_change.html" required="true" priority="0">
+</process_unit>
+
+<process_unit   name  = "NewConfigurationFiles.xml"
+                 classname   = "com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+                 description = "html/confchanges/NewConfigurationFilesProcess_change.html"
+                 required    = "true"
+                 priority    = "0"
+                 path = "conf">
+</process_unit>
+
+
+<configuration_file name="Chassis_MenuFrame.xml" path="StudioTools/ClientBuilder/conf/menu" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/Chassis_MenuFrame_change.html" required="true" doonce="true" priority="0">
+
+        <update_node name="remove" description="Remove the Test with Browser menu-item from Build Menu in the Chassis wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Build"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                                    <MENU-ITEM accelerator_key="F9" action_command="Test with Browser" enabled="true" name="Test with Browser" renderer_type="Default" selected="false" shortcut_key="B"/>
+                        </property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+	
+	<update_node name="remove" description="Removing the Run Project with Browser menu-item from Project Menu in the Chassis wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Project"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                                <MENU-ITEM name="Run Project with Browser" shortcut_key="B" action_command="Run Project with Browser" renderer_type="Default" selected="false" enabled="true"/>
+                	</property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+    
+<configuration_file name="BB_MenuFrame.xml" path="StudioTools/ClientBuilder/conf/menu" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/BB_MenuFrame_change.html" required="true" doonce="true" priority="0">
+
+        <update_node name="remove" description="Remove the Test with Browser menu-item from Build Menu in the Configuration wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Build"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                                    <MENU-ITEM accelerator_key="F9" action_command="Test with Browser" enabled="true" name="Test with Browser" renderer_type="Default" selected="false" shortcut_key="B"/>
+                        </property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+	
+	<update_node name="remove" description="Removing the Run Project with Browser menu-item from Project Menu in the Configuration wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Project"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                    <MENU-ITEM name="Run Project with Browser" shortcut_key="B" action_command="Run Project with Browser" renderer_type="Default" selected="false" enabled="true"/>
+                            </property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file name="BB_MenuFrame.xml" path="builderconf/menu" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/BB_MenuFrame_change.html" required="true" doonce="true" priority="0">
+
+        <update_node name="remove" description="Remove the Test with Browser menu-item from Build Menu in the Configuration wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Build"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                                    <MENU-ITEM accelerator_key="F9" action_command="Test with Browser" enabled="true" name="Test with Browser" renderer_type="Default" selected="false" shortcut_key="B"/>
+                        </property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+
+        <update_node name="remove" description="Removing the Run Project with Browser menu-item from Project Menu in the Configuration wizard.">
+                <property_set name="MENU-BAR">
+                          <property_set name="MENU">
+                             <property name="name" value="Project"/>
+                                <property name="parent" value="true"/>
+                                 <property_set name="Node">
+                                        <MENU-ITEM name="Run Project with Browser" shortcut_key="B" action_command="Run Project with Browser" renderer_type="Default" selected="false" enabled="true"/>
+                                        <MENU-ITEM name ="SEPARATOR" renderer_type="Default" selected="false" enabled="true"/>
+                            </property_set>
+                   </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "RebrandingConf.xml"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+                   description   = "Product version changed to 5.0.0"
+                   required      = "true"
+                   priority      = "0" >
+
+                   <update_node
+                           name="Modify_entry" description="Product version changed to 5.0.0">
+                           <property_set name="Modify_entry">
+                                   <property name="oldEntry" value="&lt;ProductVersion&gt;Release 4.7.0&lt;/ProductVersion&gt;"/>
+                                   <property name="newEntry" value="&lt;ProductVersion&gt;Release 5.0.0&lt;/ProductVersion&gt;"/>
+                           </property_set>
+                   </update_node>
+</configuration_file>
+
+	<configuration_file
+		name="event.filters"
+		path="conf"
+		classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description="html/confchanges/Event_Filters_change.html"
+		required="true"
+		priority="0" >
+		<update_node name="Add" description="Adding extra attribute for ResourceMonitoringFilter">
+			<property_set name="EVENT_FILTERS">
+				<property_set name="FILTER">
+					<property name="name" value="ResourceMonitoringFilter"/>
+					<property name="parent" value="true" />
+					<property_set name="attribute">
+						<property name="category" value="NMSManagement"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<configuration_file
+		name="Threshold.conf"
+		path="conf"
+		classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description="html/confchanges/Threshold_conf_change.html"
+		required="true"
+		priority="0" >
+		<update_node name="Modify" description="Modifying category for resourceusage Threshold">
+			<property_set name="THRESHOLD_CONF">
+				<property_set name="THRESHOLD">
+					<property name="name" value="resourceusage"/>
+					<property name="parent" value="true" />
+					<property_set name="attribute">
+						  <property_set name="category" value="NMSManagement"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+		
+		 <update_node name="Modify" description="Modifying category for bethreadcount Threshold">
+                        <property_set name="THRESHOLD_CONF">
+                                <property_set name="THRESHOLD">
+                                        <property name="name" value="bethreadcount"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="category" value="NMSManagement" />
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+		  <update_node name="Modify" description="Modifying category for clientthreadcount Threshold">
+                        <property_set name="THRESHOLD_CONF">
+                                <property_set name="THRESHOLD">
+                                        <property name="name" value="clientthreadcount"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="category" value="NMSManagement" />
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+		  <update_node name="Modify" description="Modifying category for fethreadcount Threshold">
+                        <property_set name="THRESHOLD_CONF">
+                                <property_set name="THRESHOLD">
+                                        <property name="name" value="fethreadcount"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="category" value="NMSManagement" />
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+		  <update_node name="Modify" description="Modifying category for faultmgmtthreshold Threshold">
+                        <property_set name="THRESHOLD_CONF">
+                                <property_set name="THRESHOLD">
+                                        <property name="name" value="faultmgmtthreshold"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="category" value="NMSManagement" />
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+		  <update_node name="Modify" description="Modifying category for ratethreshold Threshold">
+                        <property_set name="THRESHOLD_CONF">
+                                <property_set name="THRESHOLD">
+                                        <property name="name" value="ratethreshold"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="category" value="NMSManagement" />
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+	</configuration_file>
+
+        <configuration_file
+        name="NmsProcessesFE.conf"
+        path="conf"
+        classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges"
+        description="html/confchanges/NmsProcessesFE_change.html"
+        required="true"
+        doonce="true"
+        priority="0">
+
+        <update_node name="com.adventnet.nms.fe.config.ConfigFE" description="desc">
+                <property_set name="Modify_Process">
+                        <property_set name="RemoveVariable">
+                                <property_set name="ARGS">
+                                        <property name="NULL"/>
+                                </property_set>
+                        </property_set>
+                        <property_set name="AddVariable">
+                                <property_set name="ARGS">
+                                        <property name="AUDIT_URL" value="/config/AuditView.do"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file
+    name="web-header.xml"
+    path="WEB-INF"
+    classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+    description="html/confchanges/web-header_change.html"
+    required="true"
+    doonce="true"
+    priority="0">
+
+        <update_node
+                name="Modify_entry" description="Help regarding the changes made for this process">
+                <property_set name="Modify_entry">
+                <property name="oldEntry"
+                        value="&lt;param-value&gt;/webclient/admin/conf/admin-struts-config.xml&lt;/param-value&gt;"/>
+                <property name="newEntry"
+                        value="&lt;param-value&gt;/webclient/admin/conf/admin-struts-config.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+                        &lt;init-param&gt;
+                        &lt;param-name&gt;config/config&lt;/param-name&gt;
+                        &lt;param-value&gt;/webclient/config/conf/config-struts-config.xml&lt;/param-value&gt;"/>
+                        </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file
+               name="Tree.xml"
+               path="html/defaultsToNewUsers"
+               classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+               description="html/confchanges/Tree_change.html"
+               required="true"
+               priority="0" >
+        <update_node name="Modify" description="Configuration tab enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                     </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+        <update_node name="Add" description="Configuration tab enabled for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="TAB" value="true"/>
+                     </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+         <update_node name="Modify" description="Batch Configuration enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="Batch Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Batch Configuration URL set for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="Batch Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                     <property_set name="URL" value="/config/TaskList.do"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Configuration Audit enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="ConfigAudit" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Configuration Audit URL set for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="ConfigAudit"/>
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="URL" value="/config/AuditView.do"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+</configuration_file>
+
+<configuration_file
+               name="Tree.xml"
+               path="users/$users_specific"
+               classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+               description="html/confchanges/Tree_change.html"
+               required="true"
+               priority="0" >
+        <update_node name="Modify" description="Configuration tab enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                     </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+        <update_node name="Add" description="Configuration tab enabled for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="TAB" value="true"/>
+                     </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Modify" description="Batch Configuration enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="Batch Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Batch Configuration URL set for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="Batch Configuration" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                     <property_set name="URL" value="/config/TaskList.do"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Configuration Audit enabled for Web Client as well">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="ConfigAudit" />
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="Client" value="All"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+
+         <update_node name="Add" description="Configuration Audit URL set for Web Client">
+                <property_set name="DEVICE-DATA">
+                <property_set name="DEVICE-GROUP">
+                 <property name="ID" value="WebNMS-Panels"/>
+                  <property_set name="DEVICE" >
+                   <property name="ID" value="Configuration" />
+                   <property_set name="LEVEL-1" >
+                   <property name="ID" value="ConfigAudit"/>
+                    <property name="parent" value="true"/>
+                     <property_set name="attribute" >
+                        <property_set name="URL" value="/config/AuditView.do"/>
+                      </property_set>
+                      </property_set>
+                 </property_set>
+               </property_set>
+             </property_set>
+     </update_node>
+</configuration_file>
+
+<process_unit
+	name          = "DatabaseSchema.conf"
+	path          = "conf"
+	schemafile    = "conf/SchemaChanges.xml"
+	schemapath    = "."
+	classname     = "com.adventnet.nms.tools.confchanges.SchemaChanges"
+	description   = "html/confchanges/DatabaseSchema_change.html"
+	required      = "true"
+	priority      = "0" />
+
+<configuration_file
+	name="DatabaseAliases.conf"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description="adding aliases for the new tables added for WebClient Home page"
+	required="true"
+	doonce="true"
+	priority="0">
+	<update_node  name="Add_lines"
+		description="adding aliases for the new tables added for WebClient Home page">
+		<property_set name="Add_lines">
+			<property name=" "/>
+			<property name="#In Table WIDGETASSOCIATION,WIDGETLEVEL"/>
+			<property name="associationId ASSOCIATIONID"/>
+			<property name="dashboardId DASHBOARDID"/>
+			<property name=" "/>
+			<property name="#In Table DASHBOARD,DASHBOARDCOLUMNS,CCTV,CCTVVIEWS"/>
+			<property name="columnId COLUMNID"/>
+			<property name="id ID"/>
+			<property name="name NAME"/>
+			<property name="userName USERNAME"/>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+
+
+	<configuration_file
+		name          =  "log4j.xml"
+		path           =  "conf"
+		classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description  = "html/confchanges/log4j_changes.html"
+		required      = "true"
+		priority       = "1" >
+
+		<update_node name="insert" description="Added new logger REPORTERR used for FAULT Reports framework" >
+
+			<property_set name="log4j:configuration">
+
+				<property_set name="previousNode">
+					<logger additivity="false" name="CLIERR">
+						<level value="warn"/>
+						<appender-ref ref="nmserr_file"/>
+						<appender-ref ref="mail"/>
+					</logger>
+				</property_set>
+				<property name="parent" value="true"/>
+				<property_set name="currentNode">
+
+					<logger additivity="false" name="REPORTERR">
+						<level value="info"/>
+						<appender-ref ref="nmserr_file"/>
+						<appender-ref ref="mail"/>
+					</logger>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="insert" description="Added new logger REPORTUSER used for FAULT Reports framework" >
+
+			<property_set name="log4j:configuration">
+
+				<property_set name="previousNode">
+					<logger additivity="false" name="CLIUSER">
+						<level value="warn"/>
+						<appender-ref ref="nmsout_file"/>
+						<appender-ref ref="mail"/>
+					</logger>
+				</property_set>
+				<property name="parent" value="true"/>
+				<property_set name="currentNode">
+					<logger additivity="false" name="REPORTUSER">
+						<level value="info"/>
+						<appender-ref ref="nmsout_file"/>
+						<appender-ref ref="mail"/>
+					</logger>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="insert" description="Add entry in log4j.xml for sendEmailLogs.txt to log the success/failure of the email" >
+
+			<property_set name="log4j:configuration" >
+				<property name="parent" value="true" />
+				<property_set name="previousNode" >
+					<appender name="mserr_file" class="com.adventnet.management.log.NMSRollingFileAppender">
+						<param name="File" value="logs/mserr.txt"/>
+						<param name="MaxFileSize" value="1MB"/>
+						<param name="MaxBackupIndex" value="10"/>
+						<layout class="org.apache.log4j.PatternLayout">
+							<param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-10c{2}: %m%n"/>
+						</layout>
+					</appender>
+				</property_set>
+				<property_set name="currentNode" >
+
+					<appender name="sendemail_file" class="com.adventnet.management.log.NMSRollingFileAppender">
+						<param name="File" value="logs/sendEmaillogs.txt"/>
+						<param name="MaxFileSize" value="1MB"/>
+						<param name="MaxBackupIndex" value="10"/>
+						<layout  class="org.apache.log4j.PatternLayout">
+							<param name="ConversionPattern"  value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-10c{2}: %m%n"/>
+						</layout>
+					</appender>
+				</property_set>
+			</property_set>
+		</update_node>
+
+		<update_node name="insert" description="Add entry in log4j_conf.xml " >
+
+		<property_set name="log4j:configuration" >
+			<property name="parent" value="true" />
+			<property_set name="previousNode" >
+				<logger name="MSERR" additivity="false">
+					<level value="info"/>
+					<appender-ref ref="mserr_file"/>
+					<appender-ref ref="mail"/>
+				</logger>
+
+			</property_set>
+
+			<property_set name="currentNode" >
+
+				<logger name="SMOUT" additivity="false">
+					<level value="info"/>
+					<appender-ref ref="sendemail_file"/>
+					<appender-ref ref="mail"/>
+				</logger>
+
+			</property_set>
+		</property_set>
+            </update_node>
+		
+		  <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="log4j:configuration" >
+                        <property_set name="appender" >
+			 <property name="class" value="org.apache.log4j.net.SMTPAppender"/>
+                                <property name="parent" value="true" />
+                                        <property_set name="oldNode" >
+                                        	<param name="To" value="webnms-admin@adventnet.com"/>
+					</property_set>
+                                        <property_set name="newNode" >
+                                        	<param name="To" value="webnms-admin@webnms.com"/>
+					</property_set>
+                       </property_set>
+                   </property_set>
+        </update_node>
+
+	<update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="log4j:configuration" >
+                        <property_set name="appender" >
+                         <property name="name" value="mail"/>
+                                <property name="parent" value="true" />
+                                        <property_set name="oldNode" >
+                                        	<param name="From" value="webnms-admin@adventnet.com"/>
+					</property_set>
+                                        <property_set name="newNode" >
+                                        	<param name="From" value="webnms-admin@webnms.com"/>
+					</property_set>
+                       </property_set>
+                   </property_set>
+        </update_node>
+
+
+	</configuration_file>
+
+	<configuration_file
+
+		name="ReportsManagement.xml"
+		path="conf"
+		classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description="html/confchanges/ReportsManagement_change.html"
+		required="true"
+		priority="1" >
+		<update_node name="Add" description="Adding new entries related to Event Reports">
+			<property_set name="DATA-MANAGEMENT">
+				<property_set name="DATA-MGMT-GROUP">
+
+					<property name="parent" value="true" />
+					<property_set name="Node">
+
+						<DATA_ARCHIVE id="FAULTARCHIVE_HOURLY_DATA" executeInterval="1" executeIntervalUnit="HOURS" className="com.adventnet.nms.server.dataarchiver.FaultDataArchiveIfcImpl">
+							<PROPERTY-GROUP>
+								<PROPERTY name="SOURCE_TABLE_NAME" value="Event"/>
+								<PROPERTY name="SOURCE_ID" value="ID"/>		
+								<PROPERTY name="TARGET_TABLE_NAME" value="FAULTREPORTS_HOURLY"/>
+								<PROPERTY name="SOURCE_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="TARGET_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="SOURCE_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="TARGET_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_SEVERITYCOUNT_FIELD" value="SEVERITYCOUNT"/>
+								<PROPERTY name="SOURCE_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="TARGET_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="UNIT" value="HOURS"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="HOURS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_ARCHIVE>
+
+						<DATA_ARCHIVE id="FAULTARCHIVE_DAILY_DATA" HOUR="24" MINUTES="40" DAY_OF_THE_MONTH="*" className="com.adventnet.nms.server.dataarchiver.FaultDataArchiveIfcImpl">
+							<PROPERTY-GROUP>
+								<PROPERTY name="SOURCE_TABLE_NAME" value="FAULTREPORTS_HOURLY"/>			
+								<PROPERTY name="TARGET_TABLE_NAME" value="FAULTREPORTS_DAILY"/>
+								<PROPERTY name="SOURCE_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="TARGET_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="SOURCE_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="TARGET_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>		
+								<PROPERTY name="TARGET_SEVERITYCOUNT_FIELD" value="SEVERITYCOUNT"/>
+								<PROPERTY name="UNIT" value="DAYS"/>
+								<PROPERTY name="SOURCE_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="TARGET_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="DAYS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_ARCHIVE>
+
+						<DATA_CLEANUP id="FAULTCLEANUP_DAILY_DATA" executeInterval="1" executeIntervalUnit="DAYS" className="com.adventnet.nms.server.dataarchiver.FaultDailyReportCleanUp">
+							<PROPERTY-GROUP>
+								<PROPERTY name="TABLE_LIST" value="FAULTREPORTS_DAILY"/>
+								<PROPERTY name="TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="CLEANUP_DATA_OLDER_THAN" value="30"/>
+								<PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="DAYS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_CLEANUP>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="Insert" description="Adding new Attribute TYPE to the existing Id,ARCHIVE_HOURLY_DATA ">
+			<property_set name="DATA-MANAGEMENT">
+				<property_set name="DATA-MGMT-GROUP">
+					<property_set name="DATA_ARCHIVE">
+						<property name="id" value="ARCHIVE_HOURLY_DATA"/>
+						<property_set name="PROPERTY-GROUP">
+							<property name="parent" value="true"/>
+							<property_set name="previousNode">
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="HOURS"/>
+							</property_set>
+							<property_set name="currentNode">
+								<PROPERTY name="TYPE" value="PERFORMANCE"/>	
+							</property_set>
+						</property_set>		 
+
+
+					</property_set>
+				</property_set>		
+			</property_set>
+
+
+		</update_node>
+
+
+		<update_node name="Insert" description="Adding new Attribute TYPE to the existing Id,ARCHIVE_DAILY_DATA">
+			<property_set name="DATA-MANAGEMENT">
+				<property_set name="DATA-MGMT-GROUP">
+					<property_set name="DATA_ARCHIVE">
+						<property name="id" value="ARCHIVE_DAILY_DATA"/>
+						<property_set name="PROPERTY-GROUP">
+							<property name="parent" value="true"/>
+							<property_set name="previousNode">
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="DAYS"/>
+							</property_set>
+							<property_set name="currentNode">
+								<PROPERTY name="TYPE" value="PERFORMANCE"/>	
+							</property_set>
+						</property_set>		 
+
+
+					</property_set>
+				</property_set>		
+			</property_set>
+
+
+		</update_node>
+		<update_node name="Insert" description="Adding new Attribute to the existing Id,CLEANUP_HOURLY_DATA">
+			<property_set name="DATA-MANAGEMENT">
+				<property_set name="DATA-MGMT-GROUP">
+					<property_set name="DATA_CLEANUP">
+						<property name="id" value="CLEANUP_HOURLY_DATA"/>
+
+						<property name="parent" value="true"/>
+						<property_set name="previousNode">
+							<PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="HOURS"/>
+						</property_set>
+						<property_set name="currentNode">
+							<PROPERTY name="TYPE" value="PERFORMANCE"/>	
+						</property_set>
+					</property_set>		 
+
+
+
+				</property_set>		
+			</property_set>
+
+
+		</update_node>
+
+		<update_node name="Insert" description="Adding new Attribute to the existing Id,CLEANUP_DAILY_DATA">
+			<property_set name="DATA-MANAGEMENT">
+				<property_set name="DATA-MGMT-GROUP">
+					<property_set name="DATA_CLEANUP">
+						<property name="id" value="CLEANUP_DAILY_DATA"/>
+
+						<property name="parent" value="true"/>
+						<property_set name="previousNode">
+							<PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="DAYS"/>
+						</property_set>
+						<property_set name="currentNode">
+							<PROPERTY name="TYPE" value="PERFORMANCE"/>	
+						</property_set>
+
+
+
+					</property_set>
+				</property_set>		
+			</property_set>
+
+
+		</update_node>
+
+	</configuration_file>
+
+	<configuration_file
+		name="ReportsManagement.xml"
+		path="conf"
+		classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+		description="html/confchanges/ReportsManagement_change.html"
+		required="true"
+		priority="0" >
+
+		<update_node
+			name="Remove_line"
+			description="removing parent node">
+			<property_set name="Remove_line" >
+				<property name="&lt;DATA-MGMT-GROUP id=&quot;SUMMARISE_STATISTICS&quot;&gt;"/>
+				<property name="&lt;/DATA-MGMT-GROUP&gt;"/>
+			</property_set>
+
+		</update_node>
+	</configuration_file>
+
+
+<configuration_file  
+	      name="clientparameters.conf"
+              path="conf"
+              classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+              description="html/confchanges/clientparameters_conf_change.html"
+              required="true"
+              priority="0" >
+
+            <update_node name="Modify" description="Adding Mail.jar Jars" >
+                  <property_set name="CLIENT_PARAMETERS_CONF" >
+                        <property_set name="PARAMETERS" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                        <property name="ARCHIVE" subset="true" existingValue="../classes/AdventNetSnmp.jar" newValue="../classes/AdventNetSnmp.jar,../classes/Mail.jar"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	 <update_node name="Modify" description="Changing old url" >
+                  <property_set name="CLIENT_PARAMETERS_CONF" >
+                        <property_set name="PARAMETERS" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+			                <property subset="true" name="LOGO_URL" existingValue="www.adventnet.com" newValue="www.webnms.com"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+</configuration_file>
+
+<configuration_file
+	name="startApplicationClient"
+	path="bin"
+	classname="com.adventnet.nms.tools.confchanges.StartnmsChanges"
+	description="html/confchanges/startApplicationClient_change.html"
+	required="true"
+	doOnce="true"
+	priority="0">
+	<update_node name="Modify_entry" description="Adding Mail.jar in classpath ">
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="$NMS_CLASSES/AdventNetDMPModels.jar"/>
+			<property name="newEntry" value="$NMS_CLASSES/Mail.jar:$NMS_CLASSES/AdventNetDMPModels.jar" use="os" />
+		</property_set>
+	</update_node>
+	<update_node name="Modify_entry" description="Adding Mail.jar in classpath">
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="%NMS_CLASSES%\AdventNetDMPModels.jar"/>
+			<property name="newEntry" value="%NMS_CLASSES%\AdventNetDMPModels.jar;%NMS_CLASSES%\Mail.jar" use="os"/>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify_entry" description="Adding Mail.jar in classpath">
+		<property_set name="Modify_entry" os="SUN">
+			<property name="oldEntry" value="$NMS_CLASSES/AdventNetDMPModels.jar"/>
+			<property name="newEntry" value="$NMS_CLASSES/Mail.jar:$NMS_CLASSES/AdventNetDMPModels.jar" use="os"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+        name="AlertFilterAdmin"
+        path="bin/admintools"
+        classname="com.adventnet.nms.tools.confchanges.SetEnvChanges"
+        description="html/confchanges/AlertFilterAdmin_change.html"
+        required="true"
+        doOnce="true"
+        priority="0">
+        <update_node name="Modify_entry" description="Adding Mail.jar in classpath for Linux and Solaris">
+		<property_set name="Modify_entry"> 
+   			<property name="oldEntry" value="$NMS_SERVER_CLASSES"/> 
+	   	    	<property name="newEntry" value="$NMS_SERVER_CLASSES:$NMS_CLASSES/Mail.jar"/> 
+		</property_set> 
+	</update_node>
+
+	<update_node name="Modify_entry" description="Adding Mail.jar in classpath for Windows">
+                <property_set name="Modify_entry">
+                        <property name="oldEntry" value="%NMS_SERVER_CLASSES%"/>
+                        <property name="newEntry" value="%NMS_SERVER_CLASSES%;%NMS_CLASSES%\Mail.jar"/>
+                </property_set>
+        </update_node>
+
+
+</configuration_file>
+
+<configuration_file
+        name="EventFilterConfig"
+        path="bin/admintools"
+        classname="com.adventnet.nms.tools.confchanges.SetEnvChanges"
+        description="html/confchanges/EventFilterConfig_change.html"
+        required="true"
+        doOnce="true"
+        priority="0">
+        <update_node name="Modify_entry" description="Adding Mail.jar in classpath for Linux and Solaris">
+		<property_set name="Modify_entry"> 
+   			<property name="oldEntry" value="$NMS_SERVER_CLASSES"/> 
+	   	    	<property name="newEntry" value="$NMS_SERVER_CLASSES:$NMS_CLASSES/Mail.jar"/> 
+		</property_set> 
+	</update_node>
+
+	<update_node name="Modify_entry" description="Adding Mail.jar in classpath for Windows">
+                <property_set name="Modify_entry">
+                        <property name="oldEntry" value="%NMS_SERVER_CLASSES%"/>
+                        <property name="newEntry" value="%NMS_SERVER_CLASSES%;%NMS_CLASSES%\Mail.jar"/>
+                </property_set>
+        </update_node>
+
+</configuration_file>
+
+<configuration_file
+        name =  "AudioInfo.xml"
+        path          =  "users/user_specific"
+        classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+        description   = "Updating AudioInfo.xml located in user/$user_specific"
+        required      = "true"
+        doonce        = "true"
+        priority      = "0" >
+
+        <update_node name="Remove_line" description="Updating AudioInfo.xml" >
+                <property_set name="Remove_line">
+                        <property  name="** Note : Audio Notification for alerts will be disabled when Multiple instances feature of Alerts Panel"/>
+                        <property  name="**        is enabled."/>
+                </property_set>
+
+        </update_node>
+</configuration_file>
+
+<configuration_file
+        name =  "AudioInfo.xml"
+        path          =  "html/defaultsToNewUsers/"
+        classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+        description   = "Updating AudioInfo.xml located in html/defaultsToNewUsers"
+        required      = "true"
+        doonce        = "true"
+        priority      = "0" >
+
+        <update_node name="Remove_line" description="Updating AudioInfo.xml" >
+                <property_set name="Remove_line">
+                        <property  name="** Note : Audio Notification for alerts will be disabled when Multiple instances feature of Alerts Panel"/>
+                        <property  name="**        is enabled."/>
+                </property_set>
+
+        </update_node>
+</configuration_file>
+
+<configuration_file
+        name =  "AudioInfo.xml"
+        path          =  "html/defaultsToAllUsers"
+        classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+        description   = "Updating AudioInfo.xml located in html/defaultsToAllUsers"
+        required      = "true"
+        doonce        = "true"
+        priority      = "0" >
+
+        <update_node name="Remove_line" description="Updating AudioInfo.xml" >
+                <property_set name="Remove_line">
+                        <property  name="** Note : Audio Notification for alerts will be disabled when Multiple instances feature of Alerts Panel"/>
+                        <property  name="**        is enabled."/>
+                </property_set>
+
+        </update_node>
+</configuration_file>
+
+<configuration_file name="startCmdLinePackager" path="StudioTools/Studio/bin" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="Updating classpath" required="true" priority="0">
+	<update_node name="Modify_entry" description="Updating classpath">
+		<property_set name="Modify_entry" os="WIN">
+			<property name="oldEntry" value="NmsServerClass.jar" use="os"/>
+			<property name="newEntry" value="NmsServerClasses.jar" use="os"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+	<configuration_file
+	name =  "hibernate.cfg.xml"
+	path          =  "classes/hbnlib"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "Added hibernate modelling entry which is used in GMap integration"
+	required      = "true"
+	doonce	      = "true"
+	priority      = "0" >
+
+	<update_node name="Insert_line" description="Add hibernate modelling entry which is used in GMap integration" >
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;mapping resource=&quot;com/adventnet/nms/mapdb/MapDB.hbm.xml&quot;/&gt;"/>
+			<property name="current" value="&lt;mapping resource=&quot;com/adventnet/nms/mapdb/GMapSymbol.hbm.xml&quot;/&gt;"/>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+	name =  "ConfFileChanges_Poller.xml"
+	path          = "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "Remove hibernate modelling entry which is used in GMap integration"
+	required      = "true"
+	doonce        = "true"
+	priority      = "0" >
+
+	<update_node name="Insert_line" description="Remove hibernate modelling entry which is used in GMap integration" >
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;property name=&quot;&amp;lt;mapping resource=&amp;quot;com/adventnet/nms/mapdb/MapDB.hbm.xml&amp;quot;/&amp;gt;&quot; value=&quot;&quot; /&gt;"/>
+			<property name="current" value="&lt;property name=&quot;&amp;lt;mapping resource=&amp;quot;com/adventnet/nms/mapdb/GMapSymbol.hbm.xml&amp;quot;/&amp;gt;&quot; value=&quot;&quot; /&gt;"/>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+	<configuration_file
+		name="mailserver.conf"
+		path="conf"
+		classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+		description="html/confchanges/mailserver_change.html"
+		required="true"
+		priority="0" >
+
+		<update_node
+			name="Insert_line"
+			description="adding new root for existing entry">
+			<property_set name="Insert_line" >
+				<property name="previous" value="&lt;MAIL_SERVER_SETTINGS&gt;"/>
+				<property name="current" value="&lt;ACCOUNT_DETAILS name=&quot;Default&quot;&gt;"/>
+			</property_set>
+
+		</update_node>
+		<update_node
+			name="Insert_line"
+			description="adding new root for existing entry">
+			<property_set name="Insert_line" >
+				<property name="current" value="&lt;/ACCOUNT_DETAILS&gt;"/>
+				<property name="next" value="&lt;/MAIL_SERVER_SETTINGS&gt;"/>
+			</property_set>
+
+		</update_node>
+
+		 <update_node name="Modify_entry" description="removing adventnet reference">
+                        <property_set name="Modify_entry" >
+                                <property name="oldEntry" value="&lt;FROM_ADDRESS&gt;webnms-admin@adventnet.com&lt;/FROM_ADDRESS&gt;"/>
+                                <property name="newEntry" value="&lt;FROM_ADDRESS&gt;webnms-admin@webnms.com&lt;/FROM_ADDRESS&gt;"/>
+                        </property_set>
+                        <property_set name="Modify_entry" >
+                                <property name="oldEntry" value="&lt;TO_ADDRESS&gt;webnms-admin@adventnet.com&lt;/TO_ADDRESS&gt;"/>
+                                <property name="newEntry" value="&lt;TO_ADDRESS&gt;webnms-admin@webnms.com&lt;/TO_ADDRESS&gt;"/>
+                        </property_set>
+                </update_node>
+
+	</configuration_file>
+
+	
+<configuration_file
+               name="compileJSP"
+               path="bin"
+               classname="com.adventnet.nms.tools.confchanges.SetEnvChanges"
+               description="html/confchanges/compileJSP_change.html"
+               required="true"
+               priority="0" >
+
+                <update_node name="Insert_line" description="Updating compileJSP.bat file">
+                <property_set name="Insert_line" os="WIN">
+                <property name="previous" value="%JDK_HOME%\bin\jar  -uvf  ..\lib\webclient-common.jar org\apache\jsp\webclient\common\jsp\*.class" use="os" doOnce="true"/>
+                <property name="current" value="%JDK_HOME%\bin\jar  -uvf  ..\lib\webclient-config.jar org\apache\jsp\webclient\config\jsp\*.class" use="Win" doOnce="true"/>
+                </property_set>
+                </update_node>
+
+                <update_node name="Insert_line" description="Updating compileJSP.bat file">
+                                <property_set name="Insert_line"  os="WIN">
+                                <property name="previous" value="rmdir /s/q .\WEB-INF\org\apache\jsp\webclient\common" use="os" doOnce="true"/>
+                                <property name="current" value="rmdir /s/q .\WEB-INF\org\apache\jsp\webclient\config" use="Win" doOnce="true"/>
+                                <property name="next" value="rem rmdir /s/q .\WEB-INF\jsp" use="os" doOnce="true"/>
+                                </property_set>
+                </update_node>
+
+            <update_node name="Insert_line" description="Updating compileJSP.bat file">
+                                <property_set name="Insert_line" os="WIN">
+                                <property name="previous" value="rmdir /s/q .\WEB-INF\classes\org\apache\jsp\webclient\common" use="os" doOnce="true"/>
+                                <property name="current" value="rmdir /s/q .\WEB-INF\classes\org\apache\jsp\webclient\config" use="Win" doOnce="true"/>
+                                <property name="next" value="goto removeFile" use="os" doOnce="true"/>
+                                </property_set>
+                </update_node>
+
+         <update_node name="Modify_entry" description="Updating compileJSP.bat file">
+                <property_set name="Modify_entry" os="Win">
+			<property name="oldEntry" value=".\WEB-INF\org\apache\jsp\webclient\home\jsp\*.java" use="os" doOnce="true"/>
+                        <property name="newEntry" value=".\WEB-INF\org\apache\jsp\webclient\home\jsp\*.java .\WEB-INF\org\apache\jsp\webclient\config\jsp\*.java" use="Win" doOnce="true"/>
+		</property_set>
+	</update_node>
+
+	 <update_node name="Modify_entry" description="Updating compileJSP.bat file">
+                <property_set name="Modify_entry" os="Win">
+                            <property name="oldEntry" value="-J-Xmx100m" use="os" doOnce="true"/>
+                            <property name="newEntry" value="-J-Xmx300m" use="Win" doOnce="true"/>
+                </property_set>
+        </update_node>
+	
+	<update_node name="Modify_entry" description="Updating compileJSP.sh file">
+                <property_set name="Modify_entry" os="LINUX">
+			    <property name="oldEntry" value="-J-Xmx100m" use="os" doOnce="true"/>
+			    <property name="newEntry" value="-J-Xmx300m" use="LINUX" doOnce="true"/>
+    		</property_set>
+	</update_node>
+
+	<update_node name="Modify_entry" description="Updating compileJSP.sh file">
+                <property_set name="Modify_entry" os="LINUX">
+			    <property name="oldEntry" value="./WEB-INF/org/apache/jsp/webclient/home/jsp/*.java" use="os" doOnce="true"/>
+			    <property name="newEntry" value="./WEB-INF/org/apache/jsp/webclient/home/jsp/*.java ./WEB-INF/org/apache/jsp/webclient/config/jsp/*.java" use="LINUX" doOnce="true"/>
+    		</property_set>
+                </update_node>
+
+        <update_node  name="Modify_entry"  description="Updating compileJSP.sh file">
+               <property_set name="Modify_entry" os="LINUX">
+               <property name="oldEntry" value="for module in topo map fault perf admin common home report" use="os" doOnce="true"/>
+               <property name="newEntry" value="for module in topo map fault perf admin common home report config" use="LINUX" doOnce="true"/>
+               </property_set>
+	 </update_node>
+ 
+ </configuration_file>
+	
+
+<configuration_file
+	name          =  "FilterUIConf.xml"
+	path          =  "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.FileRemovalHandler"
+	description   = "html/confchanges/FilterUIConf_change.html"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node>
+		<property_set name="Remove" description="Removing old ui java files">
+			<property name="AddAction" path="default_impl/filterui" type="java"/>
+			<property name="AdvancedFrame" path="default_impl/filterui" type="java"/>
+			<property name="AuthDialog" path="default_impl/filterui" type="java"/>
+			<property name="CustomFilterActionDialog" path="default_impl/filterui" type="java"/>
+			<property name="DefaultNmsFilterFrame" path="default_impl/filterui" type="java"/>
+			<property name="MoreDialog" path="default_impl/filterui" type="java"/>
+			<property name="RunCommandActionDialog" path="default_impl/filterui" type="java"/>
+			<property name="SendEmailActionDialog" path="default_impl/filterui" type="java"/>
+			<property name="SendTrapActionDialog" path="default_impl/filterui" type="java"/>
+			<property name="SuppressActionDialog" path="default_impl/filterui" type="java"/>
+			<property name="VariableBindingList" path="default_impl/filterui" type="java"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name="startpoller"
+	path="default_impl/distributed_poller/bin"
+	classname="com.adventnet.nms.tools.confchanges.StartnmsChanges"
+	description="Included DB entry from setEnv file in startpoller script and to invoke setEnv.sh in poller startup"
+	required="true"
+	priority="0" >
+
+	<update_node  name="Add_line" description="invoking setEnv.sh in poller startup">
+		<property_set name="Add_line" >
+			<property name="call .\setEnv.bat" after="cd .." os="WIN"/>
+			<property name=". ./setEnv.sh" after="cd .." os="LIN"/>
+			<property name=". ./setEnv.sh" after="cd .." os="SUN"/>
+		</property_set>
+	</update_node>
+	<update_node name="Modify_entry" description="Included DB entry from setEnv file in startpoller script">
+		<property_set name="append" os="LINUX">
+			<property_set name="variable">
+				<property name="CLASSPATH" value="DB_CLASSPATH" use="os" doOnce="true"/>
+			</property_set>
+		</property_set>
+		<property_set name="append" os="WIN">
+			<property_set name="variable">
+				<property name="set CLASSPATH" value="DB_CLASSPATH" use="os" doOnce="true"/>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+
+	 <configuration_file      
+               name="WebReports.xml"
+               path="webclient/report/conf"
+               classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+               description="html/confchanges/web-reports_change.html"
+               
+	         required="true"
+		 priority="0" >
+
+
+		 
+<update_node name="Modify" description="Adding I18 key for CPU Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="CPUUtilization"/>
+<property name="Name" value="CPU Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="CPU Utilization" newValue="webclient.report.perf.cpuutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Memory Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="MemoryUtilization"/>
+<property name="Name" value="Memory Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Memory Utilization" newValue="webclient.report.perf.memoryutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Rx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="Device_INTERFACE_in_octets"/>
+<property name="Name" value="Rx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Rx Traffic" newValue="webclient.report.perf.rxtraffic"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Tx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="Device_INTERFACE_out_octets"/>
+<property name="Name" value="Tx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Tx Traffic" newValue="webclient.report.perf.txtraffic"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Rx Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="InterfaceInUtilization"/>
+<property name="Name" value="Rx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Rx Utilization" newValue="webclient.report.perf.rxutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+<update_node name="Modify" description="Adding I18 key for Tx Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Devices">
+<property_set name="Report">
+<property name="PolledData" value="InterfaceOutUtilization"/>
+<property name="Name" value="Tx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Tx Utilization" newValue="webclient.report.perf.txutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+<update_node name="Modify" description="Adding I18 key for CPU Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterCPUUtilization"/>
+<property name="Name" value="CPU Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="CPU Utilization" newValue="webclient.report.perf.cpuutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Memory Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterMemoryUtilization"/>
+<property name="Name" value="Memory Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Memory Utilization" newValue="webclient.report.perf.memoryutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Rx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="Router_INTERFACE_in_octets"/>
+<property name="Name" value="Rx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Rx Traffic" newValue="webclient.report.perf.rxtraffic"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Tx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="Router_INTERFACE_out_octets"/>
+<property name="Name" value="Tx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Tx Traffic" newValue="webclient.report.perf.txtraffic"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node>
+
+
+
+<update_node name="Modify" description="Adding I18 key for Rx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterReceiveErrors"/>
+<property name="Name" value="Rx Errors"/>
+<property name="Units" value="packets"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Rx Errors" newValue="webclient.report.perf.rxerrors"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Tx Traffic" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterTransmitErrors"/>
+<property name="Name" value="Tx Errors"/>
+<property name="Units" value="packets"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Tx Errors" newValue="webclient.report.perf.txerrors"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Adding I18 key for Rx Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterInterfaceInUtilization"/>
+<property name="Name" value="Rx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Rx Utilization" newValue="webclient.report.perf.rxutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+<update_node name="Modify" description="Adding I18 key for Tx Utilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Routers">
+<property_set name="Report">
+<property name="PolledData" value="RouterInterfaceOutUtilization"/>
+<property name="Name" value="Tx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+   <property name="Name" subset="true" existingValue="Tx Utilization" newValue="webclient.report.perf.txutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+<update_node name="Modify" description="Renaming the CiscoSwitch_in_octets Polling Object Name to Switch_In_octets" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitch_in_octets"/>
+<property name="Name" value="Rx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+<property name="PolledData" subset="true" existingValue="CiscoSwitch_in_octets" newValue="Switch_In_octets"/>
+<property name="Name" subset="true" existingValue="Rx Traffic" newValue="webclient.report.perf.rxtraffic"/>	
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+<update_node name="Modify" description="Renaming the CiscoSwitch_out_octets Polling Object Name to Switch_Out_octets" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitch_out_octets"/>
+<property name="Name" value="Tx Traffic"/>
+<property name="Units" value="kbps"/>
+<property name="parent" value="true"/>
+<property_set name="attribute">
+<property name="PolledData" subset="true" existingValue="CiscoSwitch_out_octets" newValue="Switch_Out_octets"/>
+<property name="Name" subset="true" existingValue="Tx Traffic" newValue="webclient.report.perf.txtraffic"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Renaming the CiscoSwitchReceiveErrors Polling Object Name to Switch_ReceiveErrors" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitchReceiveErrors"/>
+<property name="Name" value="Rx Errors"/>
+<property name="Units" value="packets"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+<property name="PolledData" subset="true" existingValue="CiscoSwitchReceiveErrors" newValue="Switch_ReceiveErrors"/>
+<property name="Name" subset="true" existingValue="Rx Errors" newValue="webclient.report.perf.rxerrors"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Renaming the CiscoSwitchTransmitErrors Polling Object Name to Switch_TransmitErrors" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitchTransmitErrors"/>
+<property name="Name" value="Tx Errors"/>
+<property name="Units" value="packets"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+<property name="PolledData" subset="true" existingValue="CiscoSwitchTransmitErrors" newValue="Switch_TransmitErrors"/>
+<property name="Name" subset="true" existingValue="Tx Errors" newValue="webclient.report.perf.txerrors"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Renaming the CiscoSwitchInterfaceInUtilization Polling Object Name to Switch_InterfaceInUtilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitchInterfaceInUtilization"/>
+<property name="Name" value="Rx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+<property name="PolledData" subset="true" existingValue="CiscoSwitchInterfaceInUtilization" newValue="Switch_InterfaceInUtilization"/>
+<property name="Name" subset="true" existingValue="Rx Utilization" newValue="webclient.report.perf.rxutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+<update_node name="Modify" description="Renaming the CiscoSwitchInterfaceOutUtilization Polling Object Name to Switch_InterfaceOutUtilization" >
+<property_set name="REPORTS_VIEW">
+<property_set name="REPORTS">
+<property_set name="Switches">
+<property_set name="Report">
+<property name="PolledData" value="CiscoSwitchInterfaceOutUtilization"/>
+<property name="Name" value="Tx Utilization"/>
+<property name="Units" value="Percentage"/>
+<property name="parent" value="true" />
+<property_set name="attribute" >
+<property name="PolledData" subset="true" existingValue="CiscoSwitchInterfaceOutUtilization" newValue="Switch_InterfaceOutUtilization"/>
+<property name="Name" subset="true" existingValue="Tx Utilization" newValue="webclient.report.perf.txutilization"/>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</property_set>
+</update_node> 
+
+
+
+
+<update_node name="Add" description="Entries for Event Reports">
+	<property_set name="REPORTS_VIEW">
+		<property_set name="REPORTS">
+			<property name="parent" value="true"/>
+			<property_set name="Node" >
+					<Events description="Entries for Event Reports">
+			<Report Name="webclient.report.event.severityvstime" type="allSeverity" category="AllEvents" severityLevel="Critical"/>
+			<Report Name="webclient.report.event.categoryvstime" type="allCategory" category="AllEvents"/>
+			<Report Name="webclient.report.event.topndevice" type="n-report" category="AllEvents"/> 
+			<Report Name="webclient.report.event.categoryvsseverity" type="completecategory" category="AllEvents" severityLevel="Critical"/>
+			
+		</Events>
+			</property_set>
+
+
+
+	</property_set>
+
+	</property_set>
+</update_node>
+</configuration_file>
+
+	
+	<configuration_file
+               name="policymenu.xml"
+	       path="html/defaultsToAllUsers"
+               classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+               description="Changed OPERATION value for Add Policy"
+               required="true"
+               priority="0">
+
+		<update_node name="Modify" description="Updating OPERATION value for Add Poilicy">
+                        <property_set name="PANELMENUBAR">
+                                <property_set name="MENU">
+                                        <property name="name" value="Policy"/>
+                                        <property_set name="MENU-ITEM">
+                                                <property name="name" value="Add Policy"/>
+                                                <property_set name="OPERATION">
+                                                        <property name="parent" value="true" />
+                                                        <property_set name="attribute">
+                                                                <property name="name"  value="Add Policy"/>
+                                                        </property_set>
+                                                </property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+	</configuration_file>
+
+	  <configuration_file
+                name="policyadminmenu.xml"
+                path="html/defaultsToAllUsers"
+                classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                description="Updating OPERATION value for Add Poilicy"
+                required="true"
+                priority="0" >
+		<update_node name="Modify" description="Updating OPERATION value for Add Poilicy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Policy"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Add Policy"/>
+						<property_set name="OPERATION">
+							<property name="parent" value="true" />
+							<property_set name="attribute">
+								<property name="name"  value="Add Policy"/>
+							</property_set>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<configuration_file
+		name="nonperiodicpolicymenu.xml"
+		path="html/defaultsToNewUsers/policymenus"
+		classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+		description="Adding OPERATION Node for Update Policy"
+		required="true"
+		priority="0" >
+		 <update_node name="Add" description="Adding  OPERATION Node for Update Policy">
+                        <property_set name="PANELMENUBAR">
+                                <property_set name="MENU">
+                                        <property name="name" value="Edit"/>
+                                        <property_set name="MENU-ITEM">
+                                                <property name="name" value="Update Policy"/>
+                                                        <property name="parent" value="true" />
+                                                        <property_set name="Node">
+                                                        	<OPERATION name="Update Policy"/>
+							</property_set>
+                                                </property_set>
+                                        </property_set>
+                        </property_set>
+                </update_node>
+
+		<update_node name="Modify" description="Updating OPERATION value for Delete Poilicy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Delete Policy"/>
+						<property_set name="OPERATION">
+							<property name="parent" value="true" />
+							<property_set name="attribute">
+								<property name="name"  value="Delete Policy"/>
+							</property_set>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+	</configuration_file>	
+
+	<configuration_file
+		name="periodicpolicymenu.xml"
+		path="html/defaultsToNewUsers/policymenus"
+		classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+		description="Adding  OPERATION Node for Update Policy"
+		required="true"
+		priority="0" >
+		<update_node name="Add" description="Adding  OPERATION Node for Update Policy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Update Policy"/>
+						<property name="parent" value="true" />
+						<property_set name="Node">
+							<OPERATION name="Update Policy"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+		<update_node name="Modify" description="Updating OPERATION value for Delete Poilicy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Delete Policy"/>
+						<property_set name="OPERATION">
+							<property name="parent" value="true" />
+							<property_set name="attribute">
+								<property name="name"  value="Delete Policy"/>
+							</property_set>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+	</configuration_file> 
+
+		<configuration_file
+		name="periodicpolicymenu.xml"
+		path="users/$users_specific"
+		classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+		description="Adding OPERATION Node for Update Policy"
+		required="true"
+		priority="0" >
+		<update_node name="Add" description="Adding OPERATION Node for Update Policy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Update Policy"/>
+						<property name="parent" value="true" />
+						<property_set name="Node">
+							<OPERATION name="Update Policy"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="Modify" description="Updating OPERATION value for Delete Poilicy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Delete Policy"/>
+						<property_set name="OPERATION">
+							<property name="parent" value="true" />
+							<property_set name="attribute">
+								<property name="name"  value="Delete Policy"/>
+							</property_set>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+	</configuration_file> 
+
+		<configuration_file
+		name="nonperiodicpolicymenu.xml"
+		path="users/$users_specific"
+		classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+		description="Adding OPERATION Node for Update Policy"
+		required="true"
+		priority="0" >
+
+		<update_node name="Add" description="Adding OPERATION Node for Update Policy">
+			<property_set name="PANELMENUBAR">
+				<property_set name="MENU">
+					<property name="name" value="Edit"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Update Policy"/>
+						<property name="parent" value="true" />
+						<property_set name="Node">
+							<OPERATION name="Update Policy"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="Modify" description="Updating OPERATION value for Delete Poilicy">
+			<property_set name="PANELMENUBAR">
+				<property name="name" value="NONPERIODICALPOLICYMENU"/>
+				<property_set name="MENU">
+					<property name="shortcut_key" value="e"/>
+					<property_set name="MENU-ITEM">
+						<property name="name" value="Delete Policy"/>
+						<property_set name="OPERATION">
+							<property name="parent" value="true" />
+							<property_set name="attribute">
+								<property name="name"  value="Delete Policy"/>
+							</property_set>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file> 
+
+ <configuration_file
+        name="DeploymentWizard"
+        path="bin/developertools"
+        classname="com.adventnet.nms.tools.confchanges.StartnmsChanges"
+        description="Updated JSON jar in Classpath"
+        required="true"
+        doOnce="true"
+        priority="0">
+        <update_node name="Modify_entry" description="Updated JSON jar in Classpath">
+                <property_set name="Modify_entry" os="LINUX">
+                        <property name="oldEntry" value="$MS_CLASSPATH"/>
+                        <property name="newEntry" value="$MS_CLASSPATH:$JSON_CLASSPATH" use="os" />
+                </property_set>
+        </update_node>
+        <update_node name="Modify_entry" description="Updated JSON jar in Classpath">
+                <property_set name="Modify_entry" os="WIN">
+                        <property name="oldEntry" value="%HBN_CLASSPATH%" use="os"/>
+                        <property name="newEntry" value="%HBN_CLASSPATH%;%JSON_CLASSPATH%;" use="os"/>
+                </property_set>
+        </update_node>
+
+        <update_node name="Modify_entry" description="Updated JSON jar in Classpath">
+                <property_set name="Modify_entry" os="SUN">
+                        <property name="oldEntry" value="$MS_CLASSPATH"/>
+                        <property name="newEntry" value="$MS_CLASSPATH:$JSON_CLASSPATH" use="os"/>
+                </property_set>
+        </update_node>
+</configuration_file>
+	
+
+
+<configuration_file
+	name="Tree.xml"
+	path="html/defaultsToNewUsers"
+	classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+	description="MTEAP Entry,Reports url changed in WebClient"
+	required="true"
+	priority="0" >
+	<update_node name="Add" description="Adding Node for MTEAP Configuration">
+        	<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+                        	<property_set name="DEVICE">
+                                	<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="adminoperations"/>
+							<property name="parent" value="true" />
+			                                <property_set name="Node">
+								<LEVEL-2 TARGET="center" OPERATION="MTAP Administration" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.mtap.treename" ID="mtap" URL="/admin/ConfigureMTAPForm.do?toPerform=getConfigDetails" ICON-FILE="webclient/common/images/treedot.gif" HTML-TABLE="AdminConfig"/>
+							</property_set>
+                                                </property_set>
+                                </property_set>
+                        </property_set>
+		</property_set>
+	</update_node>
+	
+	<update_node name="Add" description="Reports url changed in WebClient">
+		<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+				<property_set name="DEVICE">
+					<property name="ID" value="report"/>
+					<property_set name="LEVEL-1" >
+						<property name="ID" value="reportPage" />
+						<property name="parent" value="true"/>
+						<property_set name="attribute" >
+							<property_set name="TAB" value="true"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+	
+	<update_node name="Modify" description="Reports url changed in WebClient">
+		<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+				<property_set name="DEVICE">
+					<property name="ID" value="report"/>
+					<property_set name="LEVEL-1" >
+						<property name="ID" value="reportPage" />
+						<property name="parent" value="true"/>
+						<property_set name="attribute" >
+							<property_set name="URL" value="/report/ReportViewAction.do?"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+	name="Tree.xml"
+	path="users/$users_specific"
+	classname="com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+	description="MTEAP Entry,Reports url changed in WebClient"
+	required="true"
+	priority="0" >
+	<update_node name="Add" description="Adding Node for MTEAP Configuration">
+        	<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+                        	<property_set name="DEVICE">
+                                	<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="adminoperations"/>
+							<property name="parent" value="true" />
+			                                <property_set name="Node">
+								<LEVEL-2 TARGET="center" OPERATION="MTAP Administration" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.mtap.treename" ID="mtap" URL="/admin/ConfigureMTAPForm.do?toPerform=getConfigDetails" ICON-FILE="webclient/common/images/treedot.gif" HTML-TABLE="AdminConfig"/>
+							</property_set>
+                                                </property_set>
+                                </property_set>
+                        </property_set>
+		</property_set>
+	</update_node>
+	
+	<update_node name="Add" description="Reports url changed in WebClient">
+		<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+				<property_set name="DEVICE">
+					<property name="ID" value="report"/>
+					<property_set name="LEVEL-1" >
+						<property name="ID" value="reportPage" />
+						<property name="parent" value="true"/>
+						<property_set name="attribute" >
+							<property_set name="TAB" value="true"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+	
+	<update_node name="Modify" description="Reports url changed in WebClient">
+		<property_set name="DEVICE-DATA">
+			<property_set name="DEVICE-GROUP">
+				<property_set name="DEVICE">
+					<property name="ID" value="report"/>
+					<property_set name="LEVEL-1" >
+						<property name="ID" value="reportPage" />
+						<property name="parent" value="true"/>
+						<property_set name="attribute" >
+							<property_set name="URL" value="/report/ReportViewAction.do?"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+            name          =  "securitydbData.xml"
+            path          =  "conf"
+            classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+            description   = "MTAP Operation Entry"
+            required      = "true"
+            priority      = "0" >
+
+           <update_node name="Insert" description="Inserting MTAP operations in security db" >
+                <property_set name="AUTHORIZATION-DATA">
+                   <property_set name="OPERATION-TREE">
+                        <property name="parent" value="true" />
+                           <property_set name="previousNode">
+                                <DATA child="Modify Group Scope Relation" leaf="0" parent="Administrative Operation"/>
+                           </property_set>
+                           <property_set name="currentNode" >
+                                <DATA child="MTAP Administration" leaf="0" parent="Administrative Operation"/>
+                           </property_set>
+                    </property_set>
+                 </property_set>
+            </update_node>
+</configuration_file>
+
+<configuration_file
+        name =  "hibernate.cfg.xml"
+        path          =  "classes/hbnlib"
+        classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+        description   = "Updated hibernate.default_schema entry in hibernate file"
+        required      = "true"
+        doonce        = "true"
+        priority      = "0" >
+
+        <update_node name="Modify_entry" description="Updated hibernate.default_schema entry in hibernate file" >
+                <property_set name="Modify_entry">
+			<property name="oldEntry" value="&lt;property name=&quot;hibernate.default_schema&quot;&gt;userName&lt;/property&gt;"/>
+			<property name="newEntry" value="&lt;property name=&quot;hibernate.default_schema&quot;&gt;SchemaName&lt;/property&gt;"/>
+                </property_set>
+        </update_node>
+
+</configuration_file>
+
+<configuration_file
+	name          = "framemenu.xml"
+	path          = "html/defaultsToAllUsers"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "Updating short cut key for System Administration in java client"
+	required      = "true"
+	priority      = "0" >
+	<update_node name="Modify" description="Updating short cut key for System Administration in java client">
+		<property_set name="PANELMENUBAR">
+			<property_set name="MENU">
+				<property name="name" value="Tools"/>
+				<property_set name="MENU-ITEM">
+					<property name="name" value="System Administration"/>
+					<property_set name="JAVA-UI">
+						<property name="name" value="SystemAdmin"/>
+						<property name="parent" value="true"/>
+						<property_set name="attribute">
+							<property name="shortcut_key" value="A"/>
+							<property name="accelerator_key" value="A"/>
+						</property_set>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+
+<configuration_file
+
+	name="ConfFileChanges_Poller.xml"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="including entries to remove FAULT reporting from ReportsManagement.xml"
+	required="true"
+	priority="1" >
+
+	<update_node name="Remove_Node" description="Remove existing ReportsManagement.xml modifications" >
+		<property_set>
+			<property name="NodeName" value="configuration_file" />
+			<property name="name" value="ReportsManagement.xml" />
+		</property_set>
+	</update_node>
+
+	<update_node name="Add" description="Adding new entries">
+		<property_set name="configuration_changes">
+			<property name="parent" value="true" />
+			<property_set name="Node">
+				<configuration_file
+					name          = "ReportsManagement.xml"
+					path          = "conf"
+					classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+					description   =	"Remove ARCHIVE_DAILY_DATA from ReportsManagement.xml"
+					required      = "true"
+					priority      = "1" >                          
+
+
+					<update_node name="Remove_Node" description="Remove ARCHIVE_DAILY_DATA from ReportsManagement.xml" >
+						<property_set>
+							<property name="NodeName" value="DATA_ARCHIVE" />
+							<property name="id" value="ARCHIVE_DAILY_DATA" />
+						</property_set>
+					</update_node>
+
+					<update_node name="Remove_Node" description="Remove CLEANUP_DAILY_DATA from ReportsManagement.xml" >
+						<property_set>
+							<property name="NodeName" value="DATA_CLEANUP" />
+							<property name="id" value="CLEANUP_DAILY_DATA" />
+						</property_set>
+					</update_node>
+
+					<update_node name="Remove_Node" description="Remove FAULTARCHIVE_HOURLY_DATA from ReportsManagement.xml" >
+						<property_set>
+							<property name="NodeName" value="DATA_ARCHIVE" />
+							<property name="id" value="FAULTARCHIVE_HOURLY_DATA" />
+						</property_set>
+					</update_node>
+
+					<update_node name="Remove_Node" description="Remove FAULTARCHIVE_DAILY_DATA from ReportsManagement.xml" >
+						<property_set>
+							<property name="NodeName" value="DATA_ARCHIVE" />
+							<property name="id" value="FAULTARCHIVE_DAILY_DATA" />
+						</property_set>
+					</update_node>
+
+					<update_node name="Remove_Node" description="Remove FAULTCLEANUP_DAILY_DATA from ReportsManagement.xml" >
+						<property_set>
+							<property name="NodeName" value="DATA_CLEANUP" />
+							<property name="id" value="FAULTCLEANUP_DAILY_DATA" />
+						</property_set>
+					</update_node>
+
+					<update_node name="modify" description="Change ARCHIVE_DAILY_DATA to POLLENGINE_ARCHIVE_HOURLY_DATA and className from DefaultDataArchiveIfcImpl to RemotePollerDataArchiveIfcImpl" >
+						<property_set name="DATA-MANAGEMENT" >
+							<property_set name="DATA_CLEANUP" >
+								<property name="parent" value="true" />
+								<property_set name="attribute" >
+									<property name="id" subset="true" existingValue="CLEANUP_HOURLY_DATA" newValue="POLLENGINE_CLEANUP_HOURLY_DATA" />
+									<property name="className" subset="true" existingValue="com.adventnet.nms.server.dataarchiver.DefaultDataCleanupIfcImpl" newValue="com.adventnet.nms.server.dataarchiver.RemotePollerDataCleanupIfcImpl" />
+								</property_set>
+							</property_set>
+						</property_set>
+					</update_node>
+
+					<update_node name="modify" description="Change ARCHIVE_DAILY_DATA to POLLENGINE_ARCHIVE_HOURLY_DATA and className from DefaultDataArchiveIfcImpl to RemotePollerDataArchiveIfcImpl" >
+						<property_set name="DATA-MANAGEMENT" >
+							<property_set name="DATA_ARCHIVE" >
+								<property name="parent" value="true" />
+								<property_set name="attribute" >
+									<property name="id" subset="true" existingValue="ARCHIVE_HOURLY_DATA" newValue="POLLENGINE_ARCHIVE_HOURLY_DATA" />
+									<property name="className" subset="true" existingValue="com.adventnet.nms.server.dataarchiver.DefaultDataArchiveIfcImpl" newValue="com.adventnet.nms.server.dataarchiver.RemotePollerDataArchiveIfcImpl" />
+								</property_set>
+							</property_set>
+						</property_set>
+					</update_node>
+				</configuration_file>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+        name          = "Deployment.xml"
+        path          = "conf"
+        classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "While deploying, extra files will be bundled for all architectures"
+        required      = "true"
+        priority      = "0" >
+	<update_node name="Add" description="Added realated conf files for deploying client archive">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="CLIENT">
+                                        <property_set name="FILELIST">
+                                                <property name="parent" value="true"/>
+                                                <property_set name="Node">
+							<FILE NAME="conf/update_conf.xml"/>
+							<FILE NAME="conf/SmartUpdateManager.dtd"/>
+							<FILE NAME="conf/SmartUpdateManager.xml"/>
+						</property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	<update_node name="Add" description="Added few conf files for deploying BEFE archive">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="BEFE">
+                                        <property_set name="FILELIST">
+                                                <property name="parent" value="true"/>
+                                                <property_set name="Node">
+                                                	<FILE NAME="conf/Widgets.xml"/>
+							<FILE NAME="conf/nms-support.xml"/>
+						</property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	<update_node name="Add" description="Added conf files for deploying WebNMS as complete package">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="BE">
+                                        <property_set name="FILELIST">
+                                                <property name="parent" value="true"/>
+                                                <property_set name="Node">
+                                                	<FILE NAME="conf/MultiThreadProcess.xml"/>
+							<FILE NAME="conf/snmpDatabaseSchema.config"/>
+							<FILE NAME="conf/SNMP_INFORM_Parameters.xml"/>
+							<FILE NAME="conf/SQLDatatypes.xml"/>
+							<FILE NAME="conf/wrapper.conf"/>
+						</property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	 <update_node name="Remove" description="Removed unnecessary conf files for deploying WebNMS as BEFE">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="BEFE">
+                                        <property_set name="FILELIST">
+                                                <property name="parent" value="true"/>
+                                                <property_set name="Node">
+                                                        <FILE NAME="conf/database_params.conf"/>
+							<FILE NAME="conf/logging_parameters.conf"/>
+						</property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	  <update_node name="Remove" description="Removed unnecessary conf files for deploying WebNMS in Features">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="OPTIONAL_FEATURES">
+                                        <property_set name="FEATURE">
+                                                <property name="NAME" value="TL1"/>
+                                                <property_set  name="SELECTION">
+                                                        <property_set name="FILELIST">
+                                                                <property name="parent" value="true"/>
+                                                                <property_set name="Node">
+                                                                        <FILE NAME="conf/tl1browser.conf"/>
+                                                                </property_set>
+                                                        </property_set>
+                                                </property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+	
+
+	 <update_node name="Remove" description="Removed unnecessary  conf files for deploying WebNMS as BE">
+                <property_set name="DEPLOYMENT">
+                        <property_set name="MODULE">
+                                <property_set name="BE">
+                                        <property_set name="FILELIST">
+                                                <property name="parent" value="true"/>
+                                                <property_set name="Node">
+                                                	<FILE NAME="conf/propagation.filters"/>
+						</property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+<configuration_file name="DownloadFiles.xml" path="conf/feDeployment" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/DownloadFiles_change.html" required="true" priority="1">
+	<update_node name="Add" description=" Entry for WebReports.xml " >
+		<property_set name="DOWNLOAD-CONF-FILES" >
+			<property_set name="SERVER-FILES" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<FILE> webclient/report/conf/WebReports.xml </FILE>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+        name="UpdateManager"
+        path="bin"
+        classname="com.adventnet.nms.tools.confchanges.StartnmsChanges"
+        description="Removing NMS_SERVER_CLASSES from UpdateManager.sh/bat file"
+        required="true"
+        doOnce="true"
+        priority="0">
+        <update_node name="Modify_entry" description="Removing NMS_SERVER_CLASSES from classpath in UpdateManager.sh/bat file">
+                <property_set name="Modify_entry" os="LINUX">
+                        <property name="oldEntry" value="$NMS_SERVER_CLASSES:"/>
+                        <property name="newEntry" value="" use="os" />
+                </property_set>
+        </update_node>
+        <update_node name="Modify_entry" description="Removing NMS_SERVER_CLASSES from classpath in UpdateManager.sh/bat file">
+                <property_set name="Modify_entry" os="WIN">
+                        <property name="oldEntry" value="%NMS_SERVER_CLASSES%;"/>
+                        <property name="newEntry" value="" use="os"/>
+                </property_set>
+        </update_node>
+
+        <update_node name="Modify_entry" description="Removing NMS_SERVER_CLASSES from classpath in UpdateManager.sh/bat file">
+                <property_set name="Modify_entry" os="SUN">
+                        <property name="oldEntry" value="$NMS_SERVER_CLASSES:"/>
+                        <property name="newEntry" value="" use="os"/>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+
+<configuration_file
+	name="search-props.xml"
+	path="webclient/common/conf"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Updating datatypes for properties in topology and map module from STRING to BOOLEAN and Adding ConfigAudit properties Node"
+	required="true"
+	priority="0" >
+	<update_node name="Modify" description="Updating datatype for topology module property managed from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="managed"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isDHCP from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isDHCP"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isNode from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isNode"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isInterface from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isInterface"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isRouter from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isRouter"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isNetwork from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isNetwork"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for topology module property isSNMP from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Topology"/>
+				<property_set name="property">
+					<property name="key" value="isSNMP"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	 <update_node name="Modify" description="Updating datatype for topology module property statusPollEnabled from STRING TO BOOLEAN">
+                <property_set name="Search-Props">
+                        <property_set name="view">
+                                <property name="name" value="Topology"/>
+                                <property_set name="property">
+                                        <property name="key" value="statusPollEnabled"/>
+                                        <property name="parent" value="true"/>
+                                        <property_set name="attribute">
+                                                <property name="type" value="BOOLEAN"/>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property managed from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="MAP"/>
+				<property_set name="property">
+					<property name="key" value="managed"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isDHCP from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isDHCP"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isNode from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isNode"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isInterface from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isInterface"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isRouter from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isRouter"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isNetwork from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isNetwork"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property isSNMP from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="isSNMP"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>	
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Updating datatype for map module property statusPollEnabled from STRING TO BOOLEAN">
+		<property_set name="Search-Props">
+			<property_set name="view">
+				<property name="name" value="Map"/>
+				<property_set name="property">
+					<property name="key" value="statusPollEnabled"/>
+					<property name="parent" value="true"/>
+					<property_set name="attribute">
+						<property name="type" value="BOOLEAN"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Add" description="Adding  ConfigAudit properties Node">
+		<property_set name="Search-Props">
+			<property name="parent" value="true"/>
+			<property_set name="Node">
+				<view name="ConfigAudit">
+					<property key ="taskName" type = "STRING" />
+					<property key ="subTaskName" type = "STRING" />
+					<property key ="deviceName" type = "STRING" />
+					<property key ="status" type = "STRING" />
+					<property key ="rollbackStatus" type = "STRING" />
+					<property key ="timeOfStart" type = "DATE" inputaction="/DateInput.do"/>
+					<property key ="timeOfFinish" type = "DATE" inputaction="/DateInput.do"/>
+				</view>     				
+			</property_set>
+		</property_set>	
+	</update_node>
+
+</configuration_file>
+
+<configuration_file       
+name          = "RebrandingItems.xml"
+path          = "conf"
+classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+description   = "Adventnet name change"
+required      = "true"
+priority      = "0" >
+
+	  <update_node name="Modify" description="Updating webnms website">
+                <property_set name="rebranding">
+                <property_set name="item">
+                        <property name="name" value="$URL"/>
+                        <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                         <property_set name="value" value="www.webnms.com/webnms"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+
+<configuration_file
+	name =  "web.xml"
+	path          =  "apache/tomcat/conf"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "Including appropriate files for restricting access in the web.xml"
+	required      = "true"
+	doonce        = "true"
+	priority      = "0" >
+
+	<update_node name="remove" description="Removing Mail.jar from apache web.xml file" >
+		<property_set name="Remove_Web_line">
+			<property  name="&lt;url-pattern&gt;/classes/Mail.jar&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Remove_Web_line">
+			<property  name="&lt;url-pattern&gt;/StudioTools/*&lt;/url-pattern&gt;"/>
+		</property_set>
+	</update_node>
+
+	<update_node name="Insert_line" description="Adding files so as to restrict its access" >
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_JETTY.html&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_JQUERY.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_JQUERY.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_JSON_2_0.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_JSON_2_0.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_JGROUPS.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_JGROUPS.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_DOM4J.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_DOM4J.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_DTREE.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_DTREE.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_EHCACHE.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_EHCACHE.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/license-LGPL.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/license-LGPL.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_SORTTABLE.txt&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_SORTTABLE.txt&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_JSCALENDAR.html&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_JSCALENDAR.html&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE_LGPL.html&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE_LGPL.html&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/classes/LICENSE&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/classes/LICENSE&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/Widgets.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/Widgets.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/defaultconf/conf/Widgets.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/defaultconf/conf/Widgets.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/MultiThreadProcess.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/MultiThreadProcess.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/ConfFileChanges_Poller.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/ConfFileChanges_Poller.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/DistributedPoller.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/DistributedPoller.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/poller_build.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/poller_build.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/SchemaChanges_Poller.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+		<property_set name="Insert_line">
+			<property name="previous" value="&lt;url-pattern&gt;/conf/SchemaChanges_Poller.xml&lt;/url-pattern&gt;"/>
+			<property name="current" value="&lt;url-pattern&gt;/conf/SNMP_INFORM_Parameters.xml&lt;/url-pattern&gt;"/>
+		</property_set>
+
+	</update_node>
+
+</configuration_file>
+<configuration_file
+	name="createpoller"
+	path="bin"
+	classname="com.adventnet.nms.tools.confchanges.StartnmsChanges"
+	description="Removed improper exporting of NMS_HOME"
+	required="true"
+	doOnce="true"
+	priority="0">
+	<update_node name="Modify_entry" description="Removed improper exporting of NMS_HOME">
+		<property_set name="Modify_entry" os="LINUX">
+			<property name="oldEntry" value="export NMS_HOME=."/>
+			<property name="newEntry" value="export NMS_HOME" />
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify_entry" description="Removed improper exporting of NMS_HOME">
+		<property_set name="Modify_entry" os="SUN">
+			<property name="oldEntry" value="export NMS_HOME=."/>
+			<property name="newEntry" value="export NMS_HOME"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name="poller_build.xml"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Modify the poller build creation file so as to include required files in poller build"
+	required="true"
+	priority="0" >
+
+	<update_node name="Add" description="Modify the poller build creation file so as to include patch related files in poller build">
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copy_nms_files"/>
+				<property name="parent" value="true"/>
+				<property_set name="Node" >
+					<copy todir="${pollerdir}/conf/backup/PatchInfo">
+						<fileset dir="${webnmsdir}/conf/backup/PatchInfo" includes="*.xml"/>
+					</copy>
+
+					<copy todir="${pollerdir}/Patch">
+						<fileset dir="${webnmsdir}/Patch" includes="*.xml */*.*"/>
+					</copy>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Including new jar files">
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copy_nms_files"/>
+				<property_set name="copy">
+					<property name="todir" value="${pollerdir}/classes"/>
+					<property_set name="fileset" >
+						<property name="parent" value="true" />
+						<property_set name="attribute" >
+							<property name="includes" subset="true" existingValue="NmsServerClasses.jar" newValue="NmsServerClasses.jar JimiProClasses.jar xalan.jar jaxp.jar crimson.jar"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="Including all EnglishToNative files">
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copy_nms_files"/>
+				<property_set name="copy">
+					<property name="todir" value="${pollerdir}/html"/>
+					<property_set name="fileset" >
+						<property name="parent" value="true" />
+						<property_set name="attribute" >
+							<property name="includes" subset="true" existingValue="EnglishToNative.properties" newValue="EnglishToNative*.properties"/>
+						</property_set>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+	name="jboss-service.xml"
+	path="examples/jboss/webnms_sar/META-INF"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Including jar file in JBoss BE war classpath"
+	required="true"
+	priority="0" >
+	<update_node name="Modify" description="Including jar file in jboss war classpath">
+		<property_set name="server">
+			<property_set name="classpath">
+				<property name="codebase" value="deploy/webnms.ear/webnms.war/WEB-INF/lib/"/>
+				<property name="parent" value="true" />
+				<property_set name="attribute">
+					<property_set name="archives" value="struts.jar,commons-validator.jar"/>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+	name="jboss-service.xml"
+	path="examples/jboss/webnms_fe_sar/META-INF"
+	classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description="Including jar file in JBoss FE war classpath"
+	required="true"
+	priority="0" >
+	<update_node name="Modify" description="Including jar file in jboss war classpath">
+		<property_set name="server">
+			<property_set name="classpath">
+				<property name="codebase" value="deploy/webnms_fe.ear/webnms.war/WEB-INF/lib"/>
+				<property name="parent" value="true" />
+				<property_set name="attribute">
+					<property_set name="archives" value="struts.jar,commons-validator.jar"/>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+<configuration_file
+	name          =  "build.xml"
+	path           =  "examples/jboss"
+	classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description  = "Adding the files related to Patch installation in BE JBoss EAR"
+	required      = "true"
+	priority       = "0" >
+
+	<update_node name="Remove_Node" description="Remove existing copy command" >
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copynmsfiles" />
+				<property name="parent" value="true" />
+				<property_set name="Node">
+					<property name="NodeName" value="copy" />
+					<property name="todir" value="${wardir}/bin" />
+				</property_set>
+			</property_set>
+		</property_set>
+
+	</update_node>
+
+	<update_node name="Add" description="Adding files related to Patch installation" >
+
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copynmsfiles" />
+				<property name="parent" value="true"/>
+				<property_set name="Node">
+					<copy todir="${wardir}/bin" >
+						<fileset dir="${webnmsdir}/bin" includes="startMySQL*.* compileJSP*.* UpdateManager*.*"/>
+					</copy>
+
+					<copy todir="${wardir}/Patch">
+						<fileset dir="${webnmsdir}/Patch"/>
+					</copy>
+
+					<copy todir="${wardir}">
+						<fileset dir="${webnmsdir}" includes="setEnv*.*"/>
+					</copy>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+
+<configuration_file
+	name          =  "fe_build.xml"
+	path           =  "examples/jboss"
+	classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description  = "Adding the files related to Patch installation in FE JBoss EAR"
+	required      = "true"
+	priority       = "0" >
+
+	<update_node name="Add" description="Adding files related to Patch installation" >
+		<property_set name="project">
+			<property_set name="target">
+				<property name="name" value="copynmsfiles" />
+				<property name="parent" value="true"/>
+				<property_set name="Node">
+					<copy todir="${wardir}/bin" >
+						<fileset dir="${webnmsdir}/bin" includes="compileJSP*.* UpdateManager*.*"/>
+					</copy>
+
+					<copy todir="${wardir}/Patch">
+						<fileset dir="${webnmsdir}/Patch"/>
+					</copy>
+
+					<copy todir="${wardir}">
+						<fileset dir="${webnmsdir}" includes="setEnv*.*"/>
+					</copy>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+
+
+<process_unit
+	name="launcher_conf.txt"
+	path="conf"
+	classname="com.adventnet.nms.tools.confchanges.LauncherConfUpdater"
+	description="html/confchanges/launcher_conf_change.html"
+	required="true"
+	priority="1">
+
+	<data application="Start Web NMS Server" parameter="Classpath" value="./apache/tomcat/bin/tomcat-juli.jar;./apache/tomcat/bin/commons-logging-api.jar;./classes/AdventNetCLIClient.jar;./classes/AdventNetSnmpDistributedAPI.jar;./classes/AdventNetTL1Agent.jar;./apache/tomcat/common/lib/servlet-api.jar" operation="add"/>
+
+</process_unit>
+
+<configuration_file name="WebNMS.jnlp"  path=  "conf" classname = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description  = "Adventnet name change" required= "true" priority= "1" >
+        <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="jnlp" >
+                        <property_set name="information" >
+                                <property name="parent" value="true" />
+					<property_set name="oldNode" >
+						<title>Web NMS</title>
+					 </property_set>
+					<property_set name="newNode" >
+						<title>WebNMS Framework</title>
+					 </property_set>
+                       </property_set>
+                   </property_set>
+        </update_node>
+        <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="jnlp" >
+                        <property_set name="information" >
+                                <property name="parent" value="true" />
+					<property_set name="oldNode" >
+						<vendor>AdventNet Inc.</vendor>
+					 </property_set>
+					<property_set name="newNode" >
+						<vendor>Zoho Corp.</vendor>
+					 </property_set>
+                       </property_set>
+                   </property_set>
+        </update_node>
+       <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="jnlp" >
+                        <property_set name="information" >
+                                <property name="parent" value="true" />
+					<property_set name="oldNode" >
+						<description>AdventNet Web NMS version 5 - Web Start Client</description>
+					 </property_set>
+					<property_set name="newNode" >
+						<description>WebNMS Framework version 5 - Web Start Client</description>
+					 </property_set>
+                       </property_set>
+                   </property_set>
+        </update_node>
+
+</configuration_file>
+
+
+<configuration_file name="WebNMSJVMMonitoring.xml"  path=  "conf" classname = "com.adventnet.nms.tools.confchanges.ServerParametersChanges" description  ="Adventnet name change" required= "true" priority= "1" >
+
+		 <update_node name="Modify_entry" description="Removing adventnet reference">
+                        <property_set name="Modify_entry" >
+                                <property name="oldEntry" value="&lt;FromAddress&gt;webnms-admin@adventnet.com&lt;/FromAddress&gt;"/>
+                                <property name="newEntry" value="&lt;FromAddress&gt;webnms-admin@webnms.com&lt;/FromAddress&gt;"/>
+                        </property_set>
+                        <property_set name="Modify_entry" >
+                                <property name="oldEntry" value="&lt;ToAddress&gt;webnms-admin@adventnet.com&lt;/ToAddress&gt;"/>
+                                <property name="newEntry" value="&lt;ToAddress&gt;webnms-admin@webnms.com&lt;/ToAddress&gt;"/>
+                        </property_set>
+                </update_node>
+</configuration_file>
+
+<configuration_file  name="launcher_conf.txt"  path=  "conf" classname = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description  = "Adventnet name change" required= "true" priority= "1" >
+ 
+	 <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="configuration">
+                                <property name="parent" value="true" />
+                                        <property_set name="oldNode" >
+                                        	<property name="ProductTitle" value="AdventNet Web NMS 5"/>
+					 </property_set>
+                                        <property_set name="newNode" >
+                                        	<property name="ProductTitle" value="WebNMS Framework 5"/> 
+					</property_set>
+                       </property_set>
+        </update_node>
+
+         <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="configuration">
+                                <property name="parent" value="true" />
+                                        <property_set name="oldNode" >
+                                        	<property name="AboutMessage" value="AdventNet Web NMS Release 5"/>
+					 </property_set>
+                                        <property_set name="newNode" >
+                                        	<property name="AboutMessage" value="WebNMS Framework Release 5"/>
+					</property_set>
+                       </property_set>
+        </update_node>
+	
+	 <update_node name="Modify" description="Adventnet name change" >
+                  <property_set name="configuration">
+                                <property name="parent" value="true" />
+                                        <property_set name="oldNode" >
+						<property name="SupportURL" value="http://www.adventnet.com/products/webnms/support.html"/>
+					</property_set>
+                                        <property_set name="newNode" >
+						<property name="SupportURL" value="http://www.webnms.com/webnms/support.html"/>
+                                        </property_set>
+                       </property_set>
+        </update_node>
+	
+</configuration_file>	
+
+<process_unit
+    name="Localization"
+    path="conf"
+    classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater"
+    description="html/confchanges/LocalizationProcess_change.html"
+    required="true"
+    priority="0">
+    <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+        <COPY source="ancillary/cn/html/EnglishToNative_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties" merge="true" accept="properties"/>
+    </COPY_FILES>
+
+    <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+        <COPY source="ancillary/jp/html/EnglishToNative_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties" merge="true" accept="properties"/>
+    </COPY_FILES>
+    <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+        <COPY source="ancillary/en/html/EnglishToNative.properties" dest="html/EnglishToNative.properties" merge="true" accept="properties"/>
+    </COPY_FILES>
+
+</process_unit>
+
+	<process_unit
+        name="InvokeNewCompileJSP"
+        classname="com.adventnet.nms.tools.confchanges.InvokeCompileJSP"
+        description="html/confchanges/InvokeNewCompileJSPProcess_change.html"
+        required="true"
+        priority="1">
+</process_unit>
+
+<process_unit
+        name="Unwanted File Removal"
+        classname="com.adventnet.nms.tools.confchanges.FileConfUtil"
+        description="Removal of unwanted files from installation"
+        required="true"
+        priority="0" >
+        <FILES_TO_DELETE>
+		<DELETE fileName="conf/backup/BaseVersion/bin/UpdateManager.sh"/>
+		<DELETE fileName="conf/backup/BaseVersion/bin/UpdateManager.bat"/>
+		<DELETE fileName="examples/jboss/WebNMSService.java"/>
+                <DELETE fileName="examples/jboss/WebNMSServiceMBean.java"/>
+        </FILES_TO_DELETE>
+</process_unit>
+
+</configuration_changes>
+<!-- $Id: ConfFileChanges.xml,v 1.1.2.85 2010/03/02 08:57:42 johnpaul Exp $ -->

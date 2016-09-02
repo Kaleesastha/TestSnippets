@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PACKAGER ProductContext="BE" ServicePackVersion="SP-0" WebNMSVersion="5.2" applicationName="eBon" outputDir="./projects" projectName="eBon" selective="true" srvrJarInClientClasspath="false" version="1.0">
+<README name="./projects/eBon/README.html" targetDir="NetMonitor/build"/>
+<ADDITIONAL_RESOURCES>
+<DIR name="./projects/eBon/resources/classes" recurse="true" targetDir="./classes"/>
+<DIR name="./projects/eBon/resources/conf" recurse="true" targetDir="./conf"/>
+<DIR name="./projects/eBon/resources/images" recurse="true" targetDir="./images"/>
+<DIR name="./projects/eBon/resources/mibs" recurse="true" targetDir="./mibs"/>
+<DIR name="./projects/eBon/resources/NetMonitor" recurse="true" targetDir="./NetMonitor"/>
+<DIR name="./projects/eBon/resources/provisioningtemplates" recurse="true" targetDir="./provisioningtemplates"/>
+</ADDITIONAL_RESOURCES>
+<PACKAGED_JARS>
+<FILE name="./projects/eBon/eBon_Server.jar" targetDir="./NetMonitor/build" type="server"/>
+</PACKAGED_JARS>
+<NAR DISPLAYNAME="eBonChassis" INSTALLXML="eBonChassis_Installer.xml" NAME="eBonChassis.nar" PATH="NetMonitor/build"/>
+<NAR DISPLAYNAME="eBonConfigScreen" INSTALLXML="eBonConfigScreen_Installer.xml" NAME="eBonConfigScreen.nar" PATH="NetMonitor/build"/>
+</PACKAGER>

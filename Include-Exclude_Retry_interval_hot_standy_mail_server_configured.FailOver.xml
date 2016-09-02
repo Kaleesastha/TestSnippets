@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE FAILOVER SYSTEM "FailOver.dtd">
+<FAILOVER>
+	<PRIMARY HEART_BEAT_INTERVAL="60" />
+	<STANDBY FAIL_OVER_INTERVAL="60" RETRY_COUNT="1">
+	<!--RETRY_INTERVAL="5"-->
+		<BACKUP ENABLED="TRUE" BACKUP_INTERVAL="600" >
+			<INCLUDE>
+				<DIR name="/myDir1"/>
+				<FILE name="/myDir1/myDir2/myFile21.txt"/> <!--When you need to INCLUDE the entire directory do not configure this tag-->
+			</INCLUDE>
+			<EXCLUDE>
+				<DIR name="/myDir1/myDir2"/>
+				<FILE name="/myDir1/myDir2/myFile21.txt"/> <!--When you need to EXCLUDE the entire directory do not configure this tag-->
+			</EXCLUDE>
+		</BACKUP>
+		<SEND_EMAIL
+		SMTP_SERVER="mail-server1"
+		TO_ADDRESS="srikanth@india.adventnet.com"
+		FROM_ADDRESS="webnms-admin@india.adventnet.com"
+		SUBJECT="Web NMS Primary Server Failed"
+		BODY="The Web NMS Back End Server is failed and taken over by the Hot Stand By Server"/>
+	</STANDBY>
+	<SERVER_PARAMS>
+		<PARAM NAME="HOTSTANDBY_MONITOR" VALUE="com.adventnet.nms.example.FailOverTransmitter"/>
+		<PARAM NAME="MONITOR_PORT" VALUE="2014"/>
+	</SERVER_PARAMS> 
+</FAILOVER>

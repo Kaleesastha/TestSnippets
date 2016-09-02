@@ -1,0 +1,18 @@
+#******************************************************
+
+-W locale.lang=English
+
+-W OEMProducts.selectedValue=OEMADV
+
+-W OEMAdvance.selectedValue=OEMADVBE
+
+-W StdCustom.optComponents=None
+
+-G replaceExistingResponse="yesToAll"
+
+#*******************************************************
+# OEMSTD for standard installation
+# OEMADV for advanced installation
+# OEMADVClient for Standalone Client installation
+#Javadocs,Tutorials - For installing both Javadocs and Tutorials
+#The variable OEMAdvance.selectedValue  will have no effect if OEMProducts.selectedValue  is set to OEMSTD.

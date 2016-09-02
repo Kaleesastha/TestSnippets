@@ -1,0 +1,1956 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration_changes home_directory="." >
+
+<process_unit   
+		name  = "NewConfigurationFiles.xml"
+        classname   = "com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+		description = "html/confchanges/NewConfigurationFilesProcess_change.html"
+                path="dms/conf/"
+		required    = "true"
+		priority    = "1">
+</process_unit>
+
+<configuration_file 
+                 name="ConfigFileChecker" 
+                 path="bin" 
+                 classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" 
+                 description="html/confchanges/setEnv_change.html" required="true" priority="1">
+ <update_node name="Modify_entry" description="New Variable is added">
+        <property_set name="append" os="WIN">
+              <property_set name="entry">
+                   <property name="set CLASSPATH=" value="%NMS_CLASSES%\RMECommon.jar" use="os"/>
+              </property_set>
+        </property_set>
+        <property_set name="append" os="LINUX">
+              <property_set name="entry">
+                   <property name="CLASSPATH=" value="$NMS_CLASSES/RMECommon.jar"  use="os"/>
+              </property_set>
+        </property_set> 
+ </update_node>
+</configuration_file>
+
+<process_unit name="SetLocale" path=""
+classname="com.adventnet.nms.tools.confchanges.SetLanguageAndCountry"
+description="html/confchanges/SetLocaleProcess_change.html"
+required="true" priority="1">
+</process_unit>
+
+<configuration_file name="DatabaseAliases.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Aliases for columns that are part of new tables added." required="true" priority="0">
+<update_node name="Update" description="Add new fields alias">
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="osName OSNAME" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table TopoObject" value="" />
+<property name="domainName DOMAINNAME" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="lastUpdateTime  LASTUPDATETIME" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="uniqueID UNIQUEID" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="dnsName DNSNAME" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="ipAddress IPADDRESS" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="timeDiff TIMEDIFF" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="timeZone TIMEZONE" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="readInterval  READINTERVAL" value="" />
+</property_set>
+
+<property_set name="Add_line" >
+<property name="#In Table RegionalServerInfo" value="" />
+<property name="writeInterval  WRITEINTERVAL" value="" />
+</property_set>
+ </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "logging_parameters.conf"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+        <update_node name="Add" description="add help  for updating a new node " >
+                <property_set name="LOGGING_PARAMETERS_CONF" >
+                        <property name="parent" value="true" />
+                        <property_set name="Node" >
+                                  <LOG_USER MaxLines="10000" UseTimeStamp="true" LogsDirectory="logs" FileCount="10" FileName="distout.txt" MaxLinesCached="0">
+                                      <KEY Logging="true" Name="DISTOUT" DisplayName="DISTOUT" LogLevel="3"/>
+                                  </LOG_USER>
+                                  <LOG_USER MaxLines="10000" UseTimeStamp="true" LogsDirectory="logs" FileCount="10" FileName="disterr.txt" MaxLinesCached="0">
+                                      <KEY Logging="true" Name="DISTERR" DisplayName="DISTERR" LogLevel="3"/>
+                                  </LOG_USER>
+                        </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file name="threads.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Threads add in threads.conf" required="true" priority="0">
+        <update_node name="Update" description="Add threds for data collection">
+            <property_set name="Add_line" >
+                <property name="Communication 1" value="" />
+            </property_set>
+        </update_node>
+		
+	<update_node name="Update" description="changes thread count for statuspoll">
+	  <property_set name="Modify_entry">
+             <property name="oldEntry" value="statuspoll 3"/>
+             <property name="newEntry" value="statuspoll 10"/>
+      </property_set>
+    </update_node>
+
+    <update_node
+        name="Modify_value"
+        description="Entries to reduce the number of Provisioning and Config scheduler threads.">
+        <property_set name="Modify_value">
+            <property name="keyName" value="provisioning" oldValue="4" newValue="1"/>
+            <property name="keyName" value="config" oldValue="3" newValue="1"/>
+        </property_set>
+    </update_node>
+    <update_node
+        name="Add_line"
+        description="Entry to add a new scheduler entry for Policy.">
+        <property_set name="Add_line">
+            <property name="policy 1"/>
+        </property_set>
+    </update_node>
+
+</configuration_file>
+
+<configuration_file name="relationalclasses.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.RelationalClassesChanges" description="description" required="true" priority="1">
+                <update_node name="Add_line" description="Add relatinalclasses entry which are used in Extranet Feature Pack">
+                <property_set name="Add_line" >
+                        <property name="com.adventnet.nms.extranet.remote.services.common.model.RegionalServerInfo topodb RelationalRegionalServerInfo RegionalServerInfo" value="" />
+                </property_set>
+                </update_node>
+</configuration_file>
+
+<configuration_file       
+                   name          =  "event.filters"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="EVENT_FILTERS" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					  <FILTER name="EventForwarder">
+					      <FILTER_ACTION userclass="com.adventnet.nms.extranet.remote.communication.di.probe.RegionalEventFilter" name="RegionalEventForwarder" className="com.adventnet.nms.eventdb.UserFilter"/> 
+					 </FILTER> 
+				  </property_set>
+		      </property_set>
+		</update_node>
+</configuration_file>	
+
+<configuration_file       
+                   name          =  "alert.filters"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+		    <property_set name="ALERT_FILTERS" >
+			<property name="parent" value="true" />
+			<property_set name="Node" >
+				<FILTER name="AlertForwarder"> 
+				    <FILTER_ACTION userclass="com.adventnet.nms.extranet.remote.communication.di.probe.RegionalAlertFilter" name="RegionalAlertForwarder" className="com.adventnet.nms.eventdb.UserFilter"/> 
+				</FILTER>
+			</property_set>
+ 	     	    </property_set>
+		</update_node>
+                       
+</configuration_file>
+
+<configuration_file       
+                   name          =  "discovery.filters"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+   		<update_node name="insert" description="add help  for updating a new node " >
+		    <property_set name="DISCOVERY_FILTERS" >
+			<property name="parent" value="true" />
+			<property_set name="previousNode" >
+		                     <FILTER className="test.SwitchDiscoveryFilter"/>
+			</property_set>
+		        <property_set name="currentNode" >
+                		    <FILTER className="com.adventnet.nms.extranet.remote.customerseg.server.probe.WebNMSFieldFilter"/>
+		        </property_set>
+		    </property_set>
+		</update_node>
+</configuration_file>
+
+<configuration_file name="NmsProcessesBE.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges" description="html/confchanges/NmsProcessesBE_change.html" required="true" priority="1">
+
+                <update_node name="com.adventnet.nms.extranet.remote.operations.server.probe.RemoteProbe" description="New process for Probe Initialization">
+                        <property_set name="Add_Process">
+                                <property_set name="COMMENT">
+                                        <property name="ADDITIONAL_COMMENT" value="java com.adventnet.nms.extranet.remote.operations.server.probe.RemoteProbe [ENABLE_ALERTFILTER true/false] [ENABLE_SNMPHANDLER true/false] [SEND_EVENTs_IMMEDIATE true/false] [STATUSUPDATETIME time interval]"/>
+                                </property_set>
+                                <property_set name="PROCESS">
+                                        <property name="PROCESS_NAME" value="com.adventnet.nms.extranet.remote.operations.server.probe.RemoteProbe "/>
+                                </property_set>
+                                <property_set name="ARGS">
+                                        <property name="ENABLE_ALERTFILTER" value="true"/>
+					<property name="ENABLE_SNMPHANDLER" value="true"/>
+					<property name="SEND_EVENTS_IMMEDIATE" value="false"/>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+		 <update_node name="com.adventnet.nms.tester.ProcessTest" description="Remove ProcessTest">
+                        <property_set name="Remove_Process">
+		        </property_set>
+                </update_node>
+
+		 <update_node name="com.adventnet.nms.topodb.tl1.TL1CustomViewsMgr" description="Remove TL1 custom view mgr">
+                        <property_set name="Remove_Process">
+		        </property_set>
+                </update_node>
+
+		<update_node name="com.adventnet.nms.telnet.telnetwindow.CLIFactoryBinder" description="Remove CLIFactoryBinder process">
+                        <property_set name="Remove_Process">
+                        </property_set>
+                </update_node>
+
+		<update_node name="com.adventnet.nms.jmxagent.WebNMSAgentApp" description="Remove WebNmsAgent Process">
+                        <property_set name="Remove_Process">
+                        </property_set>
+                </update_node>
+
+		 <update_node name="com.adventnet.nms.poll.Collector" description="Adding Variable">
+             <property_set name="Modify_Process">
+                 <property_set name="AddVariable">
+                       <property_set name="COMMENT"/>
+                       <property_set name="ARGS">
+                       <property name="PASS_THRO_ALL_POLLING_OBJECTS" value="true"/>
+                  </property_set>
+              </property_set>
+            </property_set>
+         </update_node>
+		 <update_node name="com.adventnet.nms.config.NmsConfigurationServer" description="modify AUDIT_LEVEL">
+		 	<property_set name="Modify_Process">
+				 <property_set name="Modify_entry">
+					 <property name="oldEntry" value="AUDIT_LEVEL 2"/>
+					 <property name="newEntry" value="AUDIT_LEVEL 0"/>
+				 </property_set>
+			 </property_set>
+		 </update_node>
+         <update_node name="com.adventnet.nms.util.RunApacheExeModule" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.util.RunJSPModule" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.mapdb.MapServerBE" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.management.policydb.NmsPolicyMgr" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.management.authorization.AuthMgr" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.provisioning.server.StartProvModule" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.util.NmsSUM" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.topodb.corba.CORBADiscProcess" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+        <update_node name="com.adventnet.nms.startnms.NmsMainFE" description="Remove PROCESS">
+                <property_set name="Remove_Process">
+                </property_set>
+        </update_node>
+		<update_node name="com.adventnet.nms.mapdb.MapServerBE" description="process MapServerBE was added to support maps in the client">
+			<property_set name="Add_Process">
+				<property_set name="COMMENT">
+					<property   name="ADDITIONAL_COMMENT" value="&quot;java com.adventnet.nms.mapdb.MapServerBE [MAP_OBJECTS_IN_MEMORY num] [MAP_JDBC true/false]&quot; [MAP_URL  url]"/>
+				</property_set>
+				<property_set name="PROCESS">
+					<property name="PROCESS_NAME" value="com.adventnet.nms.mapdb.MapServerBE"/>
+				</property_set>
+				<property_set name="ARGS">
+					<property name="MAP_OBJECTS_IN_MEMORY" value="50"/>
+					<property name="MAP_JDBC" value="true"/>
+					<property name="MAP_URL" value="/map/MapView.do"/>
+				</property_set>
+			</property_set>
+		</update_node>
+		<update_node name="com.adventnet.nms.startnms.NmsMainFE" description="process NmsMainFE was added">
+			<property_set name="Add_Process">
+				<property_set name="COMMENT">
+					<property name="ADDITIONAL_COMMENT" value="java com.adventnet.nms.startnms.NmsMainFE [NMS_FE_PORT WebNMSSocketPort] [USE_QUOTES_IN_DATABASE_TABLES true/false] [CLIENT_SERVER TCP/RMI/CORBA] [BE_FE TCP/RMI/CORBA] [BE_HOST back_end_host_name] [BE_PORT back_end_port_num] [COUNTRY country_code] [LANGUAGE language_code] [ROOT_DIR dir] [ KEEPALIVE_WINDOW_SIZE milliseconds]"/>
+				</property_set>
+				<property_set name="PROCESS">
+					<property name="PROCESS_NAME" value="com.adventnet.nms.startnms.NmsMainFE"/>
+				</property_set>
+				<property_set name="ARGS">
+					<property name="CLIENT_SERVER" value="TCP"/>
+				</property_set>
+			</property_set>
+		</update_node>
+</configuration_file>
+
+<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="1">
+           <update_node name="Modify_entry" description="New Variable is added">
+                <property_set name="Add_line" os="WIN">
+                        <property name="set RME_SERVER_CLASSPATH=%NMS_CLASSES%\RMECommon.jar;%NMS_CLASSES%\CommonUtils.jar" value=""  />
+		</property_set>
+                <property_set name="Add_line" os="LINUX">
+			<property name="RME_SERVER_CLASSPATH=$NMS_CLASSES/RMECommon.jar:$NMS_CLASSES/CommonUtils.jar" value="" />
+		</property_set>
+
+	   </update_node>
+	   <update_node name="Update_line" description="Remove apache related entries">
+	   	  <property_set name="Remove_line">
+			<property name="set WEBSERVER_HOME=%NMS_HOME%\apache" value="" />
+		    <property name="set TOMCAT_HOME=%WEBSERVER_HOME%\tomcat" value="" />
+		    <property name="set WEBSERVER_CLASSPATH=%TOMCAT_HOME%\common\lib\servlet.jar;%TOMCAT_HOME%\bin\bootstrap.jar;%TOMCAT_HOME%\lib\jasper-compiler.jar;%TOMCAT_HOME%\lib\jasper-runtime.jar" value="" />
+		    <property name="set WEBSERVER_JARS=%WEBSERVER_CLASSPATH%;%XML_CLASSPATH%" value=""  />
+	        <property name="set WEBSERVER_PORT=9090" value="" />
+	        <property name="set TOMCAT_SHUTDOWNPORT=8005" value="" />
+		   <property name="set WEBCONTAINER_PORT=8009" value="" />
+	 	   <property name="set CODEBASE_LIST=&quot;http://localhost:%WEBSERVER_PORT%/classes/ http://localhost:%WEBSERVER_PORT%/classes/ManagementServer.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetTftp.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetCLI.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetJmx.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetSnmp.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetSAS.jar http://localhost:%WEBSERVER_PORT%/classes/jta.jar&quot;" value="" />
+		   <property name="WEBSERVER_HOME=$NMS_HOME/apache" value="" />
+		   <property name="TOMCAT_HOME=$WEBSERVER_HOME/tomcat" value="" />
+		   <property name="WEBSERVER_CLASSPATH=$TOMCAT_HOME/common/lib/servlet.jar:$TOMCAT_HOME/bin/bootstrap.jar:$TOMCAT_HOME/lib/jasper-compiler.jar:$TOMCAT_HOME/lib/jasper-runtime.jar" value="" />
+		   <property name="WEBSERVER_JARS=$WEBSERVER_CLASSPATH:$XML_CLASSPATH" value="" />
+		   <property name="WEBSERVER_PORT=9090" value="" />
+		   <property name="TOMCAT_SHUTDOWNPORT=8005" value="" />
+		   <property name="WEBCONTAINER_PORT=8009" value="" />
+		   <property name="set MIGRATION_CLASSPATH=%NMS_CLASSES%\migration.jar;%NMS_CLASSES%\MigrationUtil.jar" value="" />
+		   <property name="MIGRATION_CLASSPATH=${NMS_CLASSES}/migration.jar:${NMS_CLASSES}/MigrationUtil.jar" value="" />
+		   <property name="set BUILDER_CLASSES=%NMS_CLASSES%\AdventNetBeanBuilder.jar" value="" />
+		   <property name="BUILDER_CLASSES=$NMS_CLASSES/AdventNetBeanBuilder.jar" value="" />
+	     </property_set>
+	     <property_set name="Modify_entry">
+		   <property name="oldEntry" value=":$WEBSERVER_HOME/lib"/>
+		   <property name="newEntry" value=""/>
+	     </property_set>
+	   </update_node>
+		<update_node  name="Add_line"  description="">
+			<property_set name="Add_line" os="LINUX">
+				<property name="WEBSERVER_HOME=$NMS_HOME/apache" value="" after="MYSQL_HOME"/> 
+				<property name="TOMCAT_SHUTDOWNPORT=7005" value="" after="DB_CLASSPATH"/> 
+				<property name="WEBCONTAINER_PORT=7009" value="" after="DB_CLASSPATH"/> 
+				<property name="WEBSERVER_PORT=7070" value="" after="DB_CLASSPATH"/> 
+				<property name="TOMCAT_HOME=$WEBSERVER_HOME/tomcat" value="" after="DB_CLASSPATH"/>
+			</property_set> 
+			<property_set name="Add_line" os="WIN">
+				<property name="set WEBSERVER_HOME=%NMS_HOME%\apache" value="" after="set MYSQL_HOME"/> 
+				<property name="set TOMCAT_HOME=%WEBSERVER_HOME%\tomcat" value="" after="set DB_CLASSPATH"/>
+				<property name="set WEBSERVER_PORT=7070" value="" after="set DB_CLASSPATH"/> 
+				<property name="set WEBCONTAINER_PORT=7009" value="" after="set DB_CLASSPATH"/> 
+				<property name="set TOMCAT_SHUTDOWNPORT=7005" value="" after="set DB_CLASSPATH"/> 
+			</property_set> 
+		</update_node>
+		<update_node name="Modify_entry" description="">
+			<property_set name="Modify_entry" >
+				<property name="oldEntry" value="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NMS_HOME/lib"/> 
+				<property name="newEntry" value="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NMS_HOME/lib:$WEBSERVER_HOME/lib"/>
+			</property_set>
+                </update_node>
+</configuration_file>
+
+<configuration_file name="java_service.ini" path="lib" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="html/confchanges/serverparameters_change.html" required="true" priority="1">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value=".\\classes\\bsh-1.2b3.jar"/>
+                  <property name="newEntry" value=".\\classes\\bsh-1.2b3.jar;.\\classes\\RMECommon.jar"/>
+              </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "seed.file"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "changes to disable discovery"
+                   required      = "true"
+                   priority      = "1" >
+
+        <update_node name="Modify" description="modifications to disable discovery " >
+                <property_set name="SEED" >
+                        <property_set name="DISCOVERY" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                        <property name="DISCOVER" value="false"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+	<update_node name="Add" description="modifications to disable discovery " >
+                <property_set name="SEED" >
+                        <property_set name="DISCOVERY" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                        <property name="APPEND_DOMAIN_NAME" value="true"/>                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file
+                    name          =  "SmartUpdateManager.xml"
+                    path           =  "conf"
+                    classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                    description  = "Change in conf/SmartUpdateManager.xml"
+                    required      = "true"
+                    priority       = "1" >
+                       <update_node name="Add" description="add help  for updating a new node " >
+                            <property_set name="SmartUpdateManager" >
+                               <property_set name="UpdateManagerClient" >
+                               <property name="parent" value="true" />
+                               <property_set name="Node" >
+                               <Properties Name="AutoUpdate" Value="true"/>
+                              </property_set>
+                              </property_set>
+                              </property_set>
+
+                       </update_node>
+                       <update_node name="remove" description="add help  for updating a new node " >
+                               <property_set name="SmartUpdateManager" >
+                               <property_set name="UpdateManagerClient" >
+                               <property_set name="Transport" >
+                               <property name="parent" value="true" />
+                               <property_set name="Node" >
+                                       <Class>com.adventnet.tools.sum.transport.SUMTcpClientImpl</Class>
+                                       <Properties Name="PortFilePath" Value="html/SUMPort.html"/>
+                               </property_set>
+                              </property_set>
+                              </property_set>
+                              </property_set>
+                       </update_node>
+                       <update_node name="Add" description="add help  for updating a new
+node " >
+                               <property_set name="SmartUpdateManager" >
+                               <property_set name="UpdateManagerClient" >
+                               <property_set name="Transport" >
+                               <property name="parent" value="true" />
+                               <property_set name="Node" >
+                                       <Class>com.adventnet.tools.sum.transport.SUMHttpClientImpl</Class>
+                                       <Properties Name="context" Value="/servlets"/>
+                                       <Properties Name="PortFilePath" Value="html/SUMPort.html"/>
+                              </property_set>
+                              </property_set>
+                              </property_set>
+                              </property_set>
+                       </update_node>
+</configuration_file>
+
+
+<configuration_file name="DatabaseSchema.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.SchemaChanges" description="DATABASE_SCHEMA" schemapath="dms/conf" schemafile="SchemaChanges.xml" required="true" priority="1"/>
+
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="html/confchanges/LocalizationProcess_change.html" required="true" priority="1">
+
+<!--Locale and language will be unknown during this conf change, hence all language files have to be given under en-->
+<COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+<COPY source="ancillary/en/html/AFWServer.properties" dest="html/EnglishToNative.properties" merge="true" accept="properties"/>
+<COPY source="ancillary/en/html/AFWReinitialize.properties" dest="html/ReinitializeNmsResources.properties" merge="true" accept="properties"/>
+</COPY_FILES>
+
+<COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+<COPY source="ancillary/cn/html/AFWServer_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties" merge="true" accept="properties"/>
+<COPY source="ancillary/cn/html/AFWReinitialize_zh_CN.properties" dest="html/ReinitializeNmsResources.properties" merge="true" accept="properties"/>
+<COPY source="ancillary/cn/html/AFWReinitialize_zh_CN.properties" dest="html/ReinitializeNmsResources_zh_CN.properties" merge="true" accept="properties"/>
+</COPY_FILES>
+
+<COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+<COPY source="ancillary/jp/html/AFWServer_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties" merge="true" accept="properties"/>
+<COPY source="ancillary/jp/html/AFWReinitialize_ja_JP.properties" dest="html/ReinitializeNmsResources.properties" merge="true" accept="properties"/>
+<COPY source="ancillary/jp/html/AFWReinitialize_ja_JP.properties" dest="html/ReinitializeNmsResources_ja_JP.properties" merge="true" accept="properties"/>
+</COPY_FILES>
+
+
+</process_unit>
+
+<configuration_file
+                   name          =  "Polling.conf"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "changes to disable polling"
+                   required      = "true"
+                   priority      = "1" >
+
+        <update_node name="Remove" description="Remove all polling objects" >
+                <property_set name="POLLING_CONF" >
+			<property name="parent" value="true" />
+                        <property_set name="Node" >
+				<POLLING_OBJECT name="Win_95" />                                        
+				<POLLING_OBJECT name=".1.3.6.1.4.1.43.1.8.13" />
+				<POLLING_OBJECT name="snmpnode" />
+	                </property_set>
+              </property_set>
+        </update_node>
+    
+
+     <update_node name="Remove" description="Remove all polling objects" >
+                <property_set name="POLLING_CONF" >
+			<property_set name="PROVIDER" >
+			<property name="parent" value="true" />
+                        <property_set name="Node" >
+				<PROTOCOL SNMP="com.adventnet.nms.poll.SnmpProtocolProvider"/>
+				<PROTOCOL TL1="com.adventnet.nms.poll.tl1.TL1DataCollectorAsync"/>
+				<PROTOCOL CORBA="com.adventnet.nms.poll.corba.CorbaPollProvider"/>
+			</property_set>
+			</property_set>
+              </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "reports.conf"
+                   path          =  "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "changes to disable reporting"
+                   required      = "true"
+                   priority      = "1" >
+
+        <update_node name="Remove" description="Remove all report configurations" >
+                <property_set name="REPORTS_CONF" >
+			<property name="parent" value="true" />
+                        <property_set name="Node" >
+				  <REPORT className="test.InterfacesReport" DAILY="true" />
+			</property_set>
+              </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file name="UpdateManagerResources_en_US.properties" path="html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties" >
+       <property_set name="Add">
+<property name="The SmartUpdate option in server may be disabled in server side" value="The Central Server may be down"  />
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="database_params.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="WebNmsDB"/>
+                  <property name="newEntry" value="DMSDB"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file name="database_params.conf" path="conf/MySQL" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="WebNmsDB"/>
+                  <property name="newEntry" value="DMSDB"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file name="database_params.conf" path="conf/Oracle" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+	<update_node name="Update" description="Add threds for data collection">
+            <property_set name="Remove_line" >
+                <property name="# Number of transactional connections. (This number has to be zero for transaction disable mode)." value="" />
+			<property name="TRANS_CONNECTIONS 3" value="" />
+			<property name="# Number of non-transactional connections. " value="" />
+			<property name="NON_TRANS_CONNECTIONS 3  " value="" />
+            </property_set>
+        </update_node>
+		<update_node name="Update" description="Add threds for data collection">
+            <property_set name="Add_line" >
+                <property name="# Number of transactional connections. (This number has to be zero for transaction disable mode)." value="" />
+			<property name="TRANS_CONNECTIONS 0" value="" />
+			<property name="# Number of non-transactional connections. " value="" />
+			<property name="NON_TRANS_CONNECTIONS 10  " value="" />
+            </property_set>
+        </update_node>          
+</configuration_file>
+
+<configuration_file name="serverparameters.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="html/confchanges/serverparameters_change.html" required="true" priority="0">
+       <update_node name="Modify_entry" description="Classpath settings modified to include the IDL changes">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="2000"/>
+                  <property name="newEntry" value="2004"/>
+              </property_set>
+          </update_node>
+       <update_node name="Modify_entry" description="Classpath settings modified to include the IDL changes">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="#RMI_REG_PORT"/>
+                  <property name="newEntry" value="RMI_REG_PORT"/>
+              </property_set>
+          </update_node>
+       <update_node name="Modify_entry" description="Classpath settings modified to include the IDL changes">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="1099"/>
+                  <property name="newEntry" value="1100"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file 
+			name="ShutDown" 
+			path="bin" 
+			classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" 
+			description="description" 
+			required="true" 
+			priority="1">
+		<update_node name="Update_line" description="Remove apache related entries">
+			<property_set name="Modify_entry"> 
+				<property name="oldEntry" value="1099"/> 
+				<property name="newEntry" value="1100"/> 
+			</property_set> 
+			<property_set name="Modify_entry"> 
+				<property name="oldEntry" value="2000"/> 
+				<property name="newEntry" value="2004"/> 
+			</property_set> 
+			<property_set name="Modify_entry"> 
+				<property name="oldEntry" value="9090"/> 
+				<property name="newEntry" value="7070"/> 
+			</property_set> 
+		</update_node>
+</configuration_file>
+
+
+<configuration_file name="EnglishToNative.properties" path="html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties" >
+       <property_set name="Add">
+		<property name="Give Command line arguments as  MODE ALL" value=""/>
+		<property name="Invalid Usage" value=""/>
+		<property name="Successfully reinitialized" value=""/>
+		<property name="Problem in reinitializing.Please refer logs directory for more details" value=""/>
+		<property name="Exception while copying file" value=""/>
+		<property name=" as " value=""/>
+		<property name="Problem while deleting" value=""/>
+		<property name="Problem while dropping the tables" value=""/>
+		<property name=" file doesnot exists" value=""/>
+		<property name="Error: Could not instantiate X - Windows" value=""/>
+		<property name="To avoid this use command line arguments to run" value=""/>
+		<property name="Command line arguments: MODE All" value=""/>
+		<property name="Application needs certain other parameters" value=""/>
+                <property name="WARNING: WebServer and WebContainer services are not started with Web NMS. Might face problems when connecting client" value="  "/>
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="UpdateManagerResources_zh_CN.properties" path="ancillary/cn/html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+       <property_set name="Add">
+<property name="The SmartUpdate option in server may be disabled in server side" value="中央服务器可能已关闭"/>
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="EnglishToNative_zh_CN.properties" path="ancillary/cn/html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+       <property_set name="Add">
+		<property name="Give Command line arguments as  MODE ALL" value="给出命令行参数: MODE All"/>
+		<property name="Invalid Usage" value="无效的用法"/>
+		<property name="Successfully reinitialized" value="重新初始化完毕。"/>
+		<property name="Problem in reinitializing.Please refer logs directory for more details" value="重新初始化时出错，详情请参照日志文件"/>
+		<property name="Exception while copying file" value="Exception while copying file"/>
+		<property name="Problem while deleting" value="删除时出错"/>
+		<property name="Problem while dropping the tables" value="删除数据库表时出错"/>
+		<property name=" file doesnot exists" value="文件不存在"/>
+		<property name="Error: Could not instantiate X - Windows" value="错误: 不能初始化X - Windows"/>
+		<property name="To avoid this use command line arguments to run" value="屏蔽该命令行请执行:"/>
+		<property name="Command line arguments: MODE All" value="命令行参数: MODE All"/>
+		<property name="Application needs certain other parameters" value="应用需要其它参数"/>
+                <property name="WARNING: WebServer and WebContainer services are not started with Web NMS. Might face problems when connecting client" value="  "/>
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="UpdateManagerResources_ja_JP.properties" path="ancillary/jp/html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+       <property_set name="Add">
+<property name="The SmartUpdate option in server may be disabled in server side" value="セントラルサーバが停止しています。"/>
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="EnglishToNative_ja_JP.properties" path="ancillary/jp/html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+       <property_set name="Add">
+		<property name="Give Command line arguments as  MODE ALL" value="MODE ALLとしてコマンドライン引数を設定して下さい。"/>
+		<property name="Successfully reinitialized" value="初期化されました。"/>
+		<property name="Exception while copying file" value=""/>
+		<property name="Problem while deleting" value=""/>
+		<property name=" file doesnot exists" value=""/>
+                <property name="WARNING: WebServer and WebContainer services are not started with Web NMS. Might face problems when connecting client" value="  "/>
+       </property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file
+	name          = "ClasspathUpdatingFiles.xml"
+	path          = "classes/com/adventnet/studio/framework/installer"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "description"
+	required      = "true"
+	priority      = "1" >
+
+	<update_node 
+		name="Add" 
+		description="Adding script/batch file startdms, updated when nar studio nar was installed">
+		<property_set name="SERVER">
+			<property name="parent" value="true"/>
+			<property_set name="Node">
+				<FILE SOURCE="bin/startdms.sh" TYPE="server"/>
+				<FILE SOURCE="bin/startdms.bat" TYPE="server"/>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "uninstall.xml"
+	path          =  "NetMonitor/build"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "description"
+	required      = "true"
+	priority      = "1" >
+
+	<update_node 
+		name="remove" 
+		description="Since Client not present, these entries can be removed">
+		<property_set name="UNINSTALL">
+			<property name="parent" value="true" />
+			<property_set name="Node">
+				<INSTALLED-NARS NAME="RuntimeConfigFrame" TYPE="CLIENT-APPLICATION"/>
+				<INSTALLED-NARS NAME="AuthMain" TYPE="CLIENT-APPLICATION"/>
+				<INSTALLED-NARS NAME="ConfigPanel" TYPE="CLIENT-APPLICATION"/>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+<!--
+<process_unit name="Deleting" path="conf" classname="com.adventnet.nms.tools.confchanges.FileUtil" description="Deleting help  directory" required="true" priority="1">
+        <FILES_TO_DELETE>
+                <DELETE  fileName="help" update="true"/>
+        </FILES_TO_DELETE>
+</process_unit>
+-->
+
+
+<configuration_file
+        name="ConfUpdnListeners.xml"
+        path="conf"
+        classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+        description="node added for new conf updation listener"
+        required="true"
+        priority="1">
+<update_node name="add" description="node addition" >
+<property_set name="CONF_UPDATION_LISTENERS">
+<property name="parent" value="true"/>
+<property_set name="node">
+<LISTENER key="HTML_TOPO" className="com.adventnet.nms.extranet.remote.rta.server.probe.TopoConfUpdateListener"/>
+</property_set>
+</property_set>
+</update_node>
+</configuration_file>
+
+	<configuration_file
+		name          =  "Tree.xml"
+		path          =  "users/$users_specific"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLTreeConfChangesUtil"
+		description   = "Alarms and Network Administration nodes were removed for read only web client" 
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="remove" description="Alarms node will be removed as there are no alarms in DMS">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="Fault"/>
+						<property name="parent" value="true"/>
+						<property_set name="Node">
+							<LEVEL-1 ICON-FILE="images/alarm.png" TARGET="center" MODULE-NAME="Alerts" MENU-FILE-NAME="alertsmenu.xml" TABLE-COLUMNS="Status=severity=55;Failure Object=entity=135;Alarm Group=groupName=150;Owner=who=60;Date/Time=modTime=155;Alarm Message=message=275;" ID="Alerts" TABLE-POPUP-MENU="View" TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml" URL="/fault/AlarmView.do" PANEL-KEY="AlertApplet" Client="All" TREE-NAME="Alarms"/>
+						</property_set>				
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+
+		<update_node name="remove" description="Network Admin, Admin Operations and Admin Configurations were removed as these are write operations">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="admincomplete"/>
+							<property name="parent" value="true"/>
+							<property_set name="Node">
+								<LEVEL-2 OPERATION="Topology" ACTION-ON-NO-PRIVILEGE="HIDE" ID="networkadmin" NODEID="networkadmin" NODETYPE="LEVEL-2" Client="HTML" TREE-NAME="webclient.admin.networkadmin.treenode" PREVIOUS-NODE="START" TARGET="center" URL="/topo/NetworkAdminPanel.do" PARENT="admin" USERNAME="root" MODULENAME="NetworkAdmin" MODULE-NAME="Default"/>
+								<LEVEL-2 OPERATION="System Administration" ACTION-ON-NO-PRIVILEGE="HIDE" ID="adminoperation" Client="HTML" TREE-NAME="webclient.admin.systemadmin.operationtitle" URL="/admin/SysAdmin.do" MODULE-NAME="Default"/>
+								<LEVEL-2 OPERATION="Runtime Administration" ACTION-ON-NO-PRIVILEGE="HIDE" ID="runtimeadmin" Client="HTML" TREE-NAME="webclient.admin.runtime.title" URL="/admin/RuntimeAdmin.do" MODULE-NAME="Default"/>
+							</property_set>	
+						</property_set>
+					</property_set>				
+				</property_set>
+			</property_set>
+		</update_node>
+
+		<update_node name="remove" description="BE details and client details were removed as they are not necessary in the dms">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="admincomplete"/>
+							<property_set name="LEVEL-2">
+								<property name="ID" value="serverdetails"/>
+								<property name="parent" value="true"/>
+								<property_set name="Node">
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.serverdetails" ID="bedetail" URL="/admin/AdminServerStatus.do?toPerform=serverDetails"/>
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.fedetails" ID="fedetail" URL="/admin/AdminServerStatus.do?toPerform=feDetails"/>
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.clientdetails" ID="clientdetail" URL="/admin/AdminServerStatus.do?toPerform=clientDetails"/>
+								</property_set>	
+							</property_set>	
+						</property_set>
+					</property_set>				
+				</property_set>
+			</property_set>
+		</update_node>
+</configuration_file>
+
+	<configuration_file
+		name          =  "Tree.xml"
+		path          =  "html/defaultsToNewUsers"
+		classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+		description   = ""
+		required      = "true"
+		priority      = "1" >
+
+		<update_node name="remove" description="Alarms node will be removed as there are no alarms in DMS">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="Fault"/>
+						<property name="parent" value="true"/>
+						<property_set name="Node">
+							<LEVEL-1 ICON-FILE="images/alarm.png" TARGET="center" MODULE-NAME="Alerts" MENU-FILE-NAME="alertsmenu.xml" TABLE-COLUMNS="Status=severity=55;Failure Object=entity=135;Alarm Group=groupName=150;Owner=who=60;Date/Time=modTime=155;Alarm Message=message=275;" ID="Alerts" TABLE-POPUP-MENU="View" TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml" URL="/fault/AlarmView.do" PANEL-KEY="AlertApplet" Client="All" TREE-NAME="Alarms"/>
+						</property_set>				
+					</property_set>
+				</property_set>
+			</property_set>
+		</update_node>
+
+		<update_node name="remove" description="Network Admin, Admin Operations and Admin Configurations were removed as they are write operations">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="admincomplete"/>
+							<property name="parent" value="true"/>
+							<property_set name="Node">
+								<LEVEL-2 OPERATION="Topology" ACTION-ON-NO-PRIVILEGE="HIDE" ID="networkadmin" NODEID="networkadmin" NODETYPE="LEVEL-2" Client="HTML" TREE-NAME="webclient.admin.networkadmin.treenode" PREVIOUS-NODE="START" TARGET="center" URL="/topo/NetworkAdminPanel.do" PARENT="admin" USERNAME="root" MODULENAME="NetworkAdmin" MODULE-NAME="Default"/>
+								<LEVEL-2 OPERATION="System Administration" ACTION-ON-NO-PRIVILEGE="HIDE" ID="adminoperation" Client="HTML" TREE-NAME="webclient.admin.systemadmin.operationtitle" URL="/admin/SysAdmin.do" MODULE-NAME="Default"/>
+								<LEVEL-2 OPERATION="Runtime Administration" ACTION-ON-NO-PRIVILEGE="HIDE" ID="runtimeadmin" Client="HTML" TREE-NAME="webclient.admin.runtime.title" URL="/admin/RuntimeAdmin.do" MODULE-NAME="Default"/>
+							</property_set>	
+						</property_set>
+					</property_set>				
+				</property_set>
+			</property_set>
+		</update_node>
+
+		<update_node name="remove" description="BE details and client details were removed as they  are not necessary in the dms">
+			<property_set name="DEVICE-DATA">
+				<property_set name="DEVICE-GROUP">
+					<property_set name="DEVICE">
+						<property name="ID" value="admin"/>
+						<property_set name="LEVEL-1">
+							<property name="ID" value="admincomplete"/>
+							<property_set name="LEVEL-2">
+								<property name="ID" value="serverdetails"/>
+								<property name="parent" value="true"/>
+								<property_set name="Node">
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.serverdetails" ID="bedetail" URL="/admin/AdminServerStatus.do?toPerform=serverDetails"/>
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.fedetails" ID="fedetail" URL="/admin/AdminServerStatus.do?toPerform=feDetails"/>
+									<LEVEL-3 TARGET="center" MODULE-NAME="Default" Client="HTML" TREE-NAME="webclient.admin.systemadmin.serverstatus.clientdetails" ID="clientdetail" URL="/admin/AdminServerStatus.do?toPerform=clientDetails"/>
+								</property_set>	
+							</property_set>	
+						</property_set>
+					</property_set>				
+				</property_set>
+			</property_set>
+		</update_node>
+</configuration_file>
+
+<configuration_file 
+		name="NmsProcessesFE.conf" 
+		path="conf" 
+		classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges" 
+		description="Unnecessary processes were removed" 
+		required="true" 
+		priority="1">
+		<update_node name="com.adventnet.nms.fe.telnet.telnetwindow.StartTelnetClientFE" description="">
+	   		<property_set name="Remove_Process">
+			</property_set>
+	    </update_node>
+		<update_node name="com.adventnet.nms.fe.sas.NmsSAServerFE" description="">
+	   		<property_set name="Remove_Process">
+			</property_set>
+	    </update_node>
+		<update_node name="com.adventnet.nms.util.NmsSUM" description="">
+	   		<property_set name="Remove_Process">
+			</property_set>
+	    </update_node>
+</configuration_file>	
+
+<configuration_file
+                   name          =  "gasmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file">
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete">
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+        </JAVA-UI>
+        </MENU-ITEM>
+        <MENU-ITEM name="SEPARATOR">
+        </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Alarms" action_type="openpanel" action_value="AlertApplet?FILTER_SOURCE=${name}*"/>
+       </property_set>
+       </property_set>
+       </update_node>	
+</configuration_file>
+
+<configuration_file
+                   name          =  "gatewaymenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete">
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+       </JAVA-UI>
+       </MENU-ITEM>      
+       </property_set>
+      </property_set> 
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "hubmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+       </JAVA-UI>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "interfacemenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "ipnet.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "linkmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM
+                 name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE"
+                 action_type="INVOKE_CLASS"
+                 action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       <property_set name="MENU-ITEM" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <OPERATION name="Delete Object"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "netmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="write operations were removed from the file" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+      </JAVA-UI>
+      <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+     </MENU-ITEM>
+     <MENU-ITEM name="SEPARATOR">
+     </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Stop Discovery">
+       <OPERATION name="Start And Stop Discovery"/>
+       <JAVA-UI action_type="function" action_value="Stop Discovery">    </JAVA-UI>
+       <HTML-UI action_value="/topo/startStopDiscovery.do?discover=false&amp;keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>	
+</configuration_file>
+<configuration_file
+                   name          =  "nodefaultmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Alarms" action_type="openpanel" action_value="AlertApplet?FILTER_ENTITY=${name}*"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "nodemenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=$                {isContainer}&amp;isGroup=${isGroup}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "objectmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Manage">
+       <OPERATION name="Manage And Unmanage Objects"/>
+       <JAVA-UI action_type="function" action_value="Manage">
+       </JAVA-UI>
+      <HTML-UI action_value="/topo/manageUnmanage.do?keys=${name}&amp;managed=true&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;orderByColumn=${orderByColumn}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}" action_type="rightside"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="View Alerts">
+       <HTML-UI action_value="/mainLayout.do?entity=${name}&amp;selectedNode=Alerts&amp;selectedTab=Fault&amp;displayName=Alarms&amp;action=/fault/AlarmView.do" action_type="_top"/>
+        </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "portmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+       </JAVA-UI>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "printermenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+     </JAVA-UI>
+     </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "routermenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+      
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Events And Alarms">
+       <JAVA-UI action_value="com.adventnet.nms.example.befe.ExampleFrame?NODE=${displayName}" action_type="openframe"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "snmpmenu_win.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Events And Alarms">
+       <JAVA-UI action_value="com.adventnet.nms.example.befe.ExampleFrame?NODE=${displayName}" action_type="openframe"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "snmpmenu.xml"
+                   path          =  "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Events And Alarms">
+       <JAVA-UI action_value="com.adventnet.nms.example.befe.ExampleFrame?NODE=${displayName}" action_type="openframe"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "tl1menu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces">
+       <HTML-UI action_value="/topo/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}&amp;isAscending=${isAscending}&amp;FROM_INDEX=${FROM_INDEX}&amp;PAGE_NUMBER=${PAGE_NUMBER}&amp;orderByColumn=${orderByColumn}&amp;viewLength=${viewLength}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+      </JAVA-UI>
+      </MENU-ITEM>
+      <MENU-ITEM name="SEPARATOR">
+      </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Alarms" action_type="openpanel" action_value="AlertApplet?FILTER_SOURCE=${name}*"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "wanmenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM
+        name="Delete Object and Traces"
+                ACTION-ON-NO-PRIVILEGE="HIDE"
+        action_type="INVOKE_CLASS"
+        action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+                <OPERATION name="Map Editing Operations"/>
+        </MENU-ITEM>
+	</property_set>
+        </property_set>
+        </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "failedobjectsmenu.xml"
+                   path          =  "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM
+        name="Events And Alarms">
+       <JAVA-UI
+                action_type="openframe"
+                action_value="com.adventnet.nms.example.befe.ExampleFrame?NODE=${name}">
+       </JAVA-UI>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "gasmenu.xml"
+                   path          =  "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="">
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Alarms" action_type="openpanel" action_value="AlertApplet?FILTER_SOURCE=${objName}*"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "hubmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}">
+       </JAVA-UI>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>       
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "interfacemenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "linkmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM
+        name="Delete Object and Traces"
+        ACTION-ON-NO-PRIVILEGE="HIDE"
+        action_type="INVOKE_CLASS"
+        action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+    name="netmenu.xml"
+    path="mapdata/menus"
+    classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+    description="html/confchanges/netmenu_change.html"
+    required="true"
+    doonce="true"
+    priority="0">
+ <update_node
+        name="add"
+        description="To add Open SubMap entry" >
+        <property_set name="MENU" >
+            <property_set name="MENU-ITEM" >
+                <property name="parent"  value="true" />
+                <property name="name"  value="Open Submap" />
+                   <property_set name="Node">
+            <HTML-UI action_value="/map/MapView.do?selectedNode=${viewId}&amp;selectedTab=${selectedTab}&amp;viewId=${name}&amp;displayName=${displayName}" action_type="_top"/>
+                   </property_set>
+            </property_set>
+       </property_set>
+            </update_node>
+</configuration_file>
+
+
+<configuration_file
+                   name          = "netmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"		
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE"/>
+       </property_set>
+       </property_set>
+       </update_node>	
+	
+       <update_node name="remove" description="" >	
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Stop Discovery">
+       <OPERATION name="Start And Stop Discovery"/>
+       <JAVA-UI action_type="function" action_value="Stop Discovery">    </JAVA-UI>
+       <HTML-UI action_value="/map/startStopDiscovery.do?discover=false&amp;keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "ipnet.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM
+        name="Delete Object and Traces"
+                ACTION-ON-NO-PRIVILEGE="HIDE"
+        action_type="INVOKE_CLASS"
+        action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}">
+                <OPERATION name="Delete Object"/>
+        </MENU-ITEM>
+        </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "nodemenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Map Editing Operations"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "objectmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Manage">
+       <OPERATION name="Manage And Unmanage Objects"/>
+       <JAVA-UI action_type="function" action_value="Manage">
+       </JAVA-UI>
+       <HTML-UI action_value="/map/manageUnmanage.do?keys=${name}&amp;managed=true&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="View Alerts">
+       <HTML-UI action_value="/mainLayout.do?entity=${name}&amp;selectedNode=Alerts&amp;selectedTab=Fault&amp;displayName=Alarms&amp;action=/fault/AlarmView.do" action_type="_top"/>
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "portmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="SEPARATOR">
+       </MENU-ITEM>
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}">
+        </JAVA-UI>
+        </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "printermenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}">
+       </JAVA-UI>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "routermenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}"  action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${name}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}" action_type="INVOKE_CLASS"/>
+       </MENU-ITEM>
+       <MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "snmpmenu_win.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       </MENU-ITEM>
+       </property_set>
+       </property_set>
+
+       <property_set name="MENU-ITEM" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <OPERATION name="Delete Object"/>
+       <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+       <JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}" action_type="INVOKE_CLASS"/>
+       </property_set>
+       </property_set>
+
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+                   name          = "snmpmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Delete Object and Traces" ACTION-ON-NO-PRIVILEGE="HIDE">
+       <OPERATION name="Delete Object"/>
+	<HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+	<JAVA-UI action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}&amp;mapName=${mapName}" action_type="INVOKE_CLASS"/>
+	</MENU-ITEM>
+	<MENU-ITEM name="SEPARATOR"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          = "tl1menu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+	<MENU-ITEM name="Delete Object and Traces">
+        <HTML-UI action_value="/map/deleteObject.do?keys=${name}&amp;viewId=${viewId}&amp;displayName=${displayName}" action_type="rightside"/>
+        <JAVA-UI action_type="INVOKE_CLASS" action_value="com.adventnet.nms.mapui.DeleteMO?name=${objName}&amp;type=${type}&amp;isContainer=${isContainer}&amp;isGroup=${isGroup}">
+        </JAVA-UI>
+        </MENU-ITEM>
+        <MENU-ITEM name="SEPARATOR">
+        </MENU-ITEM>
+       </property_set>
+       </property_set>
+       </update_node>
+       <update_node name="remove" description="" >
+       <property_set name="MENU" >
+       <property name="parent" value="true" />
+       <property_set name="Node" >
+       <MENU-ITEM name="Alarms" action_type="openpanel" action_value="AlertApplet?FILTER_SOURCE=${objName}*"/>
+       </property_set>
+       </property_set>
+       </update_node>
+               <update_node name="add" description="">
+                       <property_set name="MENU">
+                       <property name="parent" value="true" />
+ 				<property_set name="addNode">
+				<DOUBLECLICK action_type="function" action_value="Managed Object Properties"/>
+				 </property_set>
+                      	</property_set>
+               </update_node>
+
+</configuration_file>
+
+<configuration_file
+	name          =  "mapIcon.data"
+	path          =  "conf"
+	classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+	description   = "description"
+	required      = "true"
+	priority      = "1" >
+	
+	<update_node name="Modify" description="" >
+		<property_set name="MAP_ICON_DATA" >
+			<property_set name="DATA" >
+				<property name="TYPE" value="Port" />
+				<property name="parent" value="true" />
+				<property_set name="attribute" >
+					<property name="menuName" value="dmsportmenu"  />
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+	<update_node name="Modify" description="" >
+		<property_set name="MAP_ICON_DATA" >
+			<property_set name="DATA" >
+				<property name="TYPE" value="Interface" />
+				<property name="parent" value="true" />
+				<property_set name="attribute" >
+					<property name="menuName" value="dmsinterfacemenu" />
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+
+<process_unit 
+	name="Unwanted File Removal" 
+	classname="com.adventnet.nms.tools.confchanges.FileUtil" 
+	description="jsp directory is not necessary for DMS and hence removed" 
+	required="true" 
+	priority="1" >
+	<FILES_TO_DELETE  >
+		<DELETE fileName="jsp/index.jsp" update="true" />
+		<DELETE fileName="jsp" update="true" />
+	</FILES_TO_DELETE>
+</process_unit>
+
+
+<process_unit
+   name="FileRemoval" 
+   classname="com.adventnet.nms.tools.confchanges.FileRemovalHandler"
+   description="html/confchanges/FileRemovalHandler_change.html"
+   required="true"
+   priority="0">
+   <update_node name="RemoveFiles" description="Since base template files has been updated this should be deleted">
+     	<property_set name="Remove">
+         	<property name="template_ManagedObject_NP_woctrlM" path="StudioTools/Studio/template" type="conf"/>
+       	<property name="template_ManagedObject_woctrlM" path="StudioTools/Studio/template" type="conf"/>
+		<property name="Migrate" path="bin" type="script"/>
+		<property name="MigrateDatabaseInformation" path="bin/migrate" type="script"/>
+		<property name="MigrateMapDBInformation" path="bin/migrate" type="script"/>
+		<property name="MigratePolicies" path="bin/migrate" type="script"/>
+		<property name="RestoreCustomView" path="bin/migrate" type="script"/>
+		<property name="SetMigrateEnv" path="bin/migrate" type="script"/>
+		<property name="TextToPropertiesConverter" path="bin/migrate" type="script"/>
+		<property name="migration" path="classes" type="jar"/>
+		<property name="MigrationUtil" path="classes" type="jar"/>
+		<property name="MigrationProcesses" path="conf" type="conf"/>
+      </property_set>
+   </update_node>
+</process_unit> 
+
+
+<process_unit
+	name="InvokeNewCompileJSP" 
+	classname="com.adventnet.nms.tools.confchanges.InvokeCompileJSP" 
+	description="html/confchanges/InvokeNewCompileJSPProcess_change.html" 
+	required="true" 
+	priority="0">
+</process_unit>
+
+
+
+</configuration_changes>
+

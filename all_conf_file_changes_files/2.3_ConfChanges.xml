@@ -1,0 +1,1577 @@
+<?xml version="1.0"?>
+<CONF_CHANGES>
+	<CONF-FILE
+			name="NewConfigurationFiles.xml"
+			classname="com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+			description="Deployment.xml : The file contains the information required for Deployment of Web NMS &#10; Deployment.dtd : DTD for the Deployment.xml file"
+			required="true"/>
+	<CONF-FILE
+			name="event.filters"
+			classname="com.adventnet.nms.tools.confchanges.EventFilterConfUpdater"
+			description="Description for event.filters"
+			required="false">
+	  <FILTER action="remove" name="RemoveAutoMessage"> 
+		  	<FILTER_ACTION
+		       className="com.adventnet.nms.eventdb.UserFilter"
+		   	   userclass="com.adventnet.nms.eventdb.tl1.TL1EventFilter4AutoMess"
+		       name="autoMessageRemoval" />
+	  </FILTER>
+	</CONF-FILE>
+<CONF-FILE
+			name="launcher_conf.txt"
+			classname="com.adventnet.nms.tools.confchanges.UpdateLauncher"
+			description="jta.jar added for AppJavaOption in launcher_conf.txt &#10; AdventNetSnmp.jar is added to the classpath list of Migration Wizard"
+			required="true">
+
+		  <CLASSNODE 
+		  	className="com.adventnet.nms.tools.mowizard.MainScreen">	
+			<UPDATE 
+			   ChangeNode="Classpath"
+			   UpdateClass="./classes;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/JimiProClasses.zip;./classes/ApiUtils.jar;./classes/NmsClientClasses.jar;./classes/AdventNetBeanBuilder.jar;./classes/AdventNetCCLLibrary.jar"/>
+		  </CLASSNODE>	   
+			   	
+		  <CLASSNODE
+		  	className="com.adventnet.nms.tools.objtorel.TObjToRel">
+			<UPDATE
+				ChangeNode="Classpath"
+				UpdateClass="./classes/BeanBuilderClasses.jar;./classes;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/NmsClientClasses.jar;./classes/AdventNetBeanBuilderClasses.jar;./classes/AdventNetCCLLibrary.jar"/>
+		  </CLASSNODE>		
+
+
+          <CLASSNODE   className="com.adventnet.nms.startclient.WebNMSClient">
+              <UPDATE  ChangeNode="Classpath"
+		       UpdateClass =".;./classes/NmsClientClasses.jar;./classes/JimiProClasses.zip;./classes/ClientExamples.jar;./classes/AdventNetUI.jar;./classes/AdventNetUtils.jar;./classes/ApiUtils.jar;./classes/AdventNetSAS.jar;./classes/AdventNetSnmp.jar;./classes/AdventNetSnmpV3USM.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/ManagementClient.jar;./classes/AdventNetCLIClient.jar;./classes/AdventNetTL1.jar;./NetMonitor/build/RuntimeConfigFrame.jar;./NetMonitor/build/AuthMain.jar;./NetMonitor/build/ConfigPanel.jar;./classes/jnlp.jar;./classes/AdventNetSUMClient.jar;./classes/AdventNetUpdateManagerInstaller.jar;./classes/jta20.jar"/>
+				<UPDATE  ChangeNode="Description"
+				       UpdateClass ="Starts the Application Client"/>
+
+	  </CLASSNODE>
+	  	  <CLASSNODE   className="http://localhost:9090/">
+				<UPDATE  ChangeNode="Description"
+				       UpdateClass ="Starts the Applet Client"/>
+
+	  </CLASSNODE>
+
+        
+          <CLASSNODE className="com.adventnet.launcher.nms.StartNmsJdbc">
+		<UPDATE
+		  ChangeNode="AppJavaOption"
+		  UpdateClass ="-Dmysql.home=./mysql -Dwebserver.port=9090 -Dresource_check=9090,8009 -Djava.rmi.server.codebase=&quot;http://localhost:9090/classes/,http://localhost:9090/classes/ManagementServer.jar,http://localhost:9090/classes/AdventNetTftp.jar,http://localhost:9090/classes/AdventNetCLI.jar,http://localhost:9090/classes/AdventNetJmx.jar,http://localhost:9090/classes/jta.jar,http://localhost:9090/classes/AdventNetSnmp.jar,http://localhost:9090/classes/AdventNetSAS.jar&quot; -mx100m" />
+	   <ADD
+                       ChangeNode="Classpath"
+                           UpdateClass =";./classes/AdventNetSUMClient.jar;./classes/AdventNetSUMServer.jar;./classes/AdventNetUpdateManagerInstaller.jar;./classes/ftp.jar" />
+	  </CLASSNODE>
+
+		<CLASSNODE className="com.adventnet.nms.tools.menuconfigurator.MenuConfigurator">
+		  	<ADD
+		       ChangeNode="Classpath"
+		   	   UpdateClass =";./classes/JimiProClasses.zip" />
+	  </CLASSNODE>
+		<CLASSNODE className="com.adventnet.nms.tools.migration.MigrationWizard">
+		  	<ADD
+		       ChangeNode="Classpath"
+		   	   UpdateClass =";./classes/AdventNetSnmp.jar" />
+	  </CLASSNODE>
+
+		<CLASSNODE className="com.adventnet.launcher.nms.ReinitializeAll">
+		  	<UPDATE
+		       ChangeNode="InterfaceFile"
+		   	   UpdateClass="com.adventnet.launcher.nms.ReinitializeAll_Customizer" />
+			<UPDATE
+				  ChangeNode="Description"
+			      UpdateClass="Drops the table" />
+		   <UPDATE
+				  ChangeNode="ToolTip"
+			      UpdateClass="Drops the table" />
+
+				<ADD
+						ChangeNode="Classpath"
+						UpdateClass=";./classes/ApiUtils.jar"/>
+				<UPDATE
+						ChangeNode="Classname"
+						UpdateClass="com.adventnet.launcher.nms.ReinitializeAll"/>
+
+			 <ADD
+                                        ChangeNode="AppJavaOption"
+                                        UpdateClass="-Dmysql.home=./mysql"/> 
+
+        	  </CLASSNODE>
+		<CLASSNODE className="com.adventnet.launcher.nms.ShutdownServer localhost 9090 1099 2000 root">
+		  	<UPDATE
+		       ChangeNode="InterfaceFile"
+		   	   UpdateClass="com.adventnet.launcher.nms.ShutDownNmsServerCustomizer" />
+				<ADD
+					 ChangeNode="Classpath"
+					 UpdateClass=";./classes/ApiUtils.jar"/>
+				<UPDATE
+						ChangeNode="Classname"
+						UpdateClass="com.adventnet.launcher.nms.ShutdownServer -HOST_NAME localhost -WEB_SERVER_PORT 9090 -RMI_PORT 1099 -TCP_PORT 2000 -USER_NAME root"/>
+	  </CLASSNODE>
+		<CLASSNODE className="com.adventnet.nms.util.StandAloneShutDown -h localhost -wp 9090 -rp 1099 -tp 2000 -u root -p public">
+				<UPDATE
+						ChangeNode="Classname"
+						UpdateClass="com.adventnet.launcher.nms.ShutdownServer -HOST_NAME localhost -WEB_SERVER_PORT 9090 -RMI_PORT 1099 -TCP_PORT 2000 -USER_NAME root"/>
+	  </CLASSNODE>
+		<CLASSNODE className="com.adventnet.launcher.nms.ReinitializeAll -ROOT_DIR . -NMS_RESOURCE_DIRECTORY ./hmtl -RESOURCE_PROPERTIES ReinitializeNmsResources -RESOURCE_LOCALE en_US">
+				<UPDATE
+						ChangeNode="Classname"
+						UpdateClass="com.adventnet.launcher.nms.ReinitializeAll"/>
+	  </CLASSNODE>
+		<CLASSNODE className="com.adventnet.nms.tools.clibrowser.CLIBrowserApplication">
+				<ADD
+					 ChangeNode="AppJavaOption"
+					 UpdateClass="-Dpython.path=./examples/cli/script -Dlogging.file=conf/clilogging_parameters.conf"/>
+			  	<UPDATE
+			       ChangeNode="Classpath"
+	   UpdateClass="./classes;./classes/AdventNetCLI.jar;./classes/jta20.jar;./classes/crimson.jar;./classes/jaxp.jar;./classes/xalan.jar;./classes/JimiProClasses.zip;./classes/AdventNetCLIClient.jar;./conf;./classes/bsh-1.2b3.jar;./classes/jython.jar;./examples/cli/classes;./classes/comm.jar"/>
+				<UPDATE
+						ChangeNode="Classname"
+						UpdateClass="com.adventnet.nms.tools.clibrowser.CLIBrowserApplication -c ccs/unixcmds.ccs -d ccs/unixcmds.dat -h
+./help/administrator_guide/administration_tools/cli_browser/cli_browser_contents.html"/>
+	  </CLASSNODE>
+
+</CONF-FILE>	
+
+
+	<CONF-FILE  
+			name="NmsProcessesBE.conf" 
+			classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEConfUpdater"
+			description="Added options for DISCOVER_BC_RESP_IPS (To enable discovery of devices that respond to broadcast alone).  STOP_BC_FOR_NETWORKS (To stop the broadcast sent during the discovery of the network when a range of ipaddress is specified in seed.file).  ENABLE_SP_FOR_MO_RELATIONS (To enable status propagation for ManagedObject relations ) arguments in the comment line. Performance Management parameters - BULK_INSERT_INTERVAL  and  MAX_ALLOWABLE_INSERT  (are added to implement bulk insertion of collected data in the database) STATUS_POLL_DELAY (to configure the startup delay in status polling) DATA_COLLECTION_SNMP_TIMEOUT (to specify data collection time out in seconds) DATA_COLLECTION_STARTUP_DELAY (to specify data collection startup time in seconds)"
+			required="true">
+      <PROCESS_UNIT action="update">
+        <COMMENT
+          original="java com.adventnet.nms.topodb.DBServer [TOPO_OBJECTS_IN_MEMORY number] [LOCK_CLASS LockClassName] [LOCK_TIMEOUT number] [TOPO_JDBC true/false] [MANAGE_OTHER_NETWORKS true/false] [SUPPRESS_INFO_EVENTS true/false] [ENABLE_SP_FOR_IFC_PARENTS true/false] [DISCOVER_OTHER_NETWORKS true/false]"
+          updated="java com.adventnet.nms.topodb.DBServer [TOPO_OBJECTS_IN_MEMORY number] [LOCK_CLASS LockClassName] [LOCK_TIMEOUT number] [TOPO_JDBC true/false] [MANAGE_OTHER_NETWORKS true/false] [SUPPRESS_INFO_EVENTS true/false] [ENABLE_SP_FOR_IFC_PARENTS true/false] [DISCOVER_OTHER_NETWORKS true/false] [DISCOVER_BC_RESP_IPS true/false] [STOP_BC_FOR_NETWORKS true/false] [ENABLE_SP_FOR_MO_RELATIONS NONE/MAX/LATEST]" >  
+        </COMMENT>
+        <PROCESS
+          original="com.adventnet.nms.topodb.DBServer"
+          updated="com.adventnet.nms.topodb.DBServer" >  
+        </PROCESS>
+        <ARGS
+          original="TOPO_OBJECTS_IN_MEMORY 50 TOPO_JDBC true LOCK_CLASS com.adventnet.nms.util.DefaultLockableObject"
+          updated="TOPO_OBJECTS_IN_MEMORY 50 TOPO_JDBC true LOCK_CLASS com.adventnet.nms.util.DefaultLockableObject" >  
+        </ARGS>
+      </PROCESS_UNIT>
+      <PROCESS_UNIT action="update">
+        <COMMENT
+          original="java com.adventnet.nms.security.authorization.NmsAuthManager"
+          updated="java com.adventnet.nms.security.authorization.NmsAuthManager [ AuthorizationEngineImpl ] [ AuthorizationAdminImpl ] [ time_interval_for_security_scheduler in ms ] [ change_password_for_firsttime_login ]" >  
+        </COMMENT>
+        <PROCESS
+          original="com.adventnet.nms.security.authorization.NmsAuthManager"
+          updated="com.adventnet.nms.security.authorization.NmsAuthManager" >  
+        </PROCESS>
+        <ARGS
+          original="NULL"
+          updated="NULL NULL 0 false" >  
+        </ARGS>
+      </PROCESS_UNIT>
+      <PROCESS_UNIT action="update">
+        <COMMENT
+          original="java com.adventnet.nms.security.authentication.NmsAuthenticationManager"
+          updated="java com.adventnet.nms.security.authentication.NmsAuthenticationManager [ AuthenticationImpl ] [ maximum_allowed_login_failed_count ]" >  
+        </COMMENT>
+        <PROCESS
+          original="com.adventnet.nms.security.authentication.NmsAuthenticationManager"
+          updated="com.adventnet.nms.security.authentication.NmsAuthenticationManager" >  
+        </PROCESS>
+        <ARGS
+          original="NULL"
+          updated="NULL 0" >  
+        </ARGS>
+      </PROCESS_UNIT>
+      <PROCESS_UNIT action="update">
+        <COMMENT
+          original="java com.adventnet.nms.poll.Collector [POLL_OBJECTS_IN_MEMORY num] [POLL_JDBC true/false] [CLEAN_DATA_INTERVAL num_days] [STATUS_POLL_PING_RETRIES num] [STATUS_POLL_SNMP_RETRIES num] [DATA_COLLECTION_SNMP_RETRIES num] [MAX_OIDS_IN_ONE_POLL num] [CUSTOMIZED_DATA_COLLECTOR classname] [POLLING_POLICY_CUSTOMIZER classname] [DEBUGGING_MODE true/false] [SEND_MULTIPLE_REQUEST true/false] [STATUS_POLL_QUERY_INTERVAL milliseconds] [DATA_COLLECTION_QUERY_INTERVAL milliseconds] [AUTHORIZATION true/false] [PASS_THRO_ALL_POLLING_OBJECTS true/false]"
+          updated="java com.adventnet.nms.poll.Collector [POLL_OBJECTS_IN_MEMORY num] [POLL_JDBC true/false] [CLEAN_DATA_INTERVAL num_days] [STATUS_POLL_PING_RETRIES num] [STATUS_POLL_SNMP_RETRIES num] [DATA_COLLECTION_SNMP_RETRIES num] [MAX_OIDS_IN_ONE_POLL num] [CUSTOMIZED_DATA_COLLECTOR classname] [POLLING_POLICY_CUSTOMIZER classname] [DEBUGGING_MODE true/false] [SEND_MULTIPLE_REQUEST true/false] [STATUS_POLL_QUERY_INTERVAL milliseconds] [DATA_COLLECTION_QUERY_INTERVAL milliseconds] [AUTHORIZATION true/false] [PASS_THRO_ALL_POLLING_OBJECTS true/false] [RECOVER_DELETED_PDATAS true/false] [BULK_INSERT_INTERVAL seconds] [MAX_ALLOWABLE_INSERT num] [STATUS_POLL_DELAY seconds] [DATA_COLLECTION_SNMP_TIMEOUT seconds] [DATA_COLLECTION_STARTUP_DELAY seconds]" >  
+        </COMMENT>
+        <PROCESS
+          original="com.adventnet.nms.poll.Collector"
+          updated="com.adventnet.nms.poll.Collector" >  
+        </PROCESS>
+        <ARGS
+          original="POLL_OBJECTS_IN_MEMORY 25 POLL_JDBC true MAX_OIDS_IN_ONE_POLL 15 AUTHORIZATION true DATA_COLLECTION_QUERY_INTERVAL 120000"
+          updated="POLL_OBJECTS_IN_MEMORY 25 POLL_JDBC true MAX_OIDS_IN_ONE_POLL 15 AUTHORIZATION true DATA_COLLECTION_QUERY_INTERVAL 120000" >  
+        </ARGS>
+      </PROCESS_UNIT>
+      <PROCESS_UNIT action="update">
+        <COMMENT
+          original="java com.adventnet.nms.topodb.tl1.TL1DiscProcess  [RECONNECT true/false]  [RETRIES num]"
+          updated="java com.adventnet.nms.topodb.tl1.TL1DiscProcess  [RECONNECT true/false]  [RETRIES num] [ESTABLISHMODE CYCLIC/LINEAR] [CONN_DOWN_SEV severity]" >  
+        </COMMENT>
+        <PROCESS
+          original="com.adventnet.nms.topodb.tl1.TL1DiscProcess"
+          updated="com.adventnet.nms.topodb.tl1.TL1DiscProcess" >  
+        </PROCESS>
+        <ARGS
+          original="NULL"
+          updated="RECONNECT true ESTABLISHMODE CYCLIC" >  
+        </ARGS>
+      </PROCESS_UNIT>
+      
+      <PROCESS_UNIT action="add">
+          <COMMENT
+              value="java com.adventnet.nms.topodb.corba.CORBADiscProcess">
+          </COMMENT>
+          <PROCESS
+              value="com.adventnet.nms.topodb.corba.CORBADiscProcess">
+          </PROCESS>
+          <ARGS
+              value="NULL">
+          </ARGS>
+      </PROCESS_UNIT>
+      <PROCESS_UNIT action="add">
+           <COMMENT
+               value="java com.adventnet.nms.util.NmsSUM">
+           </COMMENT>
+           <PROCESS
+               value="com.adventnet.nms.util.NmsSUM">
+           </PROCESS>
+           <ARGS
+               value="NULL">
+           </ARGS>
+       </PROCESS_UNIT>
+       
+      <PROCESS_UNIT action="add">
+          <COMMENT
+              value="java com.adventnet.nms.topodb.tl1.TL1GatewayProcess  [RECONNECT true/false]  [RETRIES num] [ESTABLISHMODE CYCLIC/LINEAR] [CONN_DOWN_SEV severity]">
+          </COMMENT>
+          <PROCESS
+              value="com.adventnet.nms.topodb.tl1.TL1GatewayProcess">
+          </PROCESS>
+          <ARGS
+              value="RECONNECT true RETRIES 5 ESTABLISHMODE CYCLIC">
+          </ARGS>
+      </PROCESS_UNIT>
+      
+	</CONF-FILE>
+  <CONF-FILE
+                        name="NmsProcessesFE.conf"
+                        classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEConfUpdater"
+                        description="A new process has been added for SmartUpdateManager"
+                        required="true">
+          <PROCESS_UNIT action="add">
+          <COMMENT
+              value="java com.adventnet.nms.util.NmsSUM">
+          </COMMENT>
+          <PROCESS
+              value="com.adventnet.nms.util.NmsSUM">
+          </PROCESS>
+          <ARGS
+              value="NULL">
+          </ARGS>
+          </PROCESS_UNIT>
+
+        </CONF-FILE>
+   <CONF-FILE name="securitydbData.xml" classname="com.adventnet.nms.tools.confchanges.SecurityDBChanges" description="User Attributes such as password age,user expiration were added. Support for Named View added."
+			required="true">
+				<PARAMETER_ADDED
+				userage="0"
+				passwordage="0"
+				userexpirytime="0"
+				passwordexpirytime="0"
+				status="enabled" >
+                </PARAMETER_ADDED>
+				<MODIFY_NODE>
+				<DATA namedview="Events" authorizedview="NULL"/>
+				<DATA namedview="Alerts" authorizedview="NULL"/>
+				<DATA namedview="Network Database" authorizedview="NULL"/>
+				<DATA namedview="Maps" authorizedview="NULL"/>
+				<DATA namedview="Stats Admin" authorizedview="NULL"/>
+				</MODIFY_NODE>
+	</CONF-FILE>
+	<CONF-FILE  name="database_params.conf" classname="com.adventnet.nms.tools.confchanges.DatabaseParamsChanges" description="New entry for database name added." required="true">
+                <PARAMETER_ADDED
+                   DATABASENAME="MSSQL"
+                   KEY="databasename"  
+                   VALUE="MSSQL"
+                   COMMENTS="database name">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                 DATABASENAME="ORACLE"
+                 KEY="databasename"  
+                 VALUE="ORACLE"
+                 COMMENTS="database name">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                 DATABASENAME="MYSQL"
+                 KEY="databasename"  
+                 VALUE="MYSQL"
+                 COMMENTS="database name">
+                </PARAMETER_ADDED>
+
+	</CONF-FILE>
+	<CONF-FILE  name="DatabaseAliases.conf" classname="com.adventnet.nms.tools.confchanges.DatabaseAliasesChanges" description="Alias for new column names added." required="true">
+                 <PARAMETER_ADDED
+                          KEY="timeKey"  
+                          VALUE="TIMEKEY" 
+                          COMMENTS="In Table PolicyScheduleTime">
+                </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED
+                          KEY="executionID"  
+                          VALUE="EXECUTIONID" 
+                          COMMENTS="In Table TaskAudit">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED
+                          KEY="userName"  
+                          VALUE="USERNAME"> 
+                </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED
+                          KEY="taskName"  
+                          VALUE="TASKNAME"> 
+                </PARAMETER_ADDED>						
+
+		<PARAMETER_ADDED
+                          KEY="deviceList"  
+                          VALUE="DEVICELIST"> 
+                </PARAMETER_ADDED>						
+
+		<PARAMETER_ADDED
+                          KEY="datasource"  
+                          VALUE="DATASOURCE"> 
+                </PARAMETER_ADDED>						
+
+		<PARAMETER_ADDED
+                          KEY="executedTime"  
+                          VALUE="EXECUTEDTIME"> 
+                </PARAMETER_ADDED>						
+
+		<PARAMETER_ADDED	
+                          KEY="id"  
+                          VALUE="ID" 
+                          COMMENTS="In Table DeviceAudit">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="subTaskName"  
+                          VALUE="SUBTASKNAME">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="deviceName"  
+                          VALUE="DEVICENAME">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="timeOfStart"  
+                          VALUE="TIMEOFSTART">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="timeOfFinish"  
+                          VALUE="TIMEOFFINISH">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="status"  
+                          VALUE="STATUS">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="rollbackStatus"  
+                          VALUE="ROLLBACKSTATUS">
+                </PARAMETER_ADDED>			
+
+
+		<PARAMETER_ADDED	
+                          KEY="identifier"  
+                          VALUE="IDENTIFIER"
+                          COMMENTS="In Table AttributeAudit">
+                </PARAMETER_ADDED>			
+
+		<PARAMETER_ADDED	
+                          KEY="retries"  
+                          VALUE="RETRIES">
+                </PARAMETER_ADDED>			
+		
+		<PARAMETER_ADDED
+		     KEY="orbClassName"  
+		     VALUE="ORBCLASSNAME" 
+		     COMMENTS="In Table CORBANode">
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="nameServiceHost"  
+		     VALUE="NAMESERVICEHOST" 
+		     COMMENTS="In Table CORBANode">
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="nameServicePort"  
+		     VALUE="NAMESERVICEPORT"> 
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="nameRef"  
+		     VALUE="NAMEREF"> 
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="interfaceName"  
+		     VALUE="INTERFACENAME"> 
+		</PARAMETER_ADDED>
+		
+		
+		<PARAMETER_ADDED
+		     KEY="dictionary"  
+		     VALUE="DICTIONARY"> 
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="statusPollCommand"  
+		     VALUE="STATUSPOLLCOMMAND" >
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="statusPollIOR"  
+		     VALUE="STATUSPOLLIOR"> 
+		</PARAMETER_ADDED>
+		
+		
+		<PARAMETER_ADDED
+		     KEY="dataPollIOR"  
+		     VALUE="DATAPOLLIOR">
+		</PARAMETER_ADDED>
+		
+		<PARAMETER_ADDED
+		     KEY="notiIndex"  
+		     VALUE="NOTIINDEX" 
+		     COMMENTS="In Table NotificationLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="logTime"  
+		     VALUE="LOGTIME" 
+		     COMMENTS="In Table NotificationLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="noVarBinds"  
+		     VALUE="NOVARBINDS" 
+		     COMMENTS="In Table NotificationLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="notiOID"  
+		     VALUE="NOTIOID" 
+		     COMMENTS="In Table NotificationLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="varIndex"  
+		     VALUE="VARINDEX" 
+		     COMMENTS="In Table VarBindLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="varType"  
+		     VALUE="VARTYPE" 
+		     COMMENTS="In Table VarBindLog">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+		     KEY="varValue"  
+		     VALUE="VARVALUE" 
+		     COMMENTS="In Table VarBindLog">
+		</PARAMETER_ADDED>
+
+		<PARAMETER_UPDATED
+			OLDKEY="mapname"
+			NEWKEY="mapName">
+		</PARAMETER_UPDATED>
+</CONF-FILE >
+
+	<CONF-FILE  name="nmsInterfaces.conf" classname="com.adventnet.nms.tools.confchanges.NmsInterfacesChanges" description="One more entry for handling database connection loss." required="true">
+                <PARAMETER_ADDED
+                          KEY="connectionBreakHandler"
+                          VALUE="test.ConnectionBreakHandlerImpl" 
+                          COMMENTS="">
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+	
+	<CONF-FILE name="help.conf" classname="com.adventnet.nms.tools.confchanges.HelpConfChanges" description="Context-sensitive help links added" required="false">
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkEvent_Client"
+			VALUE ="help/user_guide/html_ui/events/htmlui_event_intro.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED 
+			KEY="HTMLUI_Event_Details"
+			VALUE ="help/user_guide/html_ui/events/htmlui_event_details.html"> 
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED 
+			KEY="HTMLUI_Alert_Client"
+			VALUE ="help/user_guide/html_ui/alarms/htmlui_alarm_intro.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED 
+			KEY="HTMLUI_Alert_Details"
+			VALUE = "help/user_guide/html_ui/alarms/htmlui_alarm_details.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_Viewing_Reports_Daily"
+			VALUE="help/administrator_guide/report_generation/daily_report.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_Viewing_Reports_Weekly"
+			VALUE="help/administrator_guide/report_generation/weekly_report.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_View_Collected_Variables"
+			VALUE="help/administrator_guide/report_generation/view_collected_var.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_Scheduling_Reports"
+			VALUE="help/user_guide/html_ui/performance/htmlui_perf_schedulereport.html#Add Variable Data Collection">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_ViewGraph_BarTableLine"
+			VALUE="help/administrator_guide/report_generation/view_collected_var.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_PollData_Details"
+			VALUE="help/administrator_guide/report_generation/view_collected_var.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Client"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_intro.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Details"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_details.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_AddNetwork"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#add_network">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_AddProperty"	
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#add_property">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_AddNode"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#add_node">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_RefreshNode"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#refresh_node">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_Delete"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#Delete">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_NetworkDatabase_Device_Operation_RemoveProperty"
+			VALUE="help/user_guide/html_ui/network_database/htmlui_nwdb_operation.html#Remove Property">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_Policy_Details"
+			VALUE ="help/user_guide/html_ui/policies/htmlui_policy_details.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED 
+			KEY="HTMLUI_SysAdmin_FrontPage"
+			VALUE ="help/user_guide/html_ui/administration/htmlui_admin_intro.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_SysAdmin_Services"
+			VALUE ="help/user_guide/html_ui/administration/htmlui_admin_backup.html">
+		</PARAMETER_ADDED>
+		<PARAMETER_ADDED
+			KEY="HTMLUI_SysAdmin_UserConfiguration"
+			VALUE ="help/user_guide/html_ui/administration/htmlui_admin_conf.html">
+		</PARAMETER_ADDED>
+
+		<PARAMETER_ADDED
+			KEY="Theme_Details"
+			VALUE ="help/developer_guide/designer_tools/theme_manager/theme_manager_intro.html">
+		</PARAMETER_ADDED>
+
+		
+    <PARAMETER_REPLACED 
+      KEY="Runtime_Admin_Fault_TrapFilters_Help" 
+      VALUE ="help/developer_guide/fault_management/notifications/conf_trap_filter.html"> 
+    </PARAMETER_REPLACED> 
+		
+ 		
+     <PARAMETER_REPLACED 
+      KEY="Poll_CollectedStatistics_Details" 
+      VALUE ="help/user_guide/app_ui/performance/viewing_collected_data/appui_perf_viewing_collecteddata_via_graph.html"> 
+    </PARAMETER_REPLACED> 
+		
+
+   <PARAMETER_REPLACED 
+     KEY="Poll_CurrentStatistics_Details" 
+     VALUE ="help/user_guide/app_ui/performance/realtime_monitoring_of_dc/realtime_monitoring_using_graph.html"> 
+   </PARAMETER_REPLACED> 
+ 
+
+   <PARAMETER_REPLACED 
+     KEY="Poll_ClientStatistics_Details" 
+     VALUE ="help/user_guide/app_ui/performance/appui_perf_intro.html"> 
+   </PARAMETER_REPLACED> 
+ 
+
+   <PARAMETER_REPLACED 
+     KEY="HTMLUI_Performance_Client" 
+     VALUE ="help/administrator_guide/performance_management/generating_reports/perf_generatingreportsintro.html"> 
+   </PARAMETER_REPLACED> 
+ 
+
+   <PARAMETER_REPLACED 
+     KEY="HTMLUI_Viewing_Reports_Daily" 
+     VALUE ="help/user_guide/html_ui/performance/htmlui_perf_viewreport.html#Daily_Report"> 
+   </PARAMETER_REPLACED> 
+  
+
+   <PARAMETER_REPLACED 
+     KEY="HTMLUI_Viewing_Reports_Weekly" 
+     VALUE ="help/user_guide/html_ui/performance/htmlui_perf_viewreport.html#Weekly_Report"> 
+   </PARAMETER_REPLACED> 
+   
+
+   <PARAMETER_REPLACED 
+     KEY="HTMLUI_ViewGraph_BarTableLine" 
+     VALUE ="help/user_guide/html_ui/performance/htmlui_perf_viewreport.html"> 
+   </PARAMETER_REPLACED> 
+ 
+
+   <PARAMETER_REMOVED
+    KEY="Configurator_Details">
+   </PARAMETER_REMOVED>
+
+   <PARAMETER_REMOVED
+    KEY="Element_Configuration">
+   </PARAMETER_REMOVED>
+
+   <PARAMETER_REMOVED
+    KEY="Policy_PollPolicy_Details">
+   </PARAMETER_REMOVED>
+		<PARAMETER_ADDED
+			KEY="MIGRATION_TOOL"
+			VALUE ="help/migration_guide/howto_migrate/using__migration_tool.html"/>
+		<PARAMETER_ADDED
+			KEY="CONFIG_CHECK"
+			VALUE ="help/developer_guide/designer_tools/configurator_file_checker/confilechecker.html"/>
+		<PARAMETER_ADDED
+			KEY="MO_WIZARD"
+			VALUE ="help/developer_guide/designer_tools/mo_wizard/mo_wizard.html"/>
+		<PARAMETER_ADDED
+			KEY="OBJ_TO_REL"
+			VALUE ="help/developer_guide/designer_tools/object_to_relationaltool/introductionobj.html"/>
+		<PARAMETER_ADDED
+			KEY="STATUS_VIEWER"
+			VALUE ="help/administrator_guide/webnms_status/status_statusviewertool.html"/>
+		<PARAMETER_ADDED
+			KEY="DEPLOYMENT_WIZARD"
+			VALUE ="help/developer_guide/designer_tools/deployment_wizard/deployment_tool_introduction.html"/>
+         <PARAMETER_ADDED
+             KEY="DEPLOY_WEBNMS"
+             VALUE ="help/developer_guide/designer_tools/deployment_wizard/deployment_ofwebnms_complpack.html"/>
+          <PARAMETER_ADDED
+              KEY="DEPLOY_APPLICATION"
+              VALUE ="help/developer_guide/designer_tools/deployment_wizard/partial_deployment_ofwebnms.html"/>
+	     <PARAMETER_ADDED
+              KEY="MENU_CONFIGURATOR"
+              VALUE ="help/developer_guide/java_client_framework/menu_framework/java_menu_configurator.html"/>
+<PARAMETER_REPLACED 
+                 KEY="Events_Filter_Config_Details"  
+                 VALUE ="help/administrator_guide/fault_management/handling_events/fault_confeventfilters.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Events_Parser_Config_Details"
+                 VALUE ="help/administrator_guide/fault_management/handling_events/fault_confeventparsers.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Trap_Parser_Config_Details"
+                 VALUE ="help/administrator_guide/fault_management/notification_processing/fault_conftrapparsers.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Configuration"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Security_Administration"
+                 VALUE ="help/administrator_guide/security_management/security_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Object_Details"
+                 VALUE ="help/administrator_guide/performance_management/perf_addstatsatruntime.html">  
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_CustomViews_Details"
+                 VALUE ="help/administrator_guide/performance_management/creating_custom_views/perf_creatingcvintro.html">   
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_CustomViews_Modify"
+                 VALUE ="help/administrator_guide/performance_management/creating_custom_views/perf_cvobjectprop.html">  
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Threshold_Modify"
+                 VALUE ="help/administrator_guide/performance_management/defining_thresholds/perf_createthresholdthroui.html">   
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_CustomViews_SelectedProps_Details"
+                 VALUE ="help/administrator_guide/performance_management/creating_custom_views/perf_cvobjectprop.html#Selecting Properties to view">  
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Threshold_Details"
+                 VALUE ="help/administrator_guide/performance_management/defining_thresholds/perf_createthresholdthroui.html">  
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Add_Object"
+                 VALUE ="help/administrator_guide/performance_management/configuring_data_collection/perf_selectdevicesfordc.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Delete_Object"
+                 VALUE ="help/administrator_guide/performance_management/configuring_data_collection/perf_handlingpollingobjects.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Modify_Object"
+                 VALUE ="help/administrator_guide/performance_management/configuring_data_collection/perf_handlingpollingobjects.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Modify_Statistic"
+                 VALUE ="help/administrator_guide/performance_management/perf_addstatsatruntime.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Poll_Details"
+                 VALUE ="help/administrator_guide/performance_management/configuring_data_collection/perf_selectdevicesfordc.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Batch_Conf_Upload_Task"
+                 VALUE ="help/administrator_guide/configuration_management/executing_tasks/config_uploadtask.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Batch_Conf_Device_List"
+                 VALUE ="help/administrator_guide/configuration_management/config_createdevicelist.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Batch_Conf_Data_Sources"
+                 VALUE ="help/administrator_guide/configuration_management/reusable_tasks/config_createdatasource.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Batch_Conf_Main_Help"
+                 VALUE ="help/administrator_guide/configuration_management/config_configmgmtintro.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Alert_Filter_Admin_Details"
+                 VALUE ="help/administrator_guide/fault_management/handling_alerts/fault_confalertfilters.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Topology_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Topology_DiscoveryFilters_Help"
+                 VALUE ="help/administrator_guide/topology/topo_runtime_confdiscfilters.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Topology_DiscoveryConfigurator_Help"
+                 VALUE ="help/administrator_guide/discovery/discovery_configurator/disc_configurator_intro.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Topology_MOUISettings_Help" 
+                 VALUE ="help/administrator_guide/topology/topo_runtime_mouisettings.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Map_Main_Help" 
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Map_MapFilters_Help"
+                 VALUE ="help/developer_guide/maps/map_filters/map_writingmapfilter.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Map_MapUISettings_Help"
+                 VALUE ="help/administrator_guide/maps/map_uisettings.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Fault_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Policy_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Policy_PolicyConfiguration_Help"
+                 VALUE ="help/administrator_guide/policy/runtimeconf_policy.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Performance_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Performance_PollingFilters_Help"
+                 VALUE ="help/developer_guide/performance_management/configuring_data_collection/perf_writing_poll_filter_intro.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Miscellaneous_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/runtime_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="Runtime_Admin_Miscellaneous_LogSettings_Help" 
+                 VALUE ="help/administrator_guide/logging_administration/jcats_logsettings.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_MIBManager_Client" 
+                 VALUE ="help/administrator_guide/administration_tools/mib_browser/mib_browser_contents.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_Event_TrapParserConfiguration"
+                 VALUE ="help/administrator_guide/fault_management/notification_processing/fault_conftrapparsers.html">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_View_Collected_Variables"
+                 VALUE ="help/user_guide/html_ui/performance/htmlui_perf_viewreport.html#Ondemandreport"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_Scheduling_Reports"
+                 VALUE ="help/administrator_guide/performance_management/perf_addstatsatruntime.html#polldata_htmlui">
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_PollData_Details" 
+                 VALUE ="help/administrator_guide/performance_management/perf_addstatsatruntime.html#polldata_htmlui"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="HTMLUI_SysAdmin_UserConfiguration"
+                 VALUE ="help/administrator_guide/security_management/security_administration.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="TL1_Main_Help"
+                 VALUE ="help/administrator_guide/administration_tools/tl1_browser/tl1_browser_contents.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="MibManager_Browser_Details"
+                 VALUE ="help/administrator_guide/administration_tools/mib_browser/mib_browser_contents.html"> 
+</PARAMETER_REPLACED> 
+
+<PARAMETER_REPLACED 
+                 KEY="MibManager_Client_Details"
+                VALUE ="help/administrator_guide/administration_tools/mib_browser/mib_browser_contents.html"> 
+</PARAMETER_REPLACED> 
+
+
+		
+	</CONF-FILE>
+
+	<CONF-FILE  name="serverparameters.conf"  classname="com.adventnet.nms.tools.confchanges.ServerParamsChanges" description="More entries for transaction timeout value and shutdown hook." required="true">
+                <PARAMETER_ADDED
+                        KEY="TRANSACTION_TIMEOUT_VALUE"
+                        VALUE="20000" 
+                        COMMENTS="For TRANSACTION timeout value">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                        KEY="ADD_SHUTDOWN_HOOK"
+                        VALUE="true" 
+                        COMMENTS="For enable or disable shutdown hook">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                        KEY="#STATUS_POLLING"
+                        VALUE="true" 
+                        COMMENTS="To enable or disable status polling">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                        KEY="#DATA_COLLECTION"
+                        VALUE="true" 
+                        COMMENTS="To enable or disable data collection">
+                </PARAMETER_ADDED>
+                <PARAMETER_ADDED
+                        KEY="NOTIFICATION_TYPE"
+                        VALUE="2" 
+                        COMMENTS=" With in a UserTransaction, how notifications to various Module Observers are to processed and handled is specified by the Notification Type. Supported values are 1 and 2 ( 1 - for NOTIFY_TIP/ 2 - for NOTIFY_TC )">
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+      <CONF-FILE  name="clientparameters.conf"  classname="com.adventnet.nms.tools.confchanges.ClientConfChanges" description="Entries added for specifing compiled mibs and Lockout duration and termination period." required="true">
+                <PARAMETER_ADDED
+                        KEY="COMPILED_MIBS"
+                        VALUE="NONE" 
+                        COMMENTS="For loading compiled mibs initially in MibBrowser">
+                </PARAMETER_ADDED>
+	         <PARAMETER_ADDED
+                        KEY="ALLOWED_IDLE_TIME_BEFORE_LOCKOUT"
+                        VALUE="0" 
+                        COMMENTS="To configure the client lockout period">
+                </PARAMETER_ADDED>
+	         <PARAMETER_ADDED
+                        KEY="ALLOWED_IDLE_TIME_BEFORE_TERMINATION"
+                        VALUE="0" 
+                        COMMENTS="To configure the client termination period">
+                </PARAMETER_ADDED>
+				<PARAMETER_ADDED
+                        KEY="WEB_LOGO"
+                        VALUE="../images/logo.jpg" 
+                        COMMENTS="Shows the url for logo in jsp pages ">
+                </PARAMETER_ADDED>
+				<PARAMETER_ADDED
+                        KEY="SHOW_SINGLE_PAGE_IN_FRAMES"
+                        VALUE="false" 
+                        COMMENTS="Parameter decides whether direct access of jsp page should be shown in frames/noframes. Default is noframes">
+                </PARAMETER_ADDED>
+	
+	         <PARAMETER_ADDED
+                        KEY="TIMEZONE_PREFERENCE"
+                        VALUE="Client" 
+                        COMMENTS="Time zone preference defined to be Client default">
+                </PARAMETER_ADDED>
+
+	         <PARAMETER_ADDED
+                        KEY="MAX_LOG_FILES_COUNT"
+                        VALUE="-1" 
+                        COMMENTS="To configure the maximum number of log files that can be created under client logs directory">
+                </PARAMETER_ADDED>
+
+	         <PARAMETER_ADDED
+                        KEY="MAX_LOG_LINES_COUNT"
+                        VALUE="-1" 
+                        COMMENTS="To configure the maximum number of lines that can be present in each log file">
+                </PARAMETER_ADDED>
+
+	         <PARAMETER_ADDED
+                        KEY="LOGS_DIR"
+                        VALUE="clientlogs" 
+                        COMMENTS="To configure the name of client logs directory">
+                </PARAMETER_ADDED>
+	         <PARAMETER_UPDATED
+                        KEY="ARCHIVE"                        			
+				APPENDVALUE=",../classes/jta20.jar"
+                        COMMENTS="jta20.jar added to the archive list">
+                </PARAMETER_UPDATED>
+
+	</CONF-FILE >
+      <CONF-FILE  name="NmsPanels.conf"  classname="com.adventnet.nms.tools.confchanges.ClientConfChanges" description="Entries added to configure table selection background colour." required="false">
+	         <PARAMETER_ADDED
+                        KEY="TABLE-SELECTION-BGCOLOR"
+                        VALUE="153-153-153" 
+                        COMMENTS="To configure the table selection background color">
+                </PARAMETER_ADDED>
+		<PANEL_ADDED COMMENTS="panel added to disconnect from host, if connected to any host using telnet window">
+			<ATTRIBUTE
+				KEY="className"
+				VALUE="com.adventnet.telnet.telnetwindow.NmsTelnetPanel">
+			</ATTRIBUTE>
+			<ATTRIBUTE
+				KEY="PANEL-KEY"
+				VALUE="CLOSETELNETCONNECTIONS">
+			</ATTRIBUTE>
+		</PANEL_ADDED>		   
+	</CONF-FILE >
+
+      <CONF-FILE  name="mime.types"  classname="com.adventnet.nms.tools.confchanges.WebStartConfChanges" description="This will put a entry named appliation/x-java-jnlp-file JNLP in apache/conf/mime.types" required="true"/>
+      <CONF-FILE  name="startApplicationClient"  classname="com.adventnet.nms.tools.confchanges.ApplicationClientConfChanges" description="This will include jnlp.jar in the class path of startApplicationClient.bat/startApplicationClient.sh .To append SmartUpdateManager classes into the client class path and changes for invoking the UpdateManager Process" required="true">
+ <UPDATE_SHELL_SCRIPT
+                CLASSPATH="$SUM_CLIENT_CLASSPATH:"
+                    java="while(true),do,if [ $? -eq 126 -o -f Patch/smarttmp.txt ]; then,$JAVA_HOME/bin/java -classpath $UPDATE_MANAGER_CLASSPATH com.adventnet.tools.update.installer.UpdateManager -u conf -h $NMS_HOME -c,if [ $? -ne 0 ]; then ,exit,fi,else,exit 1,fi,done">
+           </UPDATE_SHELL_SCRIPT>
+           <UPDATE_BATCH_FILE
+                   CLASSPATH="%SUM_CLIENT_CLASSPATH%;"
+                   java=" :start,set clientexit=%errorlevel%,if %clientexit% NEQ 126 goto end,%JAVA_HOME%\bin\java -classpath %UPDATE_MANAGER_CLASSPATH% com.adventnet.tools.update.installer.UpdateManager -u conf -h %NMS_HOME% -c,set umexit=%errorlevel%,if %umexit% EQU 0 goto start">
+           </UPDATE_BATCH_FILE>
+
+        </CONF-FILE >
+
+
+	
+	<CONF-FILE  name="toolbar.dtd"
+	            classname="com.adventnet.nms.tools.confchanges.ClientConfChanges"
+				description="This will correct the error in the TOOLBAR-BUTTON tag definition in toolbar.dtd file for all the users"
+				required="true">
+	</CONF-FILE>
+	
+    <CONF-FILE  name="Themes.conf"  classname="com.adventnet.nms.tools.confchanges.ClientConfChanges" description="Startup theme is given as None." required="true">
+	         <PARAMETER_ADDED
+                        KEY="displayName"
+                        VALUE="None" 
+                        COMMENTS="To configure the startup theme.">
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+
+        
+  <CONF-FILE  name="framemenu.xml"  classname="com.adventnet.nms.tools.confchanges.ClientConfChanges" description="For customizing window menu items. Also two more menu items called Change Password and Themes are added under Tools menu to configure password and themes." required="true">
+
+  <REPLACE_MENU menuName="Window">
+    <MENU position="fromend" name="Window" shortcut_key="W">
+     <MENU-ITEM name="WindowMenuCustomizer">
+          <JAVA-UI  action_command="WINDOW_MENU:com.adventnet.nms.util.WindowMenuCustomizerImpl?Delimiter=.,RootLevel=0"/>
+     </MENU-ITEM>
+
+     <MENU-ITEM name="SEPARATOR"/>
+
+     <MENU-ITEM name="Cascade">
+          <JAVA-UI action_command="Cascade"/>
+     </MENU-ITEM>
+
+     <MENU-ITEM name="Tile Horizontal">
+          <JAVA-UI action_command="TileH"/>
+     </MENU-ITEM>
+
+     <MENU-ITEM name="Tile Vertical">
+          <JAVA-UI action_command="TileV"/>
+     </MENU-ITEM>
+
+     <MENU-ITEM name="SEPARATOR"/>
+
+     <MENU-ITEM name="Save Location and Size ">
+          <JAVA-UI action_command="SaveLS"/>
+     </MENU-ITEM>
+
+     <MENU-ITEM name="SEPARATOR"/>
+
+     <MENU-ITEM name="Show Toolbar">
+          <JAVA-UI action_command="Show Toolbar"/>
+     </MENU-ITEM>
+
+    </MENU>
+
+ </REPLACE_MENU>
+
+
+ <ADD_MENU_ITEM menuName="Tools"  startingIndex="4">
+        <MENU-ITEM name="Change Password" action_type="openframe"
+        action_value="com.adventnet.nms.config.PasswordConfigurator"/>
+
+        <MENU-ITEM name="SEPARATOR"/>
+        <MENU-ITEM name="Themes" action_type="INVOKE_CLASS"
+        action_value="com.adventnet.alf.themes.ThemeSelector"/>
+ </ADD_MENU_ITEM>
+
+</CONF-FILE >
+
+     <CONF-FILE  name="provider.xml"  classname="com.adventnet.nms.tools.confchanges.MsProviderChanges" description="For Adding ManagagedObjectProtocolProvider and CorbaProtocolProvider in provider.xml for ManagementServer usage" required="true">
+           <PARAMETER_ADDED
+             COMMENTS="For loading ManagedObjectProvider">
+		<provider>
+               	  <param name="TYPE" value="ManagedObject" />
+	          <param name="PROVIDER" value="com.adventnet.management.managedobject.ManagedObjectProtocolProvider" />
+		  <param name="PROPERTY" value="com.adventnet.management.managedobject.ManagedObjectProperty" />
+		  <param name="EVENT" value="com.adventnet.management.managedobject.ManagedObjectEvent" />
+		  <param name="EVENT_FILTER" value="com.adventnet.management.managedobject.ManagedObjectEventFilter" />
+	        </provider>
+                </PARAMETER_ADDED>
+	 <PARAMETER_ADDED
+             COMMENTS="For loading CorbaProvider">
+		<provider>
+               	  <param name="TYPE" value="CORBA" />
+	          <param name="PROVIDER" value="com.adventnet.management.corba.CorbaProtocolProvider" />
+		  <param name="PROPERTY" value="com.adventnet.management.corba.CorbaProperty" />
+	        </provider>
+                </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED COMMENTS="For Adding FTP Protocol Provider">
+		 <provider>
+		  <param name="TYPE" value="FTP"/>
+		  <param name="PROVIDER" value="com.adventnet.management.ftp.FTPProtocolProvider"/>
+		  <param name="PROPERTY" value="com.adventnet.management.ftp.FTPProperty"/>
+		 </provider>
+		</PARAMETER_ADDED>
+	<PARAMETER_UPDATED
+		COMMENTS="updating the CLI provider with event eventfilter and CLI default properties. giving the type as id.">
+		<provider>
+			<param name="TYPE" value="CLI"/>
+			<param name="EVENT" value="com.adventnet.management.cli.CLIEvent"/>
+			<param name="EVENT_FILTER" value="com.adventnet.management.cli.CLIEventFilter"/>
+			<param name="DefaultPropertyFile" value="CLIDefaultProperties.xml"/>
+		</provider>
+	</PARAMETER_UPDATED>
+
+	</CONF-FILE >
+	<CONF-FILE name="DatabaseSchema.conf" classname="com.adventnet.nms.tools.confchanges.UpdateSchemaChanges" description="DatabaseSchema changes - Addition of new tables (like BEFailOver) and modification of existing tables (eg. addition of indexes)." required="true"/>
+       <CONF-FILE  name="SnmpDefaultProperties.xml"  classname="com.adventnet.nms.tools.confchanges.MsProviderChanges" description="For removing ObjectID entry in SnmpDefaultProperties.xml" required="true">
+           <PARAMETER_ADDED
+             COMMENTS="For Removing ObjectID set as Default">
+	    	  <param name="ObjectID" value="1.5.0" />
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+	<CONF-FILE  name="SnmpDefaultEventProperties.xml"  classname="com.adventnet.nms.tools.confchanges.MsProviderChanges" description="For removing Version entry in SnmpDefaultEventProperties.xml" required="true">
+           <PARAMETER_ADDED
+             COMMENTS="For Removing version set as Default Event ">
+	    	  <param name="Version" value="v1" />
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+	<CONF-FILE  name="TL1DefaultProperties.xml"  classname="com.adventnet.nms.tools.confchanges.MsProviderChanges" description="For removing CommandCode and AccessID default values in TL1DefaultProperties.xml " required="true">
+           <PARAMETER_ADDED
+             COMMENTS="For Removing unwanted Tl1 Default properties ">
+	    	  <param name="CommandCode" value="" />
+                </PARAMETER_ADDED>
+	</CONF-FILE >
+	
+	<CONF-FILE  name="relationalclasses.conf"  classname="com.adventnet.nms.tools.confchanges.RelationalClassesUpdater" description="Relational class for CORBANode." required="true">
+	           
+	    <PARAMETER_ADDED COMMENTS="Relational class for CORBANode.">
+	    
+	       <RELATIONAL class="com.adventnet.nms.topodb.corba.CORBANode	topodb	RelationalCORBANode  CORBANode" />
+	    	
+	    </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED COMMENTS="Relational class for TL1GatewayNode.">
+	       <RELATIONAL class="com.adventnet.nms.topodb.tl1.TL1GatewayNode	topodb	RelationalTL1Node	TL1Node" />
+	    </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED COMMENTS="Relational class for TL1GatewayAccessSession.">
+	       <RELATIONAL class="com.adventnet.nms.topodb.tl1.TL1GatewayAccessSession	topodb	RelationalTL1Node	TL1Node" />
+	    </PARAMETER_ADDED>
+	
+        </CONF-FILE>            
+        
+        <CONF-FILE  name="configprovider.xml"  classname="com.adventnet.nms.tools.confchanges.ConfigProviderUpdater" description="To provide CORBA Southbound support for discovery, polling, configuration etc. This adds the Config Provider for CORBA to do configuration and provisioning. See also discovery.filters, Polling.conf and corbaseed.file. " required="false" >
+	           
+	    <PARAMETER_ADDED COMMENTS="For Adding the Corba Config Provider.">
+	
+		<protocol NAME="CORBA" CONFIGPROVIDER="com.adventnet.management.config.corba.CorbaConfigProvider"/>
+			
+	     </PARAMETER_ADDED>
+
+		<PARAMETER_ADDED COMMENTS="For Adding FTP Config Provider">
+		 <protocol NAME="ftp" CONFIGPROVIDER="com.adventnet.management.config.ftp.FTPConfigProvider"/>
+		</PARAMETER_ADDED>
+	
+	 </CONF-FILE>            
+        
+        <CONF-FILE  name="discovery.filters"  classname="com.adventnet.nms.tools.confchanges.DiscoveryFilterUpdater" description="To provide CORBA Southbound support for discovery, polling, configuration etc. This adds the Corba Discovery Filter to create custom map to view CORBA Nodes. See also configprovider.xml, Polling.conf and corbaseed.file.To provide TL1 Terminal Server support." required="false">
+	           
+	           <PARAMETER_ADDED COMMENTS="For Adding the Corba Discovery Filter .">
+	      
+	      		<FILTER className="com.adventnet.nms.topodb.corba.CORBADiscoveryFilter" />
+	      		 	
+	            </PARAMETER_ADDED>
+
+		    <PARAMETER_ADDED COMMENTS="For Adding the TL1 Gateway Discovery Filter .">
+		   
+		    <FILTER className="com.adventnet.nms.topodb.tl1.TL1GatewayFilter"/>
+
+		    </PARAMETER_ADDED>
+	               
+	</CONF-FILE>        
+	
+	<CONF-FILE  name="Polling.conf"  classname="com.adventnet.nms.tools.confchanges.PollingDotConfUpdater" description="To provide CORBA Southbound support for discovery, polling, configuration etc. This adds the Poll Provider for CORBA to do data collection. See also configprovider.xml, discovery.filters and corbaseed.file ." required="false">
+	           
+	           <PARAMETER_ADDED COMMENTS="For Adding the Poll Provider for CORBA.">
+	               
+	               <PROTOCOL  CORBA="com.adventnet.nms.poll.corba.CorbaPollProvider"/>
+					
+	            </PARAMETER_ADDED>
+	
+	</CONF-FILE> 
+
+<CONF-FILE
+			name="setEnv"
+			classname="com.adventnet.nms.tools.confchanges.SetEnvUpdater"
+		      
+			  description="To append jta.jar in codebase_list, Changes for getting MYSQL_HOME and to append jta20.jar to CLI_CLIENT_CLASSPATH" required="true"> 
+	      <PARAMETER_ADDED
+                     KEY="FTP_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT="$NMS_CLASSES/ftp.jar" 
+                     VALUE_FOR_BATCH_FILE="%NMS_CLASSES%\ftp.jar">
+                 </PARAMETER_ADDED>
+	      <PARAMETER_ADDED
+                     KEY="UMGR_INSTALLER_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT="$NMS_CLASSES/AdventNetUpdateManagerInstaller.jar"
+                     VALUE_FOR_BATCH_FILE="%NMS_CLASSES%\AdventNetUpdateManagerInstaller.jar">
+                 </PARAMETER_ADDED>
+
+                        <PARAMETER_ADDED
+                     KEY="UPDATE_MANAGER_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT="$UMGR_INSTALLER_CLASSPATH:$XML_CLASSPATH:$JIMI_CLASSPATH"
+                     VALUE_FOR_BATCH_FILE="%UMGR_INSTALLER_CLASSPATH%;%XML_CLASSPATH%;%JIMI_CLASSPATH%">
+                 </PARAMETER_ADDED>
+
+                 <PARAMETER_ADDED
+                     KEY="SUM_CLIENT_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT="$NMS_CLASSES/AdventNetSUMClient.jar:$UMGR_INSTALLER_CLASSPATH"
+                     VALUE_FOR_BATCH_FILE="%NMS_CLASSES%\AdventNetSUMClient.jar;%UMGR_INSTALLER_CLASSPATH%">
+                 </PARAMETER_ADDED>
+
+                 <PARAMETER_ADDED
+                     KEY="SUM_SERVER_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT="$NMS_CLASSES/AdventNetSUMServer.jar"
+                     VALUE_FOR_BATCH_FILE="%NMS_CLASSES%\AdventNetSUMServer.jar">
+                 </PARAMETER_ADDED>
+
+                 <PARAMETER_ADDED
+                     KEY="OTHER_CLASSPATH"
+                     VALUE_FOR_SHELL_SCRIPT=":$NMS_CLASSES/AdventNetNPrevalent.jar"
+                     VALUE_FOR_BATCH_FILE=";%NMS_CLASSES%\AdventNetNPrevalent.jar">
+                 </PARAMETER_ADDED>
+	    <PARAMETER_ADDED
+                     KEY="CLI_CLIENT_CLASSPATH="
+                     VALUE_FOR_SHELL_SCRIPT=":$NMS_CLASSES/jta20.jar" 
+                     VALUE_FOR_BATCH_FILE=";%NMS_CLASSES%\jta20.jar">
+                 </PARAMETER_ADDED>
+
+
+                   <PARAMETER_ADDED
+                     LINUX_KEY="LD_LIBRARY_PATH" WINDOWS_KEY=" PATH"
+                     VALUE_FOR_SHELL_SCRIPT="$LD_LIBRARY_PATH:$NMS_HOME/lib"
+                     VALUE_FOR_BATCH_FILE="%NMS_HOME%\lib;%PATH%">
+                 </PARAMETER_ADDED>			  
+	</CONF-FILE>	
+
+	<CONF-FILE
+		name="listIcon.data"
+		classname="com.adventnet.nms.tools.confchanges.ListIconDataUpdater"
+		description="To add NODEs into listIcon.data file" 
+		required="true">
+		
+		<NODES_TO_ADD>
+
+			<DATA
+                             	TYPE="TL1GatewayAccessSession"
+                             	MENU="gasmenu"
+                             	CLEAR_IMG="gatewayacc_green.png"
+                             	WARNING_IMG="gatewayacc_cyan.png"
+                             	MINOR_IMG="gatewayacc_yellow.png"
+                             	MAJOR_IMG="gatewayacc_orange.png"
+                             	CRITICAL_IMG="gatewayacc_red.png"
+                             	UNKNOWN_IMG="gatewayacc_gray.png" />
+ 
+                        <DATA
+                                TYPE="TL1GatewayNode"
+                                MENU="gatewaymenu"
+                                CLEAR_IMG="gatewaynode_green.png"
+                                WARNING_IMG="gatewaynode_cyan.png"
+                                MINOR_IMG="gatewaynode_yellow.png"
+                                MAJOR_IMG="gatewaynode_orange.png"
+                                CRITICAL_IMG="gatewaynode_red.png"
+                                UNKNOWN_IMG="gatewaynode_gray.png" />
+		</NODES_TO_ADD>
+
+	</CONF-FILE>
+
+<CONF-FILE  name="map.filters"  	classname="com.adventnet.nms.tools.confchanges.MapFiltersUpdater"					description="To provide the Tl1 support by default to maps.This adds the TL1MapFilter to 	create custom map to view TL1 Nodes. To provide TL1 Terminal Server support." 	required="true">	
+	          	
+  	<PARAMETER_ADDED COMMENTS="For Adding the TL1MapFilter in the map.filters file.">
+	      
+		<FILTER className="test.TL1MapFilter" />
+ 	
+	</PARAMETER_ADDED>
+	               
+</CONF-FILE>        
+
+
+<CONF-FILE
+	name="mapIcon.data"
+	classname="com.adventnet.nms.tools.confchanges.MapIconDataUpdater"
+	description="To add TL1 NODE types into mapIcon.data file for TL1 support." 
+	required="true">
+		
+	<NODES_TO_ADD>
+
+	<DATA TYPE="TL1GatewayAccessSession" menuName="gasmenu" iconName="gatewayacc.png" /> 
+	<DATA TYPE="TL1GatewayNode" menuName="gatewaymenu" iconName="gatewaynode.png" />
+
+	</NODES_TO_ADD>
+
+</CONF-FILE>
+
+
+
+	  <CONF-FILE  name="TablesToRestore.conf" 
+		 classname="com.adventnet.nms.tools.confchanges.TablesToRestoreChanges"
+		 description="To add comments for dynamic tables backup feature" required="false">
+	 <COMMENTS_ENHANCED/> 
+        </CONF-FILE>   
+
+ 	<CONF-FILE  
+        	 name="corbaseed.file" 
+		 classname="com.adventnet.nms.tools.confchanges.CorbaSeedFileUpdater"
+		 description="To provide CORBA Southbound support for discovery, polling, configuration etc. This adds an attribute called ORBClass to provide multiple ORB support. See also configprovider.xml, discovery.filters and Polling.conf." required="false" >
+	 
+        </CONF-FILE>        
+	<CONF-FILE
+			name="SQLDatatypes.xml"
+			classname="com.adventnet.nms.tools.confchanges.UpdateSQLDatatypes"
+			description="Added float and double data type support for generation of Relational ManagedObject"
+			required="true">
+			<ISSUE name="double">
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="ORACLE" />
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<COLTYPE javaType="double" sqlType="FLOAT" />
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>	
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="MySQL" />
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<COLTYPE javaType="double" sqlType="FLOAT" />
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>	
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="MSSQL" />
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<COLTYPE javaType="double" sqlType="FLOAT"  />
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>			
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="SYBASE" />
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<COLTYPE javaType="double" sqlType="FLOAT" />
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="SOLID" />
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<COLTYPE javaType="double" sqlType="FLOAT" />
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>
+			</ISSUE>
+			<ISSUE name="floatFieldSize"> 
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="MySQL" />
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="double" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE name="fieldSize" value="53" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>	
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="ORACLE"/>
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="float" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE  name="sqlType" value="FLOAT" />
+					<REMOVE-ATTRIBUTE name="fieldSize" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="MySQL"/>
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="float" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE  name="sqlType" value="FLOAT" />
+					<SET-ATTRIBUTE  name="fieldSize" value="53" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="MSSQL" />
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="float" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE  name="sqlType" value="FLOAT" />
+					<REMOVE-ATTRIBUTE name="fieldSize" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="SYBASE"/>
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="float" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE  name="sqlType" value="FLOAT" />
+					<REMOVE-ATTRIBUTE name="fieldSize" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>
+			<MODIFY-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES">
+						<NODE name="DATABASE">
+							<UNIQUE-ATTRIB name="name" value="SOLID"/>
+							<NODE name="COLTYPE">
+								<UNIQUE-ATTRIB name="javaType" value="float" />
+							</NODE>
+						</NODE>
+					</NODE>
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-MODIFIED>
+					<SET-ATTRIBUTE  name="sqlType" value="FLOAT" />
+					<REMOVE-ATTRIBUTE name="fieldSize" />
+				</NODE-TO-BE-MODIFIED>
+			</MODIFY-NODE>
+			</ISSUE>
+			<ISSUE name="TimestenSupport" >
+			<ADD-NODE>
+				<HIERARCHY-NODE>
+					<NODE name="SQL_DATA_TYPES" />
+				</HIERARCHY-NODE>
+				<NODE-TO-BE-ADDED>
+					<DATABASE name="Timesten" version="">
+						<COLTYPE javaType="boolean" sqlType="VARCHAR" fieldSize="10" />
+						<COLTYPE javaType="int" sqlType="INTEGER" />
+						<COLTYPE javaType="long" sqlType="NUMERIC"  />
+						<COLTYPE javaType="float" sqlType="FLOAT" />
+						<COLTYPE javaType="String" sqlType="VARCHAR" fieldSize="100" />
+						<COLTYPE javaType="Date" sqlType="DATE" />
+						<COLTYPE javaType="Time" sqlType="DATE" />
+						<COLTYPE javaType="Timestamp" sqlType="DATE"  />
+						<COLTYPE javaType="double" sqlType="FLOAT" />
+					</DATABASE>
+				</NODE-TO-BE-ADDED>
+			</ADD-NODE>
+		</ISSUE>	
+
+			
+	 </CONF-FILE>		
+
+         <CONF-FILE  name="RestoreDB" classname="com.adventnet.nms.tools.confchanges.RestoreScriptChanges" description="Changes for getting MYSQL home." required="true">
+        </CONF-FILE>   
+
+
+	<CONF-FILE  name="startMySQL" classname="com.adventnet.nms.tools.confchanges.StartMySQLScriptChanges" description="Changes for getting MYSQL home." required="true">
+        </CONF-FILE> 
+
+	<CONF-FILE  name="startnms" classname="com.adventnet.nms.tools.confchanges.StartnmsScriptChanges" description="Changes for getting MYSQL home,WebServerPort has been given as the system property and included classpath (SUM_CLIENT_CLASSPATH and SUM_SERVER_CLASSPATH) for SmartUpdateManager . UpdateManager will be invoked when the patch is about to be downloaded from the UpdateManagerServer." required="true">
+	</CONF-FILE>       
+
+	<CONF-FILE  name="reinitialize_nms" classname="com.adventnet.nms.tools.confchanges.ReinitializeScriptChanges"
+description="Changes for getting MYSQL home." required="true">
+	</CONF-FILE>  
+
+	<CONF-FILE  name="BackupDB" classname="com.adventnet.nms.tools.confchanges.BackupScriptChanges" description="Changes for getting MYSQL home" required="true">
+	</CONF-FILE> 
+
+
+  <CONF-FILE name="BeanBuilder.sh" classname="com.adventnet.nms.tools.confchanges.BeanBuilderShConfChanges" description="Since export CLASSPATH= will not work in Solaris, it has been changed to CLASSPATH= and then followed by export CLASSPATH" required="false">
+	</CONF-FILE>
+	<CONF-FILE  name="JClass Integration" classname="com.adventnet.nms.tools.confchanges.PollMenuUpdater" description="This will change the Current and Collected Statistc menu Items to JClass Implementation " required="true">
+	</CONF-FILE>
+	<CONF-FILE  name="README" classname="com.adventnet.nms.tools.confchanges.RemoveReadme" description="Removes the Unwanted README.txt files present in examples and defaultimpl directory" required="true"/>
+	<CONF-FILE name="Deployment.xml" classname="com.adventnet.nms.tools.confchanges.UpdateDeploymentXML" description="Added jnlp.jar to support Java Web Start.Smart Update Manager xml files added." required="true">
+	  <CLIENT>
+		  <FILE NAME="classes/jnlp.jar"/>
+		</CLIENT>	
+		<BEFE>
+			<FILE NAME="conf/SmartUpdateManager.dtd"/>
+			<FILE NAME="conf/SmartUpdateManager.xml"/>
+		</BEFE>
+		<BE>
+			<FILE NAME="conf/update_conf.xml"/>
+		</BE>	
+		<FE>
+			<FILE NAME="conf/feDeployment/update_conf.xml" DESTINATION="conf"/>
+		</FE>	
+	</CONF-FILE>
+
+
+<CONF-FILE  name="Tree.xml"  classname="com.adventnet.nms.tools.confchanges.ClientTreeNodeUpdater" description="To add the tree nodes in Tree.xml" required="false" >
+	<PARAMETER_ADDED COMMENTS="Adding Configuration Audit Custom View under Configuration Node">
+		<DEVICE ID="ConfigAudit" PARENT-ID="Configuration" TREE-NAME="Audit" PANEL-KEY="ConfigAuditBrowser" ICON-FILE="images/audit.png" VIEW-LENGTH="20" TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml" TABLE-POPUP-MENU="View" PANEL-NAME="com.adventnet.nms.config.ConfigAuditBrowser" MODULE-NAME="Audit" MENU-FILE-NAME="configauditmenu.xml" TABLE-COLUMNS="Task Name=taskName=150;Device Name=deviceName=75;Start Time=timeOfStart=75;Finish Time=timeOfFinish=75;Status=status=75;"/>	   
+	</PARAMETER_ADDED>
+</CONF-FILE>
+<CONF-FILE  name="increments.conf"  classname="com.adventnet.nms.tools.confchanges.IncrementsConfUpdater" description="To add the new entries in increments.conf" required="false" >
+	<PARAMETER_ADDED key="Audit" value="10 20 30 40 50" COMMENTS="Adding new increments entry for Audit node"/>	
+</CONF-FILE>
+<CONF-FILE name="BeanBuilder 4.4 integration related files" classname="com.adventnet.nms.tools.confchanges.BeanBuilder4_4ConfChanges" description="For merging all BeanBuilder 4.2.2 related files with BeanBuilder 4.4 files" required="true" />
+	<CONF-FILE name="UserConfig" classname="com.adventnet.nms.tools.confchanges.UserConfigChanges" description="Added usage properly to take hostname and rmiport as additional arguments." required="false">
+	<USAGE fromLinux="echo Group  : Group" toLinux="echo Group  : Groupxecho rmiPort : rmiPort [default 1099]" fromWindows="echo &quot;Group  : Group &quot; " toWindows="echo &quot;Group  : Group&quot;xecho &quot;rmiPort : rmiPort [default 1099]&quot;xpause"/>
+	<ARGS fromLinux="Group=$5" toLinux="Group=$5xRMIPort=$6" fromWindows="set Group=%5" toWindows="set Group=%5xset RMIPort=%6"/>
+	<RUN fromLinux="$JAVA_HOME/bin/java com.adventnet.nms.authentication.UserConfigAPIImpl $NMSDir $UserName $Password $Group" toLinux="$JAVA_HOME/bin/java com.adventnet.nms.authentication.UserConfigAPIImpl $NMSDir $UserName $Password $Group $RMIPort" fromWindows="%JAVA_HOME%\bin\java com.adventnet.nms.authentication.UserConfigAPIImpl %NMSDir% %UserName% %Password% %Group%" toWindows="%JAVA_HOME%\bin\java com.adventnet.nms.authentication.UserConfigAPIImpl %NMSDir% %UserName% %Password% %Group% %RMIPort%"/>
+	</CONF-FILE>
+<CONF-FILE  name="logging_parameters.conf"  classname="com.adventnet.nms.tools.confchanges.LoggingFileChanges" description="Entries for CLI USER and CLI ERR" required="true">
+	<FILENAME FileName="nmsout.txt">	
+		<KEY Name="CLIUSER" DisplayName="CLI" LogLevel="2" Logging="true" />
+	</FILENAME>
+	<FILENAME FileName="nmserr.txt">	
+		<KEY Name="CLIERR" DisplayName="CLI" LogLevel="2" Logging="true" />
+	</FILENAME>
+
+</CONF-FILE >
+   <CONF-FILE  name="Sum_Changes" classname="com.adventnet.nms.tools.confchanges.SUMConfChanges"
+description="Changes for SUM related files" required="true">
+        </CONF-FILE>
+</CONF_CHANGES>
+
+

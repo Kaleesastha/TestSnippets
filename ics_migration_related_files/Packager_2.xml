@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- $Id: Packager.xml,v 1.4 2013/07/05 17:25:04 sathy Exp $ -->
+<PACKAGER ProductContext="BE" ServicePackVersion="SP-1" WebNMSVersion="5.2" applicationName="CE_NAR_APR_10" outputDir="." outputFilter="*.classpath,*.project,.settings/,CVS/,CarrierEthernetlink/" projectName="CarrierEthernet" selective="true" srvrJarInClientClasspath="false" version="1.0">
+<ADDITIONAL_RESOURCES>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/classes" recurse="true" targetDir="./classes"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/NetMonitor" recurse="true" targetDir="./NetMonitor"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/audio" recurse="true" targetDir="./audio"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/mibs" recurse="true" targetDir="./mibs"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/jsp" recurse="true" targetDir="./jsp"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/provisioningtemplates" recurse="true" targetDir="./provisioningtemplates"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/listmenus" recurse="true" targetDir="./listmenus"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/WEB-INF" recurse="true" targetDir="./WEB-INF"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/html" recurse="true" targetDir="./html"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/users" recurse="true" targetDir="./users"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/webclient" recurse="true" targetDir="./webclient"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/bin" recurse="true" targetDir="./bin"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/configtasks" recurse="true" targetDir="./configtasks"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/icons" recurse="true" targetDir="./icons"/>
+<DIR name="./StudioTools/Studio/projects/CarrierEthernet/resources/conf" recurse="true" targetDir="./conf"/>
+</ADDITIONAL_RESOURCES>
+<PACKAGED_JARS>
+<FILE name="./StudioTools/Studio/projects/CarrierEthernet/CarrierEthernet_webaction.jar" targetDir="./WEB-INF/lib" type="webclient"/>
+<FILE name="./StudioTools/Studio/projects/CarrierEthernet/CarrierEthernet_Server.jar" targetDir="./NetMonitor/build" type="server"/>
+<FILE name="classes/xalan.jar" targetDir="./classes" type="both"/>
+<FILE name="classes/crimson.jar" targetDir="./classes" type="both"/>
+<FILE name="classes/jaxp.jar" targetDir="./classes" type="both"/>
+</PACKAGED_JARS>
+</PACKAGER>

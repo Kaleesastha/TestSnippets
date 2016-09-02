@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PACKAGER ProductContext="BE" ServicePackVersion="SP-0" WebNMSVersion="5.2" applicationName="EMS_Tutorial" outputDir="./projects" projectName="EMS_Tutorial" selective="true" srvrJarInClientClasspath="false" version="1.0">
+<README name="./projects/EMS_Tutorial/README.html" targetDir="NetMonitor/build"/>
+<ADDITIONAL_RESOURCES>
+<DIR name="./projects/EMS_Tutorial/resources/classes" recurse="true" targetDir="./classes"/>
+<DIR name="./projects/EMS_Tutorial/resources/conf" recurse="true" targetDir="./conf"/>
+<DIR name="./projects/EMS_Tutorial/resources/images" recurse="true" targetDir="./images"/>
+<DIR name="./projects/EMS_Tutorial/resources/listmenus" recurse="true" targetDir="./listmenus"/>
+<DIR name="./projects/EMS_Tutorial/resources/mapdata" recurse="true" targetDir="./mapdata"/>
+<DIR name="./projects/EMS_Tutorial/resources/mibs" recurse="true" targetDir="./mibs"/>
+<DIR name="./projects/EMS_Tutorial/resources/NetMonitor" recurse="true" targetDir="./NetMonitor"/>
+</ADDITIONAL_RESOURCES>
+<PACKAGED_JARS>
+<FILE name="./projects/EMS_Tutorial/EMS_Tutorial_Server.jar" targetDir="./NetMonitor/build" type="server"/>
+</PACKAGED_JARS>
+<NAR DISPLAYNAME="ChassisScreen" INSTALLXML="ChassisScreen_Installer.xml" NAME="ChassisScreen.nar" PATH="NetMonitor/build"/>
+<NAR DISPLAYNAME="SwitchConfiguration" INSTALLXML="SwitchConfiguration_Installer.xml" NAME="SwitchConfiguration.nar" PATH="NetMonitor/build"/>
+</PACKAGER>

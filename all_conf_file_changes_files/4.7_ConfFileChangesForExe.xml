@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration_changes home_directory="." >
+
+<process_unit name="Update httpd.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.HttpdConfConvertPack" description="For updating httpd.conf file" required="true" priority="0">
+</process_unit> 
+
+  <configuration_file       
+                     name          =  "clientparameters.conf"
+                     path           =  "conf"
+                     classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                     description  = "Change in conf/clientparameters.conf"
+                     required      = "true"
+                     priority       = "0" >
+                             
+      	<update_node name="Modify" description="Font Name id changed to Dialog from Helvetica for i18n and the replacing the jta20.jar with AdventNetJta.jar in the ARCHIEVE attribute" >
+		  <property_set name="CLIENT_PARAMETERS_CONF" >
+			<property_set name="PARAMETERS" >
+				<property name="MIBS_DIR" value="./mibs" />
+				<property name="parent" value="true" />		
+				<property_set name="attribute" >
+					<property name="DEFAULT_FONT" subset="true" existingValue="Helvetica" newValue="Dialog" />
+					<property name="MENU_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>
+					<property name="DIALOG_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+					<property name="TREE_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+					<property name="MAP_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+  	
+    </configuration_file>
+
+    <configuration_file name="database_params.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.DBParamsChanges" description="description" required="true" priority="0">
+			<update_node name="Modify_entry" description="changing from WebNMSDB to unicode and characterEncoding appended">
+				<property_set name="Modify_entry">
+					<property name="oldEntry" value="WebNmsDB"/>
+					<property name="newEntry" value="WebNmsDB?useUnicode=true&amp;characterEncoding="/>
+				</property_set>
+			</update_node>
+		</configuration_file>
+
+<configuration_file name="database_params.conf" path="conf/MySQL" classname="com.adventnet.nms.tools.confchanges.DBParamsChanges" description="description" required="true" priority="0">
+			<update_node name="Modify_entry" description="changing from WebNMSDB to unicode and characterEncoding appended">
+				<property_set name="Modify_entry">
+					<property name="oldEntry" value="WebNmsDB"/>
+					<property name="newEntry" value="WebNmsDB?useUnicode=true&amp;characterEncoding="/>
+				</property_set>
+			</update_node>
+		</configuration_file>
+
+<configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+           <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+               <property_set name="append">
+                   <property_set name="entry">
+                   <property name="com.adventnet.nms.startclient.WebNMSClient" value="YES en US" use="SetLocale"/>
+                  </property_set>
+               </property_set>
+           </update_node>
+</configuration_file>
+<configuration_file       
+                     name        = "launcher_conf.txt"
+                     path        = "conf"
+                     classname   = "com.adventnet.nms.tools.confchanges.LauncherConfChanges"
+                     description = "Change in conf/launcher_conf.txt"
+                     required    = "true"
+                     priority    = "0" >
+
+<update_node name="modify" description="add help for updating a new node" >
+         <property_set name="configuration" >
+                   <property_set name="property" >
+                       <Property name="parent" value="true" />
+                       <Property name="name" value="Language" />
+                             <property_set name="attribute" >
+                                <Property name="value" command="true" value="LOCALE_LANGUAGE" />
+                              </property_set>
+                     </property_set>
+          </property_set>
+
+ <property_set name="configuration" >
+       <property_set name="property" >
+                 <Property name="parent" value="true" />
+                 <Property name="name" value="Country" />
+                       <property_set name="attribute" >
+                           <Property name="value" command="true" value="LOCALE_COUNTRY" />
+                        </property_set>
+        </property_set>
+  </property_set>
+
+</update_node> 
+
+</configuration_file>
+    
+		<configuration_file name="serverparameters.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line" >
+				<property name="LANGUAGE " value="en" after="#java com.adventnet.nms.startnms.NmsMainBE" />
+				<property name="COUNTRY " value="US" after="#java com.adventnet.nms.startnms.NmsMainBE" />
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+<configuration_file name="startMySQL" path="bin" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="encoding change for japanese windows version" required="true" priority="0">
+           <update_node name="Modify_entry" description="language specific changes need to be specified with language name in the property set">
+               <property_set name="append" os="WIN" language="ja">
+            	    <property_set name="other">
+                        <property name="mysqld -b .. --standalone" value=" --default-character-set=sjis" use="os" doOnce="true"/>
+                    </property_set>
+        	</property_set>
+           </update_node>
+</configuration_file>
+
+<configuration_file
+    name="UpdateManager" 
+    path="bin" 
+    classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" 
+    description="html/confchanges/UpdateManager_change.html" 
+    required="true" 
+    priority="1">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+            <property_set name="append">
+            <property_set name="entry">
+                   <property name="com.adventnet.tools.update.installer.UpdateManager" value="YES en US" use="SetLocale"/>
+            </property_set>
+            </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file name="ShutDown" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+        <property_set name="append">
+            <property_set name="entry">
+                <property name="com.adventnet.launcher.nms.ShutdownServer" value="YES en US" use="SetLocale"/>
+            </property_set>
+        </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file name="reinitialize_nms" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+        <property_set name="append">
+            <property_set name="entry">
+                <property name="com.adventnet.launcher.nms.ReinitializeAll" value="YES en US" use="SetLocale"/>
+            </property_set>
+        </property_set>
+    </update_node>
+</configuration_file>
+
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="description" required="true" priority="0">
+
+    <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/cn/html" dest="html" merge="false" accept="properties"/>    
+    <COPY source="webclient/common/i18n/zh/WebClientResources_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties" merge="true" accept="properties"/> 
+    <COPY source="ancillary/cn/html" dest="html" merge="false" accept="html" reject="properties"/>
+    <COPY source="ancillary/cn/conf/HtmlAdaptor.prp" dest="conf" merge="false"/> 
+    <COPY source="ancillary/cn/conf/jmx_agent" dest="conf/jmx_agent" merge="false" accept="xml" reject="JmxAgent_Components.xml"/>
+    <COPY source="ancillary/cn/image" dest="images" merge="false"/>  
+    <COPY source="ancillary/cn/reports" dest="reports" merge="false"/>
+    <COPY source="ancillary/cn/template" dest="template" merge="false"/>  
+    </COPY_FILES>         
+
+    <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/jp/html" dest="html" merge="false" accept="properties"/>
+    <COPY source="webclient/common/i18n/ja/WebClientResources_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties" merge="true" accept="properties"/>
+    <COPY source="ancillary/jp/html" dest="html" merge="false" accept="html" reject="properties"/>
+    <COPY source="ancillary/jp/reports" dest="reports" merge="false"/>
+    <COPY source="ancillary/jp/conf/HtmlAdaptor.prp" dest="conf" merge="false"/>
+    <COPY source="ancillary/jp/conf/jmx_agent" dest="conf/jmx_agent" merge="false" accept="xml" reject="JmxAgent_Components.xml"/>
+    <COPY source="ancillary/jp/image" dest="images" merge="false"/>
+    <COPY source="ancillary/jp/template" dest="template" merge="false"/>
+    </COPY_FILES>         
+
+    <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/en/html" dest="html" merge="false" accept="properties"/>
+    </COPY_FILES>   
+
+</process_unit>
+
+  
+</configuration_changes>
+
+
+

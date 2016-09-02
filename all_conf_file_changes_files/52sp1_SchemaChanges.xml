@@ -1,0 +1,553 @@
+<?xml version="1.0" ?>
+<!-- $Id: SchemaChanges.xml,v 1.1.4.17 2013/08/05 15:38:29 wesley Exp $ -->
+<!DOCTYPE SCHEMA_CHANGES SYSTEM "SchemaChanges.dtd" >
+<SCHEMA_CHANGES>
+
+<DB RDBMS_ENGINE="ORACLE">
+
+		<ADDED_TABLE TABLE_NAME="DASHBOARDPROPS"
+                        DEFINITION="create table DASHBOARDPROPS(
+                        &quot;ID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+                        &quot;PROPERTIES&quot; varchar(250))">
+                <INDEXDEFN DEFINITION="CREATE INDEX DashboardProps0_Indx on DASHBOARDPROPS(&quot;ID&quot;)"/>
+        </ADDED_TABLE>
+
+
+<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MANAGEDOBJECT">
+
+		<ADDED_INDEX DEFINITION ="CREATE INDEX FKB855B9E41BE4C5D on ManagedObject (&quot;PARENTID&quot;)"/>
+		<FOREIGN_KEY DEFINITION="alter table ManagedObject add constraint FKB855B9E41BE4C5D foreign key (PARENTID) references ManagedObject(MOID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="THRESHOLDOBJECTS">
+
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects modify(THRESHOLDVALUE Numeric(23,4))"/>
+		<ADDED_INDEX DEFINITION ="alter table ThresholdObjects modify(REARMVALUE Numeric(23,4))"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MapDB">
+
+                <ADDED_INDEX DEFINITION ="alter table MapDB modify(MAPLINKRENDERER varchar(150))"/>
+                <ADDED_INDEX DEFINITION ="alter table MapDB modify(MAPSYMBOLRENDERER varchar(150))"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDPROPS">
+  	                <FOREIGN_KEY DEFINITION="alter table DASHBOARDPROPS add constraint DASHBOARDPROPS_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+  	         </ADD_FOREIGN_CONSTRAINT>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="DECIMAL"
+			DEFINITION="create table DECIMALDATA%(
+			&quot;POLLID&quot; Numeric(19) NOT NULL,
+			&quot;INSTANCE&quot; varchar(100) NOT NULL,
+			&quot;TTIME&quot; Numeric(19) NOT NULL,
+			&quot;VAL&quot; Numeric(19,4),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+		</ADDED_TABLE>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="STATS"
+                        DEFINITION="create table STATSDATA%(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(13),
+                        PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="STATSAGGREGATIONHOURLY"
+			DEFINITION="create table STATSAGGREGATIONHOURLY(
+			&quot;POLLID&quot; Numeric(19) NOT NULL,
+			&quot;INSTANCE&quot; varchar(100) NOT NULL,
+			&quot;TTIME&quot; Numeric(19) NOT NULL,
+			&quot;VAL&quot; Numeric(19,4),
+			&quot;MMINVALUE&quot; Numeric(19,4),
+			&quot;MMAXVALUE&quot; Numeric(19,4),
+			&quot;TINTERVAL&quot;  Numeric(19),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+			<INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY0_ndx ON STATSAGGREGATIONHOURLY(&quot;POLLID&quot;)"/>
+			<INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY2_ndx ON STATSAGGREGATIONHOURLY(&quot;TTIME&quot;)"/>
+		</ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="STATSAGGREGATIONDAILY"
+                        DEFINITION="create table STATSAGGREGATIONDAILY(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY0_ndx ON STATSAGGREGATIONDAILY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY2_ndx ON STATSAGGREGATIONDAILY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsprofiles"
+                        DEFINITION="create table smsprofiles(
+			profilename varchar(20) not null,
+			recipients varchar(250) not null)">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsserver_out"
+                        DEFINITION="create table smsserver_out(
+                        &quot;id&quot; NUMBER(10,0) PRIMARY KEY,
+        		&quot;type&quot; VARCHAR2(1),
+        		&quot;recipient&quot; VARCHAR2(16),
+        		&quot;text&quot; VARCHAR2(1000),
+        		&quot;wap_url&quot; VARCHAR2(100),
+        		&quot;wap_expiry_date&quot; VARCHAR2(30),
+        		&quot;wap_signal&quot; VARCHAR2(1),
+        		&quot;create_date&quot; VARCHAR2(30),
+        		&quot;originator&quot; VARCHAR2(16),
+        		&quot;encoding&quot; VARCHAR2(1),
+        		&quot;status_report&quot; NUMBER(1,0),
+        		&quot;flash_sms&quot; NUMBER(1,0),
+        		&quot;src_port&quot; NUMBER(6,0),
+        		&quot;dst_port&quot; NUMBER(6,0),
+        		&quot;sent_date&quot; VARCHAR2(30),
+        		&quot;ref_no&quot; VARCHAR2(64),
+        		&quot;priority&quot; NUMBER(3,0),
+        		&quot;status&quot; VARCHAR2(1),
+        		&quot;errors&quot; NUMBER(2,0),
+        		&quot;gateway_id&quot; VARCHAR2(16))">
+		<ADDED_INDEX DEFINITION ="create sequence smstableid_seq start with 1 NOCACHE"/>
+                <ADDED_INDEX DEFINITION ="create or replace trigger  bi_smsserver_out before insert on smsserver_out for each row begin :new.id := nvl(:new.id,smstableid_seq.nextval); end;"/>
+                </ADDED_TABLE>
+		
+</DB>
+
+<DB RDBMS_ENGINE="MSSQL">
+
+<ADDED_TABLE TABLE_NAME="DASHBOARDPROPS"
+  	                      DEFINITION="create table DASHBOARDPROPS(
+  	                      &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+  	                      &quot;PROPERTIES&quot; varchar(250))">
+  	                 <INDEXDEFN DEFINITION="CREATE INDEX DashboardProps0_Indx on DASHBOARDPROPS(&quot;ID&quot;)"/>
+  	         </ADDED_TABLE>
+
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="THRESHOLDOBJECTS">
+
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects alter column THRESHOLDVALUE Numeric(23,4)"/>
+		<ADDED_INDEX DEFINITION ="alter table ThresholdObjects alter column REARMVALUE Numeric(23,4)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MapDB">
+                <ADDED_INDEX DEFINITION ="alter table MapDB alter column MAPLINKRENDERER varchar (150)"/>
+                <ADDED_INDEX DEFINITION ="alter table MapDB alter column MAPSYMBOLRENDERER varchar (150)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDPROPS">
+  	                 <FOREIGN_KEY DEFINITION="alter table DASHBOARDPROPS add constraint DASHBOARDPROPS_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+  	         </ADD_FOREIGN_CONSTRAINT>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="DECIMAL"
+                        DEFINITION="create table DECIMALDATA%(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="STATS"
+                        DEFINITION="create table STATSDATA%(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,0),
+                        PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONHOURLY"
+                        DEFINITION="create table STATSAGGREGATIONHOURLY(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19,0),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY0_ndx ON STATSAGGREGATIONHOURLY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY2_ndx ON STATSAGGREGATIONHOURLY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONDAILY"
+                        DEFINITION="create table STATSAGGREGATIONDAILY(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19,0),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY0_ndx ON STATSAGGREGATIONDAILY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY2_ndx ON STATSAGGREGATIONDAILY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsprofiles"
+                        DEFINITION="create table smsprofiles(
+                        &quot;profilename&quot; varchar(20) not null,
+                        &quot;recipients&quot; varchar(250) not null)">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="smsserver_out"
+                        DEFINITION="create table smsserver_out(
+                        &quot;id&quot; integer NOT NULL IDENTITY,
+  			&quot;type&quot; varchar(1) NOT NULL DEFAULT 'O',
+			&quot;recipient&quot; varchar(16) NOT NULL,
+  			&quot;text&quot; varchar(1000) NOT NULL,
+  			&quot;wap_url&quot; varchar(100) DEFAULT NULL,
+  			&quot;wap_expiry_date&quot; varchar(30) DEFAULT NULL,
+  			&quot;wap_signal&quot; varchar(1) DEFAULT NULL,
+  			&quot;create_date&quot; varchar(30) NOT NULL,
+  			&quot;originator&quot; varchar(16) NOT NULL DEFAULT ' ',
+  			&quot;encoding&quot; varchar(1) NOT NULL DEFAULT '7',
+  			&quot;status_report&quot; integer NOT NULL DEFAULT '0',
+  			&quot;flash_sms&quot; integer NOT NULL DEFAULT '0',
+  			&quot;src_port&quot; integer NOT NULL DEFAULT '-1',
+  			&quot;dst_port&quot; integer NOT NULL DEFAULT '-1',
+  			&quot;sent_date&quot; varchar(30) DEFAULT NULL,
+  			&quot;ref_no&quot; varchar(64) DEFAULT NULL,
+  			&quot;priority&quot; integer NOT NULL DEFAULT '0',
+  			&quot;status&quot; varchar(1) NOT NULL DEFAULT 'U',
+  			&quot;errors&quot; integer NOT NULL DEFAULT '0',
+  			&quot;gateway_id&quot; varchar(64) NOT NULL DEFAULT '*',
+  			PRIMARY KEY (&quot;id&quot;))">
+                </ADDED_TABLE>
+
+</DB>
+
+<DB RDBMS_ENGINE="MYSQL">
+
+		<ADDED_TABLE TABLE_NAME="DASHBOARDPROPS"
+                      DEFINITION="create table DASHBOARDPROPS(
+                      &quot;ID&quot; bigint PRIMARY KEY NOT NULL,
+                      &quot;PROPERTIES&quot; varchar(250))">
+                 <INDEXDEFN DEFINITION="CREATE INDEX DashboardProps0_Indx on DASHBOARDPROPS(&quot;ID&quot;)"/>           
+         </ADDED_TABLE>
+
+<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MANAGEDOBJECT">
+
+		<ADDED_INDEX DEFINITION ="CREATE INDEX FKB855B9E41BE4C5D on ManagedObject (&quot;PARENTID&quot;)"/>
+		<FOREIGN_KEY DEFINITION="alter table ManagedObject add constraint FKB855B9E41BE4C5D foreign key (PARENTID) references ManagedObject(MOID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="THRESHOLDOBJECTS">
+
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects change THRESHOLDVALUE THRESHOLDVALUE Numeric(23,4)"/>
+		<ADDED_INDEX DEFINITION ="alter table ThresholdObjects change REARMVALUE REARMVALUE Numeric(23,4)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MapDB">
+
+                <ADDED_INDEX DEFINITION ="alter table MapDB change MAPLINKRENDERER MAPLINKRENDERER varchar(150)"/>
+                <ADDED_INDEX DEFINITION ="alter table MapDB change MAPSYMBOLRENDERER MAPSYMBOLRENDERER varchar(150)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+	
+		<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDPROPS">
+  	                 <FOREIGN_KEY DEFINITION="alter table DASHBOARDPROPS add constraint DASHBOARDPROPS_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+         </ADD_FOREIGN_CONSTRAINT>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="DECIMAL"
+                        DEFINITION="create table DECIMALDATA%(
+                        &quot;POLLID&quot; BIGINT NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; BIGINT NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="STATS"
+                        DEFINITION="create table STATSDATA%(
+                        &quot;POLLID&quot; BIGINT NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; BIGINT NOT NULL,
+                        &quot;VAL&quot; BIGINT,
+                        PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONHOURLY"
+                        DEFINITION="create table STATSAGGREGATIONHOURLY(
+                        &quot;POLLID&quot; BIGINT NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; BIGINT NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  BIGINT,
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY0_ndx ON STATSAGGREGATIONHOURLY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY2_ndx ON STATSAGGREGATIONHOURLY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONDAILY"
+                        DEFINITION="create table STATSAGGREGATIONDAILY(
+                        &quot;POLLID&quot; BIGINT NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; BIGINT NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  BIGINT,
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY0_ndx ON STATSAGGREGATIONDAILY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY2_ndx ON STATSAGGREGATIONDAILY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsprofiles"
+                        DEFINITION="create table smsprofiles(
+                        &quot;profilename&quot; varchar(20) not null,
+                        &quot;recipients&quot; varchar(250) not null)">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="smsserver_out"
+                        DEFINITION="create table smsserver_out(
+                        &quot;id&quot; int(10) unsigned NOT NULL AUTO_INCREMENT,
+	  		&quot;type&quot; varchar(1) NOT NULL DEFAULT 'O',
+  			&quot;recipient&quot; varchar(16) NOT NULL,
+			&quot;text&quot; varchar(1000) NOT NULL,
+  			&quot;wap_url&quot; varchar(100) DEFAULT NULL,
+  			&quot;wap_expiry_date&quot; varchar(30) DEFAULT NULL,
+  			&quot;wap_signal&quot; varchar(1) DEFAULT NULL,
+  			&quot;create_date&quot; varchar(30) NOT NULL,
+  			&quot;originator&quot; varchar(16) NOT NULL DEFAULT ' ',
+		  	&quot;encoding&quot; varchar(1) NOT NULL DEFAULT '7',
+  			&quot;status_report&quot; int(1) NOT NULL DEFAULT '0',
+  			&quot;flash_sms&quot; int(1) NOT NULL DEFAULT '0',
+  			&quot;src_port&quot; int(6) NOT NULL DEFAULT '-1',
+  			&quot;dst_port&quot; int(6) NOT NULL DEFAULT '-1',
+  			&quot;sent_date&quot; varchar(30) DEFAULT NULL,
+  			&quot;ref_no&quot; varchar(64) DEFAULT NULL,
+  			&quot;priority&quot; int(5) NOT NULL DEFAULT '0',
+  			&quot;status&quot; varchar(1) NOT NULL DEFAULT 'U',
+  			&quot;errors&quot; int(2) NOT NULL DEFAULT '0',
+  			&quot;gateway_id&quot; varchar(64) NOT NULL DEFAULT '*',
+  			PRIMARY KEY (&quot;id&quot;))">
+                </ADDED_TABLE>
+
+
+</DB>
+<DB RDBMS_ENGINE="SYBASE">
+
+<ADDED_TABLE TABLE_NAME="DASHBOARDPROPS"
+  	                      DEFINITION="create table DASHBOARDPROPS(
+  	                      &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+  	                      &quot;PROPERTIES&quot; varchar(250))">
+  	                 <INDEXDEFN DEFINITION="CREATE INDEX DashboardProps0_Indx on DASHBOARDPROPS(&quot;ID&quot;)"/>
+  	         </ADDED_TABLE>
+
+<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MANAGEDOBJECT">
+
+		<ADDED_INDEX DEFINITION ="CREATE INDEX FKB855B9E41BE4C5D on ManagedObject (&quot;PARENTID&quot;)"/>
+		<FOREIGN_KEY DEFINITION="alter table ManagedObject add constraint FKB855B9E41BE4C5D foreign key (PARENTID) references ManagedObject(MOID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="THRESHOLDOBJECTS">
+
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects modify THRESHOLDVALUE Numeric(23,4)"/>
+		<ADDED_INDEX DEFINITION ="alter table ThresholdObjects modify REARMVALUE Numeric(23,4)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MapDB">
+
+                <ADDED_INDEX DEFINITION ="alter table MapDB modify MAPLINKRENDERER varchar(150)"/>
+                <ADDED_INDEX DEFINITION ="alter table MapDB modify MAPSYMBOLRENDERER varchar(150)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDPROPS">
+  	                 <FOREIGN_KEY DEFINITION="alter table DASHBOARDPROPS add constraint DASHBOARDPROPS_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+  	         </ADD_FOREIGN_CONSTRAINT>
+		
+		<ADDED_TABLE CUSTOM_TABLE_NODE="DECIMAL"
+                        DEFINITION="create table DECIMALDATA%(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="STATS"
+                        DEFINITION="create table STATSDATA%(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,0),
+                        PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONHOURLY"
+                        DEFINITION="create table STATSAGGREGATIONHOURLY(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19,0),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY0_ndx ON STATSAGGREGATIONHOURLY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY2_ndx ON STATSAGGREGATIONHOURLY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONDAILY"
+                        DEFINITION="create table STATSAGGREGATIONDAILY(
+                        &quot;POLLID&quot; Numeric(19,0) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19,0) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19,0),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY0_ndx ON STATSAGGREGATIONDAILY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY2_ndx ON STATSAGGREGATIONDAILY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsprofiles"
+                        DEFINITION="create table smsprofiles(
+                        profilename varchar(20) not null,
+                        recipients varchar(250) not null)">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="smsserver_out"
+                        DEFINITION="create table smsserver_out(
+                        id integer NOT NULL identity,
+  			type varchar(1) NOT NULL,
+  			recipient varchar(16) NOT NULL,
+  			text text NOT NULL,
+  			wap_url text NOT NULL,
+  			wap_expiry_date varchar(30),
+  			wap_signal varchar(1),
+  			create_date varchar(30) NOT NULL,
+  			originator varchar(16) NOT NULL,
+  			encoding varchar(1) NOT NULL,
+  			status_report integer NOT NULL,
+  			flash_sms integer NOT NULL,
+  			src_port integer NOT NULL,
+  			dst_port integer NOT NULL,
+  			sent_date varchar(30),
+  			ref_no varchar(64),
+  			priority integer NOT NULL,
+  			status varchar(1) NOT NULL,
+  			errors integer NOT NULL,
+  			gateway_id varchar(64) NOT NULL,
+  			PRIMARY KEY (id ))">
+                </ADDED_TABLE>
+
+</DB>
+
+<DB RDBMS_ENGINE="postgresql">
+
+<ADDED_TABLE TABLE_NAME="DASHBOARDPROPS"
+  	                      DEFINITION="create table DASHBOARDPROPS(
+  	                      &quot;ID&quot; numeric(13) PRIMARY KEY NOT NULL,
+  	                      &quot;PROPERTIES&quot; varchar(250))">
+  	                 <INDEXDEFN DEFINITION="CREATE INDEX DashboardProps0_Indx on DASHBOARDPROPS(&quot;ID&quot;)"/>
+  	         </ADDED_TABLE>  
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MANAGEDOBJECT">
+
+		<ADDED_INDEX DEFINITION ="CREATE INDEX FKB855B9E41BE4C5D on ManagedObject (&quot;PARENTID&quot;)"/>
+		<FOREIGN_KEY DEFINITION="alter table ManagedObject add constraint FKB855B9E41BE4C5D foreign key (PARENTID) references ManagedObject(MOID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="THRESHOLDOBJECTS">
+
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects alter column THRESHOLDVALUE TYPE Numeric(23,4)"/>
+                <ADDED_INDEX DEFINITION ="alter table ThresholdObjects alter column REARMVALUE TYPE Numeric(23,4)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="MapDB">
+
+                <ADDED_INDEX DEFINITION ="alter table MapDB alter column MAPLINKRENDERER TYPE varchar(150)"/>
+                <ADDED_INDEX DEFINITION ="alter table MapDB alter column MAPSYMBOLRENDERER TYPE varchar(150)"/>
+        </ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDPROPS">
+  	                 <FOREIGN_KEY DEFINITION="alter table DASHBOARDPROPS add constraint DASHBOARDPROPS_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+  	         </ADD_FOREIGN_CONSTRAINT>
+	
+		<ADDED_TABLE CUSTOM_TABLE_NODE="DECIMAL"
+                        DEFINITION="create table DECIMALDATA%(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+		<ADDED_TABLE CUSTOM_TABLE_NODE="STATS"
+                        DEFINITION="create table STATSDATA%(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(13),
+                        PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONHOURLY"
+                        DEFINITION="create table STATSAGGREGATIONHOURLY(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY0_ndx ON STATSAGGREGATIONHOURLY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONHOURLY2_ndx ON STATSAGGREGATIONHOURLY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="STATSAGGREGATIONDAILY"
+                        DEFINITION="create table STATSAGGREGATIONDAILY(
+                        &quot;POLLID&quot; Numeric(19) NOT NULL,
+                        &quot;INSTANCE&quot; varchar(100) NOT NULL,
+                        &quot;TTIME&quot; Numeric(19) NOT NULL,
+                        &quot;VAL&quot; Numeric(19,4),
+                        &quot;MMINVALUE&quot; Numeric(19,4),
+                        &quot;MMAXVALUE&quot; Numeric(19,4),
+                        &quot;TINTERVAL&quot;  Numeric(19),
+			PRIMARY KEY (&quot;POLLID&quot;,&quot;INSTANCE&quot;,&quot;TTIME&quot;))">
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY0_ndx ON STATSAGGREGATIONDAILY(&quot;POLLID&quot;)"/>
+                        <INDEXDEFN DEFINITION="CREATE INDEX STATSAGGREGATIONDAILY2_ndx ON STATSAGGREGATIONDAILY(&quot;TTIME&quot;)"/>
+                </ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="smsprofiles"
+                        DEFINITION="create table smsprofiles(
+                        profilename varchar(20) not null,
+                        recipients varchar(250) not null)">
+                </ADDED_TABLE>
+
+                <ADDED_TABLE TABLE_NAME="smsserver_out"
+                        DEFINITION="create table smsserver_out(
+                        id serial NOT NULL,
+  			type varchar(1) NOT NULL,
+  			recipient varchar(16) NOT NULL,
+  			text text NOT NULL,
+  			wap_url text NOT NULL,
+  			wap_expiry_date varchar(50),
+  			wap_signal varchar(1),
+  			create_date varchar(50) NOT NULL,
+  			originator varchar(16) NOT NULL,
+  			encoding varchar(1) NOT NULL,
+  			status_report integer NOT NULL,
+  			flash_sms integer NOT NULL,
+  			src_port integer NOT NULL,
+  			dst_port integer NOT NULL,
+  			sent_date varchar(50),
+  			ref_no varchar(64),
+  			priority integer NOT NULL,
+  			status varchar(1) NOT NULL,
+  			errors integer NOT NULL,
+  			gateway_id varchar(64) NOT NULL,
+  			PRIMARY KEY (id ))">
+		<ADDED_INDEX DEFINITION ="SELECT setval('smsserver_out_id_seq', (SELECT max(id) FROM smsserver_out));"/>
+                </ADDED_TABLE>
+
+</DB>
+
+</SCHEMA_CHANGES>

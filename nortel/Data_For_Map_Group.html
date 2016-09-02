@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Data For Map Group</title>
+  </head>
+  <body>
+    <small><small><font face="Courier New, Courier, monospace"><small><small><font
+                face="Courier New, Courier, monospace"><font
+                  color="#3333ff"><big><big><small><small><font
+                            face="Courier New, Courier, monospace"><font
+                              color="#3333ff"><big><big><big><big>psql
+                                      -U postgres --password -h
+                                      localhost testdb -c "<b>select *
+                                        from MapGroup where name like
+                                        'Group1'</b>"</big></big><br>
+                                </big></big></font></font></small></small></big></big></font></font></small></small>&nbsp;
+          name&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          mapname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+          --------+----------------------<br>
+          &nbsp;Group1 | 192.168.100.0.netmap<br>
+          (1 row)<br>
+          <br>
+          <font color="#3333ff"><big><big>psql</big></big></font></font></small></small><small><small><font
+          face="Courier New, Courier, monospace"><font color="#3333ff"><big><big>
+                -U postgres --password -h localhost testdb -c "<b>select
+                  * from MapSymbol where groupname like 'Group1'</b>"</big></big></font><br>
+          Password for user postgres: <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          mapname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          discriminator |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          objname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | iconname |&nbsp;&nbsp;
+          menuname&nbsp;&nbsp;&nbsp; | width | height |&nbsp;
+          x&nbsp;&nbsp; |&nbsp; y&nbsp; | objtype | webnms | groupname |
+          parentname | anchored | mapwidth | mapheight <br>
+--------------------+----------------------+---------------+--------------------+-----------------+----------+---------------+-------+--------+------+-----+---------+--------+-----------+------------+----------+----------+-----------<br>
+          &nbsp;192.168.100.101&nbsp;&nbsp;&nbsp; | 192.168.100.0.netmap
+          | MapSymbol&nbsp;&nbsp;&nbsp;&nbsp; |
+          192.168.100.101&nbsp;&nbsp;&nbsp; | 192.168.100.101 |
+          pc.png&nbsp;&nbsp; | snmpmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp; 55 |&nbsp;&nbsp;&nbsp;&nbsp; 55 |&nbsp;
+          925 |&nbsp; 38 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp; 1149
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610<br>
+          &nbsp;192.168.100.102&nbsp;&nbsp;&nbsp; | 192.168.100.0.netmap
+          | MapSymbol&nbsp;&nbsp;&nbsp;&nbsp; |
+          192.168.100.102&nbsp;&nbsp;&nbsp; | 192.168.100.102 |
+          pc.png&nbsp;&nbsp; | snmpmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp; 55 |&nbsp;&nbsp;&nbsp;&nbsp; 55 | 1052
+          |&nbsp; 38 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp; 1149
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610<br>
+          &nbsp;192.168.100.103&nbsp;&nbsp;&nbsp; | 192.168.100.0.netmap
+          | MapSymbol&nbsp;&nbsp;&nbsp;&nbsp; |
+          192.168.100.103&nbsp;&nbsp;&nbsp; | 192.168.100.103 |
+          pc.png&nbsp;&nbsp; | snmpmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp; 55 |&nbsp;&nbsp;&nbsp;&nbsp; 55
+          |&nbsp;&nbsp; 36 | 168 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp; 1149
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610<br>
+          &nbsp;192.168.100.104&nbsp;&nbsp;&nbsp; | 192.168.100.0.netmap
+          | MapSymbol&nbsp;&nbsp;&nbsp;&nbsp; |
+          192.168.100.104&nbsp;&nbsp;&nbsp; | 192.168.100.104 |
+          pc.png&nbsp;&nbsp; | snmpmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp; 55 |&nbsp;&nbsp;&nbsp;&nbsp; 55 |&nbsp;
+          163 | 168 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp; 1149
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610<br>
+          &nbsp;192.168.100.105&nbsp;&nbsp;&nbsp; | 192.168.100.0.netmap
+          | MapSymbol&nbsp;&nbsp;&nbsp;&nbsp; |
+          192.168.100.105&nbsp;&nbsp;&nbsp; | 192.168.100.105 |
+          pc.png&nbsp;&nbsp; | snmpmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp; 55 |&nbsp;&nbsp;&nbsp;&nbsp; 55 |&nbsp;
+          290 | 168 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp; 1149
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610<br>
+          &nbsp;IF-192.168.100.104 | 192.168.100.0.netmap |
+          MapLink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          IF-192.168.100.104
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          interfacemenu |&nbsp;&nbsp;&nbsp; 75 |&nbsp;&nbsp;&nbsp;&nbsp;
+          75 |&nbsp; 190 | 195 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+          &nbsp;IF-192.168.100.105 | 192.168.100.0.netmap |
+          MapLink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          IF-192.168.100.105
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          interfacemenu |&nbsp;&nbsp;&nbsp; 75 |&nbsp;&nbsp;&nbsp;&nbsp;
+          75 |&nbsp; 317 | 195 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+          &nbsp;IF-192.168.100.102 | 192.168.100.0.netmap |
+          MapLink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          IF-192.168.100.102
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          interfacemenu |&nbsp;&nbsp;&nbsp; 75 |&nbsp;&nbsp;&nbsp;&nbsp;
+          75 | 1079 |&nbsp; 65 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+          &nbsp;IF-192.168.100.103 | 192.168.100.0.netmap |
+          MapLink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          IF-192.168.100.103
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          interfacemenu |&nbsp;&nbsp;&nbsp; 75 |&nbsp;&nbsp;&nbsp;&nbsp;
+          75 |&nbsp;&nbsp; 63 | 195
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+          &nbsp;IF-192.168.100.101 | 192.168.100.0.netmap |
+          MapLink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          IF-192.168.100.101
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          interfacemenu |&nbsp;&nbsp;&nbsp; 75 |&nbsp;&nbsp;&nbsp;&nbsp;
+          75 |&nbsp; 952 |&nbsp; 65
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+          Group1&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          | f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+          (10 rows)<br>
+          <br>
+        </font></small></small><small><small><font face="Courier New,
+          Courier, monospace"><small><small><font face="Courier New,
+                Courier, monospace"><small><small><font face="Courier
+                      New, Courier, monospace"><font color="#3333ff"><big><big><small><small><font
+                                  face="Courier New, Courier, monospace"><font
+                                    color="#3333ff"><big><big><big><big><big><big>psql
+                                                -U postgres --password
+                                                -h localhost testdb -c "<b>select
+                                                  * from MAPUSERPROPS
+                                                  where NAME like
+                                                  'Group1';</b>"</big></big><br>
+                                          </big></big></big></big></font></font></small></small></big></big></font></font></small></small></font></small></small>Password
+          for user postgres: <br>
+          &nbsp; name&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          mapname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | propval |
+          propname <br>
+          --------+----------------------+---------+----------<br>
+          &nbsp;Group1 | 192.168.100.0.netmap | 75.0&nbsp;&nbsp;&nbsp; |
+          vheight<br>
+          &nbsp;Group1 | 192.168.100.0.netmap |
+          0.0&nbsp;&nbsp;&nbsp;&nbsp; | vy<br>
+          &nbsp;Group1 | 192.168.100.0.netmap |
+          0.0&nbsp;&nbsp;&nbsp;&nbsp; | vx<br>
+          &nbsp;Group1 | 192.168.100.0.netmap | 75.0&nbsp;&nbsp;&nbsp; |
+          vwidth<br>
+          (4 rows)</font></small></small>
+  </body>
+</html>

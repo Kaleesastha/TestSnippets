@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<!DOCTYPE SCHEMA_CHANGES SYSTEM "../../conf/SchemaChanges.dtd" >
+
+<SCHEMA_CHANGES>
+
+	<DB RDBMS_ENGINE="MYSQL">
+		<ADDED_TABLE DEFINITION="create table SyslogDetails (&quot;RESOURCENAME&quot; VARCHAR(100)  NOT NULL, &quot;IPADDRESS&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;STATUS&quot; INTEGER, &quot;TYPE&quot; INTEGER)"
+			TABLE_NAME="SyslogDetails">
+		</ADDED_TABLE>
+	</DB>
+
+	<DB RDBMS_ENGINE="ORACLE">
+		<ADDED_TABLE DEFINITION="create table SyslogDetails (&quot;RESOURCENAME&quot; VARCHAR(100)  NOT NULL, &quot;IPADDRESS&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;STATUS&quot; INTEGER, &quot;TYPE&quot; INTEGER)"
+			TABLE_NAME="SyslogDetails">
+		</ADDED_TABLE>
+	</DB>
+
+	<DB RDBMS_ENGINE="SYBASE">
+		<ADDED_TABLE DEFINITION="create table SyslogDetails (&quot;RESOURCENAME&quot; VARCHAR(100)  NOT NULL, &quot;IPADDRESS&quot; VARCHAR(50), &quot;USERNAME&quot; VARCHAR(50), &quot;PASSWORD&quot; VARCHAR(50), &quot;STATUS&quot; INTEGER, &quot;TYPE&quot; INTEGER)"
+			TABLE_NAME="SyslogDetails">
+		</ADDED_TABLE>
+	</DB>
+
+
+</SCHEMA_CHANGES>
+<!-- $Id: SchemaChanges.xml,v 1.1 2008/10/13 16:44:23 venkatramanan Exp $ -->

@@ -1,0 +1,2159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration_changes home_directory="." >
+<process_unit name="SetLocale" path="" classname="com.adventnet.nms.tools.confchanges.SetLanguageAndCountry" description="html/confchanges/SetLocaleProcess_change.html" required="true" priority="1">
+</process_unit>
+ <process_unit   name  = "NewConfigurationFiles.xml"
+ 		classname   = "com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+ 		description = "html/confchanges/NewConfigurationFilesProcess_change.html"
+ 		required    = "true"
+ 		priority    = "1"
+		path = "appln_mon/conf">
+	</process_unit>
+
+	<process_unit name="launcher_conf.txt" path="conf" classname="com.adventnet.nms.tools.confchanges.LauncherConfUpdater" description="Application Monitor launcher update" required="true">
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/ApplnMonitorServerExtn.jar" operation="add"/>
+<data application="Application Client" parameter="Classpath" value="./classes/ApplnMonitorClientExtn.jar" operation="add"/>
+<data application="Reinitialize Web NMS" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Discovery Configurator" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="LDAP Client" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Trap Parser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="SNMP V3 Security" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Multi Protocol Browser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="CLIBrowser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="TL1 Message Builder" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="TL1CraftInterface" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Configuration Wizard" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Chassis Wizard" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Studio" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Start Web NMS Server" parameter="AppJavaOption_-Djava.rmi.server.codebase" value="http://localhost:9090/classes/ApplnMonitorServerExtn.jar" operation="add"/>
+</process_unit>
+
+<configuration_file       
+	name          = "help.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+      description   = "description"
+      required      = "true"
+      priority      = "1" >
+
+      <update_node name="Add" description="add help  for updating a new node ">
+		<property_set name="NMS_HELP_CONF">
+		<property_set name="HELP_LIST">
+		<property name="parent" value="true" />
+            <property_set name="Node" >
+
+			<HELP key="Runtime_Admin_Application_Main_Help" value="appln_mon/help/index.html"/>
+			<HELP key="Runtime_Admin_Application_AppDiscovery_Help" value="appln_mon/help/disc_appln/disc_intro.html"/>
+			<HELP key="Runtime_Admin_Application_Threshold_Help" value="appln_mon/help/thresholds/thresh_intro.html"/>
+			<HELP key="Runtime_Admin_Application_AppStatusPolling_Help" value="appln_mon/help/manage_appln/app_sp_intro.html"/>
+			<HELP key="Runtime_Admin_Application_DataCollection_Help" value="appln_mon/help/monitor_orcl/orcl_intro.html"/>
+			<HELP key="Runtime_Admin_Application_OracleConf_Help" value="appln_mon/help/monitor_orcl/orcl_intro.html"/>
+			<HELP key="Runtime_Admin_Application_HostResource_Help" value="appln_mon/help/monitor_hr/host_res_intro.html"/>
+			<HELP key="Oracle_Systems" value="appln_mon/help/monitor_orcl/orcl_app_data_colln.html"/>
+			<HELP key="Host_Resources" value="appln_mon/help/monitor_hr/host_res_data_colln.html"/>
+		</property_set>
+		</property_set>
+		</property_set>
+	</update_node>
+
+</configuration_file>
+
+        <configuration_file       
+                   name          =  "logging_parameters.conf"
+                                   path          =  "conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in the logging_parameters.conf"
+                                   required      = "true"
+                                   priority      = "1" >
+                                   
+                <update_node name="Add" description="add 2 new log users for application monitoring" >
+                        <property_set name="LOGGING_PARAMETERS_CONF" >
+                                <property name="parent" value="true" />
+                                <property_set name="Node" >
+                                        <LOG_USER MaxLines="10000" UseTimeStamp="true" LogsDirectory="logs" FileCount="10" FileName="applnout.txt" MaxLinesCached="0">
+                                        <KEY Logging="true" Name="APPLNOUT" DisplayName="APPLNOUT" LogLevel="3"/>
+                                        </LOG_USER>
+                                        <LOG_USER MaxLines="10000" UseTimeStamp="true" LogsDirectory="logs" FileCount="10" FileName="applnerr.txt" MaxLinesCached="0">
+                                        <KEY Logging="true" Name="APPLNERR" DisplayName="APPLNERR" LogLevel="3"/>
+                                        </LOG_USER>
+                                </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Modify" description="add help  for updating a new node " >
+                        <property_set name="LOGGING_PARAMETERS_CONF" >
+                                <property_set name="LOG_USER" >
+                                        <property name="FileName" value="nmsout.txt" />
+                                        <property_set name="KEY" >
+                                                <property name="parent" value="true" />
+                                                <property name="Name" value="CLIUSER" />
+                                                <property name="DisplayName" value="CLI" />
+                                                <property_set name="attribute" >
+                                                        <property name="LogLevel" value="1" />
+                                                </property_set>
+                                        </property_set>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+	</configuration_file>
+
+  <configuration_file name="java_service.ini" path="lib" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="html/confchanges/serverparameters_change.html" required="true" priority="1">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value=".\\classes\\bsh-1.2b3.jar"/>
+		  <property name="newEntry" value=".\\classes\\bsh-1.2b3.jar;.\\classes\\ApplnMonitorServerExtn.jar;.\\classes\\ApplnMonitorClientExtn.jar;.\\classes\\CommonUtils.jar"/>
+              </property_set>
+       </update_node>
+   </configuration_file>
+
+
+<configuration_file
+                     name          =  "clientparameters.conf"
+                     path           =  "conf"
+                     classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                     description  = "Change in conf/clientparameters.conf"
+                     required      = "true"
+                     priority       = "1" >
+	<update_node name="Modify" description="Adding RME Client Jars" >
+                  <property_set name="CLIENT_PARAMETERS_CONF" >
+                        <property_set name="PARAMETERS" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                        <property name="ARCHIVE" subset="true" existingValue="../classes/AdventNetSnmp.jar" newValue="../classes/AdventNetSnmp.jar,../appln_mon/classes/ApplnMonitorCommon.jar,../appln_mon/classes/ApplnMonitorClient.jar,../classes/CommonUtils.jar,../classes/jfreechart.jar,../classes/jcommon.jar"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+    </configuration_file>
+
+
+  <configuration_file name="startnms" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="1">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                <property_set name="append" os="WIN">
+                        <property_set name="variable">
+                                <property name="set CLASS_PATH=" value="APPLN_MON_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+                <property_set name="append" os="LINUX">
+                        <property_set name="variable">
+                                <property name="CLASS_PATH=" value="APPLN_MON_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+       </update_node>
+   </configuration_file>
+
+	   <configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="1">
+                <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                        <property_set name="append" os="WIN">
+                                <property_set name="variable">
+		                                <property name="set CLASSPATH=" value="APPLN_MON_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+                        <property_set name="append" os="LINUX">
+                                <property_set name="variable">
+                                		<property name="CLASSPATH=" value="APPLN_MON_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+               </update_node>
+       </configuration_file>
+
+
+	<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="1">
+	   <update_node name="Modify_entry" description="New Variable is added">
+                <property_set name="Add_line" os="WIN">
+	                <property name="set APPLN_MON_SERVER_CLASSPATH=%NMS_HOME%\classes\ApplnMonitorServerExtn.jar" value=""  />
+			<property name="set APPLN_MON_CLIENT_CLASSPATH=%NMS_HOME%\classes\ApplnMonitorClientExtn.jar" value=""  />
+		</property_set>
+		<property_set name="Modify_entry" os="WIN" >
+			<property name="oldEntry" value="http://localhost:%WEBSERVER_PORT%/classes/jta.jar" />
+			<property name="newEntry" value="http://localhost:%WEBSERVER_PORT%/classes/jta.jar http://localhost:%WEBSERVER_PORT%/appln_mon/classes/ApplnMonitorServer.jar" />
+		</property_set>
+                <property_set name="Add_line" os="LINUX">
+			        <property name="APPLN_MON_SERVER_CLASSPATH=$NMS_HOME/classes/ApplnMonitorServerExtn.jar" value=""  />
+	                <property name="APPLN_MON_CLIENT_CLASSPATH=$NMS_HOME/classes/ApplnMonitorClientExtn.jar" value=""  />
+		</property_set>
+		<property_set name="Modify_entry" os="LINUX" >
+			<property name="oldEntry" value="file:///$NMS_HOME/classes/jta.jar" />
+			<property name="newEntry" value="file:///$NMS_HOME/classes/jta.jar\ file:///$NMS_HOME/appln_mon/classes/ApplnMonitorServer.jar" />
+		</property_set>
+
+	   </update_node>
+	</configuration_file>
+
+
+  <configuration_file name="relationalclasses.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.RelationalClassesChanges" description="description" required="true" priority="1">
+                <update_node name="Add_line" description="Add relatinalclasses entry which are used in Application Monitoring FW">
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.applnfw.discovery.server.model.InetService topodb RelationalInetService InetService" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.applnfw.datacollection.server.model.CollectData ApplnDB RelationalCollectData CollectData" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.OracleCollectData ApplnDB RelationalOracleCollectData OracleCollectData" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.InstanceStatus ApplnDB RelationalInstanceStatus InstanceStatus" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.InstanceDetails ApplnDB RelationalInstanceDetails InstanceDetails" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.SgaDetails ApplnDB RelationalSgaDetails SgaDetails" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.SgaStatus ApplnDB RelationalSgaStatus SgaStatus" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.SessionInfo ApplnDB RelationalSessionInfo SessionInfo" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.RollbackData ApplnDB RelationalRollbackData RollbackData" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.DataFiles ApplnDB RelationalDataFiles DataFiles" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.RedoLogs ApplnDB RelationalRedoLogs RedoLogs" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.TableSpaceDetails ApplnDB RelationalTableSpaceDetails TableSpaceDetails" value="" />
+                        </property_set>
+                       <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.oracle.datacollection.server.model.TableSpaceStatus ApplnDB RelationalTableSpaceStatus TableSpaceStatus" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.hostresource.datacollection.server.model.HostDetails ApplnDB RelationalHostDetails HostDetails" value="" />
+                        </property_set>
+                        <property_set name="Add_line" >
+                                <property name="com.adventnet.nms.appln.hostresource.datacollection.server.model.HostDataCollected ApplnDB RelationalHostDataCollected HostDataCollected" value="" />
+                        </property_set>
+
+
+            	<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.dns.discovery.server.model.DnsServer	topodb	com.adventnet.nms.appln.dns.discovery.server.model.RelationalDnsServer	DnsServer" value="" />
+                  </property_set>
+                  
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.ftp.discovery.server.model.FtpServer	topodb	com.adventnet.nms.appln.ftp.discovery.server.model.RelationalFtpServer	FtpServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.imap.discovery.server.model.ImapServer	topodb	com.adventnet.nms.appln.imap.discovery.server.model.RelationalImapServer	ImapServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.mailserver.discovery.server.model.MailServer	topodb	com.adventnet.nms.appln.mailserver.discovery.server.model.RelationalMailServer	MailServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.pop3.discovery.server.model.PopServer	topodb	com.adventnet.nms.appln.pop3.discovery.server.model.RelationalPopServer	PopServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.smtp.discovery.server.model.SmtpServer	topodb	com.adventnet.nms.appln.smtp.discovery.server.model.RelationalSmtpServer	SmtpServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.mysql.discovery.server.model.SqlServer	topodb	com.adventnet.nms.appln.mysql.discovery.server.model.RelationalSqlServer	SqlServer" value="" />
+                  </property_set>
+
+			<property_set name="Add_line" >
+                  	<property name="com.adventnet.nms.appln.webserver.discovery.server.model.WebServer	topodb	com.adventnet.nms.appln.webserver.discovery.server.model.RelationalWebServer	WebServer" value="" />
+                  </property_set>
+
+
+
+
+		</update_node>
+
+   </configuration_file>
+
+ <configuration_file      
+                   name =  "map.filters"
+                                   path          =  "conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in the map filters"
+                                   required      = "true"
+                                   priority      = "1" >
+
+                <update_node name="Add" description="add Filter" >
+
+                         <property_set name="FILTER_LIST" >
+                                      <property name="parent" value="true" />
+                         <property_set name="Node" >
+                                <FILTER className="com.adventnet.nms.applnfw.discovery.server.ServiceMapFilter"/>
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+   </configuration_file>
+
+
+    
+ <configuration_file name="NmsProcessesBE.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges" description="html/confchanges/NmsProcessesBE_change.html" required="true" priority="1">
+
+            <update_node name="com.adventnet.nms.appln.operations.ApplnStandaloneBE" description="New PROCESS for Appln Impl">
+                        <property_set name="Add_Process">
+                                <property_set name="COMMENT">
+                                        <property name="ADDITIONAL_COMMENT" value="com.adventnet.nms.appln.operations.ApplnStandaloneBE"/>
+                                </property_set>
+                                <property_set name="PROCESS">
+                                        <property name="PROCESS_NAME" value="com.adventnet.nms.appln.operations.ApplnStandaloneBE"/>
+                                </property_set>
+                                <property_set name="ARGS">
+                                        <property name="NULL" value=""/>
+                                </property_set>
+                        </property_set>
+                </update_node>
+
+                <update_node name="com.adventnet.nms.applnfw.operations.StandaloneApplnProcess" description="New PROCESS for Appln FW">
+                        <property_set name="Add_Process">
+                                <property_set name="COMMENT">
+                                        <property name="ADDITIONAL_COMMENT" value="java com.adventnet.nms.applnfw.operations.StandaloneApplnProcess"/>
+                                </property_set>
+                                <property_set name="PROCESS">
+                                        <property name="PROCESS_NAME" value="com.adventnet.nms.applnfw.operations.StandaloneApplnProcess"/>
+                                </property_set>
+                                <property_set name="ARGS">
+                                        <property name="NULL" value=""/>
+                                </property_set>
+                        </property_set>
+                </update_node>
+    </configuration_file>
+
+
+     <configuration_file name="NmsProcessesFE.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges" description="description" required="true" priority="1">
+                <update_node name="com.adventnet.nms.applnfw.operations.fe.ApplnFEProcess" description="New PROCESS">
+                        <property_set name="Add_Process">
+                                <property_set name="COMMENT">
+                                        <property name="ADDITIONAL_COMMENT" value="java com.adventnet.nms.applnfw.operations.fe.ApplnFEProcess"/>
+                                </property_set>
+                                <property_set name="PROCESS">
+                                        <property name="PROCESS_NAME" value="com.adventnet.nms.applnfw.operations.fe.ApplnFEProcess"/>
+                                </property_set>
+                                <property_set name="ARGS">
+                                        <property name="" value="NULL"/>
+                                </property_set>
+                        </property_set>
+                </update_node>
+	                <update_node name="com.adventnet.nms.appln.operations.fe.ApplnStandaloneFE" description="New PROCESS">
+                        <property_set name="Add_Process">
+                                <property_set name="COMMENT">
+                                        <property name="ADDITIONAL_COMMENT" value="java com.adventnet.nms.appln.operations.fe.ApplnStandaloneFE"/>
+                                </property_set>
+                                <property_set name="PROCESS">
+                                        <property name="PROCESS_NAME" value="com.adventnet.nms.appln.operations.fe.ApplnStandaloneFE"/>
+                                </property_set>
+                                <property_set name="ARGS">
+                                        <property name="" value="NULL"/>
+                                </property_set>
+                        </property_set>
+                </update_node>
+			
+        </configuration_file>
+
+
+ <configuration_file name="DatabaseAliases.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="DATABASE_ALIASES" required="true" priority="0">
+        <update_node name="Update" description="Add new fields alias">
+            <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="userName USERNAME" value="" />
+            </property_set>
+                 <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="password PASSWORD" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="instanceName INSTANCENAME" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="driverName DRIVERNAME" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="collectStaticData COLLECTSTATICDATA" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="state STATE" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table OracleCollectData" value="" />
+                <property name="errorMsg ERRORMSG" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="version VERSION" value="" />
+            </property_set>
+             <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="startupTime STARTUPTIME" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="created CREATED" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="openMode OPENMODE" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="logMode LOGMODE" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="dbsize DBSIZE" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="avgExecs AVGEXECS" value="" />
+            </property_set>
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="avgUsers AVGUSERS" value="" />
+            </property_set>
+
+
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="writes WRITES" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table InstanceDetails" value="" />
+                <property name="blockSize BLOCKSIZE" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="bufferCacheSize BUFFERCACHESIZE" value="" />
+            </property_set>
+            <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="sharedPoolSize SHAREDPOOLSIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="redologBufferSize REDOLOGBUFFERSIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="libraryCacheSize LIBRARYCACHESIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="dataDictCacheSize DATADICTCACHESIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="sqlAreaSize SQLAREASIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="fixedSize FIXEDSIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="freeMemorySize FREEMEMORYSIZE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="bufferHitRatio BUFFERHITRATIO" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="dictionaryHitRatio DICTIONARYHITRATIO" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SgaDetails" value="" />
+                <property name="libraryHitRatio LIBRARYHITRATIO" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="sessionId SESSIONID" value="" />
+            </property_set>
+            <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="status STATUS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="machine MACHINE" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="userName USERNAME" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="elapsedTime ELAPSEDTIME" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="cpuUsed CPUUSED" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="memorySorts MEMORYSORTS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="tableScans TABLESCANS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="physicalReads PHYSICALREADS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="logicalReads LOGICALREADS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="diskSorts DISKSORTS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="blocksChanged BLOCKSCHANGED" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="chainedRows CHAINEDROWS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="commits COMMITS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="cursors CURSORS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table SessionInfo" value="" />
+                <property name="buffercacheHitRatio BUFFERCACHEHITRATIO" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="segmentName SEGMENTNAME" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="tableSpaceName TABLESPACENAME" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="initialExtent INITIALEXTENT" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="nextExtent NEXTEXTENT" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="minExtent MINEXTENT" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="maxExtent MAXEXTENT" value="" />
+            </property_set>
+
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="currentSize CURRENTSIZE" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="blocks BLOCKS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="gets GETS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="waits WAITS" value="" />
+            </property_set>
+
+        <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="hwmsize HWMSIZE" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="shrinks SHRINKS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="wraps WRAPS" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RollbackData" value="" />
+                <property name="extend EXTEND" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table DataFiles" value="" />
+                <property name="file_name FILE_NAME" value="" />
+            </property_set>
+
+
+        <property_set name="Add_line" >
+                <property name="#In Table DataFiles" value="" />
+                <property name="createBytes CREATEBYTES" value="" />
+            </property_set>
+
+        <property_set name="Add_line" >
+                <property name="#In Table DataFiles" value="" />
+                <property name="reads READS" value="" />
+            </property_set>
+
+
+        <property_set name="Add_line" >
+                <property name="#In Table DataFiles" value="" />
+                <property name="avgrdTime AVGRDTIME" value="" />
+            </property_set>
+
+
+         <property_set name="Add_line" >
+                <property name="#In Table DataFiles" value="" />
+                <property name="avgwrTime AVGWRTIME" value="" />
+            </property_set>
+
+
+         <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="groupName GROUPNAME" value="" />
+            </property_set>
+         <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="thread THREAD" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="sequence SEQUENCE" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="bytes BYTES" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="members MEMBERS" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="archive ARCHIVE" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="firstTime FIRSTTIME" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="member MEMBER" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table RedoLogs" value="" />
+                <property name="mstatus MSTATUS" value="" />
+            </property_set>
+
+          <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="allocatedBytes ALLOCATEDBYTES" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="allocatedBlocks ALLOCATEDBLOCKS" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="dataFiles DATAFILES" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="freeBytes FREEBYTES" value="" />
+            </property_set>
+        <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="freeBlocks FREEBLOCKS" value="" />
+            </property_set>
+
+       <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="readtime READTIME" value="" />
+            </property_set>
+       <property_set name="Add_line" >
+                <property name="#In Table TableSpaceDetails" value="" />
+                <property name="writetime WRITETIME" value="" />
+            </property_set>
+ 
+
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="thresholdName THRESHOLDNAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="applyThresholdOver  APPLYTHRESHOLDOVER" value="" />
+            </property_set>
+
+             <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="timeout  TIMEOUT" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table DnsServer" value="" />
+                <property name="lookUpAddress  LOOKUPADDRESS" value="" />
+            </property_set>
+
+
+             <property_set name="Add_line" >
+                <property name="#In Table ImapServer" value="" />
+                <property name="LoginFailed  LOGINFAILED" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table ImapServer" value="" />
+                <property name="CapabilityFailed  CAPABILITYFAILED" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table FtpServer" value="" />
+                <property name="command  COMMAND" value="" />
+            </property_set>
+
+              <property_set name="Add_line" >
+                <property name="#In Table FtpServer" value="" />
+                <property name="binaryMode  BINARYMODE" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table FtpServer" value="" />
+                <property name="srcFileName  SRCFILENAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table FtpServer" value="" />
+                <property name="destFileName  DESTFILENAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table FtpServer" value="" />
+                <property name="userName  USERNAME" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table MailServer" value="" />
+                <property name="popPort  POPPORT" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table SmtpServer" value="" />
+                <property name="fromAddress  FROMADDRESS" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table SmtpServer" value="" />
+                <property name="toAddress  TOADDRESS" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table SqlServer" value="" />
+                <property name="url  URL" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table SqlServer" value="" />
+                <property name="driverName  DRIVERNAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table SqlServer" value="" />
+                <property name="command  COMMAND" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table WebServer" value="" />
+                <property name="uri  URI" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table WebServer" value="" />
+                <property name="depth  DEPTH" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#For all WebServer" value="" />
+                <property name="searchString  SEARCHSTRING" value="" />
+             </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#For all WebServer" value="" />
+                <property name="outOfDomain  OUTOFDOMAIN" value="" />
+             </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#For all WebServer" value="" />
+                <property name="loadGifs  LOADGIFS" value="" />
+             </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#For all WebServer" value="" />
+                <property name="useSSL  USESSL" value="" />
+             </property_set>
+
+
+
+ 
+        </update_node>
+
+
+        <update_node name="Update" description="Add new fields alias">
+            <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="userName USERNAME" value="" />
+            </property_set>
+            <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="password PASSWORD" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="prompt PROMPT" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="osType OSTYPE" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="category CATEGORY" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="errorMsg ERRORMSG" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+                <property name="loginPrompt LOGINPROMPT" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table HostDetails" value="" />
+		<property name="passwordPrompt PASSWORDPROMPT" value="" />
+           </property_set>
+	   <property_set name="Add_line">
+		<property name="#In Table HostDetails" value=""/>
+ 		<property name="cliProtocol CLIPROTOCOL" value=""/>
+	   </property_set>
+
+              <property_set name="Add_line" >
+                <property name="#In Table HostDataCollected" value="" />
+                <property name="curValue CURVALUE" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table HostDataCollected" value="" />
+                <property name="category CATEGORY" value="" />
+            </property_set>
+          <property_set name="Add_line" >
+                <property name="#In Table HostDataCollected" value="" />
+                <property name="entity ENTITY" value="" />
+            </property_set>
+
+ 
+        </update_node>
+
+        <update_node name="Update" description="Add new fields alias">
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="interfaceName INTERFACENAME" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="targetName TARGETNAME" value="" />
+            </property_set>
+
+
+             <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="targetAddress TARGETADDRESS" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="portNo PORTNO" value="" />
+            </property_set>
+
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="protocolVersion PROTOCOLVERSION" value="" />
+            </property_set>
+             <property_set name="Add_line" >
+                <property name="#In Table INETService" value="" />
+                <property name="protocol PROTOCOL" value="" />
+            </property_set>
+
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="resourceName RESOURCENAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="componentName COMPONENTNAME" value="" />
+            </property_set>
+              <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="displayName DISPLAYNAME" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="targetAddress TARGETADDRESS" value="" />
+            </property_set>
+              <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="resourceType RESOURCETYPE" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="configClass CONFIGCLASS" value="" />
+            </property_set>
+              <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="dcClass DCCLASS" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="dcXmlName DCXMLNAME" value="" />
+            </property_set>
+             <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="dcDtdName DCDTDNAME" value="" />
+            </property_set>
+              <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="active ACTIVE" value="" />
+            </property_set>
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="storeData STOREDATA" value="" />
+            </property_set>
+                <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="configured CONFIGURED" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="pollInterval POLLINTERVAL" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#In Table CollectData" value="" />
+                <property name="applnDiscPort APPLNDISCPORT" value="" />
+            </property_set>
+
+            <property_set name="Add_line" >
+                <property name="#For all ApplnData" value="" />
+                <property name="collectionTime COLLECTIONTIME" value="" />
+             </property_set>
+
+        </update_node>
+ </configuration_file>
+
+
+<configuration_file name="DatabaseSchema.conf" path="conf" schemapath="appln_mon/conf" schemafile="SchemaChanges.xml" classname="com.adventnet.nms.tools.confchanges.SchemaChanges" description="DATABASE_SCHEMA" required="true" priority="1"/>
+
+ <configuration_file      
+                   name =  "RunTimeConfig.xml"
+                                   path          =  "conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in the RuntimeConfig.xml"
+                                   required      = "true"
+                                   priority      = "1" >
+
+
+            <update_node name="insert" description="add help  for updating a new node " >
+			<property_set name="RuntimeConfig" >
+				<property name="parent" value="true" />
+				<property_set name="previousNode" >
+					<MODULE TREE-NAME="Topology" ICON-FILE="images/runtimeadmin/topology.png" NODE-ID="Topology" PANEL-NAME="com.adventnet.nms.runtimeconfig.AdventnetScreen" HELP-FILE-KEY="Runtime_Admin_Topology_Main_Help" />
+				</property_set>
+				<property_set name="currentNode" >
+					<MODULE TREE-NAME="Application" ICON-FILE="images/applnParentNode.png" NODE-ID="Application" PANEL-NAME="com.adventnet.nms.runtimeconfig.AdventnetScreen" HELP-FILE-KEY="Runtime_Admin_Application_Main_Help" > 
+					<LEVEL-ONE TREE-NAME="Threshold" ICON-FILE="images/thresholdicon.png" NODE-ID="Threshold Configuration" PANEL-NAME="com.adventnet.nms.extranet.threshold.client.ThresholdUI" HELP-FILE-KEY="Runtime_Admin_Application_Threshold_Help" CLEAN-RESOURCE="true">
+					</LEVEL-ONE>
+					</MODULE>
+				</property_set>
+			</property_set>
+		</update_node>
+
+         <update_node name="Add" description="add for appln discovery, appln dc and appln status poll" >
+                 <property_set name="RuntimeConfig" >
+                        <property_set name="MODULE" >
+                                 <property name="parent" value="true" />
+                                 <property name="TREE-NAME" value="Application" />
+                                        <property_set name="Node" >
+                                                <LEVEL-ONE TREE-NAME="Application Discovery" ICON-FILE="images/applnDiscoveryTreeNode.png" NODE-ID="Application Discovery" PANEL-NAME="com.adventnet.nms.applnfw.discovery.client.rta.ApplnDiscUI" HELP-FILE-KEY="Runtime_Admin_Application_AppDiscovery_Help" CLEAN-RESOURCE="true">
+                                                </LEVEL-ONE>
+                                                <LEVEL-ONE TREE-NAME="Application StatusPolling" ICON-FILE="images/rtaStatusPollTreeNode.png" NODE-ID="Application StatusPolling" PANEL-NAME="com.adventnet.nms.applnfw.statuspoll.client.rta.StatusPoll" HELP-FILE-KEY="Runtime_Admin_Application_AppStatusPolling_Help" CLEAN-RESOURCE="true">
+                                                </LEVEL-ONE>    
+                                                <MODULE TREE-NAME="Application Data Collection" ICON-FILE="images/applnDCRTATree.png" NODE-ID="Application DataCollection" PANEL-NAME="com.adventnet.nms.applnfw.datacollection.client.rta.ApplnDCUI" HELP-FILE-KEY="Runtime_Admin_Application_DataCollection_Help" CLEAN-RESOURCE="true">
+                                                </MODULE>
+                                         </property_set>
+                         </property_set>
+                 </property_set>
+         </update_node>
+	 <update_node name="Add" description="add help  for updating a new node " >
+		<property_set name="RuntimeConfig" >
+                	<property_set name="MODULE">
+	                        <property name="TREE-NAME" value="Application" />
+                       			<property_set name="MODULE">
+	                                <property name="TREE-NAME" value="Application Data Collection" />
+	                                        <property name="parent" value="true" />
+        	              		                <property_set name="Node" >
+                                        		 <LEVEL-ONE TREE-NAME="Oracle Configuration" ICON-FILE="images/ORACLE-DB-server_icon.png" NODE-ID="Oracle Configuration" PANEL-NAME="com.adventnet.nms.appln.oracle.datacollection.client.OracleConfigUI" HELP-FILE-KEY="Runtime_Admin_Application_OracleConf_Help" CLEAN-RESOURCE="true"></LEVEL-ONE><LEVEL-ONE TREE-NAME="HostResource" ICON-FILE="images/hostresource.png" NODE-ID="HostResource Configuration" PANEL-NAME="com.adventnet.nms.appln.hostresource.datacollection.client.HostResourceConfUI" HELP-FILE-KEY="Runtime_Admin_Application_HostResource_Help" CLEAN-RESOURCE="true"></LEVEL-ONE>
+                                        		</property_set>
+                                        </property_set>
+                        </property_set>
+               </property_set>
+         </update_node>
+
+    </configuration_file>
+
+
+
+<configuration_file name="threads.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Threads add in threads.conf" required="true" priority="0">
+        <update_node name="Update" description="Add threads for data collection">
+            <property_set name="Add_line" >
+                <property name="DataCollection 10" value="" />
+            </property_set>
+        </update_node>
+
+	<update_node name="Modify_entry" description="Modify existing status poll threads">
+               <property_set name="Modify_entry">
+                   <property name="oldEntry" value="statuspoll 3"/>
+                   <property name="newEntry" value="statuspoll 10"/>
+               </property_set>
+           </update_node>
+
+
+
+
+ </configuration_file>
+
+
+<configuration_file name="database_params.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB"/>
+                  <property name="newEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB-ApplnDB"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+
+<configuration_file name="database_params.conf" path="conf/MySQL" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB"/>
+                  <property name="newEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB-ApplnDB"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file name="database_params.conf" path="conf/Oracle" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB"/>
+                  <property name="newEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB-ApplnDB"/>
+              </property_set>
+          </update_node>
+  </configuration_file>
+
+<configuration_file name="database_params.conf" path="conf/sybase" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="Add new module ApplnDB">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB"/>
+                  <property name="newEntry" value="TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB-ApplnDB"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />	
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${name}" action_type="openframe"/>
+					</MENU-ITEM>	
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />	
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>			
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>			
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>			
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${name}" action_type="openframe"/>
+					</MENU-ITEM>
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>					
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>			
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${name}" action_type="openframe"/>
+					</MENU-ITEM>
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	
+	<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "mapdata/menus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="To display HRGraph from the menu" >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="HostResource GraphView">
+						<JAVA-UI  action_value="com.adventnet.nms.appln.hostresource.datacollection.client.HRGraphData?name=${name}&amp;WebNMS=${webNMS}" action_type="INVOKE_CLASS"/>
+					</MENU-ITEM>			
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${objName}" action_type="openframe"/>
+					</MENU-ITEM>
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	
+
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${objName}" action_type="openframe"/>
+					</MENU-ITEM>
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "1" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="Discover Application">
+						<JAVA-UI action_value="com.adventnet.nms.applnfw.discovery.client.AddInetServiceUI?name=${objName}" action_type="openframe"/>
+					</MENU-ITEM>
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+<configuration_file
+          name                 =  "web-header.xml"
+          path                 =  "WEB-INF"
+          classname            =  "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+          description          =  "html/confchanges/web-header_change.html"
+          compatible_version   =  "4.7,4.5,AdventNet_Web_NMS-4.0-SP-2.1"
+          required             =  "true"
+          doonce               =  "true"
+          priority             =  "0" >
+   <update_node name="Modify_entry" description="Entry for applnmon-struts-config.xml added">
+               <property_set name="Modify_entry">
+                     <property name="oldEntry" value= "ActionServlet&lt;/servlet-class&gt;"/>
+                     <property name="newEntry" value="ActionServlet&lt;/servlet-class&gt;
+                     &lt;init-param&gt;&lt;param-name&gt;config/applnmon&lt;/param-name&gt;&lt;param-value&gt;/webclient/applnmon/conf/applnmon-struts-config.xml&lt;/param-value&gt;&lt;/init-param&gt;"/>
+               </property_set>
+  </update_node>
+</configuration_file> 
+
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="html/confchanges/LocalizationProcess_change.html" required="true" priority="1">
+
+<!--Locale and language will be unknown during this conf change, hence all language files have to be given under en-->
+   <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="appln_mon/ancillary/en/html/ApplnMonitorClient.properties" dest="html/ApplnMonitor.properties" accept="properties"/>
+   <COPY source="appln_mon/ancillary/en/html/ApplnMonitorServer.properties" dest="html/ApplnMonitor.properties" accept="properties" merge="true" />
+   <COPY source="appln_mon/ancillary/en/html/ApplnMonitorCommon.properties" dest="html/EnglishToNativeComplete.properties" accept="properties" merge="true" />
+   </COPY_FILES>
+
+   <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="appln_mon/ancillary/cn/html/ApplnMonitorClient_zh_CN.properties" dest="html/ApplnMonitor_zh_CN.properties" accept="properties" />
+   <COPY source="appln_mon/ancillary/cn/html/ApplnMonitorServer_zh_CN.properties" dest="html/ApplnMonitor_zh_CN.properties" accept="properties" merge="true" />
+   <COPY source="appln_mon/ancillary/cn/html/ApplnMonitorCommon_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties" accept="properties" merge="true" />
+   </COPY_FILES>
+   
+  <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="appln_mon/ancillary/jp/html/ApplnMonitorClient_ja_JP.properties" dest="html/ApplnMonitor_ja_JP.properties" accept="properties" />
+   <COPY source="appln_mon/ancillary/jp/html/ApplnMonitorServer_ja_JP.properties" dest="html/ApplnMonitor_ja_JP.properties" accept="properties" merge="true" />
+   <COPY source="appln_mon/ancillary/jp/html/ApplnMonitorCommon_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties" accept="properties" merge="true" />
+   </COPY_FILES>
+
+</process_unit>
+<!--
+<configuration_file name="EnglishToNative_ja_JP.properties" path="ancillary/jp/html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+	   <property_set name="Add">
+		<property name="&lt;PROMINENT_KEY&gt;Application" value="アプリケーション" existingValue="Application" />
+	</property_set>
+   </update_node>
+</configuration_file>
+
+<configuration_file name="EnglishToNative_ja_JP.properties" path="html" classname="com.adventnet.nms.tools.confchanges.PropertiesConfChangesUtil" description="Update the properties file." required="true" priority="1">
+   <update_node name="update_properties">
+	   <property_set name="Add">
+		<property name="&lt;PROMINENT_KEY&gt;Application" value="アプリケーション" existingValue="Application" />
+	</property_set>
+   </update_node>
+</configuration_file>
+-->
+<configuration_file name="nodeeditmenu.xml" path="mapdata/menus" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="To rename the Node Edit menu as Edit">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="Node Edit"/>
+                  <property name="newEntry" value="Edit"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+<configuration_file name="nodeeditmenu.xml" path="listmenus" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Add new module ApplnDB" required="true" priority="1">
+          <update_node name="Modify_entry" description="To rename the Node Edit menu as Edit">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value="Node Edit"/>
+                  <property name="newEntry" value="Edit"/>
+              </property_set>
+          </update_node>
+</configuration_file>
+
+ <configuration_file      
+                   name =  "listIcon.data"
+                                   path          =  "conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in the list icons"
+                                   required      = "true"
+                                   priority      = "1" >
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="ORACLE-DB-server"  MENU="ResourceMenu"  CLEAR_IMG="oracledbserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="Exchange-server"   MENU="ResourceMenu"  CLEAR_IMG="msxchangeserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+               <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+            				<DATA TYPE="FTP-server"        MENU="ResourceMenu"  CLEAR_IMG="ftpserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="IMAP-server"       MENU="ResourceMenu"  CLEAR_IMG="imapserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="MAIL-server"       MENU="ResourceMenu"  CLEAR_IMG="mailserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="MSSQL-DB-server"   MENU="ResourceMenu"  CLEAR_IMG="mssqldbserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="MYSQL-DB-server"   MENU="ResourceMenu"  CLEAR_IMG="mysqldbserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+					<DATA TYPE="POP-server"        MENU="ResourceMenu"  CLEAR_IMG="popserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+					<DATA TYPE="SMTP-server"       MENU="ResourceMenu"  CLEAR_IMG="smtpserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="WEBLOGIC-server"   MENU="ResourceMenu"  CLEAR_IMG="weblogicserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+
+  				<property_set name="Node" >
+			<DATA TYPE="WEB-server"        MENU="ResourceMenu"  CLEAR_IMG="webserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+
+
+                <update_node name="Add" description="add list icon" >
+
+	 		<property_set name="LIST_ICON_DATA" >
+	              	<property name="parent" value="true" />
+		
+  				<property_set name="Node" >
+					<DATA TYPE="NTP-server"        MENU="ResourceMenu"  CLEAR_IMG="ntpserver.png" />
+                         	</property_set>
+                      	</property_set>
+                </update_node>
+
+ </configuration_file>
+
+<configuration_file      
+                   name =  "mapIcon.data"
+                                   path          =  "conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in the map icons"
+                                   required      = "true"
+                                   priority      = "1" >
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="ORACLE-DB-server"  menuName="ResourceMenu"  iconName="oracledbserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="Exchange-server"   menuName="ResourceMenu"  iconName="msxchangeserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+		            <DATA TYPE="FTP-server"        menuName="ResourceMenu"  iconName="ftpserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="IMAP-server"       menuName="ResourceMenu"  iconName="imapserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="MAIL-server"       menuName="ResourceMenu"  iconName="mailserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="MSSQL-DB-server"   menuName="ResourceMenu"  iconName="mssqldbserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="MYSQL-DB-server"   menuName="ResourceMenu"  iconName="mysqldbserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+				<DATA TYPE="POP-server"        menuName="ResourceMenu"  iconName="popserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+				<DATA TYPE="SMTP-server"       menuName="ResourceMenu"  iconName="smtpserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="WEBLOGIC-server"   menuName="ResourceMenu"  iconName="weblogicserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+			<DATA TYPE="WEB-server"        menuName="ResourceMenu"  iconName="webserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+
+                <update_node name="Add" description="add map icon" >
+
+			 <property_set name="MAP_ICON_DATA" >
+	              <property name="parent" value="true" />
+
+  			 <property_set name="Node" >
+				<DATA TYPE="NTP-server"        menuName="ResourceMenu"  iconName="ntpserver.png" />
+                         </property_set>
+                        </property_set>
+                </update_node>
+
+ </configuration_file>
+
+ <configuration_file       
+                   name          = "NmsPanels.conf"
+                   path          = "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "Hostresource Panel"
+                   required      = "true"
+                   priority      = "1" >
+	 <update_node name="Add" description="add help  for updating a new node " >
+		<property_set name="NMS_PANELS_CONF" >
+                     <property name="parent" value="true" />
+
+	                <property_set name="Node" >
+					<PANEL className="com.adventnet.nms.appln.hostresource.datacollection.client.DashboardClientInitializer" INIT-ON-STARTUP="true" PANEL-KEY="Appln Key"/>
+
+                        </property_set>
+               </property_set>
+         </update_node>
+ </configuration_file>
+
+<configuration_file name="serverparameters.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="Aliases for columns that are part of new tables added." required="true" priority="0">
+<update_node name="Update" description="Add new line for support store encrypted form">
+<property_set name="Add_line" >
+<property name="#For enable/disable store the password,community,writecommunity in the encrypted form in the database as well as file" value="" />
+<property name="STORE_ENCRYPTED_FORMAT true" value="" />
+</property_set>
+</update_node>
+</configuration_file>
+
+<configuration_file name="compileJSP" path="bin/"
+    classname="com.adventnet.nms.tools.confchanges.SetEnvChanges"
+    description="bin/compileJSP changes"
+    required="true"
+    priority="1"> 
+
+    <update_node
+      name="Modify_entry"
+      description="added for applnmon jar classpath">
+  
+      <property_set name="Add_line" os="WIN" >
+         <property name="set APPLNMONPATH=%NMS_HOME%\appln_mon\classes\ApplnMonitorServer.jar;%NMS_HOME%\appln_mon\classes\ApplnMonitorCommon.jar;%WEB_INF_LIB_HOME%\webclient-applnmon.jar" after="set ADDITIONAL_CLASSPATH" use="os" doOnce="true" />
+    	 </property_set>
+         
+      <property_set name="Add_line" os="LINUX" >
+         <property name="APPLNMONPATH=$NMS_HOME/appln_mon/classes/ApplnMonitorServer.jar:$NMS_HOME/appln_mon/classes/ApplnMonitorCommon.jar:$WEB_INF_LIB_HOME/webclient-applnmon.jar" after="ADDITIONAL_CLASSPATH=" use="os" doOnce="true" />
+         </property_set>
+         
+      <property_set name="Modify_entry" os="WIN" >
+      	 <property name="oldEntry" value="%OTHER_CLASSPATH%" />
+		 <property name="newEntry" value="%OTHER_CLASSPATH%;%APPLNMONPATH%" />
+		 </property_set>
+
+     <property_set name="Modify_entry" os="LINUX" >
+      	 <property name="oldEntry" value="$OTHER_CLASSPATH" />
+		 <property name="newEntry" value="$OTHER_CLASSPATH:$APPLNMONPATH" />
+		 </property_set>
+		 
+		 
+
+      <property_set name="Modify_entry" os="WIN" >
+      	 <property name="oldEntry" value=".\WEB-INF\webclient\common\jsp\*.java" />
+		 <property name="newEntry" value=".\WEB-INF\webclient\common\jsp\*.java .\WEB-INF\webclient\applnmon\jsp\*.java " />
+		 </property_set>
+		 
+     <property_set name="Modify_entry" os="LINUX" >
+      	 <property name="oldEntry" value="./WEB-INF/webclient/common/jsp/*.java" />
+		 <property name="newEntry" value="./WEB-INF/webclient/common/jsp/*.java ./WEB-INF/webclient/applnmon/jsp/*.java" />
+		 </property_set>
+		 
+     <property_set name="Add_line" os="WIN" >
+        <property name ="%JDK_HOME%\bin\jar  -uvf  ..\lib\webclient-applnmon.jar webclient\applnmon\jsp\*.class" after="%JDK_HOME%\bin\jar  -uvf  ..\lib\webclient-common.jar webclient\common\jsp\*.class" use="os" doOnce="true" />
+        </property_set>
+
+     <property_set name="Add_line" os="WIN" >
+        <property name ="rmdir /s/q .\WEB-INF\webclient\applnmon" after="rmdir /s/q .\WEB-INF\webclient\common" use="os" doOnce="true" />
+        </property_set>	
+				 
+     <property_set name="Add_line" os="WIN" >
+        <property name ="rmdir /s/q .\WEB-INF\classes\webclient\applnmon" after="rmdir /s/q .\WEB-INF\classes\webclient\common" use="os" doOnce="true" />
+        </property_set>	
+		 
+     <property_set name="Modify_entry" os="LINUX" >
+      	 <property name="oldEntry" value="for module in topo map fault perf admin common" />
+		 <property name="newEntry" value="for module in topo map fault perf admin common applnmon" />
+		 </property_set>
+
+   </update_node>
+ </configuration_file>
+
+<configuration_file      
+                   name ="mapwebclientconfig.xml"
+                                   path          = "webclient/map/conf/"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in mapwebclientconfig file"
+                                   required      = "true"
+                                   priority      = "0" >
+                <update_node name="Add" description="add web-server" >
+
+			<property_set name="map-web-config" >
+                            <property name="parent" value="true" />
+                            <property_set name="Node" >
+            			<type-config type="WEB-server">
+        				<map-view>
+         					<icon-config status="default" imageName="/images/webserver.png"/>
+        				</map-view>
+       					<symbol-details>
+          					<icon-config status="Clear" imageName="/images/WEB-server_icon.png"/>
+          					<icon-config status="Major" imageName="/images/WEB-server_icon.png"/>
+          					<icon-config status="Minor" imageName="/images/WEB-server_icon.png"/>
+          					<icon-config status="Warning" imageName="/images/WEB-server_icon.png"/>
+          					<icon-config status="Critical" imageName="/images/WEB-server_icon.png"/>
+          					<icon-config status="Unknown" imageName="/images/WEB-server_icon.png"/>
+       					</symbol-details>
+        			</type-config>
+
+				<type-config type="FTP-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/ftpserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/FTP-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="MYSQL-DB-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/mysqldbserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="MSSQL-DB-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/mssqldbserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="SMTP-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/smtpserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/SMTP-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="MAIL-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/mailserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MAIL-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="POP-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/popserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/POP-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="NTP-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/ntpserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/NTP-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="IMAP-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/imapserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/IMAP-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="WEBLOGIC-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/weblogicserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="ORACLE-DB-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/oracledbserver.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+				<type-config type="Exchange-server">
+                                        <map-view>
+                                                <icon-config status="default" imageName="/images/Exchange-server_icon.png"/>
+                                        </map-view>
+                                        <symbol-details>
+                                                <icon-config status="Clear" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/Exchange-server_icon.png"/>
+                                        </symbol-details>
+                                </type-config>
+
+			    </property_set>
+                            </property_set>
+                </update_node>
+</configuration_file>
+
+
+<configuration_file
+                   name ="topowebclientconfig.xml"
+                                   path          = "webclient/topo/conf"
+                                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                                   description   = "Changes in topowebclientconfig file"
+                                   required      = "true"
+                                   priority      = "0" >
+                <update_node name="Add" description="add web-server" >
+
+                        <property_set name="topo-web-config" >
+                            <property name="parent" value="true" />
+                            <property_set name="Node" >
+                                <type-config type="WEB-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/webserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/WEB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/WEB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/WEB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/WEB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/WEB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/WEB-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+<type-config type="FTP-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/ftpserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/FTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/FTP-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="MYSQL-DB-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/mysqldbserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MYSQL-DB-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="MSSQL-DB-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/mssqldbserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MSSQL-DB-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+<type-config type="SMTP-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/smtpserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/SMTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/SMTP-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="MAIL-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/mailserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/MAIL-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/MAIL-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="POP-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/popserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/POP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/POP-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+<type-config type="NTP-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/ntpserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/NTP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/NTP-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="IMAP-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/imapserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/IMAP-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/IMAP-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="WEBLOGIC-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/weblogicserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/WEBLOGIC-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+<type-config type="ORACLE-DB-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/oracledbserver.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/ORACLE-DB-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                                <type-config type="Exchange-server">
+                                        <list-view>
+                                                <icon-config status="default" imageName="/images/Exchange-server_icon.png"/>
+                                        </list-view>
+                                        <object-details>
+                                                <icon-config status="Clear" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Major" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Minor" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Warning" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Critical" imageName="/images/Exchange-server_icon.png"/>
+                                                <icon-config status="Unknown" imageName="/images/Exchange-server_icon.png"/>
+                                        </object-details>
+                                </type-config>
+
+                            </property_set>
+                            </property_set>
+                </update_node>
+</configuration_file>
+
+
+
+<process_unit
+	name="InvokeNewCompileJSP" 
+	classname="com.adventnet.nms.tools.confchanges.InvokeCompileJSP" 
+	description="html/confchanges/InvokeNewCompileJSPProcess_change.html" 
+	required="true" 
+	priority="0">
+</process_unit>
+</configuration_changes>

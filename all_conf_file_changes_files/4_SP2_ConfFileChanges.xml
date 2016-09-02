@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration_changes home_directory="." >
+<process_unit   
+    name="NewConfigurationFiles.xml"
+    classname="com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+    description="html/confchanges/NewConfigurationFilesProcess_change.html"
+    required="true"
+    priority= "1">
+</process_unit>
+                    
+<process_unit name="SetLocale" path="" classname="com.adventnet.nms.tools.confchanges.SetLanguageAndCountry" description="html/confchanges/SetLocaleProcess_change.html" required="true" priority="1">
+</process_unit>
+
+<process_unit name="Update httpd.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.HttpdConfConvertPack" description="html/confchanges/UpdatehttpdProcess_change.html" required="true" priority="1">
+</process_unit> 
+
+  <configuration_file       
+                     name          =  "clientparameters.conf"
+                     path           =  "conf"
+                     classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                     description  = "html/confchanges/clientparameters_change.html"
+                     required      = "true"
+                     priority       = "1" >
+                             
+      	<update_node name="Modify" description="Font Name id changed to Dialog from Helvetica for i18n and the replacing the jta20.jar with AdventNetJta.jar in the ARCHIVE attribute" >
+		  <property_set name="CLIENT_PARAMETERS_CONF" >
+			<property_set name="PARAMETERS" >				
+				<property name="parent" value="true" />		
+				<property_set name="attribute" >
+					<property name="DEFAULT_FONT" subset="true" existingValue="Helvetica" newValue="Dialog" />
+					<property name="MENU_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>
+					<property name="DIALOG_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+					<property name="TREE_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+					<property name="MAP_FONT" subset="true" existingValue="Helvetica" newValue="Dialog"/>	
+					<property name="ARCHIVE" subset="true" existingValue="jta20.jar" newValue="AdventNetJta.jar"/>	
+                        	       <property name="ARCHIVE" subset="true" existingValue="../classes/AdventNetSnmp.jar" newValue="../classes/AdventNetSnmp.jar,../classes/SNMPDebugger.jar"/>  
+                    <property name="ARCHIVE" subset="true" existingValue="../classes/AdventNetTL1.jar" newValue="../classes/AdventNetTL1.jar,../classes/AdventNetTL1Tools.jar"/>                    
+			        </property_set>
+			</property_set>
+		</property_set>        
+	</update_node>
+  	
+    </configuration_file>
+        
+
+		<configuration_file name="serverparameters.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="html/confchanges/serverparameters_change.html" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line" >
+				<property name="LANGUAGE " value="en" after="#java com.adventnet.nms.startnms.NmsMainBE" />
+				<property name="COUNTRY " value="US" after="#java com.adventnet.nms.startnms.NmsMainBE" />
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="html/confchanges/LocalizationProcess_change.html" required="true" priority="1">
+
+    <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/cn/html" dest="html" merge="true" accept="properties"/>    
+    <COPY source="ancillary/cn/html" dest="html" merge="false" accept="html" reject="properties"/>
+    </COPY_FILES>         
+
+    <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/jp/html" dest="html" merge="true" accept="properties"/>
+    <COPY source="ancillary/jp/html" dest="html" merge="false" accept="html" reject="properties"/>
+    <COPY source="ancillary/jp/reports" dest="reports" merge="false"/>
+    </COPY_FILES>         
+
+    <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/en/html" dest="html" merge="true" accept="properties"/>
+    </COPY_FILES>   
+
+</process_unit>
+<process_unit
+    name="FileRemoval"   
+    classname="com.adventnet.nms.tools.confchanges.FileRemovalHandler"
+    description="html/confchanges/FileRemovalHandler_change.html"
+    required="true"
+    priority="1">
+   <update_node name="RemoveFiles" description="Removing Unwanted Files">
+   <property_set name="Remove">
+     <property name="tl1browser" path="conf" type="conf"/>
+     <property name="TL1CommandSet" path="data" type="dtd"/>
+     <property name="TL1DataSet" path="data" type="dtd"/>
+     <property name="TL1CommandSet" path="data" type="tcs"/>
+     <property name="TL1DataSet" path="data" type="dat"/>     
+     <property name="AdventNetAgentUtilities" path="classes" type="jar"/>
+     <property name="AdventNetJmx" path="classes" type="jar"/>
+     <property name="AdventNetSnmpEJB" path="classes" type="jar"/>
+     <property name="TL1Browser" path="html" type="properties"/>
+     <property name="AdventNetSecurityFramework" path="classes" type="jar"/>
+     <property name="AdventNetUpdateManager_backup" path="classes" type="jar"/>
+     <property name="EnglishToNativeAncillary" path="html" type="properties"/>
+   </property_set>
+   </update_node>
+</process_unit>
+
+
+<configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="html/confchanges/startApplicationClient_change.html" required="true" priority="0">
+           <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+               <property_set name="append">
+                   <property_set name="entry">
+                   <property name="com.adventnet.nms.startclient.WebNMSClient" value="YES en US" use="SetLocale"/>
+                   </property_set>
+               </property_set>
+           </update_node>
+</configuration_file>
+
+<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="1">
+           <update_node name="Modify_entry" description="Jar has been moved from jta20.jar to AdventNetJta.jar">
+               <property_set name="Modify_entry">
+                   <property name="oldEntry" value="jta20.jar"/>
+                   <property name="newEntry" value="AdventNetJta.jar"/>
+               </property_set>
+               <property_set name="Modify_entry">
+                   <property name="oldEntry" value="AdventNetJmx.jar"/>
+                   <property name="newEntry" value="xmojo.jar"/>
+               </property_set>
+                <property_set name="append" os="WIN">
+            	    <property_set name="variable">
+                        <property name="set UPDATE_MANAGER_CLASSPATH=" value="NMS_CLASSES" use="os" doOnce="true"/>
+                    </property_set>
+        	</property_set>
+		
+                <property_set name="append" os="LINUX">
+            	     <property_set name="variable">
+                  	 <property name="UPDATE_MANAGER_CLASSPATH=" value="NMS_CLASSES" use="os" doOnce="true"/>
+                    </property_set>
+                </property_set>
+<property_set name="append" os="WIN">
+            	    <property_set name="entry">
+                        <property name="set SNMP_CLASSPATH=" value="%NMS_CLASSES%\SNMPDebugger.jar" use="os" doOnce="false"/>
+                    </property_set>
+        	</property_set>
+		
+                <property_set name="append" os="LINUX">
+            	     <property_set name="entry">
+                  	 <property name="SNMP_CLASSPATH=" value="$NMS_CLASSES/SNMPDebugger.jar" use="os" doOnce="false"/>
+                    </property_set>
+                </property_set>
+     <property_set name="append" os="WIN">
+                        <property_set name="entry">
+                        <property name="set JMX_AGENT_CLASSPATH=" value="%NMS_CLASSES%\AdventNetJmxAgent.jar;%NMS_CLASSES%\AdventNetARUtils.jar;%NMS_CLASSES%\AdventNetTL1Agent.jar" use="os" doOnce="false"/>
+                        </property_set>
+     </property_set>
+     <property_set name="append" os="LINUX">
+            	     <property_set name="entry">
+                     <property name="JMX_AGENT_CLASSPATH=" value="$NMS_CLASSES/AdventNetJmxAgent.jar:$NMS_CLASSES/AdventNetARUtils.jar:$NMS_CLASSES/AdventNetTL1Agent.jar" use="os" doOnce="false"/>
+                     </property_set>
+      </property_set>
+                <property_set name="Modify_entry" os="WIN">
+                   <property name="oldEntry" value="http://localhost:%WEBSERVER_PORT%/classes/AdventNetSnmp.jar"/>
+                   <property name="newEntry" value="http://localhost:%WEBSERVER_PORT%/classes/AdventNetSnmp.jar http://localhost:%WEBSERVER_PORT%/classes/SNMPDebugger.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetJmxAgent.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetARUtils.jar http://localhost:%WEBSERVER_PORT%/classes/AdventNetTL1Agent.jar"/>
+                </property_set>
+                <property_set name="Modify_entry" os="LINUX">
+                   <property name="oldEntry" value="file:///$NMS_HOME/classes/AdventNetSnmp.jar\"/>                   <property name="newEntry" value="file:///$NMS_HOME/classes/AdventNetSnmp.jar\ file:///$NMS_HOME/classes/SNMPDebugger.jar\ file:///$NMS_HOME/classes/AdventNetJmxAgent.jar\ file:///$NMS_HOME/classes/AdventNetARUtils.jar\ file:///$NMS_HOME/classes/AdventNetTL1Agent.jar\" />
+                </property_set>
+     <property_set name="Remove_entry" os="WIN">
+       <property_set name="entry">
+         <property name="set CLI_CLASSPATH" value="%NMS_CLASSES%\AdventNetJta.jar"/>
+         </property_set>         
+         </property_set>
+      <property_set name="Remove_entry" os="LINUX">
+        <property_set name="entry">
+         <property name="CLI_CLASSPATH" value="$NMS_CLASSES/AdventNetJta.jar"/>
+         </property_set>
+       </property_set>  
+     <property_set name="append" os="WIN">
+        <property_set name="entry">
+         <property name="set TL1_CLASSPATH=" value="%NMS_CLASSES%\AdventNetTL1Tools.jar" use="os" doOnce="true"/>
+        </property_set>
+     </property_set>
+     <property_set name="append" os="LINUX">
+       <property_set name="entry">
+         <property name="TL1_CLASSPATH=" value="$NMS_CLASSES/AdventNetTL1Tools.jar" use="os" doOnce="true"/>
+       </property_set>
+     </property_set>
+           </update_node>
+</configuration_file>
+
+               <configuration_file name="MibBrowser" path="bin" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/MibBrowser_change.html" required="true" priority="1">
+           <update_node name="Modify_entry" description="Updating the AdventNetJta.jar">
+               <property_set name="append" os="WIN">
+            	    <property_set name="variable">
+                        <property name="set CLASSPATH=" value="BUILDER_CLASSPATH" use="os" doOnce="true"/>
+                    </property_set>
+        	   </property_set>
+                <property_set name="append" os="WIN">
+            	    <property_set name="variable">
+                        <property name="set CLASSPATH=" value="BUILDER_CLASSES" use="os" doOnce="true"/>
+                    </property_set>
+        	    </property_set>
+                <property_set name="append" os="WIN">
+            	   <property_set name="entry">
+                      <property name="set CLASSPATH=" value="%NMS_CLASSES%\AdventNetCCLLibrary.jar" use="os" doOnce="true"/>
+                   </property_set>
+        	    </property_set>
+                 <property_set name="append" os="LINUX">
+            	    <property_set name="variable">
+                        <property name="CLASSPATH=" value="BUILDER_CLASSPATH" use="os" doOnce="true"/>
+                    </property_set>
+        	     </property_set>
+                 <property_set name="append" os="LINUX">
+            	    <property_set name="variable">
+                        <property name="CLASSPATH=" value="BUILDER_CLASSES" use="os" doOnce="true"/>
+                    </property_set>
+        	     </property_set>
+                 <property_set name="append" os="LINUX">
+            	    <property_set name="entry">
+                       <property name="CLASSPATH=" value="$NMS_CLASSES/AdventNetCCLLibrary.jar" use="os" doOnce="true"/>
+                    </property_set>
+        	    </property_set>
+             <property_set name="append" os="WIN">
+            	  <property_set name="entry">
+                       <property name="set CLASSPATH=" value="%NMS_CLASSES%\AdventNetUtils.jar" use="os" doOnce="true"/>
+                    </property_set>
+        	</property_set>
+             <property_set name="append" os="LINUX">
+            	   <property_set name="entry">
+                       <property name="CLASSPATH=" value="$NMS_CLASSES/AdventNetUtils.jar" use="os" doOnce="true"/>
+                    </property_set>
+        	</property_set>
+           </update_node>
+           </configuration_file>
+<configuration_file  name="help.conf"
+   path="conf"
+   classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+   description  = "html/confchanges/help_conf_change.html"
+   required= "true"
+   priority="0">
+  <update_node name="modify" description="Value of key:HTMLUI_SysAdmin_Services changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="HTMLUI_SysAdmin_Services" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/developer_guide/backup/backupservice.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+  <update_node name="modify" description="Value of key:ProvisioningOperationsPanel changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="ProvisioningOperationsPanel" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/administrator_guide/provisioning_system/prov_viewingoperations.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+  <update_node name="modify" description="Value of key:ProvisioningTemplatesPanel changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="ProvisioningTemplatesPanel" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/administrator_guide/provisioning_system/prov_invokeprovtemplate.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+<update_node name="modify" description="Value of key:HTMLUI_MIBManager_Client changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="HTMLUI_MIBManager_Client" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/administrator_guide/administration_tools/mib_browser/intro_page.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+<update_node name="modify" description="Value of key:MibManager_Browser_Details changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="MibManager_Browser_Details" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/administrator_guide/administration_tools/mib_browser/intro_page.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+<update_node name="modify" description="Value of key:MibManager_Client_Details changed" >
+   <property_set name="NMS_HELP_CONF" >
+    <property_set name="HELP_LIST" >
+                <property_set name="HELP" >
+                  <property name="parent"  value="true" />
+                  <property name="key"  value="MibManager_Client_Details" />
+                        <property_set name="attribute" >
+                           <property name="value"
+                            value="help/administrator_guide/administration_tools/mib_browser/intro_page.html"/>
+                        </property_set>
+                </property_set>
+          </property_set>
+   </property_set>
+  </update_node>
+  <update_node 
+		name="modify" 
+		description="Value of key:Runtime_Admin_Map_MapFilters_Help" >
+		<property_set name="NMS_HELP_CONF" >
+			<property_set name="HELP_LIST" >
+		                <property_set name="HELP" >
+                			<property name="parent"  value="true" />
+					<property name="key"  value="Runtime_Admin_Map_MapFilters_Help" />
+					<property_set name="attribute" >
+						<property name="value" value="help/administrator_guide/maps/map_uisettings.html"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+ 	<update_node 
+		name="remove" 
+		description=" key:MO_WIZARD Removed" >
+		<property_set name="NMS_HELP_CONF" >
+			<property_set name="HELP_LIST" >
+		               <property name="parent"  value="true" />
+	               <property_set name="node">
+                      <HELP key="MO_WIZARD" value="help/developer_guide/designer_tools/mo_wizard/mo_wizard.html"/>
+                    </property_set>
+             </property_set>
+        </property_set>
+     </update_node>  
+   <update_node 
+		name="modify" 
+		description="Value of key:TL1_Main_Help" >
+		<property_set name="NMS_HELP_CONF" >
+			<property_set name="HELP_LIST" >
+		                <property_set name="HELP" >
+                			<property name="parent"  value="true" />
+					<property name="key"  value="TL1_Main_Help" />
+					<property_set name="attribute" >
+						<property name="value" value="help/administrator_guide/administration_tools/tl1_browser/tl1_craft_interface_introduction.html"/>
+					</property_set>
+				</property_set>
+			</property_set>
+		</property_set>
+	</update_node>
+
+ </configuration_file>
+
+<configuration_file name="DownloadFiles.xml" path="conf" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/DownloadFiles_change.html" required="true" priority="1">
+	<update_node name="Add" description=" Entry for RunTimeConfig.xml " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE> conf/RunTimeConfig.xml </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+	<update_node name="Add" description=" Entry for DefaultLevel.config" >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE>conf/DefaultLevel.config </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+	<update_node name="Add" description=" Entry for DefaultSettings.config " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE>conf/DefaultSettings.config </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+	<update_node name="Add" description=" Entry for DefaultLevel.config " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE>html/SASusers/DefaultLevel.config </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+	<update_node name="Add" description=" Entry for DefaultSettings.config " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE>html/SASusers/DefaultSettings.config </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+
+    <update_node name="Add" description=" Entry for tl1craftinterface.config " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE> conf/tl1craftinterface.config </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+       	<update_node name="Add" description=" Entry for tl1craftinterface_csh.xml " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="SERVER-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE> conf/tl1craftinterface_csh.xml </FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+   <update_node name="Remove" description="Removing entry for tl1browser.conf " >
+      	<property_set name="DOWNLOAD-CONF-FILES" >
+          		<property_set name="CLIENT-FILES" >
+     				<property name="parent" value="true" />
+     				<property_set name="Node" >
+            			<FILE> conf/tl1browser.conf</FILE>
+      			</property_set>
+            	</property_set>
+           </property_set>
+	</update_node>
+
+
+</configuration_file>
+
+<configuration_file name="WebNMS.jnlp" path="conf" classname="com.adventnet.nms.tools.confchanges.XMLConfChangesUtil" description="html/confchanges/WebNMS_jnlp_change.html" required="true" priority="1">
+      <update_node name="Insert" description="Updation of Classpath">
+           <property_set name="jnlp">
+                 <property_set name="resources">
+                        <property name="parent" value="true"/>
+                            <property_set name="previousNode">
+                                 <jar href="classes/AdventNetUtils.jar"/>
+                             </property_set>
+                         <property_set name="currentNode" >
+                                <jar href="classes/AdventNetTL1Tools.jar"/>
+                       </property_set>
+                     </property_set>
+            </property_set>
+</update_node>
+
+	<update_node name="Modify" description=" Version Number updation in WebNMS.jnlp file" >
+      	<property_set name="jnlp" >
+          		<property_set name="information" >
+     				<property name="parent" value="true" />
+     				<property_set name="oldNode" >
+            			<description>AdventNet Web NMS version2.3 - Web Start Client</description>
+      			</property_set>
+      			<property_set name="newNode" >
+             			<description>AdventNet Web NMS version 4 - Web Start Client</description>
+      			</property_set>
+               	</property_set>
+           </property_set>
+	</update_node>
+</configuration_file>
+
+<process_unit  name="ImageUpdator" classname="com.adventnet.nms.tools.confchanges.ImageUpdator" description="Changing the images for rebranding WebNMS" required="true" priority="0">
+
+<IMAGE_UPDATE IMAGE_NAME="about.jpg" IMAGE_SIZE="49026" SOURCE_DIR="images_new" DEST_DIR="classes/com/adventnet/tools/launcher/images">
+
+</IMAGE_UPDATE>
+
+<IMAGE_UPDATE   IMAGE_NAME="about.png"    IMAGE_SIZE="67809"   SOURCE_DIR="images_new"   DEST_DIR="images">
+
+</IMAGE_UPDATE>
+
+<IMAGE_UPDATE    IMAGE_NAME="screen.png"   IMAGE_SIZE="67809"   SOURCE_DIR="images_new"    DEST_DIR="images">
+</IMAGE_UPDATE>
+
+<IMAGE_UPDATE   IMAGE_NAME="progressimage.png"   IMAGE_SIZE="67809"   SOURCE_DIR="images_new"   DEST_DIR="images">
+</IMAGE_UPDATE>
+
+    <IMAGE_UPDATE 
+        IMAGE_NAME="progressimage.png" 
+        IMAGE_SIZE="61296" 
+        SOURCE_DIR="images_new" 
+        DEST_DIR="images"> 
+    </IMAGE_UPDATE>
+
+</process_unit>
+
+<process_unit name="DatabaseSchema.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.SchemaChanges" description="DATABASE_SCHEMA" required="true" priority="1">
+</process_unit>
+
+<configuration_file name="LinkDownV1" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkDownV1_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="ColdStartV1" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/ColdStartV1_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="InformV2c" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/InformV2c_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+
+<configuration_file name="LinkDownV2c" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkDownV2c_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="LinkDownV3" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkDownV3_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+
+<configuration_file name="LinkUpV1" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkUpV1_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="LinkUpV2c" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkUpV2c_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="LinkUpV3" path="genTrap" classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/LinkUpV3_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Adding SNMPDebugger.jar to the classpath">
+                <property_set name="Modify_entry" os="WIN">
+                                <property name="oldEntry" value="..\classes\AdventNetSnmp.jar"/>
+                                  <property name="newEntry" value="..\classes\AdventNetSnmp.jar;..\classes\SNMPDebugger.jar"/>
+                </property_set>                 
+                  <property_set name="Modify_entry" os="LINUX">
+                 <property name="oldEntry" value="../classes/AdventNetSnmp.jar"/>
+                  <property name="newEntry" value="../classes/AdventNetSnmp.jar:../classes/SNMPDebugger.jar"/>
+                </property_set>               
+
+                </update_node>
+               </configuration_file>
+
+<configuration_file name="startnmsFE" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="html/confchanges/startnmsFE_change.html" required="true" priority="1">
+<update_node name="Modify_entry" description="Removing builder classpath">
+    <property_set name="Modify_entry" os="LINUX">
+        <property name="oldEntry" value=":$BUILDER_CLASSPATH"/>
+        <property name="newEntry" value=""/>
+    </property_set>    
+    <property_set name="Modify_entry" os="WIN">
+        <property name="oldEntry" value=";%BUILDER_CLASSPATH%"/>
+        <property name="newEntry" value=""/>
+    </property_set>
+</update_node>
+<update_node name="Modify_entry" description="including tomcat shutdown port under resource check">
+    <property_set name="Modify_entry" os="LINUX">
+        <property name="oldEntry" value=",$WEBCONTAINER_PORT"/>
+        <property name="newEntry" value=",$WEBCONTAINER_PORT,$TOMCAT_SHUTDOWNPORT"/>
+    </property_set>    
+
+    <property_set name="Modify_entry" os="WIN">
+        <property name="oldEntry" value=",%WEBCONTAINER_PORT%"/>
+        <property name="newEntry" value=",%WEBCONTAINER_PORT%,%TOMCAT_SHUTDOWNPORT%"/>
+    </property_set> 
+    <property_set name="append" os="WIN">
+	    <property_set name="variable">
+			<property name="set CLASS_PATH=" value="TL1_CLASSPATH" use="os" doOnce="true"/>
+		</property_set>
+    </property_set>
+	<property_set name="append" os="LINUX">
+        <property_set name="variable">
+			<property name="CLASS_PATH=" value="TL1_CLASSPATH" use="os" doOnce="true"/>
+		</property_set>
+    </property_set>
+</update_node>
+      <update_node
+      name="Modify_entry"
+      description="Adding AdventNetUI.jar in the classpath">
+      <property_set name="append" os="WIN">
+			<property_set name="entry">
+				<property name="set CLASS_PATH" value="%NMS_CLASSES%\AdventNetUI.jar" use="os" doOnce="true"/>
+			</property_set>
+      </property_set>
+      <property_set name="append" os="LINUX">
+            <property_set name="entry">
+                 <property name="CLASS_PATH" value="$NMS_CLASSES/AdventNetUI.jar" use="os" doOnce="true"/>
+             </property_set>
+      </property_set>
+   </update_node>
+
+</configuration_file> 
+
+<configuration_file 
+    name="UpdateManager" 
+    path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" 
+    description="html/confchanges/UpdateManger_change.html" 
+    required="true" 
+    priority="1">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+          <property_set name="append">
+          <property_set name="entry">
+                 <property name="com.adventnet.tools.update.installer.UpdateManager" value="YES en US" use="SetLocale"/>
+          </property_set>
+          </property_set>
+   </update_node>
+</configuration_file>
+
+<process_unit  name="InvokeNewCompileJSP" classname="com.adventnet.nms.tools.confchanges.InvokeCompileJSP" description="html/confchanges/InvokeNewCompileJSPProcess_change.html" required="true" priority="0">
+</process_unit>
+
+</configuration_changes>
+
+
+

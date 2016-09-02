@@ -1,0 +1,898 @@
+<?xml version="1.0" ?>
+<!DOCTYPE SCHEMA_CHANGES SYSTEM "SchemaChanges.dtd" >
+<SCHEMA_CHANGES>
+
+<DB RDBMS_ENGINE="ORACLE">
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETLEVEL"
+		     DEFINITION="create table WIDGETLEVEL(
+		     &quot;ASSOCIATIONID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;WIDGETLEVEL&quot; integer)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetLevel0_Indx on WIDGETLEVEL(&quot;ASSOCIATIONID&quot;)"/>	
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="WIDGETASSOCIATION"
+		     DEFINITION="create table WIDGETASSOCIATION(
+		     &quot;ASSOCIATIONID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		     &quot;DASHBOARDID&quot; NUMBER(13) NOT NULL,
+		     &quot;WIDGETID&quot; NUMBER(13) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250) NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetAssociation0_Indx on WIDGETASSOCIATION(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="WIDGET"
+		     DEFINITION="create table WIDGET(
+		     &quot;ID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     &quot;DATASOURCEID&quot; NUMBER(13) NOT NULL,
+		     &quot;CRITERIAID&quot; NUMBER(13))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget0_Indx on WIDGET(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget1_Indx on WIDGET(&quot;DATASOURCEID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget2_Indx on WIDGET(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="WIDGETCRITERIA"
+		     DEFINITION="create table WIDGETCRITERIA(
+		     &quot;CRITERIAID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetCriteria0_Indx on WIDGETCRITERIA(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="WIDGETDATASOURCE"
+		     DEFINITION="create table WIDGETDATASOURCE(
+		     &quot;DATASOURCEID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;CLASSNAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetDataSource0_Indx on WIDGETDATASOURCE(&quot;DATASOURCEID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARDCOLUMNS"
+		     DEFINITION="create table DASHBOARDCOLUMNS(
+		     &quot;ID&quot; NUMBER(13),
+		     &quot;COLUMNID&quot; integer,
+		     &quot;COLUMNWIDTH&quot; integer,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;COLUMNID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns0_Indx on DASHBOARDCOLUMNS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns1_Indx on DASHBOARDCOLUMNS(&quot;COLUMNID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTVVIEWS"
+		     DEFINITION="create table CCTVVIEWS(
+		     &quot;ID&quot; NUMBER(13),
+		     &quot;DASHBOARDID&quot; NUMBER(13),
+		     PRIMARY KEY(&quot;ID&quot;,&quot;DASHBOARDID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews0_Indx on CCTVVIEWS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews1_Indx on CCTVVIEWS(&quot;DASHBOARDID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTV"
+		DEFINITION="create table CCTV(
+		&quot;ID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		&quot;USERNAME&quot; varchar(100) NOT NULL,
+		&quot;NAME&quot; varchar(100) NOT NULL,
+		&quot;TIMEINTERVAL&quot; NUMBER(13),
+		&quot;DESCRIPTION&quot; varchar(150),
+		UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARD"
+		DEFINITION="create table DASHBOARD(
+		&quot;ID&quot; NUMBER(13) PRIMARY KEY NOT NULL,
+		&quot;USERNAME&quot; varchar(100) NOT NULL,
+		&quot;NAME&quot; varchar(100) NOT NULL,
+		&quot;DESCRIPTION&quot; varchar(150),
+		UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+
+		<INDEXDEFN DEFINITION="CREATE INDEX Dashboard0_Indx on DASHBOARD(&quot;ID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="CCTVVIEWS">
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint CCTV_ID foreign key (ID) references CCTV(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint DASHBOARD_ID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDCOLUMNS">
+		<FOREIGN_KEY DEFINITION="alter table DASHBOARDCOLUMNS add constraint DASHBOARDCOLUMN_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETASSOCIATION">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_DASHBOARDID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_WIDGETID foreign key (WIDGETID) references WIDGET(ID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGET">
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_DATASOURCEID foreign key (DATASOURCEID) references WIDGETDATASOURCE(DATASOURCEID)ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_CRITERIAID foreign key (CRITERIAID) references WIDGETCRITERIA(CRITERIAID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETLEVEL">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETLEVEL add constraint WIDGETLEVEL_ID foreign key (ASSOCIATIONID) references WIDGETASSOCIATION(ASSOCIATIONID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_HOURLY"
+		DEFINITION="create table FAULTREPORTS_HOURLY(
+		&quot;TTIME&quot; NUMBER(19),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,		
+		&quot;HOURS&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">
+		
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_HOURLY0_ndx ON FAULTREPORTS_HOURLY(&quot;TTIME&quot;)"/>		
+	</ADDED_TABLE>	
+
+<ADDED_TABLE TABLE_NAME="FAULTREPORTS_DAILY"
+		DEFINITION="create table FAULTREPORTS_DAILY(
+		&quot;TTIME&quot; NUMBER(19),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,		
+		&quot;DAYS&quot; INTEGER,
+		&quot;MONTH&quot; INTEGER,
+		&quot;YEAR&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">		
+		
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_DAILY0_ndx ON FAULTREPORTS_DAILY(&quot;TTIME&quot;)"/>		
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+
+</DB>
+
+<DB RDBMS_ENGINE="MSSQL">
+
+	<ADDED_TABLE TABLE_NAME="WIDGETLEVEL"
+		     DEFINITION="create table WIDGETLEVEL(
+		     &quot;ASSOCIATIONID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;WIDGETLEVEL&quot; integer)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetLevel0_Indx on WIDGETLEVEL(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETASSOCIATION"
+		     DEFINITION="create table WIDGETASSOCIATION(
+		     &quot;ASSOCIATIONID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;DASHBOARDID&quot; Numeric(19,0) NOT NULL,
+		     &quot;WIDGETID&quot; Numeric(19,0) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250) NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetAssociation0_Indx on WIDGETASSOCIATION(&quot;ASSOCIATIONID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGET"
+		     DEFINITION="create table WIDGET(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     &quot;DATASOURCEID&quot; Numeric(19,0) NOT NULL,
+		     &quot;CRITERIAID&quot; Numeric(19,0))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget0_Indx on WIDGET(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget1_Indx on WIDGET(&quot;DATASOURCEID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget2_Indx on WIDGET(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETCRITERIA"
+		     DEFINITION="create table WIDGETCRITERIA(
+		     &quot;CRITERIAID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetCriteria0_Indx on WIDGETCRITERIA(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETDATASOURCE"
+		     DEFINITION="create table WIDGETDATASOURCE(
+		     &quot;DATASOURCEID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;CLASSNAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetDataSource0_Indx on WIDGETDATASOURCE(&quot;DATASOURCEID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARDCOLUMNS"
+		     DEFINITION="create table DASHBOARDCOLUMNS(
+		     &quot;ID&quot; Numeric(19,0),
+		     &quot;COLUMNID&quot; integer,
+		     &quot;COLUMNWIDTH&quot; integer,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;COLUMNID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns0_Indx on DASHBOARDCOLUMNS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns1_Indx on DASHBOARDCOLUMNS(&quot;COLUMNID&quot;)"/>
+	</ADDED_TABLE>
+		
+	<ADDED_TABLE TABLE_NAME="CCTVVIEWS"
+		     DEFINITION="create table CCTVVIEWS(
+		     &quot;ID&quot; Numeric(19,0),
+		     &quot;DASHBOARDID&quot; Numeric(19,0),
+		     PRIMARY KEY(&quot;ID&quot;,&quot;DASHBOARDID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews0_Indx on CCTVVIEWS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews1_Indx on CCTVVIEWS(&quot;DASHBOARDID&quot;)"/>
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="CCTV"
+		     DEFINITION="create table CCTV(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;TIMEINTERVAL&quot; Numeric(19,0),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARD"
+		     DEFINITION="create table DASHBOARD(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Dashboard0_Indx on DASHBOARD(&quot;ID&quot;)"/>
+	</ADDED_TABLE>
+	
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="CCTVVIEWS">
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint CCTV_ID foreign key (ID) references CCTV(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint DASHBOARD_ID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDCOLUMNS">
+		<FOREIGN_KEY DEFINITION="alter table DASHBOARDCOLUMNS add constraint DASHBOARDCOLUMN_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETASSOCIATION">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_DASHBOARDID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_WIDGETID foreign key (WIDGETID) references WIDGET(ID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGET">
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_DATASOURCEID foreign key (DATASOURCEID) references WIDGETDATASOURCE(DATASOURCEID)ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_CRITERIAID foreign key (CRITERIAID) references WIDGETCRITERIA(CRITERIAID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETLEVEL">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETLEVEL add constraint WIDGETLEVEL_ID foreign key (ASSOCIATIONID) references WIDGETASSOCIATION(ASSOCIATIONID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_HOURLY"
+		DEFINITION="create table FAULTREPORTS_HOURLY(
+		&quot;TTIME&quot; Numeric(19,0),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,	
+		&quot;HOURS&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">
+		
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_HOURLY0_ndx ON FAULTREPORTS_HOURLY(&quot;TTIME&quot;)"/>
+	</ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="FAULTREPORTS_DAILY"
+		DEFINITION="create table FAULTREPORTS_DAILY(
+		&quot;TTIME&quot; Numeric(19,0),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,	
+		&quot;DAYS&quot; INTEGER,
+		&quot;MONTH&quot; INTEGER,
+		&quot;YEAR&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">		
+		
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_DAILY0_ndx ON FAULTREPORTS_DAILY(&quot;TTIME&quot;)"/>		
+	</ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	
+</DB>
+
+<DB RDBMS_ENGINE="MYSQL">
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETLEVEL"
+		     DEFINITION="create table WIDGETLEVEL(
+		     &quot;ASSOCIATIONID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;WIDGETLEVEL&quot; integer)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetLevel0_Indx on WIDGETLEVEL(&quot;ASSOCIATIONID&quot;)"/>		
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="WIDGETASSOCIATION"
+		     DEFINITION="create table WIDGETASSOCIATION(
+		     &quot;ASSOCIATIONID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;DASHBOARDID&quot; bigint NOT NULL,
+		     &quot;WIDGETID&quot; bigint NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250) NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetAssociation0_Indx on WIDGETASSOCIATION(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+		
+	<ADDED_TABLE TABLE_NAME="WIDGET"
+		     DEFINITION="create table WIDGET(
+		     &quot;ID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     &quot;DATASOURCEID&quot; bigint NOT NULL,
+		     &quot;CRITERIAID&quot; bigint)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget0_Indx on WIDGET(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget1_Indx on WIDGET(&quot;DATASOURCEID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget2_Indx on WIDGET(&quot;CRITERIAID&quot;)"/>		
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETCRITERIA"
+		     DEFINITION="create table WIDGETCRITERIA(
+		     &quot;CRITERIAID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetCriteria0_Indx on WIDGETCRITERIA(&quot;CRITERIAID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETDATASOURCE"
+		     DEFINITION="create table WIDGETDATASOURCE(
+		     &quot;DATASOURCEID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;CLASSNAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetDataSource0_Indx on WIDGETDATASOURCE(&quot;DATASOURCEID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARDCOLUMNS"
+		     DEFINITION="create table DASHBOARDCOLUMNS(
+		     &quot;ID&quot; bigint,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;COLUMNWIDTH&quot; integer,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;COLUMNID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns0_Indx on DASHBOARDCOLUMNS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns1_Indx on DASHBOARDCOLUMNS(&quot;COLUMNID&quot;)"/>	
+	</ADDED_TABLE>	
+	
+	<ADDED_TABLE TABLE_NAME="CCTVVIEWS"
+		     DEFINITION="create table CCTVVIEWS(
+		     &quot;ID&quot; bigint,
+		     &quot;DASHBOARDID&quot; bigint,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;DASHBOARDID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews0_Indx on CCTVVIEWS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews1_Indx on CCTVVIEWS(&quot;DASHBOARDID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTV"
+		     DEFINITION="create table CCTV(
+		     &quot;ID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;TIMEINTERVAL&quot; bigint,
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARD"
+		     DEFINITION="create table DASHBOARD(
+		     &quot;ID&quot; bigint PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Dashboard0_Indx on DASHBOARD(&quot;ID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="CCTVVIEWS">
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint CCTV_ID foreign key (ID) references CCTV(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint DASHBOARD_ID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDCOLUMNS">
+		<FOREIGN_KEY DEFINITION="alter table DASHBOARDCOLUMNS add constraint DASHBOARDCOLUMN_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETASSOCIATION">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_DASHBOARDID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_WIDGETID foreign key (WIDGETID) references WIDGET(ID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGET">
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_DATASOURCEID foreign key (DATASOURCEID) references WIDGETDATASOURCE(DATASOURCEID)ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_CRITERIAID foreign key (CRITERIAID) references WIDGETCRITERIA(CRITERIAID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETLEVEL">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETLEVEL add constraint WIDGETLEVEL_ID foreign key (ASSOCIATIONID) references WIDGETASSOCIATION(ASSOCIATIONID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+		<ADDED_TABLE TABLE_NAME="FAULTREPORTS_HOURLY"
+		DEFINITION="create table FAULTREPORTS_HOURLY(
+		&quot;TTIME&quot; BIGINT,
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,		
+		&quot;HOURS&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50), 
+		index FAULTREPORTS_HOURLY0_ndx(&quot;TTIME&quot;))">	
+	</ADDED_TABLE>
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_DAILY"
+		DEFINITION="create table FAULTREPORTS_DAILY(
+		&quot;TTIME&quot; BIGINT,
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,		
+		&quot;DAYS&quot; INTEGER,
+		&quot;MONTH&quot; INTEGER,
+		&quot;YEAR&quot; INTEGER,	
+	        &quot;SOURCE&quot; varchar(50),
+		index FAULTREPORTS_DAILY0_ndx(&quot;TTIME&quot;))">
+	</ADDED_TABLE>
+		<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+</DB>
+
+<DB RDBMS_ENGINE="SYBASE">
+		
+	<ADDED_TABLE TABLE_NAME="WIDGETLEVEL"
+		     DEFINITION="create table WIDGETLEVEL(
+		     &quot;ASSOCIATIONID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;WIDGETLEVEL&quot; integer)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetLevel0_Indx on WIDGETLEVEL(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETASSOCIATION"
+		     DEFINITION="create table WIDGETASSOCIATION(
+		     &quot;ASSOCIATIONID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;DASHBOARDID&quot; Numeric(19,0) NOT NULL,
+		     &quot;WIDGETID&quot; Numeric(19,0) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250) NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetAssociation0_Indx on WIDGETASSOCIATION(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGET"
+		     DEFINITION="create table WIDGET(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     &quot;DATASOURCEID&quot; Numeric(19,0) NOT NULL,
+		     &quot;CRITERIAID&quot; Numeric(19,0))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget0_Indx on WIDGET(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget1_Indx on WIDGET(&quot;DATASOURCEID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget2_Indx on WIDGET(&quot;CRITERIAID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETCRITERIA"
+		     DEFINITION="create table WIDGETCRITERIA(
+		     &quot;CRITERIAID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetCriteria0_Indx on WIDGETCRITERIA(&quot;CRITERIAID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETDATASOURCE"
+		     DEFINITION="create table WIDGETDATASOURCE(
+		     &quot;DATASOURCEID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;CLASSNAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetDataSource0_Indx on WIDGETDATASOURCE(&quot;DATASOURCEID&quot;)"/>	
+	</ADDED_TABLE>
+		
+	<ADDED_TABLE TABLE_NAME="DASHBOARDCOLUMNS"
+		     DEFINITION="create table DASHBOARDCOLUMNS(
+		     &quot;ID&quot; Numeric(19,0),
+		     &quot;COLUMNID&quot; integer,
+		     &quot;COLUMNWIDTH&quot; integer,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;COLUMNID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns0_Indx on DASHBOARDCOLUMNS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns1_Indx on DASHBOARDCOLUMNS(&quot;COLUMNID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTVVIEWS"
+		     DEFINITION="create table CCTVVIEWS(
+		     &quot;ID&quot; Numeric(19,0),
+		     &quot;DASHBOARDID&quot; Numeric(19,0),
+		     PRIMARY KEY(&quot;ID&quot;,&quot;DASHBOARDID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews0_Indx on CCTVVIEWS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews1_Indx on CCTVVIEWS(&quot;DASHBOARDID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTV"
+		     DEFINITION="create table CCTV(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;TIMEINTERVAL&quot; Numeric(19,0),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARD"
+		     DEFINITION="create table DASHBOARD(
+		     &quot;ID&quot; Numeric(19,0) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Dashboard0_Indx on DASHBOARD(&quot;ID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="CCTVVIEWS">
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint CCTV_ID foreign key (ID) references CCTV(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint DASHBOARD_ID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDCOLUMNS">
+		<FOREIGN_KEY DEFINITION="alter table DASHBOARDCOLUMNS add constraint DASHBOARDCOLUMN_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETASSOCIATION">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_DASHBOARDID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_WIDGETID foreign key (WIDGETID) references WIDGET(ID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGET">
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_DATASOURCEID foreign key (DATASOURCEID) references WIDGETDATASOURCE(DATASOURCEID)ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_CRITERIAID foreign key (CRITERIAID) references WIDGETCRITERIA(CRITERIAID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETLEVEL">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETLEVEL add constraint WIDGETLEVEL_ID foreign key (ASSOCIATIONID) references WIDGETASSOCIATION(ASSOCIATIONID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_HOURLY"
+		DEFINITION="create table FAULTREPORTS_HOURLY(
+		&quot;TTIME&quot; Numeric(19,0),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,		
+		&quot;HOURS&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">
+
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_HOURLY0_ndx ON FAULTREPORTS_HOURLY(&quot;TTIME&quot;)"/>		
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_DAILY"
+		DEFINITION="create table FAULTREPORTS_DAILY(
+		&quot;TTIME&quot; Numeric(19,0),
+		&quot;CATEGORY&quot; varchar(50),
+		&quot;SEVERITY&quot; INTEGER,
+		&quot;SEVERITYCOUNT&quot; INTEGER,	
+		&quot;DAYS&quot; INTEGER,
+		&quot;MONTH&quot; INTEGER,
+		&quot;YEAR&quot; INTEGER,
+		&quot;SOURCE&quot; varchar(50))">
+		
+		
+		<INDEXDEFN 
+			DEFINITION="CREATE INDEX FAULTREPORTS_DAILY0_ndx ON FAULTREPORTS_DAILY(&quot;TTIME&quot;)"/>
+		
+	</ADDED_TABLE>
+		<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+		<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+</DB>
+
+<DB RDBMS_ENGINE="postgresql">
+		
+	<ADDED_TABLE TABLE_NAME="WIDGETLEVEL"
+		     DEFINITION="create table WIDGETLEVEL(
+		     &quot;ASSOCIATIONID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;COLUMNID&quot; integer,
+		     &quot;WIDGETLEVEL&quot; integer)">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetLevel0_Indx on WIDGETLEVEL(&quot;ASSOCIATIONID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETASSOCIATION"
+		     DEFINITION="create table WIDGETASSOCIATION(
+		     &quot;ASSOCIATIONID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;DASHBOARDID&quot; numeric(13) NOT NULL,
+		     &quot;WIDGETID&quot; numeric(13) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250) NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetAssociation0_Indx on WIDGETASSOCIATION(&quot;ASSOCIATIONID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGET"
+		     DEFINITION="create table WIDGET(
+		     &quot;ID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     &quot;DATASOURCEID&quot; numeric(13) NOT NULL,
+		     &quot;CRITERIAID&quot; numeric(13))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget0_Indx on WIDGET(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget1_Indx on WIDGET(&quot;DATASOURCEID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX Widget2_Indx on WIDGET(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETCRITERIA"
+		     DEFINITION="create table WIDGETCRITERIA(
+		     &quot;CRITERIAID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;CRITERIA&quot; varchar(250))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetCriteria0_Indx on WIDGETCRITERIA(&quot;CRITERIAID&quot;)"/>
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="WIDGETDATASOURCE"
+		     DEFINITION="create table WIDGETDATASOURCE(
+		     &quot;DATASOURCEID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;NAME&quot; varchar(100),
+		     &quot;CLASSNAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(100))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX WidgetDataSource0_Indx on WIDGETDATASOURCE(&quot;DATASOURCEID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARDCOLUMNS"
+		     DEFINITION="create table DASHBOARDCOLUMNS(
+		     &quot;ID&quot; numeric(13),
+		     &quot;COLUMNID&quot; integer,
+		     &quot;COLUMNWIDTH&quot; integer,
+		     PRIMARY KEY(&quot;ID&quot;,&quot;COLUMNID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns0_Indx on DASHBOARDCOLUMNS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX DashboardColumns1_Indx on DASHBOARDCOLUMNS(&quot;COLUMNID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTVVIEWS"
+		     DEFINITION="create table CCTVVIEWS(
+		     &quot;ID&quot; numeric(13),
+		     &quot;DASHBOARDID&quot; numeric(13),
+		     PRIMARY KEY(&quot;ID&quot;,&quot;DASHBOARDID&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews0_Indx on CCTVVIEWS(&quot;ID&quot;)"/>
+		<INDEXDEFN DEFINITION="CREATE INDEX CctvViews1_Indx on CCTVVIEWS(&quot;DASHBOARDID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="CCTV"
+		     DEFINITION="create table CCTV(
+		     &quot;ID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;TIMEINTERVAL&quot; numeric(13),
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="DASHBOARD"
+		     DEFINITION="create table DASHBOARD(
+		     &quot;ID&quot; numeric(13) PRIMARY KEY NOT NULL,
+		     &quot;USERNAME&quot; varchar(100) NOT NULL,
+		     &quot;NAME&quot; varchar(100) NOT NULL,
+		     &quot;DESCRIPTION&quot; varchar(150),
+		     UNIQUE(&quot;USERNAME&quot;,&quot;NAME&quot;))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX Dashboard0_Indx on DASHBOARD(&quot;ID&quot;)"/>	
+	</ADDED_TABLE>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="CCTVVIEWS">
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint CCTV_ID foreign key (ID) references CCTV(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table CCTVVIEWS add constraint DASHBOARD_ID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="DASHBOARDCOLUMNS">
+		<FOREIGN_KEY DEFINITION="alter table DASHBOARDCOLUMNS add constraint DASHBOARDCOLUMN_ID foreign key (ID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETASSOCIATION">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_DASHBOARDID foreign key (DASHBOARDID) references DASHBOARD(ID) ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGETASSOCIATION add constraint WIDGETASSOCIATION_WIDGETID foreign key (WIDGETID) references WIDGET(ID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGET">
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_DATASOURCEID foreign key (DATASOURCEID) references WIDGETDATASOURCE(DATASOURCEID)ON DELETE CASCADE"/>
+		<FOREIGN_KEY DEFINITION="alter table WIDGET add constraint WIDGET_CRITERIAID foreign key (CRITERIAID) references WIDGETCRITERIA(CRITERIAID)ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+	
+	<ADD_FOREIGN_CONSTRAINT TABLE_NAME="WIDGETLEVEL">
+		<FOREIGN_KEY DEFINITION="alter table WIDGETLEVEL add constraint WIDGETLEVEL_ID foreign key (ASSOCIATIONID) references WIDGETASSOCIATION(ASSOCIATIONID) ON DELETE CASCADE"/>
+	</ADD_FOREIGN_CONSTRAINT>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_HOURLY"
+		     DEFINITION="create table FAULTREPORTS_HOURLY(
+		     &quot;TTIME&quot;BIGINT,
+		     &quot;CATEGORY&quot; varchar(50),
+		     &quot;SEVERITY&quot; INTEGER,
+		     &quot;SEVERITYCOUNT&quot; INTEGER,		    
+		     &quot;HOURS&quot; INTEGER,
+		     &quot;SOURCE&quot; varchar(50))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX FAULTREPORTS_HOURLY0_ndx on FAULTREPORTS_HOURLY(&quot;TTIME&quot;)"/>	
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FAULTREPORTS_DAILY"
+		     DEFINITION="create table FAULTREPORTS_DAILY(
+		     &quot;TTIME&quot;BIGINT,
+		     &quot;CATEGORY&quot; varchar(50),
+		     &quot;SEVERITY&quot; INTEGER,
+		     &quot;SEVERITYCOUNT&quot; INTEGER,		    
+		     &quot;DAYS&quot; INTEGER,
+		     &quot;MONTH&quot; INTEGER,
+		     &quot;YEAR&quot; INTEGER,
+		     &quot;SOURCE&quot; varchar(50))">
+		
+		<INDEXDEFN DEFINITION="CREATE INDEX FAULTREPORTS_DAILY0_ndx on FAULTREPORTS_DAILY(&quot;TTIME&quot;)"/>	
+	</ADDED_TABLE>
+		<ADDED_TABLE TABLE_NAME="SendEmailEventAction"
+		DEFINITION="create table SendEmailEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="SendEmailAlertAction"
+		DEFINITION="create table SendEmailAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;EMAILPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+	
+	<ADDED_TABLE TABLE_NAME="FilterCommandEventAction"
+		DEFINITION="create table FilterCommandEventAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<ADDED_TABLE TABLE_NAME="FilterCommandAlertAction"
+		DEFINITION="create table FilterCommandAlertAction(
+		&quot;ID&quot; INTEGER NOT NULL,
+		&quot;COMMANDPROPS&quot; VARCHAR(1000) NOT NULL)">
+	</ADDED_TABLE>
+
+	<COMMENT NAME="COMMENT">
+                <COMMENT DEFINITION="#BeginIndex"/>
+                <COMMENT DEFINITION="#alter table POLLUSERPROPS drop constraint FK5DBA4B86D7D7502"/>
+                <COMMENT DEFINITION="#alter table POLLUSERPROPS add constraint FK5DBA4B86D7D7502 foreign key (ID) references PolledData (ID) on delete cascade"/>
+                <COMMENT DEFINITION="#EndIndex"/>       
+        </COMMENT>
+
+
+</DB>
+</SCHEMA_CHANGES>
+<!-- $Id: SchemaChanges.xml,v 1.1.2.10 2010/02/26 10:55:33 govardhini Exp $-->

@@ -1,0 +1,20 @@
+< <!-- 21-04-2014   Surendra Sharma   Updated file for fix HTTPS PR 235029 -->
+< <!-- 16-06-2014   Surendra Sharma   Updated file for fix PR 240911 -->
+31c29
+<   <Listener className="org.apache.catalina.core.JasperListener" />
+---
+>   <!-- <Listener className="org.apache.catalina.core.JasperListener" /> -->
+77d74
+< <!--
+79c76
+< -->
+---
+> 
+81,82c78,79
+<   <Connector acceptCount="100" clientAuth="false" connectionTimeout="-1" debug="0" disableUploadTimeout="true" enableLookups="false" keystoreFile="conf/server.keystore" keystorePass="webnms" maxSpareThreads="15" maxThreads="150" minSpareThreads="5" port="SSL_PORT" scheme="https" secure="true" sslProtocol="TLS"/>
+< ciphers="TLS_RSA_WITH_RC4_128_MD5" 
+---
+> 
+>                 <Connector port="SSL_PORT" ciphers="TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_RC4_128_SHA, TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA,SSL_RSA_WITH_RC4_128_SHA" clientAuth="false" keystorePass="webnms" server="WebNMSTomcatServer" URIEncoding="UTF-9" acceptCount="10" protocol="HTTP/1.1" enableLookups="false" SSLEnabled="true" scheme="https" secure="true" compressableMimeType="text/html,text/xml,text/plain" compression="force" maxThreads="100" keystoreFile="conf/server.keystore" sslProtocol="TLS" sessionTimeout="0" xpoweredBy="false" allowTrace="false" maxHttpHeaderSize="8192" connectionTimeout="60000" maxPostSize="2097152" maxSavePostSize="4096"/>
+84d80
+<                 <Connector port="SSL_PORT" clientAuth="false" server="WebNMSTomcatServer" URIEncoding="UTF-9" acceptCount="10" protocol="HTTP/1.1" enableLookups="false" SSLEnabled="true" scheme="https" secure="true" compressableMimeType="text/html,text/xml,text/plain" compression="force" maxThreads="100" keystoreFile="conf/server.keystore" sslProtocol="TLSv1.2" keyAlias="bessl" sessionTimeout="0" xpoweredBy="false" allowTrace="false" maxHttpHeaderSize="8192" connectionTimeout="60000" maxPostSize="2097152" maxSavePostSize="4096"/>

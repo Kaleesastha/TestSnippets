@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: ConfFileChangesForExe.xml,v 1.14 2011/04/29 10:54:26 prabakaran Exp $ -->
+<configuration_changes home_directory=".">
+
+
+<configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+           <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+               <property_set name="append">
+                   <property_set name="entry">
+                   <property name="com.adventnet.nms.startclient.WebNMSClient" value="YES en US" use="SetLocale"/>
+                  </property_set>
+               </property_set>
+           </update_node>
+</configuration_file>
+    
+		<configuration_file name="serverparameters.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line">
+				<property name="LANGUAGE " value="en" after="#java com.adventnet.nms.startnms.NmsMainBE"/>
+				<property name="COUNTRY " value="US" after="#java com.adventnet.nms.startnms.NmsMainBE"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+	<!--For I18Ning IDEs starts-->
+	<configuration_file name="startChassisWizard.bat" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=ClientBuilder"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=ClientBuilder"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="startChassisWizard.sh" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=ClientBuilder"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=ClientBuilder"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="startTL1AgentSimulator.bat" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=AgentSimulator"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=AgentSimulator"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="startTL1AgentSimulator.sh" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=AgentSimulator"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=AgentSimulator"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="startSNMPAgentSimulator.bat" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=AgentSimulator"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=AgentSimulator"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="startSNMPAgentSimulator.sh" path="StudioTools/ClientBuilder/bin" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="PROPERTIES_FILE=AgentSimulator"/>
+				<property name="COUNTRY=" value="US" after="PROPERTIES_FILE=AgentSimulator"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+	
+	<configuration_file name="DeploymentWizard.bat" path="bin/developertools" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="RESOURCE_FILE=DeploymentWizard"/>
+				<property name="COUNTRY=" value="US" after="RESOURCE_FILE=DeploymentWizard"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+
+	<configuration_file name="DeploymentWizard.sh" path="bin/developertools" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Adding Locale">
+			<property_set name="Add_line">
+				<property name="LANGUAGE=" value="en" after="RESOURCE_FILE=DeploymentWizard"/>
+				<property name="COUNTRY=" value="US" after="RESOURCE_FILE=DeploymentWizard"/>
+			</property_set>
+   		</update_node>
+	</configuration_file>
+	<!--For I18Ning IDEs ends-->
+<configuration_file name="UpdateManager" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="html/confchanges/UpdateManager_change.html" required="true" priority="1">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+            <property_set name="append">
+            <property_set name="entry">
+                   <property name="com.adventnet.tools.update.installer.UpdateManager" value="YES en US" use="SetLocale"/>
+            </property_set>
+            </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file name="ShutDown" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+        <property_set name="append">
+            <property_set name="entry">
+                <property name="com.adventnet.launcher.nms.ShutdownServer" value="YES en US" use="SetLocale"/>
+            </property_set>
+        </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file name="reinitialize_nms" path="bin" classname="com.adventnet.nms.tools.confchanges.StartApplicationChanges" description="description" required="true" priority="0">
+    <update_node name="Modify_entry" description="Introducing LANGUAGE and COUNTRY for I18N">
+        <property_set name="append">
+            <property_set name="entry">
+                <property name="com.adventnet.launcher.nms.ReinitializeAll" value="YES en US" use="SetLocale"/>
+            </property_set>
+        </property_set>
+    </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "startTL1MessageBuilder.bat"
+                   path          =  "StudioTools/ClientBuilder/bin"
+                   classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+                   description   = "COUNTRY LANGUAGE CHANGE"
+                   required      = "true"
+                   priority      = "0" >
+
+                   <update_node
+                           name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+                           <property_set name="Modify_entry">
+                                   <property name="oldEntry" value="en_US"/>
+                                   <property name="newEntry" value="LOCALE"/>
+                           </property_set>
+                   </update_node>
+</configuration_file>
+<configuration_file
+                   name          =  "startTL1MessageBuilder.sh"
+                   path          =  "StudioTools/ClientBuilder/bin"
+                   classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+                   description   = "COUNTRY LANGUAGE CHANGE"
+                   required      = "true"
+                   priority      = "0" >
+
+                   <update_node
+                           name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+                           <property_set name="Modify_entry">
+                                   <property name="oldEntry" value="en_US"/>
+                                   <property name="newEntry" value="LOCALE"/>
+                           </property_set>
+                   </update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "TL1CraftInterface.bat"
+	path          =  "bin/browsers"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "TL1CraftInterface.sh"
+	path          =  "bin/browsers"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "ObjectToRelational.bat"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "ObjectToRelational.sh"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "ConfigFileChecker.bat"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "ConfigFileChecker.sh"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "DeploymentWizard.bat"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "DeploymentWizard.sh"
+	path          =  "bin/developertools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "DiscoveryConfigurator.bat"
+	path          =  "bin/admintools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "DiscoveryConfigurator.sh"
+	path          =  "bin/admintools"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+	name          =  "startdebugger.bat"
+	path          =  "bin"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+<configuration_file
+	name          =  "startdebugger.sh"
+	path          =  "bin"
+	classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+	description   = "COUNTRY LANGUAGE CHANGE"
+	required      = "true"
+	priority      = "0" >
+
+	<update_node
+		name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+		<property_set name="Modify_entry">
+			<property name="oldEntry" value="en_US"/>
+			<property name="newEntry" value="LOCALE"/>
+		</property_set>
+	</update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "CLIBrowser.bat"
+                   path          =  "bin/browsers"
+                   classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+                   description   = "COUNTRY LANGUAGE CHANGE"
+                   required      = "true"
+                   priority      = "0" >
+
+                   <update_node
+                           name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+                           <property_set name="Modify_entry">
+                                   <property name="oldEntry" value="en,US"/>
+                                   <property name="newEntry" value="LOCALE"/>
+                           </property_set>
+                   </update_node>
+</configuration_file>
+
+<configuration_file
+                   name          =  "CLIBrowser.sh"
+                   path          =  "bin/browsers"
+                   classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+                   description   = "COUNTRY LANGUAGE CHANGE"
+                   required      = "true"
+                   priority      = "0" >
+
+                   <update_node
+                           name="Modify_entry" description="COUNTRY LANGAUGE CHANGED">
+                           <property_set name="Modify_entry">
+                                   <property name="oldEntry" value="en,US"/>
+                                   <property name="newEntry" value="LOCALE"/>
+                           </property_set>
+                   </update_node>
+</configuration_file>
+
+
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="description" required="true" priority="0">
+
+    <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/cn/html" dest="html" merge="false" accept="properties"/>    
+    <COPY source="ancillary/cn/html" dest="html" merge="false" accept="html" reject="properties"/>
+    <COPY source="ancillary/cn/conf/HtmlAdaptor.prp" dest="conf" merge="false"/> 
+    <COPY source="ancillary/cn/conf/jmx_agent" dest="conf/jmx_agent" merge="false" accept="xml" reject="JmxAgent_Components.xml"/>
+    <COPY source="ancillary/cn/image" dest="images" merge="false"/>  
+    <COPY source="ancillary/cn/reports" dest="reports" merge="false"/>
+    <COPY source="ancillary/cn/template" dest="template" merge="false"/>  
+    <COPY source="ancillary/cn/html/tl1messagebuilder_i18n_zh_CN.properties" dest="StudioTools/ClientBuilder/classes" merge="false"/>
+    <COPY source="ancillary/cn/conf/launcher_conf.txt" dest="conf" merge="false"/>
+    </COPY_FILES>         
+
+    <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/jp/html" dest="html" merge="false" accept="properties"/>
+    <COPY source="ancillary/jp/html" dest="html" merge="false" accept="html" reject="properties"/>
+    <COPY source="ancillary/jp/reports" dest="reports" merge="false"/>
+    <COPY source="ancillary/jp/conf/HtmlAdaptor.prp" dest="conf" merge="false"/>
+    <COPY source="ancillary/jp/conf/jmx_agent" dest="conf/jmx_agent" merge="false" accept="xml" reject="JmxAgent_Components.xml"/>
+    <COPY source="ancillary/jp/image" dest="images" merge="false"/>
+    <COPY source="ancillary/jp/template" dest="template" merge="false"/>
+    <COPY source="ancillary/jp/conf/launcher_conf.txt" dest="conf" merge="false"/>
+    </COPY_FILES>         
+
+    <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+    <COPY source="ancillary/en/html" dest="html" merge="false" accept="properties"/>
+    </COPY_FILES>   
+
+</process_unit>
+
+<process_unit name="Copying Files" classname="com.adventnet.nms.tools.confchanges.FileConfUtil" description="Copying Widgets.xml and Dashboards.xml to home" required="true" priority="0">
+	<FILES_TO_COPY>
+		<COPY source="defaultconf/conf/Widgets.xml" destination="conf/Widgets.xml"/>
+		<COPY source="defaultconf/html/defaultsToAllUsers/Dashboards.xml" destination="html/defaultsToAllUsers/Dashboards.xml"/>
+	</FILES_TO_COPY>
+</process_unit>
+
+</configuration_changes>

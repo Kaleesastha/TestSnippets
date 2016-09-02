@@ -1,0 +1,21 @@
+For Windows:
+/others/backup_webNMS/pure_5/AdventNet_WebNMS_5_Linux.bin  -is:javaconsole -silent -options /others/backup_webNMS/installoptions.txt  -P ProductRoot.installLocation=.
+
+UpdateManager.bat -u conf -c -option i -ppmPath C:\Backup\WebNMS\4.7\AdventNetWebNMS_4_7_ServicePack_3.ppm -h %NMS_HOME%  -DLANGUAGE=English -DJAVAHOME=NONE
+
+sh UpdateManager.sh -u conf -c -option i -ppmPath /others/backup_webNMS/4.7/AdventNetWebNMS_4_7_ServicePack_4_Jun_18_2010.ppm -h /home/local/ZOHOCORP/venkat-0773/webnms/ -DJAVAHOME=/home/local/ZOHOCORP/venkat-0773/install/jdk1.6.0_16 -DLANGUAGE=English
+
+-------------------------------------------------------------------------------------------------------------------
+To conf update in command mode:
+ConfigurationUpdater.bat UPDATE
+or http://nms-support:8080/WorkOrder.do?woMode=viewWO&woID=3073791
+sh ConfigurationUpdater.sh  UPDATE JAVAHOME /home/sankaralingam/AdventNet/Java/jdk1.5.0_14/  FILENAME ConfFileChanges.xml  FILEPATH /home/sankaralingam/AdventNet/5nms/conf/
+if [ $# -eq 7 ]
+then
+$JAVA_HOME/bin/java -Djava.awt.headless="true" com.adventnet.nms.tools.confchanges.UpdateConfChanges $NMS_HOME $MODTYPE $2 $3 $4 $5 $6 $7 $8
+else
+$JAVA_HOME/bin/java -Djava.awt.headless="true" com.adventnet.nms.tools.confchanges.UpdateConfChanges $NMS_HOME $MODTYPE $VERSION
+fi
+-------------------------------------------------------------------------------------------------------------------
+#./AdventNet_WebNMS4_7_0_Linux_Standard.bin -is:javaconsole -is:javahome yourjavapath/jre -is:log log.txt -is:tempdir /home/annamalai/validation4.7/erc -silent -options silentmode.txt -P ProductRoot.installLocation=/home/annamalai/validation4.7/erc/standard/
+#-is:javahome <JAVA_HOME> -is:tempdir <TEMP_DIR> -is:log <LOG_FILE>

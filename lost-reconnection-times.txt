@@ -1,0 +1,60 @@
+DB Connection lost and reconnected time stamps
+---------------------------------------------
+nmserr.txt:[20 May 2016 04:34:04:427] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 04:34:18:899] SYS_OUT: Reconnected to the database
+
+nmserr.txt:[20 May 2016 05:16:38:351] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 05:16:52:673] SYS_OUT: Reconnected to the database
+
+nmserr.txt.4:[20 May 2016 00:20:08:247] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 00:20:23:065] SYS_OUT: Reconnected to the database
+
+nmserr.txt.4:[20 May 2016 00:50:39:524] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 00:50:54:072] SYS_OUT: Reconnected to the database
+
+nmserr.txt.4:[20 May 2016 03:52:13:447] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 03:52:27:839] SYS_OUT: Reconnected to the database
+
+nmserr.txt.4:[20 May 2016 03:17:11:507] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[20 May 2016 03:17:25:964] SYS_OUT: Reconnected to the database
+
+nmserr.txt.5:[19 May 2016 14:57:52:393] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 14:58:06:689] SYS_OUT: Reconnected to the database
+
+nmserr.txt.5:[19 May 2016 16:02:01:242] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 16:02:15:615] SYS_OUT: Reconnected to the database
+
+nmserr.txt.6:[19 May 2016 14:56:41:593] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 14:56:56:478] SYS_OUT: Reconnected to the database
+
+nmserr.txt.7:[19 May 2016 10:29:34:594] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 10:29:48:825] SYS_OUT: Reconnected to the database
+
+nmserr.txt.7:[19 May 2016 12:02:22:559] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 12:02:36:910] SYS_OUT: Reconnected to the database
+
+nmserr.txt.7:[19 May 2016 13:01:12:554] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 13:01:27:434] SYS_OUT: Reconnected to the database
+
+nmserr.txt.7:[19 May 2016 14:01:34:006] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 14:01:48:811] SYS_OUT: Reconnected to the database
+
+nmserr.txt.9:[18 May 2016 23:06:16:874] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+stdout.txt:[19 May 2016 23:09:12:924] SYS_OUT: Reconnected to the database
+------------
+Following DB Connection lost prints do not have a corresponding reconnected time stamp:
+--------------------------------------------------------------------------------------
+nmserr.txt.10:[18 May 2016 05:26:41:506] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.10:[18 May 2016 09:37:56:110] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.10:[18 May 2016 11:12:05:889] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.4:[19 May 2016 23:08:58:659] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.8:[19 May 2016 04:14:39:708] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.8:[19 May 2016 04:52:06:487] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.8:[19 May 2016 05:18:08:238] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.8:[19 May 2016 06:05:20:197] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.8:[19 May 2016 06:39:08:186] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.9:[18 May 2016 13:21:42:447] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.9:[18 May 2016 16:05:20:965] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.9:[18 May 2016 16:05:40:882] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.9:[18 May 2016 23:57:46:667] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
+nmserr.txt.9:[19 May 2016 00:42:47:029] MISCERR: Connection to the Database is lost. Trying to reconnect to the Database
