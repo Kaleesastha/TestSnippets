@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: launcher_conf.txt,v 1.31 2011/01/06 11:58:18 prabakaran Exp $ -->
+<configuration>
+<property name="ProductTitle" value="WebNMS Framework 5.2"/>
+<property name="FrameImage" value="./images/launch16.jpg"/>
+<property name="LabelImage" value="./images/launch.jpg"/>
+<property name="Internationalize" value="true"/>
+<property name="Language" value="en"/>
+<property name="Country" value="US"/>
+<property name="PropertiesFileName" value="launcher"/>
+<property name="PropertiesFilePath" value="html"/>
+<property name="NumberOfColumns" value="3"/>
+<property name="ToolBarImages" value="./images/launch20.jpg,./images/properties.png,./images/patch3.png,./images/support.png,./images/logmsg.png,./images/exit.png,./images/help20.png"/>
+<property name="JavaOptions" value="-mx200M"/>
+<property name="AboutMessage" value="WebNMS Framework Release 5.2"/>
+<property name="AboutImage" value="./images/about.jpg"/>
+<property name="AppList" value="Start Web NMS Server,Application Client,Applet Client,Shutdown NMS Server,Web NMS IDE,Chassis Wizard,Configuration Wizard,BeanBuilder,Deployment Wizard,Simulators and Browsers,MibBrowser,TL1CraftInterface,CLIBrowser,Multi Protocol Browser,SNMP Agent Simulator,TL1 Agent Simulator,Non UI Agent,TL1 Message Builder,Administrator Tools,SNMP V3 Security,Status Viewer,Trap Parser,Event Parser,Event Filter,Alert Filter,Reinitialize Web NMS,Utilities,Configuration File Checker,Menu Configurator,I18N Editor,Discovery Configurator"/>
+<property name="Howtopresent" value="no"/>
+<property name="JavaHomeEnabled" value="yes"/>
+<property name="FrameHeight" value="600"/>
+<property name="ToolBarWidth" value="500"/>
+<property name="ToolBarHeight" value="125"/>
+<property name="FrameWidth" value="810"/>
+<property name="ErrorAreaSize" value="100"/>
+<property name="DividerLocationSize" value="300"/>
+<property name="Tutorials" value="no"/>
+<property name="SubLauncherBackImage" value="./images/back_t.png"/>
+<property name="SupportURL" value="http://www.webnms.com/webnms/support.html"/>
+<application>
+<property name="AppName" value="Start Web NMS Server"/>
+<property name="ToolTip" value="Starts the NMS Server"/>
+<property name="AppType" value="java"/>
+<property name="AppJavaOption" value="-Dpgsql.home=./pgsql -Dcatalina.home=./apache/tomcat -Dcatalina.base=./apache/tomcat -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=./apache/tomcat/conf/logging.properties -Dwebserver.port=9090 -Dwebcontainer.port=9090 -mx100m -Dresource_check=9090,8009 -Dwebserver.rootdir=./apache/tomcat -mx100m -Dcom.sun.management.jmxremote.port=16000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.snmp.interface=localhost -Dcom.sun.management.snmp.acl=false -Dcom.sun.management.snmp.port=16500 -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=./apache/tomcat/conf/logging.properties"/>
+<property name="Classpath" value=".;./classes;./classes/NmsServerClasses.jar;./classes/j2ssh-core.jar;./classes/j2ssh-common.jar;./pgsql/driver/postgresql_jdbc4.jar;./classes/AdventNetSnmp.jar;./classes/AdventNetSnmpAgent.jar;./classes/AdventNetWebNmsAgent.jar;./classes/AdventNetSAS.jar;./classes/AdventNetUI.jar;./classes/Mail.jar;./classes/activation.jar;./classes/ManagementServer.jar;./classes/AdventNetTftp.jar;./classes/AdventNetCLI.jar;./classes/AdventNetTL1.jar;./classes/jta.jar;./classes/JimiProClasses.jar;./classes/AdventNetSUMClient.jar;./classes/AdventNetSUMServer.jar;./classes/AdventNetUpdateManagerInstaller.jar;./classes/ftp.jar;./classes/bsh-1.2b3.jar;./classes/AdventNetNPrevalent.jar;./apache/tomcat/bin/bootstrap.jar;./apache/tomcat/common/lib/servlet.jar;./classes/AdventNetJta.jar;./classes/SNMPDebugger.jar;./classes/AdventNetJmxAgent.jar;./classes/AdventNetARUtils.jar;./classes/AdventNetTL1Tools.jar;./classes/xmojo.jar;./classes/jfreechart.jar;./classes/jcommon.jar;./classes/log4j.jar;./classes/p6spy.jar;./classes/debugger.jar;./conf;./classes/hbnlib/hibernate3.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib;./classes/hbnlib/ant-antlr-1.6.5.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/antlr-2.7.6.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/json.jar;./apache/tomcat/bin/tomcat-juli.jar;./apache/tomcat/bin/commons-logging-api.jar;./classes/AdventNetCLIClient.jar;./classes/AdventNetSnmpDistributedAPI.jar;./classes/AdventNetTL1Agent.jar;./apache/tomcat/common/lib/servlet-api.jar"/>
+<property name="Classname" value="com.adventnet.launcher.nms.StartNmsJdbc"/>
+<property name="AppImage" value="./images/dbicon.png"/>
+<property name="Description" value="Starts the NMS Server"/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.RDBMS_ModeCustomizer"/>
+<property name="TerminationText" value="Shutdown"/>
+
+<property name="TermFile" value="com.adventnet.tools.launcher.ShutdownProcessImplement"/>
+</application>
+<application>
+<property name="AppName" value="Application Client"/>
+<property name="ToolTip" value="Connects the Application Client"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value=".;./classes/NmsClientClasses.jar;./classes/JimiProClasses.jar;./classes/ClientExamples.jar;./classes/AdventNetUI.jar;./classes/AdventNetUtils.jar;./classes/ApiUtils.jar;./classes/AdventNetSAS.jar;./classes/AdventNetSnmp.jar;./classes/AdventNetSnmpV3USM.jar;./classes/ManagementClient.jar;./classes/AdventNetCLIClient.jar;./NetMonitor/build/RuntimeConfigFrame.jar;./NetMonitor/build/AuthMain.jar;./NetMonitor/build/ConfigPanel.jar;./NetMonitor/build/PerformanceGraphs.jar;./classes/jnlp.jar;./classes/AdventNetSUMClient.jar;./classes/AdventNetUpdateManagerInstaller.jar;./classes/jfreechart.jar;./classes/jcommon.jar;./classes/AdventNetCCLLibrary.jar;./classes/AdventNetProBeans.jar;./classes/AdventNetDMPModels.jar;./classes/AdventNetNPrevalent.jar;./classes/AdventNetAboutDialog.jar;./classes/AdventNetJta.jar;./classes/SNMPDebugger.jar;./classes/AdventNetTL1.jar;./classes/AdventNetTL1Tools.jar"/>
+<property name="Classname" value="com.adventnet.nms.startclient.WebNMSClient"/>
+<property name="AppImage" value="./images/client.png"/>
+<property name="Description" value="Starts the Application Client"/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.Application_ClientCustomizer"/>
+</application>	
+<application>
+<property name="AppName" value="Applet Client"/>
+<property name="ToolTip" value="Connects the Applet Client"/>
+<property name="AppType" value="browser"/>
+<property name="Classpath" value="null"/>
+<property name="Classname" value="http://localhost:9090/"/>
+<property name="AppImage" value="./images/browser.png"/>
+<property name="Description" value="Starts the Applet Client"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Shutdown NMS Server"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value=".;./classes;./classes/NmsServerClasses.jar;./classes/ApiUtils.jar;./classes/log4j.jar;./classes/p6spy.jar;./classes/AdventNetSnmp.jar;;./classes/hbnlib/hibernate3.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib;./classes/hbnlib/ant-antlr-1.6.5.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/antlr-2.7.6.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/jta.jar"/>
+<property name="Classname" value="com.adventnet.launcher.nms.ShutdownServer -HOST_NAME localhost -WEB_SERVER_PORT 9090 -RMI_PORT 1099 -TCP_PORT 2000 -USER_NAME root"/>
+<property name="AppImage" value="./images/stop.png"/>
+<property name="Description" value="Shuts down NMS server"/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.ShutDownNmsServerCustomizer"/>
+</application>
+<sub_launcher>
+<property name="AppName" value="Web NMS IDE"/>
+<property name="ToolTip" value="Suite of tools to customize Web NMS"/>
+<property name="AppType" value="sublauncher"/>
+<property name="Classpath" value="null"/>
+<property name="Classname" value=""/>
+<property name="AppImage" value="./images/webnms_ide.png"/>
+<property name="SubLauncherSize" value="300"/>
+<property name="Description" value="Development Kit to build and deploy Network Management Applications"/>
+<property name="InterfaceFile" value="null"/>
+<application>
+<property name="AppName" value="Chassis Wizard"/>
+<property name="ToolTip" value="Starts the Chassis Wizard"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools Chassis"/>
+<property name="AppImage" value="./images/chassiswizard.png"/>
+<property name="Description" value="Tool to build, manage and represent Device components"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Configuration Wizard"/>
+<property name="ToolTip" value="Starts the Configuration Wizard"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools Configuration"/>
+<property name="AppImage" value="./images/configwizard.png"/>
+<property name="Description" value="Tool to build and configure Device components"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="BeanBuilder"/>
+<property name="ToolTip" value="Starts the Bean Builder"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools BeanBuilder"/>
+<property name="AppImage" value="./images/builder.jpg"/>
+<property name="Description" value="Tool to build GUI based on Java Beans"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Deployment Wizard"/>
+<property name="ToolTip" value="Starts the Deployment Tool"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/hbnlib/hibernate3.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib/hibernate3.jar;./classes/hbnlib;./classes/hbnlib/ant-antlr-1.6.5.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/antlr-2.7.6.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/Mail.jar;./classes/activation.jar;./classes/AdventNetNPrevalent.jar;./classes/bsh-1.2b3.jar;./classes/debugger.jar;./classes;./classes/NmsServerClasses.jar;./classes/ManagementServer.jar;./classes/AdventNetTL1.jar;./classes/JimiProClasses.jar;./classes/AdventNetSnmp.jar;./pgsql/driver/postgresql_jdbc4.jar;./classes/jta.jar;./classes/ApiUtils.jar;./classes/NarPackager.jar;./classes/NmsClientClasses.jar;./classes/AdventNetCCLLibrary.jar;./classes/AdventNetUpdateManagerInstaller.jar;./html;./classes/AdventNetUtils.jar;./classes/SNMPDebugger.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.nar.InstUninst"/>
+<property name="AppImage" value="./images/narutilities.png"/>
+<property name="Description" value="Tool to deploy, install and un-install Web NMS Applications (.nar)"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+</sub_launcher>
+<sub_launcher>
+<property name="AppName" value="Simulators and Browsers"/>
+<property name="ToolTip" value="Suite of tools for testing Applications "/>
+<property name="AppType" value="sublauncher"/>
+<property name="Classpath" value="null"/>
+<property name="Classname" value=""/>
+<property name="AppImage" value="./images/simulators.png"/>
+<property name="SubLauncherSize" value="300"/>
+<property name="Description" value="Tools to test and validate the Applications built using Web NMS IDE's"/>
+<property name="InterfaceFile" value="null"/>
+<application>
+<property name="AppName" value="MibBrowser"/>
+<property name="ToolTip" value="Tool to view and configure MIB variables"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/AdventNetSAS.jar;./classes/AdventNetSnmp.jar;./classes/NmsClientClasses.jar;./classes/JimiProClasses.jar;./classes/AdventNetAboutDialog.jar;./classes/SNMPDebugger.jar;./classes/AdventNetCCLLibrary.jar;./classes/AdventNetUtils.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.mibbrowser.MibBrowserApplication -s html -m ./mibs/RFC1213-MIB"/>
+<property name="AppImage" value="./images/origin.png"/>
+<property name="Description" value="MibBrowser is used to view and operate on data available through an SNMP agent on a managed device"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+
+<property name="ToolTip" value="Tool to view and configure TL1 variables"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/JimiProClasses.jar;./classes/AdventNetUtils.jar;./classes/AdventNetUI.jar;./classes/ApiUtils.jar;./classes/AdventNetAboutDialog.jar;./classes/AdventNetTL1.jar;./classes/AdventNetTL1Tools.jar;./classes/AdventNetProBeans.jar"/>
+
+<property name="AppImage" value="./images/tl1browser.png"/>
+
+<property name="InterfaceFile" value="null"/>
+<property name="AppName" value="TL1CraftInterface"/>
+
+<property name="Description" value="TL1CraftInterface is used to view and operate on data available through an TL1 agent    on a managed device"/>
+<property name="Classname" value="com.adventnet.nms.tools.tl1browser.TL1BrowserApplication -NMS_RESOURCE_DIRECTORY ./html  -RESOURCE_PROPERTIES tl1craftinterface_i18n -RESOURCE_LOCALE en_US"/>
+</application>
+<application>
+<property name="AppName" value="CLIBrowser"/>
+<property name="ToolTip" value="Tool to view and configure CLI variables"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/AdventNetCLI.jar;./classes/crimson.jar;./classes/jaxp.jar;./classes/xalan.jar;./classes/JimiProClasses.jar;./classes/AdventNetCLIClient.jar;./conf;./classes/bsh-1.2b3.jar;./classes/jython.jar;./examples/cli/classes;./classes/comm.jar;./classes/AdventNetAboutDialog.jar;./classes/AdventNetJta.jar;./classes/NmsClientClasses.jar;./examples/classes"/>
+<property name="Classname" value="com.adventnet.nms.tools.clibrowser.CLIBrowserApplication -c ccs/unixcmds.ccs -d ccs/unixcmds.dat -h ./help/administrator_guide/administration_tools/cli_browser/cli_browser_contents.html -i -L en,US -S html"/>
+<property name="AppImage" value="./images/clibrowser.png"/>
+<property name="Description" value="CLIBrowser is used to view and operate on data available through an CLI agent on a managed device"/>
+<property name="InterfaceFile" value="null"/>
+<property name="AppJavaOption" value="-Dpython.path=./examples/cli/script -Dlogging.file=conf/clilogging_parameters.conf"/>
+</application>
+<application>
+<property name="AppName" value="Multi Protocol Browser"/>
+<property name="ToolTip" value="Starts Multi Protocol Browser"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/AdventNetNPrevalent.jar"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools MultiProtocolBrowser"/>
+<property name="AppImage" value="./images/multiprotocolbrowser.png"/>
+<property name="Description" value="Starts Multi Protocol Browser"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="SNMP Agent Simulator"/>
+<property name="ToolTip" value="Starts SNMP Agent Simulator"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools SnmpAgentSimulator"/>
+<property name="AppImage" value="./images/snmp_agentsimulator.png"/>
+<property name="Description" value="Starts SNMP Agent Simulator"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="TL1 Agent Simulator"/>
+<property name="ToolTip" value="Starts TL1 Agent Simulator"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools TL1AgentSimulator"/>
+<property name="AppImage" value="./images/tl1simulator.png"/>
+<property name="Description" value="Starts TL1 Agent Simulator"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Non UI Agent"/>
+<property name="ToolTip" value="Starts Non UI Agent"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools NonUIAgent"/>
+<property name="AppImage" value="./images/nonuiagentsimulator.png"/>
+<property name="Description" value="Starts Non UI Agent"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="TL1 Message Builder"/>
+<property name="ToolTip" value="Starts TL1 Message Builder"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes"/>
+<property name="Classname" value="com.adventnet.tools.launcher.ExecuteProgram startStudioTools TL1MessageBuilder"/>
+<property name="AppImage" value="./images/tl1_mess_builder.png"/>
+<property name="Description" value="Starts TL1 Message Builder"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+</sub_launcher>
+<sub_launcher>
+<property name="AppName" value="Administrator Tools"/>
+<property name="ToolTip" value="Tools for run time configuration of Web NMS"/>
+<property name="AppType" value="sublauncher"/>
+<property name="Classpath" value="null"/>
+<property name="Classname" value=""/>
+<property name="AppImage" value="./images/administrationtools.png"/>
+<property name="SubLauncherSize" value="300"/>
+<property name="Description" value="Tools for run time configuration Web NMS"/>
+<property name="InterfaceFile" value="null"/>
+<application>
+<property name="AppName" value="SNMP V3 Security"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/AdventNetSnmp.jar;./pgsql/driver/postgresql_jdbc4.jar;./classes/AdventNetSnmpV3USM.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/SNMPDebugger.jar;./classes/hbnlib;./classes/hbnlib/hibernate3.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/ant-antlr-1.6.5.jar;./classes/ManagementServer.jar;./classes/AdventNetTL1.jar;./classes/jta.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.v3settings.V3SettingsTool"/>
+<property name="AppImage" value="./images/v3security.png"/>
+<property name="Description" value="Tool for user authentication based on SNMPv3 authorization model"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Status Viewer"/>
+<property name="ToolTip" value="View the status of the Server"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/AdventNetSnmp.jar;./classes/AdventNetSAS.jar;./classes/NmsClientClasses.jar;./classes/JimiProClasses.jar;./classes/SNMPDebugger.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.status.StatusViewer"/>
+<property name="AppImage" value="./images/statusviewer.png"/>
+<property name="Description" value="Tool to View Web NMS Status"/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.StatusViewerCustomizer"/>
+</application>
+<application>
+<property name="AppName" value="Trap Parser"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/jta.jar;./classes;./classes/NmsServerClasses.jar;./classes/NmsClientClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetSnmp.jar;./classes/SNMPDebugger.jar"/>
+<property name="Classname" value="com.adventnet.nms.eventui.TrapParserConfig"/>
+<property name="AppImage" value="./images/trapparser.png"/>
+<property name="Description" value="Standalone Trap Parser Configuration UI"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Event Parser"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/jta.jar;./classes;./classes/NmsServerClasses.jar;./classes/NmsClientClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetSnmp.jar;./classes/SNMPDebugger.jar"/>
+<property name="Classname" value="com.adventnet.nms.eventui.EventParserConfig"/>
+<property name="AppImage" value="./images/eventparser.png"/>
+<property name="Description" value="Standalone Event Parser Configuration UI"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Event Filter"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/jta.jar;./classes;./classes/NmsServerClasses.jar;./classes/NmsClientClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetSnmp.jar;./classes/SNMPDebugger.jar"/>
+
+<property name="AppImage" value="./images/eventfilter.png"/>
+<property name="Description" value="Standalone Event Filter Configuration UI."/>
+<property name="InterfaceFile" value="null"/>
+<property name="Classname" value="com.adventnet.nms.eventui.SpecialEventFilterConfig"/>
+</application>
+<application>
+<property name="AppName" value="Alert Filter"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/jta.jar;./classes;./classes/NmsServerClasses.jar;./classes/NmsClientClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetSnmp.jar;./classes/SNMPDebugger.jar"/>
+
+<property name="AppImage" value="./images/alertfilter.png"/>
+<property name="Description" value="Standalone Alert Filter Configuration UI."/>
+<property name="InterfaceFile" value="null"/>
+<property name="Classname" value="com.adventnet.nms.alertui.SpecialAlertFilterConfig"/>
+</application>
+</sub_launcher>
+<application>
+<property name="AppName" value="Reinitialize Web NMS"/>
+<property name="ToolTip" value="Drops the table"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/AdventNetSnmp.jar;./classes;./classes/NmsServerClasses.jar;./pgsql/driver/postgresql_jdbc4.jar;./classes/ApiUtils.jar;./classes/log4j.jar;./classes/p6spy.jar;./classes/hbnlib/hibernate3.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib;./classes/hbnlib/ant-antlr-1.6.5.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/antlr-2.7.6.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/jta.jar;./classes/ManagementServer.jar;./classes/AdventNetTL1.jar"/>
+<property name="Classname" value="com.adventnet.launcher.nms.ReinitializeAll"/>
+<property name="AppImage" value="./images/clear.png"/>
+<property name="Description" value="Drops the table"/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.ReinitializeAll_Customizer"/>
+<property name="AppJavaOption" value="-Dpgsql.home=./pgsql"/>
+</application>
+<sub_launcher>
+<property name="AppName" value="Utilities"/>
+<property name="ToolTip" value="Tools for run time configuration of Web NMS"/>
+<property name="AppType" value="sublauncher"/>
+<property name="Classpath" value="null"/>
+<property name="Classname" value=""/>
+<property name="AppImage" value="./images/utility.png"/>
+<property name="SubLauncherSize" value="300"/>
+<property name="Description" value="Tools for run time configuration Web NMS"/>
+<property name="InterfaceFile" value="null"/>
+<application>
+<property name="AppName" value="Configuration File Checker"/>
+<property name="ToolTip" value="Checks the syntax of Configuration files"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetWebNmsAgent.jar;./classes/NmsClientClasses.jar;./classes/jta.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.configcheck.ConfigCheck"/>
+<property name="AppImage" value="./images/confcheck.png"/>
+<property name="Description" value="Tool that checks the syntax of the configuration files"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Menu Configurator"/>
+<property name="ToolTip" value="Tool to configure Menu Files"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/AdventNetTL1.jar;./classes/ManagementServer.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/asm.jar;./classes/hbnlib/asm-attrs.jar;./classes/hbnlib/cglib-2.1.3.jar;./classes/hbnlib/ehcache-1.2.3.jar;./classes/hbnlib/c3p0-0.9.1.jar;./classes/hbnlib/commons-collections-2.1.1.jar;./classes/hbnlib;./classes/hbnlib/commons-logging-1.0.4.jar;./classes/hbnlib/dom4j-1.6.1.jar;./classes/hbnlib/hibernate3.jar;./classes/NmsServerClasses.jar;./classes/AdventNetSnmp.jar;./pgsql/driver/postgresql_jdbc4.jar;./classes/jta.jar;./classes/NmsClientClasses.jar;./classes/JimiProClasses.jar;./classes/SNMPDebugger.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.menuconfigurator.MenuConfigurator"/>
+<property name="AppImage" value="./images/menuconf.png"/>
+<property name="Description" value="Tool to configure Menu files."/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="I18N Editor"/>
+<property name="ToolTip" value="I18N resource file editor"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes;./classes/NmsServerClasses.jar;./classes/jaxp.jar;./classes/AdventNetUtils.jar;./classes/ApiUtils.jar;./classes/JimiProClasses.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/AdventNetUI.jar;./classes/BeanBuilderClasses.jar"/>
+<property name="Classname" value="com.adventnet.management.i18n.tools.I18NMain"/>
+<property name="AppImage" value="./images/i18n.jpg"/>
+<property name="Description" value="Tool to edit the Resource File for Internationalization"/>
+<property name="InterfaceFile" value="null"/>
+</application>
+<application>
+<property name="AppName" value="Discovery Configurator"/>
+<property name="ToolTip" value="Configure Discovery process"/>
+<property name="AppType" value="java"/>
+<property name="Classpath" value="./classes/jta.jar;./classes;./classes/NmsServerClasses.jar;./classes/NmsClientClasses.jar;./classes/jaxp.jar;./classes/crimson.jar;./classes/xalan.jar;./classes/ApiUtils.jar;./classes/AdventNetUI.jar;./classes/AdventNetUtils.jar;./NetMonitor/build/RuntimeConfigFrame.jar;./classes/JimiProClasses.jar;./classes/AdventNetSnmp.jar;./classes/SNMPDebugger.jar;./classes/AdventNetProBeans.jar"/>
+<property name="Classname" value="com.adventnet.nms.tools.discoveryconfig.DiscoveryConfigurator"/>
+<property name="AppImage" value="./images/discconf.png"/>
+<property name="Description" value="Tool that enables the user to configure the Discovery process through a GUI."/>
+<property name="InterfaceFile" value="com.adventnet.launcher.nms.DiscoveryConfiguratorCustomizer"/>
+</application>
+</sub_launcher>
+<property value="com.adventnet.tools.update.installer.UpdateManager" name="UpdateManagerImplClass"/>
+</configuration>
