@@ -25,7 +25,6 @@ public class RadiusUtil
 	private static RadiusUtil radiusUtil = null;
 	private NodeList nl =null;
 	private int length = 0;
-	private  int result = 0;
 
     public synchronized static RadiusUtil getInstance()
     {
@@ -117,6 +116,7 @@ public class RadiusUtil
 
 	public boolean authenticateUser(String userName,String userPass) throws  AuthenticationException 
 	{
+		int result = 0;
 			try
 			{
 			for (int i=0; i < length; i++)
@@ -295,7 +295,7 @@ class NmsRadiusClient
                 case 3:
                     responseCode = 3;
                     break;
-                case 11:
+		case 11:
                     responseCode = 11;
                     break;
                 default:
