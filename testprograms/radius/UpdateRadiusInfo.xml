@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Data>
+<Details>
+<server vendorName="cisco" servername=".1.3.6.1.4.1.522.3.19.1.1.3.1" serverport=".1.3.6.1.4.1.522.3.19.1.1.4." responseTime=".1.3.6.1.4.1.522.3.19.1.1.5." sharedSecret=".1.3.6.1.4.1.522.3.19.1.1.7." serverEAPAuth=".1.3.6.1.4.1.522.3.19.1.1.8." serverMacAddr=".1.3.6.1.4.1.522.3.19.1.1.9." serverAdminAuth=".1.3.6.1.4.1.522.3.19.1.1.10." serverMipAuth=".1.3.6.1.4.1.522.3.19.1.1.11."/>
+</Details>
+
+<Details>
+<server vendorName="proxim" servername=".1.3.6.1.4.1.11898.2.1.6.1.1.1.17.1" serverstatus=".1.3.6.1.4.1.11898.2.1.6.1.1.1.3" serverport=".1.3.6.1.4.1.11898.2.1.6.1.1.1.5." sharedSecret=".1.3.6.1.4.1.11898.2.1.6.1.1.1.6." responseTime=".1.3.6.1.4.1.11898.2.1.6.1.1.1.7."  retryValue=".1.3.6.1.4.1.11898.2.1.6.1.1.1.8." />
+</Details>
+
+
+<Details>
+<server vendorName="Not Available" serverName=".1.2.3.4.5" authPort=".5.4.3.2.1" secret=".6.7.8.9" responseTime=".1.2.3.4.7" responseValue=".1.2.3.4.5" />
+</Details>
+
+
+</Data>
+
+
