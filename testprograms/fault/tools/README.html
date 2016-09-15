@@ -1,0 +1,560 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="rajalakshmytr">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>README</title>
+</head>
+<body>
+&nbsp;
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#006600" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td>
+<center><b><font color="#FFFFFF"><font size=+2>README</font></font></b></center>
+</td>
+</tr>
+</table>
+
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="Introduction:"></a><b>Introduction:</b></td>
+</tr>
+</table>
+
+<p>This README provides description to all tools(java files) under testprograms
+/ fault / tools directory.
+<br>Please go through the explanation given to understand the use of the
+tool.
+<ol>
+<li>
+<a href="#TestAPI.java">TestAPI.java</a></li>
+
+<li>
+<a href="#AddEvent.java">AddEvent.java</a></li>
+
+<li>
+<a href="#MultiSendTrap.java">MultiSendTrap.java</a></li>
+
+<li>
+<a href="#testObs.java">testObs.java</a></li>
+
+<li>
+<a href="#SpecialEvent.java">SpecialEvent.java</a></li>
+
+<li>
+<a href="#SpecialAlert.java">SpecialAlert.java</a></li>
+
+<li>
+<a href="#CommonFilter.java">CommonFilter.java</a></li>
+
+<li>
+<a href="#FilterAlert.java">FilterAlert.java</a></li>
+
+<li>
+<a href="#final.jar">final.jar</a></li>
+
+<li>
+<a href="#EventQueSize.java">EventQueSize.java</a></li>
+
+<li>
+<a href="#sim">AdventNetPerformanceSimulator.zip</a></li>
+</ol>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption>&nbsp;</caption>
+
+<tr>
+<td><a NAME="TestAPI.java"></a><b>TestAPI.java</b></td>
+</tr>
+</table>
+
+<p>RMI Testing Tool based on UI. Basically this lists all the methods in
+TrapAPI,EventAPI,AlertAPI,EventFilterAPI,EventParserAPI,AlertFilterAPI
+and TrapAPI.
+<p>You have to enter the input parameters in textbox. Properties are separated
+by &amp;.
+<p><b>Usage: java TestAPI RMIPort SecureFlag</b>
+<br>&nbsp;
+<table BORDER=0 WIDTH="40%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td BGCOLOR="#CCCCCC">S.No</td>
+
+<td BGCOLOR="#CCCCCC">Arguments</td>
+
+<td BGCOLOR="#CCCCCC">Description</td>
+
+<td BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td>1</td>
+
+<td>RMIPort</td>
+
+<td>RMI Port of WebNMS Server</td>
+
+<td>int</td>
+</tr>
+
+<tr>
+<td>2</td>
+
+<td>SecureFlag</td>
+
+<td>Secured Server Mode or not</td>
+
+<td>true / false</td>
+</tr>
+</table>
+
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="AddEvent.java"></a><b>AddEvent.java</b></td>
+</tr>
+</table>
+
+<p>Standalone tool which adds the specified number of Events into the system
+using EventAPI.addEvent() method.
+<p><b>Usage: java AddEvent NumberofEvents hostName</b>
+<br>&nbsp;
+<table BORDER=0 WIDTH="40%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td BGCOLOR="#CCCCCC">S.No</td>
+
+<td BGCOLOR="#CCCCCC">Arguments</td>
+
+<td BGCOLOR="#CCCCCC">Description</td>
+
+<td BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>1</td>
+
+<td VALIGN=TOP>NumberOfEvents</td>
+
+<td VALIGN=TOP>Total number of Events to be added</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>2</td>
+
+<td VALIGN=TOP>hostName</td>
+
+<td VALIGN=TOP>Name of the machine where WebNMS is running</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+</table>
+
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="MultiSendTrap.java"></a><b>MultiSendTrap.java</b></td>
+</tr>
+</table>
+
+<p>Standalone tool which can be used to send traps at the specified rate.
+<p><b>Usage: java MultiSendTrap PeerName PortNumber No_Of_Traps TimeInterval(milliseconds)
+GT ST Enterprise printCount noOfThreads</b>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="40%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#CCCCCC">S.No</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Arguments</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Description</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>1</td>
+
+<td VALIGN=TOP>PeerName</td>
+
+<td VALIGN=TOP>Name of machine where NMS server is running</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>2</td>
+
+<td VALIGN=TOP>PortNumber</td>
+
+<td VALIGN=TOP>TrapPort of WebNMS</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>3</td>
+
+<td VALIGN=TOP>NoOfTraps</td>
+
+<td VALIGN=TOP>Total number of traps which needs to be send in single thread</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>4</td>
+
+<td VALIGN=TOP>TimeInterval</td>
+
+<td VALIGN=TOP>sleep time between two successive traps</td>
+
+<td VALIGN=TOP>in millisecs</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>5</td>
+
+<td VALIGN=TOP>GT</td>
+
+<td VALIGN=TOP>Generic Type of V1 trap</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>6</td>
+
+<td VALIGN=TOP>ST</td>
+
+<td VALIGN=TOP>SpecificType of V1 trap</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>7</td>
+
+<td VALIGN=TOP>Enterprise</td>
+
+<td VALIGN=TOP>Enterprise value of Snmp V1 trap</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>8</td>
+
+<td VALIGN=TOP>printCount</td>
+
+<td VALIGN=TOP>Number of traps once in which time will be printed</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>9</td>
+
+<td VALIGN=TOP>noOfThreads</td>
+
+<td VALIGN=TOP>Number of Threads which send traps</td>
+
+<td VALIGN=TOP>int</td>
+</tr>
+</table>
+
+<p><b><i>Example:</i></b>
+<br>NoOfTraps = 100
+<br>noOfThreads = 10
+<br>TimeInterval=1
+<br>Then totally 1000 Traps will be sent by 10 different traps. Difference
+in time between each thread is 1 millisec.
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="testObs.java"></a><b>testObs.java</b></td>
+</tr>
+</table>
+
+<p>TestProgram which can acts as EventObserver,TrapObserver,SocketListener,AlertObserver
+and AlertListener.
+<br>By editing code you can configure that. You have to make rmic for this.
+<p><b>Usage: java testObs hostName</b>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="40%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#CCCCCC">S.No</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Arguments</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Description</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>1</td>
+
+<td VALIGN=TOP>hostName</td>
+
+<td VALIGN=TOP>name of the machine where NMS is running</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+</table>
+
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="100%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFCC33"><a NAME="SpecialEvent.java"></a><b>SpecialEvent.java</b></td>
+</tr>
+</table>
+
+<p>Extended Event object.
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="100%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFCC33"><a NAME="SpecialAlert.java"></a><b>SpecialAlert.java</b></td>
+</tr>
+</table>
+
+<p>Extended Alert Object.
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="100%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFCC33"><a NAME="CommonFilter.java"></a><b>CommonFilter.java</b></td>
+</tr>
+</table>
+
+<p>Class which implements FilterClient interface.
+<br>This can be used to integrate the above SpecialEvent and SpecialAlert.
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="100%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFCC33"><a NAME="FilterAlert.java"></a><b>FilterAlert.java&nbsp;</b></td>
+</tr>
+</table>
+
+<p>Utility class which can be used to add/modify/delete AlertFilters/EventFilters
+through RMI.
+<p><b>Usage: java FilterAlert hostName APIName</b>
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=2 CELLPADDING=2 WIDTH="40%" >
+<caption>&nbsp;
+<br><tbody></tbody><tbody>
+<br></tbody></caption>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#CCCCCC">S.No</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Arguments</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Description</td>
+
+<td VALIGN=TOP BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>1</td>
+
+<td VALIGN=TOP>hostName</td>
+
+<td VALIGN=TOP>Name of the machine where NMS is running</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>2</td>
+
+<td VALIGN=TOP>APIName</td>
+
+<td VALIGN=TOP>EventFilterAPI/AlertFilterAPI</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+</table>
+
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<br>&nbsp;
+<table COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="final.jar"></a><b>final.jar</b></td>
+</tr>
+</table>
+
+<p>This jar file is a Cache tool. It enables to do Server Cache &amp; Transaction
+testcases.
+<br>As the transaction cases are automated you could use the tool to check
+client
+<br>side transaction effect. It is a bean builder project.
+<br>It also consists of a Readme.txt that contains all the infomation.
+<p><b><i>Steps:</i></b>
+<ul>
+<li>
+Copy all class files under cache/classes directory of the tool into classes
+directory of the Web NMS server or have it server classpath.</li>
+
+<li>
+Have AdventNetUtils.jar in server classpath.</li>
+
+<li>
+Include the below process entry in NmsProcessBE.conf</li>
+
+<ul>#java com.adventnet.nms.karthi.cachetest.CacheProcess
+<br>PROCESS&nbsp;&nbsp;&nbsp; com.adventnet.nms.karthi.cachetest.CacheProcess
+<br>ARGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL</ul>
+
+<li>
+Restart the server.</li>
+
+<li>
+A UI will pop up. Work with the options available</li>
+</ul>
+<a href="#Introduction:">back</a>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="EventQueSize.java"></a><b>EventQueSize.java</b></td>
+</tr>
+</table>
+
+<p>This implementation will check the que size periodicaly for given interval
+and given stretch of time.
+<br>You could add events using performance simulator tool.
+<br>Events are stored into a buffer periodically and at the end of Time
+Period, dumped into a file.
+<p><b>Usage: java EventQue hostName period(milliseconds) TotalTime(seconds)</b>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 WIDTH="40%" >
+<caption><tbody>
+<br></tbody></caption>
+
+<tr>
+<td BGCOLOR="#CCCCCC">S.No</td>
+
+<td BGCOLOR="#CCCCCC">Arguments</td>
+
+<td BGCOLOR="#CCCCCC">Description</td>
+
+<td BGCOLOR="#CCCCCC">Values</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>1</td>
+
+<td VALIGN=TOP>hostName</td>
+
+<td VALIGN=TOP>Name of the machine where NMS is running</td>
+
+<td VALIGN=TOP>String</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>2</td>
+
+<td VALIGN=TOP>period</td>
+
+<td VALIGN=TOP>The time period in which events are buffered</td>
+
+<td VALIGN=TOP>int (milliseconds)</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>3</td>
+
+<td VALIGN=TOP>TotalTime</td>
+
+<td VALIGN=TOP>The total time interval after which all the buffered events
+are dumped into files</td>
+
+<td VALIGN=TOP>int (seconds)</td>
+</tr>
+</table>
+
+<p><a href="#Introduction:">back</a>
+<br>&nbsp;
+<table COLS=1 WIDTH="100%" BGCOLOR="#FFCC33" >
+<caption><tbody>
+<br></tbody></caption>
+
+<tr>
+<td><a NAME="sim"></a><b>AdventNetPerformanceSimulator.zip</b></td>
+</tr>
+</table>
+
+<p>This tool can be used for validating testcases whereever mentioned.
+Unzip and run the startTool.bat/sh file under &lt;unzipped dir>/AdventNet/PerformanceSimulator/bin
+directory
+<p><a href="#Introduction:">back</a>
+</body>
+</html>

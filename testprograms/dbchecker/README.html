@@ -1,0 +1,49 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (Windows NT 5.0; I) [Netscape]">
+   <title>Database Consistency Checker - README File</title>
+</head>
+<script language="Javascript" ></script>
+<body>
+
+<center><b><font size=+3>Database Checker</font></b></center>
+
+<p><b><font size=+2>What is Database Checker?</font></b><b></b>
+<p>Database Checker is a read only tool, which can be run as a stand-alone
+application on WebNMS database, to&nbsp; check data consistency and integrity.
+This tool has been integrated into the database query tool (UItoDB), making
+it much more useful and powerful.
+<p><b><font size=+2>Motivation</font></b><b></b>
+<p>As Sridhar Vembu said, <b><i>"Data is everything. Therefore, Data is
+God"</i></b>. WebNMS is database centric and the integrity of database
+should be maintained all the time without exception. This tool is a first
+step in that direction. The tool checks data integrity by ensuring that
+various pieces of related data are consistent. For example, the status
+of the Managed Object should be the same as the severity level of the most
+recent Alert. Similarly, the status of the parent object should be consistent
+with the status of the children objects.
+<p><b><font size=+2>Checks Performed</font></b>
+<p>Currently, this tool performs four major checks :
+<br>&nbsp; 1. Checks if the status of parent nodes are consistent with
+that of the interfaces.
+<br>&nbsp; 2. Checks if the status of the Managed Object is consistent
+with the Alert Status.
+<br>&nbsp; 3. Checks if the Alert Status is consistent with the most recent
+Event generated for the same entity.
+<br>&nbsp; 4. Checks if any successive duplicate events are generated for
+the same entity.
+<br>&nbsp;
+<p><b><font size=+2>How do you Invoke the tool?</font></b>
+<p>The directory structure is self explanatory. The tool can be invoked
+by calling the run.bat script. <b><i>Please ensure that the command "java"
+is in the path.</i></b>
+<p><b><font size=+2>How do you Customize the tool?</font></b>
+<p>The source code is available in the src directory. All the checks are
+performed in the file ConsistencyChecker.java. In this class, there is
+a method called <b>customCheck()</b>, which is empty. This method can be
+used to fill in customized data integrity checks. To compile, use the compile.bat
+script. <b><i>Please ensure that the command "javac" is in the path.</i></b>
+</body>
+</html>
