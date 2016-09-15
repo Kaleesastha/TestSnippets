@@ -1,0 +1,52 @@
+<!-- This HTML File is used to Invoke DateComponent. This will invoke DateComponent.js from here-->
+
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>JavaScript Calendar</title>
+
+<script language="JavaScript" src="/weclient/common/js/DateComponent.js"></script> 
+<script language="JavaScript">
+        <!-- // create calendar object(s) just after form tag closed
+		             // specify form element as the only parameter (document.forms['formname'].elements['inputname']);
+				              // note: you can have as many calendar objects as you need for your application
+       function popup1()
+			    {
+			var cal3 = new DateObject(document.forms["tstest"].elements["input3"],"/DateInput.do");
+																cal3.popup();
+			    }
+
+															         //-->
+      </script>
+</head>
+
+<body bottommargin="15" topmargin="15" leftmargin="15" rightmargin="15" marginheight="15" marginwidth="15" bgcolor="white">
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#4682B4" width="100%"><tr><td>
+<table cellpadding="0" cellspacing="1" width="100%" border="0">
+
+<form name="tstest">
+<tr>
+<td bgcolor="#ffffff" valign="top">
+			Starting Time :<br>
+			<input type="Text" name="input3" value="">
+			<!--a onclick="popup1()" id="1">click<!--img src="../img/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the date"--></a--><br>
+			<a href="javascript:popup1()" id="1">click</a>
+</td>
+
+</tr>
+</form>
+		
+		<!-- // create calendar object(s) just after form tag closed
+			 // specify form element as the only parameter (document.forms['formname'].elements['inputname']);
+			 // note: you can have as many calendar objects as you need for your application
+			 //function popup1()
+			// {
+//var cal3 = new DateObject(document.forms["tstest"].elements["input3"],"MMM dd yy hh:mm");
+//cal3.popup();
+//			 }
+
+		//-->
+
+</table>

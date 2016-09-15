@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>README - webclient/utils Directory</title>
+</head>
+<body>
+<div style="text-align: center;"><big><span style="font-weight: bold;">README
+- webclient/utils directory.</span></big><br>
+<div style="text-align: left;"><br>
+<big><span style="font-weight: bold;">File Names :-</span></big><br>
+<ol>
+  <li><a href="#GenericTestUtils.java">GenericTestUtil.java</a></li>
+</ol>
+<big><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+2.<a href="#AlarmAdvSearchAction.java">AlarmAdvSearchAction.java</a></span></big><span
+ style="font-weight: bold;"><a href="#search"><big><span
+ style="font-weight: bold;"></span></big></a></span><big><span
+ style="font-weight: bold;"><br>
+</span></big>
+<hr style="width: 100%; height: 2px;"><big><span
+ style="font-weight: bold;">Individual File Description :-</span></big><br>
+<hr style="width: 100%; height: 2px;"><br>
+<big><a name="GenericTestUtils.java"></a><span
+ style="font-weight: bold;">GenericTestUtil.java </span>:</big><br>
+<br>
+<span style="text-decoration: underline;">classpath for compilation</span>:
+<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="0"
+ style="text-align: left; width: 60%;">
+  <tbody>
+    <tr>
+      <td style="text-align: center; vertical-align: middle;">Directories<br>
+      </td>
+      <td style="vertical-align: top;">:<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: middle;">Archives
+( JARS/zip)<br>
+      </td>
+      <td style="vertical-align: top;">:<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<span style="text-decoration: underline;">Methods:</span><br>
+<ol>
+  <li><a href="#GenericTestUtil.getDate">getDate()</a></li>
+  <li><a href="#generateAllSeverityEvents">generateAllSeverityEvents()</a></li>
+  <li><a href="#generateClearAlerts">generateClearAlerts()</a><br>
+  </li>
+</ol>
+<br>
+<span style="text-decoration: underline;">Methods Usage:</span><br>
+<br>
+<a style="font-weight: bold;" name="GenericTestUtil.getDate"></a><span
+ style="font-weight: bold;">getDate()</span><br>
+<br>
+<a name="GenericTestUtil.getDate_usage1"></a>usage1 : <br>
+<br>
+java com.adventnet.nms.webclient.utils.GenericTestUtil &nbsp;&nbsp;
+&nbsp; getDate&nbsp;&nbsp; &nbsp; &lt;arg1: long value of the date&gt;<br>
+<br>
+Description: To convert the long value to simple date format ( MMM
+dd,yyyy hh:mm:ss a ) and using local system's timezone preference.<br>
+<br>
+<a name="GenericTestUtil.getDate_usage2"></a>usage2:<br>
+<br>
+java com.adventnet.nms.webclient.utils.GenericTestUtil&nbsp;&nbsp;
+getDate &lt;arg1: long value of the
+date&gt; &lt;arg2: Date Format default: MMM dd,yyyy hh:mm:ss a&gt;<br>
+<br>
+Description: To convery the long value to with format specified in arg2
+and using local system's timezone preference.<br>
+<hr style="width: 100%; height: 2px;"><br>
+<a name="GenericTestUtils_generateAllSeverityEvents"></a><span
+ style="font-weight: bold;">generateAllSeverityEvents()</span><br>
+<br>
+<a name="GenericTestUtils_generateAllSeverityEvents_usage1"></a>usage1:<br>
+<br>
+java com.adventnet.nms.webclient.utils.GenericTestUtil
+generateAllSeverityEvents &lt;entity name&gt;<br>
+<br>
+Description: This method will create events with severity mentioned
+SeverityInfo.conf. By default, this conf will have all the predefined
+severities. So if you are giving entity name as "rameshkumarp", then
+the following events will be created,<br>
+<br>
+<div style="margin-left: 40px;">
+<table style="text-align: left; width: 50%;" border="1" cellspacing="2"
+ cellpadding="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Failure Object (Entity Name)<br>
+      </td>
+      <td style="vertical-align: top;">Severity<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_Critical_Event<br>
+      </td>
+      <td style="vertical-align: top;">Critical<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_Major_Event</td>
+      <td style="vertical-align: top;">Major<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_Minor_Event</td>
+      <td style="vertical-align: top;">Minor<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_Warning_Event</td>
+      <td style="vertical-align: top;">Warning<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_clear_Event</td>
+      <td style="vertical-align: top;">clear<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_info_Event</td>
+      <td style="vertical-align: top;">info<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rameshkumarp_unknown_Event</td>
+      <td style="vertical-align: top;">unknown<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+&nbsp;&nbsp; <br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+<a style="font-weight: bold;"
+ name="GenericTestUtils_generateClearAlerts"></a><span
+ style="font-weight: bold;">generateClearAlerts()</span><br>
+<br>
+<a name="GenericTestUtils_generateClearAlerts_usage1"></a>usage1:<br>
+<br>
+java com.adventnet.nms.webclient.utils.GenericTestUtil
+generateAllSeverityAlarms &lt;entity name 1 &gt; &lt;entity name 2&gt;<br>
+<br>
+Description: This method will inturn call <a
+ href="#generateAllSeverityEvents">generateAllSeverityEvents()</a>
+to generate events with all severities which inturn will make the
+corresponding alarms to be added in to the database. For clear alarm,
+the entity name will be &lt;entity name 2&gt;_Critical_Event.<br>
+<hr style="width: 100%; height: 2px;"><big><span
+ style="font-weight: bold;"><a name="AlarmAdvSearchAction.java"></a></span></big><span
+ style="font-weight: bold;"><big><span style="font-weight: bold;">AlarmAdvSearchAction.java</span></big></span><big><span
+ style="font-weight: bold;"> :<br>
+<br>
+</span>"TestSearch" is used in testprograms &amp; testcases of search
+component.<br>
+<br>
+</big><span style="text-decoration: underline;">classpath for
+compilation</span>: <br>
+<br>
+<table cellpadding="2" cellspacing="2" border="0"
+ style="text-align: left; width: 659px; height: 30px;">
+  <tbody>
+    <tr>
+      <td style="text-align: center; vertical-align: middle;">Directories<br>
+      </td>
+      <td style="vertical-align: top;">:<br>
+      </td>
+      <td style="vertical-align: top;">&lt;WebNMS&gt;/class<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Archives (
+JARS/zip)</td>
+      <td style="vertical-align: top;">:<br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;&lt;WebNMS&gt;/WEB-INF/lib/webclient-common.jar<br>
+&nbsp;&lt;WebNMS&gt;/WEB-INF/lib/webclient-fault.jar<br>
+&nbsp;&lt;WebNMS&gt;/WEB-INF/lib/struts.jar<br>
+&nbsp; &lt;WebNMS&gt;/apache/tomcat/common/lib/servlet.jar<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+</div>
+</div>
+</body>
+</html>

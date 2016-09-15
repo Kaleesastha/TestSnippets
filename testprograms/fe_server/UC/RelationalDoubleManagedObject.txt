@@ -1,0 +1,195 @@
+//$Id: RelationalDoubleManagedObject.txt,v 1.1 2005/08/23 13:15:05 sunilg Exp $
+package com.adventnet.nms.store.relational; 
+import java.sql.*; 
+import java.util.*; 
+import com.adventnet.nms.store.*; 
+import com.adventnet.management.transaction.PreparedStatementWrapper; 
+import test.*;  
+
+public class RelationalDoubleManagedObject  extends RelationalManagedObject
+{	
+	static boolean initialized = false ; 
+	static int psIDForGet; 
+	static int psIDForAdd; 
+	static int psIDForDelete; 
+	static int psIDForUpdate; 
+	MetaDataInfo mData=null; 
+	public RelationalDoubleManagedObject() 
+	{		
+	}
+	public void init(RelationalAPI relapi) 
+	{		
+		super.init(relapi); 
+		if(mData==null) 
+		{			
+			mData=RelationalUtil.getMetaData("DoubleManagedObject"); 
+		}
+		
+		if (initialized) return; 
+		String prepareSqlStringForGet =  "select * from DoubleManagedObject where ( "
+		 +"( " + RelationalUtil.getAlias("name" ) + " = ? ) AND "
+		 +"( " + RelationalUtil.getAlias("ownerName" ) + " = ? )"
+		 +")"; 
+		
+		psIDForGet = relapi.getPreparedStatementID 
+		( prepareSqlStringForGet ); 
+		
+		String prepareSqlStringForAdd = getInsertString(mData); 
+		
+		psIDForAdd = relapi.getPreparedStatementID 
+		( prepareSqlStringForAdd ); 
+		
+		String prepareSqlStringForUpdate = getUpdateString(mData); 
+		
+		psIDForUpdate = relapi.getPreparedStatementID 
+		( prepareSqlStringForUpdate ); 
+		
+		String prepareSqlStringForDelete =  "delete from DoubleManagedObject where ( "
+		 +"( " + RelationalUtil.getAlias( "name" ) + " = ? ) AND "
+		 +"( " + RelationalUtil.getAlias( "ownerName" ) + " = ? )"
+		 +")"; 
+		
+		psIDForDelete = relapi.getPreparedStatementID 
+		( prepareSqlStringForDelete ); 
+		initialized=true; 
+	}
+	
+	public boolean fillProperties(DBInterface dbObj, Properties p) 
+	{		
+		DoubleManagedObject obj = (DoubleManagedObject)dbObj; 
+		if ( (p==null) || (p.getProperty("name")==null) )
+		{			
+			return false; 
+		}
+		obj.setName(p.getProperty("name"));  
+		obj.setOwnerName(p.getProperty("ownerName"));  
+		
+		obj.setProperties(p); 
+		return true; 
+	}
+	
+	public Vector getStatementsForGet(String[] args) 
+	{		
+		Vector v =super.getStatementsForGet(args); 
+		PreparedStatementWrapper ps = relapi.fetchPreparedStatement(psIDForGet); 
+		PreparedStatement preparedStatementForGet = ps.getPreparedStatement(); 
+		if (preparedStatementForGet!=null) 
+		{			
+			try 
+			{				
+				preparedStatementForGet.setString(1,args[0]);  
+				preparedStatementForGet.setString(2,args[1]);  
+				
+				v.addElement(ps); 
+			}
+			catch (SQLException sqle) 
+			{				
+				System.err.println("Exception setting prepared statement for " 
+				+" DoubleManagedObject "+args[0]+":"+sqle); 
+			}
+		}
+		return v; 
+	}
+	public Vector getCustomStatements(DBInterface dbObj,String[] args) 
+	{		
+		//User to fill custom sql statements if any required 
+		return super.getCustomStatements(dbObj,args); 
+	}
+	public void fillCustomProperties(DBInterface dbObj,ResultSet rs,String str) 
+	{		
+		super.fillCustomProperties(dbObj,rs,str); 
+	}
+	public void fillCustomProperties(DBInterface dbObj,ResultSet rs,PreparedStatement prstmt) 
+	{		
+		super.fillCustomProperties(dbObj,rs,prstmt); 
+	}
+	public void fillCustomProperties(DBInterface dbObj,ResultSet rs,int id) 
+	{		
+		super.fillCustomProperties(dbObj,rs,id); 
+	}
+	public Vector getStatementsForAdd(DBInterface dbObj) 
+	{		
+		DoubleManagedObject obj = (DoubleManagedObject)dbObj; 
+		Vector v =super.getStatementsForAdd(dbObj); 
+		PreparedStatementWrapper ps = relapi.fetchPreparedStatement(psIDForAdd); 
+		PreparedStatement preparedStatementForAdd = ps.getPreparedStatement(); 
+		if (preparedStatementForAdd!=null) 
+		{			
+			Properties p = obj.getProperties(); 
+			try 
+			{				
+				setValuesForInsert(mData,preparedStatementForAdd,p); 
+				v.addElement(ps); 
+			}
+			catch (SQLException sqle) 
+			{				
+				System.err.println("Exception setting preparedStatement for " 
+				+ " DoubleManagedObject :"+sqle); 
+				sqle.printStackTrace(); 
+			}
+		}
+		return v; 
+	}
+	
+	public Vector getStatementsForDelete(DBInterface dbObj) 
+	{		
+		DoubleManagedObject obj = (DoubleManagedObject)dbObj; 
+		Vector v =super.getStatementsForDelete(dbObj); 
+		PreparedStatementWrapper ps = relapi.fetchPreparedStatement(psIDForDelete); 
+		PreparedStatement preparedStatementForDelete = ps.getPreparedStatement(); 
+		if (preparedStatementForDelete!=null) 
+		{			
+			try 
+			{				
+				Properties p = obj.getProperties();
+preparedStatementForDelete.setString(1,db2str(obj.getName()));
+				preparedStatementForDelete.setString(2,db2str(obj.getOwnerName()));
+				
+				v.addElement(ps); 
+			}
+			catch (SQLException sqle) 
+			{				
+				System.err.println("Exception setting preparedStatement for " 
+				+" DoubleManagedObject :"+sqle); 
+			}
+		}
+		return v; 
+	}
+	
+	public Vector getStatementsForUpdate(DBInterface dbObj) 
+	{		
+		DoubleManagedObject obj = (DoubleManagedObject)dbObj; 
+		Vector v =super.getStatementsForUpdate(dbObj); 
+		PreparedStatementWrapper ps = relapi.fetchPreparedStatement(psIDForUpdate); 
+		PreparedStatement preparedStatementForUpdate = ps.getPreparedStatement(); 
+		if (preparedStatementForUpdate!=null) 
+		{			
+			Properties p = obj.getProperties(); 
+			try 
+			{				
+				setValuesForUpdate(mData,preparedStatementForUpdate,p); 
+				v.addElement(ps); 
+			}
+			catch (SQLException sqle) 
+			{				
+				System.err.println("Exception setting preparedStatement for " 
+				+" DoubleManagedObject :"+sqle); 
+				sqle.printStackTrace(); 
+			}
+		}
+		return v; 
+	}
+	public boolean isColumnPresent(String propname) 
+	{		
+		
+		if(((mData!=null)&&(mData.containsColumn(propname)))) 
+		{			
+			return true; 
+		}
+		else 
+		{			
+			return super.isColumnPresent(propname); 
+		}
+	}
+	
+}

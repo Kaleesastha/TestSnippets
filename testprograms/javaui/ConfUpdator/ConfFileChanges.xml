@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<configuration_changes home_directory=".">
+<configuration_file A="lll"  name="OIDType.data" path="conf" classname="com.adventnet.nms.tools.confchanges.ConfigurationChangesImpl" description="testimage.html" required="true" priority="0">
+
+	<update_node name="Add" description="add help for updating a new node">
+<property name="A" value="OID_value" company="adventnet" bike="scooter" /> 
+<property name="Second Inside Update" value="type" residence="korattur" /> 
+<property_set name="Outer Property Set" phone="5486">
+<property name="Inside Outer Propset-OID" value="OID_value" /> 
+<property_set name="Nesteted PropertySet" Cell="98934345486" >
+<property name="Inside Nested Property set-OID" value= "OID_value" /> 
+</property_set>
+<property name="Inside Outer Propset towards end -TYPE" value="type" /> 
+</property_set>
+<property_set name="Unconnected" mobile="54862323">
+<property name="Inside Unconnected Propset-OID" value= "OID_value" /> 
+</property_set>
+<property name="Last inside update node" value="interval" /> 
+</update_node>
+<test_node name="TestNode" value="GET" /> 
+</configuration_file>
+
+
+<configuration_file name="OIDType1.data" path="conf" classname="com.adventnet.nms.tools.confchanges.ConfigurationChangesImpl" description="Unittest-COUP.html" required="false" priority="1">
+
+	<update_node name="Adfgd" description="add help for updating a new node">
+
+	<property_set name="Uncvbcvnbonnected" mobile="54862323">
+ 		   <property name="Inside Unconnected Propset-OID" value="OID_value" />
+</property_set>
+	</update_node>
+	
+
+</configuration_file>
+<configuration_file name="OIDType1.data" path="conf" classname="com.adventnet.nms.tools.confchanges.ConfigurationChangesImpl" description="Unittest-COUP.html" required="false" priority="0">
+
+	<update_node name="Adfgd" description="add help for updating a new node">
+
+	<property_set name="Uncvbcvnbonnected" mobile="54862323">
+ 		   <property name="Inside Unconnected Propset-OID" value="OID_value" />
+</property_set>
+	</update_node>
+</configuration_file>
+
+
+<configuration_file name="abc.data" path="conf" classname="com.adventnet.nms.tools.confchanges.ConfigurationChangesImpl" description="Unittest-COUP.html" required="false" priority="0">
+
+	<update_node name="Adfgd" description="add help for updating a new node">
+
+	<property_set name="Uncvbcvnbonnected" mobile="54862323">
+ 		   <property name="Inside Unconnected Propset-OID" value="OID_value" />
+</property_set>
+
+	</update_node>
+	
+
+</configuration_file>
+
+
+
+<process_unit name="abc1.data" path="conf" classname="com.adventnet.nms.tools.confchanges.ConfigurationChangesImpl" description="Unittest-COUP.html" required="false" priority="1">
+
+</process_unit> 
+</configuration_changes>

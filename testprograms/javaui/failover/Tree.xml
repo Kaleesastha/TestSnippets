@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DEVICE-DATA
+   ID="AdventNet"
+   URL="html/Center_Spread.html"
+   TARGET="center"
+   Client="All"
+   MODULE-NAME="Default"
+   ICON-FILE="images/logo.png"
+   TREE-NAME="AdventNet Web NMS">
+
+  <DEVICE-GROUP
+     ID="WebNMS-Panels"
+     URL="html/Center_Spread.html"
+     MODULE-NAME="Default"
+     TARGET="center"
+     Client="All"
+     ICON-FILE="images/panel.png"
+     TREE-NAME="Applications">
+    <DEVICE
+       ID="Maps"
+       Client="All"
+       TREE-NAME="Network Topology"
+       ICON-FILE="images/maps.png"
+       TARGET="center"
+       URL="jsp/GetMaps.jsp"
+       PANEL-KEY="MapApplet"
+       MENU-FILE-NAME="mapmenu.xml"
+       MODULE-NAME="Default"/>
+
+   <DEVICE
+       ID="Fault"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="Fault"
+       URL="images/faultmain.png"
+       Client="All"
+       ICON-FILE="images/faulttreeicon.png"
+       INIT-ON-STARTUP="false"
+       IMAGE-NAME="images/faultmain.png"
+       DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       TREE-NAME="Fault Management">
+  <LEVEL-1
+       ID="Events"
+       Client="All"
+       TREE-NAME="Network Events"
+       TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+       ICON-FILE="images/event.png"
+       TABLE-POPUP-MENU="View"
+       TABLE-COLUMNS="Status=severity=55;Source=source=135;Date=time=155;Message=text=275;"
+       TARGET="center"
+       URL="jsp/GetEvents.jsp"
+       PANEL-KEY="EventBrowser"
+       MODULE-NAME="Events"
+       MENU-FILE-NAME="eventsmenu.xml"/> 
+   <LEVEL-1
+       ID="Alerts"
+       Client="All"
+       TREE-NAME="Alarms"
+       TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+       ICON-FILE="images/alarm.png"
+       TABLE-COLUMNS="Status=severity=55;Failure Object=entity=135;Alert Group=groupName=150;Owner=who=60;Date/Time=modTime=155;Alert Message=message=275;"
+       TABLE-POPUP-MENU="View"
+       TARGET="center"
+       URL="jsp/GetAlerts.jsp"
+       PANEL-KEY="AlertApplet"
+       MODULE-NAME="Alerts"
+       MENU-FILE-NAME="alertsmenu.xml"/>
+     </DEVICE>
+   <DEVICE
+       ID="Configuration"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="Configuration"
+       URL="images/configmain.png"
+       Client="Java"
+       ICON-FILE="images/configmgmttreeicon.png"
+       INIT-ON-STARTUP="false"
+       IMAGE-NAME="images/configmain.png"
+        FRAME-TITLE="Configuration Management"
+        DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       TREE-NAME="Configuration">
+ <LEVEL-1
+       ID="config"
+       PANEL-NAME="com.adventnet.nms.config.ConfigPanel"
+	 MENU-FILE-NAME="configmenu.xml"
+	TREE-POPUP-MENU="configmenu.xml"	
+	 MODULE-NAME="Configuration"
+       Client="Java"
+       ICON-FILE="images/batchconfigtreeicon.png"
+       TREE-NAME="Batch Configuration" />
+ </DEVICE>
+  <DEVICE
+       ID="Performance"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="Performance"
+      ICON-FILE="images/perfmgmttreeicon.png"
+       URL="images/perfmgmtmain.png"
+       Client="All"
+       INIT-ON-STARTUP="false"
+       IMAGE-NAME="images/perfmgmtmain.png"
+       DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       TREE-NAME="Performance">
+   <LEVEL-1
+       ID="Stats Admin"
+       Client="All"
+       TREE-NAME="Configured Collection"
+       ICON-FILE="images/configcollecttreeicon.png"
+       TARGET="center"
+       URL="jsp/Report.jsp"
+       TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+       PANEL-KEY="StatsAdminPanel"
+       MODULE-NAME="Stats Admin"
+       TABLE-POPUP-MENU="View"
+       TABLE-COLUMNS="Statistic Name=name=160;Poll Id=id=40;DNS Name=dnsName=160;Object Id=oid=100;Community=community=75;Interval=period=60;Active=active=30;Multiple=isMultiplePolledData=30;"
+       MENU-FILE-NAME="pollmenu.xml"/> 
+    </DEVICE>
+      <DEVICE
+       ID="Network Database"
+       Client="All"
+       TREE-NAME="Network Database"
+       ICON-FILE="images/ntwkdbtreeicon.png"
+       TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+       TARGET="center"
+       TABLE-COLUMNS="Name=name=150;IPAddress=ipAddress=100;Status=status=70;Type=type=90;IsSnmp=isSNMP=65;NetMask=netmask=100;"
+       URL="jsp/NetTable.jsp"
+       MENU-FILE-NAME="dbmenu.xml"
+       PANEL-KEY="NmsListView"
+       MODULE-NAME="Network Database">
+      <LEVEL-1
+	 ID="Network Database.Networks"
+	 VIEW-LENGTH="25"
+	 TABLE-COLUMNS="Name=name=100;Type=type=100;Discover=discover=100;IPAddress=ipAddress=100;NetMask=netmask=100;Status=status=55;"
+	 Client="All"
+	 TREE-NAME="Networks"
+	 DEVICE-REF="Network Database"
+	 ICON-FILE="images/networktreeicon.png"
+	 TARGET="center"
+	 URL="jsp/NetTable.jsp"
+         TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+	 PANEL-KEY="NmsListView"
+         MENU-FILE-NAME="dbmenu.xml"
+	 MODULE-NAME="Network Database"
+	 VIEW-CRITERIA="isNetwork=true;" />
+      <LEVEL-1
+	 ID="Network Database.Nodes"
+	 VIEW-LENGTH="25"
+	 TABLE-COLUMNS="Name=name=100;Type=type=100;IsSnmp=isSNMP=100;IPAddress=ipAddress=100;NetMask=netmask=100;Status=status=55;"
+	 Client="All"
+	 TREE-NAME="Nodes"
+	 DEVICE-REF="Network Database"
+	 ICON-FILE="images/nodetreeicon.png"
+	 TARGET="center"
+         TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+	 URL="jsp/NetTable.jsp"
+	 PANEL-KEY="NmsListView"
+         MENU-FILE-NAME="dbmenu.xml"
+	 MODULE-NAME="Network Database"
+	 VIEW-CRITERIA="isNode=true;" />
+      <LEVEL-1
+	 ID="Network Database.Interfaces"
+	 VIEW-LENGTH="25"
+         TREE-POPUP-MENU="Custom Views,frameoptions.xml,TreeOperations.xml"
+	 TABLE-COLUMNS="Name=name=100;Type=type=100;IsSnmp=isSNMP=100;IPAddress=ipAddress=100;NetMask=netmask=100;Status=status=55;"
+	 Client="All"
+	 TREE-NAME="Interfaces"
+	 DEVICE-REF="Network Database"
+	 ICON-FILE="images/redDot.png"
+	 TARGET="center"
+	 URL="jsp/NetTable.jsp"
+	 PANEL-KEY="NmsListView"
+         MENU-FILE-NAME="dbmenu.xml"
+	 MODULE-NAME="Network Database"
+	 VIEW-CRITERIA="isInterface=true;" />
+    </DEVICE>
+<DEVICE
+       ID="AdminTool"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="AdminTool"
+       URL="images/admintoolsmain.png"
+       Client="All"
+       INIT-ON-STARTUP="false"
+       IMAGE-NAME="images/admintoolsmain.png"
+        ICON-FILE="images/admintooltreeicon.png"
+       DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       TREE-NAME="Administration Tools">
+ <LEVEL-1
+       ID="Policy"
+       TABLE-COLUMNS="Name=name=200;Groupname=groupName=170;Status=status=100;Period=period=80;"
+       Client="All"
+       TREE-NAME="Policies"
+       ICON-FILE="images/policy.png"
+       TARGET="center"
+       URL="jsp/GetPolicy.jsp"
+       PANEL-NAME="com.adventnet.nms.policyui.NmsPolicyPanel"
+       MODULE-NAME="Policy"
+       MENU-FILE-NAME="policymenu.xml" />
+  </DEVICE>
+  <DEVICE
+       ID="Snmp"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="Snmp"
+      ICON-FILE="images/snmptoolstreeicon.png"
+       URL="images/snmptoolsmain.png"
+       Client="All"
+       INIT-ON-STARTUP="false"
+       IMAGE-NAME="images/snmptoolsmain.png"
+       DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       TREE-NAME="SNMP Tools">
+     <LEVEL-1
+       ID="Mib Manager"
+       Client="All"
+       TREE-NAME="Mib Manager"
+       ICON-FILE="images/origin.png"
+       TARGET="center"
+       URL="jsp/MibBrowser.jsp"
+       PANEL-NAME="com.adventnet.mibBrowser.MibBrowser"
+       MODULE-NAME="Default"
+       MENU-FILE-NAME="mibmenu.xml"/>
+      <LEVEL-1
+	ID="USM Table"
+      	Client="Java"
+	INIT_ON_STARTUP="false"
+	TREE-NAME="SNMP V3 Security"
+      	ICON-FILE="images/usmtable.png"
+	PANEL-NAME="com.adventnet.mibBrowser.USMTable"
+      	MODULE-NAME="Default" />
+	</DEVICE>
+    <DEVICE
+       ID="TL1"
+       PANEL-NAME="com.adventnet.nms.util.ImagePanel"
+       MODULE-NAME="Default"
+       TARGET="center"
+       PANEL-KEY="TL1"
+       URL="images/tl1toolsmain.png"
+       Client="Java"
+      ICON-FILE="images/tl1treeicon.png"
+       INIT-ON-STARTUP="false"
+      DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+       IMAGE-NAME="images/tl1toolsmain.png"
+       TREE-NAME="TL1 Tools">
+      <LEVEL-1
+        ID="TL1 Browser" 
+        CLIENT="Java"
+        DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+        INIT-ON-STARTUP="false"
+        TREE-NAME="Web Craft Interface" 
+        PANEL-NAME="com.adventnet.nms.tl1.TL1NMSBrowser" 
+        MENU-FILE-NAME="tl1browsermenu.xml" 
+        ICON-FILE="images/webcrafttreeicon.png"/> 
+       </DEVICE>
+    <DEVICE
+       ID="Sys Admin"
+       URL="jsp/SysAdminFrontPage.jsp"
+       MODULE-NAME="Default"
+       TARGET="center"
+       Client="HTML"
+       ICON-FILE="images/sys.png"
+       TREE-NAME="System Administration" />
+   <DEVICE
+       ID="MCSNMP"
+       TREE-NAME="MS-SNMP"
+       ICON-FILE="images/maps.png"
+       PANEL-NAME="MSSnmpTestPanel"
+       MENU-FILE-NAME="mapmenu.xml"
+       MODULE-NAME="Default"/>
+  </DEVICE-GROUP>
+</DEVICE-DATA>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
