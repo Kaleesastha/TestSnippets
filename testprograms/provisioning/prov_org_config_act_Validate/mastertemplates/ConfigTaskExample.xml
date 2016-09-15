@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Template name="ConfigTaskExample" owner="root" finish="Provision" description="This Template configures the System Location variable of a device using SNMP." displayForms="tab" autoDeregister="true" clientID="25" stageId="1#" formId="1#">
+    <Stage label="1#"> 
+        <Form id="1#" title="SNMP Task" description="Form accepts values for Host name and System Location.">
+            <UserInput id="1#" label="Host" default="localhost" required="false" editable="true"/>
+            <UserInput id="2#" label="System Location" default="" required="false" editable="true"/>
+        </Form>
+
+        <ConfigTask taskName="ConfigTask1" isNewTask="true" isOverwrite="true" isSequential="false" persistence="true" deviceResult="false" isTemplate="false" rollbackNeeded="false" version="1.0">
+            <ProtocolMap name="snmp"> <!--The protocol used to communicate with the device -->
+				<Device community="public" host="$UserInput$1#" port="161" retries="3" timeout="5000" version="v1"/>
+            </ProtocolMap>
+            <Attribute identifier="1.6.0" type="4" label="sysLocation" value="$UserInput$2#"/>
+		</ConfigTask>
+    </Stage>
+</Template>
+

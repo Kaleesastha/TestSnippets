@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Template name="TelnetTaskTemplate" owner="root" finish="Provision" close="Close" description="This template illustrates the execution of Telnet tasks based on user inputs." displayForms="tab" autoDeregister="true" clientID="26" stageId="1#" formId="1#">
+
+	<!-- 
+
+	A table with 3 rows and 9 columns is defined to accept User Inputs. Details of  3 Telnet tasks is accepted. 
+	for each telnet task details such as remote host, telnet port, login name, password, login prompt, password prompt,
+	shell prompt, telnet command, and its arguements are accepted.
+	 -->  
+	
+	<Stage label="1#">
+		<Form id="1#" title="TelnetTask" description="An example template to perform telnet operations ">
+			<Table rows="1" columns="9" columnWidths="90,70,70,70,80,100,80,90,130">  
+				<UserInput id="1" name="remoteHost" label="Remote Host" default="" required="true" editable="true"/>
+				<UserInput id="2" name="telnetPort" label="Telnet Port" default="23" editable="false" required="false">
+					<Qualifier type="numerictextfield" range="1-65535"/>
+				</UserInput>
+				<UserInput id="3" name="loginName" label="Login Name" default="root" required="false" editable="true"/>
+				<UserInput id="4" name="password" label="Password" default="" required="false" editable="true">
+					<Qualifier type="passwordfield"/>
+				</UserInput>	
+				<UserInput id="5" name="loginPrompt" label="Login Prompt" default="login:" required="false" editable="true"/>
+				<UserInput id="6" name="passwordPrompt" label="Password Prompt" default="Password:" required="false" editable="true"/>
+				<UserInput id="7" name="shellPrompt" label="Shell Prompt" default="$" required="false" editable="true"/>
+				<UserInput id="8" name="command" label="Command" default="" required="false" editable="true"/>
+				<UserInput id="9" name="arguments" label="Command Arguments" default="" required="false" editable="true"/>
+				
+			</Table> 
+		</Form>
+
+
+	<!-- 
+
+		Three configuration tasks are defined in which the user input values are substituted and the three 
+		telnet commands are executed.
+
+
+	-->
+		<ConfigTask taskName="TelnetTask1" isNewTask="true" isOverwrite="true" isSequential="false" persistence="true" deviceResult="false" isTemplate="false" rollbackNeeded="false" version="1.0">
+			<ProtocolMap name="telnet">
+				<Device host="$UserInput$1" port="$UserInput$2" loginName="$UserInput$3" password="$UserInput$4" loginPrompt="$UserInput$5" passwordPrompt="$UserInput$6" shellPrompt="$UserInput$7" retries="3" timeout="5000"/>
+			</ProtocolMap>
+
+			<Attribute identifier="$UserInput$8 $UserInput$9" value="$UserInput$7"/>
+		</ConfigTask>
+
+	</Stage>
+</Template>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="RoutingConfiguration" owner="root" 
+	finish="Provision"
+		  description="This template performs IP routing configuration using telnet to manipulate network routing table." >
+
+	<Stage label="1#">
+		<Form id="1#" title="Routing Configuration via Telnet: Connection Parameters" 
+			  description="An example template to perform IP routing configuration using telnet to manipulate network routing table." >
+			<UserInput id="1" name="TaskName" label="Task Identifier " default="RouterConfigTask1" />
+			<UserInput id="2" name="remoteHost" label="Remote Host" default="$TemplateParam$HOST" editable="false" />
+			<UserInput id="3" name="telnetPort" label="Telnet Port" default="23" >
+				<Qualifier type="numerictextfield" range="1-65535" />
+			</UserInput>
+
+			<UserInput id="4" name="loginName" label="Login Name" default="root" />
+			<UserInput id="5" name="password" label="Password" default="" >
+				<Qualifier type="passwordfield" />
+			</UserInput>	
+
+			<UserInput id="6" name="loginPrompt" label="Login Prompt" default="login:" />
+			<UserInput id="7" name="passwordPrompt" label="Password Prompt" default="Password:" />
+			<UserInput id="8" name="shellPrompt" label="Shell Prompt" default="$" />
+		</Form>
+
+		<ConfigTask taskName="$UserInput$1" isNewTask="true" 
+					isOverwrite="true" isSequential="false" >
+			<ProtocolMap  name="telnet" >
+				<Device host="$UserInput$2" port="$UserInput$3" 
+						loginName="$UserInput$4" password="$UserInput$5"
+						loginPrompt="$UserInput$6" passwordPrompt="$UserInput$7"
+						shellPrompt="$UserInput$8" retries="3"
+						timeout="5000" />
+			</ProtocolMap>
+				
+		</ConfigTask>
+	</Stage>
+</Template>

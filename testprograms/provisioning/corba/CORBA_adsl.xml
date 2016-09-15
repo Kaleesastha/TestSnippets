@@ -1,0 +1,97 @@
+<?xml version="1.0" ?> 
+<Template name="CORBA_adsl" description="Corba test" owner="root">
+<InventoryInput id="1" MOName="$TemplateParam$HOST" MOField="nameRef" default=""/>
+<InventoryInput id="2" MOName="$TemplateParam$HOST" MOField="nameServiceHost" default=""/>
+<InventoryInput id="3" MOName="$TemplateParam$HOST" MOField="nameServicePort" default=""/>
+<InventoryInput id="4" MOName="$TemplateParam$HOST" MOField="interfaceName" default=""/>
+
+<NEInput taskName="NETask"> 
+ <ProtocolMap name="CORBA" > 
+   <Device 
+      ORBInitialHost="$InventoryInput$2"
+      ORBInitialPort="$InventoryInput$3"
+      NameRef="$InventoryInput$1" 
+      Interface="$InventoryInput$4" 
+      NameService="NameService" 
+      host="$TemplateParam$HOST"  
+      label="ADSLRef"/>
+ </ProtocolMap> 
+
+<Attribute label="1" 
+	   default="unknown" 
+	   invokeObj="$OBJ$ADSLRef" 
+	   operation="getCustomerID" 
+	   persistPolicy="true"
+	   returnObj="true"
+	   returnToUser="true"> 
+
+<Argument classType="ADSL.ADSLLineId" >  
+
+<Sub-Argument classType="ADSL.ADSLLine" value="ADSL._ADSLLineStub" /> 
+    
+<Sub-Argument classType="CosNaming.NameComponent[]" >
+     <Sub-Argument ClassType="CosNaming.NameComponent" >
+      	 <Sub-Argument classType="java.lang.String" value="ADSLLine1"/> 
+      	 <Sub-Argument classType="java.lang.String" value=""/> 
+     </Sub-Argument>
+</Sub-Argument>
+        
+</Argument>
+
+</Attribute> 
+
+</NEInput> 
+
+<Form title="CORBA Provisioning" description="Use this form to set the above Parameters. Specify ORBParameters as '-ORBInitialHost HostName -ORBInitial Port PortNo' . Currently only NameService is supported. Object Reference is the reference of the Object you wish to configure. Interface Name is the class which implements the configuration method. Method Name is the method which you wish to invoke to configure.
+Use this form to specify the CORBA configuration Task. You can create a new Task by specifying the Task Name and Details. If you use an existing task, you can set 'is Overwrite' to true. ADSL Line is the Line name whose Customer Identity you wish to configure. Specify Customer Identity you wish to set."> 
+
+<UserInput id="1" name="ORBHost" label="ORBInitialHost" default="$InventoryInput$2" />
+<UserInput id="12" name="ORBPort" label="ORBInitialPort" default="$InventoryInput$3" />
+<UserInput id="2" name="cust" label="NameService" default="NameService" />
+<UserInput id="3" name="cust" label="Object Reference" default="$InventoryInput$1" > 
+<Qualifier type="ipaddressfield" />
+</UserInput>
+<UserInput id="4" name="cust" label="Interface Name" default="$InventoryInput$4" /> 
+<UserInput id="5" name="cust" label="Method Name" default="setCustomerID" /> 
+<UserInput id="10" name="owner" label="ADSL Line" default="$TemplateParam$HOST" editable="false" /> 
+<UserInput id="11" name="cust" label="Customer ID 1" default="$NEInput$1" /> 
+
+</Form>
+
+<ConfigTask taskName="CORBA_Task1" version="1.0" isNewTask="true" isSequential="false" 
+            isOverwrite="true" rollbackNeeded="true" rollbackType="2" rollbackDocument="rollback.xml">
+<ProtocolMap name="CORBA">
+  <Device 
+    host="$TemplateParam$HOST" 
+    ORBInitialHost="localhost"
+    ORBInitialPort="1050"
+    NameRef="$UserInput$3" 
+    Interface="$UserInput$4" 
+    NameService="NameService" 
+    label="mainReference-jagan"
+    retries="1"/>
+</ProtocolMap>
+
+<Attribute 
+    invokeObj="$OBJ$ADSLRef"
+    operation="setCustomerID"
+    label="setCustomerId1"
+    returnObj="true">
+
+    <Argument classType="ADSL.ADSLLineId" >  
+ 
+       <Sub-Argument classType="ADSL.ADSLLine" value="ADSL._ADSLLineStub" /> 
+     
+       <Sub-Argument classType="CosNaming.NameComponent[]" >
+         <Sub-Argument ClassType="CosNaming.NameComponent" >
+        	 <Sub-Argument classType="java.lang.String" value="ADSLLine"/> 
+        	 <Sub-Argument classType="java.lang.String" value=""/> 
+         </Sub-Argument>
+       </Sub-Argument>
+    </Argument>
+    <Argument classType="java.lang.String" value="$UserInput$11"/>
+</Attribute>
+
+</ConfigTask>
+
+</Template>

@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template 	name="ATM_Virtual_Connection"
+    owner="root"
+	finish="Provision"
+    description="This template provisions an ATM connection across two
+    ATM switches.  This template is appropriate for cases where
+    the switches have a direct trunk between them.  The operator
+    inputs only a few parameters, and these inputs are used to 
+    configure both switch cross-connects via SNMP. 
+    Please install &lt;Product Home&gt;/tutorials/ATM_Provisioning tutorial before testing this template. 
+    startAtmAgent script can be used for starting ATM-MIB loaded SNMP agent. 
+    It is available under &gt;Product Home&gt;/bin directory.">
+    <Stage label="1#">
+        <InventoryInput>
+            <MOInput id="scommunity" MOName="$TemplateParam$Source" 
+                MOField="community" default="public"/>
+            <MOInput id="strunk" MOName="$TemplateParam$Source" 
+                MOField="$TemplateParam$DestinationPort" default="161"/>
+            <MOInput id="ssnmpport" MOName="$TemplateParam$Source" 
+                MOField="snmpport" default="8001"/>
+            <MOInput id="dcommunity" MOName="$TemplateParam$Destination" 
+                MOField="community" default="public"/>
+            <MOInput id="dtrunk" MOName="$TemplateParam$Destination" 
+                MOField="$TemplateParam$SourcePort" default="161"/>
+            <MOInput id="dsnmpport" MOName="$TemplateParam$Destination" 
+                MOField="snmpport" default="8001"/>
+        </InventoryInput>
+
+        <NEInput>
+            <ProtocolMap name="snmp" mibsToBeLoaded="mibs/ATM-MIB" >
+                <Device community="$InventoryInput$scommunity" 
+                    host="$TemplateParam$Source"
+                    port="$InventoryInput$ssnmpport" />
+            </ProtocolMap>
+            <Attribute identifier="atmVpCrossConnectIndexNext.0" 
+                label="atmVpCrossConnectIndexNext1"  default=""/>
+            <Attribute identifier="atmVcCrossConnectIndexNext.0" 
+                label="atmVcCrossConnectIndexNext1"  default=""/>
+        </NEInput>
+
+        <NEInput>
+            <ProtocolMap name="snmp" mibsToBeLoaded="mibs/ATM-MIB" >
+                <Device community="$InventoryInput$dcommunity" 
+                    host="$TemplateParam$Destination"
+                    port="$InventoryInput$dsnmpport" />
+            </ProtocolMap>
+            <Attribute identifier="atmVpCrossConnectIndexNext.0" 
+                label="atmVpCrossConnectIndexNext2"  default=""/>
+            <Attribute identifier="atmVcCrossConnectIndexNext.0" 
+                label="atmVcCrossConnectIndexNext2"  default=""/>
+        </NEInput>
+
+        <Form id="1#" title="ATM VC Provisioning: Source" 
+            description="Form for Adding an ATM VC.  The first form deals with the source switch parameters. Please install &lt;Product Home&gt;/tutorials/ATM_Provisioning tutorial before testing this template. startAtmAgent script can be used 
+            for starting ATM-MIB loaded SNMP agent. It is available under &lt;Product Home&gt;/bin directory.">
+            <UserInput id="user" name="user" label="Operator" default="root" />
+            <UserInput id="customer" name="customer" label="Customer" 
+                default="Inventory" />
+            <UserInput id="source" name="source" label="Source Switch" 
+                default="$TemplateParam$Source" editable="false" />
+            <UserInput id="sport" name="sourceport" label="Source Port" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="svpi" name="sourcevpi" label="Source VPI" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="svci" name="sourcevpi" label="Source VCI" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="srdesc" name="atmVclReceiveTrafficDescrIndex" 
+                label="Receive Traffic Class" editable="false">
+                <Qualifier type="choice" >
+                    <Enum name="Guaranteed 2 Mbits/sec" value="1" />
+                    <Enum name="Best-effort 2 Mbits/sec" value="2" />
+                    <Enum name="Guaranteed 1 Mbits/sec" value="3" />
+                    <Enum name="Best-effort 1 Mbits/sec" value="4" />
+                    <Enum name="Best-effort 0 CIR" value="5" />    
+                </Qualifier>	
+            </UserInput>	
+            <UserInput id="stdesc" name="atmVclTransmitTrafficDescrIndex" 
+                label="Transmit Traffic Class" editable="false">
+                <Qualifier type="choice" >
+                    <Enum name="Guaranteed 2 Mbits/sec" value="1" />
+                    <Enum name="Best-effort 2 Mbits/sec" value="2" />
+                    <Enum name="Guaranteed 1 Mbits/sec" value="3" />
+                    <Enum name="Best-effort 1 Mbits/sec" value="4" />
+                    <Enum name="Best-effort 0 CIR" value="5" />    
+                </Qualifier>	
+            </UserInput>	
+        </Form>
+
+        <Form id="2#" title="ATM VC Provisioning: Destination" 
+            description="Form for Adding an ATM VC.  The second form deals with the destination switch parameters. Please install &lt;Product Home&gt;/tutorials/ATM_Provisioning tutorial before testing this template. startAtmAgent script can be used for starting ATM-MIB loaded SNMP agent. It is available under &lt;Product Home&gt;/bin directory.">
+            <UserInput id="dest" name="destination" label="Destination Switch" 
+                default="$TemplateParam$Destination" editable="false" />
+            <UserInput id="dport" name="destinationport" label="Destination Port" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="dvpi" name="destinationvpi" label="Destination VPI" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="dvci" name="destinationvpi" label="Destination VCI" >
+                <Qualifier type="numerictextfield" />
+            </UserInput>	
+            <UserInput id="drdesc" name="atmVclReceiveTrafficDescrIndex" 
+                label="Receive Traffic Class" editable="false" >
+                <Qualifier type="choice" >
+                    <Enum name="Guaranteed 2 Mbits/sec" value="1" />
+                    <Enum name="Best-effort 2 Mbits/sec" value="2" />
+                    <Enum name="Guaranteed 1 Mbits/sec" value="3" />
+                    <Enum name="Best-effort 1 Mbits/sec" value="4" />
+                    <Enum name="Best-effort 0 CIR" value="5" />    
+                </Qualifier>	
+            </UserInput>	
+            <UserInput id="dtdesc" name="atmVclTransmitTrafficDescrIndex" 
+                label="Transmit Traffic Class" editable="false">
+                <Qualifier type="choice" >
+                    <Enum name="Guaranteed 2 Mbits/sec" value="1" />
+                    <Enum name="Best-effort 2 Mbits/sec" value="2" />
+                    <Enum name="Guaranteed 1 Mbits/sec" value="3" />
+                    <Enum name="Best-effort 1 Mbits/sec" value="4" />
+                    <Enum name="Best-effort 0 CIR" value="5" />    
+                </Qualifier>	
+            </UserInput>	
+        </Form>
+        <ConfigTask isNewTask="true" isOverwrite="true" 
+            isSequential="false" taskName="AtmTask1" >
+            <ProtocolMap  name="snmp" mibsToBeLoaded="mibs/ATM-MIB">
+                <Device community="$InventoryInput$scommunity" 
+                    host="$TemplateParam$Source" port="$InventoryInput$ssnmpport" retries="3" 
+                    timeout="5000" version="v1"/>
+            </ProtocolMap>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.6"
+                label="atmVplTable"
+                type="table"
+                index="$UserInput$sport.$UserInput$svpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.8"
+                    label="atmVplRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.2"
+                    label="atmVplAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.5"
+                    label="atmVplReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$srdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.6"
+                    label="atmVplTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$stdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.6"
+                label="atmVplTable"
+                type="table"
+                index="$InventoryInput$strunk.$UserInput$svpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.8"
+                    label="atmVplRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.2"
+                    label="atmVplAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.5"
+                    label="atmVplReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$stdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.6"
+                    label="atmVplTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$srdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.9"
+                label="atmVpCrossConnectTable"
+                type="table"
+                index="$NEInput$atmVpCrossConnectIndexNext1.$UserInput$sport.$UserInput$svpi.$InventoryInput$strunk.$UserInput$svpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.9.1.11"
+                    label="atmVpCrossConnectRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.9.1.6"
+                    label="atmVpCrossConnectAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.7"
+                label="atmVclTable"
+                type="table"
+                index="$UserInput$sport.$UserInput$svpi.$UserInput$svci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.13"
+                    label="atmVclRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.3"
+                    label="atmVclAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.6"
+                    label="atmVclReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$srdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.7"
+                    label="atmVclTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$stdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.7"
+                label="atmVclTable"
+                type="table"
+                index="$InventoryInput$strunk.$UserInput$svpi.$UserInput$svci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.13"
+                    label="atmVclRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.3"
+                    label="atmVclAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.6"
+                    label="atmVclReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$stdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.7"
+                    label="atmVclTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$srdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.11"
+                label="atmVcCrossConnectTable"
+                type="table"
+                index="$NEInput$atmVcCrossConnectIndexNext1.$UserInput$sport.$UserInput$svpi.$UserInput$svci.$InventoryInput$strunk.$UserInput$svpi.$UserInput$svci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.11.1.13"
+                    label="atmVcCrossConnectRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.11.1.8"
+                    label="atmVcCrossConnectAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+            </Attribute>
+        </ConfigTask>
+
+        <ConfigTask isNewTask="true" isOverwrite="true"  
+            isSequential="false" taskName="AtmTask2" >
+            <ProtocolMap  name="snmp" mibsToBeLoaded="mibs/ATM-MIB">
+                <Device community="$InventoryInput$dcommunity" 
+                    host="$TemplateParam$Destination" 
+                    port="$InventoryInput$dsnmpport" 
+                    retries="3" 
+                    timeout="5000" 
+                    version="v1"/>
+            </ProtocolMap>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.6"
+                label="atmVplTable"
+                type="table"
+                index="$UserInput$dport.$UserInput$dvpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.8"
+                    label="atmVplRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.2"
+                    label="atmVplAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.5"
+                    label="atmVplReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$drdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.6"
+                    label="atmVplTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$dtdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.6"
+                label="atmVplTable"
+                type="table"
+                index="$InventoryInput$dtrunk.$UserInput$svpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.8"
+                    label="atmVplRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.2"
+                    label="atmVplAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.5"
+                    label="atmVplReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$srdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.6.1.6"
+                    label="atmVplTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$stdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.9"
+                label="atmVpCrossConnectTable"
+                type="table"
+                index="$NEInput$atmVpCrossConnectIndexNext2.$UserInput$dport.$UserInput$dvpi.$InventoryInput$dtrunk.$UserInput$svpi" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.9.1.11"
+                    label="atmVpCrossConnectRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.9.1.6"
+                    label="atmVpCrossConnectAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.7"
+                label="atmVclTable"
+                type="table"
+                index="$UserInput$dport.$UserInput$dvpi.$UserInput$dvci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.13"
+                    label="atmVclRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.3"
+                    label="atmVclAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.6"
+                    label="atmVclReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$dtdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.7"
+                    label="atmVclTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$drdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.7"
+                label="atmVclTable"
+                type="table"
+                index="$InventoryInput$dtrunk.$UserInput$svpi.$UserInput$svci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.13"
+                    label="atmVclRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.3"
+                    label="atmVclAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.6"
+                    label="atmVclReceiveTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$drdesc" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.7.1.7"
+                    label="atmVclTransmitTrafficDescrIndex"
+                    type="INTEGER"
+                    value="$UserInput$dtdesc" >
+                </ColumnAttribute>
+            </Attribute>
+            <Attribute
+                identifier=".1.3.6.1.2.1.37.1.11"
+                label="atmVcCrossConnectTable"
+                type="table"
+                index="$NEInput$atmVcCrossConnectIndexNext1.$UserInput$dport.$UserInput$dvpi.$UserInput$dvci.$InventoryInput$dtrunk.$UserInput$svpi.$UserInput$svci" >
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.11.1.13"
+                    label="atmVcCrossConnectRowStatus"
+                    type="INTEGER"
+                    value="4" >
+                </ColumnAttribute>
+                <ColumnAttribute
+                    identifier=".1.3.6.1.2.1.37.1.11.1.8"
+                    label="atmVcCrossConnectAdminStatus"
+                    type="INTEGER"
+                    value="1" >
+                </ColumnAttribute>
+            </Attribute>
+        </ConfigTask>
+    </Stage>
+</Template>

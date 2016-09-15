@@ -1,0 +1,104 @@
+<?xml version="1.0" ?> 
+<Template name="CORBA_provisioning_2" description="Corba test" owner="root"> 
+
+<InventoryInput id="1" MOName="$TemplateParam$HOST" MOField="nameRef" default=""/>
+<InventoryInput id="2" MOName="$TemplateParam$HOST" MOField="nameServiceHost" default=""/>
+<InventoryInput id="3" MOName="$TemplateParam$HOST" MOField="nameServicePort" default=""/>
+<InventoryInput id="4" MOName="$TemplateParam$HOST" MOField="interfaceName" default=""/>
+
+<NEInput taskName="CORBA_Task" version="1.0" isNewTask="true" isSequential="false" isOverwrite="true" rollbackNeeded="false">
+    <ProtocolMap name="CORBA">
+       <Device 
+          ORBInitialHost="$InventoryInput$2"
+          ORBInitialPort="$InventoryInput$3"
+          NameRef="$InventoryInput$1" 
+          Interface="$InventoryInput$4" 
+          NameService="NameService"
+          persistPolicy="true"
+          label="mainReference"
+          host="$TemplateParam$HOST" />
+    </ProtocolMap>
+
+
+    <Attribute invokeObj = "$OBJ$mainReference" default="unknown" operation = "createChannel" label = "createChannel">
+     		      			
+    	<Argument classType="ADSL.ADSLLineId" label="param11" >
+     	    <Sub-Argument  classType="ADSL.ADSLLine" value="ADSL._ADSLLineStub"/>
+  	    <Sub-Argument  classType="CosNaming.NameComponent[]" >
+  	      <Sub-Argument  classType="CosNaming.NameComponent" >
+  	       <Sub-Argument  classType="java.lang.String" value="ADSLLine1"/>
+  	       <Sub-Argument  classType="java.lang.String" value=""/>
+  	      </Sub-Argument>
+  	    </Sub-Argument>  
+  	</Argument>
+      
+      	<Argument classType="ADSL.ChannelType" label="param12" value="1" />
+
+      	<Argument classType="ADSL.ADSLChannelIdHolder" label="param13" returnToUser="true">
+	  <Sub-Argument classType="ADSL.ADSLChannelId" >	
+      	    <Sub-Argument  classType="ADSL.ADSLChannel" value="ADSL._ADSLChannelStub"/> 
+	    <Sub-Argument   classType="CosNaming.NameComponent[]" >
+	        <Sub-Argument  classType="CosNaming.NameComponent" >
+	           <Sub-Argument  classType="java.lang.String" value="ADSLChannel1"/>
+	           <Sub-Argument  classType="java.lang.String" value=""/>
+  	        </Sub-Argument>
+  	    </Sub-Argument>    
+	  </Sub-Argument>  
+	</Argument>
+	
+     </Attribute>
+  		
+</NEInput>
+
+<Form title="CORBA Provisioning" description="Use this form to set the Administrative state of a particular channel."> 
+
+	<UserInput id="1" name="AdminState" label="AdministrativeState" default="$NEInput$createChannel" />
+
+</Form>
+
+
+<ConfigTask taskName="CORBA_Task" version="1.0" isNewTask="true" isSequential="false" isOverwrite="true" rollbackNeeded="false">
+    <ProtocolMap name="CORBA">
+       <Device 
+          ORBInitialHost="$InventoryInput$2"
+          ORBInitialPort="$InventoryInput$3"
+          NameRef="$InventoryInput$1" 
+          Interface="$InventoryInput$4" 
+          NameService="NameService"
+          persistPolicy="true"
+          host="$TemplateParam$HOST"  
+          label="mainReference"/>
+    </ProtocolMap>
+
+ <Attribute invokeObj = "$OBJ$mainReference" default="unknown" operation = "createChannel" label = "createChannel1">
+     		      			
+    	<Argument classType="ADSL.ADSLLineId" label="param14" persistPolicy="true">
+     	    <Sub-Argument  classType="ADSL.ADSLLine" value="ADSL._ADSLLineStub"/>
+  	    <Sub-Argument  classType="CosNaming.NameComponent[]" >
+  	      <Sub-Argument  classType="CosNaming.NameComponent" >
+  	       <Sub-Argument  classType="java.lang.String" value="ADSLLine1"/>
+  	       <Sub-Argument  classType="java.lang.String" value=""/>
+  	      </Sub-Argument>
+  	    </Sub-Argument>  
+  	</Argument>
+      
+      	<Argument classType="ADSL.ChannelType" label="param15" value="1" persistPolicy="true"/>
+
+      	<Argument classType="ADSL.ADSLChannelIdHolder" label="param16" persistPolicy="true" returnToUser="true">
+	  <Sub-Argument classType="ADSL.ADSLChannelId">	
+      	    <Sub-Argument  classType="ADSL.ADSLChannel" value="ADSL._ADSLChannelStub"/> 
+	    <Sub-Argument   classType="CosNaming.NameComponent[]" >
+	        <Sub-Argument  classType="CosNaming.NameComponent" >
+	           <Sub-Argument  classType="java.lang.String" value="ADSLChannel1"/>
+	           <Sub-Argument  classType="java.lang.String" value=""/>
+  	        </Sub-Argument>
+  	    </Sub-Argument>    
+	  </Sub-Argument>  
+	</Argument>
+	
+     </Attribute>
+     
+
+</ConfigTask>
+
+</Template>

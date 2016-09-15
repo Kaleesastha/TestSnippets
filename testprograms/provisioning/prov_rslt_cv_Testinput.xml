@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<AF14>
+<tc001>
+<setproperties setOrderbyColumn="templateName" setFromIndex="0" setAscendingOrder="true" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc001>
+<tc002>
+<setproperties setOrderbyColumn="templateName" setFromIndex="0" setAscendingOrder="true" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc002>
+<tc003>
+<setproperties setOrderbyColumn="templateName" setFromIndex="0" setAscendingOrder="true" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc003>
+<tc004>
+<setproperties setOrderbyColumn="templateName" setFromIndex="0" setAscendingOrder="true" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc004>
+<tc005>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false" />
+<criteriaproperties type="SIMPLE"/>
+</tc005>
+<tc006>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties userName="root"/>
+</tc006>
+<tc007>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties templateName="*"/>
+</tc007>
+<tc008>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="*LED"/>
+</tc008>
+<tc009>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="*UCC*"/>
+</tc009>
+<tc010>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="F*D"/>
+</tc010>
+<tc011>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="!FAILED"/>
+</tc011>
+<tc012>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="!INPRO*"/>
+</tc012>
+<tc013>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties status="FAIL*,SUCC*"/>
+</tc013>
+<tc014>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties templateName="T*, !*INDIA"/>
+</tc014>
+<tc015>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; 2 and "/>
+</tc015>
+<tc016>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; and 16"/>
+</tc016>
+<tc017>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt;5 and 12"/>
+</tc017>
+<tc018>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="false" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; 2 and 20" status="SUCCE*" />
+</tc018>
+<tc019>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; 3 and 10" status="SUCC*" />
+</tc019>
+<tc020>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; 2 and" />
+</tc020>
+<tc021>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="1000" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc021>
+<tc022>
+<setproperties setOrderbyColumn="prId" setFromIndex="1000" setAscendingOrder="True" setViewLength="200" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc022>
+<tc023>
+<getdata username="root" viewid="null"/>
+</tc023>
+<tc024>
+<getdata username="root" viewid="invalidviewid"/>
+</tc024>
+<tc025>
+<getdata username="null" viewid="validviewid"/>
+</tc025>
+<tc026>
+<getdata username="invalidviewid" viewid="validviewid"/>
+</tc026>
+<tc027>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="-1" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc027>
+<tc028>
+<setproperties setOrderbyColumn="prId" setFromIndex="1" setAscendingOrder="True" setViewLength="0" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc028>
+<tc029>
+<setproperties setOrderbyColumn="prId" setFromIndex="-1" setAscendingOrder="True" setViewLength="0" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc029>
+<tc030>
+<setproperties setOrderbyColumn="userName" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc030>
+<tc031>
+<setproperties setOrderbyColumn="nonexisting" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="false" setTemporaryCustomView="false"/>
+</tc031>
+<tc032>
+<setproperties setOrderbyColumn="null" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="false" setTemporaryCustomView="false"/>
+</tc032>
+<tc033>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="false" setTemporaryCustomView="false"/>
+</tc033>
+<tc034>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties teteName="Install*,!Back*"/>
+</tc034>
+<tc035>
+<setproperties setOrderbyColumn="prId" setFromIndex="8" setAscendingOrder="True" setViewLength="10" setPerformOR="false" setTemporaryCustomView="false"/>
+</tc035>
+<tc034>
+<setproperties setOrderbyColumn="xyz" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc034>
+<tc035>
+<setproperties setOrderbyColumn="null" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc035>
+<tc036>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc036>
+<tc037>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getprops name="root" uname="invalid" vid="null"/>
+</tc037>
+<tc038>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc038>
+<tc039>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getprops name="root" uname="root" vid="null"/>
+</tc039>
+<tc040>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getprops name="root" uname="root" vid="invalid"/>
+</tc040>
+<tc041>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getprops name="null" uname="root" vid="invalid"/>
+</tc041>
+<tc042>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getprops name="invalid" uname="root" vid="invalid"/>
+</tc042>
+<tc043>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="true"/>
+<criteriaproperties prId="&lt;between&gt; 3 and 10" status="SUCC*" />
+</tc043>
+<tc044>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="true"/>
+</tc044>
+<tc045>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="true"/>
+<getdata username="root" viewid="invalidviewid"/>
+<criteriaproperties prId="&lt;between&gt; 3 and 10" status="SUCC*" />
+</tc045>
+<tc046>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<criteriaproperties prId="&lt;between&gt; 3 and 10" status="SUCC*" />
+</tc046>
+<tc047>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+<getdata username="root" viewid="invalidviewid"/>
+<criteriaproperties prId="&lt;between&gt; 3 and 10" status="SUCC*" />
+</tc047>
+<tc048>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="false" setTemporaryCustomView="true"/>
+<criteriaproperties type="SIMPLE" />
+</tc048>
+<tc049>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc049>
+<tc050>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc050>
+<tc051>
+<setproperties setOrderbyColumn="prId" setFromIndex="0" setAscendingOrder="True" setViewLength="100" setPerformOR="true" setTemporaryCustomView="false"/>
+</tc051>
+
+</AF14>

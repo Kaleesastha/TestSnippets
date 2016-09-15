@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Template name="TimeBasedScheduling" owner="root" when="now+5 minute" period="22 minute" count="3" description="This template shows how provisioning can be done at a particular time specified." displayForms="tab" autoDeregister="true" clientID="24" stageId="1#" formId="1#">
+    <Stage label="1#">
+		<Form id="1#" title="Time Based Scheduling" description="This form is used to collect the Hostname, System Contact and Time.">
+
+			<UserInput id="1#" label="SNMP Agent Hostname" default="" required="false" editable="true"/>
+			<UserInput id="2#" label="System Contact" default="" required="false" editable="true"/>
+			<UserInput id="3#" label="Scheduling Time" default="" editable="false" required="false">
+			    <Qualifier type="choice">
+				    <Enum name="now +  5 second" value="now +  5 second"/>
+				    <Enum name="now + 10 second" value="now + 10 second"/>
+				</Qualifier>
+			</UserInput>
+		</Form>
+
+		<ConfigTask taskName="ConfigureSystemContact" isNewTask="true" isOverwrite="true" isSequential="false" persistence="true" deviceResult="false" isTemplate="false" rollbackNeeded="false" version="1.0">
+			<ProtocolMap name="snmp">
+				<Device community="public" host="$UserInput$1#" port="161" retries="3" timeout="5000" version="v1"/>
+			</ProtocolMap>
+			<Attribute identifier="1.4.0" type="4" label="sysContact" value="$UserInput$2#"/>
+		</ConfigTask>
+    </Stage>
+</Template>
+

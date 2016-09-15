@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="ConfigTaskExample2" owner="root" finish="Provision" 
+    description="This Template issues a command to a telnet device based on the Telnet device information entered." >
+    <Stage label="1#"> 
+        <Form id="1#" title="Telnet Task" description="Form accepts Remote Host,Telnet Port,Login Name,
+		Password and Command to be executed.">
+            <UserInput id="1#"  label="Remote Host"  default=""  required="true" />
+            <UserInput id="2#"  label="Telnet Port"  default="23" editable="false" />
+            <UserInput id="3#"  label="Login Name"   default="root" />
+            <UserInput id="4#"  label="Password"     default="" >
+                <Qualifier type="passwordfield" />
+            </UserInput>	
+            <UserInput id="5#"  label="Command"      default="" />
+        </Form>
+        <ConfigTask taskName="ConfigTask2" isNewTask="true" isOverwrite="true" isSequential="false" >
+			<ProtocolMap  name="telnet" > <!--The protocol used to communicate with the device -->
+				<Device host="$UserInput$1#"        port="$UserInput$2#" 
+						loginName="$UserInput$3#"   password="$UserInput$4#"
+                        loginPrompt="login:"        passwordPrompt="Password:"
+						shellPrompt="$"             retries="3"
+                        timeout="5000" />
+                    <!--Please change the loginPrompt, passwordPrompt and shellPrompt specific to the device -->
+			</ProtocolMap>
+			<Attribute 	identifier="$UserInput$5#" value="$" />
+		</ConfigTask>
+    </Stage>
+</Template>

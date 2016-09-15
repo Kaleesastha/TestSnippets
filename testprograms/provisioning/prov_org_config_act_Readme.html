@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Readme.txt</title>
+</head>
+<body>
+<font style="font-family: Verdana;" size="-1"><span
+ style="font-weight: bold;">
+Feature</span>:Organizing Configuration Actions (prov_org_config_act)<br>
+-----------------------------------------------------------------------------------<br>
+<br>
+Provisioning Templates are defined and stored under &lt;WebNMS
+Home&gt;/provisioning templates directory. <br>
+<br>
+New functionality added for organizing Configuration Actions Templates:<br>
+<br>
+&nbsp;&nbsp;&nbsp; * To organize the templates and store under the
+appropriate sub-directories under provisioningtemplates directory.<br>
+<br>
+Below mentioned methods are provided in ProvisioningAPI for getting the
+templatelist, template and templateparams.<br>
+<br>
+&nbsp;&nbsp;&nbsp; * <span style="font-weight: bold;">getTemplateList(String
+path)</span><br>
+<br>
+Here the template names from the specified path are returned. path
+should be relative to &lt;WebNMS Home&gt;/provisioningtemplates.<br>
+<br>
+&nbsp;&nbsp;&nbsp; * <span style="font-weight: bold;">getTemplate(String
+path, String name, String
+params)</span><br>
+<br>
+Here the template from the specified path is returned as string.path
+should be relative to &lt;WebNMS Home&gt;/provisioningtemplates. params
+specifies the template parameters for initializing the template. If
+there is no template parameters to be replaced, then it is given as
+null.<br>
+<br>
+&nbsp;&nbsp;&nbsp; *<span style="font-weight: bold;">
+getTemplateParameters(String path, String name)</span><br>
+<br>
+Here the provisioning template input parameters, which may be needed
+for initial population of the template present in the specified path is
+returned as string. Path should be relative to &lt;WebNMS
+Home&gt;/provisioningtemplates.<br>
+<br>
+For testing we have&nbsp;
+organized&nbsp;templates in the&nbsp;below &nbsp;mentioned sub
+directories structure. <br>
+&nbsp;<br>
+</font>
+<font style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">&lt;WebNMS
+Home&gt;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |____&nbsp;
+provisioningtemplates</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |________ security</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; &nbsp;|</span><span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |_____ </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">TelnetTaskTemplate.xml</span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <span
+ style="color: rgb(51, 51, 255);"></span></span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |_____ <span style="color: rgb(51, 51, 255);">ConfigTaskExample1.xml</span></span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></font><font style="font-family: Verdana;" face="Verdana"
+ size="-1"><span style="font-weight: bold;">|</span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">_____ <span
+ style="color: rgb(51, 51, 255);">RoutingConfiguration.xml</span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |</span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">|&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"></span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |</span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">_________<span
+ style="color: rgb(51, 51, 255);">ViewMOProps.xml</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="color: rgb(51, 51, 255);"><br>
+</span></span></font><font style="font-family: Verdana;" face="Verdana"
+ size="-1"><span style="font-weight: bold;"></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span><span
+ style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |_________ <span
+ style="color: rgb(51, 51, 255);">ATM_Virtual_Connection.xml</span></span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |_________ <span
+ style="color: rgb(51, 51, 255);">CrossConnect.xml</span><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">|</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">|</span><span style="font-weight: bold;"></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">_________<span
+ style="color: rgb(51, 51, 255);">IPRoutingConfiguration.xml<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; &nbsp;<span style="color: rgb(0, 0, 0);"> |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; &nbsp;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;|_________Config__<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">|<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; |</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" size="-1"><br>
+</font>
+<font style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; |</span></span></span></font><font
+ style="font-family: Verdana;" size="-1"><br>
+</font>
+<font style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+Install&nbsp;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; |&nbsp;</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><br>
+</span></span></font><font style="font-family: Verdana;" face="Verdana"
+ size="-1"><span style="font-weight: bold;"><span
+ style="color: rgb(51, 51, 255);"><span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; | </span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">_____ </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">ConfigTaskExample1.xml</span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"></span></font><font
+ style="font-family: Verdana;" size="-1"><br>
+</font>
+<font style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">|</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"> </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);"><br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; |</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;">_____ <span
+ style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">TelnetTaskTemplate.xml</span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"> </span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<span
+ style="color: rgb(0, 0, 0);"> &nbsp;&nbsp;
+&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">|</span></span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);">______<span
+ style="color: rgb(51, 51, 255);">TimeBasedScheduling.xml</span>&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span> </span></span></font><font
+ style="font-family: Verdana;" face="Verdana" size="-1"><span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);"></span></span></font><font
+ style="font-family: Verdana;" size="-1"><br>
+<br>
+<span style="font-weight: bold;">
+TestSetup:</span><br>
+----------<br>
+<br>
+1) Unzip the file <span style="font-style: italic; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; prov_org_config_act_Validate
+&lt; </span><span style="font-style: italic;">date of creation</span><span
+ style="font-style: italic; font-weight: bold;"> &gt;.zip</span>
+over &lt;Web NMS Home&gt;/provisioningtemplates&nbsp; directory. <br>
+<br>
+<span style="font-weight: bold;">Before starting the WebNMS Server:<br>
+<br>
+</span>2) Run the <span style="font-weight: bold; font-style: italic;">&nbsp;&nbsp;&nbsp;
+" before_startnms.sh/bat"</span>
+present under &lt;Web NMS
+Home&gt;/provisioningtemplates/prov_org_config_act_Validate/ directory.
+before_startnms.sh/bat modifies your environment <span
+ style="font-weight: bold; font-style: italic;">before starting the
+WebNMS server</span> as follows:<br>
+</font>
+<ol style="list-style-type: lower-alpha; font-family: Verdana;">
+  <li><font size="-1">Adds the test, test10,
+test11, test12, test13, test14, test15, test16, test25, test42, test44,
+security, config
+directories and IPRoutingConfiguration.xml,
+ATM_Virtual_Connection.xml, CrossConnect.xml, ViewMOProps.xml templates
+to the &lt;Web NMS Home&gt;/provisioningtemplates directory .</font></li>
+  <li><font size="-1">Removes the test13,test14 directories under the
+&lt;Web NMS
+Home&gt;/provisioningtemplates directory.</font></li>
+  <li><font size="-1">Empties the test15,test16 directories under the
+&lt;Web NMS
+Home&gt;/provisioningtemplates
+directory.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; </font></li>
+</ol>
+<font style="font-family: Verdana;" size="-1"><span
+ style="font-weight: bold;">After starting the WebNMS Server:<br>
+</span><br>
+3) Run the <span style="font-weight: bold; font-style: italic;">&nbsp;&nbsp;&nbsp;
+"after_startnms.sh/bat"</span>
+present under &lt;Web NMS
+Home&gt;/provisioningtemplates/prov_org_config_act_Validate/ directory.
+after_startnms.sh/bat modifies your environment <span
+ style="font-weight: bold; font-style: italic;">after</span> <span
+ style="font-weight: bold; font-style: italic;">starting the
+WebNMS server</span> as follows:<br>
+</font>
+<ol style="list-style-type: lower-alpha; font-family: Verdana;">
+  <li><font size="-1">Removes the test10, test42, test44 directories
+under the &lt;Web
+NMS Home&gt;/provisioningtemplates directory.</font></li>
+  <li><font size="-1">Empties the test11, test12, test25 directories
+under the &lt;Web
+NMS Home&gt;/provisioningtemplates directory.</font></li>
+  <li><font size="-1">Adds the test14, test42 directories to the
+&lt;Web NMS
+Home&gt;/provisioningtemplates directory. </font></li>
+  <li><font size="-1">Adds the <span style="font-style: italic;">IPRoutingConfiguration.xml</span>
+template to the <span style="font-style: italic;">test15</span>
+directory, <span style="font-style: italic;">example.xml </span>template
+to the <span style="font-style: italic;">test12 </span>directory and <span
+ style="font-style: italic;">CrossConnect1.xml</span><span
+ style="font-style: italic;">test25 </span>directory<span
+ style="font-style: italic;">&nbsp;</span> under the &lt;Web NMS
+Home&gt;/provisioningtemplates directory.</font> template to the </li>
+  <li><font size="-1">set&nbsp;the class path for the following JARs: <span
+ style="font-weight: bold; font-style: italic;">crimson.jar,
+jaxp.jar, xalan.jar, ManagementServer.jar, AdventNetFramework.jar&nbsp;
+and &lt;WebNMS Home&gt;/classes</span></font></li>
+</ol>
+<font style="font-family: Verdana;" size="-1"><span
+ style="font-weight: bold;">
+How to Test:</span><br>
+------------<br>
+</font>
+<ol style="font-family: Verdana;">
+  <li><font size="-1">Run the Testprogram <span
+ style="font-style: italic; font-weight: bold;">"prov_org_config_act_tester.java"</span>
+with arguments as path of the &lt;WebNMS Home&gt; and Host in which
+NMSServer is running.&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; font-style: italic;">eg:</span>&nbsp;
+java&nbsp; </font><font size="-1"><span
+ style="font-style: italic; font-weight: bold;">prov_org_config_act_tester
+    </span></font><font size="-1">&nbsp; &lt;path of WebNMS Home
+&gt;&nbsp;&nbsp;
+&lt;localhost&gt;</font></li>
+  <li><font size="-1">The Result is printed in the&nbsp; <span
+ style="font-style: italic; font-weight: bold;">"prov_org_config_act_Testresult.txt"
+    </span>and
+also the output relating to each testcase is stored in the <span
+ style="font-style: italic; font-weight: bold;">"prov_org_config_act_Testoutput.txt".</span></font></li>
+</ol>
+<font style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic; font-weight: bold;"><br>
+</span><br>
+<span style="font-weight: bold;">
+Note:</span><br>
+</font>
+<ul>
+  <li style="font-family: Verdana;"><font size="-1">The files
+prov_org_config_act_orgconfigacttester.java,
+prov_org_config_act_orgconfigacttester.class,
+prov_org_config_act_Testinput.txt,
+prov_org_config_act_Mastertestoutput.txt ,mastertemplates
+directory and templates directory should be in the same
+directory.</font></li>
+  <li style="font-family: Verdana;"><font size="-1">The result
+generated is applicable only the test environment as
+indicated in the above testsetup.</font></li>
+  <li><font style="font-family: Verdana;" size="-1">&nbsp;If the user
+wants to change the directory structures in the
+&lt;Web
+NMS Home&gt;/provisioningtemplates directory or any inputs in the input
+file then user has to generate a masteroutput file and then he can
+validate the result.</font><br>
+  </li>
+</ul>
+</body>
+</html>

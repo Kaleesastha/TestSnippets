@@ -1,0 +1,65 @@
+ORG-CONFIG-ACT-001:.
+ORG-CONFIG-ACT-002:null   
+ORG-CONFIG-ACT-003:junk value
+ORG-CONFIG-ACT-004:    
+ORG-CONFIG-ACT-005:<WebNMS Home>/../../
+ORG-CONFIG-ACT-006:<WebNMS Home>
+ORG-CONFIG-ACT-007:<WebNMS Home>/provisioningtemplates
+ORG-CONFIG-ACT-7.1:ATM_Virtual_Connection.xml
+ORG-CONFIG-ACT-008:security
+ORG-CONFIG-ACT-009:config/install
+ORG-CONFIG-ACT-010:test10
+ORG-CONFIG-ACT-011:test11
+ORG-CONFIG-ACT-012:test12
+ORG-CONFIG-ACT-013:test13
+ORG-CONFIG-ACT-014:test14
+ORG-CONFIG-ACT-015:test15
+ORG-CONFIG-ACT-016:test16
+ORG-CONFIG-ACT-017:test
+ORG-CONFIG-ACT-018:test
+ORG-CONFIG-ACT-019:test
+ORG-CONFIG-ACT-020:test
+ORG-CONFIG-ACT-021:test
+ORG-CONFIG-ACT-022:test
+ORG-CONFIG-ACT-023:test
+ORG-CONFIG-ACT-024:test
+ORG-CONFIG-ACT-025:test25
+ORG-CONFIG-ACT-026:.:IPRoutingConfiguration
+ORG-CONFIG-ACT-027:.:non existing templatename
+ORG-CONFIG-ACT-028:junk path:non existing templatenam
+ORG-CONFIG-ACT-029:junk path:IPRoutingConfiguration
+ORG-CONFIG-ACT-030:<WebNMS Home>/:non existing templatename
+ORG-CONFIG-ACT-031:<WebNMS Home>/provisioningtemplates:IPRoutingConfiguration
+ORG-CONFIG-ACT-032: :non existing templatename
+ORG-CONFIG-ACT-033: :ATM_Virtual_Connection
+ORG-CONFIG-ACT-034:null:non existing templatename
+ORG-CONFIG-ACT-035:null:IPRoutingConfiguration
+ORG-CONFIG-ACT-036:security:RoutingConfiguration
+ORG-CONFIG-ACT-037:config/install:TimeBasedScheduling
+ORG-CONFIG-ACT-038:security:non existing templatename
+ORG-CONFIG-ACT-039:config/install:non existing templatename
+ORG-CONFIG-ACT-040:security:    
+ORG-CONFIG-ACT-041:security:TelnetTaskTemplate
+ORG-CONFIG-ACT-41.1:test25:CrossConnect1
+ORG-CONFIG-ACT-042:test42:IPRoutingConfiguration
+ORG-CONFIG-ACT-043:test42:non existing templatename
+ORG-CONFIG-ACT-044:test44:IPRoutingConfiguration
+ORG-CONFIG-ACT-045:.:IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="confighost.com" /></TemplateParams>
+ORG-CONFIG-ACT-046:.:non existing templatename:<TemplateParams><Property name="HOST" value="abscegf.com" /></TemplateParams>
+ORG-CONFIG-ACT-047:.:IPRoutingConfiguration:<TemplateParams><Property name="POST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-048: :IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="confighost.com" /></TemplateParams>
+ORG-CONFIG-ACT-049:null:IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="invalid.com" /></TemplateParams>
+ORG-CONFIG-ACT-050:junk path:IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="ssdfsdfdsfa.india.adventnet.com" /></TemplateParams>
+ORG-CONFIG-ACT-051:<WebNMS Home>/:IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-052:<WebNMS Home>/webnms/examples/provisioning/templates:non existing templatename:<TemplateParams><Property name="HOST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-053:<WebNMS Home>/../../:IPRoutingConfiguration:<TemplateParams><Property name="HOST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-054:security:RoutingConfiguration:<TemplateParams><Property name="HOST" value="confighost.com" /></TemplateParams>
+ORG-CONFIG-ACT-055:security: :<TemplateParams><Property name="HOST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-056:config/install:TimeBasedScheduling:<TemplateParams><Property name="WHEN" value="now+5 minute" /></TemplateParams>
+ORG-CONFIG-ACT-057:security:non existing templatename:<TemplateParams><Property name="HOST" value="invalid host.com" /></TemplateParams>
+ORG-CONFIG-ACT-058:config/install:TimeBasedScheduling:<TemplateParams><Property name="HOST" value="invalid host.com" /></TemplateParams>
+ORG-CONFIG-ACT-059:config/install:ConfigTaskExample:<TemplateParams><Property name="DestinationPort" value="123" /><Property name="Destination" value="" /><Property name="HOST" value="confighost.com" /><Property name="SourcePort" value="" /></TemplateParams>
+ORG-CONFIG-ACT-060:security:TelnetTaskTemplate:null    
+ORG-CONFIG-ACT-061:security:ConfigTaskExample1:null   
+ORG-CONFIG-ACT-062:security:non existing templatename:null   
+ORG-CONFIG-ACT-063:test25:CrossConnect1:<TemplateParams><Property name="HOST" value="invalid host.com" /></TemplateParams> 

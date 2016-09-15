@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="TelnetTaskTemplate" 
+	owner="root" 
+	finish="Provision" 
+	close="Close" 
+	description="This template illustrates the execution of Telnet tasks based on user inputs." >
+
+	<!-- 
+
+	A table with 3 rows and 9 columns is defined to accept User Inputs. Details of  3 Telnet tasks is accepted. 
+	for each telnet task details such as remote host, telnet port, login name, password, login prompt, password prompt,
+	shell prompt, telnet command, and its arguements are accepted.
+	 -->  
+	
+	<Stage label="1#">
+		<Form id="1#" title="TelnetTask" 
+			description="An example template to perform telnet operations " >
+			<Table rows="3" columns="9" columnWidths="90,70,70,70,80,100,80,90,130" >  
+				<UserInput id="1" name="remoteHost" label="Remote Host" default=""  required="true" />
+				<UserInput id="2" name="telnetPort" label="Telnet Port" default="23" editable="false" >
+					<Qualifier type="numerictextfield" range="1-65535" />
+				</UserInput>
+				<UserInput id="3" name="loginName" label="Login Name" default="root" />
+				<UserInput id="4" name="password" label="Password" default="" >
+					<Qualifier type="passwordfield" />
+				</UserInput>	
+				<UserInput id="5" name="loginPrompt" label="Login Prompt" default="login:" />
+				<UserInput id="6" name="passwordPrompt" label="Password Prompt" default="Password:" />
+				<UserInput id="7" name="shellPrompt" label="Shell Prompt" default="$" />
+				<UserInput id="8" name="command" label="Command" default="" />
+				<UserInput id="9" name="arguments" label="Command Arguments" default="" />
+				
+				<UserInput id="10" name="remoteHost" label="Remote Host" default=""  required="true"/>
+				<UserInput id="11" name="telnetPort" label="Telnet Port" default="23" editable="false" >
+					<Qualifier type="numerictextfield" range="1-65535" />
+				</UserInput>
+				<UserInput id="12" name="loginName" label="Login Name" default="root" />
+				<UserInput id="13" name="password" label="Password" default="" >
+					<Qualifier type="passwordfield" />
+				</UserInput>	
+				<UserInput id="14" name="loginPrompt" label="Login Prompt" default="login:" />
+				<UserInput id="15" name="passwordPrompt" label="Password Prompt" default="Password:" />
+				<UserInput id="16" name="shellPrompt" label="Shell Prompt" default="$" />
+				<UserInput id="17" name="command" label="Command" default="" />
+				<UserInput id="18" name="arguments" label="Command Arguments" default="" />
+				
+				<UserInput id="19" name="remoteHost" label="Remote Host" default=""  required="true" />
+				<UserInput id="20" name="telnetPort" label="Telnet Port" default="23" editable="false" >
+					<Qualifier type="numerictextfield" range="1-65535" />
+				</UserInput>
+				<UserInput id="21" name="loginName" label="Login Name" default="root" />
+				<UserInput id="22" name="password" label="Password" default="" >
+					<Qualifier type="passwordfield" />
+				</UserInput>	
+				<UserInput id="23" name="loginPrompt" label="Login Prompt" default="login:" />
+				<UserInput id="24" name="passwordPrompt" label="Password Prompt" default="Password:" />
+				<UserInput id="25" name="shellPrompt" label="Shell Prompt" default="$" />
+				<UserInput id="26" name="command" label="Command" default="" />
+				<UserInput id="27" name="arguments" label="Command Arguments" default="" />
+			</Table> 
+		</Form>
+
+
+	<!-- 
+
+		Three configuration tasks are defined in which the user input values are substituted and the three 
+		telnet commands are executed.
+
+
+	-->
+		<ConfigTask taskName="TelnetTask1" isNewTask="true" 
+			isOverwrite="true" isSequential="false" >
+			<ProtocolMap  name="telnet" >
+				<Device host="$UserInput$1" port="$UserInput$2" 
+					loginName="$UserInput$3" password="$UserInput$4"
+					loginPrompt="$UserInput$5" passwordPrompt="$UserInput$6"
+					shellPrompt="$UserInput$7" retries="3"
+					timeout="5000" />
+			</ProtocolMap>
+
+			<Attribute 	identifier="$UserInput$8 $UserInput$9" value="$UserInput$7" />
+		</ConfigTask>
+
+		<ConfigTask taskName="TelnetTask2" isNewTask="true" 
+			isOverwrite="true" isSequential="false" >
+			<ProtocolMap  name="telnet" >
+				<Device host="$UserInput$10" port="$UserInput$11" 
+					loginName="$UserInput$12" password="$UserInput$13"
+					loginPrompt="$UserInput$14" passwordPrompt="$UserInput$15"
+					shellPrompt="$UserInput$16" retries="3"
+					timeout="5000" />
+			</ProtocolMap>
+
+			<Attribute 	identifier="$UserInput$17 $UserInput$18" value="$UserInput$16" />
+		</ConfigTask>
+
+		<ConfigTask taskName="TelnetTask3" isNewTask="true" 
+			isOverwrite="true" isSequential="false" >
+			<ProtocolMap  name="telnet" >
+				<Device host="$UserInput$19" port="$UserInput$20" 
+					loginName="$UserInput$21" password="$UserInput$22"
+					loginPrompt="$UserInput$23" passwordPrompt="$UserInput$24"
+					shellPrompt="$UserInput$25" retries="3"
+					timeout="5000" />
+			</ProtocolMap>
+
+			<Attribute 	identifier="$UserInput$26 $UserInput$27" value="$UserInput$25" />
+
+		</ConfigTask>
+	</Stage>
+</Template>

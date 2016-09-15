@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>prov_rslt_cv_ReadMe</title>
+</head>
+<body>
+<font style="font-family: Verdana;" size="-1"><span
+ style="font-weight: bold;">Feature: </span></font><font
+ color="#000000"><font style="font-size: 11pt;" size="2"><big><span
+ style="font-weight: bold; font-family: Verdana;">
+<small>ProvisionResult Custom View</small></span></big></font></font><font
+ style="font-family: Verdana;" color="#000000" size="-1"><font
+ style="font-size: 11pt;"><span style="font-weight: bold;"></span></font></font><font
+ style="font-family: Verdana;" size="-1"><br>
+-----------------------------------------------------<br>
+<br>
+<span style="font-weight: bold;">Functionality:</span><br>
+--------------<br>
+<br>
+<span style="font-weight: bold;"></span>Custom view support
+has&nbsp; been
+provided for ProvisionResult object. Using the custom view, user can
+perform the searching, sorting and grouping operations.To get the
+required data( Provision Result based on some criteria), the following
+APIs have to be used.<br>
+<br>
+<span style="font-weight: bold; font-style: italic;">ViewCriteria:</span><br>
+This is used to
+specify the criteria information based on which the
+data have to be fetched from the DB.<br>
+<br>
+<span style="font-weight: bold; font-style: italic;">ProvisionResultSessionBean:</span><br>
+This is the
+CustomSessionBean for ProvisionResult CustomView
+functionality. This API will be used to fetch the ProvisionResult info
+in the form of 'ViewData' from the DB based on the criteria specified. <br>
+<br>
+<br>
+<span style="font-weight: bold;">TestSetup:</span><br>
+-----------<br>
+<br>
+1) Copy the
+files <span style="font-style: italic;"></span></font><small
+ style="font-style: italic;">prov_rslt_cv</small><font
+ style="font-family: Verdana; font-style: italic;" size="-1">.</font><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic;">jsp,&nbsp; </span></font><small
+ style="font-style: italic;">prov_rslt_cv</small><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic;">_Testinput.xml</span>
+and </font><small style="font-style: italic;">prov_rslt_cv</small><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic;">_XmlReader.java</span> into <span
+ style="font-style: italic;">&lt;WebNMS
+Home&gt;/jsp </span>directory.<br>
+<br>
+2)&nbsp;</font><font style="font-family: Verdana;" size="-1">Compile
+the <span style="font-style: italic;">AF_14_XmlReader.java&nbsp;</span>
+in the test folder so that its destination directory is &lt;WebNMS
+Home&gt;/WEB-INF/classes.<br>
+<span style="font-style: italic; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+javac -d &lt;WebNMS Home&gt;/WEB-INF/classes </span></font><small
+ style="font-style: italic; font-weight: bold;">prov_rslt_cv</small><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic; font-weight: bold;">_XmlReader.java</span><span
+ style="font-weight: bold;"><br>
+</span><br>
+3) <span style="font-weight: bold;">SetUp
+required for enabling the dynamic
+compilation of JSP Files:<br>
+</span>&nbsp;&nbsp;&nbsp;
+The steps you must follow to enable dynamic
+compilation of a JSP file
+are as follows:<br>
+<br>
+&nbsp;&nbsp;&nbsp;
+The below given two steps must be
+executed by the users of the <span style="font-weight: bold;"><b>Windows
+32</b></span>
+operating systems, only. They are <span style="font-weight: bold;"><b>not</b></span>
+applicable for
+Linux and&nbsp;Solaris
+operating system users. <span style="font-weight: bold;"><b><br>
+</b></span></font>
+<ul style="font-family: Verdana;">
+  <li><font size="-1"><span style="font-weight: bold;"><b>Set
+Absolute Path for Web NMS in setEnv.bat File</b></span>:You must set
+the
+absolute path of location of Web NMS for the "NMS_HOME" variable in <span
+ style="font-weight: bold;"><b>setEnv.bat</b></span> file located in <span
+ style="font-style: italic;"><i>&lt;Web NMS Home&gt;</i></span>
+directory, as shown below,</font></li>
+</ul>
+<ul style="font-family: Verdana;">
+  <font size="-1">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;"><b>example</b></span>:
+set NMS_HOME =
+C:\AdventNet\Web NMS<br>
+  <br>
+  </font> <li><font size="-1"><span style="font-weight: bold;"><b>Add
+Mandatory "JARS" in Apache directory</b></span>: The "manifest.inf"
+file of <span style="font-weight: bold;"><b>AdventNetOPExtn.jar</b></span>
+contains the list of mandatory jars required for starting Web NMS. For
+dynamic compilation of your files, you must place all the jars listed
+in the manifest.inf file, in the <span
+ style="font-style: italic; font-weight: bold;"><i><b>&lt;Web NMS
+Home&gt;/apache/tomcat/common/lib</b></i></span> directory. </font></li>
+</ul>
+<ol style="list-style-type: decimal; font-family: Verdana;">
+</ol>
+<font style="font-family: Verdana;" size="-1">&nbsp; &nbsp;
+The following steps are mandatory for both the users of <span
+ style="font-weight: bold;">Linux
+</span>and <span style="font-weight: bold;"><b>Windows
+32</b></span>
+operating systems
+</font>
+<ul style="font-family: Verdana;">
+  <li class="kadov-p-CBulletted"> <font size="-1"><span
+ style="font-weight: bold;"><b>Set
+"tools.jar" in System Classpath</b></span>: &nbsp;You must set the
+classpath of &nbsp;the "&lt;JDK_HOME&gt;/lib/tools.jar" of the JDK
+(wherever installed) in the <span style="font-weight: bold;"><b>startnms.bat/sh</b></span>
+file located in <span style="font-style: italic;"><i>&lt;Web NMS
+Home&gt;/bin</i></span> directory. </font></li>
+</ul>
+<font style="font-family: Verdana;" size="-1">&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp;&nbsp; Example Entry in <span
+ style="font-weight: bold;"><b>startnms.bat/sh</b></span>
+File:<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;<span style="font-weight: bold;"><b>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; In
+Windows OS:</b></span> &nbsp;&nbsp;<span style="font-style: italic;">&nbsp;set
+CLASSPATH=D:/jdk1.4.2/lib/tools.jar;%CLASSPATH% in </span><span
+ style="font-weight: bold;"></span><span style="font-style: italic;">startnms.bat
+file
+</span><span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"><b>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; In Linux OS</b></span>:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-style: italic;">export
+CLASSPATH=/usr/java/jdk1.4.2/lib/tools.jar:$CLASSPATH in startnms.sh
+file</span><br>
+</font>
+<ul style="font-family: Verdana;">
+  <li class="kadov-p-CBulletted"><font size="-1"><span
+ style="font-weight: bold;"><b>Modifying
+a Parameter Value in web.xml: </b></span>&nbsp;In the web.xml file
+present in &lt;Web NMS Home&gt;/apache/tomcat/conf directory, for the
+JspServlet, set the value as <span style="font-weight: bold;"><b>true</b></span>
+for the paramater <span style="font-weight: bold;"><b>development</b></span>.
+The example entry is as shown below:</font></li>
+</ul>
+<font style="font-family: Verdana;" size="-1">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;
+&lt; style="font-family: times new
+roman,times,serif;"&gt;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &lt; style="font-family: times
+new roman,times,serif;"&gt;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;jsp&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &lt; style="font-family: times
+new roman,times,serif;"&gt;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;org.apache.jasper.servlet.JspServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;init-param&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;param-name&gt;<span
+ style="font-weight: bold;"><b>development</b></span>&lt;/param-name&gt;
+&lt;param-value&gt;<span style="font-weight: bold;"><b>true</b></span>&lt;/param-value&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &lt;/init-param&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; .......<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; .......<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+</font><font style="font-family: Verdana;" size="-1"><br>
+Refer below mentioned link for </font><font
+ style="font-family: Verdana;" size="-1">enabling the dynamic
+compilation of JSP Files:<br>
+http://www.adventnet.com/products/webnms/help/developer_guide/web_client/web_compile_jsp.html#Dynamic_compilation</font><br>
+<font style="font-family: Verdana;" size="-1"><br>
+<span style="font-weight: bold;">How
+to Test:</span><br>
+-------------<br>
+1) Login to the
+WebNMS Webclient using <span style="font-style: italic;"><span
+ style="font-weight: bold;">http://localhost:9090/</span> </span>in
+your Browser.<br>
+<br>
+2) Run the JSP
+file</font><small style="font-style: italic;">&nbsp; prov_rslt_cv</small><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic;">.jsp
+</span>in your
+WebNMS-WebClient with the test case number as input.<br>
+&nbsp;&nbsp;&nbsp;
+<span style="font-style: italic;">i.e:
+<span style="font-weight: bold;">http://localhost:9090/jsp/</span></span></font><small
+ style="font-style: italic; font-weight: bold;">prov_rslt_cv</small><font
+ style="font-family: Verdana;" size="-1"><span
+ style="font-style: italic;"><span style="font-weight: bold;">.jsp?testnumber=tc001<br>
+&nbsp;&nbsp;&nbsp; </span></span>Where <span
+ style="font-style: italic;">"tc001"<span style="font-weight: bold;"></span></span>&nbsp;
+refers to the testcase number in the testplan.<br>
+<br>
+3) The&nbsp;
+output will be displayed in the browser so that
+the user can verify the result with the required result mentioned in
+the testplan.<br>
+<br>
+4) Repeat&nbsp;
+steps <span style="font-weight: bold;">2 &amp; 3&nbsp;</span> by
+changing the Testcase
+ID.&nbsp; <br>
+<br>
+<span style="font-weight: bold;"><br>
+Note:<br>
+<br>
+</span>a) All
+the inputs to the JSP file are
+stored in AF_14_Testinput.xml file with each element representing each
+Testcase input.<br>
+<br>
+b) If the user wants to change any inputs he can change the appropriate
+values in the respective element of AF_14_Testinput.xml.<br>
+<br>
+b) Test
+case number 52 is
+captured&nbsp; while running all the test cases as the&nbsp;
+ProvisionResult custom session bean is removed after viewing the
+sorting criteria.<br>
+<br>
+d) Before testing, populate the provisionresult table
+with&nbsp;sufficient data. <br>
+<br>
+</font>
+</body>
+</html>

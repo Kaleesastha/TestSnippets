@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="ViewMOProps" 
+          owner="root" 
+          finish="Fetch" 
+          close="Close" 
+          description="This template fetches the MO details from database for the specified host and displays them.">
+
+		  <Stage label="First">
+
+		<!--
+
+			The host name for which the Managed Object details need to be fetched is accepted from the user.
+		-->
+
+              <Form id="1#" title="Host" 
+                  description="This form collects the ManagedObject properties for the specified host and displays them." >
+                  <UserInput id="1#" label="Host" default="" required="true" />
+              </Form>
+          </Stage>
+
+		  <!-- 
+
+		   	Using InventoryInput tag, for the specified host name, the MO details are fetched from the database.
+			If MO for specified host is not existing then the error message, &quot; Unable to get InventoryInput for the 
+			Specified host &quot; is displayed and control moves to stage first.
+
+		  -->
+		  
+          <Stage label="Second">
+              <Script>
+                 try
+                 {
+                    <InventoryInput>
+                         <MOInput id="1#"  MOName="$UserInput$1#"  MOField="ipAddress"   default="Not Available"/>
+                         <MOInput id="2#"  MOName="$UserInput$1#"  MOField="type"        default="Not Available"/>
+                         <MOInput id="3#"  MOName="$UserInput$1#"  MOField="isSNMP"      default="Not Available"/>
+                         <MOInput id="4#"  MOName="$UserInput$1#"  MOField="isNode"      default="Not Available"/>
+                         <MOInput id="5#"  MOName="$UserInput$1#"  MOField="isNetwork"   default="Not Available"/>
+                         <MOInput id="6#"  MOName="$UserInput$1#"  MOField="isInterface" default="Not Available"/>
+                         <MOInput id="7#"  MOName="$UserInput$1#"  MOField="community"   default="Not Available"/>
+                         <MOInput id="8#"  MOName="$UserInput$1#"  MOField="netmask"     default="Not Available"/>
+                     </InventoryInput>
+                    template.setAttribute("finish","OK");
+                 }catch(Exception e)
+                 {
+                    template.setAttribute("statusMessage","Unable to get InventoryInput for the specified Host.");
+                    <GoTo label="First" />
+                 }
+            </Script>
+          </Stage>
+
+		  <!--  The values retrieved from the database are displayed in the form. -->
+		  
+		  <Stage label="Third">
+              <Form id="2#" title="MO Properties" description="Properties of ManagedObject" >
+                  <UserInput id="2#" label="IpAddress"     default="$InventoryInput$1#" editable="false" />
+                  <UserInput id="3#" label="Type"          default="$InventoryInput$2#" editable="false" />
+                  <UserInput id="4#" label="Is SNMP"       default="$InventoryInput$3#" editable="false" />
+                  <UserInput id="5#" label="Is Node"       default="$InventoryInput$4#" editable="false" />
+                  <UserInput id="6#" label="Is Network"    default="$InventoryInput$5#" editable="false" />
+                  <UserInput id="7#" label="Is Interface"  default="$InventoryInput$6#" editable="false" />
+                  <UserInput id="8#" label="Community"     default="$InventoryInput$7#" editable="false" />
+                  <UserInput id="9#" label="Net Mask"      default="$InventoryInput$8#" editable="false" />
+              </Form>
+          </Stage>
+</Template>

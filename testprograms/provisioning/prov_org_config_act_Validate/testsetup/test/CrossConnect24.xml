@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="" owner=""  
+	finish="Provision"
+          description="This template configures Device TDM cross connects using TL1. startTL1Simulator script can be used 
+for simulating a TL1 agent. It is available under &lt;Product Home&gt;/bin directory." >
+
+    <Stage label="1#">
+		<Form id="1#" title="Cross Connect" description="Configures Device TDM Cross Connects using TL-1. startTL1Simulator script can be used for simulating a TL1 agent. It is available under &lt;Product Home&gt;/bin directory." > 
+			<UserInput id="1" name="destHost" label="TL-1 Device" default="$TemplateParam$HOST" editable="false" />
+			<UserInput id="scard" name="scard" label="First TP Card" default="ST1-8-1" />
+			<UserInput id="dcard" name="dcard" label="Second TP Card" default="ST1-15-1" />
+			<UserInput id="schan" name="schan" label="First TP DS0 Channel" default="1" editable="false" >
+				<Qualifier type="choice" >
+					<Enum name="DS0 Chan 0" value="0" />
+					<Enum name="DS0 Chan 1" value="1" />
+					<Enum name="DS0 Chan 2" value="2" />
+					<Enum name="DS0 Chan 3" value="3" />
+					<Enum name="DS0 Chan 4" value="4" />
+					<Enum name="DS0 Chan 5" value="5" />
+					<Enum name="DS0 Chan 6" value="6" />
+					<Enum name="DS0 Chan 7" value="7" />
+					<Enum name="DS0 Chan 8" value="8" />
+					<Enum name="DS0 Chan 9" value="9" />
+					<Enum name="DS0 Chan 10" value="10" />
+					<Enum name="DS0 Chan 11" value="11" />
+					<Enum name="DS0 Chan 12" value="12" />
+					<Enum name="DS0 Chan 13" value="13" />
+					<Enum name="DS0 Chan 14" value="14" />
+					<Enum name="DS0 Chan 15" value="15" />
+					<Enum name="DS0 Chan 16" value="16" />
+					<Enum name="DS0 Chan 17" value="17" />
+					<Enum name="DS0 Chan 18" value="18" />
+					<Enum name="DS0 Chan 19" value="19" />
+					<Enum name="DS0 Chan 20" value="20" />
+					<Enum name="DS0 Chan 21" value="21" />
+					<Enum name="DS0 Chan 22" value="22" />
+					<Enum name="DS0 Chan 23" value="23" />
+				</Qualifier>
+			</UserInput>	 
+			<UserInput id="dchan" name="dchan" label="Second TP DS0 Channel" default="1" editable="false">
+				<Qualifier type="choice" >
+					<Enum name="DS0 Chan 0" value="0" />
+					<Enum name="DS0 Chan 1" value="1" />
+					<Enum name="DS0 Chan 2" value="2" />
+					<Enum name="DS0 Chan 3" value="3" />
+					<Enum name="DS0 Chan 4" value="4" />
+					<Enum name="DS0 Chan 5" value="5" />
+					<Enum name="DS0 Chan 6" value="6" />
+					<Enum name="DS0 Chan 7" value="7" />
+					<Enum name="DS0 Chan 8" value="8" />
+					<Enum name="DS0 Chan 9" value="9" />
+					<Enum name="DS0 Chan 10" value="10" />
+					<Enum name="DS0 Chan 11" value="11" />
+					<Enum name="DS0 Chan 12" value="12" />
+					<Enum name="DS0 Chan 13" value="13" />
+					<Enum name="DS0 Chan 14" value="14" />
+					<Enum name="DS0 Chan 15" value="15" />
+					<Enum name="DS0 Chan 16" value="16" />
+					<Enum name="DS0 Chan 17" value="17" />
+					<Enum name="DS0 Chan 18" value="18" />
+					<Enum name="DS0 Chan 19" value="19" />
+					<Enum name="DS0 Chan 20" value="20" />
+					<Enum name="DS0 Chan 21" value="21" />
+					<Enum name="DS0 Chan 22" value="22" />
+					<Enum name="DS0 Chan 23" value="23" />
+				</Qualifier>
+			</UserInput>	 
+
+		 </Form>
+
+		 <Form id="2#" title="TL-1 Connectivity" description="Details of TL-1 Communication parameters and login information. startTL1Simulator script can be used for simulating a TL1 agent. It is available under &lt;Product Home&gt;/bin directory." > 
+				<UserInput id="next1" name="destHost" label="TL-1 Device" default="$TemplateParam$HOST" editable="false" />
+				<UserInput id="2" name="port" label="TL-1 Port" default="289" >
+					<Qualifier type="numerictextfield" />
+				 </UserInput>	 
+
+				<UserInput id="4" name="CommandCode" label="Log Command" default="ACT-USER" />
+				<UserInput id="5" name="TargetID" label="Target ID" default="" />
+				<UserInput id="6" name="AcessID" label="Access ID" default="ROOT" />
+				<UserInput id="7" name="GeneralBlock" label="General Block" default="" />
+				<UserInput id="8" name="MessagePayload Block" label="Message Payload Block" default="" />
+		 </Form>
+
+		 <ConfigTask 	taskName="TL1Task1" isNewTask="true" 
+			 isOverwrite="true" isSequential="false" >
+			<ProtocolMap name="tl1" >
+				<Device host="$TemplateParam$HOST" port="$UserInput$2"/>
+			</ProtocolMap>
+			<!-- login info -->
+			<Attribute 	identifier="$UserInput$4" commandCode="$UserInput$4" 
+						targetID="$UserInput$5" accessID="$UserInput$6" 
+						generalBlock="$UserInput$7" messagePayLoadBlock="$UserInput$8" />
+
+			<!-- configuration attributes -->
+			<Attribute 	identifier="ENT-TP" commandCode="ENT-TP" 
+						targetID="" accessID="" 
+						generalBlock="" messagePayLoadBlock="FAC=$UserInput$scard,DSO=1,TYPE=VSIG,DTYPE=NONE,LBCFG=OFF" />
+			<Attribute 	identifier="RTRV-TP" commandCode="RTRV-TP"
+						accessID="$UserInput$scard" targetID="" 
+						generalBlock="" messagePayLoadBlock="" />
+			<Attribute 	identifier="ENT-TP" commandCode="ENT-TP"
+						targetID="" accessID="" generalBlock="" 
+						messagePayLoadBlock="FAC=$UserInput$dcard,DSO=1,TYPE=VSIG,DTYPE=NONE,LBCFG=OFF" />
+			<Attribute 	identifier="RTRV-TP" commandCode="RTRV-TP"
+						accessID="$UserInput$dcard" targetID=""
+						generalBlock="" messagePayLoadBlock="" />
+			<Attribute 	identifier="ENT-CRS-DS0" commandCode="ENT-CRS-DS0"
+						targetID="" accessID=""
+						generalBlock="" messagePayLoadBlock="TPLST=1&amp;2,TYPE=DATA,PST=IS,NAME=427-5487" />
+		 </ConfigTask>
+	</Stage>
+</Template>

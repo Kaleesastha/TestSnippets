@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Template name="IPRoutingConfiguration" owner="root" finish="Provision" description="This template performs IP routing configuration using telnet to manipulate network routing table. This template can be provisioned only if there is a permission to login as superuser on the remotehost in which this configuration is to be done. To make this template work with SOLARIS uncomment the commented tags." displayForms="tab" autoDeregister="true" clientID="22" stageId="1#" formId="1#,2#">
+
+	<Stage label="1#">
+		<Form id="1#" title="IP Routing Configuration via Telnet: Connection Parameters" description="An example template to perform IP routing configuration using telnet to manipulate network routing table. This template can be provisioned only if there is a permission to login as superuser on the remotehost in which this configuration is to be done. To make this template work with SOLARIS uncomment the commented tags.">
+			<UserInput id="1" name="TaskName" label="Task Identifier " default="RouterConfigTask1" required="false" editable="true"/>
+			<UserInput id="2" name="remoteHost" label="Remote Host" default="confighost.com" editable="false" required="false"/>
+			<UserInput id="3" name="telnetPort" label="Telnet Port" default="23" required="false" editable="true">
+				<Qualifier type="numerictextfield" range="1-65535"/>
+			</UserInput>
+
+			<UserInput id="4" name="loginName" label="Login Name" default="root" required="false" editable="true"/>
+			<UserInput id="5" name="password" label="Password" default="" required="false" editable="true">
+				<Qualifier type="passwordfield"/>
+			</UserInput>	
+
+			<UserInput id="6" name="loginPrompt" label="Login Prompt" default="login:" required="false" editable="true"/>
+			<UserInput id="7" name="passwordPrompt" label="Password Prompt" default="Password:" required="false" editable="true"/>
+			<UserInput id="8" name="shellPrompt" label="Shell Prompt" default="$" required="false" editable="true"/>
+		</Form>
+
+		<Form id="2#" title="Routing Table Entry" description="Enter the routing attributes">
+			<UserInput id="9" name="operation" label="Operation" editable="false" required="false">
+				<Qualifier type="choice">
+					<Enum name="Add Route" value="add"/>
+
+					<!-- the delete option in LINUX. Comment out this for SOLARIS -->
+					<Enum name="Delete Route" value="del"/>
+
+					<!-- uncomment the below Enum for SOLARIS -->
+					<!--
+					<Enum name="Delete Route" value="delete" />
+					-->
+				</Qualifier>	
+			</UserInput>
+			<UserInput id="10" name="target" label="Target" editable="false" required="false">
+				<Qualifier type="choice">
+					<Enum name="Network" value="-net"/>
+					<Enum name="Host" value="-host"/>
+				</Qualifier>	
+			</UserInput>
+			<UserInput id="11" name="targetip" label="Target IP/NAME" required="false" editable="true">
+				<Qualifier type="ipaddressfield"/>
+			</UserInput>	
+			<UserInput id="12" name="netmask" label="Netmask" default="0.0.0.0" editable="false" required="false">
+				<Qualifier type="choice">
+					<Enum name="255.255.255.255" value="255.255.255.255"/>
+					<Enum name="255.255.255.0" value="255.255.255.0"/>
+					<Enum name="255.255.0.0" value="255.255.0.0"/>
+					<Enum name="255.0.0.0" value="255.0.0.0"/>
+					<Enum name="0.0.0.0" value="0.0.0.0"/>
+				</Qualifier>
+			</UserInput>	
+			<UserInput id="13" name="gateway" label="Gateway" default="0.0.0.0" required="false" editable="true">
+				<Qualifier type="ipaddressfield"/>
+			</UserInput>	
+
+		</Form>
+
+		<ConfigTask taskName="$UserInput$1" isNewTask="true" isOverwrite="true" isSequential="false" persistence="true" deviceResult="false" isTemplate="false" rollbackNeeded="false" version="1.0">
+			<ProtocolMap name="telnet">
+				<Device host="$UserInput$2" port="$UserInput$3" loginName="$UserInput$4" password="$UserInput$5" loginPrompt="$UserInput$6" passwordPrompt="$UserInput$7" shellPrompt="$UserInput$8" retries="3" timeout="5000"/>
+			</ProtocolMap>
+			<!-- for LINUX -->
+			<Attribute identifier="/sbin/route $UserInput$9 $UserInput$10 $UserInput$11 netmask $UserInput$12 gw $UserInput$13" value="$UserInput$8"/>
+
+			<!-- for SOLARIS -->
+			<!--
+			<Attribute 	identifier="/usr/sbin/route $UserInput$9 $UserInput$10 $UserInput$11 -netmask $UserInput$12 $UserInput$13" value="$UserInput$8" />
+			-->
+
+		</ConfigTask>
+	</Stage>
+</Template>
+

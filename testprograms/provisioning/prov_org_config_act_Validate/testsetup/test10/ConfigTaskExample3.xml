@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE Template SYSTEM "Template.dtd">
+<Template name="ConfigTaskExample3" owner="root" finish="Provision" 
+    description="This template sets System Location for two devices using SNMP and if configuration fails for any device 
+then rollback is done." >
+    <Stage label="1#"> 
+        <Form id="1#" title="RollbackExample" description="Form accepts Host1 and Host 2 whose System Location will be set.">
+            <UserInput id="1#" label="Host1"            default="localhost" />
+            <UserInput id="2#" label="Host2"            default="localhost" />
+            <UserInput id="3#" label="System Location"  default="" />
+        </Form>
+
+        <ConfigTask taskName="ConfigTask3" isNewTask="true" isOverwrite="true" isSequential="false" 
+            rollbackNeeded="true" rollbackType="1"  >
+            <ProtocolMap  name="snmp" > <!--The protocol used to communicate with the device -->
+				<Device community="public" host="$UserInput$1#" port="161" retries="3" timeout="5000" version="v1" />
+				<Device community="public" host="$UserInput$2#" port="161" retries="3" timeout="5000" version="v1" />
+			</ProtocolMap>
+            <Attribute identifier="1.6.0" type="4" label="sysLocation" value="$UserInput$3#"/>
+		</ConfigTask>
+    </Stage>
+</Template>
+

@@ -1,0 +1,66 @@
+
+ORG-CONFIG-ACT-001	RESULT:ATM_Virtual_Connection	CrossConnect	IPRoutingConfiguration	ViewMOProps	
+ORG-CONFIG-ACT-002	RESULT:IllegalArgumentException Path cannot be null
+ORG-CONFIG-ACT-003	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-004	RESULT:ATM_Virtual_Connection	CrossConnect	IPRoutingConfiguration	ViewMOProps	
+ORG-CONFIG-ACT-005	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-006	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-007	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-7.1	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-008	RESULT:ConfigTaskExample1	RoutingConfiguration	TelnetTaskTemplate	
+ORG-CONFIG-ACT-009	RESULT:ConfigTaskExample	TelnetTaskTemplate	TimeBasedScheduling	
+ORG-CONFIG-ACT-010	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-011	RESULT:null
+ORG-CONFIG-ACT-012	RESULT:null
+ORG-CONFIG-ACT-013	RESULT:IllegalArgumentException Invalid Path 
+ORG-CONFIG-ACT-014	RESULT:ATM_Virtual_Connection	
+ORG-CONFIG-ACT-015	RESULT:IPRoutingConfiguration	
+ORG-CONFIG-ACT-016	RESULT:null
+ORG-CONFIG-ACT-017	RESULT:CrossConnect	
+ORG-CONFIG-ACT-018	RESULT:CrossConnect	
+ORG-CONFIG-ACT-019	RESULT:CrossConnect	
+ORG-CONFIG-ACT-020	RESULT:CrossConnect	
+ORG-CONFIG-ACT-021	RESULT:CrossConnect	
+ORG-CONFIG-ACT-022	RESULT:CrossConnect	
+ORG-CONFIG-ACT-023	RESULT:CrossConnect	
+ORG-CONFIG-ACT-024	RESULT:CrossConnect	
+ORG-CONFIG-ACT-025	RESULT:null
+ORG-CONFIG-ACT-026	RESULT:<TemplateParams><Property name="HOST" value="" /></TemplateParams>
+ORG-CONFIG-ACT-027	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-028	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatenam
+ORG-CONFIG-ACT-029	RESULT:TemplateNotFoundException  No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-030	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-031	RESULT:TemplateNotFoundException  No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-032	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-033	RESULT:<TemplateParams><Property name="DestinationPort" value="" /><Property name="Destination" value="" /><Property name="Source" value="" /><Property name="SourcePort" value="" /></TemplateParams>
+ORG-CONFIG-ACT-034	RESULT:IllegalArgumentException Path cannot be null
+ORG-CONFIG-ACT-035	RESULT:IllegalArgumentException Path cannot be null
+ORG-CONFIG-ACT-036	RESULT:<TemplateParams><Property name="HOST" value="" /></TemplateParams>
+ORG-CONFIG-ACT-037	RESULT:<TemplateParams><Property name="WHEN" value="" /></TemplateParams>
+ORG-CONFIG-ACT-038	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-039	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-040	RESULT:TemplateNotFoundException  No Template exists with the name       
+ORG-CONFIG-ACT-041	RESULT:<TemplateParams />
+ORG-CONFIG-ACT-41.1	RESULT:TemplateNotFoundException  No Template exists with the name   CrossConnect1
+ORG-CONFIG-ACT-042	RESULT:<TemplateParams><Property name="HOST" value="" /></TemplateParams>
+ORG-CONFIG-ACT-043	RESULT:TemplateNotFoundException  No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-044	RESULT:TemplateNotFoundException  No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-045	RESULT:IPRoutingConfiguration.xml
+ORG-CONFIG-ACT-046	RESULT:TemplateNotFoundException No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-047	RESULT:TemplateInitializationException Getting Template named   IPRoutingConfiguration   in the directory with params:<TemplateParams><Property name="POST" value="invalidhost.com" /></TemplateParams>
+ORG-CONFIG-ACT-048	RESULT:IPRoutingConfiguration.xml
+ORG-CONFIG-ACT-049	RESULT:IllegalArgumentException Path cannot be null
+ORG-CONFIG-ACT-050	RESULT:TemplateNotFoundException No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-051	RESULT:TemplateNotFoundException No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-052	RESULT:TemplateNotFoundException No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-053	RESULT:TemplateNotFoundException No Template exists with the name   IPRoutingConfiguration
+ORG-CONFIG-ACT-054	RESULT:RoutingConfiguration.xml
+ORG-CONFIG-ACT-055	RESULT:TemplateNotFoundException No Template exists with the name    
+ORG-CONFIG-ACT-056	RESULT:TimeBasedScheduling.xml
+ORG-CONFIG-ACT-057	RESULT:TemplateNotFoundException No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-058	RESULT:TemplateInitializationException Getting Template named   TimeBasedScheduling   in the directory with params:<TemplateParams><Property name="HOST" value="invalid host.com" /></TemplateParams>
+ORG-CONFIG-ACT-059	RESULT:ConfigTaskExample.xml
+ORG-CONFIG-ACT-060	RESULT:TelnetTaskTemplate.xml
+ORG-CONFIG-ACT-061	RESULT:ConfigTaskExample1.xml
+ORG-CONFIG-ACT-062	RESULT:TemplateNotFoundException No Template exists with the name   non existing templatename
+ORG-CONFIG-ACT-063	RESULT:TemplateInitializationException Getting Template named   CrossConnect1   in the directory with params:<TemplateParams><Property name="HOST" value="invalid host.com" /></TemplateParams> 
