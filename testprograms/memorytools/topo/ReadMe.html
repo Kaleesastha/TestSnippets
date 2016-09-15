@@ -1,0 +1,60 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+</head>
+<body>
+&nbsp;
+<br>README&nbsp;FOR&nbsp;VARIOUS&nbsp;FILES
+<br>&nbsp;
+<p>1. <font size=+1>AddNetwork.java</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Module: TOPO
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This adds the the Network
+object and deletes the same object in an indefinite loop using TopoAPI.
+It takes the "hostname" to lookup the TopoAPI and then the "Network Address"&nbsp;
+which is to be added and deleted.The same can be invoked using the addNetwork.sh
+file which calls the class.
+<p>&nbsp;Usage:&nbsp; java AddNetwork &lt;hostName>&nbsp; &lt;Network Address>
+.
+<br>&nbsp;
+<p>2.&nbsp; <font size=+1>MyAlertClient.java</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Module: SAS
+<br>&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This starts the Application
+Client and creates an Custom View and Removes the same.This can be invoked
+using the "myAlertClient.sh" file which invokes the class.The host,web-server
+port, user name and password needs to edited in the "MyAlertClient.java"
+file.
+<p>&nbsp;Usage:&nbsp;&nbsp; java&nbsp; MyAlertClient&nbsp;
+<br>&nbsp;
+<p>3. AddObjects.java
+<br>&nbsp;&nbsp;&nbsp; Module: TOPO
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It adds the ManagedObjects
+to the database using the TopoAPI.
+<p>&nbsp;&nbsp;&nbsp; Usage:&nbsp; java AddObjects
+<br>&nbsp;
+<p>4.&nbsp; TopoTest.java
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Module: TOPO
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This adds,delets and updates
+the object in different order in different thread.
+<p>&nbsp;&nbsp;&nbsp; Usage: java TopoTest &lt;hostName>
+<p>5.&nbsp;&nbsp; TopoNotification.java
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Module: TOPO
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This class
+registers ifself as various observers and deregisters.To check if the observers
+are getting registered and deregistered properly.
+<p>&nbsp;&nbsp;&nbsp; Usage:&nbsp; java TopoNotification &lt;host>
+<br>&nbsp;
+<br>6.&nbsp;&nbsp; MapAPITest.java
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Module:&nbsp; MAP
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; All
+the MAP Api methods can be invoked through this.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

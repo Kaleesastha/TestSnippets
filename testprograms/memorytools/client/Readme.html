@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>ReadMe for memory testing</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<b>Contents :</b><br>
+<br>
+&nbsp; <a href="#Introduction_:">1.Introduction<br>
+</a><br>
+<a href="#Files_to_automate_various_tasks_::">&nbsp; 2.Files to automate
+various tasks</a><br>
+<br>
+<a href="#About_WinRunner_Scripts:">&nbsp; 3.About WinrunnerScripts&nbsp;&nbsp;
+&nbsp; &nbsp;<br>
+<br>
+</a><a href="#What_we_have_done:">&nbsp; 4. What we have done</a><br>
+<br>
+<a href="#Things_to_do_:">&nbsp; 5.Things to do </a><br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br>
+<br>
+<b><a name="Introduction_:"></a>Introduction :</b><br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;This file will help you to kick start the
+memory testing operation. Here we have listed the various files which we
+have used in the last memory testing operation. Use a&nbsp; high end machine
+( 512MB ram ) for memory testing. Our aim of the operation is to, restrict
+the unnecessary object creation, in other words to avoid memory leaks. This
+operation would not have direct impact on performance of the application.<br>
+<br>
+<b><a name="Files_to_automate_various_tasks_::"></a>Files to automate various
+tasks ::</b><br>
+<br>
+&nbsp; You can use the following files to automate the tasks like tree selection,
+menu clicks etc., " &lt; CVS NmsSource dir &gt;\testprograms\memorytools\client
+"&nbsp; directory contains various java programs which can be used fire operations
+automatically.<br>
+<br>
+1. AddCustomView.java<br>
+<br>
+&nbsp;&nbsp; &nbsp;This file adds custom views repeatedly on clicking the
+menu item.<br>
+<br>
+2. SelectTreeNode.java<br>
+<br>
+&nbsp;&nbsp; &nbsp;This class selects all the tree nodes repeatedly.<br>
+<br>
+3.ClientLoader.java<br>
+<br>
+&nbsp;&nbsp; &nbsp;This is a class which extens AbstractNMSPanel.You can
+load this class in "NmsPanels.conf". This will select each tree nodes dynamically.
+You can put the for loop to select the nodes multiple times. <br>
+<br>
+<b><a name="About_WinRunner_Scripts:"></a>About WinRunner Scripts:</b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Winrunner is a testing tool
+for automating the various tasks carried out in a User Interface. We can
+use this tool for memory testing. We have automated the common task done
+by the user, using Winrunner. The scripts can be extracted from "WRscripts.zip"
+present in " &lt; CVS NmsSource dir &gt;\testprograms\memorytools\client
+". <br>
+<br>
+<b><a name="What_we_have_done:"></a>What we have done:</b><br>
+<br>
+&nbsp;&nbsp; &nbsp;This topic will let you know what are all the common tasks
+that can be carried out in the client . And these operations should be monitored
+for memory leaks. Following are the list of operations we have choosen to
+identify memory leaks.<br>
+<br>
+&nbsp;We have selected following operations for memory testing . I have classified
+the operation as three types.<br>
+<br>
+&nbsp;&nbsp;&nbsp; i) Menu Bar Operations<br>
+<br>
+&nbsp;&nbsp;&nbsp; ii) Tool Bar Operations<br>
+<br>
+&nbsp;&nbsp;&nbsp; iii) Tree Node Operations<br>
+&nbsp;<br>
+&nbsp;<br>
+Menu Bar Operations :<br>
+<br>
+i) Node Operations &nbsp;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; AddTreeNode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; ModifyTreeNode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; RemoveTreeNode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; MoveTreeNode&nbsp;
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Invoke the user
+interface for all the given operations and close the dialogs. Test the instances
+are disposed properly. While closing use "X" button to close<br>
+some the frames will not release the memory resources on closing through
+'X' button.<br>
+&nbsp;<br>
+ii) Broad Cast Message&nbsp; Broad cast message to clients, do close the
+dialog. Test instance created were disposed properly.<br>
+<br>
+iii) Custom Views<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - AddCV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ModifyCV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - RemoveCV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - RenameCV &nbsp;<br>
+iv) RunTime Administration<br>
+<br>
+v) Change Password<br>
+<br>
+vi) Apply Themes<br>
+<br>
+vii) Policy <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Add Policy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Delete Policy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Execute Policy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Stop Policy<br>
+&nbsp;<br>
+Tool Bar Operations :<br>
+<br>
+i) Traverse between panels<br>
+ii) Detach panels<br>
+iii) Refresh<br>
+iv)Search Sysmbol<br>
+<br>
+<br>
+Tree Node Operations : <br>
+<br>
+i)&nbsp; In map client<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Invoke properties
+dialog. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Add container <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - AddMap <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - DeleteMap <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ModifyMap <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - AddNode <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - AddNetwork <br>
+<br>
+vi)General Operations <br>
+&nbsp;&nbsp;&nbsp; - Internal frames operation <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-Detach frames <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-Close frames <br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp; - List view operations.<br>
+<br>
+<br>
+<br>
+<a name="Things_to_do_:"></a><b>Things to do :</b><br>
+<br>
+&nbsp;&nbsp; &nbsp;In the past we tested only the ApplicationClient for memory
+testing, we should <a href="#How_to_test_applet_client_:">start testing the
+Applet Client </a>&nbsp;and<br>
+HTML client also. This is important because a customer intimates the memory
+leak in applet client.The issue is as follows,<br>
+When we connect multiple client in the same browser window, the browser consumes
+more memory. We have listed below the <br>
+list of operations that has to be done ,<br>
+<br>
+<br>
+1. Test Applet Client <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Test connecting number of clients to the same browser window . Do the following
+steps to reproduce the issue.<br>
+<br>
+&nbsp;&nbsp; &nbsp;a.) Start a applet client in a browser with url " http://&lt;hostname&gt;:&lt;port&gt;
+"<br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;b.) Close the applet client.<br>
+<br>
+&nbsp;&nbsp; &nbsp;<br>
+&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;c.) Open another applet client (ie., http://localhost:9090
+) in the same browser<br>
+<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Do the steps 'a' to 'c' number of times
+, you can notice that the browser memroy usage increases when we connect
+to a new client.<br>
+<br>
+<b><a name="How_to_test_applet_client_:"></a>How to test applet client :</b><br>
+<br>
+If you use OptimizeIt tool to test the applet client in , do the following
+steps .,<br>
+<br>
+&nbsp;&nbsp;&nbsp; 1. Copy the resource files optit.jar present in the &nbsp;optimize
+tool to &nbsp;classes directory and set this in the classpath.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; 2. Set your system path variable to include the optimizeIt
+&nbsp; "lib" directory and the file "&lt;OptimizeIt Home&gt;/ lib/ oii.dll"<br>
+<br>
+&nbsp;&nbsp;&nbsp; 3. In the java plugin give the runtime parameter as &nbsp;-Xrunoii<br>
+<br>
+&nbsp;&nbsp;&nbsp; 4. Add the following code in class "NmsMainApplet.java"
+and update the NmsClientClasses.jar<br>
+<br>
+&nbsp;&nbsp;&nbsp; ------------------------------------------------------------------------------------------------<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ...................................<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;...................................<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; import intuitive.audit.Audit; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; public class NmsMainApplet extends
+JApplet implements Runnable, NmsPanelEventListener<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;  <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+static boolean isProfilerStarted = false; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; public void start
+()<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; if(!isProfilerStarted)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; /* Start OptimizeIt's profiler */ <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Audit.start(1470, Audit.PROFILERS_ALWAYS_ENABLED); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp;&nbsp; isProfilerStarted = true; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; }&nbsp;&nbsp;&nbsp; <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ................................................<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;................................................<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;} &nbsp;  <br>
+&nbsp;&nbsp;&nbsp; ------------------------------------------------------------------------------------------------<br>
+<br>
+&nbsp; &nbsp;Now we have started the optimizeIt audit system inside our code,
+you can attach the applet client using optimizeIt tool.<br>
+&nbsp;<br>
+<br>
+<hr width="100%" size="2">Happy Memory Testing .. All the Best !!!!!!<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+&nbsp;&nbsp; &nbsp;<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+</head>
+<body>
+&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<b>FAULT MEMORY OPERATIONS</b>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER WIDTH="100%" NOSAVE >
+<tr>
+<td>Sl. No</td>
+
+<td>Operation Name</td>
+
+<td>Description</td>
+</tr>
+
+<tr>
+<td>1</td>
+
+<td>Trap Processing</td>
+
+<td>After sending Snmp Traps, WebNMS System behavior should be noted.</td>
+</tr>
+
+<tr>
+<td>2</td>
+
+<td>TL1 Auto Messages Processing</td>
+
+<td>WebNMS system behavior after sending TL1 Auto Messages</td>
+</tr>
+
+<tr>
+<td>3</td>
+
+<td>XML Notification Processing</td>
+
+<td>WebNMS system behavior after sending XML Messages.</td>
+</tr>
+
+<tr>
+<td>4</td>
+
+<td>Event Processing</td>
+
+<td>Processing of Events which are added through EventAPI.addEvent method.</td>
+</tr>
+
+<tr>
+<td>5</td>
+
+<td>
+<br>Having the following filters/parsers and observers
+<br>according to the deployed condition.
+<br>&nbsp;
+<ul>
+<li>
+Parsers/Filters:</li>
+</ul>
+
+<ul>
+<ul>
+<li>
+TrapFilter</li>
+
+<li>
+TrapParser</li>
+
+<li>
+TL1Notification Filter</li>
+
+<li>
+Event Parser</li>
+
+<li>
+Event Filter</li>
+
+<li>
+EventToAlertCorrelator</li>
+
+<li>
+AlertFilter</li>
+
+<li>
+PropagationFilter</li>
+</ul>
+</ul>
+
+<ul>
+<li>
+Observers/Listeners</li>
+</ul>
+
+<ul>
+<ul>
+<li>
+SocketListener</li>
+
+<li>
+TrapObserver</li>
+
+<li>
+EventObserver</li>
+
+<li>
+AlertObserver</li>
+
+<li>
+AlertListener</li>
+</ul>
+</ul>
+</td>
+
+<td>Two parameters can be tested here.&nbsp;
+<ul>
+<li>
+Having normal number of filters/parsers and observers/listeners.</li>
+
+<li>
+Having reasonably high number of filters/parsers and observers/listeners</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>6</td>
+
+<td>Having db query in all/any of the above
+<br>listeners/observers or parsers/filters.</td>
+
+<td>Any database queries can be added here. For example Alert update, delete
+or MO fetch,MO update, MO delete</td>
+</tr>
+
+<tr>
+<td>7</td>
+
+<td>Fault Module start up options. The following parameters
+<br>needs closer look.
+<br>&nbsp;
+<ul>
+<li>
+EVENT_OBJECTS_IN_MEMORY</li>
+
+<li>
+MAX_EVENT_PROCESS_QUEUE</li>
+
+<li>
+ALERT_OBJECTS_IN_MEMORY</li>
+
+<li>
+TRANSIENT_TRAP_PDU_IN_EVENT</li>
+</ul>
+</td>
+
+<td>Various possible values should be identified and tested.</td>
+</tr>
+
+<tr>
+<td>8</td>
+
+<td>Doing the following operations simultaneously
+<br>in multiple threads.
+<br>&nbsp;
+<ul>
+<li>
+Updating Alert</li>
+
+<li>
+Pickup/unpick Alert</li>
+
+<li>
+Adding Annotations</li>
+
+<li>
+Clearing Alert</li>
+
+<li>
+Deleting Alert</li>
+
+<li>
+Alert update through Events</li>
+</ul>
+</td>
+
+<td>Each operation should be performed in individual threads so that
+<br>multiple operations, should be executed simultaneously.&nbsp;</td>
+</tr>
+</table>
+
+<br>&nbsp;
+<p><b>Additional Criteria:</b>
+<br>&nbsp;
+<ul>
+<li>
+More User Properties in Event and Alert</li>
+
+<li>
+Extension of Alert and Event</li>
+
+<li>
+More number of Server Sockets by means of SocketListener,TrapPorts and
+TL1 Ports</li>
+
+<li>
+More number of variable bindings in Snmp Traps</li>
+</ul>
+<b>Combinations:</b>
+<br>&nbsp;
+<ul>
+<li>
+Varying Input Rate of SnmpTraps, TL1 AutoMessages, XML Messages and Events.</li>
+
+<li>
+Varying Message size.</li>
+</ul>
+<b>Resource:</b>
+<ul>
+<li>
+Need one machine where server will run for days.</li>
+</ul>
+
+</body>
+</html>
