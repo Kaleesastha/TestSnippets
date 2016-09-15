@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- $Id: applnmon-tiles-defn.xml,v 1.1 2008/10/09 09:03:17 venkatramanan Exp $ -->
+
+ <!DOCTYPE tiles-definitions  PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+<!-- ======================Host Resource Data Collection========================-->
+
+ 
+    <definition name="applnmon" path="/webclient/common/jsp/MainLayout.jsp">
+         <put name="Tree" value=".tree.controller"/>
+	 <put name="Tab" value=".tab.controller"/>
+	 <put name="MainPage" value=""/>
+	 <put name="Footer" value="/webclient/common/jsp/MainFooter.jsp"/>
+    </definition>
+ 
+   <definition name="HRObjects" extends="applnmon">
+           <put name="MainPage" value="/webclient/applnmon/jsp/DisplayHRObjects.jsp"/>
+         </definition>
+   
+ 
+    <definition name="HRPage" extends="applnmon">
+          <put name="MainPage" value="/webclient/applnmon/jsp/HostResourceConfig.jsp"/>
+        </definition>
+
+    <definition name="configuredHRPage" extends="applnmon">
+          <put name="MainPage" value="/webclient/applnmon/jsp/HostResource.jsp"/>
+        </definition>
+        
+
+<!-- ==========================Oracle Data Collection ==============================-->
+
+   <definition name="ORAObjects" extends="applnmon">
+           <put name="MainPage" value="/webclient/applnmon/jsp/DisplayORAObjects.jsp"/>
+         </definition>
+
+
+  <definition name="ORAPage" extends="applnmon">
+            <put name="MainPage" value="/webclient/applnmon/jsp/OracleServersConfig.jsp"/>
+          </definition>
+
+
+  <definition name="configuredORAPage" extends="applnmon">
+        <put name="MainPage" value="/webclient/applnmon/jsp/OracleServerData.jsp"/>
+       </definition>
+
+  <definition name="nodriverwarning" extends="applnmon">
+        <put name="MainPage" value="/webclient/applnmon/jsp/DataCollectoinError.jsp"/>
+       </definition>
+
+  <definition name="tabledetails" extends="applnmon">
+        <put name="MainPage" value="/webclient/applnmon/jsp/TableDetails.jsp"/>
+       </definition>
+
+
+    <definition name=".tree.controller" path="/webclient/common/jsp/NavigationComponent.jsp" 
+    	controllerClass ="com.adventnet.nms.webclient.common.TreeAction">
+    </definition>
+
+    <definition name=".tab.controller" path="/webclient/common/jsp/TabComponent.jsp" 
+    	controllerClass ="com.adventnet.nms.webclient.common.TabAction">
+    </definition>
+   
+</tiles-definitions>
