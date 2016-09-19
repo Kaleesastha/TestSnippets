@@ -1,0 +1,4080 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- $Id: web-header.xml,v 1.9.6.2 2013/07/02 06:17:39 pradheep.v Exp $ -->
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <context-param>
+        <param-name>availableSkins</param-name>
+        <param-value>Gainsboro,NOC</param-value>
+    </context-param>          <context-param>         <param-name>DeviceQuery</param-name>         <param-value>true</param-value>         </context-param>          <context-param>         <param-name>defaultTree</param-name>         <param-value>SwipeTree</param-value>         </context-param>
+    <context-param>
+        <param-name>defaultSkin</param-name>
+        <param-value>Gainsboro</param-value>
+    </context-param>
+    <context-param>
+       <param-name>webClientStateFile</param-name>
+       <param-value>WebClientState.properties</param-value>
+    </context-param>
+    <context-param>
+        <param-name>searchViewLength</param-name>
+        <param-value>1000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>useWebClientImages</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+     <!--     <context-param>         <param-name>showPageLoadingTime</param-name>         <param-value>true</param-value>     </context-param>     -->     <context-param>         <param-name>ring</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.RingLayout</param-value>     </context-param>     <context-param>         <param-name>star</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.StarLayout</param-value>     </context-param>     <context-param>         <param-name>grid</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.NmsGridLayout</param-value>     </context-param>     <context-param>         <param-name>flow</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.NmsFlowLayout</param-value>     </context-param>     <context-param>         <param-name>switch</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.SwitchLayout</param-value>     </context-param>     <context-param>         <param-name>ethernet</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.EthernetLayout</param-value>     </context-param>     <context-param>         <param-name>exampleMapStatus</param-name>         <param-value>enabled</param-value>     </context-param>   <filter>     <filter-name>Compress</filter-name>     <filter-class>com.adventnet.nms.webclient.util.GZIPFilter</filter-class>   </filter>   <filter>     <filter-name>Cache</filter-name>     <filter-class>com.adventnet.nms.webclient.util.CacheFilter</filter-class>   </filter> <filter>
+     <filter-name>EncodingFilter</filter-name>
+     <filter-class>com.adventnet.nms.webclient.i18n.EncodingFilter</filter-class>
+	<init-param>
+		<param-name>CharacterEncoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>ContentType</param-name>
+		<param-value>text/html; charset=UTF-8</param-value>
+	</init-param>
+</filter>
+
+<filter>
+     <filter-name>AuthenticationFilter</filter-name>
+     <filter-class>com.adventnet.nms.webclient.login.AuthenticationFilter</filter-class>
+<!--
+     <init-param>
+                <param-name>excludeAuthentication</param-name>
+                <param-value>Login.jsp,Logout.do,LoginPage.do,WebStart,jnlp</param-value>
+     </init-param>
+-->
+     <init-param>
+                <param-name>excludeAuthentication</param-name>
+                <param-value>conf/mapSymbolProps.xml,/WebStart.jsp,/Login.jsp,/Logout.do,/LoginPage.do,WebStart,jnlp,css,/images/quote-right.gif,/images/quote-left.gif,/images/loginboxleft.gif,/images/loginboxright.gif,/advlogo2.gif,/loginboxleft.gif,loginboxright.gif,loginLogo.gif,/images/loginbg2.gif,/images/loginbg1.gif,/images/loginbg2.gif,/images/loginboxbg.gif,/images/loginboxleft.gif,/images/loginboxright.gif,/images/loginbutbg.gif,/images/rawHTMLHeader-Logo.gif,/help/index.html,/classes/NmsClientClasses.jar,/classes/AdventNetSnmp.jar,/classes/SNMPDebugger.jar,/classes/AdventNetSnmpV3USM.jar,/classes/ClientExamples.jar,/classes/JimiProClasses.jar,/classes/AdventNetUI.jar,/classes/ManagementClient.jar,/classes/AdventNetCLIClient.jar,/classes/AdventNetTL1.jar,/classes/AdventNetTL1Tools.jar,/classes/AdventNetUtils.jar,/classes/ApiUtils.jar,/NetMonitor/build/RuntimeConfigFrame.jar,/NetMonitor/build/AuthMain.jar,/NetMonitor/build/ConfigPanel.jar,/classes/AdventNetJta.jar,/classes/AdventNetAboutDialog.jar,/classes/AdventNetCCLLibrary.jar,/classes/AdventNetProBeans.jar,/classes/AdventNetDMPModels.jar,/classes/jfreechart.jar,/classes/jcommon.jar,/NetMonitor/build/PerformanceGraphs.jar,/images/adventneticon.jpg,/images/adventnet/adventnetlogo.gif,images/adventnet/topheader.jpg,/servlets/AuthenticationServlet,/servlets/GetChallengeServlet,/servlets/AuthenticationServlet,/servlets/ConnectionCheckServlet,/webclient/common/html/Login.html,/LoginPage.do,/Logout.do,/webclient/common/js/validation.js,/webclient/common/css/SteelBlue/style.css,/webclient/common/css/SteelBlue/webnms.css,/webclient/common/images/loginbg1.gif,/webclient/common/images/loginLogo.gif,/webclient/common/images/loginboxleft.gif,/webclient/common/images/loginboxright.gif,/webclient/common/images/quote-left.gif,/webclient/common/images/loginboxbg.gif,/webclient/common/images/loginbutbg.gif,/webclient/common/images/loginbg2.gif,/webclient/common/images/quote-right.gif,clientparameters.conf,/conf/help.conf,/conf/listIcon.data,/conf/mapIcon.data,NmsPanels.conf,SeverityInfo.conf,transportProvider.conf,images,Themes.conf,toolbar.xml,framemenu.xml,toolbar,FramesInfo.conf,AudioInfo.xml,,mibs,increments.conf,MenuFileParser,WebClientUrls.xml</param-value>
+     </init-param>
+</filter>
+ <filter-mapping>     <filter-name>Compress</filter-name>     <url-pattern>*.do</url-pattern> </filter-mapping>   <filter-mapping>
+     <filter-name>EncodingFilter</filter-name>
+     <url-pattern>*.do</url-pattern>
+</filter-mapping>
+<filter-mapping>
+     <filter-name>EncodingFilter</filter-name>
+     <url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+<!--
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>*.do</url-pattern>
+</filter-mapping>
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+-->
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<listener>
+     <listener-class>com.adventnet.nms.webclient.util.NmsServletContextAttributeListener</listener-class>
+</listener>          <listener>         <listener-class>com.adventnet.nms.webclient.util.SessionListener</listener-class>         </listener>
+
+<listener>
+     <listener-class>com.adventnet.nms.webclient.util.NmsHttpSessionAttributeListener</listener-class>
+</listener>
+
+<servlet>
+	<servlet-name>action</servlet-name>
+	<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+
+	<init-param>
+		<param-name>config</param-name>
+		<param-value>/webclient/common/conf/struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/fault</param-name>
+		<param-value>/webclient/fault/conf/fault-struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/topo</param-name>
+		<param-value>/webclient/topo/conf/topo-struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/map</param-name>
+		<param-value>/webclient/map/conf/map-struts-config.xml</param-value>          
+        </init-param>   
+
+        <init-param>    
+                <param-name>config/report</param-name>    
+                <param-value>/webclient/report/conf/report-struts-config.xml</param-value>
+	</init-param>
+
+        <init-param>
+                <param-name>config/perf</param-name>
+                <param-value>/webclient/perf/conf/perf-struts-config.xml</param-value>
+        </init-param>
+
+        <init-param>
+                <param-name>config/admin</param-name>
+                <param-value>/webclient/admin/conf/admin-struts-config.xml</param-value>     
+        </init-param> 
+        
+	<init-param>  
+                <param-name>config/home</param-name>
+                <param-value>/webclient/home/conf/home-struts-config.xml</param-value>
+        </init-param>
+
+	<init-param>
+                <param-name>config/config</param-name>
+                <param-value>/webclient/config/conf/config-struts-config.xml</param-value>     
+        </init-param> 
+
+	<init-param>
+		<param-name>debug</param-name>
+		<param-value>2</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>detail</param-name>
+		<param-value>2</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>validate</param-name>
+		<param-value>true</param-value>
+	</init-param>
+	<load-on-startup>2</load-on-startup>
+</servlet>
+
+<servlet>
+	<servlet-name>WebClientServlet</servlet-name>		
+	<servlet-class>com.adventnet.webclient.WebClientServlet</servlet-class>
+	<init-param>
+                <param-name>LOG_LEVEL</param-name>
+                <param-value>1000</param-value>
+        </init-param>
+	<load-on-startup>20</load-on-startup>
+</servlet>
+
+<servlet>
+	<servlet-name>ResourceInitializationServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.webclient.i18n.ResourceInitializationServlet</servlet-class>
+	<init-param>
+		<param-name>TopoModulePrefix</param-name>
+		<param-value>/topo</param-value>
+	</init-param>
+	<init-param>
+		<param-name>FaultModulePrefix</param-name>
+		<param-value>/fault</param-value>
+	</init-param>
+	<init-param>
+		<param-name>MapModulePrefix</param-name>
+		<param-value>/map</param-value>
+	</init-param>
+        <init-param>
+                <param-name>PerfModulePrefix</param-name>
+                <param-value>/perf</param-value>
+        </init-param>
+        <init-param>
+                <param-name>AdminModulePrefix</param-name>
+                <param-value>/admin</param-value>
+        </init-param>
+	<load-on-startup>200</load-on-startup>
+</servlet>
+
+<servlet>
+        <servlet-name>ReportInitializationServlet</servlet-name>
+        <servlet-class>com.adventnet.nms.webclient.performance.reports.ReportInitializationServlet</servlet-class>
+        <init-param>
+                <param-name>GraphInfoPath</param-name>
+                <param-value>webclient/perf/conf/GraphInfo.xml</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultReportType</param-name>
+                <param-value>INTERFACE_in_octets</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultGraphType</param-name>
+                <param-value>LineGraph</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultPeriod</param-name>
+                <param-value>today</param-value>
+        </init-param>
+       <init-param>
+                <param-name>GraphRenderPath</param-name>
+                <param-value>graphs/graph.jpg</param-value>
+        </init-param>
+       <init-param>
+                <param-name>JasperCompiledResource</param-name>
+                <param-value>webclient/perf/conf/TableReportFormat.xml.jasper</param-value>
+        </init-param>
+       <init-param>
+                <param-name>JasperHtmlDataPath</param-name>
+                <param-value>reports/ReportTable.html</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForDay</param-name>
+                <param-value>HH:mm</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForWeek</param-name>
+                <param-value>MMM, dd</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForMonth</param-name>
+                <param-value>MMM, dd</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForYear</param-name>
+                <param-value>MMM, dd</param-value>
+        </init-param>
+       <init-param>
+                <param-name>ReportPeriodList</param-name>
+                <param-value>today,past7days,past30days,custom</param-value>
+        </init-param>
+	<load-on-startup>200</load-on-startup>
+</servlet>
+
+<context-param>
+	<description>How long (in milliseconds) before automatically closing a session that hasn't
+	polled for screen updates. This value should exceed the slowRefreshInterval (suggested value is
+	twice this).</description>
+	<param-name>maxPollAge</param-name>
+	<param-value>20000</param-value>
+</context-param>
+
+<servlet>
+	<description>An AJAX terminal servlet</description>
+	<display-name>Terminal Emulation Servlet</display-name>
+	<servlet-name>terminal</servlet-name>
+	<servlet-class>com.adventnet.nms.webclient.fault.alarm.WebTerminalController</servlet-class>
+	<init-param>
+		<description>Slow refresh interval. When there is no keyboard activity, the terminal
+		will refresh more slowly to decrease bandwidth usage. This parameter defines the 
+		amount of time (in milliseconds) between each refresh when in this 'slow' mode.</description>
+		<param-name>slowRefreshInterval</param-name>
+		<param-value>5000</param-value>
+	</init-param>
+	<init-param>
+		<description>Normal refresh interval. When there is current or recent keyboard activity, the terminal
+		will refresh quickly to increase responsiveness. This parameter defines the 
+		amount of time (in milliseconds) between each refresh.</description>
+		<param-name>refreshInterval</param-name>
+		<param-value>100</param-value>
+	</init-param>
+	<init-param>
+		<description>Key delay. The amount of time (in milliseconds) after a keypress before a refresh
+		request is sent. If another key is received before this time elapses, the timer is reset.</description>
+		<param-name>keyDelay</param-name>
+		<param-value>350</param-value>
+	</init-param>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>terminal</servlet-name>
+	<url-pattern>/t</url-pattern>
+</servlet-mapping>
+
+<listener>
+	<listener-class>com.sshtools.terminal.web.WebContextListener</listener-class>
+</listener>
+
+    <servlet>
+        <servlet-name>AuthenticationServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.AuthenticationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JMXServlet</servlet-name>
+        <servlet-class>Jmx_dynamic</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AvgReportServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.AvgReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BaseDBServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BaseDBServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BaseReportServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BaseReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ChangePasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ConnectionCheckServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ConnectionCheckServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DBGraph</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.DBGraph</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FetchAppletParameters</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchAppletParameters</servlet-class>
+    </servlet>
+<!--
+    <servlet>
+        <servlet-name>FetchFile</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchFile</servlet-class>
+    </servlet>
+-->
+
+    <servlet>
+        <servlet-name>FetchPollData</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchPollData</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetChallengeServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.GetChallengeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetTreeFromDB</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.GetTreeFromDB</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MenuFileParser</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.MenuFileParser</servlet-class>
+    </servlet>
+
+    <servlet>
+	<servlet-name>MibTableServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.MibTableServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NetMonitorPluginServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.NetMonitorPluginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NetMonitorServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.NetMonitorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PollerShutdown</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.PollerShutdown</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PollerStatus</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.PollerStatus</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SaveFrameSizeServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.SaveFrameSizeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ShutDown</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ShutDown</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StartClientServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.StartClientServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TerminateClientServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.TerminateClientServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BannerServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BannerServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <servlet-class>com.adventnet.nms.servlets.FileUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+		<servlet-name>PingActionServlet</servlet-name>
+    		<servlet-class>com.adventnet.nms.servlets.PingActionServlet</servlet-class>
+    </servlet>
+
+
+<!--
+Automatically created by Apache Tomcat JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>org.apache.jsp.jsp.ProcessLogin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.jsp.ProcessLogin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.jsp.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.jsp.WebStart_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.jsp.WebStart_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ProcessLogin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.ProcessLogin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.WebStart_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.WebStart_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addContainer_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addContainer_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.AddGMapForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.AddGMapForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addLink_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addLink_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addSymbol_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addSymbol_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.SetGMapKey_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.SetGMapKey_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addMapFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.viewSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.viewSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addExampleHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addExampleHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.exampleLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.exampleLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.relationshipSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.relationshipSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapMenu_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addMapMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.GMapBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.GMapBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapProps_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapProps_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.managedSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.managedSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.map_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.map_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.MoreFewComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.MoreFewComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addMapHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.containerSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.containerSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addMapBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapDetailsTabLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapDetailsTabLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapSymbolDetailsHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapSymbolDetailsHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.baseSymbolDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.baseSymbolDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.MapCustomLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.MapCustomLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMoreFewFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.addMoreFewFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.map.jsp.mapLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.v3SettingForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.v3SettingForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp._404error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp._404error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.ShowColumns_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.ShowColumns_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.logo_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.logo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.EditWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.EditWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.skinSelection_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.skinSelection_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SimpleTree_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.SimpleTree_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MessagePage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.MessagePage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.ErrorPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.ErrorPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.uploadFile_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.uploadFile_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.setSelectedSkin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.setSelectedSkin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.mailer_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.mailer_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.passwordExpiry_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.passwordExpiry_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.TabComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.TabComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SwipeTree_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.SwipeTree_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.NavigationComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.NavigationComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MainFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.MainFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.DateInput_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.DateInput_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.searchFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.searchFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.uploadFeedback_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.uploadFeedback_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.updated_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.updated_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.listViewLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.listViewLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.feedbackThanks_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.feedbackThanks_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MibBrowser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.MibBrowser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.support_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.support_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SearchLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.SearchLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.rightLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.rightLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.rightPanelList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.rightPanelList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.instantFeedback_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.instantFeedback_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.redirectPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.redirectPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.PageNavigation_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.PageNavigation_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SearchComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.SearchComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MainLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.MainLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.supportedBrowser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.supportedBrowser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.preLogin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.preLogin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.Login_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.Login_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.commonModalBoxes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.common.jsp.commonModalBoxes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.ShowHelp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.ShowHelp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfHeaderInclude_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.perfHeaderInclude_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.moperfView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.moperfView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.perfList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.addCVBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVSearchFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.addCVSearchFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.ModifyPollingObjectsForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.ModifyPollingObjectsForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.result_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.result_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfViewStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.perfViewStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.Threshold_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.Threshold_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.StatsProperties_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.StatsProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.addCVFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.moperfListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.moperfListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeviceOIDsList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.DeviceOIDsList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.reportsIndex_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.reportsIndex_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.viewPerfReports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.viewPerfReports_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.listViewLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.listViewLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.perfListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.OIDSelector_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.OIDSelector_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.MatchCriteria_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.MatchCriteria_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeletePollingObjectsForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.DeletePollingObjectsForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeviceTypesList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.DeviceTypesList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.addCVHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfViewIncludes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.perfViewIncludes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.AddPollingObjectsForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.perf.jsp.AddPollingObjectsForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listViewStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.listViewStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.attributeAudit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.attributeAudit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.configureDeviceList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.configureDeviceList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listHeaderInclude_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.listHeaderInclude_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.assignTask_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.assignTask_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.taskListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.taskForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.searchBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.searchComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.dataSourcePage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.dataSourcePage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.configureDataSource_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.configureDataSource_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.auditList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.auditList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.AddDeviceList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.AddDeviceList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listViewIncludes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.listViewIncludes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.searchHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.cvStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.cvStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.searchResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.ctForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.ctForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.redirectPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.redirectPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.taskList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.ManageDeviceList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.ManageDeviceList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.auditCVFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.config.jsp.auditCVFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.InventoryViewWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.InventoryViewWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.GraphsWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.GraphsWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.EditWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.EditWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.MapTreeViewWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.MapTreeViewWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.WidgetList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.WidgetList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.HomeLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.HomeLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ChartsWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.ChartsWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ModifyCctv_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.ModifyCctv_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.KPIWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.KPIWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.DashboardList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.DashboardList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.CpuReportWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.CpuReportWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AddModifyDashboard_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.AddModifyDashboard_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.InventoryViewWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.InventoryViewWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.HcGraphsWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.HcGraphsWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AssociateWidgetForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.AssociateWidgetForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AlarmsViewWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.AlarmsViewWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.Recite_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.Recite_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.TrafficReportWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.TrafficReportWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ListViewWidget_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.home.jsp.ListViewWidget_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeP6SpyForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.InvokeP6SpyForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ChangePassword_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.ChangePassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditOperationStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.auditOperationStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignGroup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.assignGroup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AddMultiUser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.AddMultiUser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.serverDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.serverDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.authAuditListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.authAuditListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SaveEventFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.SaveEventFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.backEndStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.backEndStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loggingConfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.loggingConfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.shutDown_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.shutDown_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.JVMGraph_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.JVMGraph_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.criteriaBasedDiscovery_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.criteriaBasedDiscovery_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.runtimeAdmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.runtimeAdmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.OperationTree_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.OperationTree_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SaveAlertFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.SaveAlertFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.StatusMessage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.StatusMessage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LogsMonitor_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.LogsMonitor_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MailAppenderList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.MailAppenderList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.MibForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.resyncne_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.resyncne_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.backupdata_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.backupdata_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventFilterMainUI_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.EventFilterMainUI_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeEventFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.InvokeEventFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.frontEndStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.frontEndStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.JS_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.JS_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignUser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.assignUser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.trapParserForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.trapParserForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserConfigurationForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.EventParserConfigurationForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.Log4JLoggingForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.Log4JLoggingForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.clientStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.clientStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.schedulerStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.schedulerStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AddUser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.AddUser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LoadEventFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.LoadEventFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.customFilterActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.customFilterActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.serverLogs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.serverLogs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.UploadMibForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.UploadMibForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.rediscoveryschedular_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.rediscoveryschedular_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserFileLoading_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.EventParserFileLoading_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.DisplayNotificationMainUI_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.DisplayNotificationMainUI_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.userAdmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.userAdmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.StandbyServerDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.StandbyServerDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.perfStatistics_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.perfStatistics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.runCommandActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.runCommandActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.Log4JAppenderForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.Log4JAppenderForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibBrowserJS_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.MibBrowserJS_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.groupAdmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.groupAdmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.suppressActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.suppressActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LoadAlertFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.LoadAlertFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.redirectAssign_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.redirectAssign_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sysAdmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.sysAdmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.configureDiscParams_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.configureDiscParams_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.EventParserList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.customViewScope_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.customViewScope_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.QueryTableResult_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.QueryTableResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.webnmsDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.webnmsDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.CompleteAdminPanel_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.CompleteAdminPanel_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.listViewLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.listViewLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loggingForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.loggingForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.resyncnebackup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.resyncnebackup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ModifyGroup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.ModifyGroup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendEmailActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.sendEmailActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.QueryResult_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.QueryResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.RemoveUser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.RemoveUser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibBrowser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.MibBrowser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.authAuditHeaderIncludes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.authAuditHeaderIncludes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.UserToModify_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.UserToModify_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.RTAMultiThreadEAProcessing_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.RTAMultiThreadEAProcessing_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.perfInput_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.perfInput_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.WebNMSManagementUI_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.WebNMSManagementUI_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.searchResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.searchResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditTrailsView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.auditTrailsView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ModifyUserProfile_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.ModifyUserProfile_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.moduleDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.moduleDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendTrapActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.sendTrapActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SmsProfileSettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.SmsProfileSettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.logView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.logView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loadTrapParsers_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.loadTrapParsers_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.auditDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.faultStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.faultStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeAlertFilterForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.InvokeAlertFilterForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AdminPanel_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.AdminPanel_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.discStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.discStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignAuthScope_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.assignAuthScope_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.trapParserConfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.trapParserConfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AlertFilterMainUI_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.AlertFilterMainUI_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendSmsActionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.sendSmsActionForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ResultPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.ResultPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MailServerSettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.MailServerSettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.portStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.admin.jsp.portStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.KPICharts_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.KPICharts_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.CategoryBarChart_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.CategoryBarChart_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.CatVsSevFaultReport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.CatVsSevFaultReport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ReportsMainPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.ReportsMainPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.KPIReportsPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.KPIReportsPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.Reports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.Reports_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.TopReports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.TopReports_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.NavigationComponent_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.NavigationComponent_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ReportsPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.ReportsPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.TopNFaultReport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.TopNFaultReport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ShowReports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.ShowReports_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.reportModalBoxes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.reportModalBoxes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.FaultReportsView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.FaultReportsView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.AddReports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.AddReports_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ShowPrintView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.ShowPrintView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.WindowClose_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.WindowClose_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.SevAndCategoryFaultReport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.report.jsp.SevAndCategoryFaultReport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmSummary_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmSummary_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.listViewStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.listViewStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.operationResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.operationResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.accPieChart_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.accPieChart_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmProperties_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmProperties_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.printableAlarmList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.printableAlarmList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.assignResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.assignResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotationAndHistory_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.annotationAndHistory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.eventDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.assignAlarm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.assignAlarm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.eventList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.otherFailures_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.otherFailures_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotateAlarm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.annotateAlarm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventListHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.eventListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.listViewIncludes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.listViewIncludes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.searchHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.searchHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventCvForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.eventCvForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.faultModalBoxes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.faultModalBoxes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.cvStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.cvStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarms_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarms_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventHeaderInclude_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.eventHeaderInclude_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.searchResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.searchResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.mergeAnnotationAndHistory_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.mergeAnnotationAndHistory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotationResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.annotationResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.accPanel_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.accPanel_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.reDirect_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.reDirect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.printableEventList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.printableEventList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmHeaderInclude_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmHeaderInclude_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmSnapshot_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmSnapshot_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmCvForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.fault.jsp.alarmCvForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.generalTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.generalTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.portObjectTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.portObjectTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOGraphs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MOGraphs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ConfigSearchLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.ConfigSearchLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MODetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.operationResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.operationResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout2_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout2_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.networkAdminPanel_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.networkAdminPanel_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.discoveryTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.discoveryTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.monitoringTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.monitoringTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.interfaceTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.interfaceTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ResourceMonitor_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.ResourceMonitor_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.InterfaceTable_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.InterfaceTable_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout2_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout2_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout3_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout3_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.deviceTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.deviceTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addCVBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceNotes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.DeviceNotes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.refreshNodeResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.refreshNodeResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVSearchFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addCVSearchFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout1_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout1_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNode_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addNode_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.networkTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.networkTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout1_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout1_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.objectDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.objectDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchBody_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.searchBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryViewStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.inventoryViewStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addressTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addressTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.InventoryViewHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.InventoryViewHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout2_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout2_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.RecentAlarms_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.RecentAlarms_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.printableInventoryList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.printableInventoryList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addCVFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.relationshipTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.relationshipTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNetworkResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addNetworkResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.printerTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.printerTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceBaseLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.DeviceBaseLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout5_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout5_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpOIDsQueryResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.snmpOIDsQueryResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.nodeTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.nodeTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.inventoryList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ConfigSearchFooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.ConfigSearchFooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.switchObjectTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.switchObjectTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout4_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout4_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOActions_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MOActions_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpInterfaceTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.snmpInterfaceTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNetwork_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addNetwork_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.searchHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout2_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout2_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsLayout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabsLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.RouterGraph_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.RouterGraph_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.cvStatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.cvStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.searchResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.querySnmpOIDsMenu_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.querySnmpOIDsMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryHeaderInclude_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.inventoryHeaderInclude_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabDetailsHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.tabDetailsHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.PerformanceMonitors_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.PerformanceMonitors_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryViewIncludes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.inventoryViewIncludes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpNodeTabDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.snmpNodeTabDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout1_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout1_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addCVHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.detailsError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.detailsError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.objectDetailsHeader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.objectDetailsHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOPerfGraphs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.MOPerfGraphs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.refreshNode_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.refreshNode_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNodeResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.webclient.topo.jsp.addNodeResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.examples.webclient.DirectoryListing_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.examples.webclient.DirectoryListing_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.examples.webclient.PollGraphs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.examples.webclient.PollGraphs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.examples.webclient.perf.DailyWeeklyReports_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.examples.webclient.perf.DailyWeeklyReports_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.jsp.ProcessLogin_jsp</servlet-name>
+        <url-pattern>/jsp/ProcessLogin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.jsp.index_jsp</servlet-name>
+        <url-pattern>/jsp/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.jsp.WebStart_jsp</servlet-name>
+        <url-pattern>/jsp/WebStart.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ProcessLogin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/ProcessLogin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.index_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.WebStart_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/WebStart.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addContainer_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addContainer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.AddGMapForm_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/AddGMapForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addLink_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addLink.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addSymbol_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addSymbol.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.SetGMapKey_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/SetGMapKey.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapView_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapFooter_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addMapFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.viewSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/viewSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addExampleHeader_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addExampleHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.exampleLayout_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/exampleLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.relationshipSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/relationshipSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapMenu_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addMapMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.GMapBody_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/GMapBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapProps_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapProps.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.managedSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/managedSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.map_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/map.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.MoreFewComponent_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/MoreFewComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapHeader_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addMapHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.containerSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/containerSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMapBody_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addMapBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapDetailsTabLayout_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapDetailsTabLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapSymbolDetailsHeader_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapSymbolDetailsHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.baseSymbolDetails_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/baseSymbolDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.MapCustomLayout_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/MapCustomLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.addMoreFewFooter_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/addMoreFewFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.map.jsp.mapLayout_jsp</servlet-name>
+        <url-pattern>/webclient/map/jsp/mapLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.v3SettingForm_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/v3SettingForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp._404error_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/404error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.ShowColumns_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/ShowColumns.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.logo_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/logo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.EditWidget_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/EditWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.skinSelection_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/skinSelection.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SimpleTree_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/SimpleTree.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MessagePage_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/MessagePage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.ErrorPage_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/ErrorPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.uploadFile_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/uploadFile.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.setSelectedSkin_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/setSelectedSkin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.mailer_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/mailer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.passwordExpiry_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/passwordExpiry.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.TabComponent_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/TabComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SwipeTree_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/SwipeTree.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.NavigationComponent_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/NavigationComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MainFooter_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/MainFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.DateInput_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/DateInput.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.searchFooter_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/searchFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.uploadFeedback_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/uploadFeedback.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.updated_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/updated.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.listViewLayout_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/listViewLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.feedbackThanks_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/feedbackThanks.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MibBrowser_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/MibBrowser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.support_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/support.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SearchLayout_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/SearchLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.rightLayout_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/rightLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.rightPanelList_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/rightPanelList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.instantFeedback_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/instantFeedback.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.redirectPage_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/redirectPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.PageNavigation_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/PageNavigation.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.SearchComponent_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/SearchComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.MainLayout_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/MainLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.supportedBrowser_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/supportedBrowser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.preLogin_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/preLogin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.Login_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/Login.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.common.jsp.commonModalBoxes_jsp</servlet-name>
+        <url-pattern>/webclient/common/jsp/commonModalBoxes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.ShowHelp_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/ShowHelp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfHeaderInclude_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/perfHeaderInclude.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.moperfView_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/moperfView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfList_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/perfList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVBody_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/addCVBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVSearchFooter_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/addCVSearchFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.ModifyPollingObjectsForm_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/ModifyPollingObjectsForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.result_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/result.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfViewStatus_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/perfViewStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.Threshold_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/Threshold.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.StatsProperties_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/StatsProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVFooter_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/addCVFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.moperfListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/moperfListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeviceOIDsList_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/DeviceOIDsList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.reportsIndex_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/reportsIndex.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.viewPerfReports_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/viewPerfReports.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.listViewLayout_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/listViewLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/perfListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.OIDSelector_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/OIDSelector.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.MatchCriteria_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/MatchCriteria.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeletePollingObjectsForm_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/DeletePollingObjectsForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.DeviceTypesList_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/DeviceTypesList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.addCVHeader_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/addCVHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.perfViewIncludes_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/perfViewIncludes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.perf.jsp.AddPollingObjectsForm_jsp</servlet-name>
+        <url-pattern>/webclient/perf/jsp/AddPollingObjectsForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listViewStatus_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/listViewStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.attributeAudit_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/attributeAudit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.configureDeviceList_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/configureDeviceList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listHeaderInclude_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/listHeaderInclude.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.assignTask_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/assignTask.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/taskListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskForm_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/taskForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchBody_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/searchBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchComponent_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/searchComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.dataSourcePage_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/dataSourcePage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.configureDataSource_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/configureDataSource.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.auditList_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/auditList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.AddDeviceList_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/AddDeviceList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.listViewIncludes_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/listViewIncludes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchHeader_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/searchHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.cvStatus_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/cvStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.searchResults_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/searchResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.ctForm_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/ctForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.redirectPage_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/redirectPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.taskList_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/taskList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.ManageDeviceList_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/ManageDeviceList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.config.jsp.auditCVFooter_jsp</servlet-name>
+        <url-pattern>/webclient/config/jsp/auditCVFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.InventoryViewWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/InventoryViewWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.GraphsWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/GraphsWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.EditWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/EditWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.MapTreeViewWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/MapTreeViewWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.WidgetList_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/WidgetList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.HomeLayout_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/HomeLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ChartsWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/ChartsWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ModifyCctv_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/ModifyCctv.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.KPIWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/KPIWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.DashboardList_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/DashboardList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.CpuReportWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/CpuReportWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AddModifyDashboard_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/AddModifyDashboard.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.InventoryViewWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/InventoryViewWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.HcGraphsWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/HcGraphsWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AssociateWidgetForm_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/AssociateWidgetForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.AlarmsViewWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/AlarmsViewWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.Recite_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/Recite.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.TrafficReportWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/TrafficReportWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.home.jsp.ListViewWidget_jsp</servlet-name>
+        <url-pattern>/webclient/home/jsp/ListViewWidget.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeP6SpyForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/InvokeP6SpyForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ChangePassword_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/ChangePassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditOperationStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/auditOperationStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignGroup_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/assignGroup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AddMultiUser_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/AddMultiUser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.serverDetails_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/serverDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.authAuditListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/authAuditListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SaveEventFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/SaveEventFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.backEndStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/backEndStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loggingConfig_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/loggingConfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.shutDown_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/shutDown.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.JVMGraph_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/JVMGraph.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.criteriaBasedDiscovery_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/criteriaBasedDiscovery.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.runtimeAdmin_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/runtimeAdmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.OperationTree_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/OperationTree.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SaveAlertFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/SaveAlertFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.StatusMessage_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/StatusMessage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LogsMonitor_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/LogsMonitor.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MailAppenderList_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/MailAppenderList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/MibForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.resyncne_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/resyncne.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.backupdata_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/backupdata.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventFilterMainUI_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/EventFilterMainUI.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeEventFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/InvokeEventFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.frontEndStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/frontEndStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.JS_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/JS.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignUser_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/assignUser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.trapParserForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/trapParserForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserConfigurationForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/EventParserConfigurationForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.Log4JLoggingForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/Log4JLoggingForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.clientStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/clientStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.schedulerStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/schedulerStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AddUser_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/AddUser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LoadEventFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/LoadEventFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.customFilterActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/customFilterActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.serverLogs_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/serverLogs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.UploadMibForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/UploadMibForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.rediscoveryschedular_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/rediscoveryschedular.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserFileLoading_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/EventParserFileLoading.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.DisplayNotificationMainUI_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/DisplayNotificationMainUI.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.userAdmin_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/userAdmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.StandbyServerDetails_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/StandbyServerDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.perfStatistics_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/perfStatistics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.runCommandActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/runCommandActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.Log4JAppenderForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/Log4JAppenderForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibBrowserJS_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/MibBrowserJS.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.groupAdmin_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/groupAdmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.suppressActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/suppressActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.LoadAlertFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/LoadAlertFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.redirectAssign_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/redirectAssign.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sysAdmin_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/sysAdmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.configureDiscParams_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/configureDiscParams.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.EventParserList_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/EventParserList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.customViewScope_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/customViewScope.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.QueryTableResult_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/QueryTableResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.webnmsDetails_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/webnmsDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.CompleteAdminPanel_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/CompleteAdminPanel.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.listViewLayout_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/listViewLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loggingForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/loggingForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.resyncnebackup_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/resyncnebackup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ModifyGroup_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/ModifyGroup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendEmailActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/sendEmailActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.QueryResult_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/QueryResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.RemoveUser_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/RemoveUser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MibBrowser_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/MibBrowser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.authAuditHeaderIncludes_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/authAuditHeaderIncludes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.UserToModify_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/UserToModify.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.RTAMultiThreadEAProcessing_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/RTAMultiThreadEAProcessing.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.perfInput_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/perfInput.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.WebNMSManagementUI_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/WebNMSManagementUI.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.searchResults_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/searchResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditTrailsView_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/auditTrailsView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ModifyUserProfile_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/ModifyUserProfile.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.moduleDetails_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/moduleDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendTrapActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/sendTrapActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.SmsProfileSettings_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/SmsProfileSettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.logView_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/logView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.loadTrapParsers_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/loadTrapParsers.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.auditDetails_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/auditDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.faultStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/faultStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.InvokeAlertFilterForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/InvokeAlertFilterForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AdminPanel_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/AdminPanel.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.discStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/discStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.assignAuthScope_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/assignAuthScope.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.trapParserConfig_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/trapParserConfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.AlertFilterMainUI_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/AlertFilterMainUI.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.sendSmsActionForm_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/sendSmsActionForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.ResultPage_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/ResultPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.MailServerSettings_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/MailServerSettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.admin.jsp.portStatus_jsp</servlet-name>
+        <url-pattern>/webclient/admin/jsp/portStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.KPICharts_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/KPICharts.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.CategoryBarChart_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/CategoryBarChart.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.CatVsSevFaultReport_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/CatVsSevFaultReport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ReportsMainPage_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/ReportsMainPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.KPIReportsPage_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/KPIReportsPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.Reports_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/Reports.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.TopReports_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/TopReports.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.NavigationComponent_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/NavigationComponent.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ReportsPage_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/ReportsPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.TopNFaultReport_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/TopNFaultReport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ShowReports_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/ShowReports.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.reportModalBoxes_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/reportModalBoxes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.FaultReportsView_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/FaultReportsView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.AddReports_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/AddReports.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.ShowPrintView_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/ShowPrintView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.WindowClose_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/WindowClose.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.report.jsp.SevAndCategoryFaultReport_jsp</servlet-name>
+        <url-pattern>/webclient/report/jsp/SevAndCategoryFaultReport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmSummary_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmSummary.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.listViewStatus_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/listViewStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.operationResponse_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/operationResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.accPieChart_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/accPieChart.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmProperties_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmProperties.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmList_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.printableAlarmList_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/printableAlarmList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.assignResponse_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/assignResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotationAndHistory_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/annotationAndHistory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventDetails_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/eventDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.assignAlarm_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/assignAlarm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventList_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/eventList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.otherFailures_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/otherFailures.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotateAlarm_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/annotateAlarm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventListHeader_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/eventListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.listViewIncludes_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/listViewIncludes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.searchHeader_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/searchHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventCvForm_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/eventCvForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.faultModalBoxes_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/faultModalBoxes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.cvStatus_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/cvStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarms_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarms.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.eventHeaderInclude_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/eventHeaderInclude.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmDetails_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.searchResults_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/searchResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.mergeAnnotationAndHistory_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/mergeAnnotationAndHistory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.annotationResponse_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/annotationResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.accPanel_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/accPanel.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.reDirect_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/reDirect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.printableEventList_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/printableEventList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmHeaderInclude_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmHeaderInclude.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmSnapshot_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmSnapshot.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.fault.jsp.alarmCvForm_jsp</servlet-name>
+        <url-pattern>/webclient/fault/jsp/alarmCvForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.generalTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/generalTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.portObjectTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/portObjectTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOGraphs_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MOGraphs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ConfigSearchLayout_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/ConfigSearchLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MODetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.operationResponse_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/operationResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout2_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/EditDeviceDetailsLayout2.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.networkAdminPanel_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/networkAdminPanel.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsBodyLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.discoveryTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/discoveryTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.monitoringTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/monitoringTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.interfaceTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/interfaceTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ResourceMonitor_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/ResourceMonitor.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.InterfaceTable_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/InterfaceTable.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout2_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/DeviceDetailsLayout2.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout3_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsBodyLayout3.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.deviceTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/deviceTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVBody_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addCVBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceNotes_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/DeviceNotes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.refreshNodeResponse_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/refreshNodeResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVSearchFooter_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addCVSearchFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceDetailsLayout1_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/DeviceDetailsLayout1.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNode_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addNode.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.networkTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/networkTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout1_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MODetailsBaseLayout1.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.objectDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/objectDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchBody_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/searchBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryViewStatus_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/inventoryViewStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addressTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addressTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.InventoryViewHeader_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/InventoryViewHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MODetailsBaseLayout2_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MODetailsBaseLayout2.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.RecentAlarms_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/RecentAlarms.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.printableInventoryList_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/printableInventoryList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVFooter_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addCVFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.relationshipTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/relationshipTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNetworkResponse_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addNetworkResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.printerTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/printerTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.DeviceBaseLayout_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/DeviceBaseLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout5_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsBodyLayout5.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpOIDsQueryResults_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/snmpOIDsQueryResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.nodeTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/nodeTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryList_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/inventoryList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.ConfigSearchFooter_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/ConfigSearchFooter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.switchObjectTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/switchObjectTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout4_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsBodyLayout4.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOActions_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MOActions.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpInterfaceTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/snmpInterfaceTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNetwork_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addNetwork.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchHeader_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/searchHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsBodyLayout2_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsBodyLayout2.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabsLayout_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabsLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.RouterGraph_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/RouterGraph.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.cvStatus_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/cvStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.searchResults_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/searchResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.querySnmpOIDsMenu_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/querySnmpOIDsMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryHeaderInclude_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/inventoryHeaderInclude.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.tabDetailsHeader_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/tabDetailsHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.PerformanceMonitors_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/PerformanceMonitors.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.inventoryViewIncludes_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/inventoryViewIncludes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.snmpNodeTabDetails_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/snmpNodeTabDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.EditDeviceDetailsLayout1_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/EditDeviceDetailsLayout1.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addCVHeader_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addCVHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.detailsError_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/detailsError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.objectDetailsHeader_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/objectDetailsHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.MOPerfGraphs_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/MOPerfGraphs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.refreshNode_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/refreshNode.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.webclient.topo.jsp.addNodeResponse_jsp</servlet-name>
+        <url-pattern>/webclient/topo/jsp/addNodeResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.examples.webclient.DirectoryListing_jsp</servlet-name>
+        <url-pattern>/examples/webclient/DirectoryListing.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.examples.webclient.PollGraphs_jsp</servlet-name>
+        <url-pattern>/examples/webclient/PollGraphs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.examples.webclient.perf.DailyWeeklyReports_jsp</servlet-name>
+        <url-pattern>/examples/webclient/perf/DailyWeeklyReports.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->
+<!-- $Id: web-footer.xml,v 1.7.8.2 2013/07/02 06:17:39 pradheep.v Exp $ -->
+
+<!-- Modification for Disabling Invoker servlet -->
+
+<servlet-mapping>
+    <servlet-name>AuthenticationServlet</servlet-name>
+    <url-pattern>/servlets/AuthenticationServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>JMXServlet</servlet-name>
+	<url-pattern>/servlets/Jmx_dynamic</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>AvgReportServlet</servlet-name>
+    <url-pattern>/servlets/AvgReportServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BaseDBServlet</servlet-name>
+    <url-pattern>/servlets/BaseDBServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BaseReportServlet</servlet-name>
+    <url-pattern>/servlets/BaseReportServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <url-pattern>/servlets/ChangePasswordServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ConnectionCheckServlet</servlet-name>
+    <url-pattern>/servlets/ConnectionCheckServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>DBGraph</servlet-name>
+    <url-pattern>/servlets/DBGraph</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>FetchAppletParameters</servlet-name>
+    <url-pattern>/servlets/FetchAppletParameters</url-pattern>
+</servlet-mapping>
+
+<!--
+<servlet-mapping>
+    <servlet-name>FetchFile</servlet-name>
+    <url-pattern>/servlets/FetchFile</url-pattern>
+</servlet-mapping>
+-->
+
+<servlet-mapping>
+    <servlet-name>FetchPollData</servlet-name>
+    <url-pattern>/servlets/FetchPollData</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>GetChallengeServlet</servlet-name>
+    <url-pattern>/servlets/GetChallengeServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>GetTreeFromDB</servlet-name>
+    <url-pattern>/servlets/GetTreeFromDB</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>MenuFileParser</servlet-name>
+    <url-pattern>/servlets/MenuFileParser</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>MibTableServlet</servlet-name>
+    <url-pattern>/servlets/MibTableServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>NetMonitorPluginServlet</servlet-name>
+    <url-pattern>/servlets/NetMonitorPluginServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>NetMonitorServlet</servlet-name>
+    <url-pattern>/servlets/NetMonitorServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>PollerShutdown</servlet-name>
+    <url-pattern>/servlets/PollerShutdown</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>PollerStatus</servlet-name>
+    <url-pattern>/servlets/PollerStatus</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>SaveFrameSizeServlet</servlet-name>
+    <url-pattern>/servlets/SaveFrameSizeServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ShutDown</servlet-name>
+    <url-pattern>/servlets/ShutDown</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>StartClientServlet</servlet-name>
+    <url-pattern>/servlets/StartClientServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>TerminateClientServlet</servlet-name>
+    <url-pattern>/servlets/TerminateClientServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	    <servlet-name>BannerServlet</servlet-name>
+	    <url-pattern>/servlets/BannerServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>FileUploadServlet</servlet-name>
+	<url-pattern>/servlets/FileUploadServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PingActionServlet</servlet-name>
+	<url-pattern>/servlets/PingActionServlet</url-pattern>
+</servlet-mapping>
+
+    <!-- Modification for Disabling Invoker servlet ends-->
+
+<servlet-mapping>
+	<servlet-name>action</servlet-name>
+	<url-pattern>*.do</url-pattern>
+</servlet-mapping>
+<servlet>
+  <display-name>DWR Servlet</display-name>
+  <servlet-name>dwr-invoker</servlet-name>
+  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+  <init-param>
+     <param-name>debug</param-name>
+     <param-value>true</param-value>
+  </init-param>
+  <init-param>
+     <param-name>activeReverseAjaxEnabled</param-name>
+     <param-value>true</param-value>
+  </init-param>
+  <load-on-startup>3</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>dwr-invoker</servlet-name>
+  <url-pattern>/dwr/*</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>DynamicUpdateServlet</servlet-name>
+    <servlet-class>com.adventnet.nms.webclient.common.DynamicUpdateServlet</servlet-class>
+    <load-on-startup>3001</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>DynamicUpdateServlet</servlet-name>
+    <url-pattern>/servlets/DynamicUpdateServlet</url-pattern>
+</servlet-mapping>
+
+<session-config>
+    <session-timeout>35</session-timeout>
+</session-config>
+
+<welcome-file-list>
+	<welcome-file>webclient/common/html/Login.html</welcome-file>
+</welcome-file-list>
+
+<error-page>
+     <exception-type>java.lang.Throwable</exception-type>
+     <location>/Exception.do</location>
+</error-page>
+
+<error-page>
+     <error-code>404</error-code>
+     <location>/404Error.do</location>
+</error-page>
+
+</web-app>
+
