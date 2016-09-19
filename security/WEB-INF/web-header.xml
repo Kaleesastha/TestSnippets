@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- $Id: web-header.xml,v 1.9.6.2 2013/07/02 06:17:39 pradheep.v Exp $ -->
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <context-param>
+        <param-name>availableSkins</param-name>
+        <param-value>Gainsboro,NOC</param-value>
+    </context-param>          <context-param>         <param-name>DeviceQuery</param-name>         <param-value>true</param-value>         </context-param>          <context-param>         <param-name>defaultTree</param-name>         <param-value>SwipeTree</param-value>         </context-param>
+    <context-param>
+        <param-name>defaultSkin</param-name>
+        <param-value>Gainsboro</param-value>
+    </context-param>
+    <context-param>
+       <param-name>webClientStateFile</param-name>
+       <param-value>WebClientState.properties</param-value>
+    </context-param>
+    <context-param>
+        <param-name>searchViewLength</param-name>
+        <param-value>1000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>useWebClientImages</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+     <!--     <context-param>         <param-name>showPageLoadingTime</param-name>         <param-value>true</param-value>     </context-param>     -->     <context-param>         <param-name>ring</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.RingLayout</param-value>     </context-param>     <context-param>         <param-name>star</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.StarLayout</param-value>     </context-param>     <context-param>         <param-name>grid</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.NmsGridLayout</param-value>     </context-param>     <context-param>         <param-name>flow</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.NmsFlowLayout</param-value>     </context-param>     <context-param>         <param-name>switch</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.SwitchLayout</param-value>     </context-param>     <context-param>         <param-name>ethernet</param-name>         <param-value>com.adventnet.nms.webclient.map.layout.EthernetLayout</param-value>     </context-param>     <context-param>         <param-name>exampleMapStatus</param-name>         <param-value>enabled</param-value>     </context-param>   <filter>     <filter-name>Compress</filter-name>     <filter-class>com.adventnet.nms.webclient.util.GZIPFilter</filter-class>   </filter>   <filter>     <filter-name>Cache</filter-name>     <filter-class>com.adventnet.nms.webclient.util.CacheFilter</filter-class>   </filter> <filter>
+     <filter-name>EncodingFilter</filter-name>
+     <filter-class>com.adventnet.nms.webclient.i18n.EncodingFilter</filter-class>
+	<init-param>
+		<param-name>CharacterEncoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>ContentType</param-name>
+		<param-value>text/html; charset=UTF-8</param-value>
+	</init-param>
+</filter>
+
+<filter>
+     <filter-name>AuthenticationFilter</filter-name>
+     <filter-class>com.adventnet.nms.webclient.login.AuthenticationFilter</filter-class>
+     <init-param>
+                <param-name>excludeAuthentication</param-name>
+		<!-- SECURE WEBNMS -->
+                <param-value>conf/mapSymbolProps.xml,/WebStart.jsp,/Login.jsp,/Logout.do,/LoginPage.do,WebStart,jnlp,css,/images/quote-right.gif,/images/quote-left.gif,/images/loginboxleft.gif,/images/loginboxright.gif,/advlogo2.gif,/loginboxleft.gif,loginboxright.gif,loginLogo.gif,/images/loginbg2.gif,/images/loginbg1.gif,/images/loginbg2.gif,/images/loginboxbg.gif,/images/loginboxleft.gif,/images/loginboxright.gif,/images/loginbutbg.gif,/images/rawHTMLHeader-Logo.gif,/help/index.html,/classes/NmsClientClasses.jar,/classes/AdventNetSnmp.jar,/classes/SNMPDebugger.jar,/classes/AdventNetSnmpV3USM.jar,/classes/ClientExamples.jar,/classes/JimiProClasses.jar,/classes/AdventNetUI.jar,/classes/ManagementClient.jar,/classes/AdventNetCLIClient.jar,/classes/AdventNetTL1.jar,/classes/AdventNetTL1Tools.jar,/classes/AdventNetUtils.jar,/classes/ApiUtils.jar,/NetMonitor/build/RuntimeConfigFrame.jar,/NetMonitor/build/AuthMain.jar,/NetMonitor/build/ConfigPanel.jar,/classes/AdventNetJta.jar,/classes/AdventNetAboutDialog.jar,/classes/AdventNetCCLLibrary.jar,/classes/AdventNetProBeans.jar,/classes/AdventNetDMPModels.jar,/classes/jfreechart.jar,/classes/jcommon.jar,/NetMonitor/build/PerformanceGraphs.jar,/images/adventneticon.jpg,/images/adventnet/adventnetlogo.gif,images/adventnet/topheader.jpg,/servlets/AuthenticationServlet,/servlets/GetChallengeServlet,/servlets/AuthenticationServlet,/servlets/ConnectionCheckServlet,/webclient/common/html/Login.html,/LoginPage.do,/Logout.do,/webclient/common/js/validation.js,/webclient/common/css/SteelBlue/style.css,/webclient/common/css/SteelBlue/webnms.css,/webclient/common/images/loginbg1.gif,/webclient/common/images/loginLogo.gif,/webclient/common/images/loginboxleft.gif,/webclient/common/images/loginboxright.gif,/webclient/common/images/quote-left.gif,/webclient/common/images/loginboxbg.gif,/webclient/common/images/loginbutbg.gif,/webclient/common/images/loginbg2.gif,/webclient/common/images/quote-right.gif,clientparameters.conf,/conf/help.conf,/conf/listIcon.data,/conf/mapIcon.data,NmsPanels.conf,SeverityInfo.conf,transportProvider.conf,images,Themes.conf,toolbar.xml,framemenu.xml,toolbar,FramesInfo.conf,AudioInfo.xml,,mibs,increments.conf,MenuFileParser,WebClientUrls.xml</param-value>
+     </init-param>
+</filter>
+
+ <filter-mapping>     <filter-name>Compress</filter-name>     <url-pattern>*.do</url-pattern> </filter-mapping>   <filter-mapping>
+     <filter-name>EncodingFilter</filter-name>
+     <url-pattern>*.do</url-pattern>
+</filter-mapping>
+<filter-mapping>
+     <filter-name>EncodingFilter</filter-name>
+     <url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+<!--
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>*.do</url-pattern>
+</filter-mapping>
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+-->
+<!-- SECURE WEBNMS -->
+<filter-mapping>
+     <filter-name>AuthenticationFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+<listener>
+     <listener-class>com.adventnet.nms.webclient.util.NmsServletContextAttributeListener</listener-class>
+</listener>          <listener>         <listener-class>com.adventnet.nms.webclient.util.SessionListener</listener-class>         </listener>
+
+<listener>
+     <listener-class>com.adventnet.nms.webclient.util.NmsHttpSessionAttributeListener</listener-class>
+</listener>
+
+<servlet>
+	<servlet-name>action</servlet-name>
+	<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+
+	<init-param>
+		<param-name>config</param-name>
+		<param-value>/webclient/common/conf/struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/fault</param-name>
+		<param-value>/webclient/fault/conf/fault-struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/topo</param-name>
+		<param-value>/webclient/topo/conf/topo-struts-config.xml</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>config/map</param-name>
+		<param-value>/webclient/map/conf/map-struts-config.xml</param-value>          
+        </init-param>   
+
+        <init-param>    
+                <param-name>config/report</param-name>    
+                <param-value>/webclient/report/conf/report-struts-config.xml</param-value>
+	</init-param>
+
+        <init-param>
+                <param-name>config/perf</param-name>
+                <param-value>/webclient/perf/conf/perf-struts-config.xml</param-value>
+        </init-param>
+
+        <init-param>
+                <param-name>config/admin</param-name>
+                <param-value>/webclient/admin/conf/admin-struts-config.xml</param-value>     
+        </init-param> 
+        
+	<init-param>  
+                <param-name>config/home</param-name>
+                <param-value>/webclient/home/conf/home-struts-config.xml</param-value>
+        </init-param>
+
+	<init-param>
+                <param-name>config/config</param-name>
+                <param-value>/webclient/config/conf/config-struts-config.xml</param-value>     
+        </init-param> 
+
+	<init-param>
+		<param-name>debug</param-name>
+		<param-value>2</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>detail</param-name>
+		<param-value>2</param-value>
+	</init-param>
+
+	<init-param>
+		<param-name>validate</param-name>
+		<param-value>true</param-value>
+	</init-param>
+	<load-on-startup>2</load-on-startup>
+</servlet>
+
+<servlet>
+	<servlet-name>WebClientServlet</servlet-name>		
+	<servlet-class>com.adventnet.webclient.WebClientServlet</servlet-class>
+	<init-param>
+                <param-name>LOG_LEVEL</param-name>
+                <param-value>1000</param-value>
+        </init-param>
+	<load-on-startup>20</load-on-startup>
+</servlet>
+
+<servlet>
+	<servlet-name>ResourceInitializationServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.webclient.i18n.ResourceInitializationServlet</servlet-class>
+	<init-param>
+		<param-name>TopoModulePrefix</param-name>
+		<param-value>/topo</param-value>
+	</init-param>
+	<init-param>
+		<param-name>FaultModulePrefix</param-name>
+		<param-value>/fault</param-value>
+	</init-param>
+	<init-param>
+		<param-name>MapModulePrefix</param-name>
+		<param-value>/map</param-value>
+	</init-param>
+        <init-param>
+                <param-name>PerfModulePrefix</param-name>
+                <param-value>/perf</param-value>
+        </init-param>
+        <init-param>
+                <param-name>AdminModulePrefix</param-name>
+                <param-value>/admin</param-value>
+        </init-param>
+	<load-on-startup>200</load-on-startup>
+</servlet>
+
+<servlet>
+        <servlet-name>ReportInitializationServlet</servlet-name>
+        <servlet-class>com.adventnet.nms.webclient.performance.reports.ReportInitializationServlet</servlet-class>
+        <init-param>
+                <param-name>GraphInfoPath</param-name>
+                <param-value>webclient/perf/conf/GraphInfo.xml</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultReportType</param-name>
+                <param-value>INTERFACE_in_octets</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultGraphType</param-name>
+                <param-value>LineGraph</param-value>
+        </init-param>
+        <init-param>
+                <param-name>DefaultPeriod</param-name>
+                <param-value>today</param-value>
+        </init-param>
+       <init-param>
+                <param-name>GraphRenderPath</param-name>
+                <param-value>graphs/graph.jpg</param-value>
+        </init-param>
+       <init-param>
+                <param-name>JasperCompiledResource</param-name>
+                <param-value>webclient/perf/conf/TableReportFormat.xml.jasper</param-value>
+        </init-param>
+       <init-param>
+                <param-name>JasperHtmlDataPath</param-name>
+                <param-value>reports/ReportTable.html</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForDay</param-name>
+                <param-value>HH:mm</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForWeek</param-name>
+                <param-value>MMM, dd</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForMonth</param-name>
+                <param-value>MMM, dd</param-value>
+       </init-param>
+       <init-param>
+                <param-name>defaultXaxisDateFormatForYear</param-name>
+                <param-value>MMM, dd</param-value>
+        </init-param>
+       <init-param>
+                <param-name>ReportPeriodList</param-name>
+                <param-value>today,past7days,past30days,custom</param-value>
+        </init-param>
+	<load-on-startup>200</load-on-startup>
+</servlet>
+
+<context-param>
+	<description>How long (in milliseconds) before automatically closing a session that hasn't
+	polled for screen updates. This value should exceed the slowRefreshInterval (suggested value is
+	twice this).</description>
+	<param-name>maxPollAge</param-name>
+	<param-value>20000</param-value>
+</context-param>
+
+<servlet>
+	<description>An AJAX terminal servlet</description>
+	<display-name>Terminal Emulation Servlet</display-name>
+	<servlet-name>terminal</servlet-name>
+	<servlet-class>com.adventnet.nms.webclient.fault.alarm.WebTerminalController</servlet-class>
+	<init-param>
+		<description>Slow refresh interval. When there is no keyboard activity, the terminal
+		will refresh more slowly to decrease bandwidth usage. This parameter defines the 
+		amount of time (in milliseconds) between each refresh when in this 'slow' mode.</description>
+		<param-name>slowRefreshInterval</param-name>
+		<param-value>5000</param-value>
+	</init-param>
+	<init-param>
+		<description>Normal refresh interval. When there is current or recent keyboard activity, the terminal
+		will refresh quickly to increase responsiveness. This parameter defines the 
+		amount of time (in milliseconds) between each refresh.</description>
+		<param-name>refreshInterval</param-name>
+		<param-value>100</param-value>
+	</init-param>
+	<init-param>
+		<description>Key delay. The amount of time (in milliseconds) after a keypress before a refresh
+		request is sent. If another key is received before this time elapses, the timer is reset.</description>
+		<param-name>keyDelay</param-name>
+		<param-value>350</param-value>
+	</init-param>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>terminal</servlet-name>
+	<url-pattern>/t</url-pattern>
+</servlet-mapping>
+
+<listener>
+	<listener-class>com.sshtools.terminal.web.WebContextListener</listener-class>
+</listener>
+
+    <servlet>
+        <servlet-name>AuthenticationServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.AuthenticationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JMXServlet</servlet-name>
+        <servlet-class>Jmx_dynamic</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AvgReportServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.AvgReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BaseDBServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BaseDBServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BaseReportServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BaseReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ChangePasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ConnectionCheckServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ConnectionCheckServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DBGraph</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.DBGraph</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FetchAppletParameters</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchAppletParameters</servlet-class>
+    </servlet>
+<!--
+    <servlet>
+        <servlet-name>FetchFile</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchFile</servlet-class>
+    </servlet>
+-->
+
+    <servlet>
+        <servlet-name>FetchPollData</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.FetchPollData</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetChallengeServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.GetChallengeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetTreeFromDB</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.GetTreeFromDB</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MenuFileParser</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.MenuFileParser</servlet-class>
+    </servlet>
+
+    <servlet>
+	<servlet-name>MibTableServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.MibTableServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NetMonitorPluginServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.NetMonitorPluginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NetMonitorServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.NetMonitorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PollerShutdown</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.PollerShutdown</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PollerStatus</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.PollerStatus</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SaveFrameSizeServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.SaveFrameSizeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ShutDown</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.ShutDown</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StartClientServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.StartClientServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TerminateClientServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.TerminateClientServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BannerServlet</servlet-name>
+	<servlet-class>com.adventnet.nms.servlets.BannerServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <servlet-class>com.adventnet.nms.servlets.FileUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+		<servlet-name>PingActionServlet</servlet-name>
+    		<servlet-class>com.adventnet.nms.servlets.PingActionServlet</servlet-class>
+    </servlet>
+

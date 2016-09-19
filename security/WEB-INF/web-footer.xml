@@ -1,0 +1,193 @@
+<!-- $Id: web-footer.xml,v 1.7.8.2 2013/07/02 06:17:39 pradheep.v Exp $ -->
+
+<!-- Modification for Disabling Invoker servlet -->
+
+<servlet-mapping>
+    <servlet-name>AuthenticationServlet</servlet-name>
+    <url-pattern>/servlets/AuthenticationServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>JMXServlet</servlet-name>
+	<url-pattern>/servlets/Jmx_dynamic</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>AvgReportServlet</servlet-name>
+    <url-pattern>/servlets/AvgReportServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BaseDBServlet</servlet-name>
+    <url-pattern>/servlets/BaseDBServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>BaseReportServlet</servlet-name>
+    <url-pattern>/servlets/BaseReportServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <url-pattern>/servlets/ChangePasswordServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ConnectionCheckServlet</servlet-name>
+    <url-pattern>/servlets/ConnectionCheckServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>DBGraph</servlet-name>
+    <url-pattern>/servlets/DBGraph</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>FetchAppletParameters</servlet-name>
+    <url-pattern>/servlets/FetchAppletParameters</url-pattern>
+</servlet-mapping>
+<!-- SECURE WEBNMS -->
+<!--
+<servlet-mapping>
+    <servlet-name>FetchFile</servlet-name>
+    <url-pattern>/servlets/FetchFile</url-pattern>
+</servlet-mapping>
+-->
+<!-- SECURE WEBNMS -->
+
+<servlet-mapping>
+    <servlet-name>FetchPollData</servlet-name>
+    <url-pattern>/servlets/FetchPollData</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>GetChallengeServlet</servlet-name>
+    <url-pattern>/servlets/GetChallengeServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>GetTreeFromDB</servlet-name>
+    <url-pattern>/servlets/GetTreeFromDB</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>MenuFileParser</servlet-name>
+    <url-pattern>/servlets/MenuFileParser</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>MibTableServlet</servlet-name>
+    <url-pattern>/servlets/MibTableServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>NetMonitorPluginServlet</servlet-name>
+    <url-pattern>/servlets/NetMonitorPluginServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>NetMonitorServlet</servlet-name>
+    <url-pattern>/servlets/NetMonitorServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>PollerShutdown</servlet-name>
+    <url-pattern>/servlets/PollerShutdown</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>PollerStatus</servlet-name>
+    <url-pattern>/servlets/PollerStatus</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>SaveFrameSizeServlet</servlet-name>
+    <url-pattern>/servlets/SaveFrameSizeServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>ShutDown</servlet-name>
+    <url-pattern>/servlets/ShutDown</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>StartClientServlet</servlet-name>
+    <url-pattern>/servlets/StartClientServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>TerminateClientServlet</servlet-name>
+    <url-pattern>/servlets/TerminateClientServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	    <servlet-name>BannerServlet</servlet-name>
+	    <url-pattern>/servlets/BannerServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>FileUploadServlet</servlet-name>
+	<url-pattern>/servlets/FileUploadServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PingActionServlet</servlet-name>
+	<url-pattern>/servlets/PingActionServlet</url-pattern>
+</servlet-mapping>
+
+    <!-- Modification for Disabling Invoker servlet ends-->
+
+<servlet-mapping>
+	<servlet-name>action</servlet-name>
+	<url-pattern>*.do</url-pattern>
+</servlet-mapping>
+<servlet>
+  <display-name>DWR Servlet</display-name>
+  <servlet-name>dwr-invoker</servlet-name>
+  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+  <init-param>
+     <param-name>debug</param-name>
+     <param-value>true</param-value>
+  </init-param>
+  <init-param>
+     <param-name>activeReverseAjaxEnabled</param-name>
+     <param-value>true</param-value>
+  </init-param>
+  <load-on-startup>3</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>dwr-invoker</servlet-name>
+  <url-pattern>/dwr/*</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>DynamicUpdateServlet</servlet-name>
+    <servlet-class>com.adventnet.nms.webclient.common.DynamicUpdateServlet</servlet-class>
+    <load-on-startup>3001</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>DynamicUpdateServlet</servlet-name>
+    <url-pattern>/servlets/DynamicUpdateServlet</url-pattern>
+</servlet-mapping>
+
+<session-config>
+    <session-timeout>35</session-timeout>
+</session-config>
+
+<welcome-file-list>
+	<welcome-file>webclient/common/html/Login.html</welcome-file>
+</welcome-file-list>
+
+<error-page>
+     <exception-type>java.lang.Throwable</exception-type>
+     <location>/Exception.do</location>
+</error-page>
+
+<error-page>
+     <error-code>404</error-code>
+     <location>/404Error.do</location>
+</error-page>
+
+</web-app>
+
