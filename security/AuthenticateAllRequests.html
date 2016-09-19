@@ -1,0 +1,30 @@
+
+<!-- saved from url=(0058)https://nmskbase.wiki.zoho.com/AuthenticateAllRequests.hlp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>AuthenticateAllRequests</title><link href="./AuthenticateAllRequests_files/default.css" rel="stylesheet" type="text/css" rev="1.0"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head><body style="margin: 20px;"><h1 id="pageheader" class="pageheader">AuthenticateAllRequests</h1><div style="background-color: rgb(254, 254, 254);"><div style="color: rgb(51, 51, 51); line-height: normal; text-align: center;"><b style="color: rgb(0, 0, 0); font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">How to authenticate all the http requests on the WebNMS server</b></div><font face="&#39;times new roman&#39;, times, serif" size="3" style="color: rgb(51, 51, 51); line-height: normal;"><font color="#000000"><br>Yes!
+ We do understand your concern and the method you had suggested 
+(blocking everything and allowing only selective files) is very much 
+possible just with changes in configuration files.<br>
+Right now the AuthenticationFilter (configured in WEB-INF/web.xml) authenticates only the access to 'dynamic' files (<i><b>.jsp, .do</b></i>&nbsp;files).<br>
+This can be extended to authenticate every file (accessed through</font>&nbsp;</font><font color="#0000ff" face="&#39;courier new&#39;, courier, monospace" size="2" style="color: rgb(51, 51, 51); line-height: normal;">http:// ...</font><font face="&#39;times new roman&#39;, times, serif" size="3" style="color: rgb(51, 51, 51); line-height: normal;">)<br><font color="#000000"><br>
+We had changed WEB-INF/web.xml as follows:<br>
+    <br>
+1. Instead of&nbsp;AuthenticationFilter filtering only *.jsp &amp; *.do, we had changed it to</font>&nbsp;</font><span style="color: rgb(0, 0, 255); line-height: normal; font-family: &#39;courier new&#39;, courier, monospace; font-size: small; background-color: rgb(254, 255, 51);"><b>/*</b></span><span style="color: rgb(0, 0, 0); line-height: normal; font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">&nbsp;so that it will filter every file.</span></div>
+<div style="line-height: normal; background-color: rgb(254, 254, 254);"><span style="font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">2. In&nbsp;</span><font face="&#39;times new roman&#39;, times, serif" size="3"><b><i>excludeAuthentication</i></b>&nbsp;tag,
+ we had given the entries for jars, files &amp; images which are 
+required for webstart client &amp; web client (to show the login 
+screen).<br><br>We had got the modified <a href="https://nmskbase.wiki.zoho.com/_attach/1.0/web.xml" target="_blank" title="WEB-INF/web.xml for your reference">WEB-INF/web.xml for your reference</a><br>Please compare this with your version of&nbsp;</font><span style="font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">WEB-INF/web.xml which will give you an idea of what has been changed and how the same can be extended to your files too.<br>(Specifically, check for the comment&nbsp;</span><b style="color: rgb(0, 0, 255); font-family: &#39;courier new&#39;, courier, monospace; font-size: small;">Changed for ALL Authentication</b><span style="font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">&nbsp;in the file and do the changes within this comment in your WEB-INF/web.xml)<br>To ensure that these changes do not get vanished when the compileJSP script is executed, include the same changes in web-header.xml file also.<br>(Sample file for the same is <a href="https://nmskbase.wiki.zoho.com/_attach/1.0/web-header.xml" target="_blank" title="also available">also available</a>)<br><br></span></div><div style="line-height: normal; background-color: rgb(254, 254, 254);"><span style="font-family: &#39;times new roman&#39;, times, serif; font-size: medium;">We believe this meets your requirement.<br>If
+ you face any issues, please get back to us with the modified web.xml 
+file &amp; the log files inside NMS_HOME/apache/tomcat/logs.<br><br>This will help us to analyze the issue.</span><span style="line-height: 1.8; background-color: rgb(255, 255, 255);">&nbsp;</span></div></body></html>
