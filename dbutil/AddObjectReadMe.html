@@ -1,0 +1,592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>AdventNetWebNMS2.0 : Adding an Object : README</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2>Support for new Object Type in Relational Database</H2>
+<P>The following steps are required to add Relational Database support for the new object type added by the user.</P>
+
+<OL>
+	<LI>Write the new class object as a bean with get and set methods for the variables that has to go into the database.
+	<LI>Write the beaninfo for the new class object. The variables got by introspecting the bean are the only one that
+	can be stored in the database. Also, only primitive datatype can be stored in the database. So the result of introspecting
+	the bean should be only primitive java data types.
+	<LI>Create configuration files and add the new class object as an entry into it.
+	<LI>Generate the create schema file.
+	<LI>Generate the intermediate schema file for add, delete, update and get operations.
+	<LI>Generate the Relational Object java class from the intermediate schema file.
+	<LI>Edit the Relational Object java file, if required, to support filling up of some varibles in the user class
+	from other tables in the RDBMS. Users can also have a complex java object (e.g. Vector) reference in thier class.
+	To add the values in the complex object reference into the database, or to construct the object from the database
+	with correct values for the complex object reference users have to add thier own code into the generated Relational
+	Object java file.
+</OL>
+
+<P>
+<H3><B>Writing the new class object</B></H3>
+<P>Write the code for the new object and add get and set methods for the variables which have to be stored in one
+relational database table. The new class should implement the interface <B>com.adventnet.nms.store.DBInterface</B>
+or extend a class which implements DBInterface. For how to write a new object class, please refer to the  example
+LinkObject.java.</P>
+
+<P>Write a BeanInfo for the new class created according to the conventions used to write a BeanInfo.  If the object
+name is MyObject.java, then its BeanInfo object name should be MyObjectBeanInfo.java. For how to write a BeanInfo
+object, please refer to the LinkObjectBeanInfo.java example code.</P>
+
+<P>Compile the newly written codes (object class and its corresponding BeanInfo) and put it in classpath.</P>
+
+<P></P>
+<H3>Creating the configuration file and adding entries</H3>
+<P><B>Go to the WebNMS/dbutil directory.</B></P>
+
+<P>Create a configuration file for the newly created object. The configuration file should have the suffix of &quot;.conf&quot;.
+Then add the fully qulaified class names of each object as entries into the configuration file (for which&nbsp;tables
+are to be created) like one given in the example below.</P>
+
+<P><B>Example:</B><BR>
+</P>
+
+<P>For the object LinkObject, the entry in the configuration file (say <B>linkobject.conf</B>) will be,</P>
+
+<BLOCKQUOTE>
+	<P><B>com.adventnet.nms.topodb.LinkObject</B>
+</BLOCKQUOTE>
+
+<H4></H4>
+
+<H4></H4>
+<H3>Generating output schema file</H3>
+<P>After adding the object name properly in the configuration file,&nbsp; run the GenerateTables application with
+the configuration file as the command line option.</P>
+
+<BLOCKQUOTE>
+	<P>java com.adventnet.dbutil.GenerateTables -m filename</P>
+</BLOCKQUOTE>
+
+<P>The filename is the one which has been created on step # 4.</P>
+
+<P>Example :</P>
+
+<BLOCKQUOTE>
+	<P>java com.adventnet.dbutil.GenerateTables -m linkobject.conf</P>
+</BLOCKQUOTE>
+
+<P></P>
+
+<P>The application automatically generates a &quot;.conf&quot; file and stores in the output directory.&nbsp;If
+the input conf file name is &quot;linkobject.conf&quot; then the generated output schema filename will be &quot;linkobjectschema.conf&quot;.</P>
+
+<P><B>Append the contents in the dbutil/output/filenameschema.conf file (e.g. linkobjectshema.conf) in the output
+directory to the conf/DatabaseSchema.conf file. This file is the used by WebNMS to create the table.</B></P>
+
+<P>
+<H3>Generating RelationalXXX Classes</H3>
+<P>Run the Prepare application to generate an intermediate output with the *.conf file as the option. The filename
+is the one which has been created on step # 4.</P>
+
+<P>Example<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; java com.adventnet.dbutil.Prepare
+-m linkobject.conf</P>
+
+<P>The application automatically updates &quot;prepare.conf&quot; file and stores in the output directory.<BR>
+</P>
+
+<P>Run the GenerateClasses application to generate RelationalXXX class.</P>
+
+<BLOCKQUOTE>
+	<P>Java com.adventnet.dbutil.GenerateClasses</P>
+</BLOCKQUOTE>
+
+<P>The GenerateClasses application reads the prepare.conf in the output directory and creates a RelationalXXXObject
+class for it. For the LinkObject example, the output will be a RelationalLinkObject.java which will contain the
+code for preparing sql statements for the various database operation for the support of LinkObject in the relational
+database.</P>
+
+<P>Compile the RelationalXXX.java class.</P>
+
+<P><B>Append the contents in the dbutil/output/relationalclasses.conf to the conf/relationalclasses.conf file.</B></P>
+
+<P></P>
+<H3>Support for custom sql statements in the generated Relational class</H3>
+<P>Users might have to edit the generated relational class in the following scenarios:</P>
+
+<OL>
+	<LI>When the user class has some variables which has to go into a table (which could be another user table) other
+	than the one used for this object.
+	<LI>When the user class has some complex object (e.g. Vector) which the generated code cannot handle.
+</OL>
+
+<P>For example, in the Node.java class which is used to represent a IP network element, we have a variabl ipaddrs,
+of type java.util.Vector, which is used to store the list of interfaces for a particular node. When a node object
+is added to the relational database, this vector filed is ignored by the generated RelationalNode.java code. But
+when a node object is constructed from the Node table in the RDBMS, this vector has to be filled in from the information
+contained in the IpAddress table where all the interface objects are stores. The generated RelationalNode.java
+has to be edited to support this requirement. Whenever a Node object is constructed from the database, the RelationalNode's
+getStatementsForGet() method  is invoked from where the sql statement for getting the values for the fields of
+the Node object is returned. Also, the getCustomStatements() method is invoked from where users can return a vector
+of sql queries. The Vector can contain both Sql strings or PreparedStatement objects. For each query in the vector,
+the fillCustomProperties() method is invoked with the ResultSet object of the query as argument. Users can manipulate
+the ResultSet passed and fillup the additional attributes (e.g. ipaddrs Vector in the Node object) for the object.
+The following code snippet illustrates the filling of ipaddrs filed and parentNet field in the Node object.</P>
+
+<P><I>/**<BR>
+         * This returns a Vector of Custom sql queries. The vector can have both PrparedStatement<BR>
+         * Object or sql query as a String.<BR>
+ */</I></P>
+
+<P><I>public Vector getCustomStatements(DBInterface dbObj,String[] args)<BR>
+ { <BR>
+	        Node obj = (Node)dbObj;<BR>
+	        Vector v = super.getCustomStatements(dbObj,args);<BR>
+	        if (preparedCustomStatement1!=null) {<BR>
+	            try {<BR>
+	                preparedCustomStatement1.setString(1,db2str(args[0]));<BR>
+	                v.addElement(preparedCustomStatement1);<BR>
+	            } catch (SQLException sqle) {<BR>
+	            System.err.println(&quot;Exception setting preparedStatement for &quot;+&quot;NODE:&quot;+sqle);<BR>
+	            }<BR>
+	        }<BR>
+	        return v;<BR>
+}</I></P>
+
+<P><I>/**<BR>
+     * This method is called for every prepared statement in the vector returned by getCustomStatement() method<BR>
+     * Users should manipulate the ResultSet passed and fill up the custom Properties.<BR>
+    */<BR>
+    public void fillCustomProperties(DBInterface dbObj,ResultSet rs,PreparedStatement prstmt)<BR>
+    {<BR>
+        Node obj = (Node)dbObj;<BR>
+        //Check the prepared statement<BR>
+	    if (prstmt ==preparedCustomStatement1)<BR>
+        {<BR>
+            try {<BR>
+                String list1      =    &quot;&quot;;    <BR>
+	            String parentNet  =    &quot;&quot;;                <BR>
+	            Properties p =  new Properties();<BR>
+                //Manipulate ResultSet<BR>
+	            while(rs.next()) {<BR>
+		            list1 = list1+rs.getString(1)+&quot; &quot;;    	                <BR>
+		            parentNet = parentNet+rs.getString(2)+&quot; &quot;;                   <BR>
+	            }<BR>
+                //Fill up the custom properties<BR>
+	            p.put(&quot;InterfaceList&quot;,list1);<BR>
+	            p.put(&quot;parentNet&quot;,parentNet);<BR>
+	            ( (Node)obj).setProperties(p);<BR>
+            } catch(Exception ex) {<BR>
+	            System.err.println(&quot;fillCustomProperties relnode Exception&quot;+ex);<BR>
+	            ex.printStackTrace();<BR>
+	        }<BR>
+	        return;<BR>
+        }<BR>
+        else {<BR>
+            //Call super to see if the resultset is meant for the super class.<BR>
+            super.fillCustomProperties(dbObj,rs,prstmt);<BR>
+        }<BR>
+    }</I></P>
+
+<P><I>/**<BR>
+     * The init method in which the sql statements are constructed and prepared.<BR>
+*/<BR>
+        public void init(RelationalAPI relapi)<BR>
+        {<BR>
+	        super.init(relapi);<BR>
+	        String prepareSqlStringForGet =&quot;select * from NODE  where ( \&quot;name\&quot; = ? )&quot;;<BR>
+	        preparedStatementForGet=relapi.getPreparedStatement(prepareSqlStringForGet);<BR>
+	        String prepareSqlStringForAdd =&quot;insert into NODE  values (&quot;<BR>
+	            +&quot;?,?&quot; <BR>
+	            +&quot;)&quot;;<BR>
+	        preparedStatementForAdd=relapi.getPreparedStatement(prepareSqlStringForAdd);<BR>
+<BR>
+	        String prepareSqlStringForUpdate =&quot;update NODE set &quot;<BR>
+	            +&quot;\&quot;name\&quot;&quot; + &quot; = ?,&quot;<BR>
+	            +&quot;\&quot;isRouter\&quot;&quot; + &quot; = ?&quot;<BR>
+	            +&quot; where (&quot; + &quot;\&quot;name\&quot;&quot; + &quot;= ?&quot;<BR>
+	            +&quot;)&quot;;<BR>
+	        preparedStatementForUpdate=relapi.getPreparedStatement(prepareSqlStringForUpdate);<BR>
+	        String prepareSqlStringForDelete =&quot;delete from NODE &quot;<BR>
+	            +&quot; where (&quot; + &quot;\&quot;name\&quot;&quot; + &quot;= ?&quot;<BR>
+	            +&quot;)&quot;;<BR>
+	        preparedStatementForDelete=relapi.getPreparedStatement(prepareSqlStringForDelete);<BR>
+<BR>
+            <B>//This is the custom sql query which is not generated.</B><BR>
+	        String prepareSqlStringForCustom1 = &quot;select &quot;+ <BR>
+	            &quot; TOPOOBJECT.\&quot;ipAddress\&quot; , IPADDRESS.\&quot;parentNet\&quot;  from &quot; +<BR>
+	            &quot;IPADDRESS &quot; +&quot; , &quot;+ &quot;TOPOOBJECT &quot; +<BR>
+	            &quot; where ( &quot;+ <BR>
+	            &quot; TOPOOBJECT.\&quot;name\&quot; = IPADDRESS.\&quot;name\&quot; &quot;+<BR>
+	            &quot; AND &quot;+<BR>
+	            &quot; IPADDRESS.\&quot;parentNode\&quot; = ?&quot;+ &quot;)&quot;;  <BR>
+	        preparedCustomStatement1 =relapi.getPreparedStatement(prepareSqlStringForCustom1);<BR>
+        }</I></P>
+
+<P><BR>
+The RelationalPolledData.java illustrates the use of a new table to store some of the attributes of the PolledData
+object. This is useful if there is a logical sepration of attributes in the same class. In the PolledData object
+case, the attributes related to Threshold events are stored in a new ThresholdEvents table.</P>
+
+<P><BR>
+<I>package com.adventnet.nms.store.relational;<BR>
+<BR>
+import java.sql.*;<BR>
+import java.util.*;<BR>
+import com.adventnet.nms.store.*;<BR>
+import com.adventnet.nms.poll.*;<BR>
+<BR>
+<BR>
+class RelationalPolledData extends RelationalObject<BR>
+{<BR>
+<BR>
+<BR>
+        PreparedStatement preparedStatementForGet;<BR>
+        PreparedStatement preparedStatementForGet1;    //Custom get<BR>
+        PreparedStatement preparedStatementForAdd;<BR>
+        PreparedStatement preparedStatementForAdd1;    //Custom Add<BR>
+        PreparedStatement preparedStatementForDelete;<BR>
+        PreparedStatement preparedStatementForDelete1; //Custom Delete<BR>
+        PreparedStatement preparedStatementForUpdate;<BR>
+        PreparedStatement preparedStatementForUpdate1; //Custom Update<BR>
+<BR>
+        <BR>
+        public void init(RelationalAPI relapi)  {<BR>
+	        super.init(relapi);<BR>
+	        String prepareSqlStringForGet =&quot;select * from polleddata  where ( \&quot;name\&quot; = ? &quot;+<BR>
+	            &quot; AND \&quot;agent\&quot; = ? &quot;+<BR>
+	            &quot; AND \&quot;oid\&quot; = ? &quot;+<BR>
+	            &quot;)&quot;;<BR>
+	  preparedStatementForGet=relapi.getPreparedStatement(prepareSqlStringForGet);<BR>
+<BR>
+	  String prepareSqlStringForGet1 =&quot;select * from ThresholdEvents  where (&quot;+<BR>
+	    &quot; \&quot;thresholdEventName\&quot; = ? &quot;+<BR>
+	    &quot;)&quot;;<BR>
+	  preparedStatementForGet1=relapi.getPreparedStatement(prepareSqlStringForGet1);<BR>
+<BR>
+	  String prepareSqlStringForAdd =&quot;insert into polleddata  values (&quot;<BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?&quot; <BR>
+	    +&quot;)&quot;;<BR>
+	  preparedStatementForAdd=relapi.getPreparedStatement(prepareSqlStringForAdd);<BR>
+<BR>
+	  String prepareSqlStringForAdd1 =&quot;insert into ThresholdEvents  values (&quot;<BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?,?,&quot; <BR>
+	    +&quot;?,?,?,?,?&quot; <BR>
+	    +&quot;)&quot;;<BR>
+<BR>
+	  preparedStatementForAdd1=relapi.getPreparedStatement(prepareSqlStringForAdd1);<BR>
+<BR>
+	  String prepareSqlStringForUpdate = &quot;update polleddata  set &quot;<BR>
+	    +&quot;\&quot;name\&quot;&quot; + &quot;  = ?,&quot;<BR>
+	    +&quot;\&quot;id\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;agent\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;community\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;period\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;active\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;oid\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;logDirectly\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;logFile\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;save\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;threshold\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;isMultiplePolledData\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;previousSeverity\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;instance\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;extension\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;armed\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;numeric\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;saveAbsolutes\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;timeAvg\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;filename\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;managed\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;port\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;webNMS\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;groupName\&quot;&quot; + &quot; = ?&quot;<BR>
+	    +&quot; where (&quot; <BR>
+	    + &quot;\&quot;name\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot; AND &quot;<BR>
+	    + &quot;\&quot;agent\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot; AND &quot;<BR>
+	    + &quot;\&quot;oid\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot;)&quot;;<BR>
+	  preparedStatementForUpdate=relapi.getPreparedStatement(prepareSqlStringForUpdate);<BR>
+	  String prepareSqlStringForUpdate1 =&quot;update ThresholdEvents  set &quot;<BR>
+	    +&quot;\&quot;thresholdEventName\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;thresholdType\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;category\&quot;&quot; + &quot;  = ?,&quot;<BR>
+	    +&quot;\&quot;warningThreshold\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;warningRearm\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;minorThreshold\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;minorRearm\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;majorThreshold\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;majorRearm\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;criticalThreshold\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;criticalRearm\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;triggerSeverity\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;resetSeverity\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;message\&quot;&quot; + &quot; = ?,&quot;<BR>
+	    +&quot;\&quot;clrMessage\&quot;&quot; + &quot; = ?&quot;<BR>
+	    +&quot; where (&quot; + &quot;\&quot;thresholdEventName\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot;)&quot;;<BR>
+	  preparedStatementForUpdate1=relapi.getPreparedStatement(prepareSqlStringForUpdate1);<BR>
+<BR>
+	  String prepareSqlStringForDelete =&quot;delete from polleddata &quot;<BR>
+	    +&quot; where (&quot; <BR>
+	    + &quot;\&quot;name\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot; AND &quot;<BR>
+	    + &quot;\&quot;agent\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot; AND &quot;<BR>
+	    + &quot;\&quot;oid\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot;)&quot;;<BR>
+	  preparedStatementForDelete=relapi.getPreparedStatement(prepareSqlStringForDelete);<BR>
+	  String prepareSqlStringForDelete1 =&quot;delete from ThresholdEvents &quot;<BR>
+	    +&quot; where (&quot; + &quot;\&quot;thresholdEventName\&quot;&quot; + &quot;= ?&quot;<BR>
+	    +&quot;)&quot;;<BR>
+	  preparedStatementForDelete1=relapi.getPreparedStatement(prepareSqlStringForDelete1);<BR>
+	}<BR>
+<BR>
+	public boolean fillProperties(DBInterface dbObj,Properties p)<BR>
+	{ <BR>
+	  PolledData obj = (PolledData)dbObj;        <BR>
+	  if (p == null) {<BR>
+	    return false;<BR>
+	  }<BR>
+          if ( (p.getProperty(&quot;name&quot;) == null) ||<BR>
+	       (p.getProperty(&quot;agent&quot;) == null) || <BR>
+	       (p.getProperty(&quot;oid&quot;) == null) )<BR>
+	    {<BR>
+	      return false;<BR>
+	    }<BR>
+	  obj.setName(p.getProperty(&quot;name&quot;));<BR>
+	  obj.setAgent(p.getProperty(&quot;agent&quot;));<BR>
+	  obj.setOid(p.getProperty(&quot;oid&quot;));<BR>
+	  if (p.getProperty(&quot;id&quot;)!=null)<BR>
+	    obj.setId(Long.parseLong(p.getProperty(&quot;id&quot;)));<BR>
+	  obj.setProperties(p);<BR>
+	  return true;<BR>
+	}<BR>
+  <BR>
+        public Vector getStatementsForGet(String[] args) <BR>
+        {<BR>
+	  Vector v = new Vector();<BR>
+	  if (preparedStatementForGet!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForGet.setString(1,args[0]);<BR>
+	      preparedStatementForGet.setString(2,args[1]);<BR>
+	      preparedStatementForGet.setString(3,args[2]);<BR>
+	      v.addElement(preparedStatementForGet);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting prepared statement for polleddata &quot;+args[0]+&quot; &quot;+args[1]+&quot;
+&quot;+args[2]+ &quot;:&quot;+sqle);<BR>
+	    }<BR>
+	  }<BR>
+	  if (preparedStatementForGet1!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForGet1.setString(1,args[0]+&quot; &quot;+args[1]+&quot; &quot;+args[2]);<BR>
+	      v.addElement(preparedStatementForGet1);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting prepared statement for polleddata &quot;+args[0]+&quot; &quot;+args[1]+&quot;
+&quot;+args[2]+ &quot;:&quot;+sqle);<BR>
+	    }<BR>
+	  }<BR>
+	  return v;<BR>
+	}<BR>
+        public void fillCustomProperties(DBInterface dbObj,ResultSet rs,PreparedStatement prstmt)<BR>
+        {<BR>
+	  return;<BR>
+	}<BR>
+	public void fillCustomProperties(DBInterface dbObj,ResultSet rs,String str)<BR>
+	{<BR>
+	  return;<BR>
+	}<BR>
+        public Vector getCustomStatements(DBInterface dbObj,String[] args)<BR>
+        { <BR>
+	  PolledData obj = (PolledData)dbObj;<BR>
+	  Vector v = new Vector();<BR>
+	  return v;<BR>
+	}<BR>
+<BR>
+        public Vector getStatementsForAdd(DBInterface dbObj)<BR>
+        { <BR>
+	  PolledData obj = (PolledData)dbObj;<BR>
+	  Vector v = new Vector();<BR>
+	  Properties p = obj.getProperties();<BR>
+	  if (preparedStatementForAdd!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForAdd.setString(1,db2str(p.getProperty(&quot;name&quot;)) );<BR>
+	      preparedStatementForAdd.setString(2,db2str(p.getProperty(&quot;id&quot;)) );<BR>
+	      preparedStatementForAdd.setString(3,db2str(p.getProperty(&quot;agent&quot;)) );<BR>
+	      preparedStatementForAdd.setString(4,db2str(p.getProperty(&quot;community&quot;)) );<BR>
+	      preparedStatementForAdd.setInt(5,Integer.parseInt(p.getProperty(&quot;period&quot;)));<BR>
+	      preparedStatementForAdd.setString(6,db2str(p.getProperty(&quot;active&quot;)));<BR>
+	      preparedStatementForAdd.setString(7,db2str(p.getProperty(&quot;oid&quot;)) );<BR>
+	      preparedStatementForAdd.setString(8,db2str(p.getProperty(&quot;logDirectly&quot;)) );<BR>
+	      preparedStatementForAdd.setString(9,db2str(p.getProperty(&quot;logFile&quot;)) );<BR>
+	      preparedStatementForAdd.setString(10,db2str(p.getProperty(&quot;save&quot;)) );<BR>
+	      preparedStatementForAdd.setString(11,db2str(p.getProperty(&quot;threshold&quot;)));<BR>
+	      preparedStatementForAdd.setString(12,db2str(p.getProperty(&quot;isMultiplePolledData&quot;)) );<BR>
+	      preparedStatementForAdd.setInt(13,Integer.parseInt(p.getProperty(&quot;previousSeverity&quot;)));<BR>
+	      preparedStatementForAdd.setString(14,db2str(p.getProperty(&quot;instance&quot;)));<BR>
+	      preparedStatementForAdd.setString(15,db2str(p.getProperty(&quot;extension&quot;)) );<BR>
+	      preparedStatementForAdd.setString(16,db2str(p.getProperty(&quot;armed&quot;)) );<BR>
+<BR>
+	      preparedStatementForAdd.setString(17,db2str(p.getProperty(&quot;numeric&quot;)) );<BR>
+	      preparedStatementForAdd.setString(18,db2str(p.getProperty(&quot;saveAbsolutes&quot;)) );<BR>
+	      preparedStatementForAdd.setString(19,db2str(p.getProperty(&quot;timeAvg&quot;)) );<BR>
+	      preparedStatementForAdd.setString(20,db2str(p.getProperty(&quot;filename&quot;)) );<BR>
+	      preparedStatementForAdd.setString(21,db2str(p.getProperty(&quot;managed&quot;)) ) ;<BR>
+	      preparedStatementForAdd.setInt(22,Integer.parseInt(p.getProperty(&quot;port&quot;)));<BR>
+	      preparedStatementForAdd.setString(23,db2str(p.getProperty(&quot;webNMS&quot;)) );<BR>
+	      preparedStatementForAdd.setString(24,db2str(p.getProperty(&quot;groupName&quot;)));<BR>
+	      v.addElement(preparedStatementForAdd);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting preparedStatement for &quot;+&quot;PolledData:&quot;+sqle);<BR>
+	      sqle.printStackTrace();<BR>
+	    }<BR>
+	  }<BR>
+<BR>
+	  if (preparedStatementForAdd1!=null) {<BR>
+	    try {<BR>
+	      String thresholdEventName = db2str(p.getProperty(&quot;name&quot;))+<BR>
+		&quot; &quot;+<BR>
+		db2str(p.getProperty(&quot;agent&quot;)) +<BR>
+		&quot; &quot;+<BR>
+		db2str(p.getProperty(&quot;oid&quot;)) ;<BR>
+	      preparedStatementForAdd1.setString(1,thresholdEventName);<BR>
+	      preparedStatementForAdd1.setString(2,db2str(p.getProperty(&quot;thresholdType&quot;)));<BR>
+	      preparedStatementForAdd1.setString(3,db2str(p.getProperty(&quot;category&quot;)) );<BR>
+<BR>
+	      preparedStatementForAdd1.setString(4,db2str(p.getProperty(&quot;warningThreshold&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(5,db2str(p.getProperty(&quot;warningRearm&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(6,db2str(p.getProperty(&quot;minorThreshold&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(7,db2str(p.getProperty(&quot;minorRearm&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(8,db2str(p.getProperty(&quot;majorThreshold&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(9,db2str(p.getProperty(&quot;majorRearm&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(10,db2str(p.getProperty(&quot;criticalThreshold&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(11,db2str(p.getProperty(&quot;criticalRearm&quot;)) );<BR>
+	      preparedStatementForAdd1.setInt(12,Integer.parseInt(p.getProperty(&quot;triggerSeverity&quot;)) );<BR>
+	      preparedStatementForAdd1.setInt(13,Integer.parseInt(p.getProperty(&quot;resetSeverity&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(14,db2str(p.getProperty(&quot;message&quot;)) );<BR>
+	      preparedStatementForAdd1.setString(15,db2str(p.getProperty(&quot;clrMessage&quot;)) ) ;<BR>
+	      v.addElement(preparedStatementForAdd1);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting preparedStatement for &quot;+&quot;PolledData:&quot;+sqle);<BR>
+	      sqle.printStackTrace();<BR>
+	    }<BR>
+	  }<BR>
+	  return v;<BR>
+	}<BR>
+<BR>
+        public Vector getStatementsForDelete(DBInterface dbObj)<BR>
+        { <BR>
+	  PolledData obj = (PolledData)dbObj;<BR>
+	  Vector v = new Vector();<BR>
+	  if (preparedStatementForDelete!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForDelete.setString(1,obj.getName());<BR>
+	      preparedStatementForDelete.setString(2,obj.getAgent());<BR>
+	      preparedStatementForDelete.setString(3,obj.getOid());<BR>
+	      v.addElement(preparedStatementForDelete);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting prepared statement for polleddata :&quot;+sqle);<BR>
+	    }<BR>
+	  }<BR>
+	  if (preparedStatementForDelete1!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForDelete1.setString(1,obj.getName()+&quot; &quot;+obj.getAgent()+&quot; &quot;+obj.getOid());<BR>
+	      v.addElement(preparedStatementForDelete1);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting prepared statement for polleddata :&quot;+sqle);<BR>
+	    }<BR>
+	  }<BR>
+	  return v;<BR>
+	}<BR>
+<BR>
+        public Vector getStatementsForUpdate(DBInterface dbObj)<BR>
+        { <BR>
+	  PolledData obj = (PolledData)dbObj;<BR>
+	  Vector v = new Vector();<BR>
+	  Properties p = obj.getProperties();<BR>
+	  if (preparedStatementForUpdate!=null) {<BR>
+	    try {<BR>
+	      preparedStatementForUpdate.setString(1,db2str(p.getProperty(&quot;name&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(2,db2str(p.getProperty(&quot;id&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(3,db2str(p.getProperty(&quot;agent&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(4,db2str(p.getProperty(&quot;community&quot;)) );<BR>
+	      preparedStatementForUpdate.setInt(5,Integer.parseInt(p.getProperty(&quot;period&quot;)));<BR>
+	      preparedStatementForUpdate.setString(6,db2str(p.getProperty(&quot;active&quot;)));<BR>
+	      preparedStatementForUpdate.setString(7,db2str(p.getProperty(&quot;oid&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(8,db2str(p.getProperty(&quot;logDirectly&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(9,db2str(p.getProperty(&quot;logFile&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(10,db2str(p.getProperty(&quot;save&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(11,db2str(p.getProperty(&quot;threshold&quot;)));<BR>
+	      preparedStatementForUpdate.setString(12,db2str(p.getProperty(&quot;isMultiplePolledData&quot;)) );<BR>
+	      preparedStatementForUpdate.setInt(13,Integer.parseInt(p.getProperty(&quot;previousSeverity&quot;)));<BR>
+	      preparedStatementForUpdate.setString(14,db2str(p.getProperty(&quot;instance&quot;)));<BR>
+	      preparedStatementForUpdate.setString(15,db2str(p.getProperty(&quot;extension&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(16,db2str(p.getProperty(&quot;armed&quot;)) );<BR>
+<BR>
+	      preparedStatementForUpdate.setString(17,db2str(p.getProperty(&quot;numeric&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(18,db2str(p.getProperty(&quot;saveAbsolutes&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(19,db2str(p.getProperty(&quot;timeAvg&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(20,db2str(p.getProperty(&quot;filename&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(21,db2str(p.getProperty(&quot;managed&quot;)) ) ;<BR>
+	      preparedStatementForUpdate.setInt(22,Integer.parseInt(p.getProperty(&quot;port&quot;)));<BR>
+	      preparedStatementForUpdate.setString(23,db2str(p.getProperty(&quot;webNMS&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(24,db2str(p.getProperty(&quot;groupName&quot;)));<BR>
+	      preparedStatementForUpdate.setString(25,db2str(p.getProperty(&quot;name&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(26,db2str(p.getProperty(&quot;agent&quot;)) );<BR>
+	      preparedStatementForUpdate.setString(27,db2str(p.getProperty(&quot;oid&quot;)) );<BR>
+	      v.addElement(preparedStatementForUpdate);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting preparedStatement for &quot;+&quot;PolledData:&quot;+sqle);<BR>
+	      sqle.printStackTrace();<BR>
+	    }<BR>
+	  }<BR>
+<BR>
+	  if (preparedStatementForUpdate1!=null) {<BR>
+	    try {<BR>
+	      String thresholdEventName = db2str(p.getProperty(&quot;name&quot;))+<BR>
+		&quot; &quot;+<BR>
+		db2str(p.getProperty(&quot;agent&quot;)) +<BR>
+		&quot; &quot;+<BR>
+		db2str(p.getProperty(&quot;oid&quot;)) ;<BR>
+	      preparedStatementForUpdate1.setString(1,thresholdEventName);<BR>
+<BR>
+	      preparedStatementForUpdate1.setString(2,db2str(p.getProperty(&quot;thresholdType&quot;)));<BR>
+	      preparedStatementForUpdate1.setString(3,db2str(p.getProperty(&quot;category&quot;)) );<BR>
+<BR>
+	      preparedStatementForUpdate1.setString(4,db2str(p.getProperty(&quot;warningThreshold&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(5,db2str(p.getProperty(&quot;warningRearm&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(6,db2str(p.getProperty(&quot;minorThreshold&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(7,db2str(p.getProperty(&quot;minorRearm&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(8,db2str(p.getProperty(&quot;majorThreshold&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(9,db2str(p.getProperty(&quot;majorRearm&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(10,db2str(p.getProperty(&quot;criticalThreshold&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(11,db2str(p.getProperty(&quot;criticalRearm&quot;)) );<BR>
+	      preparedStatementForUpdate1.setInt(12,Integer.parseInt(p.getProperty(&quot;triggerSeverity&quot;)) );<BR>
+	      preparedStatementForUpdate1.setInt(13,Integer.parseInt(p.getProperty(&quot;resetSeverity&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(14,db2str(p.getProperty(&quot;message&quot;)) );<BR>
+	      preparedStatementForUpdate1.setString(15,db2str(p.getProperty(&quot;clrMessage&quot;)) ) ;<BR>
+	      preparedStatementForUpdate1.setString(16,thresholdEventName);<BR>
+<BR>
+	      v.addElement(preparedStatementForUpdate1);<BR>
+	    } catch (SQLException sqle) {<BR>
+	      System.err.println(&quot;Exception setting preparedStatement for &quot;+&quot;PolledData:&quot;+sqle);<BR>
+	      sqle.printStackTrace();<BR>
+	    }<BR>
+	  }<BR>
+	  return v;<BR>
+	<BR>
+	}<BR>
+}</I>
+
+</BODY>
+
+</HTML>
