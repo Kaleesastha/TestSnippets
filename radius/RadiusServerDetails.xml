@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Data> 
+	<Details>
+		<server name="172.18.56.74" radiusport="1812" acctport="1814" secret="webnms"/>
+	</Details>
+</Data>
+
+
