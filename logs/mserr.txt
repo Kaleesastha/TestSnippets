@@ -1,0 +1,50 @@
+[04 Oct 2016 15:55:00:415]           : Logging started
+[04 Oct 2016 15:55:00:415]           : Messages on ********Tuesday, 4 October, 2016********
+[04 Oct 2016 15:55:00:415]           :          -------General Information------
+	  Product = WebNMS 5.2
+	  Service Pack Version =AdventNet_Web_NMS-5.2-SP-1.0
+	  os name=Mac OS X
+	  os version=10.11.6
+	  os architecture=x86_64
+	  java version=1.8.0_66
+	  java vendor=Oracle Corporation
+	  java specification=Java Platform API Specification
+	  java vm name=Java HotSpot(TM) 64-Bit Server VM
+	  java vm information =mixed mode
+	  java compiler=null
+	  ********************************************************
+         -------RDBMS related information------
+	  database product name = MySQL
+	  database product version=5.6.28
+	  database driver name=MySQL-AB JDBC Driver
+	  database driver version=mysql-connector-java-commercial-5.0.7 ( $Date: 2007-03-09 22:13:57 +0100 (Fri, 09 Mar 2007) $, $Revision: 6341 $ )
+	  database user name=root@localhost
+	  database URL=jdbc:mysql://localhost/newdb?dumpQueriesOnException=true&jdbcCompliantTruncation=false
+	  *****************************************************
+[04 Oct 2016 15:55:00:415] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate.sql is update PanelTree set PANELPROPS ='{"TARGET":"center","NODE-FORALL":"true","ICON-FILE":"images/burst.png","TREE-NAME":"Failed Systems","WEB-TREE-ICON":"failed-systems.png","PANEL-KEY":"MapApplet","URL":"/map/MapView.do","BACKGROUND-COLOR":"255,255,255"}' where USERNAME='root' and NODEID='Failed_Objects_Map.netmap'
+[04 Oct 2016 15:55:00:416] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate. rowsAffected is :1
+[04 Oct 2016 15:55:00:419] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate.sql is update PanelTree set PANELPROPS ='{"TARGET":"center","NODE-FORALL":"true","ICON-FILE":"images/burst.png","TREE-NAME":"Failed Systems","WEB-TREE-ICON":"failed-systems.png","PANEL-KEY":"MapApplet","URL":"/map/MapView.do","BACKGROUND-COLOR":"255,255,255"}' where USERNAME='test' and NODEID='Failed_Objects_Map.netmap'
+[04 Oct 2016 15:55:00:419] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate. rowsAffected is :1
+[04 Oct 2016 15:55:00:422] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate.sql is update PanelTree set PANELPROPS ='{"TARGET":"center","NODE-FORALL":"true","ICON-FILE":"images/burst.png","TREE-NAME":"Failed Systems","WEB-TREE-ICON":"failed-systems.png","PANEL-KEY":"MapApplet","URL":"/map/MapView.do","BACKGROUND-COLOR":"255,255,255"}' where USERNAME='All' and NODEID='Failed_Objects_Map.netmap'
+[04 Oct 2016 15:55:00:422] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate. rowsAffected is :1
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: NmsTreeAPIImpl.addNode before =========================================================Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: NmsTreeAPIImpl.addNode :: Going to add tree node with the name  Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility..addNode :: call to add: Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility.addNode. after validate Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility.addNode. after isNodeExistsForUser Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility.addNode. previousNode for Vinayaka2 is: START
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. before validating Vinayaka2
+[04 Oct 2016 15:55:32:961] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. after validating Vinayaka2
+[04 Oct 2016 15:55:32:962] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. checkForNodeInterface is true for Vinayaka2
+[04 Oct 2016 15:55:32:962] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. NodeInterface for :Vinayaka2 is: com.adventnet.nms.fe.alert.AlertCustomViewUtility@f8b214e
+[04 Oct 2016 15:55:32:962] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. before node.addNode for :Vinayaka2
+[04 Oct 2016 15:55:32:967] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. after node.addNode for :Vinayaka2 result is:true
+[04 Oct 2016 15:55:32:967] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. after prevNodeExist for :Vinayaka2  prevNodeExist is:false
+[04 Oct 2016 15:55:32:967] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. sql for :Vinayaka2  is:insert into PanelTree values('Vinayaka2','DEVICE','root','Alerts','START','Alerts','{"TARGET":"center","ICON-FILE":"images/maps.png","TREE-NAME":"test","MODULE-NAME":"Alerts","ID":"Vinayaka2","Client":"All","PANEL-KEY":"MapApplet","URL":"jsp/GetAlerts.jsp","MENU-FILE-NAME":"mapmenu.xml"}')
+[04 Oct 2016 15:55:32:967] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate.sql is insert into PanelTree values('Vinayaka2','DEVICE','root','Alerts','START','Alerts','{"TARGET":"center","ICON-FILE":"images/maps.png","TREE-NAME":"test","MODULE-NAME":"Alerts","ID":"Vinayaka2","Client":"All","PANEL-KEY":"MapApplet","URL":"jsp/GetAlerts.jsp","MENU-FILE-NAME":"mapmenu.xml"}')
+[04 Oct 2016 15:55:32:968] MSERR     : WEBNMS_DEBUG: DBXmlUtility.executeUpdate. rowsAffected is :1
+[04 Oct 2016 15:55:32:968] MSERR     : WEBNMS_DEBUG: DBXmlUtility.insertNewNode. rowsAffected for :Vinayaka2  is:1
+[04 Oct 2016 15:55:32:968] MSERR     : WEBNMS_DEBUG: DBXmlUtility.addNode. result for insertNewNode Vinayaka2 is: true
+[04 Oct 2016 15:55:32:971] MSERR     : WEBNMS_DEBUG: NmsTreeAPIImpl.addNode :: after adding : Vinayaka2.result is : true
+[04 Oct 2016 15:55:32:971] MSERR     : WEBNMS_DEBUG: NmsTreeAPIImpl.addNode after =========================================================Vinayaka2
+[04 Oct 2016 15:55:58:724] MSERR     : In ManagementServer  Cleanup 
