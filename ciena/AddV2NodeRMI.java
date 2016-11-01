@@ -12,8 +12,8 @@ public class AddV2NodeRMI
                         String community = args[0];
                         topo = (TopoAPI) Naming.lookup("//localhost/TopoAPI");
                         node = new SnmpNode();
-                        //node.setIpAddress("fe80::2247:47ff:febe:3c65");
-                        node.setIpAddress("fe80::2247:47ff:feb1:3c65");
+                        //node.setIpAddress("fe80::2247:47ff:febe:3c65"); //Correct V6 ip address
+                        node.setIpAddress("fe80::2247:47ff:feb1:3c65"); //Incorrect V6 ip address
                         node.setNetmask("ffff:ffff:ffff:ffff:0:0:0:0");
                         node.setSnmpport(8003);
                         node.setCommunity(community);
