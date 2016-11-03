@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="AboutDialog" value="Dialog"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.help"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="F:/Workingdir/WebNMS/classes/NmsClientClasses.jar,F:/AdventNet/Management_Builder_4_4/jars/JimiProClasses.zip,F:/AdventNet/Management_Builder_4_4/jars/ManagementClient.jar,F:/AdventNet/Management_Builder_4_4/jars/AdventNetUI.jar,F:/Workingdir/WebNMS/classes,F:/AdventNet/Management_Builder_4_4/jars/ApiUtils.jar"/>
+<property name="Supported Protocols" value="ManagedObject|"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="about_DialogResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/about_Dialog"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MS_MODE" value="3"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/about_Dialog/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=" MS_MODE  = 3"/>
+<property name="ToolName" value="ManagementBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

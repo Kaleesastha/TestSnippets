@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="UseRuntimeJar" value="true"/>
+<property name="Show Warnings" value="false"/>
+<property name="MibsToLoad" value=""/>
+<property name="Description" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="RunTimeJarClassPath" value="|*|/home/edwin/Management_Builder_4_2/projects/MOWizard/classes|*|/home/edwin/Management_Builder_4_2/projects/MOWizard/classes/MOWizard.jar|*|/home/edwin/Management_Builder_4_2/jars/ApiUtils.jar|*|/home/edwin/Management_Builder_Ver4_2/jars/JimiProClasses.zip|*|"/>
+<property name="Optimize" value="false"/>
+<property name="Show Deprecations" value="false"/>
+<property name="testScreenAs" value="Application"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../jars/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/NMSClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/AdventNetUtils.jar"/>
+<property name="Applet Parameters" value=" HOST = localhost PORT = 161"/>
+<property name="Show Debug Info" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="Internationalize" value="false"/>
+<property name="Package" value="com.adventnet.nms.tools.mowizard"/>
+<property name="LogDebug" value="false"/>
+<property name="Version" value="4.2F"/>
+<property name="localeName" value="MOWizardResources"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="Java Parameters" value=""/>
+<property name="Verbose" value="false"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/MOWizard"/>
+<property name="Use Debugger" value="false"/>
+</project>
+

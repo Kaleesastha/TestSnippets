@@ -1,0 +1,53 @@
+###################################################################
+# Auto generated configuration. Dated: Mon Feb 26 16:42:27 IST 2007
+###################################################################
+
+#
+# You will need to merge the content of this file with your 
+# regular obj.conf and then restart (=stop + start) your Netscape server. 
+#
+
+#
+# Loading the redirector into your server
+#
+
+Init fn="load-modules" funcs="jk_init,jk_service" shlib="<put full path to the redirector here>"
+Init fn="jk_init" worker_file="C:/javaagent/AdventNet/JavaAgent/connector/conf/workers.properties" log_level="debug" log_file="C:/javaagent/AdventNet/JavaAgent/connector/logs/netscape_redirect.log"
+
+<Object name=default>
+#
+# Redirecting the root context requests to tomcat.
+#
+NameTrans fn="assign-name" from="/servlet/*" name="servlet"
+NameTrans fn="assign-name" from="/*.jsp" name="servlet"
+
+#########################################################
+# Auto configuration for the /Jmx_connector context starts.
+#########################################################
+
+#
+# The following line mounts all JSP file and the /servlet/ uri to tomcat
+#
+NameTrans fn="assign-name" from="/Jmx_connector/servlet/*" name="servlet"
+NameTrans fn="assign-name" from="/Jmx_connector/*.jsp" name="servlet"
+NameTrans fn=pfx2dir from="/Jmx_connector" dir="C:/javaagent/AdventNet/JavaAgent/connector/webapps/Jmx_connector"
+
+#######################################################
+# Auto configuration for the /Jmx_connector context ends.
+#######################################################
+
+#######################################################
+# Protecting the web inf directory.
+#######################################################
+PathCheck fn="deny-existence" path="*/WEB-INF/*"
+
+</Object>
+
+#######################################################
+# New object to execute your servlet requests.
+#######################################################
+<Object name=servlet>
+ObjectType fn=force-type type=text/html
+Service fn="jk_service" worker="ajp12" path="/*"
+</Object>
+

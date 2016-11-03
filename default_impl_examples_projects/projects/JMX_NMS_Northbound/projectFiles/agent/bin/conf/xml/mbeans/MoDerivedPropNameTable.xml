@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.MoDerivedPropNameTable"  descriptorType="mbean"  displayName="MoDerivedPropNameTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="-1"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="MoDerivedPropNameTable"  description="&quot;This table contains the type of the user-defined objects and
+   the properties of the user defined objects.
+   The user can specify what all user-object&apos;s properties he wants to
+   be displayed in the moDerivedProperties in MO table.&quot;"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.nms.jmxagent.MoDerivedPropNameTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="MoDerivedPropNameTable"  getMethod="getMoDerivedPropNameTable"  setMethod="setMoDerivedPropNameTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.2.13.1" ></protocolMap>
+            <columnAttribute name="IndexNum"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.2.13.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="ObjClassName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.13.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="DerivedPropNames"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.13.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="TableOid"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OBJECT IDENTIFIER"  value=".1.3.6.1.4.1.2162.4.2.13.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="TableName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.13.1.5" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.MoDerivedPropNameTable"  descriptorType="operation"  displayName="MoDerivedPropNameTable DefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getMoDerivedPropNameTable"  descriptorType="operation"  displayName="getMoDerivedPropNameTable"  description="gets the MoDerivedPropNameTable values"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setMoDerivedPropNameTable"  descriptorType="operation"  displayName="setMoDerivedPropNameTable"  description="sets  the MoDerivedPropNameTable values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="moDerivedPropNameTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: MoDerivedPropNameTable.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

@@ -1,0 +1,14 @@
+<INSTALL_PARAMETERS>
+<INSTALL_NAR
+          NAR_NAME="RuntimeConfigFrame.nar">
+          <USERS
+    			NAME="&lt;Any NewUser&gt;"/>
+          <FRAME-MENU
+               MENU-NAME="Tools"
+               MENU-ITEM="Runtime Administration"
+			   ACCELERATOR-KEY="R"
+			   ACCELERATOR-MODIFIER="ALT"
+			   SHORT-CUT-KEY="R"
+			   OPERATION-TAG="Runtime Administration"/>
+</INSTALL_NAR>
+</INSTALL_PARAMETERS>

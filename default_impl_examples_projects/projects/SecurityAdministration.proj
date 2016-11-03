@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="SecurityModel.java" value="Console Application"/>
+<property name="AssignProp" value="Dialog"/>
+<property name="HelpWindow.java" value="Console Application"/>
+<property name="AddGroup" value="Panel"/>
+<property name="GroupViewAscn" value="Dialog"/>
+<property name="Group" value="Panel"/>
+<property name="SecurityStandAloneTest" value="Application"/>
+<property name="OperationsListCellRenderer.java" value="Console Application"/>
+<property name="ViewProperty" value="Dialog"/>
+<property name="Utilities.java" value="Console Application"/>
+<property name="PwdPanel" value="Panel"/>
+<property name="Properties" value="Dialog"/>
+<property name="Lable" value="Panel"/>
+<property name="TreeConfig" value="Dialog"/>
+<property name="ListObject.java" value="Console Application"/>
+<property name="CustomTreeRenderer.java" value="Console Application"/>
+<property name="AbstractSecurityModel.java" value="Console Application"/>
+<property name="SaveDialog" value="Dialog"/>
+<property name="AuditScreen" value="Dialog"/>
+<property name="ListFrame" value="Nms Frame"/>
+<property name="AgePanel" value="Dialog"/>
+<property name="AgeingPanel" value="Panel"/>
+<property name="ViewListCellRenderer.java" value="Console Application"/>
+<property name="PropertyTableCellRenderer.java" value="Console Application"/>
+<property name="TableToString.java" value="Console Application"/>
+<property name="AdGroupWiz" value="Dialog"/>
+<property name="AdUserWiz" value="Dialog"/>
+<property name="OperationViewProperty" value="Dialog"/>
+<property name="SecurityStandaloneImpl.java" value="Console Application"/>
+<property name="SecurityXMLParser.java" value="Console Application"/>
+<property name="NmsSecurityModelRMIImpl.java" value="Console Application"/>
+<property name="SecurityStandaloneSession.java" value="Console Application"/>
+<property name="ViewGroup" value="Frame"/>
+<property name="ViewName" value="Panel"/>
+<property name="AuthMain" value="Nms Frame"/>
+<property name="ViewsWizard" value="Dialog"/>
+<property name="Operations" value="Dialog"/>
+<property name="AuthConstants.java" value="Console Application"/>
+<property name="SecurityCommonInterface.java" value="Console Application"/>
+<property name="SecurityModelRMIImpl.java" value="Console Application"/>
+<property name="TabbedPane2" value="Panel"/>
+<property name="UserTableCellRenderer.java" value="Console Application"/>
+<property name="TabbedPane1" value="Panel"/>
+<property name="ChangePwd" value="Dialog"/>
+<property name="ViewTableCellRenderer.java" value="Console Application"/>
+<property name="AdvPropScreen" value="Panel"/>
+<property name="ViewOper" value="Panel"/>
+<property name="CustomListCellRenderer.java" value="Console Application"/>
+<property name="AddUsrpanel" value="Panel"/>
+<property name="GroupOperationsView.java" value="Console Application"/>
+<property name="TreeObject.java" value="Console Application"/>
+<property name="SecuritySession.java" value="Console Application"/>
+<property name="ViewConfig" value="Frame"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.security.ui"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/AdventNetUtils.jar,G:/Program Files/AdventNet/WebNMS/classes/NmsClientClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes,G:/Program Files/AdventNet/WebNMS/classes"/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value="./mibs/RFC1213-MIB|"/>
+<property name="Optimize" value="true"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="projects/SecurityAdministration/classes"/>
+<property name="Show Warnings" value="true"/>
+<property name="resourceFileName" value="SecurityAdministrationResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/SecurityAdministration"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="AuthMain"/>
+<property name="MS_MODE" value="3"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/OperationsListCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/PropertyTableCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/SecurityCommonInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/GroupOperationsView.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/ViewTableCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/UserTableCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/SecurityModel.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/AbstractSecurityModel.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/SecurityModelRMIImpl.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/CustomListCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/ListObject.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/HelpWindow.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/TableToString.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/NmsSecurityModelRMIImpl.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/Utilities.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/TreeObject.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/ViewListCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/SecuritySession.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/CustomTreeRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source/AuthAuditScreen.java#Console Application"/>
+<property name="Applet Parameters" value=" RESOURCE_PROPERTIES  = SecurityAdministrationResources"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/SecurityAdministration/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=" MS_MODE  = 3"/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="true"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.WebNMSPerformanceMibInstrument"  descriptorType="mbean"  displayName="WebNMSPerformanceMibInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="WebNMSPerformanceMibInstrument"  description="Contains attribute of WebNMSPerformanceMib group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="NumPollObjects"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="NumPollObjects"  getMethod="getNumPollObjects"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.4.1" ></protocolMap>
+        </attribute>
+        <attribute name="NumActivePollers"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable displays the total number of active pollers at that time.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="NumActivePollers"  getMethod="getNumActivePollers"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.4.2" ></protocolMap>
+        </attribute>
+        <attribute name="NumThresholdObjects"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable displays the total number of threshold objects available&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="NumThresholdObjects"  getMethod="getNumThresholdObjects"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.4.3" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.WebNMSPerformanceMibInstrument"  descriptorType="operation"  displayName="WebNMSPerformanceMibInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getNumPollObjects"  descriptorType="operation"  displayName="getNumPollObjects"  description="gets the NumPollObjectsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getNumActivePollers"  descriptorType="operation"  displayName="getNumActivePollers"  description="gets the NumActivePollersvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getNumThresholdObjects"  descriptorType="operation"  displayName="getNumThresholdObjects"  description="gets the NumThresholdObjectsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: WebNMSPerformanceMibInstrument.xml,v 1.2 2007/04/30 18:31:29 tinku Exp $-->

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.ProxyTable"  descriptorType="mbean"  displayName="ProxyTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="-1"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="ProxyTable"  description="&quot;This table is used to obtain the current value of an oid from a device .The values that
+   the user needs to set are :
+   IpAddress, Port,Community, OID and service.
+   When the last value is set,the value for the oid is obtained&quot;"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.nms.jmxagent.ProxyTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="ProxyTable"  getMethod="getProxyTable"  setMethod="setProxyTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.7.1.1" ></protocolMap>
+            <columnAttribute name="SerialNumber"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.7.1.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="HostName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.7.1.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="DevicePort"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.7.1.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="RequestOid"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OBJECT IDENTIFIER"  value=".1.3.6.1.4.1.2162.4.7.1.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Community"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.7.1.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Service"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.7.1.1.6" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Result"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.7.1.1.7" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.ProxyTable"  descriptorType="operation"  displayName="ProxyTable DefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getProxyTable"  descriptorType="operation"  displayName="getProxyTable"  description="gets the ProxyTable values"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setProxyTable"  descriptorType="operation"  displayName="setProxyTable"  description="sets  the ProxyTable values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="proxyTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: ProxyTable.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

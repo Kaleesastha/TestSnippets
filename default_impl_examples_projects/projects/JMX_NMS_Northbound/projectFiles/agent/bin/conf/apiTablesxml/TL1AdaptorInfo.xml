@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.tl1.TL1AdaptorInfo"  descriptorType="mbean"  displayName="TL1AdaptorInfo"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="0"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="TL1AdaptorInfo"  description="Contains attribute of Tl1 group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="Tl1Version"  descriptorType="attribute"  type="java.lang.String"  description="TL1 agent (adaptor) version."  isReadable="T"  isWritable="F"  isIs="F"  displayName="Tl1Version"  getMethod="getTl1Version"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.10.1.2.3.1" ></protocolMap>
+        </attribute>
+        <attribute name="Tl1UpTime"  descriptorType="attribute"  type="java.lang.Long"  description="TL1 agent(adaptor) uptime in hundredths second."  isReadable="T"  isWritable="F"  isIs="F"  displayName="Tl1UpTime"  getMethod="getTl1UpTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="TimeTicks"  value=".1.3.6.1.4.1.2162.10.1.2.3.2" ></protocolMap>
+        </attribute>
+			<attribute name="Tl1OperStatus"  descriptorType="attribute"  type="java.lang.Integer"  description="Status of  the TL1 adaptor.It says whether adaptor is running(1) or not(0)"  isReadable="T"  isWritable="F"  isIs="F"  displayName="Tl1OperStatus"  getMethod="getTl1OperStatus"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.10.1.2.3.3" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.tl1.TL1AdaptorInfo"  descriptorType="operation"  displayName="TL1AdaptorInfoDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getTl1Version"  descriptorType="operation"  displayName="getTl1Version"  description="gets the Tl1Versionvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getTl1UpTime"  descriptorType="operation"  displayName="getTl1UpTime"  description="gets the Tl1UpTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getTl1OperStatus"  descriptorType="operation"  displayName="getTl1OperStatus"  description="gets the Tl1OperStatusvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!-- $Id: TL1AdaptorInfo.xml,v 1.2 2007/04/30 18:30:46 tinku Exp $ -->

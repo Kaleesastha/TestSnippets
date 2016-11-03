@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+** 
+** This file contains all the MBean List, which all to be started 
+** with the JMX Agent.
+**
+** Syntax:
+**
+**   <COMPONENT className="className"
+**              domainName="domainName">
+**      <MBEANLIST> 
+**          <MBEAN className="MBean className"
+**                 xmlPath="XML file with directory(from NMS_HOME)"/>
+**      </MBEANLIST>
+**   </COMPONENT>
+** 
+** NOTE: Only MBEAN ClassName is mandatory. If XMLPath is specified, then
+** given path will be taken, othewise the default path - conf/jmx_agent 
+** will be taken.
+**
+**
+** CORBA_OBJECTS:
+** =============
+** The node CORBA_OBJECTS is for giving the details like servant object class
+** name, key, and NamingService host and port. 
+**
+** Syntax:
+**
+**  <CORBA_OBJECTS>
+**      <OBJECT className="Servant class name"
+**              keyName="Key name for binding the servant"
+**              host="NamingService host name"
+**              port="NamingService port"/>
+**  </CORBA_OBJECTS> 
+**
+-->
+
+<COMPONENTS>
+    <COMPONENT domainName="AdventNet_WebNMS_MIB_JMX"
+               className="com.adventnet.nms.jmxagent.AdventNet_WebNMS_MIB_JMX">
+        <MBEANLIST>
+            <MBEAN xmlPath="conf/jmx_agent/WebNMSSystemInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSSystemInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSPortsInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSPortsInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/TrapPortTable.xml"
+	           className="com.adventnet.nms.jmxagent.TrapPortTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSSchedulerTable.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSSchedulerTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/PersistentTrapsMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.PersistentTrapsMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NotiLogTable.xml"
+	           className="com.adventnet.nms.jmxagent.NotiLogTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/VarbindLogTable.xml"
+	           className="com.adventnet.nms.jmxagent.VarbindLogTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/ProxyTable.xml"
+	           className="com.adventnet.nms.jmxagent.ProxyTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/TftpMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.TftpMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/StdoutInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.StdoutInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/StderrInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.StderrInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/LogTable.xml"
+	           className="com.adventnet.nms.jmxagent.LogTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/LogUserTable.xml"
+	           className="com.adventnet.nms.jmxagent.LogUserTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSTopoMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSTopoMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/MoTable.xml"
+	           className="com.adventnet.nms.jmxagent.MoTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/TopoObjTable.xml"
+	           className="com.adventnet.nms.jmxagent.TopoObjTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NetworkTable.xml"
+	           className="com.adventnet.nms.jmxagent.NetworkTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NodeTable.xml"
+	           className="com.adventnet.nms.jmxagent.NodeTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/IpAddressTable.xml"
+	           className="com.adventnet.nms.jmxagent.IpAddressTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/SnmpNodeTable.xml"
+	           className="com.adventnet.nms.jmxagent.SnmpNodeTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/SnmpInterfaceTable.xml"
+	           className="com.adventnet.nms.jmxagent.SnmpInterfaceTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/MoDerivedPropNameTable.xml"
+	           className="com.adventnet.nms.jmxagent.MoDerivedPropNameTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/MoNotificationMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.MoNotificationMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/MoNotiVarbindsInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.MoNotiVarbindsInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/TopologyConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.TopologyConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/RediscoveryConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.RediscoveryConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/SnmpPingConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.SnmpPingConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/IcmpPingConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.IcmpPingConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NativePingConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.NativePingConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NetworkDiscoveryTable.xml"
+	           className="com.adventnet.nms.jmxagent.NetworkDiscoveryTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/NodeDiscoveryTable.xml"
+	           className="com.adventnet.nms.jmxagent.NodeDiscoveryTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/MoCriteriaTable.xml"
+	           className="com.adventnet.nms.jmxagent.MoCriteriaTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/DiscoveryFilterTable.xml"
+	           className="com.adventnet.nms.jmxagent.DiscoveryFilterTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/SnmpV3ConfigurationInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.SnmpV3ConfigurationInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSFaultMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSFaultMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/AlertTable.xml"
+	           className="com.adventnet.nms.jmxagent.AlertTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/AlertNotiVarbindsInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.AlertNotiVarbindsInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/AlertNotificationMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.AlertNotificationMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/EventTable.xml"
+	           className="com.adventnet.nms.jmxagent.EventTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSSeverityTable.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSSeverityTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/AlarmTable.xml"
+                   className="com.adventnet.nms.jmxagent.AlarmTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/TrapFilterTable.xml"
+	           className="com.adventnet.nms.jmxagent.TrapFilterTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/WebNMSPerformanceMibInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.WebNMSPerformanceMibInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/PollTable.xml"
+	           className="com.adventnet.nms.jmxagent.PollTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/ThresholdTable.xml"
+	           className="com.adventnet.nms.jmxagent.ThresholdTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/PerfNotiVarbindsInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.PerfNotiVarbindsInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/StatsdataInstrument.xml"
+	           className="com.adventnet.nms.jmxagent.StatsdataInstrument"/>
+	    <MBEAN xmlPath="conf/jmx_agent/StatsDataTable.xml"
+	           className="com.adventnet.nms.jmxagent.StatsDataTable"/>
+	    <MBEAN xmlPath="conf/jmx_agent/PollingFiltersTable.xml"
+	           className="com.adventnet.nms.jmxagent.PollingFiltersTable"/>
+	</MBEANLIST>
+    </COMPONENT>
+</COMPONENTS>
+<!--$Id: JmxAgent_Components.xml,v 1.1 2007/08/09 21:02:21 tinku Exp $-->

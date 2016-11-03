@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="ProgressBarPanel.java" value="Console Application"/>
+<property name="LoggingConfiguartionSession.java" value="Console Application"/>
+<property name="NodeDiscoveryScreen" value="Panel"/>
+<property name="BasicLogProperties" value="Panel"/>
+<property name="MapFilterModel.java" value="Console Application"/>
+<property name="SmartToolBar.java" value="Console Application"/>
+<property name="ListIconRenderer.java" value="Console Application"/>
+<property name="TrapAddModify" value="Dialog"/>
+<property name="GNEPropertiesDialog" value="Dialog"/>
+<property name="TL1TableCellRenderer.java" value="Console Application"/>
+<property name="GroupPropertiesDialog" value="Dialog"/>
+<property name="UserPropertyPanel" value="Panel"/>
+<property name="LoggingMainUI" value="Panel"/>
+<property name="ProtocolScreen" value="Panel"/>
+<property name="LoggingConfiguartionModel.java" value="Console Application"/>
+<property name="TidPropertiesDialog" value="Dialog"/>
+<property name="V3confirmDialog" value="Dialog"/>
+<property name="SeverityTableRenderer.java" value="Console Application"/>
+<property name="SNMPpropConfigScreen" value="Dialog"/>
+<property name="TL1TypeProperties.java" value="Console Application"/>
+<property name="SmartProgressBar.java" value="Console Application"/>
+<property name="NativePingScreen" value="Dialog"/>
+<property name="ViewPropertiesDialog" value="Dialog"/>
+<property name="ListIconAddModify" value="Dialog"/>
+<property name="AddMoreIPAddress111" value="Dialog"/>
+<property name="SNMPScreen" value="Dialog"/>
+<property name="LogsAddModifyWizard" value="Dialog"/>
+<property name="ListConfiguartionSession.java" value="Console Application"/>
+<property name="cardPanel2" value="Panel"/>
+<property name="MapIconAddModify" value="Dialog"/>
+<property name="cardPanel1" value="Panel"/>
+<property name="PropertiesWindow.java" value="Console Application"/>
+<property name="RunTimeConfigSession.java" value="Console Application"/>
+<property name="V3Properties" value="Dialog"/>
+<property name="TypePropertiesPanel" value="Panel"/>
+<property name="MapConfiguartionSession.java" value="Console Application"/>
+<property name="MapIconUI" value="Panel"/>
+<property name="AdventnetScreen" value="Panel"/>
+<property name="PollConfiguartionSession.java" value="Console Application"/>
+<property name="TL1TypeCfgtrScreen" value="Panel"/>
+<property name="ApplyToServerInterface.java" value="Console Application"/>
+<property name="NetworkDiscoveryScreen" value="Panel"/>
+<property name="ListIconUI" value="Panel"/>
+<property name="LogsDetails" value="Dialog"/>
+<property name="PollFilterUI" value="Panel"/>
+<property name="SpecialCaseModify" value="Panel"/>
+<property name="PolicyConfigurationSession.java" value="Console Application"/>
+<property name="AddMoreIPAddress1" value="Dialog"/>
+<property name="AddModifyClassName" value="Dialog"/>
+<property name="AddMoreIPAddress" value="Dialog"/>
+<property name="InitialParametersScreen" value="Dialog"/>
+<property name="TrapFilterUI" value="Panel"/>
+<property name="MainScreen" value="Panel"/>
+<property name="TrapFilterModel.java" value="Console Application"/>
+<property name="PolicyConfigurationUI" value="Panel"/>
+<property name="MapIconModel.java" value="Console Application"/>
+<property name="MapIconRenderer.java" value="Console Application"/>
+<property name="AdvancedLogProperties" value="Panel"/>
+<property name="LogsAddModifyDialog" value="Dialog"/>
+<property name="EventConfiguartionSession.java" value="Console Application"/>
+<property name="LogsAdvancedProperties" value="Dialog"/>
+<property name="new_screen1" value="Dialog"/>
+<property name="ObjTypeDialog" value="Dialog"/>
+<property name="TrapStateRenderer.java" value="Console Application"/>
+<property name="TL1TypeCfgtrHandler.java" value="Console Application"/>
+<property name="TreeCombo.java" value="Console Application"/>
+<property name="ICMPScreen" value="Dialog"/>
+<property name="PollFilterModel.java" value="Console Application"/>
+<property name="CriteriaScreen" value="Panel"/>
+<property name="CustomRenderer.java" value="Console Application"/>
+<property name="SNMPV3propScreen" value="Dialog"/>
+<property name="GradientLabel.java" value="Console Application"/>
+<property name="DiscoveryFilterModel.java" value="Console Application"/>
+<property name="AddModifyMainPanel" value="Panel"/>
+<property name="ClassPathDialog" value="Dialog"/>
+<property name="DiscoveryFilterUI" value="Panel"/>
+<property name="TrapFilterRenderer.java" value="Console Application"/>
+<property name="PolicyColorChooser" value="Dialog"/>
+<property name="ListIconDetailsDialog" value="Dialog"/>
+<property name="RediscoveryScheduler" value="Dialog"/>
+<property name="TL1MainScreen" value="Application"/>
+<property name="MapFilterUI" value="Panel"/>
+<property name="GeneralScreen" value="Panel"/>
+<property name="PolicyConfigurationModel.java" value="Console Application"/>
+<property name="IPPropertiesDialog" value="Dialog"/>
+<property name="RuntimeConfigFrame" value="Nms Frame"/>
+<property name="GlassIconPanel.java" value="Console Application"/>
+<property name="AddMoreIPAddress11" value="Dialog"/>
+<property name="ListIconModel.java" value="Console Application"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.runtimeconfig"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../classes/AdventNetProBeans.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/AdventNetDMPModels.jar"/>
+<property name="Java Variables" value="|*| -Djava.compiler=NONE|*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="NetMonitor/build/RuntimeConfigFrame.jar,classes/AdventNetUI.jar,classes/AdventNetUtils.jar,classes/NmsClientClasses.jar,classes,NetMonitor/build/RuntimeConfigFrame.jar"/>
+<property name="Show Warnings" value="true"/>
+<property name="resourceFileName" value="RuntimeAdministrationResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/RuntimeAdministration"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="NetworkDiscoveryScreen"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/SmartProgressBar.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/PollConfiguartionSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TreeCombo.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TrapStateRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TrapFilterModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/CustomRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/PolicyConfigurationSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TL1TableCellRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/SeverityTableRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/LoggingConfiguartionSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/GlassIconPanel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/ApplyToServerInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TL1TypeCfgtrHandler.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/LoggingConfiguartionModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/RunTimeConfigSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/MapIconRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/Network.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/DiscoveryFilterModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/MapConfiguartionSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/ListIconModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/ProgressBarPanel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/ListIconRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/PolicyConfigurationModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/MapIconModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/ListConfiguartionSession.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/TrapFilterRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/MapFilterModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/SmartToolBar.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/PollFilterModel.java#Console Application,&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source/EventConfiguartionSession.java#Console Application"/>
+<property name="Applet Parameters" value=" RESOURCE_PROPERTIES  = RuntimeAdministrationResources HOST  = localhost PORT  = 161"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/RuntimeAdministration/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="true"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="true"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="/home/annamalai/WEBNMS/sp2/jspcompile/classes"/>
+</project>

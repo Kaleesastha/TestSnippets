@@ -1,0 +1,3177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- File Name : AdventNet-WebNMS-MIB - CMD SET -->
+<!-- Date      : Fri Mar 09 14:26:09 IST 2007 -->
+<!-- Author    : AdventNet AgentToolkit Java Edition 6.0.0-->
+
+<TL1MESSAGE-COMMANDSET VERSION="1.0">
+	<INPUT-MESSAGE CMD-VERB="GET">
+
+		<CMD-MODIFIER VALUE="TRAPPORTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="seqNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SCALAR" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-group-scalar"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="group" TYPE="STRING"/>
+				<PARAM NAME="scalar" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="scalar" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting scalar value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSCHEDULERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="webNMSSchedulerIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TOPOOBJTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="IPADDRESSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPNODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPINTERFACETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MODERIVEDPROPNAMETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="indexNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALERTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alertEntity" TYPE="STRING" />
+				<PARAM NAME="alertOwnerName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="EVENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="evtID" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSEVERITYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="severityName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALARMTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alarmSource" TYPE="STRING" />
+				<PARAM NAME="alarmOwnerName" TYPE="STRING" />
+				<PARAM NAME="alarmEntity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="THRESHOLDTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="thresholdObjectName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="STATSDATATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollID" TYPE="STRING" />
+				<PARAM NAME="oidindex" TYPE="STRING" />
+				<PARAM NAME="time" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NOTILOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VARBINDLOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+				<PARAM NAME="varbindIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="PROXYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="serialNumber" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SUBAGENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="subAgentoid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V1V2TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v1v2ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v1v2ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V3TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v3ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v3ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="networkDiscoveryIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODEDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="nodeIP" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOCRITERIATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="criteriaIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="DISCOVERYFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="discFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TRAPFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="trapFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLINGFILTERSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollingFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGUSERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+				<PARAM NAME="logUserIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+	</INPUT-MESSAGE>
+
+	<INPUT-MESSAGE CMD-VERB="SET">
+
+		<CMD-MODIFIER VALUE="TRAPPORTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="seqNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SCALAR" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-group-scalar"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="group" TYPE="STRING"/>
+				<PARAM NAME="scalar" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="scalarValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="scalar" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting scalar value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSCHEDULERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="webNMSSchedulerIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TOPOOBJTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="IPADDRESSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPNODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPINTERFACETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MODERIVEDPROPNAMETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="indexNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALERTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alertEntity" TYPE="STRING" />
+				<PARAM NAME="alertOwnerName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="EVENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="evtID" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSEVERITYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="severityName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALARMTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alarmSource" TYPE="STRING" />
+				<PARAM NAME="alarmOwnerName" TYPE="STRING" />
+				<PARAM NAME="alarmEntity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="THRESHOLDTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="thresholdObjectName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="STATSDATATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollID" TYPE="STRING" />
+				<PARAM NAME="oidindex" TYPE="STRING" />
+				<PARAM NAME="time" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NOTILOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VARBINDLOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+				<PARAM NAME="varbindIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="PROXYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="serialNumber" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SUBAGENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="subAgentoid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V1V2TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v1v2ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v1v2ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V3TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v3ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v3ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="networkDiscoveryIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODEDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="nodeIP" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOCRITERIATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="criteriaIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="DISCOVERYFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="discFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TRAPFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="trapFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLINGFILTERSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollingFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGUSERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+				<PARAM NAME="logUserIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table-column"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+				<PARAM NAME="column" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="columnValue" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="column" TYPE="STRING" NAME_EQ_VAL="true" />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for setting column value from agent.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+	</INPUT-MESSAGE>
+
+	<INPUT-MESSAGE CMD-VERB="GETALL">
+
+		<CMD-MODIFIER VALUE="TRAPPORTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="seqNum" TYPE="STRING"  />
+				<PARAM NAME="port" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSCHEDULERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="webNMSSchedulerIndex" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerDesc" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerNumTasks" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerNumThreads" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerActiveThreads" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerIdleThreads" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="moOwnerName" TYPE="STRING"  />
+				<PARAM NAME="moType" TYPE="STRING"  />
+				<PARAM NAME="moFailureCount" TYPE="STRING"  />
+				<PARAM NAME="moFailureThreshold" TYPE="STRING"  />
+				<PARAM NAME="moManaged" TYPE="STRING"  />
+				<PARAM NAME="moStatus" TYPE="STRING"  />
+				<PARAM NAME="moStatusChangeTime" TYPE="STRING"  />
+				<PARAM NAME="moStatusUpdateTime" TYPE="STRING"  />
+				<PARAM NAME="moPollInterval" TYPE="STRING"  />
+				<PARAM NAME="moUserProperties" TYPE="STRING"  />
+				<PARAM NAME="moDerivedProperties" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid1" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName1" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TOPOOBJTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="ipAddress" TYPE="STRING"  />
+				<PARAM NAME="netmask" TYPE="STRING"  />
+				<PARAM NAME="moCommunity" TYPE="STRING"  />
+				<PARAM NAME="moWriteCommunity" TYPE="STRING"  />
+				<PARAM NAME="snmpPort" TYPE="STRING"  />
+				<PARAM NAME="isDHCP" TYPE="STRING"  />
+				<PARAM NAME="baseMibs" TYPE="STRING"  />
+				<PARAM NAME="version" TYPE="STRING"  />
+				<PARAM NAME="userName" TYPE="STRING"  />
+				<PARAM NAME="contextName" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid2" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName2" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="discover" TYPE="STRING"  />
+				<PARAM NAME="discoverStatus" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid3" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName3" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="isRouter" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid4" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName4" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="IPADDRESSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="parentNode" TYPE="STRING"  />
+				<PARAM NAME="parentNet" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid5" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName5" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPNODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="hostNetMask" TYPE="STRING"  />
+				<PARAM NAME="sysDesc" TYPE="STRING"  />
+				<PARAM NAME="sysName" TYPE="STRING"  />
+				<PARAM NAME="sysOid" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid6" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName6" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPINTERFACETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="hostnetMask" TYPE="STRING"  />
+				<PARAM NAME="ifIndex" TYPE="STRING"  />
+				<PARAM NAME="physMedia" TYPE="STRING"  />
+				<PARAM NAME="physAddress" TYPE="STRING"  />
+				<PARAM NAME="ifSpeed" TYPE="STRING"  />
+				<PARAM NAME="ifDesc" TYPE="STRING"  />
+				<PARAM NAME="sysOID" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid7" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName7" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MODERIVEDPROPNAMETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="indexNum" TYPE="STRING"  />
+				<PARAM NAME="objClassName" TYPE="STRING"  />
+				<PARAM NAME="derivedPropNames" TYPE="STRING"  />
+				<PARAM NAME="tableOid" TYPE="STRING"  />
+				<PARAM NAME="tableName" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALERTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="alertEntity" TYPE="STRING"  />
+				<PARAM NAME="alertOwnerName" TYPE="STRING"  />
+				<PARAM NAME="alertCreateTime" TYPE="STRING"  />
+				<PARAM NAME="alertSource" TYPE="STRING"  />
+				<PARAM NAME="alertModTime" TYPE="STRING"  />
+				<PARAM NAME="alertSeverity" TYPE="STRING"  />
+				<PARAM NAME="alertPreviousSeverity" TYPE="STRING"  />
+				<PARAM NAME="alertCategory" TYPE="STRING"  />
+				<PARAM NAME="alertUserProperties" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="EVENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="evtID" TYPE="STRING"  />
+				<PARAM NAME="evtSource" TYPE="STRING"  />
+				<PARAM NAME="evtEntity" TYPE="STRING"  />
+				<PARAM NAME="evtSeverity" TYPE="STRING"  />
+				<PARAM NAME="evtCategory" TYPE="STRING"  />
+				<PARAM NAME="evtTime" TYPE="STRING"  />
+				<PARAM NAME="evtText" TYPE="STRING"  />
+				<PARAM NAME="eventUserProperties" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSEVERITYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="severityName" TYPE="STRING"  />
+				<PARAM NAME="numberOfAlarms" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALARMTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="alarmSource" TYPE="STRING"  />
+				<PARAM NAME="alarmOwnerName" TYPE="STRING"  />
+				<PARAM NAME="alarmEntity" TYPE="STRING"  />
+				<PARAM NAME="alarmSeverity" TYPE="STRING"  />
+				<PARAM NAME="alarmPreviousSeverity" TYPE="STRING"  />
+				<PARAM NAME="alarmCreateTime" TYPE="STRING"  />
+				<PARAM NAME="alarmModTime" TYPE="STRING"  />
+				<PARAM NAME="alarmCategory" TYPE="STRING"  />
+				<PARAM NAME="alarmAssignedTo" TYPE="STRING"  />
+				<PARAM NAME="alarmUserProperties" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollid" TYPE="STRING"  />
+				<PARAM NAME="polldataName" TYPE="STRING"  />
+				<PARAM NAME="oid" TYPE="STRING"  />
+				<PARAM NAME="pollingInterval" TYPE="STRING"  />
+				<PARAM NAME="failureCount" TYPE="STRING"  />
+				<PARAM NAME="failureThreshold" TYPE="STRING"  />
+				<PARAM NAME="timeToPoll" TYPE="STRING"  />
+				<PARAM NAME="polledTime" TYPE="STRING"  />
+				<PARAM NAME="agentName" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="THRESHOLDTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="thresholdObjectName" TYPE="STRING"  />
+				<PARAM NAME="thresholdKind" TYPE="STRING"  />
+				<PARAM NAME="thresholdMessage" TYPE="STRING"  />
+				<PARAM NAME="thresholdClearMessage" TYPE="STRING"  />
+				<PARAM NAME="thresholdSeverity" TYPE="STRING"  />
+				<PARAM NAME="thresholdCategory" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="STATSDATATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollID" TYPE="STRING"  />
+				<PARAM NAME="time" TYPE="STRING"  />
+				<PARAM NAME="oidindex" TYPE="STRING"  />
+				<PARAM NAME="value" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NOTILOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="notiLogIndex" TYPE="STRING"  />
+				<PARAM NAME="notiLogTime" TYPE="STRING"  />
+				<PARAM NAME="notiLogNumVarBinds" TYPE="STRING"  />
+				<PARAM NAME="notiLogOid" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VARBINDLOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="varbindIndex" TYPE="STRING"  />
+				<PARAM NAME="varbindType" TYPE="STRING"  />
+				<PARAM NAME="varbindValue" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="PROXYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="serialNumber" TYPE="STRING"  />
+				<PARAM NAME="hostName" TYPE="STRING"  />
+				<PARAM NAME="devicePort" TYPE="STRING"  />
+				<PARAM NAME="requestOid" TYPE="STRING"  />
+				<PARAM NAME="community" TYPE="STRING"  />
+				<PARAM NAME="service" TYPE="STRING"  />
+				<PARAM NAME="result" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SUBAGENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="subAgentoid" TYPE="STRING"  />
+				<PARAM NAME="subAgent" TYPE="STRING"  />
+				<PARAM NAME="subAgentPort" TYPE="STRING"  />
+				<PARAM NAME="subAgentVersion" TYPE="STRING"  />
+				<PARAM NAME="subAgentCommunity" TYPE="STRING"  />
+				<PARAM NAME="timeout" TYPE="STRING"  />
+				<PARAM NAME="subAgentRetries" TYPE="STRING"  />
+				<PARAM NAME="rowStatus" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V1V2TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="v1v2ManagerHost" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerPort" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerVersion" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerCommunity" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerTimeOut" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerRetries" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerStatus" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V3TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="v3ManagerHost" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerPort" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerVersion" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerCommunity" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserName" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserSecModel" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserSecLevel" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserContextName" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerTimeOut" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerRetries" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerStatus" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="networkDiscoveryIndex" TYPE="STRING"  />
+				<PARAM NAME="netIPAddress" TYPE="STRING"  />
+				<PARAM NAME="netMask" TYPE="STRING"  />
+				<PARAM NAME="startIPAddress" TYPE="STRING"  />
+				<PARAM NAME="endIPAddress" TYPE="STRING"  />
+				<PARAM NAME="doDiscovery" TYPE="STRING"  />
+				<PARAM NAME="dhcp" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODEDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="nodeIP" TYPE="STRING"  />
+				<PARAM NAME="nodeNetMask" TYPE="STRING"  />
+				<PARAM NAME="nodeDiscoverEnable" TYPE="STRING"  />
+				<PARAM NAME="snmpAgentPort" TYPE="STRING"  />
+				<PARAM NAME="nodeCommunity" TYPE="STRING"  />
+				<PARAM NAME="snmpVersion" TYPE="STRING"  />
+				<PARAM NAME="v3UserName" TYPE="STRING"  />
+				<PARAM NAME="v3ContextName" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOCRITERIATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="criteriaIndex" TYPE="STRING"  />
+				<PARAM NAME="propertyName" TYPE="STRING"  />
+				<PARAM NAME="propertyValue" TYPE="STRING"  />
+				<PARAM NAME="allow" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="DISCOVERYFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="discFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="discFilterClassName" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TRAPFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="trapFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="alertFilterClassName" TYPE="STRING"  />
+				<PARAM NAME="trapFilterName" TYPE="STRING"  />
+				<PARAM NAME="trapFilterEnable" TYPE="STRING"  />
+				<PARAM NAME="genericType" TYPE="STRING"  />
+				<PARAM NAME="specificType" TYPE="STRING"  />
+				<PARAM NAME="enterpriseOID" TYPE="STRING"  />
+				<PARAM NAME="trapOID" TYPE="STRING"  />
+				<PARAM NAME="setFilter" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLINGFILTERSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollingFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="pollingFilterClassName" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="logIndex" TYPE="STRING"  />
+				<PARAM NAME="logFileName" TYPE="STRING"  />
+				<PARAM NAME="logDirName" TYPE="STRING"  />
+				<PARAM NAME="maxLines" TYPE="STRING"  />
+				<PARAM NAME="maxFiles" TYPE="STRING"  />
+				<PARAM NAME="linesCached" TYPE="STRING"  />
+				<PARAM NAME="timeStamp" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGUSERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="logUserIndex" TYPE="STRING"  />
+				<PARAM NAME="logUserName" TYPE="STRING"  />
+				<PARAM NAME="displayName" TYPE="STRING"  />
+				<PARAM NAME="logLevel" TYPE="STRING"  />
+				<PARAM NAME="enableLog" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="aclCommunity" TYPE="STRING"  />
+				<PARAM NAME="aclAccess" TYPE="STRING"  />
+				<PARAM NAME="aclManagers" TYPE="STRING"  />
+				<PARAM NAME="aclStatus" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<RESPONSE-BLOCK TYPE="QUOTE">
+				<PARAM NAME="vaclmibViews" TYPE="STRING"  />
+				<PARAM NAME="vaclviewStatus" TYPE="STRING"  />
+			</RESPONSE-BLOCK>
+			<DESCRIPTION>
+				This is for getting all rows from a table.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+	</INPUT-MESSAGE>
+
+	<INPUT-MESSAGE CMD-VERB="CREATE">
+
+		<CMD-MODIFIER VALUE="TRAPPORTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="seqNum" TYPE="STRING"  />
+				<PARAM NAME="port" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSCHEDULERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="webNMSSchedulerIndex" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerDesc" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerNumTasks" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerNumThreads" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerActiveThreads" TYPE="STRING"  />
+				<PARAM NAME="webNMSSchedulerIdleThreads" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="moOwnerName" TYPE="STRING"  />
+				<PARAM NAME="moType" TYPE="STRING"  />
+				<PARAM NAME="moFailureCount" TYPE="STRING"  />
+				<PARAM NAME="moFailureThreshold" TYPE="STRING"  />
+				<PARAM NAME="moManaged" TYPE="STRING"  />
+				<PARAM NAME="moStatus" TYPE="STRING"  />
+				<PARAM NAME="moStatusChangeTime" TYPE="STRING"  />
+				<PARAM NAME="moStatusUpdateTime" TYPE="STRING"  />
+				<PARAM NAME="moPollInterval" TYPE="STRING"  />
+				<PARAM NAME="moUserProperties" TYPE="STRING"  />
+				<PARAM NAME="moDerivedProperties" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid1" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName1" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TOPOOBJTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="ipAddress" TYPE="STRING"  />
+				<PARAM NAME="netmask" TYPE="STRING"  />
+				<PARAM NAME="moCommunity" TYPE="STRING"  />
+				<PARAM NAME="moWriteCommunity" TYPE="STRING"  />
+				<PARAM NAME="snmpPort" TYPE="STRING"  />
+				<PARAM NAME="isDHCP" TYPE="STRING"  />
+				<PARAM NAME="baseMibs" TYPE="STRING"  />
+				<PARAM NAME="version" TYPE="STRING"  />
+				<PARAM NAME="userName" TYPE="STRING"  />
+				<PARAM NAME="contextName" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid2" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName2" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="discover" TYPE="STRING"  />
+				<PARAM NAME="discoverStatus" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid3" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName3" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="isRouter" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid4" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName4" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="IPADDRESSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="parentNode" TYPE="STRING"  />
+				<PARAM NAME="parentNet" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid5" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName5" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPNODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="hostNetMask" TYPE="STRING"  />
+				<PARAM NAME="sysDesc" TYPE="STRING"  />
+				<PARAM NAME="sysName" TYPE="STRING"  />
+				<PARAM NAME="sysOid" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid6" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName6" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPINTERFACETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="moNameIndex" TYPE="STRING"  />
+				<PARAM NAME="hostnetMask" TYPE="STRING"  />
+				<PARAM NAME="ifIndex" TYPE="STRING"  />
+				<PARAM NAME="physMedia" TYPE="STRING"  />
+				<PARAM NAME="physAddress" TYPE="STRING"  />
+				<PARAM NAME="ifSpeed" TYPE="STRING"  />
+				<PARAM NAME="ifDesc" TYPE="STRING"  />
+				<PARAM NAME="sysOID" TYPE="STRING"  />
+				<PARAM NAME="inheritingOid7" TYPE="STRING"  />
+				<PARAM NAME="inheritingTableName7" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MODERIVEDPROPNAMETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="indexNum" TYPE="STRING"  />
+				<PARAM NAME="objClassName" TYPE="STRING"  />
+				<PARAM NAME="derivedPropNames" TYPE="STRING"  />
+				<PARAM NAME="tableOid" TYPE="STRING"  />
+				<PARAM NAME="tableName" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALERTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="alertEntity" TYPE="STRING"  />
+				<PARAM NAME="alertOwnerName" TYPE="STRING"  />
+				<PARAM NAME="alertCreateTime" TYPE="STRING"  />
+				<PARAM NAME="alertSource" TYPE="STRING"  />
+				<PARAM NAME="alertModTime" TYPE="STRING"  />
+				<PARAM NAME="alertSeverity" TYPE="STRING"  />
+				<PARAM NAME="alertPreviousSeverity" TYPE="STRING"  />
+				<PARAM NAME="alertCategory" TYPE="STRING"  />
+				<PARAM NAME="alertUserProperties" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="EVENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="evtID" TYPE="STRING"  />
+				<PARAM NAME="evtSource" TYPE="STRING"  />
+				<PARAM NAME="evtEntity" TYPE="STRING"  />
+				<PARAM NAME="evtSeverity" TYPE="STRING"  />
+				<PARAM NAME="evtCategory" TYPE="STRING"  />
+				<PARAM NAME="evtTime" TYPE="STRING"  />
+				<PARAM NAME="evtText" TYPE="STRING"  />
+				<PARAM NAME="eventUserProperties" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSEVERITYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="severityName" TYPE="STRING"  />
+				<PARAM NAME="numberOfAlarms" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALARMTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="alarmSource" TYPE="STRING"  />
+				<PARAM NAME="alarmOwnerName" TYPE="STRING"  />
+				<PARAM NAME="alarmEntity" TYPE="STRING"  />
+				<PARAM NAME="alarmSeverity" TYPE="STRING"  />
+				<PARAM NAME="alarmPreviousSeverity" TYPE="STRING"  />
+				<PARAM NAME="alarmCreateTime" TYPE="STRING"  />
+				<PARAM NAME="alarmModTime" TYPE="STRING"  />
+				<PARAM NAME="alarmCategory" TYPE="STRING"  />
+				<PARAM NAME="alarmAssignedTo" TYPE="STRING"  />
+				<PARAM NAME="alarmUserProperties" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollid" TYPE="STRING"  />
+				<PARAM NAME="polldataName" TYPE="STRING"  />
+				<PARAM NAME="oid" TYPE="STRING"  />
+				<PARAM NAME="pollingInterval" TYPE="STRING"  />
+				<PARAM NAME="failureCount" TYPE="STRING"  />
+				<PARAM NAME="failureThreshold" TYPE="STRING"  />
+				<PARAM NAME="timeToPoll" TYPE="STRING"  />
+				<PARAM NAME="polledTime" TYPE="STRING"  />
+				<PARAM NAME="agentName" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="THRESHOLDTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="thresholdObjectName" TYPE="STRING"  />
+				<PARAM NAME="thresholdKind" TYPE="STRING"  />
+				<PARAM NAME="thresholdMessage" TYPE="STRING"  />
+				<PARAM NAME="thresholdClearMessage" TYPE="STRING"  />
+				<PARAM NAME="thresholdSeverity" TYPE="STRING"  />
+				<PARAM NAME="thresholdCategory" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="STATSDATATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollID" TYPE="STRING"  />
+				<PARAM NAME="time" TYPE="STRING"  />
+				<PARAM NAME="oidindex" TYPE="STRING"  />
+				<PARAM NAME="value" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NOTILOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="notiLogIndex" TYPE="STRING"  />
+				<PARAM NAME="notiLogTime" TYPE="STRING"  />
+				<PARAM NAME="notiLogNumVarBinds" TYPE="STRING"  />
+				<PARAM NAME="notiLogOid" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VARBINDLOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="notiLogIndex" TYPE="STRING"  />
+				<PARAM NAME="varbindIndex" TYPE="STRING"  />
+				<PARAM NAME="varbindType" TYPE="STRING"  />
+				<PARAM NAME="varbindValue" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="PROXYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="serialNumber" TYPE="STRING"  />
+				<PARAM NAME="hostName" TYPE="STRING"  />
+				<PARAM NAME="devicePort" TYPE="STRING"  />
+				<PARAM NAME="requestOid" TYPE="STRING"  />
+				<PARAM NAME="community" TYPE="STRING"  />
+				<PARAM NAME="service" TYPE="STRING"  />
+				<PARAM NAME="result" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SUBAGENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="subAgentoid" TYPE="STRING"  />
+				<PARAM NAME="subAgent" TYPE="STRING"  />
+				<PARAM NAME="subAgentPort" TYPE="STRING"  />
+				<PARAM NAME="subAgentVersion" TYPE="STRING"  />
+				<PARAM NAME="subAgentCommunity" TYPE="STRING"  />
+				<PARAM NAME="timeout" TYPE="STRING"  />
+				<PARAM NAME="subAgentRetries" TYPE="STRING"  />
+				<PARAM NAME="rowStatus" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V1V2TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="v1v2ManagerHost" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerPort" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerVersion" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerCommunity" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerTimeOut" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerRetries" TYPE="STRING"  />
+				<PARAM NAME="v1v2ManagerStatus" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V3TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="v3ManagerHost" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerPort" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerVersion" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerCommunity" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserName" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserSecModel" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserSecLevel" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerUserContextName" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerTimeOut" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerRetries" TYPE="STRING"  />
+				<PARAM NAME="v3ManagerStatus" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="networkDiscoveryIndex" TYPE="STRING"  />
+				<PARAM NAME="netIPAddress" TYPE="STRING"  />
+				<PARAM NAME="netMask" TYPE="STRING"  />
+				<PARAM NAME="startIPAddress" TYPE="STRING"  />
+				<PARAM NAME="endIPAddress" TYPE="STRING"  />
+				<PARAM NAME="doDiscovery" TYPE="STRING"  />
+				<PARAM NAME="dhcp" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODEDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="nodeIP" TYPE="STRING"  />
+				<PARAM NAME="nodeNetMask" TYPE="STRING"  />
+				<PARAM NAME="nodeDiscoverEnable" TYPE="STRING"  />
+				<PARAM NAME="snmpAgentPort" TYPE="STRING"  />
+				<PARAM NAME="nodeCommunity" TYPE="STRING"  />
+				<PARAM NAME="snmpVersion" TYPE="STRING"  />
+				<PARAM NAME="v3UserName" TYPE="STRING"  />
+				<PARAM NAME="v3ContextName" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOCRITERIATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="criteriaIndex" TYPE="STRING"  />
+				<PARAM NAME="propertyName" TYPE="STRING"  />
+				<PARAM NAME="propertyValue" TYPE="STRING"  />
+				<PARAM NAME="allow" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="DISCOVERYFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="discFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="discFilterClassName" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TRAPFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="trapFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="alertFilterClassName" TYPE="STRING"  />
+				<PARAM NAME="trapFilterName" TYPE="STRING"  />
+				<PARAM NAME="trapFilterEnable" TYPE="STRING"  />
+				<PARAM NAME="genericType" TYPE="STRING"  />
+				<PARAM NAME="specificType" TYPE="STRING"  />
+				<PARAM NAME="enterpriseOID" TYPE="STRING"  />
+				<PARAM NAME="trapOID" TYPE="STRING"  />
+				<PARAM NAME="setFilter" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLINGFILTERSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="pollingFilterIndex" TYPE="STRING"  />
+				<PARAM NAME="pollingFilterClassName" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="logIndex" TYPE="STRING"  />
+				<PARAM NAME="logFileName" TYPE="STRING"  />
+				<PARAM NAME="logDirName" TYPE="STRING"  />
+				<PARAM NAME="maxLines" TYPE="STRING"  />
+				<PARAM NAME="maxFiles" TYPE="STRING"  />
+				<PARAM NAME="linesCached" TYPE="STRING"  />
+				<PARAM NAME="timeStamp" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGUSERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="logIndex" TYPE="STRING"  />
+				<PARAM NAME="logUserIndex" TYPE="STRING"  />
+				<PARAM NAME="logUserName" TYPE="STRING"  />
+				<PARAM NAME="displayName" TYPE="STRING"  />
+				<PARAM NAME="logLevel" TYPE="STRING"  />
+				<PARAM NAME="enableLog" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="aclCommunity" TYPE="STRING"  />
+				<PARAM NAME="aclAccess" TYPE="STRING"  />
+				<PARAM NAME="aclManagers" TYPE="STRING"  />
+				<PARAM NAME="aclStatus" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK TYPE="QUOTE">
+				<PARAM NAME="aclCommunity" TYPE="STRING"  />
+				<PARAM NAME="vaclmibViews" TYPE="STRING"  />
+				<PARAM NAME="vaclviewStatus" TYPE="STRING"  />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for creating a new row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+	</INPUT-MESSAGE>
+
+	<INPUT-MESSAGE CMD-VERB="DELETE">
+
+		<CMD-MODIFIER VALUE="TRAPPORTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="seqNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSCHEDULERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="webNMSSchedulerIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TOPOOBJTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="IPADDRESSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPNODETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SNMPINTERFACETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="moNameIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MODERIVEDPROPNAMETABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="indexNum" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALERTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alertEntity" TYPE="STRING" />
+				<PARAM NAME="alertOwnerName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="EVENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="evtID" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="WEBNMSSEVERITYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="severityName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ALARMTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="alarmSource" TYPE="STRING" />
+				<PARAM NAME="alarmOwnerName" TYPE="STRING" />
+				<PARAM NAME="alarmEntity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="THRESHOLDTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="thresholdObjectName" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="STATSDATATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollID" TYPE="STRING" />
+				<PARAM NAME="oidindex" TYPE="STRING" />
+				<PARAM NAME="time" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NOTILOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VARBINDLOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="notiLogIndex" TYPE="STRING" />
+				<PARAM NAME="varbindIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="PROXYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="serialNumber" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="SUBAGENTTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="subAgentoid" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V1V2TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v1v2ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v1v2ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="V3TRAPFORWARDINGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="v3ManagerHost" TYPE="STRING" />
+				<PARAM NAME="v3ManagerPort" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NETWORKDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="networkDiscoveryIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="NODEDISCOVERYTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="nodeIP" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="MOCRITERIATABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="criteriaIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="DISCOVERYFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="discFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="TRAPFILTERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="trapFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="POLLINGFILTERSTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="pollingFilterIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="LOGUSERTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="logIndex" TYPE="STRING" />
+				<PARAM NAME="logUserIndex" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="ACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+
+		<CMD-MODIFIER VALUE="VACLTABLE" >
+			<IDENTIFIER-SYNTAX TYPE="ACCESS-ID" >
+				<TYPE-SYNTAX VALUE="module-table"/>
+				<PARAM NAME="module" TYPE="STRING"/>
+				<PARAM NAME="table" TYPE="STRING"/>
+			</IDENTIFIER-SYNTAX>
+			<MESSAGE-PAYLOAD-BLOCK>
+				<PARAM NAME="aclCommunity" TYPE="STRING" />
+			</MESSAGE-PAYLOAD-BLOCK>
+			<DESCRIPTION>
+				This is for deleting a row.
+			</DESCRIPTION>
+		</CMD-MODIFIER>
+	</INPUT-MESSAGE>
+
+
+
+<AUTONOMOUS-MESSAGE CMD-VERB="REPT">
+	<CMD-MODIFIER VALUE="alertClearNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends an alertClearNotification to the manager indicating that one
+				or more previously reported alerts have been cleared"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="alertCriticalNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends an alertCriticalNotification to the manager indicating that an
+				alert of 'Critical' severity 	has been raised on a MO"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="moDeenrolNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMSAgent sends a moDeenrolNotification to the manager when an MO has been
+				deenrolled/deleted from the management domain"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="moAttrChangeNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMSAgent sends a moAttrChangeNotification to the manager 
+				 when any discoverd MO's one or more attributes are changed."
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="alertWarningNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends an alertWarningNotification to the manager indicating that an
+				alert of 'Warning' severity has been raised on a MO"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="alertMajorNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends an alertMajorNotification to the manager indicating that an
+				alert of 'Major' severity has been raised on a MO"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="alertMinorNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends an alertMinorNotification to the manager indicating that a an alert
+				of 'Minor' severity has been raised on a MO"
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="moEnrolNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"The NMS-Agent sends a moEnrolNotification to the manager when an MO has been
+				enrolled/added into management domain."
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<CMD-MODIFIER VALUE="thresholdNotification" TYPE="CRITICAL">
+		<DESCIPTION>
+		"This notification is generated for the threshold objects
+				which return a string value, when they exceed or fall below
+				a particular threshold value."
+		</DESCIPTION>
+	</CMD-MODIFIER>
+
+	<RESPONSE-BLOCK TYPE="QUOTE">
+	<PARAM NAME="objName" TYPE="STRING" NAME_EQ_VAL="true" />
+	</RESPONSE-BLOCK>
+
+</AUTONOMOUS-MESSAGE>
+</TL1MESSAGE-COMMANDSET>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="Status" value="Nms Panel"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.client.status"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/NmsClientClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../classes,&lt;RELATIVE_PATH&gt;/../classes/AdventNetSnmp.jar,&lt;RELATIVE_PATH&gt;/../classes/AdventNetJmx.jar,&lt;RELATIVE_PATH&gt;/../classes/AdventNetSnmpAgent.jar,&lt;RELATIVE_PATH&gt;/../../classes/NmsClientClasses.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="StatusViewer"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/status"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="Status"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=" HOST  = localhost PORT  = 161"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/status/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="C:/Products/Studio Validation/AdventNet/WebNMS/classes"/>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="LoginUI" value="Frame"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.startclient"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value=""/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/AdventNetUI.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/NmsClientClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/AdventNetDMPModels.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../../../../advent/products/4.5/classes/AdventNetProBeans.jar"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="true"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="temp,classes/AdventNetSUMClient.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="NMS_loginResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/NMS_login"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/NMS_login/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="true"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="false"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="/advent/products/4.5/temp"/>
+</project>

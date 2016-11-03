@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.WebNMSTopoMibInstrument"  descriptorType="mbean"  displayName="WebNMSTopoMibInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="WebNMSTopoMibInstrument"  description="Contains attribute of WebNMSTopoMib group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="WebNMSNumObjects"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumObjects"  getMethod="getWebNMSNumObjects"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.2.1" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSNumNetworks"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumNetworks"  getMethod="getWebNMSNumNetworks"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.2.2" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSNumNodes"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumNodes"  getMethod="getWebNMSNumNodes"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.2.3" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSNumInterfaces"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumInterfaces"  getMethod="getWebNMSNumInterfaces"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.2.4" ></protocolMap>
+        </attribute>
+        <attribute name="MoUserPropNames"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="MoUserPropNames"  getMethod="getMoUserPropNames"  setMethod="setMoUserPropNames"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.5" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.WebNMSTopoMibInstrument"  descriptorType="operation"  displayName="WebNMSTopoMibInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumObjects"  descriptorType="operation"  displayName="getWebNMSNumObjects"  description="gets the WebNMSNumObjectsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumNetworks"  descriptorType="operation"  displayName="getWebNMSNumNetworks"  description="gets the WebNMSNumNetworksvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumNodes"  descriptorType="operation"  displayName="getWebNMSNumNodes"  description="gets the WebNMSNumNodesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumInterfaces"  descriptorType="operation"  displayName="getWebNMSNumInterfaces"  description="gets the WebNMSNumInterfacesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getMoUserPropNames"  descriptorType="operation"  displayName="getMoUserPropNames"  description="gets the MoUserPropNamesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setMoUserPropNames"  descriptorType="operation"  displayName="setMoUserPropNames"  description="Changes theMoUserPropNamesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="moUserPropNames"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: WebNMSTopoMibInstrument.xml,v 1.2 2007/04/30 18:31:29 tinku Exp $-->

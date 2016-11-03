@@ -1,0 +1,34 @@
+###################################################################
+# Auto generated configuration. Dated: Mon Feb 26 16:42:27 IST 2007
+###################################################################
+
+#
+# Default worker to be used through our mappings
+#
+default.worker=ajp12
+
+#
+# Root context mounts for Tomcat
+#
+/servlet/*=$(default.worker)
+/*.jsp=$(default.worker)
+
+#########################################################
+# Auto configuration for the /Jmx_connector context starts.
+#########################################################
+
+#
+# The following line mounts all JSP file and the /servlet/ uri to tomcat
+#
+/Jmx_connector/servlet/*=$(default.worker)
+/Jmx_connector/*.jsp=$(default.worker)
+
+#
+# If you want tomcat to serve all the resources (including static) that
+# are part of the /Jmx_connector context, uncomment the following line
+#
+# /Jmx_connector/*=$(default.worker)
+#######################################################
+# Auto configuration for the /Jmx_connector context ends.
+#######################################################
+

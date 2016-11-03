@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.snmp.VacmAccessTableMBean"  descriptorType="mbean"  displayName="VacmAccessTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="10"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="VacmAccessTable"  description="the trapVacmAccessTable"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.adaptors.snmp.VacmAccessTableMBean"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="VacmAccessTable"  getMethod="getVacmAccessTable"  setMethod="setVacmAccessTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.6.3.16.1.4.1" ></protocolMap>
+            <columnAttribute name="VacmGroupName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.2.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessContextPrefix"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.4.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessSecurityModel"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.4.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessSecurityLevel"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.4.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessContextMatch"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.4.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessReadViewName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.4.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessWriteViewName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.4.1.6" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessNotifyViewName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.4.1.7" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessStorageType"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.4.1.8" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmAccessStatus"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="RowStatus"  value=".1.3.6.1.6.3.16.1.4.1.9" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.snmp.VacmAccessTableMBean"  descriptorType="operation"  displayName="VacmAccessTableDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getVacmAccessTable"  descriptorType="operation"  displayName="getVacmAccessTable"  description="gets the VacmAccessTablevalues"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setVacmAccessTable"  descriptorType="operation"  displayName="setVacmAccessTable"  description="sets  the VacmAccessTablevalues"  role="setter"  impact="ACTION" >
+            <params>
+                <param name="vacmAccessTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!-- $Id: VacmAccessTable.xml,v 1.2 2007/04/30 18:30:46 tinku Exp $ -->

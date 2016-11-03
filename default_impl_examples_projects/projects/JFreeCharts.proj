@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="CurrentGraphViewer" value="Frame"/>
+<property name="JVMDetailsViewer" value="Frame"/>
+<property name="CollectedGraphViewer" value="Frame"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.poll.graphs"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value=""/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../end/AdventNet/WebNMS/classes/AdventNetDMPModels.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../end/AdventNet/WebNMS/classes/JimiProClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../end/AdventNet/WebNMS/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../end/AdventNet/WebNMS/classes/AdventNetUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../end/AdventNet/WebNMS/classes/AdventNetProBeans.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/AdventNetUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/AdventNetProBeans.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/AdventNetDMPModels.jar"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="true"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="classes,classes/jcommon.jar,classes/jfreechart.jar,NetMonitor/build/AuthMain.jar,NetMonitor/build/ConfigPanel.jar,NetMonitor/build/PerformanceGraphs.jar,classes/NmsClientClasses.jar,classes/AdventNetSnmp.jar,classes/SNMPDebugger.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="JFreeChartsResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/JFreeCharts"/>
+<property name="AppendBuilderClassPath" value="false"/>
+<property name="JavaTestDir" value="&lt;RELATIVE_PATH&gt;/../../../../java/new_jdk1.3.1"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/CurrentGraphInvoker.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/CollectedGraphInvoker.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/SnmpCurrentGraphController.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/CurrentGraphController.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/CollectedGraphController.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/JVMGraphInvoker.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/AdventNetDrawingSupplier.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/AdventNetLineChart.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/AdventNetBaseChart.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/AdventNetBarChart.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/JVMGraphController.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/JVMCollectedGraphController.java#Console Application,&lt;RELATIVE_PATH&gt;/JFreeCharts/Source/DefaultCollectedGraphController.java#Console Application"/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/JFreeCharts/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

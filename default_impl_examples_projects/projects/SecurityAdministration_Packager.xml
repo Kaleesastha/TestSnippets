@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE NAR_PACKAGER SYSTEM "NarPackager.dtd">
+<NAR_PACKAGER>
+<DEPLOYMENT_INFO
+		      DEPLOYMENT_DIR="./SecurityAdministration"
+		      CLASSES_DIR="./SecurityAdministration/classes"
+		      MAIN_CLASS="com.adventnet.security.ui.AuthMain"
+		      CLASS_TYPE="NMSFRAME"
+  		      PARAMETERS="NMS_RESOURCE_DIRECTORY=../html">
+	<RESOURCE_INFO
+	SOURCE_FILES="./SecurityAdministration/images/addgroup.png,./SecurityAdministration/images/addpassword.png,./SecurityAdministration/images/adduser.png,./SecurityAdministration/images/addview.png,./SecurityAdministration/images/checked.png,./SecurityAdministration/images/collapseit_small.png,./SecurityAdministration/images/expandit_small.png,./SecurityAdministration/images/unchecked.png,./SecurityAdministration/images/usersettings.png,./SecurityAdministration/images/right.png,./SecurityAdministration/images/wrong.png,./SecurityAdministration/images/task1.png,./SecurityAdministration/images/view1.png,./SecurityAdministration/images/user1.png,./SecurityAdministration/images/group1.png,./SecurityAdministration/images/treeconfig.png,./SecurityAdministration/images/viewconfig.png,./SecurityAdministration/classes/SecurityAdministrationResources.properties"
+	DEST_FILES="./images/addgroup.png,./images/addpassword.png,./images/adduser.png,./images/addview.png,./images/checked.png,./images/collapseit_small.png,./images/expandit_small.png,./images/unchecked.png,./images/usersettings.png,./images/right.png,./images/wrong.png,./images/task1.png,./images/view1.png,./images/user1.png,./images/group1.png,./images/treeconfig.png,./images/viewconfig.png,./html/SecurityAdministrationResources.properties"/> 
+</DEPLOYMENT_INFO>				                         
+</NAR_PACKAGER>                                             
+
+
+
+

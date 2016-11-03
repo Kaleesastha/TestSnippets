@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+		    "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<!-- $Id: Components-taglib.tld,v 1.2 2007/04/30 18:36:57 tinku Exp $-->
+
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>myName</shortname>
+	<uri>http://www.adventnet.com/taglib</uri>
+	<info>
+	Tag library for Components
+	</info>
+	<tag>
+		<name>Tree</name>
+		<tagclass>com.adventnet.webclient.components.tree.TreeTag</tagclass>
+    	<teiclass>com.adventnet.webclient.components.tree.TreeExtraInfo</teiclass>
+		<info> Main Tag</info>
+		<attribute>
+    		<name>keepState</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+    		<name>nodeToOpen</name>
+			<required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+    	</attribute>
+		<attribute>
+    		<name>storeInSession</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+    		<name>formAction</name>
+			<required>true</required>
+    	    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+    		<name>viewLet</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+    		<name>openFirstChild</name>
+			<required>false</required>
+    	    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag> 
+	<tag>
+	    <name>Images</name>
+	    <tagclass>com.adventnet.webclient.components.tree.ImagesTag</tagclass>
+        <teiclass>com.adventnet.webclient.components.tree.ImagesExtraInfo</teiclass>
+	    <info> Images Tag</info>
+	</tag>
+	<tag>
+	    <name>GetAttrib</name>
+	    <tagclass>com.adventnet.webclient.components.tree.GetAttribTag</tagclass>
+        <teiclass>com.adventnet.webclient.components.tree.GetAttribExtraInfo</teiclass>
+	    <info> GetAttribute Tag</info>
+		<attribute>
+    		<name>attributeName</name>
+			<required>true</required>
+		</attribute>		
+	</tag>
+</taglib>
+

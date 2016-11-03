@@ -1,0 +1,8 @@
+<agent>
+
+	<Projects>
+		<Name>JmxNorthBound.prj</Name>
+		<Directory>JMX_NMS_Northbound\projectFiles</Directory>
+	</Projects>
+</agent>
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.RediscoveryConfigurationInstrument"  descriptorType="mbean"  displayName="RediscoveryConfigurationInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="RediscoveryConfigurationInstrument"  description="Contains attribute of RediscoveryConfiguration group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="ReDiscover"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="ReDiscover"  getMethod="getReDiscover"  setMethod="setReDiscover"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.10.1.5.1" ></protocolMap>
+        </attribute>
+        <attribute name="ReDiscoverInterval"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The time interval in which the rediscovery takes place&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="ReDiscoverInterval"  getMethod="getReDiscoverInterval"  setMethod="setReDiscoverInterval"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.5.2" ></protocolMap>
+        </attribute>
+        <attribute name="Hour"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the time in hours at whicgh the discovery should be done again&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="Hour"  getMethod="getHour"  setMethod="setHour"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.5.3" ></protocolMap>
+        </attribute>
+        <attribute name="DayOfWeek"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the time in terms of the days of the week when the rediscovery is scheduled to be done&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="DayOfWeek"  getMethod="getDayOfWeek"  setMethod="setDayOfWeek"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.5.4" ></protocolMap>
+        </attribute>
+        <attribute name="DayOfMonth"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the time in terms of the days of the month when the rediscovery is scheduled to be done&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="DayOfMonth"  getMethod="getDayOfMonth"  setMethod="setDayOfMonth"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.5.5" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.RediscoveryConfigurationInstrument"  descriptorType="operation"  displayName="RediscoveryConfigurationInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getReDiscover"  descriptorType="operation"  displayName="getReDiscover"  description="gets the ReDiscovervalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setReDiscover"  descriptorType="operation"  displayName="setReDiscover"  description="Changes theReDiscovervalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="reDiscover"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getReDiscoverInterval"  descriptorType="operation"  displayName="getReDiscoverInterval"  description="gets the ReDiscoverIntervalvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setReDiscoverInterval"  descriptorType="operation"  displayName="setReDiscoverInterval"  description="Changes theReDiscoverIntervalvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="reDiscoverInterval"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getHour"  descriptorType="operation"  displayName="getHour"  description="gets the Hourvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setHour"  descriptorType="operation"  displayName="setHour"  description="Changes theHourvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="hour"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getDayOfWeek"  descriptorType="operation"  displayName="getDayOfWeek"  description="gets the DayOfWeekvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setDayOfWeek"  descriptorType="operation"  displayName="setDayOfWeek"  description="Changes theDayOfWeekvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="dayOfWeek"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getDayOfMonth"  descriptorType="operation"  displayName="getDayOfMonth"  description="gets the DayOfMonthvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setDayOfMonth"  descriptorType="operation"  displayName="setDayOfMonth"  description="Changes theDayOfMonthvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="dayOfMonth"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: RediscoveryConfigurationInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

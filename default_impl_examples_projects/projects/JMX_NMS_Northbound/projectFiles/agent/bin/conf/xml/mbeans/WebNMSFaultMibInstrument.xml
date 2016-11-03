@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.WebNMSFaultMibInstrument"  descriptorType="mbean"  displayName="WebNMSFaultMibInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="WebNMSFaultMibInstrument"  description="Contains attribute of WebNMSFaultMib group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="WebNMSNumEvents"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumEvents"  getMethod="getWebNMSNumEvents"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.3.1" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSNumAlerts"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSNumAlerts"  getMethod="getWebNMSNumAlerts"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.3.2" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSEventsInBuffer"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSEventsInBuffer"  getMethod="getWebNMSEventsInBuffer"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.3.3" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSAlertsInBuffer"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSAlertsInBuffer"  getMethod="getWebNMSAlertsInBuffer"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.3.4" ></protocolMap>
+        </attribute>
+        <attribute name="AlertUserPropNames"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="AlertUserPropNames"  getMethod="getAlertUserPropNames"  setMethod="setAlertUserPropNames"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.5" ></protocolMap>
+        </attribute>
+        <attribute name="EventUserPropNames"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="EventUserPropNames"  getMethod="getEventUserPropNames"  setMethod="setEventUserPropNames"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.6" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.WebNMSFaultMibInstrument"  descriptorType="operation"  displayName="WebNMSFaultMibInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumEvents"  descriptorType="operation"  displayName="getWebNMSNumEvents"  description="gets the WebNMSNumEventsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSNumAlerts"  descriptorType="operation"  displayName="getWebNMSNumAlerts"  description="gets the WebNMSNumAlertsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSEventsInBuffer"  descriptorType="operation"  displayName="getWebNMSEventsInBuffer"  description="gets the WebNMSEventsInBuffervalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSAlertsInBuffer"  descriptorType="operation"  displayName="getWebNMSAlertsInBuffer"  description="gets the WebNMSAlertsInBuffervalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getAlertUserPropNames"  descriptorType="operation"  displayName="getAlertUserPropNames"  description="gets the AlertUserPropNamesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setAlertUserPropNames"  descriptorType="operation"  displayName="setAlertUserPropNames"  description="Changes theAlertUserPropNamesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="alertUserPropNames"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getEventUserPropNames"  descriptorType="operation"  displayName="getEventUserPropNames"  description="gets the EventUserPropNamesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setEventUserPropNames"  descriptorType="operation"  displayName="setEventUserPropNames"  description="Changes theEventUserPropNamesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="eventUserPropNames"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: WebNMSFaultMibInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

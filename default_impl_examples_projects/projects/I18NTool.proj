@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project conversionType="Hash">
+<property name="ProjectApplnArgs" value=""/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Show Warnings" value="false"/>
+<property name="MainScreen" value="I18NMain"/>
+<property name="resourceFileName" value="I18NToolResources"/>
+<property name="MibsToLoad" value=""/>
+<property name="Description" value=""/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*| -Djava.compiler=NONE|*|"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/I18NTool/Source"/>
+<property name="Optimize" value="false"/>
+<property name="Show Deprecations" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;RELATIVE_PATH&gt;/I18NTool/classes"/>
+<property name="Extra Parameters" value=" MS_MODE  = 2"/>
+<property name="testScreenAs" value="Application"/>
+<property name="ProtocolSpecific" value="true"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../jars/NmsClientUIInterfaces.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/AdventNetUI.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/Utils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/AdventNetMSBeans.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/ManagementServer.jar"/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/I18NTool/Source/HelpWindow.java#Console Application,&lt;RELATIVE_PATH&gt;/I18NTool/Source/StringSearch.java#Console Application,&lt;RELATIVE_PATH&gt;/I18NTool/Source/I18NInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/I18NTool/Source/I18nFileFilter.java#Console Application,&lt;RELATIVE_PATH&gt;/I18NTool/Source/I18NUtils.java#Console Application"/>
+<screenInfo>
+<property name="HelpWindow.java" value="Console Application"/>
+<property name="Editor" value="Dialog"/>
+<property name="I18nFileFilter.java" value="Console Application"/>
+<property name="FindDialog" value="Dialog"/>
+<property name="Replace" value="Dialog"/>
+<property name="I18NInterface.java" value="Console Application"/>
+<property name="I18NMain" value="Application"/>
+<property name="StringSearch.java" value="Console Application"/>
+<property name="AddEntry" value="Dialog"/>
+<property name="I18NUtils.java" value="Console Application"/>
+<property name="AboutDialog" value="Dialog"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="Applet Parameters" value=" RESOURCE_PROPERTIES  = I18NToolResources PORT  = 9090 HOST  = localhost MS_MODE  = 3"/>
+<property name="Show Debug Info" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="SubVersion" value="BeanBuilder_2.0"/>
+<property name="Internationalize" value="true"/>
+<property name="Package" value="com.adventnet.management.i18n.tools"/>
+<property name="LogDebug" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Version" value="4.3"/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="ToolName" value="ManagementBuilder"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="Java Parameters" value=""/>
+<property name="Verbose" value="false"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/I18NTool"/>
+<property name="Use Debugger" value="false"/>
+<property name="MS_MODE" value="2"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="ProtocolSrc" value="false"/>
+</project>

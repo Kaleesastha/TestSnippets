@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.AlertNotiVarbindsInstrumentExt"  descriptorType="mbean"  displayName="AlertNotiVarbindsInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="AlertNotiVarbindsInstrument"  description="Contains attribute of AlertNotiVarbinds group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="Alertentity"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="Alertentity"  getMethod="getAlertentity"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.8.3.1" ></protocolMap>
+        </attribute>
+        <attribute name="AlertownerName"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the name of the owner of the alert&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="AlertownerName"  getMethod="getAlertownerName"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.8.3.2" ></protocolMap>
+        </attribute>
+        <attribute name="AlertDescription"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable describes the alert&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="AlertDescription"  getMethod="getAlertDescription"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.8.3.3" ></protocolMap>
+        </attribute>
+        <attribute name="AlertTimeStamp"  descriptorType="attribute"  type="java.lang.Long"  description="&quot;This variable indicates the  time at which the alert was last modified&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="AlertTimeStamp"  getMethod="getAlertTimeStamp"  iterable="F" >
+            <protocolMap name="SNMP"  type="TimeTicks"  value=".1.3.6.1.4.1.2162.4.3.8.3.4" ></protocolMap>
+        </attribute>
+        <attribute name="AlertNotificationId"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable indicates the id of the  generated alert&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="AlertNotificationId"  getMethod="getAlertNotificationId"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.3.8.3.5" ></protocolMap>
+        </attribute>
+        <attribute name="Alertcategory"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="Alertcategory"  getMethod="getAlertcategory"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.8.3.6" ></protocolMap>
+        </attribute>
+        <attribute name="AlertExtraProperties"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="AlertExtraProperties"  getMethod="getAlertExtraProperties"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.3.8.3.7" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.AlertNotiVarbindsInstrument"  descriptorType="operation"  displayName="AlertNotiVarbindsInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getAlertentity"  descriptorType="operation"  displayName="getAlertentity"  description="gets the Alertentityvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getAlertownerName"  descriptorType="operation"  displayName="getAlertownerName"  description="gets the AlertownerNamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getAlertDescription"  descriptorType="operation"  displayName="getAlertDescription"  description="gets the AlertDescriptionvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getAlertTimeStamp"  descriptorType="operation"  displayName="getAlertTimeStamp"  description="gets the AlertTimeStampvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getAlertNotificationId"  descriptorType="operation"  displayName="getAlertNotificationId"  description="gets the AlertNotificationIdvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getAlertcategory"  descriptorType="operation"  displayName="getAlertcategory"  description="gets the Alertcategoryvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getAlertExtraProperties"  descriptorType="operation"  displayName="getAlertExtraProperties"  description="gets the AlertExtraPropertiesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors>
+        <notification name="Alertentity"  descriptorType="notification"  description="Alertentity attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="Alertentity"  descriptorType="notification"  description="Alertentity attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="Alertentity"  descriptorType="notification"  description="Alertentity attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="Alertentity"  descriptorType="notification"  description="Alertentity attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="Alertentity"  descriptorType="notification"  description="Alertentity attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="AlertownerName"  descriptorType="notification"  description="AlertownerName attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="AlertownerName"  descriptorType="notification"  description="AlertownerName attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="AlertownerName"  descriptorType="notification"  description="AlertownerName attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="AlertownerName"  descriptorType="notification"  description="AlertownerName attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="AlertownerName"  descriptorType="notification"  description="AlertownerName attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="AlertDescription"  descriptorType="notification"  description="AlertDescription attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="AlertDescription"  descriptorType="notification"  description="AlertDescription attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="AlertDescription"  descriptorType="notification"  description="AlertDescription attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="AlertDescription"  descriptorType="notification"  description="AlertDescription attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="AlertDescription"  descriptorType="notification"  description="AlertDescription attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="AlertTimeStamp"  descriptorType="notification"  description="AlertTimeStamp attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="AlertTimeStamp"  descriptorType="notification"  description="AlertTimeStamp attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="AlertTimeStamp"  descriptorType="notification"  description="AlertTimeStamp attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="AlertTimeStamp"  descriptorType="notification"  description="AlertTimeStamp attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="AlertTimeStamp"  descriptorType="notification"  description="AlertTimeStamp attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="AlertNotificationId"  descriptorType="notification"  description="AlertNotificationId attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="AlertNotificationId"  descriptorType="notification"  description="AlertNotificationId attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="AlertNotificationId"  descriptorType="notification"  description="AlertNotificationId attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="AlertNotificationId"  descriptorType="notification"  description="AlertNotificationId attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="AlertNotificationId"  descriptorType="notification"  description="AlertNotificationId attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="Alertcategory"  descriptorType="notification"  description="Alertcategory attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="Alertcategory"  descriptorType="notification"  description="Alertcategory attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="Alertcategory"  descriptorType="notification"  description="Alertcategory attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="Alertcategory"  descriptorType="notification"  description="Alertcategory attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="Alertcategory"  descriptorType="notification"  description="Alertcategory attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+        <notification name="AlertExtraProperties"  descriptorType="notification"  description="AlertExtraProperties attribute value changed"  notifTypes="com.adventnet.traps.alertWarningNotification"  severity="4"  messageText="alertWarningNotification" ></notification>
+        <notification name="AlertExtraProperties"  descriptorType="notification"  description="AlertExtraProperties attribute value changed"  notifTypes="com.adventnet.traps.alertClearNotification"  severity="4"  messageText="alertClearNotification" ></notification>
+        <notification name="AlertExtraProperties"  descriptorType="notification"  description="AlertExtraProperties attribute value changed"  notifTypes="com.adventnet.traps.alertMinorNotification"  severity="4"  messageText="alertMinorNotification" ></notification>
+        <notification name="AlertExtraProperties"  descriptorType="notification"  description="AlertExtraProperties attribute value changed"  notifTypes="com.adventnet.traps.alertMajorNotification"  severity="4"  messageText="alertMajorNotification" ></notification>
+        <notification name="AlertExtraProperties"  descriptorType="notification"  description="AlertExtraProperties attribute value changed"  notifTypes="com.adventnet.traps.alertCriticalNotification"  severity="4"  messageText="alertCriticalNotification" ></notification>
+    </notificationDescriptors>
+</ModelMBean>
+
+<!--$Id: AlertNotiVarbindsInstrument.xml,v 1.3 2007/05/11 08:34:46 tinku Exp $-->

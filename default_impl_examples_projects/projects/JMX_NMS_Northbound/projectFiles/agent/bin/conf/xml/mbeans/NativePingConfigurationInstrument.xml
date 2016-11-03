@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.NativePingConfigurationInstrument"  descriptorType="mbean"  displayName="NativePingConfigurationInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="NativePingConfigurationInstrument"  description="Contains attribute of NativePingConfiguration group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="NativePingRetries"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The number of time native-ping must be done while discovery&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="NativePingRetries"  getMethod="getNativePingRetries"  setMethod="setNativePingRetries"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.8.1" ></protocolMap>
+        </attribute>
+        <attribute name="NativePingTimeOut"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states the max time that need be waited for to get a response back&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="NativePingTimeOut"  getMethod="getNativePingTimeOut"  setMethod="setNativePingTimeOut"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.8.2" ></protocolMap>
+        </attribute>
+        <attribute name="DebugLevel"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states the debug level&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="DebugLevel"  getMethod="getDebugLevel"  setMethod="setDebugLevel"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.8.3" ></protocolMap>
+        </attribute>
+        <attribute name="EnableSweep"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states whether sweep be enabled or not&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="EnableSweep"  getMethod="getEnableSweep"  setMethod="setEnableSweep"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.10.1.8.4" ></protocolMap>
+        </attribute>
+        <attribute name="SweepPkts"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states the number of sweep packets&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="SweepPkts"  getMethod="getSweepPkts"  setMethod="setSweepPkts"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.8.5" ></protocolMap>
+        </attribute>
+        <attribute name="SweepSleepInterval"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states the interval at which sweep must be done&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="SweepSleepInterval"  getMethod="getSweepSleepInterval"  setMethod="setSweepSleepInterval"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.8.6" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.NativePingConfigurationInstrument"  descriptorType="operation"  displayName="NativePingConfigurationInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getNativePingRetries"  descriptorType="operation"  displayName="getNativePingRetries"  description="gets the NativePingRetriesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setNativePingRetries"  descriptorType="operation"  displayName="setNativePingRetries"  description="Changes theNativePingRetriesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="nativePingRetries"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getNativePingTimeOut"  descriptorType="operation"  displayName="getNativePingTimeOut"  description="gets the NativePingTimeOutvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setNativePingTimeOut"  descriptorType="operation"  displayName="setNativePingTimeOut"  description="Changes theNativePingTimeOutvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="nativePingTimeOut"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getDebugLevel"  descriptorType="operation"  displayName="getDebugLevel"  description="gets the DebugLevelvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setDebugLevel"  descriptorType="operation"  displayName="setDebugLevel"  description="Changes theDebugLevelvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="debugLevel"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getEnableSweep"  descriptorType="operation"  displayName="getEnableSweep"  description="gets the EnableSweepvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setEnableSweep"  descriptorType="operation"  displayName="setEnableSweep"  description="Changes theEnableSweepvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="enableSweep"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSweepPkts"  descriptorType="operation"  displayName="getSweepPkts"  description="gets the SweepPktsvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setSweepPkts"  descriptorType="operation"  displayName="setSweepPkts"  description="Changes theSweepPktsvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="sweepPkts"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSweepSleepInterval"  descriptorType="operation"  displayName="getSweepSleepInterval"  description="gets the SweepSleepIntervalvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setSweepSleepInterval"  descriptorType="operation"  displayName="setSweepSleepInterval"  description="Changes theSweepSleepIntervalvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="sweepSleepInterval"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: NativePingConfigurationInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

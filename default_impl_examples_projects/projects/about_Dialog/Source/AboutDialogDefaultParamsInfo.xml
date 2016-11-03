@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AboutDialogParametersInfo>
+
+<GUIParameters>
+      <ImageName>adventnet_aboutDlg.jpg</ImageName>
+      <ProductName>WebNMS Framework</ProductName>
+	<ProductVersion>Release 5.2.0</ProductVersion>
+      <ContactInfo>contact_address.html</ContactInfo>
+      <CopyrightInfo>Copyright © 2011, Zoho Corp. All Rights Reserved</CopyrightInfo>
+  </GUIParameters>
+  <!-- $Id: AboutDialogDefaultParamsInfo.xml,v 1.4 2011/04/06 16:19:22 prabakaran Exp $-->
+
+</AboutDialogParametersInfo>
+
+

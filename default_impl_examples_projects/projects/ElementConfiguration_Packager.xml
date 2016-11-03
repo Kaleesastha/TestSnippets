@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE NAR_PACKAGER SYSTEM "NarPackager.dtd">
+<NAR_PACKAGER>
+    <DEPLOYMENT_INFO
+            DEPLOYMENT_DIR="./ElementConfiguration"
+            CLASSES_DIR="./ElementConfiguration/classes"
+            MAIN_CLASS="com.adventnet.nms.config.ConfigPanel"
+            CLASS_TYPE="NMSPANEL"
+			PANEL_KEY="ConfigPanel"
+            PARAMETERS="NMS_RESOURCE_DIRECTORY=../html">
+			<RESOURCE_INFO
+                    SOURCE_FILES="./ElementConfiguration/classes/ElementConfigurationResources.properties"
+                    DEST_FILES="./html/ElementConfigurationResources.properties"/> 
+    </DEPLOYMENT_INFO>
+</NAR_PACKAGER> 
+

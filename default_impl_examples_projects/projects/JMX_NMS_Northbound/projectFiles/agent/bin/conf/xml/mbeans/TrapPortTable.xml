@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.TrapPortTable"  descriptorType="mbean"  displayName="TrapPortTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="-1"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="TrapPortTable"  description="&quot;This table describes the ports at which the traps are being received by the WebNMS&quot;"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.nms.jmxagent.TrapPortTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="&quot;This table describes the ports at which the traps are being received by the WebNMS&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="TrapPortTable"  getMethod="getTrapPortTable"  setMethod="setTrapPortTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.1.9.4.1" ></protocolMap>
+            <columnAttribute name="SeqNum"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.9.4.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Port"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.9.4.1.2" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.TrapPortTable"  descriptorType="operation"  displayName="TrapPortTable DefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getTrapPortTable"  descriptorType="operation"  displayName="getTrapPortTable"  description="gets the TrapPortTable values"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setTrapPortTable"  descriptorType="operation"  displayName="setTrapPortTable"  description="sets  the TrapPortTable values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="trapPortTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: TrapPortTable.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

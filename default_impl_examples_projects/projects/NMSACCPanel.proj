@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="CombinedAlarmChart" value="Panel"/>
+<property name="CombinedAlarmTable" value="Panel"/>
+<property name="ACCPanel" value="Panel"/>
+<property name="CategoryAlarmChart" value="Panel"/>
+<property name="SeverityAlarmChart" value="Panel"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.alertui.accpanel"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetUI.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetSNMPAgentTools.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/NmsClientClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/jcommon.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetSnmpAgent.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetSnmp.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetBeanBuilder.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/jfreechart.jar"/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="data/Standards.alf"/>
+<property name="DynamicParamChanged" value="true"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/NmsClientClasses.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetSnmpAgent.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetSnmp.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetUI.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/AdventNetUtils.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/ApiUtils.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/jcommon.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/jfreechart.jar,&lt;RELATIVE_PATH&gt;/../../../../WebNms_Product/New4_7_0/classes/NmsClientClasses.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="OpManagerScreensResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/NMSACCPanel"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/ImagePanel.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/PieChart.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/ChartUtil.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/ACCPanelChartInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/BarChart.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/NMSACCPanel.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/NmsDrawingSupplier.java#Console Application,&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source/ChartPanelWrapper.java#Console Application"/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/NMSACCPanel/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="true"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="false"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="/home/tinku/Integration/WEBNMS_4_7_0_BRANCH/classfilesplace"/>
+</project>

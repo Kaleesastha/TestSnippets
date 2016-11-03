@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>Security Administration - AuthObserver Example</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.1.5  (Linux)">
+	<META NAME="CREATED" CONTENT="20070801;14455900">
+	<META NAME="CHANGED" CONTENT="20070803;14491500">
+	<STYLE>
+	<!--
+		P { font-family: "Arial", "Helvetica"; font-size: 10pt }
+		H2 { font-size: 16pt }
+		H3 { font-size: 12pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" BGCOLOR="#ffffff" DIR="LTR">
+<H2><B>Login Logout Notification Observer Example</B></H2>
+<HR>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Example Overview">Example
+	Overview</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Integration with Web NMS">Integration
+	with Web NMS</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Sample Output">Sample
+	Output</A> 
+	</P>
+</UL>
+<HR>
+<H3><A NAME="Example Overview"></A>Example Overview</H3>
+<P><B>Example name</B> : <B>LoginLogoutObserver.java</B><BR><B>Location</B>
+: <I>&lt;Web NMS Home&gt;/examples/Security/liloNotification
+</I>directory</P>
+<P>This example explains the login logout observer functionality in
+WebNms. The actions specified in the <B>handleClientConnection<I>()</I></B>
+method of <B>LoginLogoutObserver.java</B> (located in <I>&lt;Web NMS
+Home&gt;/examples//Security/liloNotification </I>directory) will be
+performed when there is a client login or logout and also in case of
+login failure.</P>
+<P><B><FONT SIZE=3>Prerequisite</FONT></B><BR><BR>Prior to executing
+this example class it is imperative of the user to write the
+<B>handleClientConnection<I>()</I></B> method implementing the
+<B>ClientConnectionObserver</B> class. This method will have all the
+actions that are to be performed on user login,login-failure or
+logout. The action may be a simple Print command which prints details
+of the notification in the console or into a file. For more
+information on writing the client Connection Observer please refer to
+the documentation on LILO Observers under <B>User Login and Logout
+Notifications</B> section in Security management.&nbsp;</P>
+<P>The interface used in this example is <A HREF="../../../../help/javadocs/consolidated_javadocs/com/adventnet/security/authorization/AuthObserver.html" TARGET="_blank">ClientConnectionObserver</A></P>
+<P>Methods used in this example are listed below. These methods will
+return a boolean &quot;true&quot; if the observer is registered for
+the updates.</P>
+<UL>
+	<LI><P><B><I>registerClientConnectionObserver</I></B><BR><BR><BR>
+	</P>
+</UL>
+<P>This method shall be called when a user login and logout of the
+server via application client, applet client, webstart client and web
+client. 
+</P>
+<UL>
+	<LI><P><B>handleClientConnection               </B>
+	</P>
+</UL>
+<P>&nbsp;<FONT FACE="Arial"><B>Note :</B> The source code will have
+comment statements in it which will explain to you the different
+segments of the program.</FONT> 
+</P>
+<H3>&nbsp;</H3>
+<H3><A NAME="Integration with Web NMS"></A>Integration with Web NMS</H3>
+<P>The steps given below will help you in integrating this example
+with Web NMS. If any of the steps given below are not followed
+properly, then the example might not function in a desired manner.</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Set the <I>&lt;Web NMS
+	Home&gt;/classes/NmsServerClasses.jar</I> directory to classpath 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Compile the
+	<B>LoginLogoutObserver.java</B> source file [ javac -d &lt;Web NMS
+	Home&gt;/classes liloObserver.java] 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Ensure that the class file is
+	placed in the <I>&lt;Web NMS Home&gt;/classes</I> directory after
+	compilation, in line with the package name specified in the program 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Create a stub for the
+	LoginLogoutObserver.class file 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Now start the Web NMS Server&nbsp;and
+	wait till it successfully starts up 
+	</P>
+	<LI><P>Execute the program</P>
+</UL>
+<H3><A NAME="Sample Output"></A>Sample Output</H3>
+<P>On executing the class file, it will register as
+ClientConnectionObserver with GenericBEApi. &ldquo;Successfully
+registered with the observer would be printed&rdquo; in console.
+Whenever a client login,logsout or there is a login failure the
+handleClientConnection method will be called. The type of
+notification and the properties for the same shall be printed. 
+</P>
+<HR>
+<P>Copyright &copy; 1996-2002, AdventNet Inc. All Rights Reserved.</P>
+</BODY>
+</HTML>

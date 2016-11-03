@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="ShutdownServer" value="Frame"/>
+<property name="ShutdownSettings" value="Dialog"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.launcher.nms"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../jars/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/ApiUtils.jar"/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="Description" value=""/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="ShutDownNmsServerResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/ShutDownNmsServer"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MS_MODE" value="3"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="BeanBuilder_2.0"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=" MS_MODE  = 3 RESOURCE_PROPERTIES  = ShutDownNmsServerResources"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/ShutDownNmsServer/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="ToolName" value="ManagementBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.3-BETA"/>
+<property name="Show Debug Info" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;RELATIVE_PATH&gt;/ShutDownNmsServer/classes"/>
+</project>

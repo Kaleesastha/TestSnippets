@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="PanelMenu" value="Panel"/>
+<property name="InstallerWizard" value="Dialog"/>
+<property name="Tree" value="Panel"/>
+<property name="MapMenu" value="Panel"/>
+<property name="ToolBarMenu" value="Panel"/>
+<property name="InstalledList" value="Panel"/>
+<property name="FrameMenu" value="Panel"/>
+<property name="Users" value="Panel"/>
+<property name="ListMenu" value="Panel"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.tools.nar"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value=""/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../2.3 SP8/AdventNet/WebNMS/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../..,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../2.3 SP8/AdventNet/WebNMS/classes/JimiProClasses.zip"/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="/data/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../D:/june25/AdventNet/WebNMS/classes"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="DeploymentWizard"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/NarInstall"/>
+<property name="AppendBuilderClassPath" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="InstallerWizard"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=" HOST  = localhost PORT  = 161"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/NarInstall/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="true"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

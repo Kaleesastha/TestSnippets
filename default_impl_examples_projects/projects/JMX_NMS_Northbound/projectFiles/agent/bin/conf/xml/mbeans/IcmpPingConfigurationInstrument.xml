@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.IcmpPingConfigurationInstrument"  descriptorType="mbean"  displayName="IcmpPingConfigurationInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="IcmpPingConfigurationInstrument"  description="Contains attribute of IcmpPingConfiguration group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="EnableIcmp"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states whether icmp ping be enabled or not&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="EnableIcmp"  getMethod="getEnableIcmp"  setMethod="setEnableIcmp"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.10.1.7.1" ></protocolMap>
+        </attribute>
+        <attribute name="IcmpPingRetries"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The number of retries for icmp-ping while discovery&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="IcmpPingRetries"  getMethod="getIcmpPingRetries"  setMethod="setIcmpPingRetries"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.7.2" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.IcmpPingConfigurationInstrument"  descriptorType="operation"  displayName="IcmpPingConfigurationInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getEnableIcmp"  descriptorType="operation"  displayName="getEnableIcmp"  description="gets the EnableIcmpvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setEnableIcmp"  descriptorType="operation"  displayName="setEnableIcmp"  description="Changes theEnableIcmpvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="enableIcmp"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getIcmpPingRetries"  descriptorType="operation"  displayName="getIcmpPingRetries"  description="gets the IcmpPingRetriesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setIcmpPingRetries"  descriptorType="operation"  displayName="setIcmpPingRetries"  description="Changes theIcmpPingRetriesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="icmpPingRetries"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: IcmpPingConfigurationInstrument.xml,v 1.3 2007/05/11 08:37:22 tinku Exp $-->

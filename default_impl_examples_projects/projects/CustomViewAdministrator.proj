@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../classes,&lt;RELATIVE_PATH&gt;/../../../usr/java/jdk1.3/lib/tools.jar,&lt;RELATIVE_PATH&gt;/../classes/NmsClientClasses.jar,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/classes,&lt;RELATIVE_PATH&gt;/../classes/clientAPI.jar,&lt;RELATIVE_PATH&gt;/../mysql/MMMySQLDriver/mysql_comp.jar,&lt;RELATIVE_PATH&gt;/../classes/AdventNetSnmp.jar,&lt;RELATIVE_PATH&gt;/../classes"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="Applet Parameters" value=""/>
+<property name="testScreenAs" value="Application"/>
+<property name="Show Warnings" value="false"/>
+<property name="Show Deprecations" value="false"/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="Java Variables" value="|*| -Djava.compiler=NONE|*|"/>
+<property name="Version" value="4.2F"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Optimize" value="false"/>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="CustomViewTypes"/>
+<property name="Internationalize" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/classes"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/CustomViewAdministrator"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../jars/NmsClientUIInterfaces.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/NmsClientClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/jta.jar"/>
+<property name="resourceFileName" value="CustomViewAdminstratorResources"/>
+<property name="Verbose" value="false"/>
+<property name="Show Debug Info" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Java Parameters" value=""/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/EventProperties.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/ListEntry.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/GroupSelectionTableModel.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/CustomMain.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/AlertProperties.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/ShowCustomView.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/CustomizerTableModel.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/TreeCombo.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/CustomizerDialog.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/PerformanceProperties.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/ShowEventProperties.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/CustomViewObject.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/InitialProperties.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/CustomizerTreeModel.java#Console Application,&lt;RELATIVE_PATH&gt;/CustomViewAdministrator/Source/UserGroupInformation.java#Console Application"/>
+<property name="LogDebug" value="false"/>
+<property name="Package" value="com.adventnet.nms.tools.CustomView"/>
+<property name="Use Debugger" value="false"/>
+<property name="MibsToLoad" value=""/>
+<property name="Description" value=""/>
+<property name="SubVersion" value="BeanBuilder_2.0"/>
+<screenInfo>
+<property name="PerformanceProperties.java" value="Console Application"/>
+<property name="TreeProperties" value="Panel"/>
+<property name="ShowAlertProperties" value="Dialog"/>
+<property name="AlertProperties.java" value="Console Application"/>
+<property name="CustomMain.java" value="Console Application"/>
+<property name="TreeCombo.java" value="Console Application"/>
+<property name="InitialProperties.java" value="Console Application"/>
+<property name="CustomizerWizard" value="Panel"/>
+<property name="AdditionalColumns" value="Dialog"/>
+<property name="EventProperties.java" value="Console Application"/>
+<property name="showPerfProperties" value="Dialog"/>
+<property name="ApplyModification" value="Panel"/>
+<property name="EventCustomizer" value="Panel"/>
+<property name="NDCustomizer2" value="Panel"/>
+<property name="NDCustomizer1" value="Panel"/>
+<property name="ShowCustomView.java" value="Console Application"/>
+<property name="PerfCustomizer3" value="Panel"/>
+<property name="PerfCustomizer2" value="Panel"/>
+<property name="PerfCustomizer1" value="Panel"/>
+<property name="CustomViewObject.java" value="Console Application"/>
+<property name="CustomizerDialog.java" value="Console Application"/>
+<property name="ListAll" value="Panel"/>
+<property name="CustomViewTypes" value="Application"/>
+<property name="ModifyCustomView.java" value="Console Application"/>
+<property name="ShowEventProperties" value="Dialog"/>
+<property name="PropertyWizard" value="Panel"/>
+<property name="CreateCustomView.java" value="Console Application"/>
+<property name="AlertCustomizer" value="Panel"/>
+<property name="AdditionalCriteria" value="Dialog"/>
+<property name="ShowEventProperties.java" value="Console Application"/>
+<property name="ParentSelection" value="Panel"/>
+<property name="ListEntry.java" value="Console Application"/>
+<property name="CustomizerTreeModel.java" value="Console Application"/>
+<property name="GroupSelectionTableModel.java" value="Console Application"/>
+<property name="CustomizerDialog" value="Console Application"/>
+<property name="UserGroupInformation.java" value="Console Application"/>
+<property name="DeleteDialog" value="Dialog"/>
+<property name="SelectPropsToView" value="Dialog"/>
+<property name="CustomizerTableModel.java" value="Console Application"/>
+<property name="UserSelection" value="Panel"/>
+<property name="TreeModel.java" value="Console Application"/>
+</screenInfo>
+</project>
+

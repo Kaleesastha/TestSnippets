@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="PreviewPanel" value="Frame"/>
+<property name="TemplateUIPanel" value="Panel"/>
+<property name="DesignTimeFrame" value="Frame"/>
+<property name="ProvisioningResult" value="Panel"/>
+<property name="ProvisioningOperationsPanel" value="Nms Panel"/>
+<property name="ProvisioningDetails" value="Panel"/>
+<property name="ProvisioningTemplatesPanel" value="Nms Panel"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.provisioning.ui"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../jars/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/bsh-1.2b3.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetBE.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/NmsClientUIInterfaces.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/xalan.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetRenderersGallery.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetProBeans.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/AdventNetUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../jars/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetJCF.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/jaxp.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetProvisioningServer.jar"/>
+<property name="Supported Protocols" value=""/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="Description" value="&#10;"/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetJCF.jar,&lt;RELATIVE_PATH&gt;/../jars/AdventNetJCF.jar,&lt;RELATIVE_PATH&gt;/../../Provisioning/classes/AdventNetProBeans.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="ProvisioningClientResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/ProvisioningClient"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="SubVersion" value="BeanBuilder_2.0"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/ProvisioningClient/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=" RESOURCE_PROPERTIES  = ProvisioningClientResources"/>
+<property name="ToolName" value="ManagementBuilder"/>
+<property name="ProtocolSpecific" value="false"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.3"/>
+<property name="Show Debug Info" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;RELATIVE_PATH&gt;/ProvisioningClient/classes"/>
+</project>

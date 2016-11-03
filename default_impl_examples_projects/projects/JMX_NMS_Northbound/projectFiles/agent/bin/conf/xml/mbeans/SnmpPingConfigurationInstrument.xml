@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.SnmpPingConfigurationInstrument"  descriptorType="mbean"  displayName="SnmpPingConfigurationInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="SnmpPingConfigurationInstrument"  description="Contains attribute of SnmpPingConfiguration group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="EnableSnmpPing"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states if the snmp ping should be enabled or not&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="EnableSnmpPing"  getMethod="getEnableSnmpPing"  setMethod="setEnableSnmpPing"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.10.1.6.1" ></protocolMap>
+        </attribute>
+        <attribute name="SnmpPingRetries"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The number of retries for snmp-ping while discovery&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="SnmpPingRetries"  getMethod="getSnmpPingRetries"  setMethod="setSnmpPingRetries"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.6.2" ></protocolMap>
+        </attribute>
+        <attribute name="SnmpPingTimeout"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The maximum time taken to wait for  a response&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="SnmpPingTimeout"  getMethod="getSnmpPingTimeout"  setMethod="setSnmpPingTimeout"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.10.1.6.3" ></protocolMap>
+        </attribute>
+        <attribute name="Snmpport"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the snmp port&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="Snmpport"  getMethod="getSnmpport"  setMethod="setSnmpport"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.6.4" ></protocolMap>
+        </attribute>
+        <attribute name="ReadCommunity"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the read community&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="ReadCommunity"  getMethod="getReadCommunity"  setMethod="setReadCommunity"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.6.5" ></protocolMap>
+        </attribute>
+        <attribute name="WriteCommunity"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable states the writed community&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="WriteCommunity"  getMethod="getWriteCommunity"  setMethod="setWriteCommunity"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.6.6" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.SnmpPingConfigurationInstrument"  descriptorType="operation"  displayName="SnmpPingConfigurationInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getEnableSnmpPing"  descriptorType="operation"  displayName="getEnableSnmpPing"  description="gets the EnableSnmpPingvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setEnableSnmpPing"  descriptorType="operation"  displayName="setEnableSnmpPing"  description="Changes theEnableSnmpPingvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="enableSnmpPing"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSnmpPingRetries"  descriptorType="operation"  displayName="getSnmpPingRetries"  description="gets the SnmpPingRetriesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setSnmpPingRetries"  descriptorType="operation"  displayName="setSnmpPingRetries"  description="Changes theSnmpPingRetriesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="snmpPingRetries"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSnmpPingTimeout"  descriptorType="operation"  displayName="getSnmpPingTimeout"  description="gets the SnmpPingTimeoutvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setSnmpPingTimeout"  descriptorType="operation"  displayName="setSnmpPingTimeout"  description="Changes theSnmpPingTimeoutvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="snmpPingTimeout"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSnmpport"  descriptorType="operation"  displayName="getSnmpport"  description="gets the Snmpportvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setSnmpport"  descriptorType="operation"  displayName="setSnmpport"  description="Changes theSnmpportvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="snmpport"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getReadCommunity"  descriptorType="operation"  displayName="getReadCommunity"  description="gets the ReadCommunityvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setReadCommunity"  descriptorType="operation"  displayName="setReadCommunity"  description="Changes theReadCommunityvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="readCommunity"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getWriteCommunity"  descriptorType="operation"  displayName="getWriteCommunity"  description="gets the WriteCommunityvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setWriteCommunity"  descriptorType="operation"  displayName="setWriteCommunity"  description="Changes theWriteCommunityvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="writeCommunity"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: SnmpPingConfigurationInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

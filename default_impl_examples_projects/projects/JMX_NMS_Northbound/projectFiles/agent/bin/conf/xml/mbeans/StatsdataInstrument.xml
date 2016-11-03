@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.StatsdataInstrument"  descriptorType="mbean"  displayName="StatsdataInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="StatsdataInstrument"  description="Contains attribute of Statsdata group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="StatsdataTableName"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="StatsdataTableName"  getMethod="getStatsdataTableName"  setMethod="setStatsdataTableName"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.4.6.1" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.StatsdataInstrument"  descriptorType="operation"  displayName="StatsdataInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getStatsdataTableName"  descriptorType="operation"  displayName="getStatsdataTableName"  description="gets the StatsdataTableNamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setStatsdataTableName"  descriptorType="operation"  displayName="setStatsdataTableName"  description="Changes theStatsdataTableNamevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="statsdataTableName"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: StatsdataInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<table>
+  <row>
+    <column name="serialNumber" value="1" />
+    <column name="hostName" value="localhost" />
+    <column name="devicePort" value="161" />
+    <column name="requestOid" value=".1.3.6.1.2.1.1.5" />
+    <column name="community" value="public" />
+    <column name="service" value="1" />
+    <column name="result" value="" />
+  </row>
+</table>
+

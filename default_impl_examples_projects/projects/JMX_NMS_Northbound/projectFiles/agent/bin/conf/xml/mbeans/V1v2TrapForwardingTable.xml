@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.V1v2TrapForwardingTable"  descriptorType="mbean"  displayName="V1v2TrapForwardingTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="-1"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="V1v2TrapForwardingTable"  description="&quot;This table maintains the SNMP v1 and v2c managers information
+   like manager IP address, port number,community, time out,
+   retires, etc which are used in trap generation.  Timeout and
+   retires are used in the case of SNMPv2c INFORM.&quot;"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.nms.jmxagent.V1v2TrapForwardingTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="V1v2TrapForwardingTable"  getMethod="getV1v2TrapForwardingTable"  setMethod="setV1v2TrapForwardingTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.9.1.1" ></protocolMap>
+            <columnAttribute name="V1v2ManagerHost"  descriptorType="attribute"  type="java.lang.String"  isReadable="F"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="IpAddress"  value=".1.3.6.1.4.1.2162.4.9.1.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerPort"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="F"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.9.1.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerVersion"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.9.1.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerCommunity"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.9.1.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerTimeOut"  descriptorType="attribute"  type="java.lang.Long"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="Unsigned32"  value=".1.3.6.1.4.1.2162.4.9.1.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerRetries"  descriptorType="attribute"  type="java.lang.Long"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="Unsigned32"  value=".1.3.6.1.4.1.2162.4.9.1.1.6" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V1v2ManagerStatus"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="RowStatus"  value=".1.3.6.1.4.1.2162.4.9.1.1.7" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.V1v2TrapForwardingTable"  descriptorType="operation"  displayName="V1v2TrapForwardingTable DefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getV1v2TrapForwardingTable"  descriptorType="operation"  displayName="getV1v2TrapForwardingTable"  description="gets the V1v2TrapForwardingTable values"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setV1v2TrapForwardingTable"  descriptorType="operation"  displayName="setV1v2TrapForwardingTable"  description="sets  the V1v2TrapForwardingTable values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="v1v2TrapForwardingTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+        <operation name="getFirstEntry"  descriptorType="operation"  displayName="getFirstEntry"  description="gets the first entry of the table"  role="operation"  impact="INFO"  operResponseType="javax.jmx.openmbean.CompositeData" >
+            <params></params>
+        </operation>
+        <operation name="getEntry"  descriptorType="operation"  displayName="getEntry"  description="gets the entry for the given instance"  role="operation"  impact="INFO"  operResponseType="javax.jmx.openmbean.CompositeData" >
+            <params>
+                <param name="indexObjects"  type="[Ljava.lang.Object;" ></param>
+            </params>
+        </operation>
+        <operation name="getNextEntry"  descriptorType="operation"  displayName="getNextEntry"  description="gets the table next entry for the given instance"  role="operation"  impact="INFO"  operResponseType="javax.jmx.openmbean.CompositeData" >
+            <params>
+                <param name="indexObjects"  type="[Ljava.lang.Object;" ></param>
+            </params>
+        </operation>
+        <operation name="totalRows"  descriptorType="operation"  displayName="totalRows"  description="gets the no of rows in the table"  role="operation"  impact="INFO"  operResponseType="int" >
+            <params></params>
+        </operation>
+        <operation name="getEntries"  descriptorType="operation"  displayName="getEntries"  description="gets all the entries in the table"  role="operation"  impact="INFO"  operResponseType="java.util.List" >
+            <params>
+                <param name="startIndex"  type="int" ></param>
+                <param name="endIndex"  type="int" ></param>
+            </params>
+        </operation>
+        <operation name="addRow"  descriptorType="operation"  displayName="addRow"  description="adds the row to the table"  role="operation"  impact="INFO"  operResponseType="void" >
+            <params>
+                <param name="indexObjects"  type="[Ljava.lang.Object;" ></param>
+                <param name="entry"  type="javax.jmx.openmbean.CompositeData" ></param>
+            </params>
+        </operation>
+        <operation name="modifyRow"  descriptorType="operation"  displayName="modifyRow"  description="modifies the row to the table"  role="operation"  impact="INFO"  operResponseType="void" >
+            <params>
+                <param name="indexObjects"  type="[Ljava.lang.Object;" ></param>
+                <param name="entry"  type="javax.jmx.openmbean.CompositeData" ></param>
+            </params>
+        </operation>
+        <operation name="deleteRow"  descriptorType="operation"  displayName="deleteRow"  description="deletes the row to the table"  role="operation"  impact="INFO"  operResponseType="void" >
+            <params>
+                <param name="indexObjects"  type="[Ljava.lang.Object;" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: V1v2TrapForwardingTable.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.snmp.VacmViewTreeFamilyTableMBean"  descriptorType="mbean"  displayName="VacmViewTreeFamilyTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="10"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="VacmViewTreeFamilyTable"  description="the trapVacmViewTreeFamilyTable"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.adaptors.snmp.VacmViewTreeFamilyTableMBean"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="VacmViewTreeFamilyTable"  getMethod="getVacmViewTreeFamilyTable"  setMethod="setVacmViewTreeFamilyTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.6.3.16.1.5.2.1" ></protocolMap>
+            <columnAttribute name="VacmViewTreeFamilyViewName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.5.2.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmViewTreeFamilySubtree"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="OBJECT IDENTIFIER"  value=".1.3.6.1.6.3.16.1.5.2.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmViewTreeFamilyMask"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="OCTET STRING"  value=".1.3.6.1.6.3.16.1.5.2.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmViewTreeFamilyType"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.5.2.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmViewTreeFamilyStorageType"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.6.3.16.1.5.2.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="VacmViewTreeFamilyStatus"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="RowStatus"  value=".1.3.6.1.6.3.16.1.5.2.1.6" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.snmp.VacmViewTreeFamilyTableMBean"  descriptorType="operation"  displayName="VacmViewTreeFamilyTableDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getVacmViewTreeFamilyTable"  descriptorType="operation"  displayName="getVacmViewTreeFamilyTable"  description="gets the VacmViewTreeFamilyTablevalues"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setVacmViewTreeFamilyTable"  descriptorType="operation"  displayName="setVacmViewTreeFamilyTable"  description="sets  the VacmViewTreeFamilyTablevalues"  role="setter"  impact="ACTION" >
+            <params>
+                <param name="vacmViewTreeFamilyTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!-- $Id: VacmViewTreeFamilyTable.xml,v 1.2 2007/04/30 18:30:46 tinku Exp $ -->

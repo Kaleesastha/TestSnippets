@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="QueryDetails" value="Panel"/>
+<property name="ConfFileTableModel" value="Console Application"/>
+<property name="RevertConfiguration" value="Panel"/>
+<property name="ConfFileTableModel.java" value="Console Application"/>
+<property name="UpdateConfiguration" value="Panel"/>
+<property name="SelectionScreen" value="Panel"/>
+<property name="LogScreen" value="Panel"/>
+<property name="InitScreen" value="Dialog"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.tools.confchanges"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../2.3 SP8/AdventNet/WebNMS/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../2.3 SP8/AdventNet/WebNMS/classes/JimiProClasses.zip"/>
+<property name="Java Variables" value="|*| -Djava.compiler=NONE|*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../classes,&lt;RELATIVE_PATH&gt;/../classes/NmsClientClasses.jar,&lt;RELATIVE_PATH&gt;/../classes/AdventNetUpdateManagerInstaller.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="ConfFileUpdationResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/ConfFileUpdation"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="MainScreen" value="InitScreen"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="Applet Parameters" value=" RESOURCE_PROPERTIES  = ConfFileUpdationResources"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/ConfFileUpdation/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="C:/Products/2.3+SP8/AdventNet/WebNMS/classes"/>
+</project>

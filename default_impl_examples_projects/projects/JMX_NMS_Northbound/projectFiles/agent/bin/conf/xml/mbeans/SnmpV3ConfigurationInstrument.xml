@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.SnmpV3ConfigurationInstrument"  descriptorType="mbean"  displayName="SnmpV3ConfigurationInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="SnmpV3ConfigurationInstrument"  description="Contains attribute of SnmpV3Configuration group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="EnableV3"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states whether v3 be enabled or not&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="EnableV3"  getMethod="getEnableV3"  setMethod="setEnableV3"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.10.1.6.7.1" ></protocolMap>
+        </attribute>
+        <attribute name="V3Username"  descriptorType="attribute"  type="java.lang.String"  description="&quot;Whenever v3 is enabled, the user needs to give the user name&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="V3Username"  getMethod="getV3Username"  setMethod="setV3Username"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.6.7.2" ></protocolMap>
+        </attribute>
+        <attribute name="V3Contextname"  descriptorType="attribute"  type="java.lang.String"  description="&quot;Whenever v3 is enabled, the user needs to give the context name&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="V3Contextname"  getMethod="getV3Contextname"  setMethod="setV3Contextname"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.10.1.6.7.3" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.SnmpV3ConfigurationInstrument"  descriptorType="operation"  displayName="SnmpV3ConfigurationInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getEnableV3"  descriptorType="operation"  displayName="getEnableV3"  description="gets the EnableV3values"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setEnableV3"  descriptorType="operation"  displayName="setEnableV3"  description="Changes theEnableV3values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="enableV3"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getV3Username"  descriptorType="operation"  displayName="getV3Username"  description="gets the V3Usernamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setV3Username"  descriptorType="operation"  displayName="setV3Username"  description="Changes theV3Usernamevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="v3Username"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getV3Contextname"  descriptorType="operation"  displayName="getV3Contextname"  description="gets the V3Contextnamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setV3Contextname"  descriptorType="operation"  displayName="setV3Contextname"  description="Changes theV3Contextnamevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="v3Contextname"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: SnmpV3ConfigurationInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

@@ -1,0 +1,14 @@
+<INSTALL_PARAMETERS>
+<INSTALL_NAR
+          NAR_NAME="AuthMain.nar">
+          <USERS
+    			NAME="&lt;Any NewUser&gt;"/>
+          <FRAME-MENU
+               MENU-NAME="Tools"
+               MENU-ITEM="Security Administration"
+			   ACCELERATOR-KEY="S"
+			   ACCELERATOR-MODIFIER="ALT"
+			   SHORT-CUT-KEY="S"
+			   OPERATION-TAG="Security Administration"/>
+</INSTALL_NAR>
+</INSTALL_PARAMETERS>

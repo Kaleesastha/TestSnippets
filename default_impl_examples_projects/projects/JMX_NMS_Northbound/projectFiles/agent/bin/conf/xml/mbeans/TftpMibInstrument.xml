@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.TftpMibInstrument"  descriptorType="mbean"  displayName="TftpMibInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="TftpMibInstrument"  description="Contains attribute of TftpMib group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="ServerName"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="ServerName"  getMethod="getServerName"  setMethod="setServerName"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.6.1" ></protocolMap>
+        </attribute>
+        <attribute name="PortNum"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="PortNum"  getMethod="getPortNum"  setMethod="setPortNum"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.6.2" ></protocolMap>
+        </attribute>
+        <attribute name="SourceFile"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="SourceFile"  getMethod="getSourceFile"  setMethod="setSourceFile"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.6.3" ></protocolMap>
+        </attribute>
+        <attribute name="DestinationFile"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="DestinationFile"  getMethod="getDestinationFile"  setMethod="setDestinationFile"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.6.4" ></protocolMap>
+        </attribute>
+        <attribute name="TftpMode"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable states  the mode of file-transfer&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="TftpMode"  getMethod="getTftpMode"  setMethod="setTftpMode"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.6.5" ></protocolMap>
+        </attribute>
+        <attribute name="Request"  descriptorType="attribute"  type="java.lang.Integer"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="Request"  getMethod="getRequest"  setMethod="setRequest"  iterable="F" >
+            <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.6.6" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.TftpMibInstrument"  descriptorType="operation"  displayName="TftpMibInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getServerName"  descriptorType="operation"  displayName="getServerName"  description="gets the ServerNamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setServerName"  descriptorType="operation"  displayName="setServerName"  description="Changes theServerNamevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="serverName"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getPortNum"  descriptorType="operation"  displayName="getPortNum"  description="gets the PortNumvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setPortNum"  descriptorType="operation"  displayName="setPortNum"  description="Changes thePortNumvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="portNum"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getSourceFile"  descriptorType="operation"  displayName="getSourceFile"  description="gets the SourceFilevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setSourceFile"  descriptorType="operation"  displayName="setSourceFile"  description="Changes theSourceFilevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="sourceFile"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getDestinationFile"  descriptorType="operation"  displayName="getDestinationFile"  description="gets the DestinationFilevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setDestinationFile"  descriptorType="operation"  displayName="setDestinationFile"  description="Changes theDestinationFilevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="destinationFile"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getTftpMode"  descriptorType="operation"  displayName="getTftpMode"  description="gets the TftpModevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setTftpMode"  descriptorType="operation"  displayName="setTftpMode"  description="Changes theTftpModevalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="tftpMode"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+        <operation name="getRequest"  descriptorType="operation"  displayName="getRequest"  description="gets the Requestvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="setRequest"  descriptorType="operation"  displayName="setRequest"  description="Changes theRequestvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="request"  type="java.lang.Integer" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: TftpMibInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

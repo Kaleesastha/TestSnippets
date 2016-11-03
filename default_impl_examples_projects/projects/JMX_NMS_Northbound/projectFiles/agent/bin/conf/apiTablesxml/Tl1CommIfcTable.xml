@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.tl1.Tl1CommIfcTable"  descriptorType="mbean"  displayName="Tl1CommIfcTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="10"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="Tl1CommIfcTable"  description="the trapTl1CommIfcTable"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.adaptors.tl1.Tl1CommIfcTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="Tl1CommIfcTable"  getMethod="getTl1CommIfcTable"  setMethod="setTl1CommIfcTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.10.1.2.3.4.1" ></protocolMap>
+            <columnAttribute name="Tl1CommIfcIndex"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.10.1.2.3.4.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Tl1CommIfcType"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.10.1.2.3.4.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Tl1CommIfcInfo"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.10.1.2.3.4.1.3" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.tl1.Tl1CommIfcTable"  descriptorType="operation"  displayName="Tl1CommIfcTableDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getTl1CommIfcTable"  descriptorType="operation"  displayName="getTl1CommIfcTable"  description="gets the Tl1CommIfcTablevalues"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setTl1CommIfcTable"  descriptorType="operation"  displayName="setTl1CommIfcTable"  description="sets  the Tl1CommIfcTablevalues"  role="setter"  impact="ACTION" >
+            <params>
+                <param name="tl1CommIfcTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!-- $Id: Tl1CommIfcTable.xml,v 1.2 2007/04/30 18:30:46 tinku Exp $ -->

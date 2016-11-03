@@ -1,0 +1,833 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title></title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<div>
+<h2><font face="Helvetica, Arial, sans-serif"><b>Filter Action In
+Separate
+Thread - Example</b></font></h2>
+<hr>
+<ul>
+  <li> <a href="#overview"><font face="Helvetica, Arial, sans-serif"><font
+ color="#2323dc"><font size="2">Overview</font></font></font></a> </li>
+  <li> <a href="#configuration"><font color="#2323dc"
+ face="Helvetica, Arial, sans-serif"><font size="2">Configuration</font></font></a></li>
+  <li><a href="#Example_Overview_"><font color="#2323dc"
+ face="Helvetica, Arial, sans-serif"><font size="2">Example Overview</font></font></a></li>
+  <li><a href="#Working_with_the_Example"><font color="#2323dc"
+ face="Helvetica, Arial, sans-serif"><font size="2">Working with the
+Example</font></font></a></li>
+</ul>
+<hr>
+<h3><font face="Helvetica, Arial, sans-serif"><a name="overview"></a>Overview</font></h3>
+<p style="margin-bottom: 0cm;" align="left"><font
+ face="Helvetica, Arial, sans-serif"><span
+ style="font-family: arial,sans-serif;"><span style="font-weight: bold;"></span></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"> Whenever there
+was delay in the filter action, the event /alert processing rate was
+affected.<b> </b>To avoid the delay and increase the performance, a
+new feature is implemented with provision to process the filter action
+in a sep</font></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><font color="#000000">arate thread</font></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000">.</font>
+With this option, users can configure event filter action or alert
+filter action or both in a separate
+thread. This provision can be used only when the event / alert will not
+be returned from the filter
+action. However it cannot be used when the event / alert is modified
+and a result is returned to the process.</font></font></p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><b>FilterActionInterface</b>
+interface is used to implement a separate thread feature in the fault
+module.
+Default
+implementation for SendEmail, SendTrap, and RunCommand Action is
+provided.
+Based
+on the user requirement, custom filter action can also be executed in
+a separate thread . </font></font></p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">
+</font></font></p>
+<h3><font face="Helvetica, Arial, sans-serif"><font size="3"><font
+ size="4"><b><a name="configuration"></a>Configuration</b></font></font></font></h3>
+<h3><font face="Helvetica, Arial, sans-serif"><font size="3"><font
+ size="4"><b></b></font></font></font></h3>
+<p><font face="Helvetica, Arial, sans-serif"><font size="3"><font
+ size="4"><small><small>The
+following parameters must be configured in the EventMgr process in
+&lt;Web NMS Home&gt;/conf/NmsProcessesBE.conf file to enable Event /
+Alert filter action in seperate thread.</small></small><b><br>
+</b></font></font></font></p>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><b>Parameter</b><br>
+      </font> </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><b>Value</b><br>
+      </font> </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><b>Description</b><br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <p><font face="Helvetica, Arial, sans-serif"><font size="2"><b>FILTERACTION_FOR_EVENT_IN_THREAD</b></font></font></p>
+      </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>true / false<br>
+      </b></font></font></td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">This parameter is
+used to execute the event filter action in
+a separate thread. The default value is false.<br>
+      </font></font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>FILTERACTION_FOR_ALERT_IN_THREAD</b></font></font></td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>true / false</b></font></font></td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">This parameter is
+used to execute the alert <small>filter</small> action in
+a separated thread. </font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The default value
+is false. </font></font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><small><font
+ face="Helvetica, Arial, sans-serif"><b>MAX_FILTER_ACTION_DATA_QUEUE</b></font></small></td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><small><b>Any integer
+value&nbsp;&nbsp;</b></small>&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      </font> </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><small>This parameter is used to
+configure the internal queue size for storing the action properties.
+When this queue is full, the actions are copied from queue to
+a separate database table. The default value is set to 500.</small><br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <p><font face="Helvetica, Arial, sans-serif"><span lang="en-US"><font
+ color="#000000"><small><b>GRACAFUL_SHUTDOWN_FILTER_ACTION</b></small><span
+ style=""></span></font></span></font></p>
+      </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><small><span
+ style="font-weight: bold;">true
+/ false</span></small><br>
+      </font> </td>
+      <td style="vertical-align: top;"><font
+ face="Helvetica, Arial, sans-serif"><small><span lang="en-US"><font
+ color="#000000"><span style="">This</span></font></span></small><span
+ lang="en-US"><font color="#000000"><span style=""><small> parameter
+will decided
+whether we need to execute the filter action in the action queue
+when an interrupt is received to shutdown the server. The default value
+is false.</small><br>
+      </span></font></span></font></td>
+    </tr>
+  </tbody>
+</table>
+<font face="Helvetica, Arial, sans-serif"><br>
+<span lang="en-US"><font color="#000000"><span style=""></span></font></span><br>
+</font>
+<h3><a name="Example_Overview_"></a><small><font
+ face="Helvetica, Arial, sans-serif"><big><big><font
+ style="font-weight: bold;"><small><a name="example_overview"></a>Example
+Overview<br>
+</small></font></big></big></font></small></h3>
+<h3><font face="Helvetica, Arial, sans-serif"><big><big><font
+ style="font-weight: bold;"></font></big></big></font></h3>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><b>Example
+name</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2">: </font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">Event/Alert
+Filter Action in Separate Thread</font><br>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><b>Related
+files</b></font> </font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">:
+FilterActionBaseImpl,SendEmailEventAction,FilterCommandEventAction,</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">SendTrapEventAction,</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">SendEmailAlertAction,FilterCommandAlertAction,</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">SendTrapAlertAction</font></font><font
+ face="Helvetica, Arial, sans-serif"><br>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><b>Location</b></font>
+&nbsp; &nbsp; &nbsp;&nbsp;
+</font><font face="Helvetica, Arial, sans-serif"><font size="2">: </font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><i>&lt;Web
+NMS Home&gt;/default_impl/filteractions/event/com/adventnet/nms/eventdb<br>
+<br>
+</i></font></font></p>
+<h6><font face="Helvetica, Arial, sans-serif"><big><font color="#000000"><font
+ size="2"><big><b>Event Process Flow Overview<br>
+</b></big></font></font></big></font></h6>
+<p><font color="#000000" face="Helvetica, Arial, sans-serif"><font
+ size="2">The
+output event from event parser is passed to the event filter. If the
+incoming event matches the specified criteria in the event filter, a
+check is performed to verify if any filter action is specified. If so,
+the type of the filter action is determined whether it is Run Command
+or SendEmail or SendTrap. If it matches any one of
+these, a buffer mechanism is maintained to store the action properties.
+A separate table is used to store the action
+properties of each of the actions such as Run Command, and SendEmail. </font></font>
+</p>
+<p><font color="#000000" face="Helvetica, Arial, sans-serif"><font
+ size="2">A
+separate thread will be spun to read the action properties
+from the buffer and execute the filter actions. The event is
+immediately returned to the event processing queue after putting the
+event to the buffer. In case if we have specified any actions other
+than the above mentioned ones such as suppress action or any custom
+action, the filter actions will be executed in the same thread itself.</font></font></p>
+<h4><font color="#000000" face="Helvetica, Arial, sans-serif"><b>Description</b></font></h4>
+<p></p>
+<p><font color="#000000" face="Helvetica, Arial, sans-serif"><font
+ size="2">The
+following files are involved with this example and information about
+each of them has been provided below.
+FilterActionBaseImpl, SendEmailEventAction, SendTrapEventAction, and
+FilterCommandEventAction,</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">SendEmailAlertAction,FilterCommandAlertAction,</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">SendTrapAlertAction</font></font></p>
+<h4><font face="Helvetica, Arial, sans-serif"><b>FilterActionBaseImpl</b></font></h4>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">The
+FilterActionBaseImpl class implements the FilterActionInterface
+interface. Here, the buffer mechanism is maintained to store the action
+related properties. A separate
+table is maintained for each action. Instead of storing all the
+properties, the required properties are iterated from the
+event and related action properties stored in the table.<span
+ style="color: rgb(255, 0, 0);"> </span>By default
+SendEmail, and RunCommand use this buffer mechanism. But the buffer
+mechanism cannot be used for SendTrap, as the varbind used in SendTrap
+cannot be stored in the buffer table. A different mechanism <span
+ style="color: rgb(255, 0, 0);"></span> is used to process the SendTrap
+action. </font></font>
+</p>
+<ul>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2">initializeFilterAction</font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2">runAction()</font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2">addObjectToInQ</font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2">shutDown()</font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2">cleanFilterActionTable()</font></font></p>
+  </li>
+</ul>
+<p style="margin-bottom: 0cm;"><font face="Helvetica, Arial, sans-serif"><br>
+</font></p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000">The
+</font><font color="#000000"><b>'initializeFilterAction'</b></font><font
+ color="#000000">
+method is used to initialize the startup variables. <span
+ style="color: rgb(0, 0, 0);">In case you are
+using this buffer mechanism</span>, you need to initialize the startup
+variables. To implement this, the extended classes should call this
+method by passing the
+tableName and columnName, classname, and type. Two columns are present
+in the filter action table. First column is used to store the
+identifier (ID) and the other to store the properties. the ID column
+name
+will be used in all the related tables. The property column can be of
+any name.<span style="color: rgb(255, 0, 0);"></span> </font></font></font>
+</p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">The '<b>runAction()'</b>
+method is used to process and execute the filter action from the
+buffer. In
+this method the action from input queue is copied to the output queue,
+and the action is executed by iterating the output queue. As this is an
+abstract class, users can extend this method only when there is
+requirement to
+use this buffer mechanism. </font></font>
+</p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">The <b>'addObjectToInQ'
+</b><span style="font-weight: normal;">is used to add the action
+properties to the input filter queue. If the queue reaches the maximum
+size, the action properties from the input queue are copied to the
+database. </span><font color="#000000"><span
+ style="font-weight: normal;">In
+case you are using this buffer mechanism, the method must be called
+from the extended class by passing the action
+properties. The maximum size of the queue can be configured
+in NmsProcessBE.conf in the EventMgr process using </span></font></font><small><b>MAX_FILTER_ACTION_DATA_QUEUE</b></small></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"><small>.</small>&nbsp;
+By default the value of this
+parameter is 500.</span></font></font></font></p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"></span></font></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">The
+</span></font><font color="#000000"><b>'shutDown()'&nbsp; </b></font><font
+ color="#000000"><span style="font-weight: normal;">is used to </span></font></font><span
+ lang="en-US"><font color="#000000"><span style=""><small>decided
+whether we need to execute the filter action in the action queue
+when an interrupt is received to shutdown the server</small>. </span></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">By default the </span></font></font><span
+ lang="en-US"><font color="#000000"><small><b>GRACAFUL_SHUTDOWN_FILTER_ACTION</b></small></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"><small> </small>value
+is set to false.</span></font></font></font></p>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"></span></font></font></font></p>
+<font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"></span></font></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"><br>
+</span></font></font></font>
+<font face="Helvetica, Arial, sans-serif"><font size="2">The
+'<b>cleanFilterActionTable()' </b><span style="font-weight: normal;">This
+method can be used to clean the filter action table that is created
+with buffer mechanism.</span></font><br>
+<br>
+<br>
+</font>
+<h4><font face="Helvetica, Arial, sans-serif"><b>SendEmailEventAction<br>
+</b></font></h4>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">This
+is the default implementation class to execute SendEmail Action in
+a separate thread .This class extends FilterActionBaseImpl and
+implements the Runnable interface. To execute the filter action in a
+separate
+thread the implementation class should be runnable class. The
+implementation details should be provided for the corresponding filter
+action before starting the server either through the Event Filter
+UI or directly in the &lt;Web NMS Home&gt;/conf/notification.conf file.
+Providing the
+Implementation class at run time will not take effect. The server must
+be restarted for the changes to take effect.</span></font></font><font
+ face="Helvetica, Arial, sans-serif" size="2"><b><br>
+<br>
+</b></font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The parameter </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>"sepThreadImplForEvents"</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">can be used to
+configure the implementation class in notification.conf file.<br>
+<br>
+For
+Example, If you want to run SendEmail Filter Action in a separate
+thread, the following entry must be added&nbsp; in notification.conf
+. The</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"> implementation class must
+be provided
+with the package structure.<br>
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"><br>
+&lt;<small>FILTER_ACTION
+</small>attachedfileName=""
+className="com.adventnet.nms.eventdb.SendEmail" message="
+$severity" name="emailconfiguration"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForEvents="com.adventnet.nms.eventdb.SendEmailEventAction"</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">smtpAccountName="Default"
+subject="$message"/&gt;</span></font></font></p>
+<p><font face="Helvetica, Arial, sans-serif"><br>
+</font>
+</p>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'initialize()'</b>
+method is used to initialize startup variable. </font></font> </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'schedule()'
+    </b>method
+is used to schedule the filter action at regular interval.<br>
+    </font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">The </span></font><font
+ color="#000000"><b>'shutDown()'&nbsp; </b></font><font color="#000000"><span
+ style="font-weight: normal;">is used to </span></font></font><span
+ lang="en-US"><font color="#000000"><span style=""><small>decided
+whether we need to execute the filter action in the action queue
+when an interrupt is received to shutdown the server</small>. </span></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">By default the </span></font></font><span
+ lang="en-US"><font color="#000000"><small><b>GRACAFUL_SHUTDOWN_FILTER_ACTION</b></small></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"> value is set to
+false.</span></font></font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif">The <b>'<small>addEventToInQ</small>'
+    </b></font><font face="Helvetica, Arial, sans-serif"><font size="2">is
+called when
+the incoming
+events match email action. The action objects are constructed from the
+event object and added to the input queue. Incase if the queue reaches
+the maximum size, all
+the action objects from the queue will be copied from the input queue
+to the database table.</font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>run()' </b>method
+is used </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">to start the thread.</font></font></p>
+  </li>
+</ul>
+<ul>
+  <li> <font face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>pauseFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to pause
+the </font><small><b>SendEmailEventAction</b></small>&nbsp;</font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><small> </small>thread
+at
+runtime. This method is
+invoked on calling the EventAPI.pauseFilterAction() method.</font><br>
+    </font> </li>
+</ul>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>resumeFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to resume
+the </font><small><b>SendEmailEventAction</b></small></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"> thread at runtime
+which has
+been paused.This method
+is invoked on calling the EventAPI.resumeFilterAction() method</font></font></p>
+  </li>
+</ul>
+<font face="Helvetica, Arial, sans-serif"><br>
+</font>
+<p><font face="Helvetica, Arial, sans-serif"><small>Similarly</small>, <small>the</small>
+</font><font face="Helvetica, Arial, sans-serif"><b><small>SendEmailAlertAction</small>
+</b><small>method can be used to run the email action for Alert.</small><b>
+</b><small>The following
+configuration must be done in the case of Alert</small></font><br>
+</p>
+<font face="Helvetica, Arial, sans-serif"><b></b></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The parameter </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>"sepThreadImplForAlerts"</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">can be used to
+configure the implementation class in notification.conf file.<br>
+<br>
+For
+Example, If you want to run SendEmail Filter Action in a separate
+thread, the following entry must be added&nbsp; in notification.conf
+. The</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"> implementation class must
+be provided
+with the package structure.<br>
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"><br>
+&lt;<small>FILTER_ACTION
+</small>attachedfileName=""
+className="com.adventnet.nms.eventdb.SendEmail" message="
+$severity" name="emailconfiguration"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForAlerts="com.adventnet.nms.eventdb.SendEmailAlertAction"</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">smtpAccountName="Default"
+subject="$message"/&gt;</span></font><br>
+</font><font face="Helvetica, Arial, sans-serif"><b>
+</b></font>
+<p><font face="Helvetica, Arial, sans-serif"><font size="3"><b><br>
+</b></font></font></p>
+<h4><font face="Helvetica, Arial, sans-serif"><font size="3"><b>FilterCommandEventAction
+</b></font></font></h4>
+<h4><font face="Helvetica, Arial, sans-serif"><font size="3"><b></b></font></font></h4>
+<p style="margin-bottom: 0cm;"><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;">This
+is the default implementation class to execute the Runcommand Action in
+a separate thread. This class extends FilterActionBaseImpl and
+implements the Runnable interface. To execute the filter action in a
+separate
+thread the implementation class should be a runnable class. The
+implementation details should be provided for corresponding filter
+action before starting the server either through the Event Filter
+UI or directly in the notification.conf file. Providing the
+Implementation class at run time will not take effect. </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The server must
+be restarted for the changes to take effect.</span></font></font><font
+ face="Helvetica, Arial, sans-serif" size="2"><b><br>
+<br>
+</b></font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The parameter </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>"sepThreadImplForEvents"</b></font>
+<small>can be used</small> </font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">to
+configure the implementation class in notification.conf file.<br>
+<br>
+For
+Example, If you want to run Runcommand Filter Action in a separate
+thread, the following entry will be added&nbsp; in notification.conf
+.</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"> The implementation class
+must be
+provided with the package structure.</span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;"><br>
+<br>
+&lt;<small>FILTER_ACTION</small>
+append="false"
+className="com.adventnet.nms.eventdb.FilterCommand"
+command="ls" errappend="false" name="dddss"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForEvents</b></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">="com.adventnet.nms.eventdb.FilterCommandEventAction"
+timeout="60"/&gt;</span></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Helvetica, Arial, sans-serif"><br>
+</font></p>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'initialize()'</b>
+method is used to initialize startup variable. </font></font> </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'schedule()'
+    </b>method
+is used to schedule the filter action at regular interval.<br>
+    </font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">The </span></font><font
+ color="#000000"><b>'shutDown()'&nbsp; </b></font><font color="#000000"><span
+ style="font-weight: normal;">is used to </span></font></font><span
+ lang="en-US"><font color="#000000"><span style=""><small>decided
+whether we need to execute the filter action in the action queue
+when an interrupt is received to shutdown the server</small>. </span></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">By default the </span></font></font><span
+ lang="en-US"><font color="#000000"><small><b>GRACAFUL_SHUTDOWN_FILTER_ACTION</b></small></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"> value is set to
+false.</span></font></font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif">The <b>'<small>addEventToInQ</small>'
+    </b></font><font face="Helvetica, Arial, sans-serif"><font size="2">is
+called when the incoming
+events match run command action. The action objects are constructed
+from the
+event object and added to the input queue. Incase if the queue reaches
+the maximum size, all
+the action objects from the queue will be copied from the input queue
+to the database table.</font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>run()' </b>method
+is used </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">to start the thread.</font></font></p>
+  </li>
+</ul>
+<ul>
+  <li> <font face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>pauseFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to pause
+the <span style="font-weight: bold;">FilterCommandEventAction</span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><small> </small>thread
+at
+runtime. This method is
+invoked on calling the EventAPI.pauseFilterAction() method.</font><br>
+    </font> </li>
+</ul>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>resumeFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to resume
+the </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: bold;">FilterCommandEventAction </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">thread at runtime
+which has
+been paused.This method
+is invoked on calling the EventAPI.resumeFilterAction() method</font></font></p>
+  </li>
+</ul>
+<br>
+<p><font face="Helvetica, Arial, sans-serif"><small>Similarly</small>, <small>the</small>
+<small><b>FilterCommand</b></small></font><font
+ face="Helvetica, Arial, sans-serif"><b><small>AlertAction</small>
+</b><small>method can be used to execute the run command action for
+Alert.</small><b> </b><small>The following
+configuration must be done in the case of Alert</small></font><br>
+</p>
+<font face="Helvetica, Arial, sans-serif"><b>
+</b></font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The parameter </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>"sepThreadImplForAlerts"</b></font>
+</font><font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">can be used to
+configure the implementation class in notification.conf file.<br>
+<br>
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;">For
+Example, If you want to run Runcommand Filter Action in a separate
+thread, the following entry will be added&nbsp; in notification.conf
+.</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"> The implementation class
+must be
+provided with the package structure.</span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;"><br>
+<br>
+&lt;<small>FILTER_ACTION</small>
+append="false"
+className="com.adventnet.nms.eventdb.FilterCommand"
+command="ls" errappend="false" name="dddss"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForAlerts</b></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">="com.adventnet.nms.eventdb.FilterCommandAlertAction"
+timeout="60"/&gt;</span></font></font>
+<font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;"><br>
+</span></font></font><font face="Helvetica, Arial, sans-serif"><br>
+</font>
+<p><font face="Helvetica, Arial, sans-serif"><font size="3"><b>SendTrapEventAction
+:</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">This
+is the default implementation class to execute SendTrap Action in
+a separate thread .This class directly implements the
+FilterActionInterface and Runnable interface. The buffer mechanism is
+not used </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">for
+SendTrap</font><span style="font-family: arial,sans-serif;">.</span><font
+ size="2">To
+execute the filter action in separate thread the implementation class
+should
+be a runnable class. The implementation details should be provided for
+corresponding filter action before starting the server either through
+the Event Filter UI or directly in the notification.conf
+file. Providing the Implementation class at run time will not take
+effect. The server must be restarted for the changes to take effect.</font><font
+ size="2"><b><br>
+</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The parameter called</font>
+<font size="2"><b>"sepThreadImplForEvents"</b></font>&nbsp;
+<small>is provided </small><font size="2">to configure the
+implementation class in
+notification.conf file. <br>
+</font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">For Example, to run
+the SendTrap
+Filter Action in a separate thread, the following entry must be
+added&nbsp;
+in the notification.conf . </font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The implementation class
+must be provided with the package structure.</span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;"></span></font></font><br>
+</p>
+<p style="margin-bottom: 0cm;"><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;">&lt;<small>FILTER_ACTION</small>
+className="com.adventnet.nms.eventdb.SendTrap"
+community="public" enterprise="11" generic="6"
+name="trapgen" peername="localhost"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForEvents</b></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">="com.adventnet.nms.eventdb.SendTrapEventAction"
+specific="1001" timeticks="0" trap_port="1610"
+version="v1"/&gt;<br>
+<br>
+</span></font><br>
+</font></p>
+<font face="Helvetica, Arial, sans-serif" size="2"><span
+ style="font-weight: normal;"></span></font><br>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'initialize()'</b>
+method is used to initialize startup variable. </font></font> </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The <b>'schedule()'
+    </b>method
+is used to schedule the filter action at regular interval.<br>
+    </font></font></p>
+  </li>
+  <li>
+    <p><font face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">The </span></font><font
+ color="#000000"><b>'shutDown()'&nbsp; </b></font><font color="#000000"><span
+ style="font-weight: normal;">is used to </span></font></font><span
+ lang="en-US"><font color="#000000"><span style=""><small>decided
+whether we need to execute the filter action in the action queue
+when an interrupt is received to shutdown the server</small>. </span></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;">By default the </span></font></font><span
+ lang="en-US"><font color="#000000"><small><b>GRACAFUL_SHUTDOWN_FILTER_ACTION</b></small></font></span></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><font
+ color="#000000"><span style="font-weight: normal;"> value is set to
+false.</span></font></font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif">The <b>'<small>addEventToInQ</small>'
+    </b></font><font face="Helvetica, Arial, sans-serif"><font size="2">is
+called when the incoming
+events match sendtrap command action.<br>
+    </font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>run()' </b>method
+is used </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">to start the thread.</font></font></p>
+  </li>
+</ul>
+<ul>
+  <li> <font face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>pauseFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to pause
+the <b>SendTrap</b><span style="font-weight: bold;">EventAction</span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><small> </small>thread
+at
+runtime. This method is
+invoked on calling the EventAPI.pauseFilterAction() method.</font><br>
+    <br>
+    </font> </li>
+</ul>
+<ul>
+  <li>
+    <p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The '</font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><b>resumeFilterAction()'
+    </b></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2">method can be used to resume
+the </font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: bold;">SendTrapEventAction </span></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2">thread at runtime
+which has
+been paused.This method
+is invoked on calling the EventAPI.resumeFilterAction() method</font></font></p>
+  </li>
+</ul>
+<br>
+<font face="Helvetica, Arial, sans-serif"><small>Similarly</small>, <small>the</small>
+<small><b>SendTrap</b><b></b></small></font><font
+ face="Helvetica, Arial, sans-serif"><b><small>AlertAction</small>
+</b><small>method can be used to run the email action for Alert.</small><b>
+</b><small>The following
+configuration must be done in the case of Alert<br>
+<br>
+</small></font>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">The parameter called</font>
+<font size="2"><b>"sepThreadImplForAlerts"</b></font>&nbsp;
+<small>is provided </small><font size="2">to configure the
+implementation class in
+notification.conf file. <br>
+</font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font
+ face="Helvetica, Arial, sans-serif"><font size="2">For Example, to run
+the SendTrap
+Filter Action in a separate thread, the following entry must be
+added&nbsp;
+in the notification.conf . </font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">The implementation class
+must be provided with the package structure.<br>
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><span style="font-weight: normal;"></span></font></font><br>
+</p>
+<font face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">&lt;<small>FILTER_ACTION</small>
+className="com.adventnet.nms.eventdb.SendTrap"
+community="public" enterprise="11" generic="6"
+name="trapgen" peername="localhost"
+</span></font></font><font face="Helvetica, Arial, sans-serif"><font
+ size="2"><b>sepThreadImplForAlerts</b></font></font><font
+ face="Helvetica, Arial, sans-serif"><font size="2"><span
+ style="font-weight: normal;">="com.adventnet.nms.eventdb.SendTrapAlertAction"
+specific="1001" timeticks="0" trap_port="1610"
+version="v1"/&gt;<br>
+<br>
+</span></font></font>
+<h3><a name="Working_with_the_Example"></a><font
+ face="Helvetica, Arial, sans-serif"><a name="working_with_example"></a>Working
+with the Example</font></h3>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">By default,
+these files
+are integrated with Web NMS. So, you need not make any classpath
+settings. However, if you make some changes to these files or write a
+new file for a similar functionality, you need to do the following :</font></font>
+</p>
+<blockquote><font face="Helvetica, Arial, sans-serif"><font size="2"><b>Classpath
+Settings</b></font></font> </blockquote>
+<blockquote><font face="Helvetica, Arial, sans-serif"><font size="2">Set
+the
+classpath as &lt;Web NMS Home&gt;/classes;</font></font> </blockquote>
+<blockquote><font face="Helvetica, Arial, sans-serif"><font size="2"><b>Compiling
+and Bundling with Web NMS</b></font></font> </blockquote>
+<blockquote><font face="Helvetica, Arial, sans-serif"><font size="2">Compile
+and
+move the class file created, into the destination directory using the
+following syntax in the command prompt.</font></font> </blockquote>
+<blockquote><font face="Helvetica, Arial, sans-serif"><font size="2">javac
+-d&lt;Web
+NMS Home&gt;\classes &lt;Java filename&gt;</font></font></blockquote>
+<p><font color="#000000" face="Helvetica, Arial, sans-serif"><b><br>
+<br>
+</b></font> </p>
+<font face="Helvetica, Arial, sans-serif"><br>
+</font>
+<p><font face="Helvetica, Arial, sans-serif"><br>
+<br>
+</font>
+</p>
+<hr>
+<p><font face="Helvetica, Arial, sans-serif"><font size="2">Copyright
+&copy;
+1996-2010, ZOHO Corp. All Rights Reserved.</font></font> </p>
+<p><font face="Helvetica, Arial, sans-serif"><br>
+</font><br>
+</p>
+</div>
+</body>
+</html>

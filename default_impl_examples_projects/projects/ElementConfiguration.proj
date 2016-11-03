@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="RendererForTemplateDetailsTree.java" value="Console Application"/>
+<property name="TelnetTemplateAdd" value="Dialog"/>
+<property name="SnmpTableAdd" value="Dialog"/>
+<property name="ViewTaskHistory" value="Dialog"/>
+<property name="CommonIconRenderer.java" value="Console Application"/>
+<property name="SelectDevices" value="Panel"/>
+<property name="SelectDeviceForNEInput" value="Dialog"/>
+<property name="SnmpDetails" value="Panel"/>
+<property name="TftpAdd" value="Dialog"/>
+<property name="TaskDetails" value="Dialog"/>
+<property name="TaskNamePanel" value="Panel"/>
+<property name="DeviceAttributesObject.java" value="Console Application"/>
+<property name="SelectProtocolPanel" value="Panel"/>
+<property name="CommonDetails" value="Panel"/>
+<property name="Tl1Add" value="Dialog"/>
+<property name="ColumnRendererForTaskResult.java" value="Console Application"/>
+<property name="ShowDetails" value="Dialog"/>
+<property name="HelpDialog" value="Dialog"/>
+<property name="DataSourceReader.java" value="Console Application"/>
+<property name="SnmpTablePanel" value="Panel"/>
+<property name="Tl1TemplateAdd" value="Dialog"/>
+<property name="SnmpTableAttribDetails" value="Panel"/>
+<property name="ConfigMainUI" value="Panel"/>
+<property name="NetworkInputPanel" value="Panel"/>
+<property name="AddNewTask" value="Dialog"/>
+<property name="SnmpScalarPanel" value="Panel"/>
+<property name="TableRendererForTaskHistory.java" value="Console Application"/>
+<property name="ShowMibTree.java" value="Console Application"/>
+<property name="UploadDetails" value="Dialog"/>
+<property name="TL1Panel" value="Panel"/>
+<property name="ProtocolIconRenderer.java" value="Console Application"/>
+<property name="DeviceListGenerator.java" value="Console Application"/>
+<property name="ConfigResponseListener.java" value="Console Application"/>
+<property name="ExecuteTask" value="Dialog"/>
+<property name="SelectTasksPanel" value="Panel"/>
+<property name="UserInputPanel" value="Panel"/>
+<property name="TftpTemplateAdd" value="Dialog"/>
+<property name="TemplateDetailsRendererForTable.java" value="Console Application"/>
+<property name="DataSourceForTemplate" value="Dialog"/>
+<property name="CombinedTaskExecute" value="Panel"/>
+<property name="ConfigPanel.java" value="Console Application"/>
+<property name="MibHandler.java" value="Console Application"/>
+<property name="TreeRendererForTaskHistory.java" value="Console Application"/>
+<property name="DeviceListsForExecution" value="Panel"/>
+<property name="TreeRendererForDeviceLists.java" value="Console Application"/>
+<property name="ConfigureDevices" value="Dialog"/>
+<property name="HelpInterface.java" value="Console Application"/>
+<property name="ResponseHandler.java" value="Console Application"/>
+<property name="SelectionFlag.java" value="Console Application"/>
+<property name="SnmpScalarAdd" value="Dialog"/>
+<property name="ViewFullAttribs.java" value="Console Application"/>
+<property name="DataSourceForExecution" value="Panel"/>
+<property name="RollbackPanel" value="Panel"/>
+<property name="DataSourceXMLGenerator.java" value="Console Application"/>
+<property name="SetPropertiesForDevices" value="Panel"/>
+<property name="RelatedTopics.java" value="Console Application"/>
+<property name="FinalScreenForExecution" value="Panel"/>
+<property name="ConfigResponseHandler.java" value="Console Application"/>
+<property name="SimpleTableSelectionRenderer.java" value="Console Application"/>
+<property name="TelnetAdd" value="Dialog"/>
+<property name="CombinedTaskRenderer.java" value="Console Application"/>
+<property name="MibHandlerListener.java" value="Console Application"/>
+<property name="TemplatesConfiguration" value="Panel"/>
+<property name="TelnetPanel" value="Panel"/>
+<property name="AssociateDevicesDuringExecution" value="Panel"/>
+<property name="ColumnRendererToViewAttributes.java" value="Console Application"/>
+<property name="DeviceListDetailsTree.java" value="Console Application"/>
+<property name="TaskUpload" value="Dialog"/>
+<property name="ResultXMLPanel" value="Panel"/>
+<property name="TemplateDetailsPanel" value="Panel"/>
+<property name="ConfigureNodes.java" value="Console Application"/>
+<property name="ConfigureNode.java" value="Console Application"/>
+<property name="AddDeviceList" value="Dialog"/>
+<property name="TreeRendererForCombinedTask.java" value="Console Application"/>
+<property name="StandAloneInterface.java" value="Console Application"/>
+<property name="AddModifyDataSource" value="Dialog"/>
+<property name="CombinedTaskPanel" value="Panel"/>
+<property name="MultipleListSelectionObject.java" value="Console Application"/>
+<property name="TftpPanel" value="Panel"/>
+<property name="ConfigTaskReader.java" value="Console Application"/>
+<property name="UserPropertiesForDevices" value="Dialog"/>
+<property name="ResultTablePanel" value="Panel"/>
+<property name="CommonTaskDetails" value="Panel"/>
+<property name="ConfigClientUtils.java" value="Console Application"/>
+<property name="AdvancedTaskHistory" value="Dialog"/>
+<property name="SingleSelectionListRenderer.java" value="Console Application"/>
+<property name="DeviceListOperation" value="Dialog"/>
+<property name="AbstractConfigClientUtils.java" value="Console Application"/>
+<property name="ConfigTaskGenerator.java" value="Console Application"/>
+<property name="ExecuteXMLGenerator.java" value="Console Application"/>
+<property name="SearchForBatchConfiguration.java" value="Console Application"/>
+<property name="DeviceListReader.java" value="Console Application"/>
+<property name="ColumnRendererForHistoryStatus.java" value="Console Application"/>
+<property name="DataSourceParamsConfig" value="Dialog"/>
+<property name="InventoryInputPanel" value="Panel"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="None"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.config"/>
+<property name="Java Parameters" value="-Djava.compiler=NONE"/>
+<property name="ServersUsed" value="Web-Server,"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../AdventNet/WebNMS/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../AdventNet/WebNMS/classes/JimiProClasses.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../AdventNet/WebNMS/classes/AdventNetUI.jar"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="MibsToLoad" value=""/>
+<property name="Optimize" value="true"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../classes/AdventNetSnmp.jar,&lt;RELATIVE_PATH&gt;/../classes/jaxp.jar,&lt;RELATIVE_PATH&gt;/../classes/ManagementClient.jar,&lt;RELATIVE_PATH&gt;/../classes/NmsClientClasses.jar,&lt;RELATIVE_PATH&gt;/../classes/xalan.jar,&lt;RELATIVE_PATH&gt;/../classes/crimson.jar"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="ElementConfigurationResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/ElementConfiguration"/>
+<property name="AppendBuilderClassPath" value="true"/>
+<property name="ProtocolSrc" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="DebugLogFile" value="debug.txt"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ProtocolIconRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/DeviceListReader.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/CommonIconRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigResponseHandler.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/DeviceListGenerator.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/AbstractConfigClientUtils.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/DataSourceReader.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ViewFullAttribs.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/RelatedTopics.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/CombinedTaskRenderer.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ResponseHandler.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigureNodes.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/SearchForBatchConfiguration.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ExecuteXMLGenerator.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigTaskReader.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigClientUtils.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ColumnRendererForTaskResult.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/HelpInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigPanel.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/TreeRendererForTaskHistory.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/DeviceAttributesObject.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/SelectionFlag.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/MibHandlerListener.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ColumnRendererForHistoryStatus.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/MibHandler.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/TreeRendererForDeviceLists.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/MultipleListSelectionObject.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ColumnRendererToViewAttributes.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/DataSourceXMLGenerator.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/TemplateDetailsRendererForTable.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigureNode.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/RendererForTemplateDetailsTree.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigTaskGenerator.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ConfigResponseListener.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/ShowMibTree.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/StandAloneInterface.java#Console Application,&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source/SimpleTableSelectionRenderer.java#Console Application"/>
+<property name="Applet Parameters" value=" HOST  = localhost RESOURCE_PROPERTIES  = ElementConfigurationResources PORT  = 161"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/ElementConfiguration/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="true"/>
+<property name="UseRuntimeJar" value="true"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

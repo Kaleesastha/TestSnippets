@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: V3ForwardingTable.xml,v 1.4 2007/10/15 13:01:47 barathv Exp $ -->
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.snmp.V3ForwardingTableMBean"  descriptorType="mbean"  displayName="V3ForwardingTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="0"  export="null"  visibility="1"  persistPolicy="Never"  persistLocation="jmxstore"  persistName="V3ForwardingTable"  description="the trapV3forwardingTable"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.adaptors.snmp.V3ForwardingTableMBean"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="This table consists of the manager list to which the V3Agent&apos;s V3 traps are to be forwarded."  isReadable="T"  isWritable="T"  isIs="F"  displayName="V3ForwardingTable"  getMethod="getV3ForwardingTable"  setMethod="setV3ForwardingTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.9.2.1" ></protocolMap>
+	    <columnAttribute name="V3ManagerHostType"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.9.2.1.1" ></protocolMap>
+            </columnAttribute>
+	    <columnAttribute name="V3ManagerHost"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="IpAddress"  value=".1.3.6.1.4.1.2162.4.9.2.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerPort"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.9.2.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerVersion"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.9.2.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerCommunity"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.9.2.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerUserName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.9.2.1.6" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerUserSecModel"  descriptorType="attribute"  type="java.lang.Long"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Unsigned32"  value=".1.3.6.1.4.1.2162.4.9.2.1.7" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3SecurityLevel"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="INTEGER"  value=".1.3.6.1.4.1.2162.4.9.2.1.8" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerUserContextName"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.9.2.1.9" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerTimeOut"  descriptorType="attribute"  type="java.lang.Long"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Unsigned32"  value=".1.3.6.1.4.1.2162.4.9.2.1.10" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3ManagerRetries"  descriptorType="attribute"  type="java.lang.Long"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="Unsigned32"  value=".1.3.6.1.4.1.2162.4.9.2.1.11" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="V3RowStatus"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+		    <protocolMap name="SNMP"  type="RowStatus"  value=".1.3.6.1.4.1.2162.4.9.2.1.12" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.snmp.V3ForwardingTableMBean"  descriptorType="operation"  displayName="V3forwardingTableDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getV3ForwardingTable"  descriptorType="operation"  displayName="getV3ForwardingTable"  description="gets the V3forwardingTablevalues"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setV3ForwardingTable"  descriptorType="operation"  displayName="setV3ForwardingTable"  description="sets  the V3forwardingTablevalues"  role="setter"  impact="ACTION" operResponseType="void">
+            <params>
+                <param name="v3TrapForwardingTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>

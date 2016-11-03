@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Table>
+  <row>
+    <column
+       name="indexNum"
+       value="1" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.TopoObject" />
+    <column
+       name="derivedPropNames"
+       value="ipAddress" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.7" />   
+    <column 
+       name="tableName" 
+       value="TopoObjectTable"/>
+  </row>
+  <row>
+    <column
+       name="indexNum"
+       value="2" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.Network" />
+    <column
+       name="derivedPropNames"
+       value="discover" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.8" />   
+    <column
+       name="tableName"
+       value="NetworkTable"/>
+  </row>
+  <row>
+    <column
+       name="indexNum"
+       value="3" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.Node" />
+    <column
+       name="derivedPropNames"
+       value="isRouter" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.9" />   
+    <column
+       name="tableName"
+       value="NodeTable"/>
+  </row>
+  <row>
+    <column
+       name="indexNum"
+       value="4" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.IpAddress" />
+    <column
+       name="derivedPropNames"
+       value="parentNode,parentNet" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.10" />   
+    <column
+       name="tableName"
+       value="IpAddressTable"/>
+  </row>
+  <row>
+    <column
+       name="indexNum"
+       value="5" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.SnmpNode" />
+    <column
+       name="derivedPropNames"
+       value="sysName,sysOid" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.11" />   
+    <column
+       name="tableName"
+       value="SnmpNodeTable"/>
+  </row>
+  <row>
+    <column
+       name="indexNum"
+       value="6" />
+    <column
+       name="objClassName"
+       value="com.adventnet.nms.topodb.SnmpInterface" />
+    <column
+       name="derivedPropNames"
+       value="sysOid" />
+    <column
+       name="tableOid"
+       value=".1.3.6.1.4.1.2162.4.2.12" />   
+    <column
+       name="tableName"
+       value="SnmpInterfaceTable"/>
+  </row>
+</Table>
+

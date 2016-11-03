@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.MoNotiVarbindsInstrumentExt"  descriptorType="mbean"  displayName="MoNotiVarbindsInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="MoNotiVarbindsInstrument"  description="Contains attribute of MoNotiVarbinds group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="MoName"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable indicates the name of the MO.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoName"  getMethod="getMoName"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.14.3.1" ></protocolMap>
+        </attribute>
+        <attribute name="MoownerName"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoownerName"  getMethod="getMoownerName"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.14.3.2" ></protocolMap>
+        </attribute>
+        <attribute name="MoNodeType"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoNodeType"  getMethod="getMoNodeType"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.14.3.3" ></protocolMap>
+        </attribute>
+        <attribute name="MoEnrolTime"  descriptorType="attribute"  type="java.lang.Long"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoEnrolTime"  getMethod="getMoEnrolTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="Gauge32"  value=".1.3.6.1.4.1.2162.4.2.14.3.4" ></protocolMap>
+        </attribute>
+        <attribute name="MoDeEnrolTime"  descriptorType="attribute"  type="java.lang.Long"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoDeEnrolTime"  getMethod="getMoDeEnrolTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="Gauge32"  value=".1.3.6.1.4.1.2162.4.2.14.3.5" ></protocolMap>
+        </attribute>
+        <attribute name="MoDataChangeTime"  descriptorType="attribute"  type="java.lang.Long"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoDataChangeTime"  getMethod="getMoDataChangeTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="Gauge32"  value=".1.3.6.1.4.1.2162.4.2.14.3.6" ></protocolMap>
+        </attribute>
+        <attribute name="MoExtraProperties"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="MoExtraProperties"  getMethod="getMoExtraProperties"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.14.3.7" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.MoNotiVarbindsInstrument"  descriptorType="operation"  displayName="MoNotiVarbindsInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getMoName"  descriptorType="operation"  displayName="getMoName"  description="gets the MoNamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getMoownerName"  descriptorType="operation"  displayName="getMoownerName"  description="gets the MoownerNamevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getMoNodeType"  descriptorType="operation"  displayName="getMoNodeType"  description="gets the MoNodeTypevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getMoEnrolTime"  descriptorType="operation"  displayName="getMoEnrolTime"  description="gets the MoEnrolTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getMoDeEnrolTime"  descriptorType="operation"  displayName="getMoDeEnrolTime"  description="gets the MoDeEnrolTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getMoDataChangeTime"  descriptorType="operation"  displayName="getMoDataChangeTime"  description="gets the MoDataChangeTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getMoExtraProperties"  descriptorType="operation"  displayName="getMoExtraProperties"  description="gets the MoExtraPropertiesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors>
+        <notification name="MoName"  descriptorType="notification"  description="MoName attribute value changed"  notifTypes="com.adventnet.traps.moDeenrolNotification"  severity="4"  messageText="moDeenrolNotification" ></notification>
+        <notification name="MoName"  descriptorType="notification"  description="MoName attribute value changed"  notifTypes="com.adventnet.traps.moEnrolNotification"  severity="4"  messageText="moEnrolNotification" ></notification>
+        <notification name="MoName"  descriptorType="notification"  description="MoName attribute value changed"  notifTypes="com.adventnet.traps.moAttrChangeNotification"  severity="4"  messageText="moAttrChangeNotification" ></notification>
+        <notification name="MoownerName"  descriptorType="notification"  description="MoownerName attribute value changed"  notifTypes="com.adventnet.traps.moDeenrolNotification"  severity="4"  messageText="moDeenrolNotification" ></notification>
+        <notification name="MoownerName"  descriptorType="notification"  description="MoownerName attribute value changed"  notifTypes="com.adventnet.traps.moEnrolNotification"  severity="4"  messageText="moEnrolNotification" ></notification>
+        <notification name="MoownerName"  descriptorType="notification"  description="MoownerName attribute value changed"  notifTypes="com.adventnet.traps.moAttrChangeNotification"  severity="4"  messageText="moAttrChangeNotification" ></notification>
+        <notification name="MoDeEnrolTime"  descriptorType="notification"  description="MoDeEnrolTime attribute value changed"  notifTypes="com.adventnet.traps.moDeenrolNotification"  severity="4"  messageText="moDeenrolNotification" ></notification>
+        <notification name="MoDataChangeTime"  descriptorType="notification"  description="MoDataChangeTime attribute value changed"  notifTypes="com.adventnet.traps.moAttrChangeNotification"  severity="4"  messageText="moAttrChangeNotification" ></notification>
+    </notificationDescriptors>
+</ModelMBean>
+<!--$Id: MoNotiVarbindsInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

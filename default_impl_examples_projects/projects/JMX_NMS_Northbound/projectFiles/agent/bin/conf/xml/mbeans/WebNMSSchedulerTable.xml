@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.WebNMSSchedulerTable"  descriptorType="mbean"  displayName="WebNMSSchedulerTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="-1"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="WebNMSSchedulerTable"  description="&quot;A table of WebNMS scheduler instances&quot;"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.nms.jmxagent.WebNMSSchedulerTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="&quot;A table of WebNMS scheduler instances&quot;"  isReadable="T"  isWritable="T"  isIs="F"  displayName="WebNMSSchedulerTable"  getMethod="getWebNMSSchedulerTable"  setMethod="setWebNMSSchedulerTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.4.1.10.1" ></protocolMap>
+            <columnAttribute name="WebNMSSchedulerIndex"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.10.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="WebNMSSchedulerDesc"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.1.10.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="WebNMSSchedulerNumTasks"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.10.1.3" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="WebNMSSchedulerNumThreads"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.10.1.4" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="WebNMSSchedulerActiveThreads"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.10.1.5" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="WebNMSSchedulerIdleThreads"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="F"  isIs="F" >
+                <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.10.1.6" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.WebNMSSchedulerTable"  descriptorType="operation"  displayName="WebNMSSchedulerTable DefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSSchedulerTable"  descriptorType="operation"  displayName="getWebNMSSchedulerTable"  description="gets the WebNMSSchedulerTable values"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setWebNMSSchedulerTable"  descriptorType="operation"  displayName="setWebNMSSchedulerTable"  description="sets  the WebNMSSchedulerTable values"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="webNMSSchedulerTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: WebNMSSchedulerTable.xml,v 1.2 2007/04/30 18:31:29 tinku Exp $-->

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.PerfNotiVarbindsInstrument"  descriptorType="mbean"  displayName="PerfNotiVarbindsInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="PerfNotiVarbindsInstrument"  description="Contains attribute of PerfNotiVarbinds group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="Eventid"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable is the unique id (primary key) of this event object.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="Eventid"  getMethod="getEventid"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.4.7.2.1" ></protocolMap>
+        </attribute>
+        <attribute name="Eventsource"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable is the source of the event&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="Eventsource"  getMethod="getEventsource"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.4.7.2.2" ></protocolMap>
+        </attribute>
+        <attribute name="EventEntity"  descriptorType="attribute"  type="java.lang.String"  description="&quot;This variable is the Entity (also known as Failure Object) of the Event.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="EventEntity"  getMethod="getEventEntity"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.4.7.2.3" ></protocolMap>
+        </attribute>
+        <attribute name="EventGenTime"  descriptorType="attribute"  type="java.lang.Long"  description="&quot;This variable is the time of occurrence (creation), in milliseconds, of this Event object.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="EventGenTime"  getMethod="getEventGenTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="Gauge32"  value=".1.3.6.1.4.1.2162.4.4.7.2.4" ></protocolMap>
+        </attribute>
+        <attribute name="EventSeverity"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;This variable  is the Severity of the Event object.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="EventSeverity"  getMethod="getEventSeverity"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.4.7.2.5" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.PerfNotiVarbindsInstrument"  descriptorType="operation"  displayName="PerfNotiVarbindsInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getEventid"  descriptorType="operation"  displayName="getEventid"  description="gets the Eventidvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getEventsource"  descriptorType="operation"  displayName="getEventsource"  description="gets the Eventsourcevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getEventEntity"  descriptorType="operation"  displayName="getEventEntity"  description="gets the EventEntityvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getEventGenTime"  descriptorType="operation"  displayName="getEventGenTime"  description="gets the EventGenTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getEventSeverity"  descriptorType="operation"  displayName="getEventSeverity"  description="gets the EventSeverityvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: PerfNotiVarbindsInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

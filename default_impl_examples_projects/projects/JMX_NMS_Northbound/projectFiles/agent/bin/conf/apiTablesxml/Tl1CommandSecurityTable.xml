@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.adaptors.tl1.security.Tl1CommandSecurityTable"  descriptorType="mbean"  displayName="Tl1CommandSecurityTable"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="10"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="Tl1CommandSecurityTable"  description="the trapTl1CommandSecurityTable"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="com.adventnet.adaptors.tl1.security.Tl1CommandSecurityTable"  descriptorType="attribute"  type="javax.jmx.openmbean.TabularData"  description="command security view details"  isReadable="T"  isWritable="T"  isIs="F"  displayName="Tl1CommandSecurityTable"  getMethod="getTl1CommandSecurityTable"  setMethod="setTl1CommandSecurityTable"  iterable="F" >
+            <protocolMap name="SNMP"  type="table"  value=".1.3.6.1.4.1.2162.10.1.2.3.6.3.1" ></protocolMap>
+            <columnAttribute name="Command"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.10.1.2.3.6.3.1.1" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="Cap"  descriptorType="attribute"  type="java.lang.String"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.10.1.2.3.6.3.1.2" ></protocolMap>
+            </columnAttribute>
+            <columnAttribute name="CmdrowStatus"  descriptorType="attribute"  type="java.lang.Integer"  isReadable="T"  isWritable="T"  isIs="F" >
+                <protocolMap name="SNMP"  type="RowStatus"  value=".1.3.6.1.4.1.2162.10.1.2.3.6.3.1.3" ></protocolMap>
+            </columnAttribute>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.adaptors.tl1.security.Tl1CommandSecurityTable"  descriptorType="operation"  displayName="Tl1CommandSecurityTableDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getTl1CommandSecurityTable"  descriptorType="operation"  displayName="getTl1CommandSecurityTable"  description="gets the Tl1CommandSecurityTablevalues"  role="getter"  impact="INFO"  operResponseType="javax.jmx.openmbean.TabularData" >
+            <params></params>
+        </operation>
+        <operation name="setTl1CommandSecurityTable"  descriptorType="operation"  displayName="setTl1CommandSecurityTable"  description="sets  the Tl1CommandSecurityTablevalues"  role="setter"  impact="ACTION" >
+            <params>
+                <param name="tl1CommandSecurityTable"  type="javax.jmx.openmbean.TabularData" ></param>
+            </params>
+        </operation>
+        <operation name="getIndexNames"  descriptorType="operation"  displayName="getIndexNames"  description="gets the index column names of the table"  role="operation"  impact="INFO"  operResponseType="[Ljava.lang.String;" >
+            <params></params>
+        </operation>
+
+		<operation name="getEntry" descriptorType="operation"
+		displayName="getEntry" description="gets the table entry for given instance"
+		role="operation" impact="INFO" operResponseType="javax.jmx.openmbean.CompositeData" >
+		<params>	
+                        	<param name="indexObjects" type="[Ljava.lang.Object;" />
+			</params>			
+		</operation>				
+
+                <operation name="getNextEntry" descriptorType="operation"
+			displayName="getNextEntry" description="gets the table next entry for given instance"
+			role="operation" impact="INFO" operResponseType="javax.jmx.openmbean.CompositeData" >
+			<params>			
+                        	<param name="indexObjects" type="[Ljava.lang.Object;" />
+			</params>			
+		</operation>				
+
+                <operation name="getFirstEntry" descriptorType="operation"
+			displayName="getFirstEntry" description="gets the table first entry"
+			role="operation" impact="INFO" operResponseType="javax.jmx.openmbean.CompositeData" >
+			<params>				
+			</params>			
+		</operation>
+
+                <operation name="addRow" descriptorType="operation"
+			displayName="addRow" description="to add a row in the table for given instance"
+			role="operation" impact="ACTION" operResponseType="void" >
+			<params>				
+                                <param name="indexObjects" type="[Ljava.lang.Object;" />
+                                <param name="entry" type="javax.jmx.openmbean.CompositeData" />
+                        </params>			
+		</operation>				
+
+                <operation name="deleteRow" descriptorType="operation"
+			displayName="deleteRow" description="to delete a row in the table for given instance"
+			role="operation" impact="ACTION" operResponseType="void" >
+			<params>				
+                                <param name="indexObjects" type="[Ljava.lang.Object;" />
+			</params>			
+		</operation>				
+
+                <operation name="modifyRow" descriptorType="operation"
+			displayName="modifyRow" description="to modify a row in the table for given instance"
+			role="operation" impact="ACTION" operResponseType="void" >
+			<params>				
+                                <param name="indexObjects" type="[Ljava.lang.Object;" />
+                                <param name="entry" type="javax.jmx.openmbean.CompositeData" />
+			</params>			
+		</operation>						
+
+		<operation name="getCompositeData" descriptorType="operation"
+			displayName="getCompositeData" description="gets the table entry for given instance"
+			role="operation" impact="INFO" operResponseType="javax.jmx.openmbean.CompositeData" >
+			<params>			
+                        	<param name="indexObjects" type="[Ljava.lang.Object;" />
+			</params>			
+		</operation>
+		
+		<operation name="totalRows" descriptorType="operation"
+			displayName="totalRows" description="gets the table entry for given instance"
+			role="operation" impact="INFO" operResponseType="int" >
+			<params>				
+			</params>			
+		</operation>		
+
+		<operation name="getEntries" descriptorType="operation"
+			displayName="getEntries" description="gets the table entry for given instance"
+			role="operation" impact="INFO" operResponseType="java.util.ArrayList" >
+			<params>		
+                                <param name="startIndex" type="int" />
+                                <param name="endIndex" type="int" />
+			</params>			
+		</operation>		
+
+
+
+		
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!-- $Id: Tl1CommandSecurityTable.xml,v 1.2 2007/04/30 18:30:46 tinku Exp $ -->

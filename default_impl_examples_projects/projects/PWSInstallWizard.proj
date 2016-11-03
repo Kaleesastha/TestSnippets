@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<property name="Applet Parameters" value=""/>
+<property name="LandFFilename" value="data/Standards.alf"/>
+<property name="testScreenAs" value="Application"/>
+<property name="SourceDebug" value="false"/>
+<property name="Show Warnings" value="false"/>
+<property name="Show Deprecations" value="false"/>
+<property name="ServersUsed" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="Java Variables" value="|*||*|"/>
+<property name="Version" value="4.4"/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/PWSInstallWizard/Source"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Optimize" value="false"/>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="DynamicParamChanged" value="false"/>
+<property name="Internationalize" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/PWSInstallWizard"/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../Program Files/AdventNet/Bean_Builder_4_4/classes/ApiUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../Program Files/AdventNet/Bean_Builder_4_4/jars/AdventNetUtils.jar,&lt;SCREEN_RELATIVE_PATH&gt;/../../../../../Program Files/AdventNet/Bean_Builder_4_4/classes/JimiProClasses.zip"/>
+<property name="Extra Parameters" value=""/>
+<property name="Show Debug Info" value="false"/>
+<property name="Verbose" value="false"/>
+<property name="resourceFileName" value="PWSInstallWizardResources"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Java Parameters" value=""/>
+<property name="OtherSourceFiles" value=""/>
+<property name="AppendBuilderClassPath" value="false"/>
+<property name="LogDebug" value="false"/>
+<property name="Package" value="com.adventnet.studio.framework.installer"/>
+<property name="Use Debugger" value="false"/>
+<screenInfo>
+<property name="ReadmePanel" value="Panel"/>
+</screenInfo>
+<property name="Description" value=""/>
+<property name="SubVersion" value="4.4"/>
+</project>

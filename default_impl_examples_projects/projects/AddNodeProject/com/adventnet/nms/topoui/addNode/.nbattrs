@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="AddNodePanel.java">
+        <attr name="class_dependency_com.adventnet.nms.startclient.NmsFrame" stringvalue="AddNodePanel"/>
+        <attr name="class_dependency_com.adventnet.nms.util.ResultEventListener" stringvalue="AddNodePanel"/>
+        <attr name="class_dependency_java.awt.event.ActionListener" stringvalue="AddNodePanel.FormListener;AddNodePanel"/>
+        <attr name="class_dependency_java.awt.event.KeyListener" stringvalue="AddNodePanel.KeyAdapter"/>
+        <attr name="class_dependency_java.awt.event.WindowListener" stringvalue="AddNodePanel"/>
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="AddNodePanel"/>
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="AddNodePanel"/>
+        <attr name="class_dependency_javax.swing.event.ChangeListener" stringvalue="AddNodePanel.FormListener"/>
+    </fileobject>
+</attributes>

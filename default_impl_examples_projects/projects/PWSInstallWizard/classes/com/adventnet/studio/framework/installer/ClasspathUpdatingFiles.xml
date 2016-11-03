@@ -1,0 +1,8 @@
+<SERVER>
+<FILE SOURCE="bin/startnms.bat" TYPE="server"/>
+<FILE SOURCE="bin/startnms.sh" TYPE="server"/>
+<FILE SOURCE="bin/startdms.bat" TYPE="server"/>
+<FILE SOURCE="bin/startdms.sh" TYPE="server"/>
+<FILE SOURCE="bin/startApplicationClient.sh" TYPE="client" />
+<FILE SOURCE="bin/startApplicationClient.bat" TYPE="client" />
+</SERVER>

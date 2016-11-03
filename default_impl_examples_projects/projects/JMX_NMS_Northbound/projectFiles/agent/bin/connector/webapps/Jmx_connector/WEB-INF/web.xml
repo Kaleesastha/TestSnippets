@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+<web-app>
+        <servlet>
+                <servlet-name>Jmx_connector</servlet-name>           
+                <servlet-class>Jmx_connector</servlet-class>
+                <load-on-startup>20</load-on-startup>
+        </servlet>
+	<servlet-mapping>
+		<servlet-name>Jmx_connector</servlet-name>
+		<url-pattern>/Jmx_connector</url-pattern>
+	</servlet-mapping>
+</web-app>
+<!--$Id: web.xml,v 1.2 2007/04/30 18:37:20 tinku Exp $-->

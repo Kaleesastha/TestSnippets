@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project conversionType="Hash">
+<screenInfo>
+<property name="DBXmlToolUI" value="Frame"/>
+<property name="ResultViewer" value="Dialog"/>
+</screenInfo>
+<property name="Look and Feel Standard" value="AdventNet Look and Feel (ALF) Standards"/>
+<property name="testScreenAs" value="Application"/>
+<property name="Package" value="com.adventnet.nms.db.util"/>
+<property name="Java Parameters" value=""/>
+<property name="ServersUsed" value=""/>
+<property name="AllUsedJars" value="&lt;SCREEN_RELATIVE_PATH&gt;/../classes/JimiProClasses.zip,&lt;SCREEN_RELATIVE_PATH&gt;/../classes/ApiUtils.jar"/> 
+<property name="Java Variables" value="|*||*|"/>
+<property name="Optimize" value="false"/>
+<property name="LandFFilename" value="builderdata/Standards.alf"/>
+<property name="DynamicParamChanged" value="true"/>
+<property name="Description" value=""/>
+<property name="ExtraClassPaths" value="&lt;RELATIVE_PATH&gt;/../../../../../Source/sp7/dbxmltool/source/fe_server/db,classes"/>
+<property name="Show Warnings" value="false"/>
+<property name="resourceFileName" value="DBXmlToolResources"/>
+<property name="ProjectDirectory" value="&lt;RELATIVE_PATH&gt;/DBXmlTool"/>
+<property name="AppendBuilderClassPath" value="false"/>
+<property name="JavaTestDir" value="&lt;SAME AS BUILDER&gt;"/>
+<property name="SubVersion" value="4.4"/>
+<property name="LogDebug" value="false"/>
+<property name="ProjectApplnArgs" value=""/>
+<property name="OtherSourceFiles" value="&lt;RELATIVE_PATH&gt;/DBXmlTool/Source/OperationResult.java#Console Application"/>
+<property name="Applet Parameters" value=""/>
+<property name="ProjectSourceDirectory" value="&lt;RELATIVE_PATH&gt;/DBXmlTool/Source"/>
+<property name="Show Deprecations" value="false"/>
+<property name="SourceDebug" value="false"/>
+<property name="Extra Parameters" value=""/>
+<property name="ToolName" value="BeanBuilder"/>
+<property name="bundleVariableName" value="resourceBundle"/>
+<property name="Version" value="4.4"/>
+<property name="Show Debug Info" value="false"/>
+<property name="UseRuntimeJar" value="false"/>
+<property name="Internationalize" value="true"/>
+<property name="Verbose" value="false"/>
+<property name="Use Debugger" value="false"/>
+<property name="ProjectClassesDirectory" value="&lt;PROJECTDIR_RELATIVE_PATH&gt;/classes"/>
+</project>

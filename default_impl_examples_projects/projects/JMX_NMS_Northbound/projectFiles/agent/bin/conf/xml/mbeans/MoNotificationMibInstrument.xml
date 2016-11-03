@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.MoNotificationMibInstrument"  descriptorType="mbean"  displayName="MoNotificationMibInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="MoNotificationMibInstrument"  description="Contains attribute of MoNotificationMib group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="MoExtraPropNames"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="MoExtraPropNames"  getMethod="getMoExtraPropNames"  setMethod="setMoExtraPropNames"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.2.14.1" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.MoNotificationMibInstrument"  descriptorType="operation"  displayName="MoNotificationMibInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getMoExtraPropNames"  descriptorType="operation"  displayName="getMoExtraPropNames"  description="gets the MoExtraPropNamesvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setMoExtraPropNames"  descriptorType="operation"  displayName="setMoExtraPropNames"  description="Changes theMoExtraPropNamesvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="moExtraPropNames"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: MoNotificationMibInstrument.xml,v 1.2 2007/04/30 18:31:28 tinku Exp $-->

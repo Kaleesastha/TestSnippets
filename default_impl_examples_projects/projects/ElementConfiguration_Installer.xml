@@ -1,0 +1,18 @@
+<INSTALL_PARAMETERS>
+<INSTALL_NAR
+          NAR_NAME="ConfigPanel.nar">
+          <USERS
+                NAME="&lt;Any NewUser&gt;"/>
+			<TREE-INFORMATION>
+				<USER
+					NAME="&lt;Any NewUser&gt;"
+					TREE-NODE="Batch Configuration"
+					TREE-ICON="images/batchconfigtreeicon.png"
+					PARENT-NODE="configuration"
+					MENU-FILE="configmenu.xml"
+					TREE-POPUP="configmenu.xml"
+					TABLE-POPUP="View"/>
+		</TREE-INFORMATION>
+</INSTALL_NAR>
+</INSTALL_PARAMETERS> 
+
