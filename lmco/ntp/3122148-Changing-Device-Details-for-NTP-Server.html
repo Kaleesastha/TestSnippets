@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>3122148 - RE: Changing Device Details for NTP Server</title>
+  </head>
+  <body>
+    <div align="center"><big><b><u>3122148 - RE: Changing Device Details
+            for NTP Server</u></b></big><br>
+    </div>
+    <font style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;" face="times new roman, times,
+      serif" size="3"><font color="rgb(0,0,255)"><font>Dear Aditya,<br>
+          Greetings.<br>
+          <br>
+          Please download the zip file using the link and follow the
+          steps stated below to achieve your requirement: (Kindly do
+          backup before proceeding).<br>
+          <a
+href="http://bonitas2.zohocorp.com/zipUploads/2015_11_02_19_44_08_o_19dsfqq3sllu13n9mei1fhq5u1.tar.gz">http://bonitas2.zohocorp.com/zipUploads/2015_11_02_19_44_08_o_19dsfqq3sllu13n9mei1fhq5u1.tar.gz</a><br>
+          <br>
+          1. Edit&nbsp;<b>ApplicationDiscovery.xml</b>&nbsp;file, which
+          is present under &lt;WebNMS_Home&gt;/conf/application file
+          directory and&nbsp;<b>add the highlighted text alone</b>&nbsp;as
+          given below.</font><br>
+      </font></font>
+    <blockquote style="color: rgb(0, 0, 0); font-family: Arial,
+      Helvetica, sans-serif; font-size: 13px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; border: 1px solid rgb(204, 204,
+      204); padding: 7px; background-color: rgb(245, 245, 245);"><font
+        face="times new roman, times, serif" size="3">&nbsp;&lt;RESOURCE-TYPE
+        ID="NTP-server"&nbsp;<b>topologyClass="com.adventnet.nms.appln.ntp.discovery.server.model.NtpServer"</b>&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;TEST-GROUP
+        CONDITION="all" TestGroupID="Discovery Rule"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;RESOURCE-TEST&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;APPLN-SERVER-TEST
+        objID="Ntp-Test"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;COMMON-ARGS
+        className="com.adventnet.nms.appln.ntp.discovery.server.NtpDiscovery"
+        timeout="5" &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;PORT number="123"/&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;/COMMON-ARGS&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;/APPLN-SERVER-TEST&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/RESOURCE-TEST&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/TEST-GROUP&gt;<br>
+        &nbsp; &lt;/RESOURCE-TYPE&gt;&nbsp;<br>
+      </font></blockquote>
+    <font style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;" face="times new roman, times,
+      serif" size="3">2. Edit&nbsp;<b>hibernate.cfg.xml</b>&nbsp;file,
+      which is present under &lt;WebNMS_Home&gt;/classes/hbnlib file
+      directory and add the text given below.<br>
+    </font>
+    <blockquote style="color: rgb(0, 0, 0); font-family: Arial,
+      Helvetica, sans-serif; font-size: 13px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; border: 1px solid rgb(204, 204,
+      204); padding: 7px; background-color: rgb(245, 245, 245);"><font
+        face="times new roman, times, serif" size="3">&lt;mapping
+resource="com/adventnet/nms/appln/ntp/discovery/server/model/NtpServer.hbm.xml"/&gt;</font></blockquote>
+    <font style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;" face="times new roman, times,
+      serif" size="3">3. Extract<b>&nbsp;NtpServer.zip</b>&nbsp;under
+      &lt;WebNMS_Home&gt;/classes/hbnlib file directory and verify
+      NtpServer.hbm.xml is present in this file path.<br>
+    </font>
+    <blockquote style="color: rgb(0, 0, 0); font-family: Arial,
+      Helvetica, sans-serif; font-size: 13px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; border: 1px solid rgb(204, 204,
+      204); padding: 7px; background-color: rgb(245, 245, 245);"><font
+        face="times new roman, times, serif" size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;WebNMS_Home&gt;/classes/hbnlib/com/adventnet/nms/appln/ntp/discovery/server/model/NtpServer.hbm.xml</font></blockquote>
+    <font style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;" face="times new roman, times,
+      serif" size="3">4. Download and place&nbsp;<b>NtpServerPropertyForm.xml</b>&nbsp;under
+      &lt;WebNMS_Home&gt;/webclient/topo/conf file directory.<br>
+      5. Add the following lines in&nbsp;<b>EnglishToNative.properties</b>&nbsp;which
+      is present under &lt;WebNMS_Home&gt;/html file directory.<font><br>
+      </font></font>
+    <blockquote style="color: rgb(0, 0, 0); font-family: Arial,
+      Helvetica, sans-serif; font-size: 13px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; border: 1px solid rgb(204, 204,
+      204); padding: 7px; background-color: rgb(245, 245, 245);"><font
+        face="times new roman, times, serif" size="3">webclient.topo.portNo
+        = Port No<br>
+        webclient.topo.targetAddress = Target Address&nbsp;<br>
+      </font></blockquote>
+    <font style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;" face="times new roman, times,
+      serif" size="3">6. Download&nbsp;<b>NtpServerClasses.jar</b>&nbsp;and
+      place this jar under NmsServerClasses or provide this entry in the
+      classpath of the startnms.sh.<br>
+      <br>
+      7. Discover ntp device and verify the results.<br>
+      <br>
+      We also attach all the source files and xml files (<b>NtpFiles.zip</b>)
+      for reference.<br>
+      <br>
+      Do get back to us for further clarifications.<br>
+      <br>
+      Regards,<br>
+      Thiyagu Sivalingam<o:p></o:p><font color="rgb(0,0,0)"><xbody
+          link="blue" vlink="purple" lang="EN-US"></xbody></font></font><br
+      class="Apple-interchange-newline">
+    <br>
+    <br>
+    &lt;Malik, Aditya&gt; wrote--------------<br>
+    Thank you for the reply. We would like to show the following
+    properties: displayName, type, netmask, pollInterval, targetName
+    (parent device name), and portNo. <br>
+    <br>
+    Please let me know if any of these require some clarification. <br>
+    <br>
+    Thanks.<br>
+    Aditya<br>
+    <br>
+    From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com] <br>
+    Dear Aditya,<br>
+    Greetings.<br>
+    <br>
+    The reason for showing managed object in the classname of the
+    ntp-server is because of ntp-server does not contain specific
+    properties. So, we have not use the specific modelling class for
+    ntp-server. Hence, the class name of the ntp-server is
+    assigned&nbsp; as managed object and the properties of managed
+    object are shown in the GUI. <br>
+    <br>
+    Do let us know the properties that you need to show in the GUI for
+    ntp-server.<br>
+    <br>
+    Regards,<br>
+    Thiyagu Sivalingam<br>
+    <br>
+    &lt;Malik, Aditya&gt; wrote--------------<br>
+    Hello, <br>
+    I am trying to change device details for several applications and
+    have been able to do so by adding property forms to
+    webclient/topo/conf. Normally, these applications have had class
+    names that are similar/same as the application name (e.g. FtpServer
+    for FTP and SMTPServer for SMTP) according to the MySQL database.<br>
+    <br>
+    However, I noticed that the application NTP has the class name
+    ManagedObject. Therefore, its property form corresponds to
+    ManagedObjectPropertyForm.xml. Since Managed Object is a general
+    class and all other applications have their own classes, is it
+    possible that this is a mistake for NTP? Regardless, is it possible
+    to change the class name for NTP to something more standard like
+    ‘NTP Server’?<br>
+    <br>
+    This change will also be beneficial since making changes to
+    ManagedObjectPropertyForm.xml for NTP will also change it for other
+    objects using the same property form. Therefore, please let me know
+    if either this change is feasible or a workaround is possible. <br>
+    <br>
+    Thank You,<br>
+    Aditya Malik<br>
+  </body>
+</html>
