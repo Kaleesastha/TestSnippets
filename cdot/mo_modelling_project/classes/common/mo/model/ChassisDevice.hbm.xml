@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<subclass discriminator-value="ChassisDevice" extends="com.adventnet.nms.topodb.TopoObject" name="common.mo.model.ChassisDevice">
+<join fetch="select" table="ChassisDevice">
+<key on-delete="cascade">
+<column name="MOID"/>
+</key>
+<property column="CHASSISID" length="40" name="ChassisId" type="string"/>
+<property column="REGION" length="100" name="Region" type="string"/>
+<property column="ADDTIME" length="20" name="AddTime" type="long"/>
+<property column="MACID" length="20" name="MacId" type="string"/>
+<property column="MODELNUMBER" length="20" name="ModelNumber" type="string"/>
+<property column="SERIALNUMBER" length="20" name="SerialNumber" type="string"/>
+</join>
+</subclass>
+</hibernate-mapping>
