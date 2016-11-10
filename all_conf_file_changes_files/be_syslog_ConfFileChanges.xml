@@ -1,0 +1,520 @@
+<?xml version="1.0" ?>
+<configuration_changes home_directory="." >
+<process_unit name="SetLocale" path=""
+ classname="com.adventnet.nms.tools.confchanges.SetLanguageAndCountry"
+ description="html/confchanges/SetLocaleProcess_change.html"
+ required="true" priority="0">
+ </process_unit>
+
+ <process_unit   name  = "NewConfigurationFiles.xml"
+ 		classname   = "com.adventnet.nms.tools.confchanges.UpdateNewConfFiles"
+ 		description = "html/confchanges/NewConfigurationFilesProcess_change.html"
+ 		required    = "true"
+ 		priority    = "0"
+		path = "syslog/conf">
+</process_unit>
+
+ <process_unit name="launcher_conf.txt" path="conf" classname="com.adventnet.nms.tools.confchanges.LauncherConfUpdater" description="Syslog launcher update" 
+required="true">
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Start Web NMS Server" parameter="Classpath" value="./classes/SyslogServerExtn.jar" operation="add"/>
+<data application="Application Client" parameter="Classpath" value="./classes/SyslogClientExtn.jar" operation="add"/>
+<data application="Reinitialize Web NMS" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Discovery Configurator" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="LDAP Client" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Trap Parser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="SNMP V3 Security" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="SNMPConfiguration Tool" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Multi Protocol Browser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="CLIBrowser" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="TL1 Message Builder" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="TL1CraftInterface" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Configuration Wizard" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Chassis Wizard" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+<data application="Studio" parameter="Classpath" value="./classes/CommonUtils.jar" operation="add"/>
+</process_unit>
+
+	<configuration_file name="NmsProcessesBE.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.NmsProcessesBEChanges" description="description" required="true" priority="0">
+		<update_node name="com.adventnet.nms.syslog.server.StandaloneSyslogProcess" description="New PROCESS">
+			<property_set name="Add_Process">
+				<property_set name="COMMENT">
+					<property name="ADDITIONAL_COMMENT" value="com.adventnet.nms.syslog.server.StandaloneSyslogProcess [SYSLOG_SERVER_PORT port] [LOCAL_SYSLOG_FILE_NAME fileName] [LOCAL_SYSLOG_MONITOR_INTERVAL interval] [MONITOR_LOCAL_SYSLOG true/false] [WMI_MONITOR_INTERVAL monitor interval] [DEFAULT_WMI_MONITOR true/false] [WMI_USERNAME username] [WMI_PASSWORD password]"/>
+				</property_set>
+				<property_set name="PROCESS">
+					<property name="PROCESS_NAME" value="com.adventnet.nms.syslog.server.StandaloneSyslogProcess"/>
+				</property_set>
+				<property_set name="ARGS">
+					<property name="SYSLOG_SERVER_PORT" value="514"/>
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<!--configuration_file name="relationalclasses.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.RelationalClassesChanges" description="description" required="true" priority="0">
+		<update_node name="Add_line" description="Help regarding the changes made for this process">
+			<property_set name="Add_line" >
+				<property name="com.adventnet.nms.syslog.server.SyslogDetails userstoragedb RelationalSyslogDetails SyslogDetails" value="" />
+			</property_set>
+		</update_node>
+	</configuration_file-->
+
+	<configuration_file       
+                   name          = "hubmenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+		
+
+				</property_set>
+			</property_set>
+	   	</update_node>
+	</configuration_file>
+	
+	<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />	
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "routermenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+      	<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+
+				</property_set>
+			</property_set>
+		</update_node>
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "listmenus"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}&amp;resourceType=win" action_type="openframe"/>
+					 </MENU-ITEM>
+
+	
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "hubmenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "nodemenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+                           
+		<update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "routermenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu_win.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}&amp;resourceType=win" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "snmpmenu.xml"
+                   path          = "mapdata/menus/"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="MENU" >
+				<property name="parent" value="true" />
+				<property_set name="Node" >
+					<MENU-ITEM name="SEPARATOR"/>
+
+
+
+					<MENU-ITEM name="Configure Syslog">
+						  <JAVA-UI action_value="com.adventnet.nms.syslog.client.SyslogConfigurationMainUI?resourceName=${name}&amp;ipAddress=${ipAddress}" action_type="openframe"/>
+					 </MENU-ITEM>
+
+				</property_set>
+			</property_set>
+		</update_node>	                           
+	</configuration_file>
+
+	<configuration_file       
+                   name          = "RunTimeConfig.xml"
+                   path          = "conf"
+                   classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                   description   = "description"
+                   required      = "true"
+                   priority      = "0" >
+            <update_node name="Add" description="add help  for updating a new node " >
+			<property_set name="RuntimeConfig" >
+			    <property_set name="MODULE" >
+				<property name="parent" value="true" />
+                                <property name="TREE-NAME" value="Fault" />
+                                <property_set name="Node" >
+					<LEVEL-ONE TREE-NAME="Syslog Filtering" ICON-FILE="syslog/images/rtaSyslogTreeNode.png" NODE-ID="Syslog Filtering" PANEL-NAME="com.adventnet.nms.syslog.client.rta.SyslogRuntimeConfigUI" HELP-FILE-KEY="Runtime_Admin_Fault_SysLogFiltering_Help" CLEAN-RESOURCE="true" >
+					</LEVEL-ONE>
+			        </property_set>
+			    </property_set>
+           		</property_set>
+	    </update_node>	                           
+	</configuration_file>
+
+<process_unit name="Localization" path="conf" classname="com.adventnet.nms.tools.confchanges.MultiLingualResourceUpdater" description="html/confchanges/LocalizationProcess_change.html" required="true" priority="0">
+
+
+   <COPY_FILES language="en" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="syslog/ancillary/en/html/SyslogClient.properties" dest="html/SyslogClient.properties"  accept="properties"/>
+   <COPY source="syslog/ancillary/en/html/SyslogServer.properties" dest="html/SyslogServer.properties"  accept="properties"/>
+   <COPY source="syslog/ancillary/en/html/ExtranetClient.properties" dest="html/EnglishToNativeComplete.properties"  accept="properties" merge="true"/>
+   <COPY source="syslog/ancillary/en/html/SyslogMerge.properties" dest="html/EnglishToNativeComplete.properties"  accept="properties" merge="true"/>
+
+   </COPY_FILES>   
+
+   <COPY_FILES language="zh" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="syslog/ancillary/cn/html/SyslogClient_zh_CN.properties" dest="html/SyslogClient_zh_CN.properties" accept="properties"/>
+   <COPY source="syslog/ancillary/cn/html/SyslogServer_zh_CN.properties" dest="html/SyslogServer_zh_CN.properties" accept="properties"/>
+    <COPY source="syslog/ancillary/cn/html/ExtranetClient_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties"  accept="properties" merge="true"/>
+   <COPY source="syslog/ancillary/cn/html/SyslogMerge_zh_CN.properties" dest="html/EnglishToNative_zh_CN.properties" accept="properties" merge="true"/>
+
+   </COPY_FILES>   
+   
+   <COPY_FILES language="ja" COMMENTS="Following files will be copied from source directory to destination directory.">
+   <COPY source="syslog/ancillary/jp/html/SyslogClient_ja_JP.properties" dest="html/SyslogClient_ja_JP.properties" accept="properties"/>
+   <COPY source="syslog/ancillary/jp/html/SyslogServer_ja_JP.properties" dest="html/SyslogServer_ja_JP.properties" accept="properties"/>
+      <COPY source="syslog/ancillary/jp/html/ExtranetClient_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties"  accept="properties" merge="true"/>
+
+      <COPY source="syslog/ancillary/jp/html/SyslogMerge_ja_JP.properties" dest="html/EnglishToNative_ja_JP.properties" accept="properties" merge="true"/>
+
+   </COPY_FILES>
+
+</process_unit>
+
+	<!-- <configuration_file name="DatabaseSchema.conf" path="conf" schemafile="SchemaChanges.xml" schemapath="syslog/conf" classname="com.adventnet.nms.tools.confchanges.SchemaChanges" description="DATABASE_SCHEMA" required="true" priority="0"/>-->
+
+	<configuration_file       
+	name          = "help.conf"
+      path          = "conf"
+      classname     = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+      description   = "description"
+      required      = "true"
+      priority      = "0" >
+
+	<update_node name="Add" description="add help  for updating a new node ">
+		<property_set name="NMS_HELP_CONF">
+		<property_set name="HELP_LIST">
+		<property name="parent" value="true" />
+	        <property_set name="Node" >
+			<HELP key="Runtime_Admin_Fault_SysLogFiltering_Help" value="syslog/help/syslog_fp/conf_syslog.html"/>
+		</property_set>
+		</property_set>
+		</property_set>
+	</update_node>
+
+	</configuration_file>
+
+<!--configuration_file name="DatabaseAliases.conf" path="conf" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="DATABASE_ALIASES" required="true" priority="0">
+        <update_node name="Update" description="Add new fields alias">
+            <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="resourceName RESOURCENAME" value="" />
+            </property_set>
+                 <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="ipAddress IPADDRESS" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="userName USERNAME" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="password PASSWORD" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="status STATUS" value="" />
+            </property_set>
+           <property_set name="Add_line" >
+                <property name="#In Table SysLogDetails" value="" />
+                <property name="type TYPE" value="" />
+            </property_set>
+	</update_node>
+</configuration_file-->
+
+
+  <!--configuration_file name="java_service.ini" path="lib" classname="com.adventnet.nms.tools.confchanges.ServerParametersChanges" description="html/confchanges/serverparameters_change.html" required="true" priority="0">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+              <property_set name="Modify_entry">
+                  <property name="oldEntry" value=".\\classes\\bsh-1.2b3.jar"/>
+                  <property name="newEntry" value=".\\classes\\bsh-1.2b3.jar;.\\syslog\\classes\\SyslogServer.jar;.\\syslog\\classes\\SyslogClient.jar;.\\syslog\\classes\\SyslogCommon.jar;.\\classes\\CommonUtils.jar"/>
+              </property_set>
+
+       </update_node>
+   </configuration_file-->
+
+   <configuration_file name="startnms" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="0">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                <property_set name="append" os="WIN">
+                        <property_set name="variable">
+                                <property name="set CLASS_PATH=" value="SYSLOG_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+                <property_set name="append" os="LINUX">
+                        <property_set name="variable">
+                                <property name="CLASS_PATH=" value="SYSLOG_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+       </update_node>
+   </configuration_file>
+
+
+    <configuration_file name="reinitialize_nms" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="0">
+       <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                <property_set name="append" os="WIN">
+                        <property_set name="variable">
+                                <property name="set CLASSPATH=" value="SYSLOG_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+                <property_set name="append" os="LINUX">
+                        <property_set name="variable">
+                                <property name="CLASSPATH=" value="SYSLOG_SERVER_CLASSPATH" use="os" doOnce="true" />
+                        </property_set>
+                </property_set>
+       </update_node>
+   </configuration_file>
+
+
+
+  
+	   <configuration_file name="startApplicationClient" path="bin" classname="com.adventnet.nms.tools.confchanges.StartnmsChanges" description="description" required="true" priority="0">
+                <update_node name="Modify_entry" description="Help regarding the changes made for this process">
+                        <property_set name="append" os="WIN">
+                                <property_set name="variable">
+                                        <property name="set CLASSPATH=" value="SYSLOG_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+                        <property_set name="append" os="LINUX">
+                                <property_set name="variable">
+                                        <property name="CLASSPATH=" value="SYSLOG_CLIENT_CLASSPATH" use="os" doOnce="true" />
+                                </property_set>
+                        </property_set>
+               </update_node>
+       </configuration_file>
+
+
+	<configuration_file name="setEnv" path="." classname="com.adventnet.nms.tools.confchanges.SetEnvChanges" description="html/confchanges/setEnv_change.html" required="true" priority="0">
+	   <update_node name="Modify_entry" description="New Variable is added">
+                <property_set name="Add_line" os="WIN">
+                	<property name="set SYSLOG_CLIENT_CLASSPATH=%NMS_HOME%\classes\SyslogClientExtn.jar" value=""  />
+	                <property name="set SYSLOG_SERVER_CLASSPATH=%NMS_HOME%\classes\SyslogServerExtn.jar" value=""  />
+		</property_set>
+                <property_set name="Add_line" os="LINUX">
+		         <property name="SYSLOG_CLIENT_CLASSPATH=$NMS_HOME/classes/SyslogClientExtn.jar" value="" />
+                	<property name="SYSLOG_SERVER_CLASSPATH=$NMS_HOME/classes/SyslogServerExtn.jar" value="" />
+		</property_set>
+	   </update_node>
+	</configuration_file>
+
+<configuration_file
+                     name          =  "clientparameters.conf"
+                     path           =  "conf"
+                     classname   = "com.adventnet.nms.tools.confchanges.XMLConfChangesUtil"
+                     description  = "Change in conf/clientparameters.conf"
+                     required      = "true"
+                     priority       = "0" >
+	
+	<update_node name="Modify" description="Adding RME Client Jars" >
+                  <property_set name="CLIENT_PARAMETERS_CONF" >
+                        <property_set name="PARAMETERS" >
+                                <property name="parent" value="true" />
+                                <property_set name="attribute" >
+                                        <property name="ARCHIVE" subset="true" existingValue=",../classes/AdventNetUI.jar" newValue=",../classes/AdventNetUI.jar,../syslog/classes/SyslogCommon.jar,../syslog/classes/SyslogClient.jar,../classes/CommonUtils.jar"/>
+                                </property_set>
+                        </property_set>
+                </property_set>
+        </update_node>
+
+
+    </configuration_file>
+
+
+
+
+	<configuration_file
+            name =  "hibernate.cfg.xml"
+            path          =  "classes/hbnlib"
+            classname     = "com.adventnet.nms.tools.confchanges.ServerParametersChanges"
+            description   = "Changes in the hibernate.cfg.xml"
+            required      = "true"
+            doonce        = "true"
+            priority      = "0" >
+
+            <update_node name="Modify_entry" description="Add hibernate modelling entry which are used in Syslog Monitoring Feature Pack" >
+                    <property_set name="Modify_entry">
+                            <property name="oldEntry"
+                                    value="&lt;mapping resource=&quot;com/adventnet/nms/mapdb/MapDB.hbm.xml&quot;/&gt;"/>
+
+                            <property name="newEntry" value="&lt;mapping resource=&quot;com/adventnet/nms/mapdb/MapDB.hbm.xml&quot;/&gt;
+
+                                    &lt;mapping resource=&quot;com/adventnet/nms/syslog/server/SyslogDetails.hbm.xml&quot;/&gt;"/>
+
+                            </property_set>
+
+                    </update_node>
+
+            </configuration_file>
+
+
+
+    </configuration_changes>
+                                                              
+<!-- $Id: ConfFileChanges.xml,v 1.4 2009/01/19 09:09:10 govardhini Exp $ -->
