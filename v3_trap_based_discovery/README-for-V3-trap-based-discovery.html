@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>README for V3-trap-based-discovery</title>
+  </head>
+  <body>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">Here're the steps for a
+      v3-trap-based-discovery:</div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">1.You need to know the networks from
+      which V3 traps may be received in WebNMS trap port (<b><i>162</i></b><span
+        class="Apple-converted-space">&nbsp;</span>by default).<br>
+      Based on the network IPs you need to populate the UserTable.</div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">2. You can use<span
+        class="Apple-converted-space">&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/v3/DiscoverV3Node.java##L23-L58"
+        target="_blank">this piece of code snippet to populate the
+        USERTABLE</a>.<br>
+      You can modify this code to call only<span
+        class="Apple-converted-space">&nbsp;</span><b><i>PopulateUserTable.insertIntoUserTable</i></b><span
+        class="Apple-converted-space">&nbsp;</span>and remove all other
+      calls and add this as a process in NmsProcessesBE.conf.</div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">3. Download<span
+        class="Apple-converted-space">&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/v3_trap_based_discovery/V3CredentialsValidator.java"
+        target="_blank">V3CredentialsValidator.java</a><span
+        class="Apple-converted-space">&nbsp;</span>&amp;<span
+        class="Apple-converted-space">&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/v3_trap_based_discovery/V3CredentialsValidatorImpl.java"
+        target="_blank">V3CredentialsValidatorImpl.java</a>, compile the
+      same and add it to classpath.<br>
+      Note that&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/v3_trap_based_discovery/V3CredentialsValidatorImpl.java"
+        target="_blank">V3CredentialsValidatorImpl.java</a>&nbsp;is an
+      implementation class (which is open sourced) and you can change
+      the same based on your need.</div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div><font style="font-size: medium;" face="times new roman, times,
+        serif">4. Append nmsInterfaces.conf with<span
+          class="Apple-converted-space">&nbsp;</span></font><font
+        face="courier new, courier, monospace" color="#0000ff" size="2"><b>V3CredentialsValidator="test.V3CredentialsValidatorImpl"</b></font><span
+        class="Apple-converted-space">&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/v3_trap_based_discovery/nmsInterfaces.conf##L13"
+        target="_blank" style="font-size: medium; font-family:
+        &quot;times new roman&quot;, times, serif;">as shown in this
+        file</a><font style="font-size: medium;" face="times new roman,
+        times, serif">.</font></div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">5. Now you can restart the server.</div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;"><br>
+    </div>
+    <div style="font-size: medium; font-family: &quot;times new
+      roman&quot;, times, serif;">6. Once you receive a v3-trap from a
+      not-yet-discovered-IP (whose network credentials are already
+      populated in UserTable), then that trap will trigger the discovery
+      of that node as well as network.</div>
+  </body>
+</html>
