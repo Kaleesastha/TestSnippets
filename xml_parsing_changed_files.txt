@@ -1,0 +1,14 @@
+./nms/src/projects/ProvisioningClient_proj/Source/ProvisioningTemplatesPanel.java
+./nms/src/projects/ProvisioningClient_proj/Source/TemplateUIPanel.java
+./nms/src/prov/com/adventnet/nms/provisioning/messaging/MessageProcessor.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/Operation.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/ProvisionControllerImpl.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/ProvisioningAPIImpl.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/ProvisioningAPIImpl_SessionStub.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/ProvisioningSessionBE.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/StageProcessor.java
+./nms/src/prov/com/adventnet/nms/provisioning/server/TemplateInitializer.java
+./nms/src/prov/com/adventnet/nms/provisioning/ui/ClientLayoutHandler.java
+./nms/src/prov/com/adventnet/nms/provisioning/xml/Template.java
+./nms/src/prov/com/adventnet/nms/provisioning/xml/TemplateParams.java
+./nms/src/security/com/adventnet/security/common/SecurityXMLParser.java
