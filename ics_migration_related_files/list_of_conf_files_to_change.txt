@@ -1,0 +1,53 @@
+Priority 1:
+------
+In NMS_HOME/conf directory find the diff and merge:
+-------------
+DatabaseSchema.conf
+alert.filters
+discovery.filters
+event.filters
+nmsInterfaces.conf
+NmsProcessesBE.conf
+NmsProcessesFE.conf
+Polling.conf
+seed.file
+serverparameters.conf
+trap.filters
+trapport.conf
+----
+
+Priority 2:
+-------------
+In NMS_HOME/conf directory find the diff and merge:
+-------------
+clientparameters.conf
+database_params.conf
+DatabaseAliases.conf
+launcher.config
+launcher_conf.txt
+log4j_conf.xml
+logging_parameters.conf
+LoginParameters.conf
+mapIcon.data
+listIcon.data
+policy.conf
+OIDType.data
+RebrandingItems.xml
+RebrandingProperties.xml
+relationalclasses.conf
+securitydbData.xml
+securitydbData.xml_DEFAULT
+SmartUpdateManager.xml
+snmpDatabaseSchema.config
+SQLDatatypes.xml
+transportProvider.conf
+
+Priority 3:
+----
+In NMS_HOME/listmenus directory find the diff and merge:
+-------------
+interfacemenu.xml
+netmenu.xml
+nodemenu.xml
+objectmenu.xml
+snmpmenu.xml
