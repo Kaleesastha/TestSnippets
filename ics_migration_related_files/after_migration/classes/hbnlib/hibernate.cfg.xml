@@ -146,6 +146,7 @@
 <mapping resource="com/adventnet/nms/mapdb/MapGroup.hbm.xml"/>
 <mapping resource="com/adventnet/nms/mapdb/MapDB.hbm.xml"/>
 <mapping resource="com/adventnet/nms/mapdb/GMapSymbol.hbm.xml"/>
+<!--
 <mapping resource="com/adventnet/nms/kpi/CustomMatchCriteria.hbm.xml"/>
 <mapping resource="com/adventnet/nms/kpi/MOMatchCriteria.hbm.xml"/>
 <mapping resource="com/adventnet/nms/kpi/MultipleDeviceDSPolledData.hbm.xml"/>
@@ -159,6 +160,7 @@
 <mapping resource="com/adventnet/nms/kpi/KPISubComputation.hbm.xml"/>
 <mapping resource="com/adventnet/nms/kpi/DeviceCompSchedule.hbm.xml"/>
 <mapping resource="com/adventnet/nms/kpi/KPIObject.hbm.xml"/>
+-->
 
 <!-- ********JMX AGENT RELATED ENTRIES -->
 <!--mapping resource="com/adventnet/nms/jmxagent/AgentDefValObject.hbm.xml"/-->
