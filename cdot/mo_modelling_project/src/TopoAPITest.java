@@ -10,7 +10,10 @@ public class TopoAPITest {
 	{
 		TopoAPI topo = null;
 		try{
-			topo = (TopoAPI)Naming.lookup("//localhost/TopoAPI");
+			topo = (TopoAPI)Naming.lookup("//172.24.14.34/TopoAPI");
+			//topo = (TopoAPI)Naming.lookup("rmi://172.24.14.34/TopoAPI");
+			//topo = (TopoAPI)Naming.lookup("rmi://localhost/TopoAPI");
+			//topo = (TopoAPI)Naming.lookup("//localhost/TopoAPI");
 			System.err.println("Got TopoAPI handle"); //Will log them in stderr
 		}
 		catch(Exception e){}
