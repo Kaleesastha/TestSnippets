@@ -16,7 +16,12 @@ public class EventFilterSample implements FilterClient {
 		// TODO Auto-generated method stub
 		System.out.println("Event Filter Called" +event.getSnmpPDU());
 		System.err.println("Event's properties : " +event.getProperties());
-		//event.setSeverity(2);
+		if (event.getSeverity()<0 ){
+			event.setSeverity(1);
+		}
+		if(event.getText() ==null || event.getText().trim().equals("")){
+			event.setText("Text Critical Message "+event.getSource());
+		}
 		return event;
 	}
 

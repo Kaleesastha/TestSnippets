@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <TRAP_FILTERS>
-<!--
+  <!--
 
 Trap Filters could be used in case you need to process or modify the raw Trap
 PDU itself before you convert the Trap into an Event. The trap filter, you
@@ -35,26 +36,63 @@ Please note that you could even use wildcards here, something like
 
 
 <FILTER
+	name="LinkUpSnmpV1"
 	enterprise=".1.3.6.1.2.1.11"
+    enable="true"
 	GT="2"
 	ST="0"
 	classname="test.TestTrapFilter" />
 
 <FILTER
+	name="TestFilter"
 	enterprise=".1.3.6.1.2.1.11"
+    enable="false"
 	GT="6"
 	ST="23"
 	classname="test.CustomPrivateTrapFilter" />
 
 <FILTER
+    name="LinkDownSnmpV2c"
+	enable="true"
 	trapoid=".1.3.6.1.6.3.1.1.5.4"
 	classname="test.LinkUpDownTrapFilter" />
 
 
 -->
-<FILTER classname="com.dgca.TrapSample" enable="true" name="TrapSample" trapoid="*"/>
-<FILTER GT="2" ST="0" classname="test.LinkUpDownTrapFilter" enable="true" enterprise=".1.3.6.1.2.1.11" name="LinkUpSnmpV1"/>
-<FILTER classname="test.LinkUpDownTrapFilter" enable="true" name="LinkUpSnmpV2c" trapoid=".1.3.6.1.6.3.1.1.5.3"/>
-<FILTER GT="3" ST="0" classname="test.LinkUpDownTrapFilter" enable="true" enterprise=".1.3.6.1.2.1.11" name="LinkDownSnmpV1"/>
-<FILTER classname="test.LinkUpDownTrapFilter" enable="true" name="LinkDownSnmpV2c" trapoid=".1.3.6.1.6.3.1.1.5.4"/>
+  <FILTER
+     name="printTrapFilter"
+	 classname="test.PrintFilter"
+     enable="true"
+     enterprise="*" />
+  <FILTER
+     name="LinkUpSnmpV1"
+	 classname="test.LinkUpDownTrapFilter"
+     enable="true"
+     GT="1"
+     ST="0"
+     enterprise="*" />
+  <FILTER
+     name="LinkUpSnmpV1"
+	 classname="test.LinkUpDownTrapFilter"
+     enable="true"
+     GT="2"
+     ST="0"
+     enterprise=".1.3.6.1.2.1.11" />
+  <FILTER
+     name="LinkUpSnmpV2c"
+	 classname="test.LinkUpDownTrapFilter"
+     enable="true"
+     trapoid=".1.3.6.1.6.3.1.1.5.3" />
+  <FILTER
+     name="LinkDownSnmpV1"
+	 classname="test.LinkUpDownTrapFilter"
+     enable="true"
+     GT="3"
+     ST="0"
+     enterprise=".1.3.6.1.2.1.11" />
+  <FILTER
+     name="LinkDownSnmpV2c"
+	 classname="test.LinkUpDownTrapFilter"
+     enable="true"
+     trapoid=".1.3.6.1.6.3.1.1.5.4" />
 </TRAP_FILTERS>
