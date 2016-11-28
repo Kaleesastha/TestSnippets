@@ -60,7 +60,7 @@ CnpPSBlackBoxDC(
 
 ---
 Tables which are NOT present in relational classes.conf but present in DatabaseSchema.
-The below entries should be removed
+----
 EnumServerLink(
 SubLdapServerLink(
 PeerMMSCLink(
