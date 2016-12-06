@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ATCA Fixes in 4.7 SP4</title>
+  </head>
+  <body>
+    <i><b>1.MIN/MAX Password length configuration in java client</b></i><br>
+    <br>
+    <i><b>2.New interface ValidateCredentials to do custom validation
+        over the password field</b></i><br>
+    <br>
+    <i><b>3. Provide an interface for getting notification when a user
+        tries to login, unsuccessfully logs in and logs out.</b></i><br>
+    <br>
+    <i><b>4.Banner Dialog to show unsuccessful attempts and security
+        notice message while client successfully logins into the server</b></i><br>
+    <br>
+    5.'Unsuccessful attempts' calculation mechanism is based on new
+    custom table definition and with extended AuditAPIImpl
+    implementation.<br>
+    <br>
+    6. Support for forwarding SNMP v3 Traps from the WebNMS Events and
+    Alarms is provided.<br>
+    <br>
+    7.&nbsp; Support for brute force login throttle enabled and set to a
+    sleep time of 5 seconds after each login failure.<br>
+    <br>
+    <i><b>8. CipherSuites Support in SSL have been provided</b></i><br>
+    <br>
+    <i><b>9. NAT Patch - to enable client failover when client is
+        connected for a NATed IP</b></i><br>
+    <br>
+    <i><b>10. Included a configurable parameter to enable or disable
+        reuse password option</b></i><br>
+    <br>
+    11. Connecting the webstart client from command line mode by giving
+    the username and password (without showing the login screen)<br>
+    <br>
+    <i><b>12. Resolving the Out of Memory issues due to port scanning</b></i><br>
+  </body>
+</html>
