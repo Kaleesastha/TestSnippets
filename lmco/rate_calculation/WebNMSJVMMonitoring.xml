@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebNMSJVMMonitoring>
+<ResourceManagement>
+	<Action Name="MailNotification">
+		<FromAddress>webnms-admin@webnms.com</FromAddress> 
+		<ToAddress>webnms-admin@webnms.com</ToAddress>
+		<Subject>{0} {1} reached the threshold limit of {2} {3}</Subject> 
+		<Message>WebNMS {0} {1} has reached its threshold value. Current {2} is {3} {4}. Please take required precautionary steps!</Message> 
+	</Action>
+</ResourceManagement>
+<BEResourceMonitoring>
+	<CPUUsage> 
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</CPUUsage>
+	<MemoryUsage>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</MemoryUsage>	
+	<ThreadCount>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>bethreadcount</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</ThreadCount>
+	<StatusPollingRate>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>300</MonitoringInterval>
+		<ThresholdName/>
+		<TriggerAction>MailNotification</TriggerAction>
+	</StatusPollingRate>
+	<TrapProcessingRate>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>300</MonitoringInterval>
+		<ThresholdName/>
+		<TriggerAction>MailNotification</TriggerAction>
+	</TrapProcessingRate>
+	<EventProcessingRate>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>300</MonitoringInterval>
+		<ThresholdName/>
+		<TriggerAction>MailNotification</TriggerAction>
+	</EventProcessingRate>
+	<AlertProcessingRate>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>300</MonitoringInterval>
+		<ThresholdName/>
+		<TriggerAction>MailNotification</TriggerAction>
+	</AlertProcessingRate>
+	<DataCollectionRate>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>300</MonitoringInterval>
+		<ThresholdName/>
+		<TriggerAction>MailNotification</TriggerAction>
+	</DataCollectionRate>
+</BEResourceMonitoring>
+<FEResourceMonitoring>
+	<CPUUsage> 
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</CPUUsage>
+	<MemoryUsage>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</MemoryUsage>	
+	<ThreadCount>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>fethreadcount</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</ThreadCount>
+</FEResourceMonitoring>
+<ClientResourceMonitoring>
+	<CPUUsage> 
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</CPUUsage>
+	<MemoryUsage>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>resourceusage</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</MemoryUsage>	
+	<ThreadCount>
+		<Monitor>true</Monitor> 
+		<MonitoringInterval>30</MonitoringInterval>
+		<ThresholdName>clientthreadcount</ThresholdName>
+		<TriggerAction>MailNotification</TriggerAction>
+	</ThreadCount>
+</ClientResourceMonitoring>
+</WebNMSJVMMonitoring>

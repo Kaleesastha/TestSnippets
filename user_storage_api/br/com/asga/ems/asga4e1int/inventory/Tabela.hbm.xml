@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class discriminator-value="Tabela" dynamic-update="true" lazy="true" name="br.com.asga.ems.asga4e1int.inventory.Tabela" select-before-update="true" table="Tabela">
+<composite-id class="br.com.asga.ems.asga4e1int.inventory.ChaveTabela" name="id" mapped="false">
+<key-property column="HOST" length="100" name="host" type="string"/>
+<key-property column="INTEIRO" length="11" name="inteiro" type="integer"/>
+</composite-id>
+<property column="DESCRICAO" length="100" name="descricao" type="string"/>
+</class>
+</hibernate-mapping>

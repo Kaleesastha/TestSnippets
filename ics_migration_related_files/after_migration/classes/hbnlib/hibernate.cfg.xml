@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+<session-factory>
+
+<!--property name="connection.driver_class">com.p6spy.engine.spy.P6SpyDriver</property-->		
+
+<!--For MYSQL,Starts From Here-->
+
+<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="connection.url">jdbc:mysql://localhost/WebNmsDB?dumpQueriesOnException=true&amp;jdbcCompliantTruncation=false</property>
+<property name="connection.username">webnms</property>
+<property name="connection.password">Motorola1</property>
+<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+<property name="databasename">MYSQL</property>
+<property name="engineType">InnoDB</property>
+
+<!--End Of MYSQL-->
+
+<!--For Using Oracle DB , Uncomment the below tags -->
+<!--
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+<property name="connection.url">jdbc:oracle:thin:@HOST_NAME:PORT_NUMBER:CONNECT_STRING</property>
+<property name="connection.username">scott</property>
+<property name="connection.password">tiger</property>
+<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+<property name="databasename">ORACLE</property>
+-->
+<!-- End of ORACLE ,Uncomment till here-->
+
+<!--For Using Sybase ASA DB , Uncomment the below tags -->
+<!--
+<property name="connection.driver_class">com.sybase.jdbc3.jdbc.SybDriver</property>
+<property name="connection.url">jdbc:sybase:Tds:localhost:2638/WebNmsDB</property>
+<property name="connection.username">dba</property>
+<property name="connection.password">sql</property>
+<property name="dialect">org.hibernate.dialect.SybaseAnywhereDialect</property>
+<property name="databasename">SYBASE</property>
+-->
+<!--END of SYBASE ASA ,Uncomment till here-->
+
+
+
+<!--For Postgresql,Starts From Here-->
+<!--
+<property name="connection.driver_class">org.postgresql.Driver</property>
+<property name="connection.url">jdbc:postgresql://localhost/WebNmsDB</property>
+<property name="connection.username">postgres</property>
+<property name="connection.password">postgres</property>
+<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<property name="databasename">POSTGRESQL</property>
+<property name="connection.schemaname">public</property>
+-->
+<!--End Of Postgresql Uncomment till here-->
+
+
+<!--For MSSQL,Starts From Here-->
+<!--
+<property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+<property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=WebNmsDB</property>
+<property name="connection.username">admin</property>
+<property name="connection.password">public</property>
+<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+<property name="databasename">MSSQL</property>
+-->
+<!--End Of MSSQL Uncomment till here-->
+
+<!--Use Given Schema name for Qualified Tables -->
+
+<!--
+<property name="hibernate.default_schema">WebNmsDB</property>
+-->
+
+<!-- JDBC connection pool (use the built-in) -->
+<!--property name="hibernate.connection.pool_size">6</property-->
+<property name="hibernate.c3p0.min_size">15</property>
+<property name="hibernate.c3p0.max_size">15</property>
+<property name="nontransaction.connection">3</property>
+<property name="hibernate.connection.autocommit">true</property>
+<!--property name="hibernate.c3p0.max_statements">1000</property-->
+<property name="hibernate.c3p0.acquire_increment">1</property>
+<property name="hibernate.jdbc.batch_size">1000</property>
+<property name="hibernate.connection.isolation">2</property>
+<property name="enablecache">true</property>
+<!-- Enable Hibernate's automatic session context management -->
+<property name="current_session_context_class">thread</property>
+<!-- Disable the second-level cache -->
+<!--<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+<property name="hibernate.cache.use_query_cache">true</property>
+<!-- Echo all executed SQL to stdout -->
+<property name="show_sql">false</property>
+<!-- Drop and re-create the database schema on startup -->
+<property name="hbm2ddl.auto">update</property>
+<!-- used internally by WebNMS and also used for database re-connection-->
+<property name="testQuery">select HOSTADDRESS from BEFailOver</property>
+<!-- c3p0 DB-Reconnection Properties -->
+<!--
+<property name="hibernate.c3p0.acquireRetryAttempts">100</property>
+<property name="hibernate.c3p0.acquireRetryDelay">3000</property>
+<property name="hibernate.c3p0.breakAfterAcquireFailure">false</property>
+-->
+<!-- End of c3p0 DB-Reconnection Properties. For more details:http://www.mchange.com/projects/c3p0/index.html#configuring_recovery-->
+
+<!-- ************************************** -->
+<!-- TOPOLOGY MODULE OBJECT MAPPING ENTRIES -->
+<!-- ************************************** -->
+<mapping resource="com/adventnet/nms/topodb/ManagedObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/TopoObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Network.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/IpAddress.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpInterface.hbm.xml"/>
+<mapping resource="test/SwitchObject.hbm.xml"/>
+<mapping resource="test/PortObject.hbm.xml"/>
+<mapping resource="test/Printer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Interface.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/ManagedGroupObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/corba/CORBANode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayAccessSession.hbm.xml"/>
+<!-- *********************************** -->
+<!-- FAULT MODULE OBJECT MAPPING ENTRIES -->
+<!-- *********************************** -->
+<mapping resource="com/adventnet/nms/eventdb/Event.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/Alert.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/AlertHistory.hbm.xml"/>
+
+<!-- ***************************************** -->
+<!-- PERFORMANCE MODULE OBJECT MAPPING ENTRIES -->
+<!-- ***************************************** -->
+<mapping resource="com/adventnet/nms/poll/PolledData.hbm.xml"/>
+
+<!-- ******************************** -->
+<!-- MAP MODULE OBJECT MAPPING ENTRIES -->
+<!-- ******************************** -->
+<mapping resource="com/adventnet/nms/mapdb/MapContainer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapSymbol.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapLink.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapGroup.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapDB.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/GMapSymbol.hbm.xml"/>
+<!--
+<mapping resource="com/adventnet/nms/kpi/CustomMatchCriteria.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/MOMatchCriteria.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/MultipleDeviceDSPolledData.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/DeviceDSPolledData.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPIPolledData.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPIDeviceList.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPISqlDS.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPICustomDS.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPIPollDS.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPIDeviceDS.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPISubComputation.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/DeviceCompSchedule.hbm.xml"/>
+<mapping resource="com/adventnet/nms/kpi/KPIObject.hbm.xml"/>
+-->
+
+<!-- ********JMX AGENT RELATED ENTRIES -->
+<!--mapping resource="com/adventnet/nms/jmxagent/AgentDefValObject.hbm.xml"/-->
+
+<mapping resource="com/motorola/emh/core/modeling/EMHAlert.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/SBNE.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/PhysicalEntity.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/PhysicalContainer.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/PhysicalSubUnit.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/PhysicalUnit.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/LogicalElement.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/LogicalContainer.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/LogicalUnit.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/ProtectionGroup.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/DataObject.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/NetworkElementManagement.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/IpConfig.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/EventControl.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/RelationObject.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/streams/PhysicalUnitStream.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/streams/LogicalUnitStream.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/streams/LogStreamDataConfig.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/streams/LogStream.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/connectivity/ConnectivityData.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/connectivity/Interface.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/connectivity/InterfaceContainer.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/cneomi/connectivity/Endpoint.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/exthapcoreextension/exthapnecontrol/HapNeControl.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpEthernetPortGroup.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpFileSystemInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpServerInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpEthernetPort.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpRaidPort.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpCageInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpACL.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpFruInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpSystemInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpLocationInfo.hbm.xml"/>
+<mapping resource="com/motorola/atcas/ems/metadata/platformexternal/CnpMonDevInfo.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/EMHInfoEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/CNEOMIManagementEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/EMHEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/ObjectCreationDeletionEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/StateChangeEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/UserDefinedEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/AttributeValueChangeEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/AvailabilityEvent.hbm.xml"/>
+<mapping resource="com/motorola/emh/core/modeling/RelationshipChangeEvent.hbm.xml"/>
+</session-factory>
+
+</hibernate-configuration>
+<!-- $Id: hibernate.cfg.xml,v 1.45 2011/01/06 09:18:47 prabakaran Exp $ -->

@@ -1,0 +1,56 @@
+Priority 1:
+------
+In NMS_HOME/conf directory find the diff and merge:
+* - Files marked with this symbol - ensure that the classes in these text file are kept in classpath
+-------------
+DatabaseSchema.conf
+*alert.filters
+*discovery.filters
+*event.filters
+*trap.filters
+*nmsInterfaces.conf
+
+*NmsProcessesBE.conf
+*NmsProcessesFE.conf
+
+Polling.conf
+seed.file
+serverparameters.conf
+trapport.conf
+----
+
+Priority 2:
+-------------
+In NMS_HOME/conf directory find the diff and merge:
+-------------
+clientparameters.conf
+database_params.conf - Not needed in 5.2 setup
+DatabaseAliases.conf
+launcher.config
+launcher_conf.txt
+log4j_conf.xml - Find your loggers from logging_parameters and then migrate them to this file
+logging_parameters.conf - Not needed in 5.2 setup
+LoginParameters.conf
+mapIcon.data
+listIcon.data
+*policy.conf
+OIDType.data
+RebrandingItems.xml
+RebrandingProperties.xml
+relationalclasses.conf
+securitydbData.xml - Do not do the changes now
+securitydbData.xml_DEFAULT - Do not do the changes now
+SmartUpdateManager.xml
+snmpDatabaseSchema.config
+SQLDatatypes.xml
+transportProvider.conf
+
+Priority 3:
+----
+In NMS_HOME/listmenus directory find the diff and merge:
+-------------
+interfacemenu.xml
+netmenu.xml
+nodemenu.xml
+objectmenu.xml
+snmpmenu.xml

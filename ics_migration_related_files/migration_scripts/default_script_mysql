@@ -1,0 +1,570 @@
+# drop tables for Performance Module
+SELECT 'STEP 1 : drop PollFilters table' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists PollFilters;
+# alter table for PolledData table
+SELECT 'STEP 2 : alter PolledData table' AS 'MIGRATION PROCESS STATUS ... ';
+#alter table PolledData drop primary key;
+alter table PolledData modify column ID bigint(20) NOT NULL PRIMARY KEY first;
+alter table PolledData add UNIQUE KEY(`NAME`,`AGENT`,`OID`);
+alter table PolledData drop column OWNERNAME;
+alter table PolledData add column DISCRIMINATOR varchar(30) NOT NULL after `ID`;
+update PolledData set DISCRIMINATOR = (select VALUESTRING from DBPOLL where ID=KEYSTRING);
+update PolledData set DISCRIMINATOR = 'PolledData' where DISCRIMINATOR = '';
+drop table if exists DBPOLL;
+alter table PolledData change column ACTIVE ACTIVE_STR varchar(10) default NULL;
+alter table PolledData add column ACTIVE bit(1) default NULL AFTER PERIOD;
+update PolledData set ACTIVE = ACTIVE_STR like 'true';
+alter table PolledData drop column ACTIVE_STR;
+alter table PolledData change column LOGDIRECTLY LOGDIRECTLY_STR varchar(10) default NULL;
+alter table PolledData add column LOGDIRECTLY bit(1) default NULL AFTER ACTIVE;
+update PolledData set LOGDIRECTLY = LOGDIRECTLY_STR like 'true';
+alter table PolledData drop column LOGDIRECTLY_STR;
+alter table PolledData change column SSAVE SSAVE_STR varchar(10) default NULL;
+alter table PolledData add column SAVEDATA bit(1) default NULL AFTER LOGFILE;
+update PolledData set SAVEDATA = SSAVE_STR like 'true';
+alter table PolledData drop column SSAVE_STR;
+alter table PolledData change column THRESHOLD THRESHOLD_STR varchar(10) default NULL;
+alter table PolledData add column THRESHOLD bit(1) default NULL AFTER SAVEDATA;
+update PolledData set THRESHOLD = THRESHOLD_STR like 'true';
+alter table PolledData drop column THRESHOLD_STR;
+alter table PolledData change column ISMULTIPLEPOLLEDDATA ISMULTIPLEPOLLEDDATA_STR varchar(10) default NULL;
+alter table PolledData add column ISMULTIPLEPOLLEDDATA bit(1) default NULL AFTER THRESHOLD;
+update PolledData set ISMULTIPLEPOLLEDDATA = ISMULTIPLEPOLLEDDATA_STR like 'true';
+alter table PolledData drop column ISMULTIPLEPOLLEDDATA_STR;
+alter table PolledData change column SAVEABSOLUTES SAVEABSOLUTES_STR varchar(10) default NULL;
+alter table PolledData add column SAVEABSOLUTES bit(1) default NULL AFTER NUMERICTYPE;
+update PolledData set SAVEABSOLUTES = SAVEABSOLUTES_STR like 'true';
+alter table PolledData drop column SAVEABSOLUTES_STR;
+alter table PolledData change column TIMEAVG TIMEAVG_STR varchar(10) default NULL;
+alter table PolledData add column TIMEAVG bit(1) default NULL AFTER SAVEABSOLUTES;
+update PolledData set TIMEAVG = TIMEAVG_STR like 'true';
+alter table PolledData drop column TIMEAVG_STR;
+alter table PolledData change column SAVEONTHRESHOLD SAVEONTHRESHOLD_STR varchar(10) default NULL;
+alter table PolledData add column SAVEONTHRESHOLD bit(1) default NULL AFTER CURRENTSAVECOUNT;
+update PolledData set SAVEONTHRESHOLD = SAVEONTHRESHOLD_STR like 'true';
+alter table PolledData drop column SAVEONTHRESHOLD_STR;
+#drop index for PolledData
+drop index PolledData0_ndx on PolledData;
+drop index PolledData1_ndx on PolledData;
+drop index PolledData2_ndx on PolledData;
+drop index PolledData3_ndx on PolledData;
+drop index PolledData4_ndx on PolledData;
+drop index PolledData5_ndx on PolledData;
+drop index PolledData6_ndx on PolledData;
+create index `PARENTOBJ_ndx` on PolledData(PARENTOBJ);
+# alter table for POLLUSERPROPS
+SELECT 'STEP 3 : alter POLLUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table POLLUSERPROPS add column `ID` bigint(20) NOT NULL first;
+update POLLUSERPROPS set ID = (select ID from PolledData where POLLUSERPROPS.NAME= PolledData.NAME and POLLUSERPROPS.AGENT = PolledData.AGENT and POLLUSERPROPS.OID=PolledData.OID);
+alter table POLLUSERPROPS drop column OWNERNAME;
+alter table POLLUSERPROPS drop column NAME;
+alter table POLLUSERPROPS drop column AGENT;
+alter table POLLUSERPROPS drop column OID;
+alter table POLLUSERPROPS add constraint `FK5DBA4B86D7D7502` FOREIGN KEY (`ID`) REFERENCES `PolledData` (`ID`) ON DELETE CASCADE;
+alter table POLLUSERPROPS add primary key (ID,PROPNAME);
+# create index for POLLUSERPROPS table
+create index `FK5DBA4B86D7D7502` on POLLUSERPROPS(ID);
+# alter table for Alert
+SELECT 'STEP 4 : alter Alert table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Alert drop column OWNERNAME;
+alter table Alert drop column MAPNAME;
+alter table Alert drop column STAGE;
+alter table Alert drop column PRIORITY;
+alter table Alert modify column ENTITY varchar(100) NOT NULL first;
+alter table Alert add column DISCRIMINATOR varchar(30) NOT NULL after `ENTITY`;
+update Alert set DISCRIMINATOR = (select VALUESTRING from DBALERT where ENTITY=KEYSTRING);
+update Alert set DISCRIMINATOR = 'Alert' where DISCRIMINATOR = '';
+# drop index for Alert table
+alter table Alert drop index Alert0_ndx;
+# drop table if exists DBALERT
+SELECT 'STEP 5 : drop DBALERT table' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists DBALERT;
+# alter table for ALERTUSERPROPS
+SELECT 'STEP 6 : alter ALERTUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ALERTUSERPROPS drop column OWNERNAME;
+alter table ALERTUSERPROPS add column `ENTITY` varchar(100) NOT NULL first;
+update ALERTUSERPROPS set ENTITY = NAME;
+alter table ALERTUSERPROPS add constraint `FKCFB5A6A93E26DDB` FOREIGN KEY (`ENTITY`) REFERENCES `Alert` (`ENTITY`) ON DELETE CASCADE;
+alter table ALERTUSERPROPS drop column NAME;
+alter table ALERTUSERPROPS add primary key (ENTITY,PROPNAME);
+# create index for ALERTUSERPROPS table
+create index `FKCFB5A6A93E26DDB` on ALERTUSERPROPS(ENTITY);
+# alter table for ANNOTATION
+SELECT 'STEP 7 : alter ANNOTATION table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ANNOTATION drop column OWNERNAME;
+alter table ANNOTATION add column AAID bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY first;
+alter table ANNOTATION add column DISCRIMINATOR varchar(20) NOT NULL after `AAID`;
+update ANNOTATION set DISCRIMINATOR = 'AlertHistory' where who = 'NULL';
+update ANNOTATION set DISCRIMINATOR = 'AlertAnnotation' where who != 'NULL';
+alter table ANNOTATION modify column AAID bigint(20) NOT NULL first;
+# drop index for ANNOTATION table
+alter table ANNOTATION drop index ANNOTATION0_ndx;
+# drop tables for Map module
+SELECT 'STEP 8 : drop table DBMAP of Map module' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists DBMAP;
+# alter table for MapDB
+SELECT 'STEP 9 : alter MapDB table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MapDB drop column OWNERNAME;
+alter table MapDB change column AUTOPLACEMENT AUTOPLACEMENT_STR varchar(10) default NULL;
+alter table MapDB add column AUTOPLACEMENT bit(1) default NULL AFTER TREEICONFILENAME;
+update MapDB set AUTOPLACEMENT = AUTOPLACEMENT_STR like 'true';
+alter table MapDB drop column AUTOPLACEMENT_STR;
+alter table MapDB change column ANCHORED ANCHORED_STR varchar(10) default NULL;
+alter table MapDB add column ANCHORED bit(1) default NULL AFTER MAPLISTENER;
+update MapDB set ANCHORED = ANCHORED_STR like 'true';
+alter table MapDB drop column ANCHORED_STR;
+alter table MapDB add `TYPE` varchar(100) default NULL after ANCHORED;
+update MapDB set TYPE = 'CustomMap' where MapDB.name in (select VALUESTRING from CUSTOMMAPS);
+update MapDB set TYPE = 'DefaultMap' where MapDB.name in (select VALUESTRING from DEFAULTMAPS);
+drop table if exists CUSTOMMAPS;
+drop table if exists DEFAULTMAPS;
+alter table MapDB add `TABPANELS` varchar(100) default NULL after TYPE;
+# drop index for MapDB
+drop index MapDB0_ndx on MapDB;
+# alter table MapSymbol
+SELECT 'STEP 10 : alter MapSymbol table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MapSymbol drop column OWNERNAME;
+alter table MapSymbol add column DISCRIMINATOR varchar(30) NOT NULL after `MAPNAME`;
+alter table MapSymbol add column `MAPWIDTH` int(11) default NULL after `ANCHORED`;
+alter table MapSymbol add column `MAPHEIGHT` int(11) default NULL after `MAPWIDTH`;
+alter table MapSymbol modify column OBJNAME varchar(100) default NULL after DISCRIMINATOR;
+update MapSymbol set DISCRIMINATOR = 'MapSymbol', MAPWIDTH = 0, MAPHEIGHT = 0;
+alter table MapSymbol change column ANCHORED ANCHORED_STR varchar(10) default NULL;
+alter table MapSymbol add column ANCHORED bit(1) default NULL AFTER PARENTNAME;
+update MapSymbol set ANCHORED = ANCHORED_STR like 'true';
+alter table MapSymbol drop column ANCHORED_STR;
+alter table MapSymbol change column WIDTH WIDTH_STR varchar(25) default NULL;
+alter table MapSymbol add column WIDTH int(11) default NULL AFTER PARENTNAME;
+update MapSymbol set WIDTH = WIDTH_STR;
+alter table MapSymbol drop column WIDTH_STR;
+alter table MapSymbol change column HEIGHT HEIGHT_STR varchar(25) default NULL;
+alter table MapSymbol add column HEIGHT int(11) default NULL AFTER WIDTH;
+update MapSymbol set HEIGHT = HEIGHT_STR;
+alter table MapSymbol drop column HEIGHT_STR;
+alter table MapSymbol change column X X_STR varchar(25) default NULL;
+alter table MapSymbol add column X int(11) default NULL AFTER HEIGHT;
+update MapSymbol set X = X_STR;
+alter table MapSymbol drop column X_STR;
+alter table MapSymbol change column Y Y_STR varchar(25) default NULL;
+alter table MapSymbol add column Y int(11) default NULL AFTER X;
+update MapSymbol set Y = Y_STR;
+alter table MapSymbol drop column Y_STR;
+# drop index for MapSymbol
+drop index MapSymbol0_ndx on MapSymbol;
+drop index MapSymbol1_ndx on MapSymbol;
+drop index MapSymbol3_ndx on MapSymbol;
+# alter table for MapContainer
+SELECT 'STEP 11 : alter MapContainer table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MapContainer drop column OWNERNAME;
+insert into MapSymbol(NAME,OBJNAME,MAPNAME,LABEL,ICONNAME,MENUNAME,WIDTH,HEIGHT,X,Y,WEBNMS,GROUPNAME,ANCHORED,OBJTYPE,PARENTNAME,DISCRIMINATOR,MAPWIDTH,MAPHEIGHT) select NAME,OBJNAME,MAPNAME,LABEL,ICONNAME,MENUNAME,WIDTH,HEIGHT,X,Y,WEBNMS,GROUPNAME,ANCHORED,OBJTYPE,PARENTNAME,'MapContainer',0,0 from MapContainer;
+alter table MapContainer drop column OBJNAME;
+alter table MapContainer drop column LABEL;
+alter table MapContainer drop column ICONNAME;
+alter table MapContainer drop column MENUNAME;
+alter table MapContainer drop column WIDTH;
+alter table MapContainer drop column HEIGHT;
+alter table MapContainer drop column X;
+alter table MapContainer drop column Y;
+alter table MapContainer drop column WEBNMS;
+alter table MapContainer drop column GROUPNAME;
+alter table MapContainer drop column ANCHORED;
+alter table MapContainer drop column OBJTYPE;
+alter table MapContainer drop column PARENTNAME;
+alter table MapContainer add CONSTRAINT `FKFA2B62A5334AE2DB` FOREIGN KEY (`NAME`, `MAPNAME`) REFERENCES `MapSymbol` (`NAME`, `MAPNAME`) ON DELETE CASCADE;
+alter table MapContainer change column CONTAINMENT CONTAINMENT_STR varchar(10) default NULL;
+alter table MapContainer add column CONTAINMENT bit(1) default NULL AFTER TOPOLOGY;
+update MapContainer set CONTAINMENT = CONTAINMENT_STR like 'true';
+alter table MapContainer drop column CONTAINMENT_STR;
+# drop index for MapContainer table
+drop index MapContainer0_ndx on MapContainer;
+drop index MapContainer1_ndx on MapContainer;
+#create index `FKFA2B62A5334AE2DB` on MapContainer(NAME,MAPNAME);
+# alter table for MapLink
+SELECT 'STEP 12 : alter MapLink table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MapLink drop column OWNERNAME;
+insert into MapSymbol(NAME,MAPNAME,LABEL,MENUNAME,X,Y,OBJNAME,WEBNMS,GROUPNAME,DISCRIMINATOR,WIDTH,HEIGHT,OBJTYPE,MAPWIDTH,MAPHEIGHT,ANCHORED) select NAME,MAPNAME,LABEL,MENUNAME,X,Y,OBJNAME,WEBNMS,GROUPNAME, 'MapLink',-1,-1,-1,0,0,0 from MapLink;
+alter table MapLink drop column LABEL;
+alter table MapLink drop column MENUNAME;
+alter table MapLink drop column X;
+alter table MapLink drop column Y;
+alter table MapLink drop column OBJNAME;
+alter table MapLink drop column WEBNMS;
+alter table MapLink drop column GROUPNAME;
+alter table MapLink change column NX NX_STR varchar(25) default NULL;
+alter table MapLink modify column MAPNAME varchar(100) NOT NULL after NAME;
+alter table MapLink add column NX int(11) default NULL AFTER LINKTYPE;
+update MapLink set NX = NX_STR;
+alter table MapLink drop column NX_STR;
+alter table MapLink change column NY NY_STR varchar(25) default NULL;
+alter table MapLink add column NY int(11) default NULL AFTER NX;
+update MapLink set NY = NY_STR;
+alter table MapLink drop column NY_STR;
+alter table MapLink change column STATUS STATUS_STR varchar(25) default NULL;
+alter table MapLink add column STATUS int(11) default NULL AFTER NY;
+update MapLink set STATUS = STATUS_STR;
+alter table MapLink drop column STATUS_STR;
+alter table MapLink add CONSTRAINT `FK951453561311A184` FOREIGN KEY (`NAME`, `MAPNAME`) REFERENCES `MapSymbol` (`NAME`, `MAPNAME`) ON DELETE CASCADE;
+# create index for table MapLink
+create index `FK951453561311A184` on MapLink(NAME,MAPNAME);
+drop index MapLink0_ndx on MapLink;
+drop index MapLink1_ndx on MapLink;
+# alter table for MapGroup
+SELECT 'STEP 13 : alter MapGroup table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MapGroup drop column OWNERNAME;
+insert into MapSymbol(NAME,OBJNAME,MAPNAME,LABEL,ICONNAME,MENUNAME,WIDTH,HEIGHT,X,Y,WEBNMS,GROUPNAME,OBJTYPE,ANCHORED,DISCRIMINATOR,MAPWIDTH,MAPHEIGHT) select NAME,OBJNAME,MAPNAME,LABEL,ICONNAME,MENUNAME,WIDTH,HEIGHT,X,Y,WEBNMS,GROUPNAME,OBJTYPE,ANCHORED,'MapGroup',-1,-1 from MapGroup;
+alter table MapGroup drop column OBJNAME;
+alter table MapGroup drop column LABEL;
+alter table MapGroup drop column ICONNAME;
+alter table MapGroup drop column MENUNAME;
+alter table MapGroup drop column WIDTH;
+alter table MapGroup drop column HEIGHT;
+alter table MapGroup drop column X;
+alter table MapGroup drop column Y;
+alter table MapGroup drop column WEBNMS;
+alter table MapGroup drop column GROUPNAME;
+alter table MapGroup drop column OBJTYPE;
+alter table MapGroup drop column ANCHORED;
+alter table MapGroup add CONSTRAINT `FKD33BEA36F4BC0D9` FOREIGN KEY (`NAME`, `MAPNAME`) REFERENCES `MapSymbol` (`NAME`, `MAPNAME`) ON DELETE CASCADE;
+# alter index for table MapGroup
+drop index MapGroup0_ndx on MapGroup;
+drop index MapGroup1_ndx on MapGroup;
+create index `FKD33BEA36F4BC0D9` on MapGroup(NAME,MAPNAME);
+# alter table to create CRITERIAPROPERTIES
+SELECT 'STEP 14 : rename CUSTOMPROPS to CRITERIAPROPERTIES table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table CUSTOMPROPS RENAME TO CRITERIAPROPERTIES;
+alter table CRITERIAPROPERTIES CHANGE KEYSTRING NAME  varchar(100) NOT NULL;
+alter table CRITERIAPROPERTIES CHANGE PROPKEY PROPNAME varchar(255) NOT NULL;
+alter table CRITERIAPROPERTIES CHANGE PROPVALUE PROPVAL  varchar(250);
+alter table CRITERIAPROPERTIES add primary key (NAME,PROPNAME);
+alter table CRITERIAPROPERTIES add CONSTRAINT `FK435EDDD2977A5201` FOREIGN KEY (`NAME`) REFERENCES `MapDB` (`NAME`);
+drop table if exists CUSTOMPROPS;
+# alter index for CRITERIAPROPERTIES
+drop index CUSTOMPROPS0_ndx on CRITERIAPROPERTIES;
+create index `FK435EDDD2977A5201` on CRITERIAPROPERTIES(`NAME`);
+# create table for MAPPEDPROPERTIES
+SELECT 'STEP 15 : create and populate MAPPEDPROPERTIES' AS 'MIGRATION PROCESS STATUS ... ';
+CREATE TABLE `MAPPEDPROPERTIES` (`NAME` varchar(100) NOT NULL,`PROPVAL` varchar(255) default NULL,`PROPNAME` varchar(255) NOT NULL, PRIMARY KEY  (`NAME`,`PROPNAME`), KEY `FK4D2F47A6977A5201` (`NAME`),CONSTRAINT `FK4D2F47A6977A5201` FOREIGN KEY (`NAME`) REFERENCES `MapDB` (`NAME`));
+insert into MAPPEDPROPERTIES(NAME,PROPNAME,PROPVAL) select NAME,PROPNAME,PROPVAL from MAPUSERPROPS where MAPNAME = 'NULL';
+delete from MAPUSERPROPS where MAPNAME = 'NULL' ;
+# alter table for MAPUSERPROPS
+SELECT 'STEP 16 : alter MAPUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table MAPUSERPROPS drop column OWNERNAME;
+alter table MAPUSERPROPS add primary key (NAME,MAPNAME,PROPNAME);
+alter table MAPUSERPROPS add constraint `FK30B70EA9AF738122` FOREIGN KEY (`NAME`,`MAPNAME`) REFERENCES `MapSymbol` (`NAME`,`MAPNAME`) ON DELETE CASCADE;
+# create index for MAPUSERPROPS table
+drop index MAPUSERPROPS0_ndx on MAPUSERPROPS;
+drop index MAPUSERPROPS1_ndx on MAPUSERPROPS;
+create index `FK30B70EA9AF738122` on MAPUSERPROPS(`NAME`,`MAPNAME`);
+drop table if exists TOPODBSPECIALKEY;
+drop table if exists DBINTERFACES;
+# alter table for ManagedObject to add;
+alter table ManagedObject drop primary key;
+alter table ManagedObject drop column ownername;
+alter table ManagedObject add column MOID bigint(20) auto_increment primary key first;
+alter table ManagedObject modify column MOID bigint(20) NOT NULL;
+alter table ManagedObject modify column NAME varchar(100) NOT NULL UNIQUE;
+# alter column def of STATUSPOLLENABLED
+SELECT 'STEP 17 : modify column def for STATUSPOLLENABLED column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column STATUSPOLLENABLED STATUSPOLLENABLED_STR varchar(10) default NULL;
+alter table ManagedObject add column STATUSPOLLENABLED bit(1) default NULL AFTER STATUSCHANGETIME;
+update ManagedObject set STATUSPOLLENABLED = STATUSPOLLENABLED_STR like 'true';
+alter table ManagedObject drop column STATUSPOLLENABLED_STR;
+# alter column def of ISCONTAINER
+SELECT 'STEP 18 : modify column def for ISCONTAINER column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column ISCONTAINER ISCONTAINER_STR varchar(10) default NULL;
+alter table ManagedObject add column ISCONTAINER bit(1) default NULL AFTER FAILURETHRESHOLD;
+update ManagedObject set ISCONTAINER = ISCONTAINER_STR like 'true';
+alter table ManagedObject drop column ISCONTAINER_STR;
+# alter column def of ISGROUP
+SELECT 'STEP 19 : modify column def for ISGROUP column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column ISGROUP ISGROUP_STR varchar(10) default NULL;
+alter table ManagedObject add column ISGROUP bit(1) default NULL AFTER ISCONTAINER;
+update ManagedObject set ISGROUP = ISGROUP_STR like 'true';
+alter table ManagedObject drop column ISGROUP_STR;
+# alter column definition for MANAGED
+SELECT 'STEP 20 : modify column def for MANAGED column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column MANAGED MANAGED_STR varchar(10) default NULL;
+alter table ManagedObject add column MANAGED bit(1) default NULL AFTER ISGROUP;
+update ManagedObject set MANAGED = MANAGED_STR like 'true';
+alter table ManagedObject drop column MANAGED_STR;
+# alter column definition for STATUSCHANGETIME
+SELECT 'STEP 21 : modify column def for STATUSCHANGETIME column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column STATUSCHANGETIME STATUSCHANGETIME_STR varchar(25) default NULL;
+alter table ManagedObject add column STATUSCHANGETIME bigint(20) default NULL AFTER STATUS;
+update ManagedObject set STATUSCHANGETIME = STATUSCHANGETIME_STR;
+alter table ManagedObject drop column STATUSCHANGETIME_STR;
+# alter column definition for STATUSUPDATETIME
+SELECT 'STEP 22 : modify column def for STATUSUPDATETIME column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject change column STATUSUPDATETIME STATUSUPDATETIME_STR varchar(25) default NULL;
+alter table ManagedObject add column STATUSUPDATETIME bigint(20) default NULL AFTER STATUSPOLLENABLED;
+update ManagedObject set STATUSUPDATETIME = STATUSUPDATETIME_STR;
+alter table ManagedObject drop column STATUSUPDATETIME_STR;
+# add DISCRIMINATOR column
+SELECT 'STEP 23 : add DISCRIMINATOR column in ManagedObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject add column DISCRIMINATOR varchar(30) NOT NULL after `MOID`;
+update ManagedObject set DISCRIMINATOR = CLASSNAME;
+# add PARENTID column
+SELECT 'STEP 24 : add PARENTID column in ManagedObject table & populate data using a DUMMY table ' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedObject add column `PARENTID` bigint(20) default NULL after WEBNMS;
+CREATE TABLE `DUMMY` (`MOID` bigint(20) NOT NULL,`PARENTKEY` varchar(250) default NULL);
+insert into DUMMY(MOID,PARENTKEY) select moid,name from ManagedObject where name in (select parentKey from ManagedObject order by moid);
+update ManagedObject set PARENTID = (select MOID from DUMMY where ManagedObject.PARENTKEY = DUMMY.PARENTKEY);
+drop table if exists DUMMY;
+alter table ManagedObject add CONSTRAINT `FKB855B9E41BE4C5D` FOREIGN KEY (`PARENTID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+# index for ManagedObject
+alter table ManagedObject drop index ManagedObject0_ndx;
+alter table ManagedObject drop index ManagedObject2_ndx;
+create index `FKB855B9E41BE4C5D` on ManagedObject(PARENTID);
+# alter table for ManagedGroupObject
+SELECT 'STEP 25 : alter IpAddress table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ManagedGroupObject drop primary key;
+alter table ManagedGroupObject add column MOID bigint(20) first;
+update ManagedGroupObject set moid = (select moid from ManagedObject where ManagedGroupObject.name = ManagedObject.name);
+alter table ManagedGroupObject add primary key (MOID);
+alter table ManagedGroupObject add constraint `FK2D38159FD43F4EA2` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table ManagedGroupObject drop column NAME;
+# index creation for ManagedGroupObject
+create index `FK2D38159FD43F4EA2` on ManagedGroupObject(MOID);
+# alter tables for TopoObject
+SELECT 'STEP 26 : alter TopoObject table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject drop primary key;
+alter table TopoObject drop column OWNERNAME;
+alter table TopoObject add column MOID bigint(20) first;
+update TopoObject set moid = (select moid from ManagedObject where TopoObject.name = ManagedObject.name);
+alter table TopoObject add primary key (MOID);
+alter table TopoObject add constraint `FK608221B9A4FF80BC` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table TopoObject drop column NAME;
+SELECT 'STEP 27 : modify column def for ISDHCP column in TopoObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject change column ISDHCP ISDHCP_STR varchar(10) default NULL;
+alter table TopoObject add column ISDHCP bit(1) default NULL AFTER IPADDRESS;
+update TopoObject set ISDHCP = ISDHCP_STR like 'true';
+alter table TopoObject drop column ISDHCP_STR;
+SELECT 'STEP 28 : modify column def for ISINTERFACE column in TopoObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject change column ISINTERFACE ISINTERFACE_STR varchar(10) default NULL;
+alter table TopoObject add column ISINTERFACE bit(1) default NULL AFTER ISDHCP;
+update TopoObject set ISINTERFACE = ISINTERFACE_STR like 'true';
+alter table TopoObject drop column ISINTERFACE_STR;
+SELECT 'STEP 29 : modify column def for ISNETWORK column in TopoObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject change column ISNETWORK ISNETWORK_STR varchar(10) default NULL;
+alter table TopoObject add column ISNETWORK bit(1) default NULL AFTER ISINTERFACE;
+update TopoObject set ISNETWORK = ISNETWORK_STR like 'true';
+alter table TopoObject drop column ISNETWORK_STR;
+SELECT 'STEP 30 : modify column def for ISNODE column in TopoObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject change column ISNODE ISNODE_STR varchar(10) default NULL;
+alter table TopoObject add column ISNODE bit(1) default NULL AFTER ISNETWORK;
+update TopoObject set ISNODE = ISNODE_STR like 'true';
+alter table TopoObject drop column ISNODE_STR;
+SELECT 'STEP 31 : modify column def for ISSNMP column in TopoObject table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TopoObject change column ISSNMP ISSNMP_STR varchar(10) default NULL;
+alter table TopoObject add column ISSNMP bit(1) default NULL AFTER ISNODE;
+update TopoObject set ISSNMP = ISSNMP_STR like 'true';
+alter table TopoObject drop column ISSNMP_STR;
+# index creation for TopoObject
+create index `FK608221B9A4FF80BC` on TopoObject(MOID);
+# alter table for Node
+SELECT 'STEP 32 : alter Node table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Node drop primary key;
+alter table Node drop column OWNERNAME;
+alter table Node add column MOID bigint(20) first;
+update Node set moid = (select moid from ManagedObject where Node.name = ManagedObject.name);
+alter table Node add primary key (MOID);
+alter table Node add constraint `FK2522223D370DA5` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table Node drop column NAME;
+SELECT 'STEP 33 : modify column def for ISROUTER in Node table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Node change column ISROUTER ISROUTER_STR varchar(10) default NULL;
+alter table Node add column ISROUTER bit(1) default NULL AFTER MOID;
+update Node set ISROUTER = ISROUTER_STR like 'true';
+alter table Node drop column ISROUTER_STR;
+# index creation for Node
+create index `FK2522223D370DA5` on Node(MOID);
+# alter table for Network
+SELECT 'STEP 34 : alter Network table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Network drop primary key;
+alter table Network drop column OWNERNAME;
+alter table Network add column MOID bigint(20) first;
+update Network set moid = (select moid from ManagedObject where Network.name = ManagedObject.name);
+alter table Network add primary key (MOID);
+alter table Network add constraint `FKD119F20E5044AD45` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table Network drop column NAME;
+SELECT 'STEP 35 : modify column def for DISCOVER in Network table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Network change column DISCOVER DISCOVER_STR varchar(10) default NULL;
+alter table Network add column DISCOVER bit(1) default NULL AFTER MOID;
+update Network set DISCOVER = DISCOVER_STR like 'true';
+alter table Network drop column DISCOVER_STR;
+# index creation for Network
+drop index Network2_ndx on Network;
+create index `FKD119F20E5044AD45` on Network(MOID);
+# alter table for SnmpNode
+SELECT 'STEP 36 : alter SnmpNode table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table SnmpNode drop primary key;
+alter table SnmpNode drop column OWNERNAME;
+alter table SnmpNode add column MOID bigint(20) first;
+update SnmpNode set moid = (select moid from ManagedObject where SnmpNode.name = ManagedObject.name);
+alter table SnmpNode add primary key (MOID);
+alter table SnmpNode add constraint `FK293EA880896A8103` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table SnmpNode drop column NAME;
+# index creation for SnmpNode
+create index `FK293EA880896A8103` on SnmpNode(MOID);
+# alter table for SnmpInterface
+SELECT 'STEP 37 : alter SnmpInterface table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table SnmpInterface drop primary key;
+alter table SnmpInterface drop column OWNERNAME;
+alter table SnmpInterface add column MOID bigint(20) first;
+update SnmpInterface set moid = (select moid from ManagedObject where SnmpInterface.name = ManagedObject.name);
+alter table SnmpInterface add primary key (MOID);
+alter table SnmpInterface add constraint `FK7DB9517B6E19E932` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table SnmpInterface drop column NAME;
+# index creation for SnmpInterface
+create index `FK7DB9517B6E19E932` on SnmpInterface(MOID);
+# alter table for TL1Node
+SELECT 'STEP 38 : alter TL1Node table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TL1Node drop primary key;
+alter table TL1Node drop column OWNERNAME;
+alter table TL1Node add column MOID bigint(20) first;
+update TL1Node set moid = (select moid from ManagedObject where TL1Node.name = ManagedObject.name);
+alter table TL1Node add primary key (MOID);
+alter table TL1Node add constraint `FKE013625BB76D185D` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table TL1Node drop column NAME;
+# index creation for TL1Node
+create index `FKE013625BB76D185D` on TL1Node(MOID);
+# alter table for TL1Interface
+SELECT 'STEP 39 : alter TL1Interface table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TL1Interface drop primary key;
+alter table TL1Interface drop column OWNERNAME;
+alter table TL1Interface add column MOID bigint(20) first;
+update TL1Interface set moid = (select moid from ManagedObject where TL1Interface.name = ManagedObject.name);
+alter table TL1Interface add primary key (MOID);
+alter table TL1Interface add constraint `FK11A58880F6B1DA18` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table TL1Interface drop column NAME;
+# index creation for TL1Interface
+create index `FK11A58880F6B1DA18` on TL1Interface(MOID);
+# alter table for IpAddress
+SELECT 'STEP 40 : alter IpAddress table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table IpAddress drop primary key;
+alter table IpAddress drop column OWNERNAME;
+alter table IpAddress add column MOID bigint(20) first;
+update IpAddress set moid = (select moid from ManagedObject where IpAddress.name = ManagedObject.name);
+alter table IpAddress add primary key (MOID);
+alter table IpAddress add constraint `FKD8D77CAD7825E164` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table IpAddress drop column NAME;
+# index creation for IpA	ddress
+drop index IpAddress2_ndx on IpAddress;
+drop index IpAddress3_ndx on IpAddress;
+create index `FKD8D77CAD7825E164` on IpAddress(MOID);
+# alter table for SwitchObject
+SELECT 'STEP 41 : alter SwitchObject table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table SwitchObject drop primary key;
+alter table SwitchObject drop column OWNERNAME;
+alter table SwitchObject add column MOID bigint(20) first;
+update SwitchObject set moid = (select moid from ManagedObject where SwitchObject.name = ManagedObject.name);
+alter table SwitchObject add primary key (MOID);
+alter table SwitchObject add constraint `FK4C0B63B3695F01CC` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table SwitchObject drop column NAME;
+# index creation for SwitchObject
+create index `FK4C0B63B3695F01CC` on SwitchObject(MOID);
+# alter table for PortObject
+SELECT 'STEP 42 : alter PortObject table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table PortObject drop primary key;
+alter table PortObject drop column OWNERNAME;
+alter table PortObject add column MOID bigint(20) first;
+update PortObject set moid = (select moid from ManagedObject where PortObject.name = ManagedObject.name);
+alter table PortObject add primary key (MOID);
+alter table PortObject add constraint `FK679DDF409E30C459` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table PortObject drop column NAME;
+# index creation for PortObject
+create index `FK679DDF409E30C459` on PortObject(MOID);
+# alter table for Printer
+SELECT 'STEP 43 : alter Printer table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Printer drop primary key;
+alter table Printer drop column OWNERNAME;
+alter table Printer add column `CONSOLELIGHTSTRING` varchar(100) default NULL after CONSOLEDISPBUFFERTEXT;
+update Printer set CONSOLELIGHTSTRING = (select PROPVAL from TOPOUSERPROPS where PROPNAME = 'CONSOLELIGHTSTRING' and Printer.name = TOPOUSERPROPS.name);
+alter table Printer add column MOID bigint(20) first;
+update Printer set moid = (select moid from ManagedObject where Printer.name = ManagedObject.name);
+alter table Printer add primary key (MOID);
+alter table Printer add constraint `FK50765FFA21D93CDB` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table Printer drop column NAME;
+# index creation for Printer
+create index `FK50765FFA21D93CDB` on Printer(MOID);
+# alter table for CORBANode
+SELECT 'STEP 44 : alter CORBANode table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table CORBANode drop primary key;
+alter table CORBANode drop column OWNERNAME;
+alter table CORBANode add column MOID bigint(20) first;
+update CORBANode set moid = (select moid from ManagedObject where CORBANode.name = ManagedObject.name);
+alter table CORBANode add primary key (MOID);
+alter table CORBANode add constraint `FK427DD3C7435BA95` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+alter table CORBANode drop column NAME;
+alter table CORBANode modify column STATUSPOLLIOR text after STATUSPOLLCOMMAND;
+alter table CORBANode modify column DATAPOLLIOR text after STATUSPOLLIOR;
+# index creation for CORBANode
+create index `FK427DD3C7435BA95` on CORBANode(MOID);
+# alter table for TOPOUSERPROPS
+SELECT 'STEP 45 : alter TOPOUSERPROPS table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
+alter table TOPOUSERPROPS add column `MOID` bigint(20) NOT NULL first;
+update TOPOUSERPROPS set moid = (select moid from ManagedObject where TOPOUSERPROPS.name = ManagedObject.name);
+alter table TOPOUSERPROPS drop column NAME;
+alter table TOPOUSERPROPS drop column OWNERNAME;
+alter table TOPOUSERPROPS add primary key (MOID,PROPNAME);
+alter table TOPOUSERPROPS add constraint `FK483583EBFBE5F355` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
+# index creation for TOPOUSERPROPS
+create index `FK483583EBFBE5F355` on TOPOUSERPROPS(MOID);
+# alter table for ObjectSchedulerRUNNABLE
+SELECT 'STEP 46 : alter ObjectSchedulerRUNNABLE table to add CLASSNAME & MOID column' AS 'MIGRATION PROCESS STATUS ... ';
+alter table ObjectSchedulerRUNNABLE drop primary key;
+alter table ObjectSchedulerRUNNABLE add column `CLASSNAME` varchar(150) NOT NULL after `TIMEVAL`;
+alter table ObjectSchedulerRUNNABLE add column `MOID` bigint(20) NOT NULL first;
+update ObjectSchedulerRUNNABLE set MOID = (select MOID from ManagedObject where ManagedObject.name = ObjectSchedulerRUNNABLE.VALUESTRING), CLASSNAME = (select CLASSNAME from ManagedObject where ManagedObject.name = ObjectSchedulerRUNNABLE.VALUESTRING);
+alter table ObjectSchedulerRUNNABLE add primary key (MOID);
+alter table ObjectSchedulerRUNNABLE drop column VALUESTRING;
+# index creation for ObjectSchedulerRUNNABLE
+create index `ObjectSchedulerRUNNABLE1_ndx` on ObjectSchedulerRUNNABLE(MOID);
+# drop columns from GroupTable
+SELECT 'STEP 47 : drop OWNERNAME and MEMBEROWNERNAME columns in GroupTable table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table GroupTable drop column OWNERNAME;
+alter table GroupTable drop column MEMBEROWNERNAME;
+alter table GroupTable add primary key (MEMBERNAME,NAME);
+# drop tables for Fault Management module
+SELECT 'STEP 48 : drop redundant tables in Fault Management module' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists EVENTLOGGER;
+drop table if exists EventAlertFilter;
+drop table if exists GenericFaultTable;
+drop table if exists TrapEventParser;
+drop table if exists TrapFilter;
+drop table if exists AgentDefValObject;
+drop table if exists ALERTLOGGER;
+# alter table for Event
+SELECT 'STEP 49 : alter Event table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table Event add column DISCRIMINATOR varchar(30) NOT NULL default 'Event' after `ID`, drop column DDOMAIN, drop column HELPURL, drop column OWNERNAME;
+update Event set DISCRIMINATOR = 'Event' where DISCRIMINATOR = '';
+# drop index for Event table
+alter table Event drop index Event0_ndx;
+# drop table if exists DBEVENT
+SELECT 'STEP 50 : drop DBEVENT table' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists DBEVENT;
+# alter table for EVENTUSERPROPS
+SELECT 'STEP 51 : alter EVENTUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table EVENTUSERPROPS drop column OWNERNAME;
+alter table EVENTUSERPROPS add column `ID` int(11) NOT NULL first;
+update EVENTUSERPROPS set ID = NAME;
+alter table EVENTUSERPROPS add constraint `FK54B8432B87584B8F` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
+alter table EVENTUSERPROPS drop column NAME;
+alter table EVENTUSERPROPS add primary key (ID,PROPNAME);
+# create index for EVENTUSERPROPS table
+create index `FK54B8432B87584B8F` on EVENTUSERPROPS(ID);
+#To AuthAudit table and rename AuthAuditExt table as AuthAudit
+SELECT 'STEP 52 : drop AuthAudit table and rename AuthAuditExt to AuthAudit' AS 'MIGRATION PROCESS STATUS ... ';
+drop table if exists AuthAudit;
+alter table AuthAuditExt rename to AuthAudit;
+#To dump data in PanelProps table to PANELPROPS column in PanelTree table
+SELECT 'STEP 53 : Move content of PanelProps table to PanelTree.PANELPROPS and drop PanelProps table' AS 'MIGRATION PROCESS STATUS ... ';
+alter table PanelTree add column `PANELPROPS` varchar(1000) after `MODULENAME`;
+CREATE TABLE `DUMMY` (`NODEID` varchar(100) NOT NULL, `USERNAME` varchar(50) NOT NULL,`PANELPROPS` varchar(1000) default NULL);
+insert into DUMMY(NODEID,USERNAME,PANELPROPS) select NODEID,USERNAME,GROUP_CONCAT('"',ATTRIBNAME, '":"', ATTRIBVALUE,'"') from PanelProps group by(concat(NODEID,'   ',USERNAME));
+update PanelTree set PANELPROPS = (select PANELPROPS from DUMMY where PanelTree.USERNAME = DUMMY.USERNAME and PanelTree.NODEID = DUMMY.NODEID);
+update PanelTree set PANELPROPS = concat('{',PANELPROPS,'}');
+drop table if exists DUMMY;
+drop table if exists PanelProps;
+# alter table for UserConfTable
+SELECT 'STEP 54 : Add new column to UserConfTableMore' AS 'MIGRATION PROCESS STATUS ... ';
+#alter table UserConfTable add column DESCRIPTIVENAME varchar(100) NOT NULL;

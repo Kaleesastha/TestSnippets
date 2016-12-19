@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--$Id: WebReports.xml,v 1.3.4.2 2013/05/23 09:09:55 nishanthini.k Exp $-->
+<REPORTS_VIEW>
+	<REPORTS>
+<!--
+		<KPI description="Entries for KPI Reports">
+			<Report Name="webclient.report.kpi.scorecard" type="scoreCards"/>
+			<Report Name="webclient.report.kpi.trendreport" type="trendReports"/>
+		</KPI> 
+-->
+		<Devices>
+			<Report Name="webclient.report.perf.cpuutilization" PolledData="CPUUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.memoryutilization" PolledData="MemoryUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.rxtraffic" PolledData="Device_INTERFACE_in_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.txtraffic" PolledData="Device_INTERFACE_out_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.rxutilization" PolledData="InterfaceInUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.txutilization" PolledData="InterfaceOutUtilization" Units="Percentage"/>
+		</Devices>
+		<Routers>
+			<Report Name="webclient.report.perf.cpuutilization" PolledData="RouterCPUUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.memoryutilization" PolledData="RouterMemoryUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.rxtraffic" PolledData="Router_INTERFACE_in_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.txtraffic" PolledData="Router_INTERFACE_out_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.rxerrors" PolledData="RouterReceiveErrors" Units="packets"/>
+			<Report Name="webclient.report.perf.txerrors" PolledData="RouterTransmitErrors" Units="packets"/>
+			<Report Name="webclient.report.perf.rxutilization" PolledData="RouterInterfaceInUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.txutilization" PolledData="RouterInterfaceOutUtilization" Units="Percentage"/>
+		</Routers>
+		<Switches>
+			<Report Name="webclient.report.perf.rxtraffic" PolledData="Switch_In_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.txtraffic" PolledData="Switch_Out_octets" Units="kbps"/>
+			<Report Name="webclient.report.perf.rxerrors" PolledData="Switch_ReceiveErrors" Units="packets"/>
+			<Report Name="webclient.report.perf.txerrors" PolledData="Switch_TransmitErrors" Units="packets"/>
+			<Report Name="webclient.report.perf.rxutilization" PolledData="Switch_InterfaceInUtilization" Units="Percentage"/>
+			<Report Name="webclient.report.perf.txutilization" PolledData="Switch_InterfaceOutUtilization" Units="Percentage"/>
+		</Switches>
+	<Events description="Entries for Event Reports">
+			<Report Name="webclient.report.event.severityvstime" type="allSeverity" category="AllEvents" severityLevel="Critical"/>
+			<Report Name="webclient.report.event.categoryvstime" type="allCategory" category="AllEvents"/>
+			<Report Name="webclient.report.event.topndevice" type="n-report" category="AllEvents"/> 
+			<Report Name="webclient.report.event.categoryvsseverity" type="completecategory" category="AllEvents" severityLevel="Critical"/>
+			
+		</Events>
+</REPORTS>
+</REPORTS_VIEW>
