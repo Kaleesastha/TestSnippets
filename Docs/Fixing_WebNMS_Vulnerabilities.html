@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Fixing WebNMS Vulnerabilities</title>
+  </head>
+  <body>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;">
+      <div align="center"><big><u><font face="times new roman, times,
+              serif" size="3"><big><b>Fixing WebNMS Vulnerabilities</b></big></font></u></big><br>
+      </div>
+      <font face="times new roman, times, serif" size="3"><br>
+        WebNMS is fixed all the vulnerabilities in the below
+        vulnerability reports.<br>
+        <br>
+        <a
+href="https://packetstormsecurity.com/files/138244/WebNMS-Framework-5.2-SP1-Traversal-Weak-Obfuscation-User-Impersonation.html">https://packetstormsecurity.com/files/138244/WebNMS-Framework-5.2-SP1-Traversal-Weak-Obfuscation-User-Impersonation.html<br>
+        </a><a href="http://seclists.org/fulldisclosure/2016/Aug/54">http://seclists.org/fulldisclosure/2016/Aug/54</a><br>
+        <a href="https://www.exploit-db.com/exploits/40229/">https://www.exploit-db.com/exploits/40229/<br>
+        </a><br>
+      </font></div>
+    <font face="times new roman, times, serif" size="3">Here are the
+      steps to be followed:</font>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3"><br>
+      </font></div>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3">(Note that each link is a
+        document. It may require a day or two to complete all steps
+        properly.</font></div>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3">We'd verified this and it worked
+        for us till the client login - a<span
+          class="Apple-converted-space">&nbsp;</span><a
+          href="https://docs.zoho.com/file/2aifu897afec3aef1497ea5a07e85fa60447c">sample
+          build is also available for your reference</a>.<br>
+        Please ensure that the steps are carried as per the document)<br>
+        <br>
+        1.<span class="Apple-converted-space">&nbsp;</span><a
+href="https://rawgit.com/ramanan99/TestSnippets/master/security/SignJars.html">Sign
+          all the jars in WebNMS</a><span class="Apple-converted-space">&nbsp;</span>(if
+        not already done)</font></div>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3"><br>
+        2. Ensure to authenticate all requests. Please<span
+          class="Apple-converted-space">&nbsp;</span><a
+href="https://rawgit.com/ramanan99/TestSnippets/master/security/AuthenticateAllRequests.html">check
+          this page</a><span class="Apple-converted-space">&nbsp;</span>as
+        how to do it.</font></div>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3"><br>
+      </font></div>
+    <div style="color: black; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3">3. Download</font><font
+        style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;">&nbsp;</font><font face="times new roman,
+        times, serif" size="3"><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/security/servlets/GetChallengeServlet.java##L61-L80">GetChallengeServlet.java</a>&nbsp;&amp;&nbsp;</font><span
+        style="font-family: &quot;times new roman&quot;, times, serif;
+        font-size: medium;"><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/security/servlets/FileUploadServlet.java##L29-L51">FileUploadServlet.java</a><span
+          class="Apple-converted-space">&nbsp;</span>under
+        NMS_HOME/servlets and compile them under WEB-INF/classes.</span></div>
+    <br>
+    <div style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">4.
+        Disable FetchFile servlet by disabling the below 2 entries in
+        WEB-INF/web.xml &nbsp;</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+      sans-serif; font-size: 13px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;"><font face="times new roman,
+        times, serif" size="3"><a
+href="https://github.com/ramanan99/TestSnippets/blob/master/security/WEB-INF/web.xml##L330-L335">link1</a>&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/security/WEB-INF/web.xml##L3938-L3943">link2</a>&nbsp;&nbsp;(Corresponding
+        comment those entries in web-header/web-footer files too)</font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><font face="times new
+        roman, times, serif" size="3">5.<span
+          class="Apple-converted-space">&nbsp;</span><a
+href="https://rawgit.com/ramanan99/TestSnippets/master/sha1_encryption/README_for_SHA1_Encryption.html">Encrypt
+          WebNMS passwords with SHA-1 encryption</a></font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><br>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-align: start; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; font-size: 11px; font-family:
+      Verdana, Arial, Helvetica, sans-serif;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">Once
+        the above steps are done and restarted, WebNMS will be free from
+        the vulnerabilities.<br>
+        <br>
+        P.S. If you are using WebNMS java client, please contact
+        nms-support@webnms.com<br>
+      </span></div>
+  </body>
+</html>

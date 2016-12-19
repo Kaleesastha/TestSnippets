@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="content-type">
+    <title>Trimming_MySQL</title>
+  </head>
+  <body>
+    <div style="text-align: center;"><big><big><span style="font-weight:
+            bold; text-decoration: underline;">Trimming MySQL
+            for WebN MS</span>
+        </big></big><br>
+      <span style="color: rgb(255, 102, 102);"><span style="color:
+          black;"></span></span><span style="color: rgb(255, 102, 102);"><span
+          style="color: black;"></span></span></div>
+    <span style="color: rgb(255, 102, 102);"><span style="color: black;">After
+installing
+        the <span style="font-weight: bold;">setup.exe </span>of <span
+          style="font-weight: bold;">MySQL 4.0.17</span>, here's the
+        procedure
+        to follow:<br>
+        <br>
+        Start the MySQL Daemon Using mysql\bin\<span style="font-weight:
+          bold;">mysqld-nt.exe</span><br>
+      </span></span>
+    <ul>
+      <ul>
+        <li><span style="color: rgb(255, 102, 102);"><span style="color:
+              black;"><span style="font-family: courier new,monospace;
+                font-weight: bold;">./bin/mysqld-nt.exe
+                --no-defaults --base-dir=.&nbsp;</span><span
+                style="font-family: courier new,monospace; color:
+                rgb(51, 51, 255);"><span style="font-family: times new
+                  roman,times,serif;"> (Also in </span></span></span></span><span
+            style="color: rgb(255, 102, 102);"><span style="color:
+              black;"><span style="font-family: courier new,monospace;
+                color: rgb(51, 51, 255);"><span style="font-family:
+                  times new roman,times,serif;">&lt;NMS_Home&gt;\bin\<span
+                    style="font-weight: bold;">startMySQL.bat</span>, </span></span></span></span><span
+            style="color: rgb(255, 102, 102);"><span style="color:
+              black;"><span style="font-family: courier new,monospace;
+                color: rgb(51, 51, 255);"><span style="font-family:
+                  times new roman,times,serif;">instead of <span
+                    style="font-weight: bold;">mysqld </span>call </span></span></span></span><span
+            style="color: rgb(255, 102, 102);"><span style="color:
+              black;"><span style="font-family: courier new,monospace;
+                font-weight: bold;">mysqld-nt.exe</span></span></span><span
+            style="color: rgb(255, 102, 102);"><span style="color:
+              black;"><span style="font-family: courier new,monospace;
+                color: rgb(51, 51, 255);"><span style="font-family:
+                  times new roman,times,serif;"> <span
+                    style="font-weight: bold; color: rgb(0, 0, 0);
+                    font-family: courier new,courier,monospace;"></span>)</span></span><br>
+            </span></span></li>
+      </ul>
+      <li><span style="color: rgb(255, 102, 102);"><span style="color:
+            black;">Start the MySQL client; </span></span></li>
+      <li><span style="color: rgb(255, 102, 102);"><span style="color:
+            black;"><font face="Courier New"><strong>use mysql;</strong></font></span></span></li>
+      <li><big><span style="color: rgb(255, 102, 102);"><span
+              style="color: black;"><font face="Courier New"><strong>grant
+                  all
+                  privileges on *.* to 'root'@'%';</strong></font></span></span></big><span
+          style="color: rgb(255, 102, 102);"><span style="color: black;"><font
+              face="Courier New"><strong><big><span style="font-family:
+                    times new roman,times,serif;">//</span></big></strong></font></span></span><span
+          style="color: rgb(51, 51, 255);">This is optional; needed only
+          for
+          complete permission, Could be customized based on user based
+          access</span></li>
+      <li><span style="color: rgb(255, 102, 102);"><span style="color:
+            black;"><font face="Courier New"><strong><big>flush
+                  privileges; <span style="font-family: times new
+                    roman,times,serif;"></span></big></strong></font></span></span><span
+          style="color: rgb(51, 51, 255);"></span><span style="color:
+          rgb(255, 102, 102);"><span style="color: black;"><font
+              face="Courier New"><strong><br>
+              </strong></font></span></span></li>
+      <li><span style="color: rgb(255, 102, 102);"><span style="color:
+            black;"><font face="Courier New"><strong>quit</strong></font></span></span></li>
+    </ul>
+    <span style="font-weight: bold;">Package
+      Structure</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The below tree explains in
+    picking
+    up the relevant files from MySQL. You could remove all the other
+    files.<br>
+    C:<br>
+    &#9492;&#9472;&#9472;&#9472;mysql<br>
+    &nbsp;&nbsp;&nbsp; &#9500;&#9472;&#9472;&#9472;bin<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    cygwinb19.dll<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    libmySQL.dll<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    myisamchk.exe<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mysql.exe<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    mysqladmin.exe<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    mysqld-nt.exe<br>
+    &nbsp;&nbsp;&nbsp; &#9474;<br>
+    &nbsp;&nbsp;&nbsp; &#9500;&#9472;&#9472;&#9472;data<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp; &#9500;&#9472;&#9472;&#9472;mysql<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    columns_priv.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    columns_priv.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    columns_priv.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    db.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    db.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    db.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    func.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    func.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    func.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    host.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    host.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    host.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    tables_priv.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    tables_priv.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    tables_priv.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    user.frm<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    user.MYD<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;
+    &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    user.MYI<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp; &#9474;<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp; &#9492;&#9472;&#9472;&#9472;test<br>
+    &nbsp;&nbsp;&nbsp; &#9500;&#9472;&#9472;&#9472;driver (to be included from WebNMS mysql
+    driver)<br>
+    &nbsp;&nbsp;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    mysql_connector.jar<br>
+    &nbsp;&nbsp;&nbsp; &#9474;<br>
+    &nbsp;&nbsp;&nbsp; &#9492;&#9472;&#9472;&#9472;share<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9492;&#9472;&#9472;&#9472;english<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    errmsg.sys<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    errmsg.txt<br>
+    <hr size="2" width="100%"><br>
+    <big style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">We learnt from Jay that you have some
+        problems with MySQL on Fedora Core 4.<br>
+        We have given here the step by step instruction to install the
+        mysql 4.0.17 in Fedora machine &amp; to run WebNMS with the
+        same. Kindly follow the same.<span class="Apple-converted-space">&nbsp;</span></font></big><big
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">If you still had problems, kindly give
+        us your contact number.<span class="Apple-converted-space">&nbsp;</span></font></big><big
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">We would have webEx session to resolve
+        the same.<span class="Apple-converted-space">&nbsp;</span></font></big><big
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">We believe that 9:30 AM EST (7 PM IST)
+        would be convenient to you.<br>
+      </font></big><big style="color: rgb(0, 0, 0); font-family:
+      Verdana, Arial, Helvetica, sans-serif; font-style: normal;
+      font-variant: normal; font-weight: normal; letter-spacing: normal;
+      line-height: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif"><br>
+        <span style="text-decoration: underline;">The Steps are as
+          follows:</span><br>
+        Download the<span class="Apple-converted-space">&nbsp;</span><a
+href="http://downloads.mysql.com/archives/mysql-4.0/mysql-standard-4.0.17-pc-linux-i686.tar.gz">mysql
+          4.0.17 zip</a><span class="Apple-converted-space">&nbsp;</span>(the
+        latest supported MySQL version from<span
+          class="Apple-converted-space">&nbsp;</span></font></big><big
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">WebNMS</font></big><big style="color:
+      rgb(0, 0, 0); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><font
+        color="#000025" face="Times New Roman, Times, serif">) from the<span
+          class="Apple-converted-space">&nbsp;</span><a
+          href="http://downloads.mysql.com/archives.php?p=mysql-4.0&amp;v=4.0.17">MySQL
+          Downloads site</a>.<span class="Apple-converted-space">&nbsp;</span><br>
+        <br>
+        Login as root user in Fedora machine.<br>
+        Stop the running MySQL as<span class="Apple-converted-space">&nbsp;</span><font
+          face="Courier New, Courier, monospace"><b>/etc/rc.d/init.d/mysql
+            stop &amp;</b></font><br>
+        Log out from the root user.<br>
+        <br>
+      </font></big><font style="color: rgb(0, 0, 0); font-family:
+      Verdana, Arial, Helvetica, sans-serif; font-style: normal;
+      font-variant: normal; font-weight: normal; letter-spacing: normal;
+      line-height: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font face="Times New
+        Roman, Times, serif">Unzip the above zip under a desired
+        location (say<strong><span class="Apple-converted-space">&nbsp;</span>/home/Fedora/mysql</strong>)
+        and execute the following commands<br>
+        <br>
+        [Fedora@Fedora mysql]$</font>&nbsp;<span
+        class="Apple-converted-space">&nbsp;</span><strong><font
+          color="#ff1493" face="Courier New">cd /home/Fedora/mysql</font></strong><br>
+      <font face="Times New Roman, Times, serif">[Fedora@Fedora mysql]$</font><strong><font
+          color="#ff1493" face="Courier New"><span
+            class="Apple-converted-space">&nbsp;</span>./bin/safe_mysqld
+          &amp;<span class="Apple-converted-space">&nbsp;</span></font></strong></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">//Starts the MySQL daemon</font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><strong></strong><br>
+      <font face="Times New Roman, Times, serif">[Fedora@Fedora mysql]$</font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font color="#ff1493"
+        face="Courier New"><strong><span class="Apple-converted-space">&nbsp;</span>./scripts/mysql_install_db<br>
+        </strong><font color="#000000" face="Times New Roman">[Fedora@Fedora
+          mysql]$</font><strong><span class="Apple-converted-space">&nbsp;</span>./bin/mysql
+          -u root -h localhost<span class="Apple-converted-space">&nbsp;</span></strong></font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><strong></strong></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">//Connecting to MySQL client</font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font color="#ff1493"
+        face="Courier New"><strong></strong></font><br>
+      <font face="Times New Roman, Times, serif">mysql&gt;</font><strong><font
+          color="#ff1493" face="Courier New">grant all privileges on *.*
+          to<span class="Apple-converted-space">&nbsp;</span></font></strong></font><a
+      href="mailto:%27root%27@%27%%27" style="font-family: Verdana,
+      Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant: normal; font-weight: normal; letter-spacing: normal;
+      line-height: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#ff1493"
+        face="Courier New" size="3"><strong>'root'@'%'</strong></font></a><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font color="#ff1493"
+        face="Courier New"><strong>;<span class="Apple-converted-space">&nbsp;</span></strong></font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font color="#ff1493"
+        face="Courier New"><strong></strong></font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><strong></strong></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">//Making all users to contact this<span
+          class="Apple-converted-space">&nbsp;</span></font></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">MySQL<span class="Apple-converted-space">&nbsp;</span></font></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">server</font></font><br style="color: rgb(0, 0, 0);
+      font-family: Verdana, Arial, Helvetica, sans-serif; font-size:
+      11px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans:
+      auto; text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
+    <font style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><font color="#ff1493"
+        face="Courier New"><strong></strong></font><font face="Times New
+        Roman, Times, serif">mysql&gt;</font><strong><font
+          color="#ff1493" face="Courier New">flush privileges;</font></strong><br>
+      <font face="Times New Roman, Times, serif">mysql&gt;</font><strong><font
+          color="#ff1493" face="Courier New">create database WebNmsDB;</font></strong></font><font
+      style="font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"
+      color="#3333ff" size="3"><font face="Times New Roman, Times,
+        serif">//Creating the WebNMS database</font></font><font
+      style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;" size="3"><strong></strong><br>
+    </font><br style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant: normal; font-weight: normal; letter-spacing: normal;
+      line-height: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;">
+    <big style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif">Now start WebNMS. This would enable you
+        to successfully<span class="Apple-converted-space">&nbsp;</span><br>
+      </font></big><big style="color: rgb(0, 0, 0); font-family:
+      Verdana, Arial, Helvetica, sans-serif; font-style: normal;
+      font-variant: normal; font-weight: normal; letter-spacing: normal;
+      line-height: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif"><br>
+        Carry out the steps &amp; get back to us with the results.<br>
+        Looking forward to hear from you.</font></big><br style="color:
+      rgb(0, 0, 0); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;">
+    <big style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px;"><font color="#000025" face="Times
+        New Roman, Times, serif"><br>
+        Thanks &amp; regards<br>
+        Venkatramanan<br>
+        <br>
+        <font color="#000000">&lt;Jay&gt; wrote--------------</font></font></big><br>
+  </body>
+</html>

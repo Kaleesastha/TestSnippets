@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>Changes to be done in WebNMS installation for running MySQL as
+root (super) user</title>
+</head>
+<body>
+<div style="text-align: left;">
+<div style="text-align: center;"><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="border-collapse: collapse; font-family: Verdana,arial,Helvetica,sans-serif; font-size: 11px;"><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;"><big
+ style="text-decoration: underline;"><span style="font-weight: bold;">Changes
+to be done in WebNMS installation for running MySQL as root (super) user</span></big></span></span></font></span></span><br
+ style="font-weight: bold;">
+</div>
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="border-collapse: collapse; font-family: Verdana,arial,Helvetica,sans-serif; font-size: 11px;"><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;"></span></span></font></span></span></div>
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="border-collapse: collapse; font-family: Verdana,arial,Helvetica,sans-serif; font-size: 11px;"><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;"><br>
+Please follow the below steps to start the webnms server (startnms.sh)
+from root user.</span><br
+ style="font-family: 'times new roman',times,serif;">
+<br style="font-family: 'times new roman',times,serif;">
+<span style="font-family: 'times new roman',times,serif;">You need to
+give execute permissions to&nbsp; each and every directory present
+under the path &lt;WEBNMS_HOME&gt;/mysql/data, and also its previous
+directory structure .For example,consider webnms directory being
+present in "/home/test/webnms" in your Linux / Solaris machine, you
+need execute the following steps one-by-one/</span><br
+ style="font-family: 'times new roman',times,serif;">
+<br style="font-family: 'times new roman',times,serif;">
+<font style="color: rgb(0, 0, 255);" size="2"><span
+ style="font-family: 'courier new',courier,monospace;">chmod a+x /home.</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test .</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test/webnms&nbsp;<span class="Apple-converted-space">&nbsp;</span></span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test/webnms/mysql</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test/webnms/mysql/data</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test/webnms/mysql/data/*</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">chmod a+x
+/home/test/webnms/mysql/bin/*</span></font><br
+ style="font-family: 'times new roman',times,serif;">
+<br>
+<span style="font-family: 'times new roman',times,serif;">2. Next&nbsp;
+change the ownership of &lt;WEBNMS_HOME&gt;/mysql/data to mysql user
+like&nbsp;&nbsp;<span class="Apple-converted-space">&nbsp;</span><font
+ style="color: rgb(0, 0, 255); font-weight: bold;" size="2"><span
+ style="font-family: 'courier new',courier,monospace;">chown -R mysql
+$NMS_HOME/mysql/data</span></font>.</span><br
+ style="font-family: 'times new roman',times,serif;">
+<span style="font-family: 'times new roman',times,serif;">If "mysql
+"user is not present, then you need to create the user named as
+"mysql". To create user do the following&nbsp;</span><span
+ style="font-family: 'times new roman',times,serif;"></span></span></font><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;"><font
+ style="color: rgb(0, 0, 255); font-weight: bold;" size="2"><span
+ style="font-family: 'courier new',courier,monospace;">/usr/sbin/useradd
+mysql</span></font></span></span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;">. ownership In
+some machines this might not work &amp; in that case execute
+/usr/bin/useradd mysql</span><span
+ style="font-family: 'times new roman',times,serif;"><span
+ class="Apple-converted-space">&nbsp;</span>and then change the
+ownership of&nbsp; &lt;WEBNMS_HOME&gt;/mysql/data to mysql user as
+stated above.</span><br
+ style="font-family: 'times new roman',times,serif;">
+<br>
+<span style="font-family: 'times new roman',times,serif;">After
+following the above two steps,you can start the server in root user
+using startnms.sh.</span><br
+ style="font-family: 'times new roman',times,serif;">
+<br>
+<span
+ style="font-weight: bold; font-style: italic; background-color: rgb(255, 255, 0);">Our
+
+proposed solution can be achieved using the attached shell script,
+which takes care of performing the necessary permission stuffs in one
+shot. If needed you can include the following lines from that script to
+the startup script(startnms.sh), so that your end users need not worry
+about anything.</span><br>
+<br>
+Color Coding:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ class="Apple-converted-space"> </span></span></font><font
+ style="font-weight: bold;" size="3"><span
+ style="font-family: 'times new roman',times,serif;"><font size="2"><span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 204, 102);">Green</span></font></span></font><font
+ size="3"><span style="font-family: 'times new roman',times,serif;">:
+Already existing lines<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></span></font><font
+ style="font-weight: bold;" size="3"><span
+ style="font-family: 'times new roman',times,serif;"><font size="2"><span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">Blue</span></font></span></font><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-weight: bold;">:</span><span class="Apple-converted-space">&nbsp;</span>Newly
+added lines<br>
+__________________startnms.sh script
+changes______________________________________________________<br>
+<font size="2"><span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 204, 102);">#
+
+Usage: java com.adventnet.nms.startnms.NmsMainBE [NATIVE_PING
+true/false] [BE_FE TCP/RMI] [NMS_BE_PORT back_end_port_num]&nbsp;
+[COUNTRY country_code] [LANGUAGE language_code] [SERVICE true/false]
+[USERS_DIR userDir] [ROOT_DIR rootDir]</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<br style="font-family: 'courier new',courier,monospace;">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">###****modification
+STARTS***********</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">MYSQL_HOME=$NMS_HOME/mysql</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">DATA_DIR=$MYSQL_HOME/data</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">token=""</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">export
+IFS="/"</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">for
+word in $DATA_DIR; do</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">token=$token$word/</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">#echo
+"$token"</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">if
+[ "$token" != "/" ];then</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">chmod
+a+x "$token"</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">fi</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">done</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">export
+IFS=</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">#echo
+"$DATA_DIR"</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">#Uncomment
+either of the below two lines based on your environment</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">#/usr/sbin/useradd
+mysql</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">/usr/bin/useradd
+mysql</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">chown
+-R mysql "$DATA_DIR"</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+<span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">####******modification
+ENDS*********</span><br
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 0, 255);">
+</font></span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><font size="2"><span
+ style="font-family: 'courier new',courier,monospace; color: rgb(0, 204, 102);">while(true)<br>
+do</span></font></span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><br>
+__________________startnms.sh script changes
+end______________________________________<br>
+<br>
+We believe the above suggestion will help you in proceeding further.<span
+ class="Apple-converted-space">&nbsp;</span><span
+ style="font-family: 'times new roman',times,serif;">If the issue
+persists even after all this, please provide us the output of the
+following commands:<br>
+(given under the assumption that webnms installation is at &amp;
+/home/test/webnms)<br>
+</span></span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><br
+ style="font-family: 'times new roman',times,serif;">
+<font style="color: rgb(0, 0, 255);" size="2"><span
+ style="font-family: 'courier new',courier,monospace;">ls -latr /home</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">ls -latr
+/home/test/</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">ls -latr
+/home/test/webnms</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">ls -latr
+/home/test/webnms/mysql</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">ls -latr
+/home/test/webnms/mysql/data</span><br
+ style="font-family: 'courier new',courier,monospace;">
+<span style="font-family: 'courier new',courier,monospace;">ls -latr
+/home/test/webnms/mysql/bin</span></font><br
+ style="font-family: 'times new roman',times,serif;">
+</span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;">In addition,
+please provide us<span class="Apple-converted-space">&nbsp;</span></span></span></font><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;">$NMS_HOME/mysql/data*.err</span></span></font><font
+ size="3"><span style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;"><span
+ class="Apple-converted-space">&nbsp;</span>file so that we can analyze
+the issue:</span><br style="font-family: 'times new roman',times,serif;">
+<br style="font-family: 'times new roman',times,serif;">
+</span></font><font size="3"><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-family: 'times new roman',times,serif;">Please get back us
+for further clarification.</span><br
+ style="font-family: 'times new roman',times,serif;">
+<br style="font-family: 'times new roman',times,serif;">
+<span style="font-family: 'times new roman',times,serif;">Thanks and
+Regards,</span></span></font></span></span>
+</body>
+</html>

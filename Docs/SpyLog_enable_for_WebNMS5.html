@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>S P Y L O G</title>
+</head>
+<body>
+<p><span style="font-weight: bold;">I want to log all the
+queries/statements that are getting executed
+along with their connection number, thread, timetaken, etc, in the log
+file. How can I do this?</span><br>
+</p>
+<p>There is a tool called <b>p6spy</b> which can be used for this
+purpose. The tool logs all the statements that are getting executed at
+any point of time.<span style="font-weight: bold;"> </span>To enable
+Spy log in WebNMS do the following steps:<br>
+<span style="font-weight: bold; text-decoration: underline;">Step1</span><span
+ style="font-weight: bold;">:</span> In
+&lt;NMS_Home&gt;\classes\hbnlib\hibernate.cfg.xml:<br>
+<span style="font-weight: bold;"><br>
+Uncomment</span>: <span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&lt;!--property
+name="connection.driver_class"&gt;<span style="font-weight: bold;">com.p6spy.engine.spy.P6SpyDriver</span>&lt;/property--&gt;<br>
+</span><span style="font-weight: bold;">Comment</span>:&nbsp; <span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&lt;property
+name="connection.driver_class"&gt;<span style="font-weight: bold;">com.mysql.jdbc.Driver</span>&lt;/property&gt;
+//Or whatever is the driver class name for the DB.<br>
+</span></p>
+<p><span style="font-weight: bold; text-decoration: underline;">Step2</span><span
+ style="font-weight: bold;">:</span> In &lt;NMS_Home&gt;\conf\spy.properties,
+configure, <span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">realdriver=<span
+ style="font-weight: bold;">&lt;Driver_Class_Name_for_DB_which_was_commented_in_hibernate.cfg.xml&gt;</span>
+//Not needed when using MySQL, since its already configured.<br>
+</span></p>
+<p><span style="font-weight: bold; text-decoration: underline;">Step3</span><span
+ style="font-weight: bold;">:</span> Now restart the server. This will
+log every query to the database from WebNMS is logged in
+&lt;NMS_Home&gt;\logs\spy.log file.<br>
+</p>
+<p>Other options you can make use of in this file:<br>
+1. When you do not want queries from all tables but only queries from
+particular tables, make use of the <span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">exclude
+&amp; include </span>configurations. <br>
+2. When you need trace the query, enable <span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">stacktrace=<span
+ style="font-weight: bold;">true<br>
+</span></span><br>
+Kindly refer the <a href="http://www.p6spy.com/documentation/other.htm">P6SPY
+configuration document</a> for the other possible options<br>
+<span style="font-weight: bold;"></span></p>
+</body>
+</html>

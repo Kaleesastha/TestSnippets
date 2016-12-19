@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>AccessInformation</title>
+</head>
+<body>
+<span class="gen">By default, the directories under the WebNMS Home are
+accessible
+through the browser. You can very well block their access. We have
+tested the following procedure to block certain directories and files.
+The list of directories and list of files that can be blocked and those
+that are not to be blocked are attached as a document
+<br>
+<br>
+You can even block a directory at the top level alone, but permit
+access for the files inside it. For example, you can block access to
+'logs' directory and the files contained in it as a whole or you can
+block only 'logs' directory at the top level and allow access
+selectively for particular files inside it. You may hide this by
+configuring the httpd.conf available under &lt;Web NMS
+Home&gt;/apache/conf/backup.
+<br>
+<br>
+<span style="font-weight: bold;">Case (1) Blocking the 'logs' directory
+as well as the files inside it: (configuration in httpd.conf)</span>
+<br>
+<br>
+&lt;Directory "WebNMS_HOME/logs/"&gt;
+<br>
+AllowOverride None
+<br>
+Deny from all
+<br>
+&lt;/Directory&gt;
+<br>
+<br>
+This blocks the 'logs' directory. You cannot see any file list.
+<br>
+<br>
+<span style="font-weight: bold;">Case (2) - Blocking the Directory at
+the top level, but allowing access to all or a specific file inside it:</span>
+<br>
+&lt;Directory "WebNMS_HOME/logs/"&gt;
+<br>
+AllowOverride None
+<br>
+Deny from all
+<br>
+&lt;Files *.txt (or nmserr.txt)&gt;
+<br>
+Order allow,deny
+<br>
+Allow from all
+<br>
+&lt;/Files&gt;
+<br>
+&lt;/Directory&gt;
+<br>
+<br>
+In this case <a href="http://localhost:9090/logs" target="_blank">http://localhost:9090/logs</a>
+is not accessible but <a href="http://localhost:9090/logs/nmserr.txt"
+ target="_blank">http://localhost:9090/logs/nmserr.txt</a> will be
+accessible.
+<br>
+<br>
+For further details, please refer to Apache's Document:
+<br>
+<a href="http://httpd.apache.org/docs-2.0/" target="_blank">http://httpd.apache.org/docs-2.0/</a>
+<br>
+<br>
+<span style="font-weight: bold;">You can allow certain user to the
+files can be achieved by the authentication mechanism provided by the
+apache, where the user has to provide a username and a password.</span>
+<br>
+<br>
+For further details, please refer the following Apache's Document:
+<br>
+<a href="http://httpd.apache.org/docs/1.3/howto/auth.html"
+ target="_blank">http://httpd.apache.org/docs/1.3/howto/auth.html</a>
+<br>
+<br>
+Regards
+<br>
+Venkatramanan</span> <br>
+<br>
+<br>
+<p>We provide below the list list of directories/files that&nbsp;</p>
+<ul>
+  <li>should not be blocked&nbsp;&nbsp; </li>
+  <li>can be blocked&nbsp; </li>
+</ul>
+<p><font color="midnightblue"><strong>LIST&nbsp; OF DIRECTORIES UNDER
+&lt;Web NMS HOME&gt; THAT SHOULD <font color="crimson">NOT</font> BE
+BLOCKED</strong></font></p>
+<p>admin_servlets <br>
+adminjsp <br>
+clientlogs <br>
+<font color="crimson">conf&nbsp; (Some files under this directory can
+be blocked. Please see below for details)<br>
+</font>help <br>
+html <br>
+icons <br>
+images <br>
+jsp <br>
+listmenus <br>
+mapdata <br>
+mibs <br>
+&nbsp;
+<font color="crimson">(Some files inside this
+directory can be blocked. Please see below for details)<br>
+</font>reports <br>
+servlets <br>
+state <br>
+Themes <br>
+unauthenticatedservlets <br>
+users </p>
+<p><font color="midnightblue"><strong>LIST&nbsp; OF DIRECTORIES UNDER
+&lt;Web NMS HOME&gt; THAT CAN BE BLOCKED</strong></font></p>
+<p>adventnet_specifications <br>
+apache <br>
+bin <br>
+builder_template <br>
+builderconf <br>
+builderdata <br>
+ccs <br>
+<span style="font-weight: bold;">classes (But give permission for the
+28 client classes given in the ARCHIVE &amp; NMS_ARCHIVE tags in
+clientparameters.conf)</span><br>
+configtasks <br>
+data <br>
+dbutil <br>
+default_impl <br>
+ejb_jars <br>
+examples <br>
+genTrap <br>
+idls <br>
+jmxstore <br>
+NetMonitor <span style="font-weight: bold;">(But give permission for
+the 4 client jars inside Netmonitor/build)</span><br>
+jre<br>
+lib <br>
+logs <br>
+mysql <br>
+Patch <br>
+projects <br>
+provisioningtemplates <br>
+Servers <br>
+SP_ancillaries <br>
+template <br>
+tutorials <br>
+WEB-INF <br>
+stylesheets<br>
+StudioTools/*<br>
+<span style="color: rgb(0, 0, 224); font-weight: bold;">provisioningresults</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">_uninst</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">ancillary</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">bsh-scripts</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">README.html</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">setEnv.sh</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">SP_README.html</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">startStudioTools.sh</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">WebNMSLauncher.sh</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">AdventNetLicense.ali</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">COPYRIGHT</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">favicon.ico</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">LICENSE_AGREEMENT</span><br
+ style="color: rgb(0, 0, 224); font-weight: bold;">
+<span style="color: rgb(0, 0, 224); font-weight: bold;">HtmlNotif.ser</span><br>
+</p>
+<p><font color="midnightblue"><strong>FILES &amp; DIRECTORIES THAT CAN
+BE BLOCKED UNDER
+CONF DIRECTORY<br>
+<br>
+</strong></font></p>
+<p><span style="color: rgb(0, 0, 230); font-weight: bold;">backup</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">examples</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">feDeployment</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">Firebird</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">Informix</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">jmx_agent</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">MSSQL</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">MySQL</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">Oracle</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">solid</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">sybase</span><br
+ style="color: rgb(0, 0, 230); font-weight: bold;">
+<span style="color: rgb(0, 0, 230); font-weight: bold;">TimesTen</span><br>
+Deployment.dtd<br>
+Deployment.xml<br>
+MigrationProcesses.conf<br>
+RebrandingConf.xml<br>
+RebrandingItems.xml<br>
+RebrandingProperties.xml<br>
+feDeployment/*<br>
+NmsProcessesBE.conf<br>
+seed.file<br>
+SnmpDefaultProperties.xml<br>
+corbaseed.file<br>
+policy.conf<br>
+provider.xml<br>
+TL1DefaultProperties.xml<br>
+tl1seed.file<br>
+trapport.conf<br>
+userdiscovery.conf<br>
+database_params.conf<br>
+DatabaseAliases.conf<br>
+DatabaseSchema.conf<br>
+DBDefaultProperties.xml<br>
+DBObjects.conf</p>
+</body>
+</html>

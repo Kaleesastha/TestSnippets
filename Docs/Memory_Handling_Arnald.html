@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Memory Handling Arnald</title>
+</head>
+<body>
+<span style="font-weight: bold;"><br>
+PART 2 - UNDERSTANDING APPLICATION MEMORY USAGE</span><br>
+<br>
+<span><span></span></span><span></span>In <span><a
+ href="https://discussions.zoho.com/intranet?ftid=1000000000258003"
+ title="https://discussions.zoho.com/intranet?ftid=1000000000258003"
+ target="_blank">Part 1</a></span>,
+I discussed about reading and understanding system wide memory usage.
+This post is dedicated to describe how to read and understand
+application (process or program) specific memory usage, such as Java,
+MySQL, memcached etc.<br>
+<br>
+A typical linux program (assume Java or
+MySQL) contains following fixed size segments that require fixed memory
+while running. These memory entities are directly accountable to the
+process.<br>
+<ol>
+  <li><span style="font-weight: bold;">text/code</span> - Assembly
+Instructions</li>
+  <li><span style="font-weight: bold;">rodata</span> - Read only data
+(constants, string literals, etc)</li>
+  <li><span style="font-weight: bold;">data</span> - uninitialized
+read/write data (global variables, static variables etc)</li>
+  <li><span style="font-weight: bold;">bss</span> - zero initialized
+data</li>
+  <li>And some more complex data. You can refer <a
+ href="http://www.linuxjournal.com/article/1059" target="_blank">http://www.linuxjournal.com/article/1059</a>
+for more info.</li>
+</ol>
+You can use '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">objdump</span>'
+to learn more about what is inside an executable file.<br>
+<br>
+<br>
+Most
+of the linux programs are linked to dynamic libraries such as LIBC.
+Shared libraries will be loaded into memory if it is not loaded by some
+other process, otherwise the process will simply share the memory space
+to access the library. However, the (read/write) data area will be
+unique to each process for obvious reasons. The memory will be marked
+as shared memory. The shared memory tracking and accounting
+is pretty difficult as it could be shared by more than 1 process.<br>
+<br>
+You can use '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">ldd</span>'
+to find various shared libraries liked to an executable file. For run
+time analysis use '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">/proc/&lt;pid&gt;/maps</span>'
+and '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">/proc/&lt;pid&gt;/smaps'</span>.<br>
+<br>
+<br>
+The
+final and very important memory that an application/program uses is
+HEAP. Understanding what is heap memory and how this works is very
+important for writing large programs, even if the language (ex: Java)
+claims that the programmer need not worry about memory. Lets talk about
+it later. Please refer the following link to know more about heap:<br>
+<br>
+&nbsp;&nbsp;&nbsp; <a
+ href="http://en.wikipedia.org/wiki/Dynamic_memory_allocation"
+ target="_blank">http://en.wikipedia.org/wiki/Dynamic_memory_allocation</a>.<br>
+<br>
+<br>
+Enough introduction, lets see how we can find out memory usage of an
+application/process. The '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">top</span>'
+and '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">ps</span>'
+are the simple and most commonly used tool to find application memory
+usage. The following snapshot presents a sample output of '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">top</span>'
+command.<br>
+<br>
+<br>
+<span><img
+ src="https://discussions.zoho.com/viewFile.do?fileId=1000000000298088&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000298088&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"><br>
+<br>
+<br>
+The following snapshot taken from '<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">ps</span>'
+command.<br>
+<br>
+</span><span><img
+ src="https://discussions.zoho.com/viewFile.do?fileId=1000000000298090&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000298090&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<span style="font-weight: bold;"><br>
+VIRT or VSZ:</span><br>
+<span></span><br>
+Total
+amount of virtual memory used by a process including code, data, shared
+libraries, swapped out memory and heap. This is not the actual physical
+memory used by the process but total virtual address space assigned to
+a particular process.<br>
+<br>
+Remember that allocating virtual memory
+doesn't mean that the process gets the memory but it only gets the
+address space for the requested size. Upon accessing the virtual memory
+the process generates 'Page Faults' and the kernel allocates physical
+memory to the process while resolving the 'Page Faults'.<br>
+<br>
+To know more about this please google for 'Linux Virtual Memory' and
+continue to read.<br>
+<br>
+<br>
+<span style="font-weight: bold;">RES or RSS:</span><br>
+<br>
+The
+resident memory size or the real physical memory that is currently used
+by the application. This field give the exact amount of physical memory
+used by a particular application.<br>
+<br>
+From the example above the MySQL process uses 411MB of virtual memory
+but only 50MB of physical memory. The reason could be:<span></span>
+<ol>
+  <li>Part of the physical memory is swapped out due to memory pressure
+or stale memory</li>
+  <li>The mapped (mmap()) file/data is not accessed by the process yet<br>
+  </li>
+  <li>The allocated memory (malloc()) is not accessed by the process yet</li>
+  <li>Am I missing anything?<br>
+  </li>
+</ol>
+<br>
+<span style="font-weight: bold;">SHR:</span><br>
+<br>
+The amount of memory that is being shared between different process.<br>
+<br>
+<br>
+<span style="font-weight: bold;">%MEM:</span><br>
+Percent of total available physical memory assigned to this particular
+process.<br>
+<br>
+<span style="font-weight: bold;"><br>
+IMPORTANT NOTES:<br>
+</span><br>
+<ol>
+  <li>Having
+huge difference between RES/VIRT may not harm the system. However, it
+is highly possible that the process might generate huge number of page
+faults while trying to map unmapped virtual memory area.</li>
+  <li>MySQL
+should not have huge difference in RES/VIRT as by design MySQL will not
+use malloc() often but use internal cache for its memory requirement.
+Having large difference means that the MySQL's various buffers are not
+properly configued.</li>
+  <li>Java should not have huge difference in RES/VIRT as by design JVM
+uses its own Heap manager to provide memory for applications.</li>
+  <li>From
+(2) and (3) it is clear that the memory usage pattern is based on the
+design. So, to validate any design it is important to see the memory
+usage along with the functionality.</li>
+</ol>
+The below link will be useful to analyze the performance of MySQL
+running in Linux.<br>
+<span><a
+ href="http://www.mysqlperformanceblog.com/2008/11/24/how-percona-does-a-mysql-performance-audit/"
+ title="http://www.mysqlperformanceblog.com/2008/11/24/how-percona-does-a-mysql-performance-audit/"
+ target="_blank">http://www.mysqlperformanceblog.com/2008/11/24/how-percona-does-a-mysql-performance-audit/</a></span><br>
+<br>
+After 6 months of working with various Zoho services I believe that
+one of the main problem that prevents our applications to scale is poor
+memory usage/management. This post (and series of other posts) is to
+help create awareness about the memory problem across the development
+team.<br>
+<br>
+It
+would be great if readers can take active part in building the
+knowledge by sharing their experience, problems and also by asking
+questions.<br>
+<br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;">WHY THIS POST?:</span><br>
+<br>
+1. Help to understand memory usage/management which is very critical to
+develop high performance applications.<br>
+2. To demonstrate plenty of memory doesn't automatically mean high
+performance - but good program is.<br>
+3. Understanding Java GC behaviour and tuning the behaviour is very
+crucial to develop scalable applications<br>
+<br>
+<br>
+<span style="font-weight: bold;">PLAN:</span><br>
+<br>
+1. Serious of forum post on various memory related issues, features,
+configuration, tuning etc<br>
+2. The topics are going to be varied from Linux memory manager to Java
+GC<br>
+<br>
+<br>
+<span style="font-weight: bold;">NOTES:</span><br>
+<br>
+1. I can not explain every possible details as it is near
+impossible to do so using forum post. But these posts will help you get
+start and learn more about the problem, eventually address the problem.<br>
+<br>
+<br>
+<br>
+<span style="font-weight: bold;">PART 1 - READING SYSTEM MEMORY USAGE</span><br>
+<span style="font-weight: bold;"></span><br>
+I
+want to start with a very simple topic as this is the first post in the
+series. This part explains how to read and understand how much memory
+available in the system and how much memory is used and who is using
+the memory.<br>
+<br>
+The basic command that can be used to monitor system
+memory usage is 'free'. Of course you can use various other commands
+such as 'top', 'sar', '<span><a
+ href="https://discussions.zoho.com/intranet?ftid=1000000000226249"
+ title="https://discussions.zoho.com/intranet?ftid=1000000000226249"
+ target="_blank">vmstat</a></span>', '/proc/meminfo', etc. But for
+simplicity let me use 'free' to explain the data, the readers can
+explore other commands.<br>
+<br>
+The following diagram shows typical output from a 'free' command:<br>
+<br>
+<span></span><span><img
+ src="https://discussions.zoho.com/viewFile.do?fileId=1000000000296119&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000296119&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"><br>
+<br>
+<br>
+<span style="font-weight: bold;">total:</span><br>
+This
+one is very simple. This tells that how much physical memory (RAM) is
+available in the system in KB. This particular system got 32GB of
+memory.<br>
+<br>
+<span style="font-weight: bold;">used:</span><br>
+This is also fairly simple one. This tells how much memory is being
+used by the <span style="font-weight: bold;">system </span>in KB.
+Note the word <span style="font-weight: bold;">system</span>, this is
+not application - the system includes all process running in the
+system, kernel and other subsystems.<br>
+<br>
+<span style="font-weight: bold;">free:</span><br>
+Again simpler one, this is the actual physical memory (RAM) available
+for allocation in the system.<br>
+<br>
+<br>
+Before going into the next element let me ask you a question. Have you
+ever asked yourself that '<span style="font-weight: bold;">my Java heap
+is configured as 2GB and my system got 16GB but why the system memory
+usage is 99%?</span>'. If so, then you must read the next few
+paragraphs.<br>
+<br>
+In
+general, the Linux kernel will try to use as much memory as possible to
+make the system robust and efficient. After all memory is a scarce
+resource why keep it idle when you can do something better with it.<br>
+<br>
+<span style="font-weight: bold;">buffers:</span><br>
+The
+buffers are used by the kernel (especially block I/O devices) to keep
+the in-transit data while reading/writing from the block devices. In
+simpler sense, this memory is used to enhance the disk I/O access time
+by accumulating multiple reads and writes (remember DISK I/O is very
+costly operation). Usually buffers consumes way less memory than
+applications or cache.<br>
+<br>
+<br>
+<span style="font-weight: bold;">cache:</span><br>
+Have
+you ever wonder whenever you run grep/find/ls commands on large volume
+of file it consumes lots of time? Have you ever noticed whenever you
+run the same command second time it is blazingly fast? The answer is
+system <span style="font-weight: bold;">'cache</span>'. The kernel
+(VFS - Virtual File System) tries to retain the recently opened
+files/directories in the memory (cache) expecting that the user/program
+may access the same file again. The more you open files (grep on access
+files, opening large log file, etc) will be stored in the cache for
+future use.<br>
+<br>
+However, the '<span style="font-weight: bold;">cache</span>' and '<span
+ style="font-weight: bold;">buffer</span>' is low priority memory
+consumers. Whenever applications asks memory the kernel will grab
+memory from '<span style="font-weight: bold;">cache</span>' and '<span
+ style="font-weight: bold;">buffer</span>' and returned to user
+applications. So you don't really need to worry about that your
+application might starve for memory. </span><span>Now you probably
+understand why you have less free memory in the system. <br>
+<br>
+<br>
+<span style="font-weight: bold;">SO WHAT IS THE ACTUAL MEMORY USAGE:</span><br>
+<br>
+Simple maths:<br>
+<span><br>
+<div class="quote">ACTUAL FREE MEMORY = FREE + CACHE + BUFFER<br>
+USED MEMORY = TOTAL MEMORY - ACTUAL FREE MEMORY<br>
+</div>
+</span></span><span>You can see the values in '<span
+ style="font-weight: bold;">-/+ buffers/cache:</span>' line.<br>
+<br>
+<br>
+<span style="font-weight: bold;">CAN I CONTROL CACHE USAGE:</span><br>
+<br>
+Yes it is possible by turning kernel parameter '<span
+ style="font-weight: bold;">vm.vfs_cache_pressure</span>'. Those who
+are interested can try this in your <span style="font-weight: bold;">TEST</span>
+setup or you can wait until I publish how to tune this parameter.<br>
+<br>
+<span style="font-weight: bold;"><br>
+CAN I FLUSH CACHE:</span><br>
+<br>
+Yes you can. The kernel let you flush the cache by using '<span
+ style="font-weight: bold;">vm.drop_caches</span>'
+kernel parameter. However, I wouldn't suggest you to try this unless
+you know what you are doing. Cache flush might impact your system
+significantly if the system using the cache heavily (for example MySQL).<br>
+<br>
+<br>
+</span><span><span style="font-weight: bold;">PART 3 - JAVA GARBAGE
+COLLECTION</span><br>
+<br>
+For
+me, this is one of the most fascinating subject to learn even as a
+non-Java programmer for one simple reason - it is complex and
+interesting. I am sure you would feel the same way.<br>
+<br>
+As a hard
+core C-programmer I would not call someone else as a proficient
+C-programmer if the programmer is not comfortable with complex
+C-pointer base programming. And wouldn't consider someone as proficient
+Java-programmer if the programmer doesn't understand Java Garbage
+Collection and how it works and how it impact the system - though, it
+is my personal view.<br>
+<br>
+It may not be important if the program is
+only used by the programmer and perhaps handful of few others. But if
+we expect the program to run in high performance cluster and expected
+to be used by thousands of people it is better (and important) that the
+developers understand the behaviour of the GC. GC is one of the very
+important piece of software that is going to run in the system/server
+which has huge impact on the overall performance.<br>
+<br>
+In this post I
+will not explain what is GC and how it works. Instead I will point to
+some very good links and also list few items you must know if you want
+to claim you as GC expert. And also, the upcoming posts are going to be
+based on Java GC and it is important to understand the basics of the GC
+before heading toward understanding GC related issues.<br>
+<br>
+<span style="font-weight: bold;">GOOD REFERENCES:</span><br>
+</span>
+<ol>
+  <li><a
+ href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0111-hotspotgc.html"
+ target="_blank">http://www.javaworld.com/javaworld/jw-01-2002/jw-0111-hotspotgc.html</a>
+[Good one to begin]</li>
+  <li><a
+ href="http://chaoticjava.com/posts/how-does-garbage-collection-work/"
+ target="_blank">http://chaoticjava.com/posts/how-does-garbage-collection-work/</a>
+[Good one to begin]<br>
+  </li>
+  <li><a href="http://java.sun.com/docs/hotspot/gc1.4.2/"
+ target="_blank">http://java.sun.com/docs/hotspot/gc1.4.2/</a></li>
+  <li><a
+ href="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp"
+ target="_blank">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</a></li>
+</ol>
+I
+would urge you all (Java developers) spend some time in understanding
+the GC behaviour, I am sure this will help you design and develop
+memory friendly applications and eventually good scalable applications.
+Not understanding will make you keep working on 'Out of memory' errors,
+though it is one simple and common cause.<br>
+<br>
+<br>
+<span style="font-weight: bold;">GC - WHAT YOU SHOULD KNOW:</span><br>
+<br>
+<ol>
+  <li>What is HEAP memory?</li>
+  <li>What is Java HEAP memory?</li>
+  <li>Heap layout - Eden, Survivor Spaces, Old/Tenured, Perm/Permanent</li>
+  <li>Collection Type - Minor and Major</li>
+  <li>Collection Modes - Serial, Parallel and Concurrent</li>
+  <li>Measuring Performance - Throughput,&nbsp; Pause, Footprint and
+Promptness</li>
+  <li>Basic configurations <br>
+  </li>
+</ol>
+<br>
+<span style="font-weight: bold;">IMPORTANT NOTES:</span><br>
+<br>
+<ol>
+  <li>Never ever blame Java GC for application crashes (especially 'Out
+of memory' errors). Before you blame GC make sure:</li>
+  <ol>
+    <li>Debug the program for the root cause - you will never escape by
+work around the problem<br>
+    </li>
+    <li>Monitor and analyze GC behaviour and confirm GC is performing
+well</li>
+    <li>Tune the GC parameter until you see satisfactory result</li>
+    <li>Repeat (1) to (3) as many times as possible</li>
+    <li>Time to blame Java GC</li>
+  </ol>
+  <li>Arbitrarily
+increasing/decreasing Java heap size (or any parameter) without
+analyzing the result may not yield desired result - most of the time it
+makes it even worse! <br>
+  </li>
+  <li>GC tuning some times consumes more time than total development
+time - but it is worth it!</li>
+  <li>A typical application need at least 4-12 weeks to tune -
+especially with lack of proper test setup</li>
+  <li>Never trust google results - do it yourself!</li>
+  <li>When
+you write 'while' or 'for' loop make sure the loop is well controlled
+and throttled. The uncontrolled loop can trigger GC much frequently
+than expected and cause system level instabilities.<br>
+  </li>
+</ol>
+<br>
+<span style="font-weight: bold;">WHAT YOU CAN EXPECT FROM THE FUTURE
+POSTS:</span><br>
+<ol>
+  <li>Various GC based issues with proof</li>
+  <li>Various GC tuning parameter that are worth trying</li>
+  <li>How to analyze GC logs</li>
+  <li>My experience with various services and our own Predict (Zope)
+server tuning</li>
+</ol>
+This post is to explore the possible root cause of frequent <span><a
+ href="http://forums.zoho.com/?ftid=2266000000173907"
+ title="http://forums.zoho.com?ftid=2266000000173907" target="_blank">slowness
+experienced by CRM users</a></span>.<br>
+<br>
+There are few reasons why I did this analysis on this problem:<br>
+<ol>
+  <li>As part of my effort to create awareness on <span><a
+ href="https://discussions.zoho.com/intranet?ftid=1000000000298230"
+ title="https://discussions.zoho.com/intranet?ftid=1000000000298230"
+ target="_blank">understanding memory usage and related problems.</a></span></li>
+  <li><span>Try to identify what exactly is causing CRM to become slow
+and unresponsive</span></li>
+  <li><span>Try to understand how worse the user might be feeling - I
+am sure it is not pleasant at all<br>
+    </span></li>
+</ol>
+<span style="font-weight: bold;"><br>
+HOW I DID:</span><br>
+<ol>
+  <li>Collected access log file from one of the CRM application server
+instance for full run time (start to death)</li>
+  <li>Analyzed the log file and collected data on the service response
+time<br>
+  </li>
+  <li>Matched the result from (2) with Zope monitoring tool to make
+reasonable prediction on what went wrong</li>
+</ol>
+<br>
+<span style="font-weight: bold;">TIMELINE:</span><br>
+<br>
+<span style="font-weight: bold;">22/Apr/2009:13:21:39 -0800</span> -
+CRM application server restarted<br>
+<span style="font-weight: bold;">23/Apr/2009:12:35:57 -0800</span> -
+Server (<span style="font-weight: bold;">within 24hrs</span>) started
+behaving abnormal<br>
+<span style="font-weight: bold;">23/Apr/2009:12:58:16 -0800</span> -
+Server was killed by SAS monitor due to very high CPU usage<br>
+<br>
+About
+23 minutes the CRM server is in a state of extreme stress for no real
+reason - the result is failed to respond to user requests gracefully.<br>
+<br>
+<br>
+<span style="font-weight: bold;">PART 1 - ACCESS LOG REPORT:</span><br>
+<br>
+I
+ran my small script on the collected access log to find out the HTTP
+request/response duration. Please note that I considered URLs that is
+accessed more than 3000 times. Here is the report:<br>
+<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300051&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300051&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<br>
+For simplicity let me use one URL (<span style="font-weight: bold;">/crm/ShowDetails.do</span>)
+to explain the problem. From the above statistics:<br>
+<ol>
+  <li>URL /crm/ShowDetails.do accessed 10274 times over the period of
+23hrs</li>
+  <li>The average response time is 210ms</li>
+  <li>Half of 10274 requests took more than 1535ms to deliver (median).
+This is way high than average response time.</li>
+  <li>The standard deviation of response time is around 14.5sec - no
+way related to average and median values</li>
+  <li>The maximum duration recorded is nearly 40sec - Can you imagine
+what might be the user thinking?</li>
+</ol>
+<br>
+Now, lets see the duration to deliver /crm/ShowDetails.do during the
+entire life time of the application instance.<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300056&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300056&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<br>
+<br>
+I
+hope now you can visualize how bad the CRM server behaved during the
+23minutes just before it was killed. (We should have at least killed
+this non performing beast well before).<br>
+<br>
+<br>
+<span style="font-weight: bold;">PART 2 - ANALYSIS BASED ON ZOPE
+(PREDICT) MONITORING TOOL:</span><br>
+<br>
+<span style="font-weight: bold;">NOTE:</span>
+The monitoring server's clock is running 3 min 50 sec (3:50) slower
+than the CRM server. You need to adjust the time based on it while
+looking at this log. We will fix it in the next release :)<br>
+<br>
+<br>
+CRM: <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">23/Apr/2009:12:35:57 -0800</span> - (<span
+ style="font-weight: bold;">Zope: 23/Apr/2009:12:32:07 -0800</span>)
+Server (<span style="font-weight: bold;">within 24hrs</span>) started
+behaving abnormal<br>
+CRM: <span style="font-weight: bold;">23/Apr/2009:12:58:16 -0800</span>
+- (<span style="font-weight: bold;">Zope: 23/Apr/2009:12:54:24 -0800</span>)
+Server was killed by SAS monitor due to very high CPU usage<br>
+<br>
+<br>
+<br>
+Lets start with the CPU usage:<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300064&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300064&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<ul>
+  <li>CPU usage suddenly jumped at around&nbsp; <span
+ style="font-weight: bold;">23/Apr/2009:12:32:07 -0800 </span>and
+remained at high level till get killed</li>
+  <li>CRM server got 4 CPU cores - and all of the CPU core's usage is
+raised to higher level</li>
+  <li>The CPU usage is also predominantly by 'USER' applications</li>
+</ul>
+<br>
+<br>
+Lets look at the disk usage and system load:<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300069&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300069&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<ul>
+  <li>As expected the system load increased as due to the CPU usage -
+this means the system became really busy</li>
+  <li>The question is what is it doing? Lets try to answer!</li>
+  <li>Have
+a look at the disk usage, there is no abnormal behaviour - so we can
+rule out any disk related activities (like log file processing, file
+compression, etc)</li>
+</ul>
+<br>
+<br>
+Then, lets have a look at the network flow:<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300071&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300071&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<br>
+<ul>
+  <li>Until the server became busy the network flow is fine</li>
+  <li>Then
+the flow of packets (incoming and outgoing) became low - it is most
+probably due to the fact that the server busy doing something and not
+getting enough time to process the incoming/outgoing packets</li>
+  <li>This answers why the user experiencing slow - right?</li>
+  <li>Have a look at the TCP established sockets - It kept on going
+high without any change in the rate of incoming connections.</li>
+  <li>The
+reason is simple - the system could not serve the existing TCP (HTTP)
+connections hence the number of outstanding TCP (HTTP) connections kept
+increasing</li>
+</ul>
+<br>
+More TCP details:<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300078&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300078&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<ul>
+  <li>Each TCP socket (connection) will have two buffers, one for
+sending and other for receiving</li>
+  <li>In the above figure both incoming and outgoing socket's receive
+buffer contains in-transit data</li>
+  <li>This proves that the application is not even reading the data
+which is available</li>
+</ul>
+<br>
+Lets go one more step deep into TCP:<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300080&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300080&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<ul>
+  <li>Each
+TCP listener socket will have a special queue called TCP backlog (or
+listen queue) where all the incoming connections are moved once
+completing the TCP 3-way handshake</li>
+  <li>The queue will be cleared upon calling accept() from application</li>
+  <li>It is clear that the backlog queue is getting filled with
+outstanding incoming TCP connections</li>
+  <li>Which means application can't even accept the new incoming
+connections.<br>
+  </li>
+</ul>
+<br>
+<span style="font-weight: bold;">Hope you understand how the simple CPU
+usage spike makes the end-to-end behaviour so bad.</span><br>
+<br>
+<br>
+So,
+the application is not doing disk intensive operation and also there is
+no network flow. What exactly the application is doing? Can't predict
+now, lets see the next data - context switch and interrupts.<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300082&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300082&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<ul>
+  <li>Low disk usage and low network usage - low interrupt proves that
+clearly</li>
+  <li>Interestingly
+very high context switch - this clearly shows us that the application
+server is really busy doing something that triggers huge number of
+context switch between threads/processes</li>
+  <li>Question - what is it doing? Can't answer yet!</li>
+</ul>
+<br>
+<br>
+Lets look at the process queue:<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300084&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300084&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<br>
+<ul>
+  <li>As expected the RUN QUEUE has too many processes - just to
+confirm how busy CRM server is</li>
+  <li>12:32 - 12:36 - not much processes created - just to prove we are
+not taking any new connections<br>
+  </li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;">SO FAR...</span><br>
+<br>
+<ul>
+  <li>We proved that the applications servers (Java) suddenly started
+using CPU heavily</li>
+  <li>This makes the entire server unresponsive and totally useless</li>
+  <li>The CPU is not used for Disk activity</li>
+  <li>The CPU is not used to handle network traffic</li>
+  <li>Due
+to lack of network activity we can easily rule out that we are not
+dealing with large data set - Can we rule out MySQL or DB layer? I
+guess yes!</li>
+  <li>So what is Java doing?</li>
+</ul>
+<br>
+Lets look at one final precious information to guess what Java is busy
+doing:<br>
+<br>
+<span><img
+ src="http://discussions.zoho.com/viewFile.do?fileId=1000000000300086&amp;forumGroupId=1000000000002001"
+ alt="/viewFile.do?fileId=1000000000300086&amp;forumGroupId=1000000000002001"
+ style="border: 0px none ;"></span><br>
+<br>
+<br>
+<ul>
+  <li>The server page fault values are oscillating between 8K to 0 <br>
+  </li>
+  <li>Around 12:32 The server's page faults remain at high level for
+few minutes</li>
+  <li>Later the page fault behaviour is not consistent and occasionally
+goes very high (10K+)</li>
+  <li>It proves that the server is doing some operation which is very
+memory intensive</li>
+</ul>
+<br>
+<span style="font-weight: bold;">WHAT IS MEMORY INTENSIVE?</span><br>
+<br>
+I can think of two possibilities:<br>
+<ol>
+  <li>Heavy Data Processing</li>
+  <li>Java Garbage Collector</li>
+</ol>
+Let me first rule out 'Heavy Data Processing':<br>
+<ol>
+  <li>If a particular connection triggered this then it should not
+overload all CPU cores</li>
+  <li>There is no network data flow - reason to rule out high data to
+process</li>
+  <li>No Deflate on log file is running - I believe it is not
+configured (CRM team can you verify?)<br>
+  </li>
+</ol>
+Why I believe it is due to Java Garbage Collector?<br>
+<ol>
+  <li>The
+Java garbage collector (Parallel and Concurrent) is designed to run on
+multiple cores - that answer why all CPU cores are over loaded</li>
+  <li>Of course it will be memory intensive - that answer why huge page
+faults</li>
+  <li>From the thread dump - all GC threads and 'Low Memory Detector'
+thread is active</li>
+</ol>
+However, since CRM doesn't enable Java GC logs we have no further data
+to analyze.<br>
+<br>
+<br>
+<span style="font-weight: bold;">CONCLUSION:</span><br>
+<br>
+<ol>
+  <li>CRM
+applications possibly leaking too much memory that exhausts Java heap
+faster - that results Java GC to monopolize the CPU to try to cleanup
+memory</li>
+  <li>CRM application yet to study and tune Java GC (<span><a
+ href="https://discussions.zoho.com/intranet?ftid=1000000000298230"
+ title="https://discussions.zoho.com/intranet?ftid=1000000000298230"
+ target="_blank">Read this post</a></span>)</li>
+</ol>
+I
+believe this conclusion is reasonable and hope this helps CRM team to
+fix their problem soon and make their application robust.<br>
+<br>
+Finally,
+this problem is not specific to CRM alone. It is the common behaviour
+across Zoho services. I did this study on CRM because of the user post.<br>
+<br>
+<br>
+<span><br>
+<div class="quote">Really an eye opener.&nbsp; Memory operation in most
+of the services is long
+due.&nbsp; This post will definitely help us re-prioritize things.<br>
+<br>
+Excellent analysis.&nbsp; I really like the way it is presented.<br>
+<br>
+Siva
+<div>&nbsp;</div>
+</div>
+<br>
+</span>I
+believe that we don't even need to re-prioritize things, but the will
+to do it. IMHO, understanding the memory usage pattern of each and
+every application needs little time and effort than solving other
+problems. I estimate that each team will need to spend 1 man hour per
+day for 4-8 weeks. This is how I want every team to work:<br>
+<br>
+<ol>
+  <li>Assign a person to monitor memory usage (as I said max 1 hour per
+day)</li>
+  <li>Enable
+GC logging (-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps) in
+one of your application server instance (if possible to it in all
+servers)<br>
+  </li>
+  <li>Monitor the GC log every day and find out the answer for:</li>
+  <ol>
+    <li>How frequently minor GC collection runs? (ex: 10/hour)<br>
+    </li>
+    <li>How frequently major GC collection runs? (ex: 2/day)<br>
+    </li>
+    <li>What is the rate of memory consumption? (ex: 512MB/min)</li>
+    <li>How fast the application reaches full heap since it started?
+(ex: 24hrs)</li>
+    <li>How fast the Young Generation reaches full? (ex: 1min)</li>
+    <li>How frequently application is restarted/killed? (ex: every 2
+days)</li>
+  </ol>
+  <li>Once we have these basic data we can start tuning GC if necessary
+and redo the step (3)</li>
+  <li>What is the peak time? What is the peak rate of connection? -
+Behaviour of an application during peak time if any?<br>
+  </li>
+  <li>If there is abnormal behaviour inform the module owner(s) or team
+member</li>
+</ol>
+<br>
+This
+is based on my understanding there might be some more work we may need
+to do. But the bottom line is it doesn't take much effort but the will
+to do it.<br>
+<br>
+I can help any team at any time if needed.<br>
+<br>
+--Arnald<br>
+</body>
+</html>

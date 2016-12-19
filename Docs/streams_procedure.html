@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>streams_procedure</title>
+</head><body>
+<div style="text-align: center;"><big><big><span style="font-weight: bold;">Procedure to setup Oracle Streams
+replication in Web NMS</span></big></big><br>
+</div>
+<br>
+<hr style="width: 100%; height: 2px;">
+<ol>
+  <li><a href="#1._Installing_Oracle">Installing Oracle</a></li>
+  <li><a href="#2._Creating_Databases">Creating Databases</a></li>
+  <li><a href="#3._Tuning_Oracle_Parameters">Tuning Oracle parameters</a><br>
+  </li>
+  <li><a href="#3._Creating__Setting_Up_Oracle_Net8">Creating / Setting
+Up Oracle Net8 Names</a></li>
+  <li><a href="#4._Creating_Users_">Creating Users</a></li>
+  <li><span style="font-weight: bold;"></span><a href="#5._Creating_Tables">&lt;&gt;Creating Tables</a></li>
+  <li><a href="#6._Starting_Oracle_Enterprise_Manager">Starting Oracle
+Enterprise Manager</a></li>
+  <li><a href="#7._Accessing_Enterprise_Manager_from_a">Accessing
+Enterprise Manager from a Web browser</a></li>
+  <li><a href="#8._Streams_Replication_Setup_from_DB1_to">Streams
+Replication Setup from DB1 to DB2</a></li>
+  <li><a href="#9._Testing_streams_replication_setup">Testing streams
+replication setup with Web NMS</a></li>
+</ol>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+The procedure is explained based on an example with the following names.<br>
+<br>
+<ul>
+  <li>Primary Server -&nbsp; BE1<br>
+  </li>
+  <li>Secondary Server - BE2</li>
+  <li>Primary Database - DB1</li>
+  <li>Secondary Database - DB2</li>
+</ul>
+<span style="font-weight: bold;"><a name="1._Installing_Oracle"></a>1.
+Installing Oracle</span><br>
+<br>
+1.&nbsp;&nbsp;&nbsp; Install <span style="font-weight: bold;"><b>Oracle
+Enterprise Edition</b></span> version&nbsp; 10.2.0.1.0 in two machines,
+BE1 and BE2, where the
+replication has to be set up. The installation process is similar to
+normal installation except that replication options have to be enabled
+during the process.<br>
+<br>
+Note : Doing a standard installation would install also the components
+necessary for streams replication.<br>
+<br>
+<span style="font-weight: bold;"><a name="2._Creating_Databases"></a>2.
+Creating Databases</span><br>
+<br>
+<span style="font-weight: bold;"></span>1. Create two databases, namely
+DB1 (primary database) and DB2 (secondary
+database) in BE1 (primary server) and BE2 (secondary server)
+respectively. The SID of the database should be unique, i.e., DB1 and
+DB2.<br>
+<br>
+2. While creating the database, ensure that the "ARCHIVELOG" mode is
+enabled. You need to enable this checkbox while creating the database.
+Only when "ARCHIVELOG" mode is enabled, streams replication can be done.<br>
+<br>
+To create the databases, use the Database Configuration Assistant tool.
+This tool can be invoked by executing the command "dbca".<br>
+<br>
+3. Then ensure that the databases and the listener is running, if not
+restart them.<br>
+<br>
+<span style="font-weight: bold;"><a name="3._Tuning_Oracle_Parameters"></a>3.
+Tuning Oracle Parameters</span><br style="font-weight: bold;">
+<br>
+Once the Database is created, the oracle related memory parameters need
+to be tuned. For a machine with <span style="font-weight: bold;">4 GB
+RAM</span>, the following parameters should be set as follows:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">S. No<br>
+      </td>
+      <td style="vertical-align: top; font-weight: bold;">Parameter<br>
+      </td>
+      <td style="vertical-align: top; font-weight: bold;">Tuned Value<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.<br>
+      </td>
+      <td style="vertical-align: top;">sga_target<br>
+      </td>
+      <td style="vertical-align: top;">1350MB<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">2.<br>
+      </td>
+      <td style="vertical-align: top;">sga_max_size<br>
+      </td>
+      <td style="vertical-align: top;">1360MB<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">3.<br>
+      </td>
+      <td style="vertical-align: top;">shared_pool_size<br>
+      </td>
+      <td style="vertical-align: top;">400MB<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">4.<br>
+      </td>
+      <td style="vertical-align: top;">streams_pool_size<br>
+      </td>
+      <td style="vertical-align: top;">300MB<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">5.<br>
+      </td>
+      <td style="vertical-align: top;">db_recovery_file_dest_size<br>
+      </td>
+      <td style="vertical-align: top;">15GB (depending on hard disk
+availablility)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+The above parameters can be configured by logging into enterprise
+manager of DB from a Web browser by typing
+the below URL:<br>
+<br>
+http://&lt;hostname of DB1&gt;:1158/em<br>
+<br>
+Login as sysdba, and go to "Administration--&gt;All Initialization
+Parameters--&gt;SPFile". Here configure the above parameters and click
+the "Apply" button. The restart the database for the parameters to take
+effect immediately.<br>
+<br>
+<span style="font-weight: bold;"><a name="3._Creating__Setting_Up_Oracle_Net8"></a>4. Creating / Setting
+Up Oracle Net8 Names<br>
+<br>
+</span><br>
+Follow this procedure in both the machines - BE1 (where DB1 database is
+created) and BE2 (where DB2 database is created). This procedure is
+done to create/setup Oracle Net8 Names to enable the communication
+between the two databases DB1 and DB2.<br>
+<br>
+1.&nbsp; Login as user oracle<br>
+<br>
+2.&nbsp;&nbsp; From the shell invoke the Net Configuration Assistant
+GUI to set the names<br>
+<br>
+&nbsp;&nbsp;&nbsp; shell &gt;&gt;&nbsp; netca<br>
+<br>
+3.&nbsp;&nbsp; The wizard is displayed.<br>
+<br>
+4.&nbsp;&nbsp; Select Local Net Service Name Configuration and click
+Next.<br>
+<br>
+5.&nbsp;&nbsp; Select Add and click Next.<br>
+<br>
+6.&nbsp;&nbsp; Enter the database name in the Service Name field. This
+value will be DB2 to connect to the DB2 database from DB1 database.<br>
+<br>
+7.&nbsp;&nbsp; Click Next.<br>
+<br>
+8.&nbsp;&nbsp; Select TCP and click Next.<br>
+<br>
+9.&nbsp;&nbsp; Enter the host name in Host Name field. The hostname in
+this case will be hostname where the database DB2 is created. Retain
+the same port number (1521). Click Next.<br>
+<br>
+10.&nbsp;&nbsp; Select Yes, perform a test. Click Next.<br>
+<br>
+11.&nbsp;&nbsp; On successfully creating the name, appropriate message
+is displayed. Click Change Login.<br>
+<br>
+12.&nbsp;&nbsp; Change the user name as system and password as manager.
+Click OK. Click Next.<br>
+<br>
+13.&nbsp;&nbsp; Enter the net service name as &lt;hostname of the
+machine having DB2&gt;. Click next.<br>
+<br>
+14.&nbsp;&nbsp; Would you like to configure another net service name?
+message is displayed. Click No.<br>
+<br>
+15.&nbsp;&nbsp; Click Next in further screens and click Finish in the
+final screen of the wizard.<br>
+<br>
+Follow the same procedure to create another Net8 Service Name for the
+same machine
+BE1 with database DB1 by giving BE1's SID and host name.<br>
+<br>
+Then follow the same procedure to create two Net8 service Names for the
+machine BE2 with database DB2 by giving BE1's SID &amp; host name and
+BE2's SID, host name <br>
+<br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;"><a name="4._Creating_Users_"></a>5.
+Creating Users</span>&nbsp;
+&lt;&gt;<br>
+<br>
+Create a user where all the application
+tables (i.e., Web NMS tables) are created, in both the machines - BE1
+(where DB1 database is created) and BE2 (where DB2 database is
+created).
+<p class="Sub-topic2-Content">&nbsp;</p>
+<p class="Sub-topic2-Content"><span style="font-weight: bold;"><b>Note:</b></span>
+The user names created on both the databases should be the same.</p>
+<p class="Sub-topic2-Content">Follow the below procedure to create an
+user in both the databases DB1 and DB2<br>
+</p>
+&lt;&gt;shell&gt;&gt; sqlplus system/manager<br>
+sqlplus&gt; create user &lt;username&gt; identified by &lt;password&gt;;<br>
+sqlplus&gt; grant resource to &lt;username&gt;;<br>
+sqlplus&gt; grant&nbsp; connect to &lt;username&gt;;<br>
+<p class="Sub-topic2-Content">The above commands will create users.
+Create users with the same name in both the databases.<br>
+</p>
+<p style="font-weight: bold;" class="Sub-topic2-Content"><a name="5._Creating_Tables"></a>6. Creating Tables<br>
+</p>
+<p class="Sub-topic2-Content"><br>
+To set up replication, you should have all the tables created in the
+user's schema. The tables are to be created only on the Master
+Definition Site i.e. DB1 (primary database) on BE1 (primary server).
+</p>
+<p class="Sub-topic2-Content">&nbsp;</p>
+<p class="Sub-topic2-Content"><span style="font-weight: bold;"><b>Tip:</b></span>
+To create the tables, start Web NMS Server. Initially the tables are
+created and then the processes are started. You can view this in the
+command prompt. Before the process could start, kill the server. On
+performing this, the tables are created. Check the Database Schema for
+data types that Oracle Replication does not support.</p>
+<p class="Sub-topic2-Content">&nbsp;</p>
+<span style="font-weight: bold;"><b>Note:</b></span>
+Oracle supports Number, Date, Varchar, Char, BLOBS, CLOBs data types.
+Oracle does not support the replication of columns that use the LONG
+datatype.<br>
+<br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;"><a name="6._Starting_Oracle_Enterprise_Manager"></a>7. Starting Oracle
+Enterprise Manager</span><br>
+<br>
+1. Ensure that the oracle enterprise manager is running in the machines
+where DB1 and DB2 are running.<br>
+<br>
+2. To check whether the oracle enterprise manager is running, login
+into the machine where oracle is running using oracle username and
+password and execute the folloing command:<br>
+<br>
+shell&gt;&gt; emctl status dbconsole<br>
+<br>
+If it is not started, you can start it by using the following command:<br>
+<br>
+shell&gt;&gt; emctl start dbconsole<br>
+<br>
+Do ensure that the Oracle enterprise manager is started in both the
+databases DB1 and DB2<br>
+<br>
+<span style="font-weight: bold;"><a name="7._Accessing_Enterprise_Manager_from_a"></a>8. Accessing
+Enterprise Manager from a Web browser</span><br>
+<br>
+The Oracle enterprise manager can be accessed&nbsp; as follows:<br>
+<br>
+1. Open a web browser and enter the following URL:<br>
+<br>
+http://&lt;hostname&gt;:1158/em<br>
+<br>
+Here hostname is the machine name in which oracle is running.<br>
+<br>
+2. Now the database login page would be displayed and you can login
+into it by providing the username and password.<br>
+<br>
+3. Ensure that you are able access the enterprise manager of both DB1
+and DB2 from the Web browser.<br>
+<br>
+<span style="font-weight: bold;"><a name="8._Streams_Replication_Setup_from_DB1_to"></a>9. Streams
+Replication Setup from DB1 to DB2</span><br>
+<br>
+First we need to configure streams in the machine DB1 and to do this
+follow the below steps:<br>
+<br>
+1. Access the enterprise manager of DB1 from a Web browser by typing
+the below URL:<br>
+<br>
+http://&lt;hostname of DB1&gt;:1158/em<br>
+<br>
+2. Login into DB1&nbsp; as "SYSDBA" user by providing the appropriate
+username and password (defaults to sys/manager).<br>
+<br>
+3. Then in the Enterprise Manager home Web UI, click on the
+"Maintenence" tab/link available in top menu.<br>
+<br>
+4. Then click on the "Setup" link under the "Streams" section present
+at middle right of the page.<br>
+<br>
+5. Then click on the link "Streams Global, Schema, Table and Subset
+Replication Wizard".<br>
+<br>
+6. Now the Web UI, with heading "Configure Streams: Source Database"
+would be displayed. Here the source database is DB1. <br>
+<br>
+7. Now you need to create an streams administrator user. To do this,
+provide and streams adminsistrator user name say "strmadmin" in the
+Streams administrator text box and provide a password say "strmadmin"
+and click the "Create Streams Administrator" button.<br>
+<br>
+8. Then in the next UI, provide the SYSDBA username and password
+(defaults to sys/manager) and also provide&nbsp; the streams
+administrator username and password (strmadmin/strmadmin). Then click
+the OK button.<br>
+<br>
+9. Then click the "Next" available in the middle-right.<br>
+<br>
+10.&nbsp; Now the Web UI, with heading "Configure Streams: Destination
+Database" would be displayed. <br>
+<br>
+11.&nbsp; In this UI, give the hostname (machine name) of the
+destination database (DB2) .&nbsp; Also give the oracle port number and
+SID name.<br>
+<br>
+12. Then in the destination database also the stream administrator user
+has to be created. Hence provide streams administrator username and
+password (strmadmin/strmadmin) and click the "Create Streams
+Administrator" button.<br>
+<br>
+13. Then in the "Create Streams Administrator UI", give the hostname of
+the destination database (DB2), SID name, oracle port, SYSDBA username,
+SYSDBA password and&nbsp; stream administrator username and&nbsp;
+password (strmadmin/strmadmin) and click the OK button.<br>
+<br>
+14.&nbsp; Then click the "Next" available in the middle-right.<br>
+<br>
+15. Now the UI with heading "Configure Streams: Configure Replication"
+would be displayed.<br>
+<br>
+16. Here under the "Replication" section ensure that the "Schema Rule"
+is selected as the replication method.<br>
+<br>
+17. Under the "Processes" section give a name for "Capture name",
+"Propagation Name" and "Apply name".<br>
+<br>
+18. Then under the "Directory Objects" section, create a directory
+object both at the source database and destination database by clicking
+the "Create Directory Object" method (both for source and destination).<br>
+<br>
+19. Then under the "Options" sections, ensure that all the three check
+boxes are enabled (DDL, DML and copying existing rows) . Then click the
+next button.<br>
+<br>
+20. Then in the "Configure Streams: Object Selection" UI, we need
+include the schema (the user that we created already) that has to be
+replicated. Here click the Schema button and browse and select the user
+which we had already created. Then click the next button.<br>
+<br>
+21. Then verify the summary of operations.<br>
+<br>
+22. Then using "Save Scripts" button save the following SQL scripts<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; a. Setup.sql<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; b. Export_Import.sql<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; c. Startup.sql<br>
+<br>
+23. Then login into DB1 machine as sysdba as follows:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; sqlplus sys/manager as sysdba;<br>
+<br>
+24. Then execute the first script as follows:<br>
+&nbsp;&nbsp;&nbsp; sqlplus&gt; @Setup.sql <br>
+<br>
+and provide the strmadmin passwords. The above script should be
+executed without any errors.<br>
+<br>
+24. Once the Setup.sql script is exeecuted, we need to create a
+database link from DB2 machine to DB1 machine.<br>
+<br>
+25. To create a database link follow the below steps:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; a. Login into DB2 machine and open the
+sqlplus console as follows<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; b. sqlplus strmadmin/strmadmin<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; c. sqlplus&gt; create database link DB1
+using 'DB1'<br>
+<br>
+Now database link would be created.<br>
+<br>
+26. Then edit the Export_Import.sql and change the
+DB1.mihy.adventnet.com to DB1 (without domain name).<br>
+<br>
+27. Then execute the second and third script from sqlplus as follows:<br>
+sqlplus&gt;@Export_Import.sql<br>
+sqlplus&gt;@Startup.sql<br>
+<br>
+Then above scripts should be executed without any errors.<br>
+<br>
+<span style="color: rgb(0, 0, 0);">Now the streams has been setup and
+started for the Web NMS tables from
+DB1 to DB2. Now the tables which we have created in DB1 would be
+automatically created in DB2. So now any updations in DB1 will also
+happen in DB2 as well by propagation</span><br style="color: rgb(0, 0, 0);">
+<br style="color: rgb(0, 0, 0);">
+<span style="color: rgb(0, 0, 0);">NOTE : Now we have setup replication
+only from DB1 to DB2. So data will
+be replicated only from DB1 to DB2 and data will NOT be replicated from
+DB2 to DB1.&nbsp; To replicate data from DB2 to DB1, we should create
+another stream setup in DB2. So in DB2, login in to http://&lt;hostname
+of DB2&gt;:1158/em and create a stream setup using the same procedure
+as explained above. Here the source database will be DB2 and
+destionation database will be DB1. In this process, the stream
+administrator user need not be created again and the user which was
+created earlier can be used.</span><br style="color: rgb(0, 0, 0);">
+<br style="color: rgb(0, 0, 0);">
+<span style="color: rgb(0, 0, 0);">So after creating another stream in
+DB2 for replication from DB2 to
+DB1, the streams setup is ready to be run with Web NMS.</span><br style="color: rgb(0, 0, 153);">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;"><a name="9._Testing_streams_replication_setup"></a>10. Testing streams
+replication setup with Web NMS</span><br>
+<br>
+Now ensure that the FailOver.xml is configured properly. In this file
+configure the following parameters as follows:<br>
+<br>
+HEART_BEAT_INTERVAL as 30 sec<br>
+FAIL_OVER_INTERVAL as 45 sec<br>
+RETRY_COUNT as 1<br>
+<br>
+The above configuration must be done for both Primary and Standby
+setup. Then ensure that the parameter "ENABLE_FE_FAILOVER" is set to
+true in clientParameters.conf. Only then the client failover will
+happen.<br>
+<br>
+Now you can connect the primary server BE1 to database DB1 and the
+standby database BE2 to DB2. Now if BE1 or DB1 fails, the standby would
+takeover and use the DB2 replicated database.<br>
+<br>
+<br>
+</body></html>

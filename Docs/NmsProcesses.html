@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>NmsProcesses</title>
+</head>
+<body>
+<p><span style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.util.NmsSUM</span><br>
+<span class="f"><font face="Times New Roman"><br>
+NmsSUM&nbsp; - <strong>S</strong>mart <strong>U</strong>pdate <strong>M</strong>anager,
+which
+takes
+care of the sync of the server &amp; client. (i.e) Both are
+in the same product versions (For eg: both are in 4.7 SP1). If you are
+connecting a 4.7 application client to a 4.7 SP1 server you are
+prompted to whether install the ppm from the server or not. NmsSUM also
+ensures this sync when in case of Failover also. <span
+ style="font-weight: bold;">Commenting this is not recommended</span><br>
+</font></span></p>
+<p><span style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.store.DBUserStorageServer<br>
+</span>From<span style="color: rgb(255, 0, 0);">&nbsp;</span><span
+ style="color: rgb(255, 0, 0);"></span><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/persistence_services/commonconf_cache.html#Configuring%20the%20number%20of%20user-defined%20objects%20to%20be%20cached">WebNMS
+developer
+guide</a><span style="font-weight: bold; color: rgb(255, 0, 0);"></span></p>
+<p><span style="font-weight: bold; color: rgb(255, 0, 0);"></span>The
+cache size for user-defined objects (those persisted using
+UserStorageAPI) that are persisted in the database, can also be set in
+NmsProcessesBE.conf located in the &lt;Web NMS Home&gt;/conf directory.<br>
+<br>
+For example, say you want to store 100 user-defined objects in memory.
+You can pass the argument 100 for the process
+com.adventnet.nms.store.DBUserStorageServer, as mentioned below :<br>
+<br>
+PROCESS&nbsp;&nbsp;&nbsp; com.adventnet.nms.store.DBUserStorageServer<br>
+ARGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100<br>
+By default, a NULL value is specified, which implies that 25
+user-defined objects will be stored in memory (This number is specified
+in the program DBUserStorageServer !) <span style="font-weight: bold;">When
+there
+are
+no user defined objects to be persisted, this could be
+commented</span><br>
+<br>
+<span style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.startnms.AdminModuleInit</span><br
+ style="font-weight: bold;">
+This is to get the server related information (like IP, various ports,
+FE details, client details) in the webclient. <span
+ style="font-weight: bold;">This could be commented out if you are not
+using webclient</span><br>
+</p>
+<p class="Code-Level-1"><span style="font-weight: bold;"><span
+ style="color: rgb(255, 0, 0);">com.adventnet.nms.sas.NMSSAServer &amp;
+com.adventnet.nms.fe.sas.NmsSAServerFE<br>
+</span></span><span style="color: rgb(255, 0, 0);"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_invoke_sas.html#sas%20in%20web%20nms"></a><br>
+</span><span style="font-weight: bold;"><span
+ style="color: rgb(255, 0, 0);"></span></span>This service is to
+establish a contact between WebNMS with the devices. This process
+should be present in either (NmsProcessesBE / NmsProcessesFE) of the BE
+/ FE side.<br>
+A detailed explanation is given at <span style="color: rgb(255, 0, 0);"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_invoke_sas.html#sas%20in%20web%20nms">WebNMS
+developer
+guide</a></span></p>
+<span style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.example.befe.ExampleFE<br>
+</span>This is an example implementation of client-server
+communication. But this code is also used in WebNMS. In the java client
+when you select the menu item Events And Alarms for a Snmp Node, you
+could see the details of Events &amp; Alarms of that particular SNmp
+Node. See the attached image (ExampleFE.JPG) for details. <span
+ style="font-weight: bold;">This should not be commented</span>
+<hr style="width: 100%; height: 2px;"><span
+ style="font-weight: bold; font-family: Times New Roman,Times,serif;">Ticket
+ID
+: <a href="http://it-server/public/index.jsp">12036626</a></span><br
+ style="font-weight: bold; font-family: Times New Roman,Times,serif;">
+<span
+ style="font-weight: bold; font-family: Times New Roman,Times,serif;">Ticket
+Title
+: Re:Query regarding Process NmsProcessBE.conf</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">Dear Sam,</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">You have to
+create an instance of Process-A and call the isInitialized() method
+from the Process-B.You can use the following program for your reference.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">public
+class
+Process-B implements RunProcessInterface</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">{</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+private
+boolean initialized = false;</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public
+void callMain (String[] args)</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+This method is called by the NMS server during startup.</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/*Kindly
+note that you can get the handle of the Process-A by using the
+below mentioned code snippet:*/</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RunProcessInterface
+procA
+=(RunProcessInterface)(NmsUtil.runProcessModules).get("Process-A");</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+while(!procA.isInitialized())</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Thread.sleep(1000);</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//
+implement your operation logic</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/*If
+the process is properly started, then this will return the object
+reference of Process-A. Otherwise, this will return null value. If the
+value is null, then the Process-B should wait for some time until the
+initialization of Process-A.*/</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+initialized
+= true; // This is very important</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public
+boolean isInitialized ()</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return
+initialized;</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public
+void shutDown ()</span><br
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: Courier New,Courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">// handle
+shutdown for the process</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">...</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">...</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">}</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">} // End of
+class NmsProcess</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">We believe this
+answers your query.Please get back to us if you need any clarification
+regarding this.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">Thanks &amp;
+Regards,</span><br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">V.Prakasaraman</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">---------------------</span><br>
+<span style="font-weight: bold;"></span>
+</body>
+</html>

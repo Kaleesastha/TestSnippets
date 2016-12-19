@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNms-Fedora</title>
+</head>
+<body>
+<div align="center"><font size="+1"><span style="font-weight: bold;">Running&nbsp;
+<font color="#993399">Web NMS</font> 4.7 SP2
+in
+Higher versions of Linux (RH 9.0 &amp; above)</span></font><br>
+<font size="+1"><span style="font-weight: bold;"></span></font></div>
+<div align="center"><font size="+1"><span style="font-weight: bold;">-
+Limitations, Issues &amp; Solutions</span></font><br>
+<font size="+1"><span style="font-weight: bold;"></span></font></div>
+<font size="+1"><i><font color="#993399"><br>
+</font></i><font color="#993399"><span style="color: rgb(204, 0, 0);">Introduction
+:</span><span style="color: rgb(204, 0, 0);"> <br>
+<br>
+</span><span style="color: rgb(51, 51, 51);">&nbsp;&nbsp;&nbsp; A</span><span
+ style="color: rgb(0, 0, 0);">dventNet Web NMS </span></font></font><font
+ size="+1"><font color="#993399"><span style="color: rgb(0, 0, 0);">SP-2
+</span></font></font><font size="+1"><font color="#993399"><span
+ style="color: rgb(0, 0, 0);">officially claims
+support for "</span></font></font><a
+ href="http://adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html#Linux">RedHat
+Linux 9.0, 8.0, 7.2 and ES 3.0 &amp; 2.1, AS 3.0 &amp; 2.1 and Fedora
+Core 4</a><font size="+1"><font color="#993399"><span
+ style="color: rgb(0, 0, 0);">" OS'. There are few limitations
+and issues, while
+using Web NMS with higher versions of linux. (Some of this changes may
+not be applicable to all OS. But this document is prepared with all the
+OS in mind.) This document details about those
+limitations and issues, along
+with&nbsp; solutions/workaround to solve those
+things.</span><br style="color: rgb(0, 0, 0);">
+</font><br>
+<font color="#993399"><span style="color: rgb(204, 0, 0);"></span></font></font><big><span
+ style="color: rgb(204, 0, 0);"><span style="color: rgb(0, 0, 0);">1)</span>&nbsp;
+Higher version of libdb
+issue</span> :<br>
+<br>
+</big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<big>A file named <span style="color: rgb(0, 0, 153);">libdb-3.2.so</span>
+is needed by Apache <font color="#993399">2.0.47 <span
+ style="color: rgb(51, 51, 51);">bundled with Web NMS
+linux binary distribution.</span></font> <span
+ class="article_disp_answer"><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The <span
+ style="color: rgb(51, 51, 255);">libdb-3.2so</span> file is no
+longer
+bundled in the newer versions of glibc packaged</span> in Higher
+versions of linux .
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <span
+ class="article_disp_answer">This file was
+bundled in the older
+versions of glibc . </span>These OS ships with higher version of libdb
+( eg libdb-4.x.so).<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; As this
+file <font style="color: rgb(51, 51, 51);" color="#993399">with the
+expected version </font><span style="color: rgb(51, 51, 51);">i</span>s
+not
+present in these OS', Apache </big><big><font color="#993399">2.0.47
+<span style="color: rgb(51, 51, 51);">bundled with Web NMS</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </font></big><big>will
+not start.</big><br>
+<br style="text-decoration: underline;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <big><span
+ style="color: rgb(204, 0, 0);">Solution :</span><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; To start&nbsp;</big><big><font color="#993399"> <span
+ style="color: rgb(0, 0, 0);">Web
+NMS</span> </font></big><big>4.7.0 + SP2 in these OS', you need to
+create a soft link for <span style="color: rgb(0, 0, 153);">libdb-3.2.so</span>
+pointing to
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="color: rgb(51, 51, 255);">libdb-4.x.so</span> present.<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; for
+example :<br>
+<span style="color: rgb(0, 102, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ln -s /lib/libdb-4.2.so&nbsp;
+/lib/libdb-3.2.so<br>
+</span><span class="article_disp_answer"><span
+ style="color: rgb(204, 0, 0);"><span style="color: rgb(0, 0, 0);">2)</span>&nbsp;&nbsp;
+IPV6 and jdk1.4.2 issue : </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+There is an issue in&nbsp; Socket creation&nbsp; using jdk1.4.2 and its
+higher version&nbsp; on a dual stack host ( one that supports both IPv4<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and IPv6)
+.&nbsp;&nbsp; Due to this Socket issue Web Nms will not start when
+jdk1.4.2&nbsp; or its higher version is used .
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#993399"><span
+ style="color: rgb(0, 0, 0);"></span></font></span></big><big><span
+ class="article_disp_answer">
+<p><span style="color: rgb(153, 0, 0);"><span
+ style="color: rgb(204, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp; Solution :</span></span><br>
+</p>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; a) This
+issue
+has been fixed in jdk1.5.0_02 (<a
+ href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5083013">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5083013<span
+ style="font-style: italic;"></span></a>).&nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+Hence one can use
+this version of jdk (being supported only from WebNMS 4.7 SP2)
+When&nbsp; dual stack host is used.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Refer the following link also to know about other bugs regarding
+Jdk1.4.2 and its higher version on a dual stack host<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5087907">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5087907
+&nbsp;</a> <br>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; OR<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b)&nbsp; If you are
+using jdk1.4.2 try adding the parameter <span
+ style="color: rgb(0, 102, 0);">Djava.net.preferIPv4Stack=true</span>
+to the Web NMS application<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; startup parameters
+in startnms.sh file and
+startApplicationClient.sh file .This will make sure only IPV4 address
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; are&nbsp; used from with in the java runtime
+. Doing this configuration will make Web Nms to perform discovery only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+only IPv4 Nodes and not IPv6 nodes.<br>
+</p>
+<p><span style="color: rgb(153, 0, 0);"><span
+ style="color: rgb(0, 0, 0);">3)</span>&nbsp; <span
+ style="color: rgb(204, 0, 0);">Web
+Start
+Issue :</span></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; These OS' ships with new versions of
+glibc (greater than 2.3.3) . The webstart version of jdk 1.4.x will not
+work <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; for this
+new versions of glibc
+. You can refer the following URL regarding this bug<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; [<a
+ href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6188963">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6188963</a>]<br>
+</p>
+<p><span style="color: rgb(153, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="color: rgb(204, 0, 0);">Solution :</span></span><span
+ style="text-decoration: underline;"></span><br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; This bug has
+been&nbsp; fixed in jdk1.5.0_02 . Hence webstart <i>from these OS' </i>will
+start
+successfully when <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; jdk1.5.0_02 is used<br>
+</p>
+<p><span style="color: rgb(153, 0, 0);"><span
+ style="color: rgb(0, 0, 0);">4)</span>&nbsp; <span
+ style="color: rgb(204, 0, 0);">Mysql Issue :</span></span><br>
+</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; These OS' ships
+with higher version of mysql 4.1.xx.&nbsp; Adventnet Web NMS&nbsp; does
+not
+claim<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; official support for
+this version of&nbsp; Mysql<br>
+</p>
+<p><span style="color: rgb(153, 0, 0);">&nbsp;&nbsp;&nbsp; <span
+ style="color: rgb(204, 0, 0);">&nbsp; Solution :</span><br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; Use <a
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html#Database">any
+one of the the Mysql Versions </a>officially
+supported by AdventNet Web NMS.<br>
+<br>
+5)&nbsp; <span style="color: rgb(204, 0, 0);">Applet
+Client&nbsp; in Mozilla:</span><br>
+</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; To&nbsp; start the Applet client in Mozilla browser
+create the
+following soft link under &lt;Mozilla_Home&gt;/plugins<br>
+</p>
+<p><span style="color: rgb(0, 102, 0);">ln -s &lt;jdk1.5.0_02
+Home&gt;/jre/plugin/i386/ns7/libjavaplugin_oji.so&nbsp;&nbsp;
+/usr/lib/&lt;FireFox Home&gt;/plugins/libjavaplugin_oji.so</span><span
+ style="color: rgb(204, 0, 0);"><br>
+</span><span style="color: rgb(0, 102, 0);"></span><big><span
+ class="article_disp_answer"><span style="color: rgb(0, 102, 0);"></span></span></big></p>
+</span></big>
+</body>
+</html>

@@ -1,0 +1,27 @@
+To find the list of FE servers connected to a BE 
+
+There is an API to access the list of available FEs in BE server. You can use the method com.adventnet.nms.startnms.UpdateMaintainer.getFEList(). This method can be used for getting the FE list from the server side only. For detailed information, please refer to the following section of our Javadocs : 
+http://www.adventnet.com/products/webnms/help/javadocs/consolidated_javadocs/com/adventnet/nms/startnms/UpdateMaintainer.html
+
+You can get the server name by using the NmsClientUtil.applet.getParameter("BE_HOST_NAME") method instead of using NmsClientUtil.applet.getDocumentBase() method. From this server name you can get the server IP.
+
+Please find the below code snippet :
+String local = (String)NmsClientUtil.applet.getParameter("BE_HOST_NAME");
+InetAddress addr = InetAddress.getByName(local);
+String localip = addr.getHostAddress().trim();
+
+You can use NmsClientUtil.applet.getParameter("BE_HOST_ADDRESS") to get the ip address of the BE server.Otherwise you can use the following code snippet
+Code:
+String hostNameBE = NmsClientUtil.applet.getParameter("BE_HOST_NAME");
+      String IpAddressBE = java.net.InetAddress.getByName(hostNameBE).getHostAddress();
+
+If you need FE server IP address from WebNMS client, Code:
+ URL  documentbase = NmsClientUtil.applet.getDocumentBase();
+      String hostNameFE  = documentbase.getHost();
+      String IpAddressFE = java.net.InetAddress.getByName(hostNameFE).getHostAddress();
+
+
+We believe this will help you.
+
+Thanks & Regards,
+V.Prakasaraman

@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>How to find which thread holds the maximum CPU cycles</title>
+  </head>
+  <body>
+    <meta http-equiv="content-type" content="text/html;
+      charset=windows-1252">
+    <span class="Apple-style-span" style="border-collapse: separate;
+      color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size:
+      15px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><span class="Apple-style-span"
+        style="font-family: Arial,Helvetica,sans-serif; font-size: 13px;
+        line-height: 20px; text-align: left;">We
+        can easily identify a problematic code which leads to high CPU
+        utilization in Linux. Let me explain the steps with the
+        following
+        example,<br>
+        <br>
+        <div class="__zd_findAndReplace" style="border-width: 0px;
+          margin: 0px 30px 0px 0px; padding: 0px 3px; outline-width:
+          0px; font-size: 13px; vertical-align: baseline;
+          background-color: rgb(239, 239, 239); text-align: right;
+          float: right;"><span onclick="javascript:showCode(this);return
+            false;" style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; vertical-align: baseline;
+            background-color: transparent; font-family: 'trebuchet
+            ms',arial; font-style: normal; font-variant: normal;
+            font-weight: normal; font-size: 10px; line-height: normal;
+            font-size-adjust: none; font-stretch: normal;
+            -x-system-font: none; text-decoration: underline; color:
+            blue; cursor: pointer;">Copy
+            code</span></div>
+        <ol class="code" style="padding: 0px 30px; list-style-position:
+          outside; list-style-type: decimal; overflow-x: auto;
+          overflow-y: hidden; width: 653px;">
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">package
+            test;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);"><br>
+          </li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">public
+            class ThreadDumpTest {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            public void test(){</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for
+            (int i = 0; i &lt; 10 ; i++) {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Thread
+            th=new Thread(new TR(i));</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            th.setName("MyThread-"+(1000+i));</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            th.start();</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            public static void main(String[] args) {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ThreadDumpTest
+            t=new ThreadDumpTest();</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            t.test();</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            private class TR implements Runnable{</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int
+            ins=0;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TR(int
+            i){</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ins=i;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+public
+            void run(){</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+while
+            (true) {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(ins!=5)
+            {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+try
+            {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Thread.sleep(10000);</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}
+            catch (Exception e) {</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            e.printStackTrace();</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            }</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">}</li>
+        </ol>
+        In the above example, all the threads are in while loop. Except
+        '<span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold; font-style:
+          italic;">MyThread-1005</span>'
+        thread, all other threads will sleep 10 secs inside the loop.
+        The '<span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold; font-style:
+          italic;">MyThread-1005</span>'
+        thread will not enter sleep part, so it will run in while loop
+        without
+        sleep. Due to while loop, the '<span style="border-width: 0px;
+          margin: 0px; padding: 0px; outline-width: 0px; font-size:
+          13px; vertical-align: baseline; background-color: transparent;
+          font-weight: bold; font-style: italic;">MyThread-1005</span>'
+        thread will leads to high CPU utilization.<br>
+        <br>
+        <span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold;">How
+          to identify ?</span><br>
+        <br>
+        <span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold;">Step
+          1 :</span><span class="Apple-converted-space">&nbsp;</span><br>
+        <br>
+        <div style="border-width: 0px; margin: 0px 0px 0px 40px;
+          padding: 0px; outline-width: 0px; font-size: 13px;
+          vertical-align: baseline; background-color: transparent;">Execute
+          '<span style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;">top</span>'
+          command on the console. You can see the 'java' command with
+          PID 7074
+          utilized<span class="Apple-converted-space">&nbsp;</span><span
+            style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;">97%</span><span
+            class="Apple-converted-space">&nbsp;</span>of CPU.<br>
+          <br>
+          <img
+src="https://discussions.zoho.com/viewImage.do?fileId=1000000001557097&amp;forumGroupId=1000000000002001"
+            style="max-width: 725px;"><br>
+          <br>
+        </div>
+        <br>
+        <span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold;">Step
+          2 :</span><span class="Apple-converted-space">&nbsp;</span><br>
+        <br>
+        <div style="border-width: 0px; margin: 0px 0px 0px 40px;
+          padding: 0px; outline-width: 0px; font-size: 13px;
+          vertical-align: baseline; background-color: transparent;">The
+          top command displays the process list like the above image.
+          Press '<span style="border-width: 0px; margin: 0px; padding:
+            0px; outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;">Shift
++
+            h</span>' and wait few secs. You can see '<span
+            style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;">Show
+threads
+            on</span>' message in the top console. Now, you can see
+          thread
+          level details like CPU/Memory utilization. You can see a
+          'java' command
+          thread with PID 7087 utilized<span
+            class="Apple-converted-space">&nbsp;</span><span
+            style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;">94%</span><span
+            class="Apple-converted-space">&nbsp;</span>of CPU.<br>
+          <br>
+          <img
+src="https://discussions.zoho.com/viewImage.do?fileId=1000000001557102&amp;forumGroupId=1000000000002001"
+            style="max-width: 725px;"><br>
+        </div>
+        <br>
+        <span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold;">Step
+          3:</span><span class="Apple-converted-space">&nbsp;</span><br>
+        <div style="border-width: 0px; margin: 0px 0px 0px 40px;
+          padding: 0px; outline-width: 0px; font-size: 13px;
+          vertical-align: baseline; background-color: transparent;"><br>
+          The identified problematic thread PID ( 7087 ) is in decimal
+          format.<span class="Apple-converted-space">&nbsp;</span><a
+            target="_blank" title="Click here to convert"
+href="http://www.mathsisfun.com/binary-decimal-hexadecimal-converter.html"
+            style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; color: rgb(69, 123,
+            217); text-decoration: none;">Convert
+            it into hexadecimal format</a>. The respective hexadecimal
+          for 7087 is
+          1BAF. And convert it into lowercase (1baf ).<span
+            class="Apple-converted-space">&nbsp;</span><br>
+          <br>
+        </div>
+        <span style="border-width: 0px; margin: 0px; padding: 0px;
+          outline-width: 0px; font-size: 13px; vertical-align: baseline;
+          background-color: transparent; font-weight: bold;">Step
+          4:<br>
+          <br>
+        </span>
+        <div style="border-width: 0px; margin: 0px 0px 0px 40px;
+          padding: 0px; outline-width: 0px; font-size: 13px;
+          vertical-align: baseline; background-color: transparent;">Take
+          thread dump and search the converted hexadecimal PID ( 1baf )
+          in the
+          thread dump. You can find the hex PID as '<span
+            style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;
+            font-style: italic;">nid</span>'
+          (with '0x') of the thread trace. From the trace, you can find
+          '<span style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; font-size: 13px; vertical-align:
+            baseline; background-color: transparent; font-weight: bold;
+            font-style: italic;">MyThread-1005</span>'
+          is the problematic thread in the test program. And using the
+          thread
+          trace you can identify the problematic code and fix the
+          problem.<br>
+          <br>
+        </div>
+        <div class="__zd_findAndReplace" style="border-width: 0px;
+          margin: 0px 30px 0px 0px; padding: 0px 3px; outline-width:
+          0px; font-size: 13px; vertical-align: baseline;
+          background-color: rgb(239, 239, 239); text-align: right;
+          float: right;"><span onclick="javascript:showCode(this);return
+            false;" style="border-width: 0px; margin: 0px; padding: 0px;
+            outline-width: 0px; vertical-align: baseline;
+            background-color: transparent; font-family: 'trebuchet
+            ms',arial; font-style: normal; font-variant: normal;
+            font-weight: normal; font-size: 10px; line-height: normal;
+            font-size-adjust: none; font-stretch: normal;
+            -x-system-font: none; text-decoration: underline; color:
+            blue; cursor: pointer;">Copy
+            code</span></div>
+        <ol class="code" style="padding: 0px 30px; list-style-position:
+          outside; list-style-type: decimal; overflow-x: auto;
+          overflow-y: hidden; width: 653px; margin-left: 40px;">
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">[rameshj@rameshj
+            thread]$ java test/ThreadDumpTest</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">^\Full
+            thread dump Java HotSpot(TM) Client VM (1.5.0_06-b05 mixed
+            mode):</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"DestroyJavaVM"
+            prio=1 tid=0x083d2d78 nid=0x1ba2 waiting on condition
+            [0x00000000..0xbff4bf60]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1009"
+            prio=1 tid=0x08510a88 nid=0x1bb3 waiting on condition
+            [0xa9cca000..0xa9ccb020]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1008"
+            prio=1 tid=0x08510318 nid=0x1bb2 waiting on condition
+            [0xa9d4b000..0xa9d4bea0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1007"
+            prio=1 tid=0x0850f298 nid=0x1bb1 waiting on condition
+            [0xa9dcc000..0xa9dccf20]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1006"
+            prio=1 tid=0x0850d818 nid=0x1bb0 waiting on condition
+            [0xa9e4d000..0xa9e4dda0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245, 245);
+            font-weight: bold; color: rgb(255, 0, 0);">"<span
+              style="border-width: 0px; margin: 0px; padding: 0px;
+              outline-width: 0px; font-size: 13px; vertical-align:
+              baseline; background-color: rgb(255, 255, 0);">MyThread-1005</span>"
+            prio=1 tid=0x0850c9f8 nid=<span style="border-width: 0px;
+              margin: 0px; padding: 0px; outline-width: 0px; font-size:
+              13px; vertical-align: baseline; background-color: rgb(255,
+              255, 0);">0x1baf</span><span class="Apple-converted-space">&nbsp;</span>runnable
+            [0xa9ece000..0xa9ecee20]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245, 245);
+            font-weight: bold; color: rgb(255, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:43)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245, 245);
+            font-weight: bold; color: rgb(255, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1004"
+            prio=1 tid=0x0850b8e8 nid=0x1bae waiting on condition
+            [0xa9f4f000..0xa9f500a0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1003"
+            prio=1 tid=0x0850aac8 nid=0x1bad waiting on condition
+            [0xa9fd0000..0xa9fd1120]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1002"
+            prio=1 tid=0x085099b8 nid=0x1bac waiting on condition
+            [0xaa051000..0xaa051fa0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+java.lang.Thread.run(Thread.java:595)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1001"
+            prio=1 tid=0x08508a28 nid=0x1bab waiting on condition
+            [0xaa0d2000..0xaa0d3020]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native
+Method)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.run(Thread.java:595)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"MyThread-1000"
+            prio=1 tid=0x08508520 nid=0x1baa waiting on condition
+            [0xaa153000..0xaa153ea0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.sleep(Native Method)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at test.ThreadDumpTest$TR.run(ThreadDumpTest.java:45)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Thread.run(Thread.java:595)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"Low
+            Memory Detector" daemon prio=1 tid=0x0843cf58 nid=0x1ba8
+            runnable
+            [0x00000000..0x00000000]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"CompilerThread0"
+            daemon prio=1 tid=0x0843b930 nid=0x1ba7 waiting on condition
+            [0x00000000..0xaa3eb808]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"Signal
+            Dispatcher" daemon prio=1 tid=0x0843a9d0 nid=0x1ba6 waiting
+            on
+            condition [0x00000000..0x00000000]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"Finalizer"
+            daemon prio=1 tid=0x08430740 nid=0x1ba5 in Object.wait()
+            [0xaa52c000..0xaa52d120]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Object.wait(Native Method)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            - waiting on &lt;0xaa6b0848&gt; (a
+            java.lang.ref.ReferenceQueue$Lock)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+            java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:116)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            - locked &lt;0xaa6b0848&gt; (a
+            java.lang.ref.ReferenceQueue$Lock)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+            java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:132)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+            java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:159)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"Reference
+            Handler" daemon prio=1 tid=0x0842e898 nid=0x1ba4 in
+            Object.wait()
+            [0xaa5ad000..0xaa5adfa0]</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Object.wait(Native Method)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            - waiting on &lt;0xaa6b0758&gt; (a
+            java.lang.ref.Reference$Lock)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at java.lang.Object.wait(Object.java:474)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            at
+            java.lang.ref.Reference$ReferenceHandler.run(Reference.java:116)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            - locked &lt;0xaa6b0758&gt; (a java.lang.ref.Reference$Lock)</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"VM
+            Thread" prio=1 tid=0x0842bb68 nid=0x1ba3 runnable</li>
+          <li style="border-left: 2px solid rgb(204, 204, 204); margin:
+            1px 0px; padding: 2px; background-color: rgb(245, 245,
+            245);">"VM
+            Periodic Task Thread" prio=1 tid=0x0843e538 nid=0x1ba9
+            waiting on
+            condition</li>
+        </ol>
+      </span></span>
+  </body>
+</html>

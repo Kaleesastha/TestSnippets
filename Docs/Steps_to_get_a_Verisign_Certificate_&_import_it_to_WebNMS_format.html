@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Steps to get a Verisign Certificate &amp; import it to WebNMS
+format</title>
+</head>
+<body>
+<font size="-1"><font face="Tahoma">The steps to follow are:<br>
+<br>
+Create the BEServer.key:&nbsp;&nbsp; </font></font><font
+ face="Courier New, Courier, monospace"><big><font color="#000099">openssl
+genrsa -rand <span style="font-weight: bold;"><b>world.png</b></span>
+-out <span style="font-weight: bold;"><b>BEServer.key</b></span> </font><span
+ style="font-weight: bold;"><b><font color="#000099">1024<br>
+<br>
+</font></b></span></big></font><font size="-1"><font face="Tahoma">Create
+the BEServer.csr:</font></font>&nbsp;&nbsp;&nbsp; <font
+ face="Courier New, Courier, monospace"><big><font color="#000099">openssl
+req -new -key <span style="font-weight: bold;"><b>BEServer.key</b></span>
+-out </font><span style="font-weight: bold;"><b><font color="#000099">BEServer.csr</font><br>
+</b></span></big></font><font size="-1"><font face="Tahoma"><br>
+In <a
+ href="https://www.verisign.com/cgi-bin/clearsales_cgi/leadgen.htm?form_id=5191&amp;toc=w44740044735191002&amp;ra=203.193.155.110&amp;email=">Verisign
+Inc</a>, give the same inputs (as that of BEServer.csr) &amp; now a
+mail will arrive in your Inbox:<br>
+There will also be a certificate ( a random no.) at the end of the
+mail. <font color="#ff0000"><b>Do not use that</b></font>. Instead go
+to the link given in the mail (It will be like
+<a class="moz-txt-link-freetext"
+ href="http://www.verisign.com/server/trial/faq/index.html">http://www.verisign.com/server/trial/faq/index.html</a>)<br>
+And then click the </font></font><font color="#cc0000"><b><a
+ href="http://www.verisign.com/support/verisign-intermediate-ca/Trial_Secure_Server_Root/index.html"><span
+ class="Hyperlink--Char">Secure Site Trial Root CA Certificate </span></a><a
+ href="http://www.verisign.com/support/verisign-intermediate-ca/Trial_Secure_Server_Root/index.html"><span
+ class="Hyperlink--Char"><font size="-1"><font face="Tahoma">&gt;&gt;</font></font></span></a></b></font><font
+ color="#cc0000" size="-1"><font face="Tahoma"> </font></font><font
+ size="-1"><font face="Tahoma">link. You will be shown the cerificate
+(again a random no. compliant to the X509 format) Copy this &amp; save
+the same as <b>BEServer.cer</b><br>
+<br>
+Now import the same to Truststore: </font></font><font
+ face="Courier New, Courier, monospace"><big><font color="#000099">keytool
+-import -alias <span style="font-weight: bold;"><b>bessl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file </font><span style="font-weight: bold;"><b><font color="#000099">BEServer.cer</font><br>
+</b></span></big></font><font size="-1"><font face="Tahoma"><br>
+Create the BETranskey.key: </font></font><font color="#000099"
+ face="Courier New, Courier, monospace"><big>keytool -genkey -alias <span
+ style="font-weight: bold;"><b>betransssl</b></span> -validity <span
+ style="font-weight: bold;"><b>3000</b></span> -keystore <span
+ style="font-weight: bold;"><b>BETransKey.key</b></span> -storepass <span
+ style="font-weight: bold;"><b>webnms</b></span> -keypass <span
+ style="font-weight: bold;"><b>webnms<br>
+</b></span></big></font><font size="-1"><font face="Tahoma"><br>
+Create the BETranskey.cer: </font></font><font color="#000099"
+ face="Courier New, Courier, monospace"><big>keytool -export -alias <span
+ style="font-weight: bold;"><b>betransssl</b></span> -keystore <span
+ style="font-weight: bold;"><b>BETransKey.key</b></span> -file <span
+ style="font-weight: bold;"><b>BETransCer.cer<br>
+</b></span></big></font><font size="-1"><font face="Tahoma">Import the </font></font><font
+ size="-1"><font face="Tahoma">BETranskey.cer to Truststore: </font></font><font
+ color="#000099" face="Courier New, Courier, monospace"><big>keytool
+-import -alias <span style="font-weight: bold;"><b>betransssl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file <span style="font-weight: bold;"><b>BETransCer.cer</b></span></big></font>
+<!--[if IE]><DIV id="__$ehc"></DIV><![endif]-->
+</body>
+</html>

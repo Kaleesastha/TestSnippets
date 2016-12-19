@@ -1,0 +1,739 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="content-type">
+    <title>Failover Use cases</title>
+  </head>
+  <body>
+    <div style="text-align: center;"><span style="font-weight: bold;"></span><span
+        style="font-weight: bold;">Failover Use Cases<br>
+        <br>
+      </span>
+      <table style="text-align: left; width: 314px; height: 60px;"
+        border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr style="font-family: tahoma;">
+            <td colspan="2" rowspan="1" style="vertical-align: top;
+              text-align: center;"><small><small><big><span
+                      style="font-weight: bold;">Legend</span></big></small></small></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><small><small><span
+                    style="font-weight: bold;">KEY</span></small></small></td>
+            <td style="vertical-align: top;"><small><small><span
+                    style="font-weight: bold;">DESCRIPTION</span></small></small></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><small style="font-family:
+                tahoma;"><small>HBt</small></small><br>
+            </td>
+            <td style="vertical-align: top;"><small><small>HEART_BEAT_INTERVAL</small></small></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><small><small>FI</small></small></td>
+            <td style="vertical-align: top;"><small><small>FAIL_OVER_INTERVAL</small></small></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <big style="font-family: Times New Roman,Times,serif;"><font
+        size="3"><big><u><br>
+            Test Environment:</u></big></font></big><font face="Tahoma"><br>
+    </font>
+    <p style="margin-bottom: 0in;"><small><font face="Tahoma">NMS
+          Version: <b>4.7+SP3
+          </b>(</font></small><font face="tahoma"><font size="2">with
+          all recent Failover fixes for Hitachi)<br>
+          <br>
+          <b><span style="color: rgb(255, 0, 0);">BE1:</span> </b>RedHat
+          8.0 </font></font><font face="tahoma"><font size="2"><span
+            style="font-weight: bold;">|</span></font></font><font
+        face="tahoma"><font size="2"> 2.4 MHz <span style="font-weight:
+            bold;">|</span>
+          512 MB RAM<br>
+          <span style="text-decoration: underline;">Entry under
+            /etc/hosts:</span><br>
+          <big style="font-family: courier new,courier,monospace;"><big><span
+                style="font-weight: bold;">127.0.0.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+localhost.localdomain
+                localhost</span></big></big><br>
+          <br style="color: rgb(255, 0, 0);">
+          <span style="font-weight: bold;"><span style="color: rgb(255,
+              0, 0);">BE2:</span>
+          </span>RedHat EL 3 </font></font><font face="tahoma"><font
+          size="2"><span style="font-weight: bold;">| </span></font></font><font
+        face="tahoma"><font size="2">2.4 MHz </font></font><font
+        face="tahoma"><font size="2"><span style="font-weight: bold;">|
+          </span></font></font><font face="tahoma"><font size="2">1 GB
+          RAM<br>
+        </font></font><font face="tahoma"><font size="2"><span
+            style="text-decoration: underline;">Entry under /etc/hosts:<big
+              style="font-family: courier new,courier,monospace;"><br
+                style="font-weight: bold;">
+            </big></span></font></font><big style="font-family: courier
+        new,courier,monospace;"><span style="font-weight: bold;">127.0.0.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+localhost.localdomain
+          localhost</span><br style="font-weight: bold;">
+        <span style="font-weight: bold;">192.168.117.67&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          nms-reg119.india.adventnet.com</span></big><br>
+    </p>
+    <p style="margin-bottom: 0in;"><font face="tahoma"><small><span
+            style="font-weight: bold; color: rgb(255, 0, 0);">Database:</span>
+        </small></font><font face="Tahoma" size="2">(Separate)<b> MySQL
+          5.0.24 </b></font><font face="tahoma"><font size="2"><span
+            style="font-weight: bold;">| </span></font></font><font
+        face="tahoma"><font size="2">RedHat EL 3 </font></font><font
+        face="tahoma"><font size="2"><span style="font-weight: bold;">|</span></font></font><font
+        face="tahoma"><font size="2">1.8 MHz </font></font><font
+        face="tahoma"><font size="2"><span style="font-weight: bold;">|
+          </span></font></font><font face="tahoma"><font size="2">512 MB
+          RAM<br>
+          <br>
+        </font></font></p>
+    <span style="font-weight: bold;"></span>Values for normal
+    non-destructive cases:<big style="font-family: courier
+      new,courier,monospace; font-weight: bold; color: rgb(51, 51,
+      153);"><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;PRIMARY
+      HEART_BEAT_INTERVAL="<span style="color: rgb(255, 0, 0);">10</span>"
+      FAIL_OVER_INTERVAL="<span style="color: rgb(255, 0, 0);">15</span>"/&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;STANDBY
+      HEART_BEAT_INTERVAL="<span style="color: rgb(255, 0, 0);">10</span>"
+      RETRY_COUNT="<span style="color: rgb(255, 0, 0);">1</span>"
+      FAIL_OVER_INTERVAL="<span style="color: rgb(255, 0, 0);">15</span>"&gt;<br>
+    </big>
+    <div style="text-align: center;"><span style="font-weight: bold;"></span>
+      <hr style="width: 100%; height: 2px;"><span style="font-weight:
+        bold;">The
+        Failover testing was carried out with the following test cases
+        &amp; the results are given below:<br>
+      </span>
+      <div style="text-align: left; font-family: Times New
+        Roman,Times,serif;"><br>
+        There was only one issue which also came only in
+        an inopportune case of testing.<br>
+        When the <span style="font-weight: bold;">STANDBY's HBt &gt;
+          PRIMARY's
+          FI,</span> the standby server was not properly deregistered.<br>
+        Once the Primary was shutdown, the STANDBY came up &amp; it was
+        shutdown (properly)<br>
+        Other than this there were no standing issues.<br>
+        <span style="font-weight: bold;"></span></div>
+    </div>
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="color: rgb(51, 51, 255);
+      font-weight: bold; font-family: Times New Roman,Times,serif;">(I)
+      When the
+      primary &amp; standby is running, the following things should
+      happen
+      correctly</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <ol style="font-family: Times New Roman,Times,serif;">
+      <li>At PRIMARY HBt, LASTCOUNT of PRIMARY should be updated in
+        BEFailOver.</li>
+      <li>At STANDBY HBt, LASTCOUNT of STANDBY should be updated in
+        BEFailOver.</li>
+      <li>At PRIMARY's FI, the STANDBY server status should be ensured.</li>
+      <li>At STANDBY's FI, the PRIMARY server status should be ensured.</li>
+    </ol>
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"></span><span style="color: rgb(51, 204, 0);">Result:
+      </span></span><span style="font-family: Times New
+      Roman,Times,serif;">These
+      functionalities was ensured while testing Failover in all the
+      possible
+      cases. The results for checking all possible scenarios (w.r.t HBt
+      &amp;
+      FI intervals) are tabulated </span><a style="font-family: Times
+      New Roman,Times,serif;" href="#result">here</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="font-weight: bold; color: rgb(51,
+      51, 255); font-family: Times New Roman,Times,serif;">(II) Once the
+      Primary is shutdown, the following things should happen:</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <ul style="font-family: Times New Roman,Times,serif;">
+      <li>The Standby server should take over as Primary server after
+        the
+        specified FI, <span style="font-weight: bold;">but NOT before
+          the FI</span>.<br>
+        (If any RETRY_COUNT is specified, that many retries should
+        happen &amp;
+        then only failover should take place)<br>
+      </li>
+    </ul>
+    <ul style="font-family: Times New Roman,Times,serif;">
+      <li>After the Failover, the new PRIMARY's <span
+          style="font-weight: bold;">HBt</span> &amp; <span
+          style="font-weight: bold;">FI</span> should be the ones
+        defined in
+        &lt;PRIMARY&gt; tag.<br>
+      </li>
+    </ul>
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;">Once the
+      switch happens, (Primary &amp; Standby swapped), the
+      functionalities
+      listed in (I) should take place properly</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"><br>
+        Result: </span></span><span style="font-family: Times New
+      Roman,Times,serif;">Even After a
+      switch (PRIMARY &lt;==&gt; STANDBY), there were no irregularities
+      in
+      the functionlity.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      The LASTCOUNT updation &amp; checking STANDBY server status were
+      properly done at the values (HBt &amp; FI) defined in the PRIMARY
+      tag.</span><br style="font-family: Times New Roman,Times,serif;">
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="font-weight: bold; color: rgb(51,
+      51, 255); font-family: Times New Roman,Times,serif;">(III) Once
+      the
+      Stanby server quits (Ctrl C or kill), PRIMARY should properly
+      deregister it (verfied from the BEFailOver table</span><span
+      style="font-family: Times New Roman,Times,serif;">.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"><br>
+        Result: </span></span><span style="font-family: Times New
+      Roman,Times,serif;">BEFailOver
+      table is properly updated when there is a proper exit of
+      STANDBY.Also
+      the PRIMARY deregistered itself.
+    </span>
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span
+        style="font-weight: bold;">(IV)</span>
+      Once </span><span style="font-weight: bold; color: rgb(51, 51,
+      255); font-family: Times New Roman,Times,serif;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+    </span><span style="color: rgb(51, 51, 255); font-family: Times New
+      Roman,Times,serif;">is set as </span><span style="font-weight:
+      bold; color: rgb(51, 51, 255); font-family: Times New
+      Roman,Times,serif;">true</span><span style="color: rgb(51, 51,
+      255); font-family: Times New Roman,Times,serif;">, the Failover
+      should be take place
+      properly after the FI &amp; the retries (if RETRY_COUNT is
+      specified)<br>
+    </span><span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"><br>
+        Result: </span></span><span style="font-family: Times New
+      Roman,Times,serif;">Once this
+      parameter is set, there were no unnecessary wait periods for the
+      Failover. The Failover took place at expected intervals.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      However the Failover process took longer times (~ 15 min) when
+      this
+      boolean is set to FALSE (or not defined)</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;"><a name="result"></a>The various cases
+      which were tested &amp; the corrsponding values for HBt &amp; FI
+      intervals of PRIMARY &amp; STANDBY servers are tabulated herewith:</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;"></span>
+    <table style="text-align: left; width: 1243px; height: 1308px;
+      font-family: Times New Roman,Times,serif;" border="1"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; font-weight: bold; text-align:
+            center;">S.No<br>
+          </td>
+          <td style="vertical-align: top; width: 25%; font-weight: bold;
+            text-align: center;"><span style="color: rgb(51, 51, 255);"></span>Test
+            Case<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold; text-align:
+            center;">Action
+            Taken<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold; text-align:
+            center;">Shutdown
+            of Primary through<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold; text-align:
+            center;">STANDBY
+            Server started at<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold; text-align:
+            center;">Expected
+            time<br>
+            of STANDBY<br>
+            startup<br>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">1<br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><span
+              style="color: rgb(51, 51, 255); font-weight: bold;">STANDBY's
+              FI &gt; </span><span style="color: rgb(51, 51, 255);
+              font-weight: bold;">PRIMARY's HBt </span><span
+              style="color: rgb(51, 51, 255);">&amp;</span><span
+              style="font-weight: bold; color: rgb(51, 51, 255);">PRIMARY's
+              FI</span><span style="font-weight: bold; color: rgb(51,
+              51, 255);"> &gt;</span><span style="font-weight: bold;
+              color: rgb(51, 51, 255);">
+              PRIMARY's FI</span><br>
+            <span style="color: rgb(51, 51, 255);"><small>RETRY_COUNT
+                = 1</small></span><br>
+            <small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt=10&nbsp;&nbsp; &nbsp; FI=15<br>
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=12&nbsp;&nbsp; &nbsp;&nbsp; FI=18<br>
+            </small><small style="color: rgb(255, 0, 0);"><span
+                style="font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                false</span></small><br>
+            <small style="color: rgb(51, 102, 255);"> <span
+                style="color: rgb(51, 204, 0); font-weight: bold;"></span>
+            </small></td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">Primary<br>
+            Shutdown<br>
+          </td>
+          <td style="vertical-align: top;">ShutDown.sh<br>
+            Ctrl C<br>
+            kill -9 <br>
+            Power off the machine<br>
+            unplugging network card </td>
+          <td style="vertical-align: top;">19 seconds<br>
+            26 seconds<br>
+            32, 35<br>
+            991 seconds<br>
+            144 seconds <a href="#BEFailOver"><sup>*</sup></a><br>
+            Primary Hangs!<br>
+          </td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">18 -
+            36
+            seconds<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(255, 0, 0); width:
+            25%;"><small style="color: rgb(51, 102, 255);"><span
+                style="color: rgb(51, 204, 0); font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                true</span></small></td>
+          <td style="vertical-align: top;">Power off the machine<br>
+            unplugging network card</td>
+          <td style="vertical-align: top;">36<br>
+            35</td>
+        </tr>
+        <tr>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">2<br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><span
+              style="color: rgb(51, 51, 255); font-weight: bold;">PRIMARY's
+              HBt =
+              STANDBY's FI<br>
+            </span><span style="font-weight: bold; color: rgb(51, 51,
+              255);"></span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt=<span style="font-weight: bold;">10</span>&nbsp;&nbsp;
+              &nbsp; FI=15<br>
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=12&nbsp;&nbsp; &nbsp;&nbsp; FI=<span
+                style="font-weight: bold;">10<br>
+              </span></small><span style="font-weight: bold; color:
+              rgb(51, 51, 255);"><small>RETRY_COUNT
+                = 1</small></span><br>
+            <small style="color: rgb(255, 0, 0);"><span
+                style="font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                false</span></small> </td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">Primary<br>
+            Shutdown<br>
+          </td>
+          <td style="vertical-align: top;">ShutDown.sh<br>
+            Ctrl C<br>
+            kill -9 <br>
+            Power off the machine<br>
+            unplugging network card<br>
+          </td>
+          <td style="vertical-align: top;">11<br>
+            13<br>
+            18, 20<br>
+            960<br>
+            946<br>
+          </td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">10 -
+            20
+            seconds<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; width: 25%;"><small
+              style="color: rgb(51, 102, 255);"><span style="color:
+                rgb(51, 204, 0); font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                true</span></small></td>
+          <td style="vertical-align: top;">Power off the machine<br>
+            unplugging network card</td>
+          <td style="vertical-align: top;">12<br>
+            19<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><span
+              style="color: rgb(51, 51, 255); font-weight: bold;"><span
+                style="color: rgb(255, 0, 0);">PRIMARY's HBt &gt;
+                STANDBY's FI</span><br>
+            </span><span style="font-weight: bold; color: rgb(51, 51,
+              255);"></span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt=<span style="font-weight: bold;">19</span> &nbsp;
+              &nbsp; FI=15<br>
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=12&nbsp;&nbsp; &nbsp;&nbsp; FI=<span
+                style="font-weight: bold;">10<br>
+              </span></small><span style="font-weight: bold; color:
+              rgb(51, 51, 255);"><small>RETRY_COUNT
+                = 1</small></span><br>
+          </td>
+          <td style="vertical-align: top;"><span style="color: rgb(255,
+              0, 0);">An inpportune</span><br style="color: rgb(255, 0,
+              0);">
+            <span style="color: rgb(255, 0, 0);">case testing. This </span><br
+              style="color: rgb(255, 0, 0);">
+            <span style="color: rgb(255, 0, 0);">should not be</span><br
+              style="color: rgb(255, 0, 0);">
+            <span style="color: rgb(255, 0, 0);">carried out</span><br>
+          </td>
+          <td style="vertical-align: top;">But as the RETRY_COUNT is
+            specified there were no issues &amp; both PRIMARY &amp;
+            STANDBY server
+            ran properly without any issues.<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><span
+              style="color: rgb(51, 51, 255); font-weight: bold;"><span
+                style="color: rgb(255, 0, 0);">PRIMARY's HBt &gt;
+                STANDBY's FI<br>
+              </span></span><span style="font-weight: bold; color:
+              rgb(51, 51, 255);"><small>RETRY_COUNT
+                = 1</small><br>
+            </span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt=<span style="font-weight: bold; color: rgb(255, 0,
+                0);">30</span>
+              &nbsp; &nbsp; FI=15<br>
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=12&nbsp;&nbsp; &nbsp;&nbsp; FI=<span
+                style="font-weight: bold; color: rgb(255, 0, 0);">10</span></small><br>
+          </td>
+          <td style="vertical-align: top;"><span style="color: rgb(255,
+              0, 0);">An inpportune</span><br style="color: rgb(255, 0,
+              0);">
+            <span style="color: rgb(255, 0, 0);">case testing. This </span><br
+              style="color: rgb(255, 0, 0);">
+            <span style="color: rgb(255, 0, 0);">should not be</span><br
+              style="color: rgb(255, 0, 0);">
+            <span style="color: rgb(255, 0, 0);">carried out</span></td>
+          <td style="vertical-align: top;">STANDBY server takes over
+            even
+            before PRIMARY Failed &amp; Primary Server is&nbsp; Shutdown
+            by Standby<br>
+            <br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><span
+              style="color: rgb(51, 51, 255); font-weight: bold;"><span
+                style="color: rgb(255, 0, 0);">PRIMARY's HBt &gt;
+                STANDBY's FI</span></span><span style="font-weight:
+              bold; color: rgb(51, 51, 255);"><br>
+            </span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt=<span style="font-weight: bold; color: rgb(255, 0,
+                0);">30</span>
+              &nbsp; &nbsp; FI=15<br>
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=12&nbsp;&nbsp; &nbsp;&nbsp; FI=<span
+                style="font-weight: bold; color: rgb(255, 0, 0);">10</span></small><span
+              style="color: rgb(51, 51, 255); font-weight: bold;"><span
+                style="color: rgb(255, 0, 0);"><br>
+              </span></span><span style="font-weight: bold; color:
+              rgb(51, 51, 255);"><small>RETRY_COUNT
+                = 3</small></span><br>
+          </td>
+          <td style="vertical-align: top; color: rgb(255, 0, 0);">Although
+the
+            lesser<br>
+            value of standby's<br>
+            FI is compensated<br>
+            by RETRY_COUNT,<br>
+            this should not be carried <br>
+            out<br>
+          </td>
+          <td style="vertical-align: top;">But as the RETRY_COUNT is
+            specified there were no issues &amp; both
+            PRIMARY &amp; STANDBY server ran properly without any
+            issues. </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; color: rgb(255, 0, 0); width:
+            25%;"><span style="font-weight: bold;">STANDBY's HBt =
+              PRIMARY's FI<br>
+            </span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt<span style="font-weight: bold;">=</span>10<span
+                style="font-weight: bold; color: rgb(255, 0, 0);"></span>
+              &nbsp;
+              &nbsp; FI=<span style="font-weight: bold; color: rgb(255,
+                0, 0);">15</span><br style="font-weight: bold; color:
+                rgb(255, 0, 0);">
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=<span style="color: rgb(255, 0, 0); font-weight:
+                bold;">15</span>
+              &nbsp; &nbsp;&nbsp; FI<span style="font-weight: bold;">=</span>18<br>
+              <span style="font-weight: bold;">RETRY_COUNT="1"<br>
+              </span></small><small style="color: rgb(255, 0, 0);"><span
+                style="font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                false</span></small></td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">Primary<br>
+            Shutdown </td>
+          <td style="vertical-align: top;">ShutDown.sh<br>
+            Ctrl C<br>
+            kill -9 <br>
+            Power off the machine<br>
+            unplugging network card </td>
+          <td style="vertical-align: top;">25<br>
+            18<br>
+            36<br>
+            83<br>
+            954 </td>
+          <td colspan="1" rowspan="2" style="vertical-align: top;">18 -
+            36<br>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; width: 25%;"><small
+              style="color: rgb(51, 102, 255);"><span style="color:
+                rgb(51, 204, 0); font-weight: bold;">DISABLE_RMI_LOOKUP_FOR_FAILOVER
+                true</span></small></td>
+          <td style="vertical-align: top;">Power off the machine<br>
+            unplugging network card</td>
+          <td style="vertical-align: top;">34<br>
+            35<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; color: rgb(255, 0, 0); width:
+            25%;"><span style="font-weight: bold;">STANDBY's HBt &gt;
+              PRIMARY's FI<br>
+            </span><small style="color: rgb(51, 102, 255);"><span
+                style="text-decoration: underline;">PRIMARY</span><br>
+              HBt<span style="font-weight: bold;">=</span>10<span
+                style="font-weight: bold; color: rgb(255, 0, 0);"></span>
+              &nbsp;
+              &nbsp; FI=<span style="font-weight: bold; color: rgb(255,
+                0, 0);">10</span><br style="font-weight: bold; color:
+                rgb(255, 0, 0);">
+              <span style="text-decoration: underline;">STANDBY</span><br>
+              HBt=<span style="color: rgb(255, 0, 0); font-weight:
+                bold;">25</span>
+              &nbsp; &nbsp;&nbsp; FI<span style="font-weight: bold;">=</span>18<br>
+            </small><small style="color: rgb(51, 102, 255);"><span
+                style="font-weight: bold;">RETRY_COUNT="1"</span></small><br>
+          </td>
+          <td style="vertical-align: top; color: rgb(255, 0, 0);">Inopportune
+case
+            again!<br>
+            <span style="font-weight: bold;"></span><span
+              style="font-weight: bold;"><br>
+            </span></td>
+          <td style="vertical-align: top;"><span style="font-weight:
+              bold;">But
+              the result is:</span><br>
+            Standby's entry get removed<br>
+            from the database.<br>
+            But still the scheduler is running <br>
+            &amp; STANDBY server is still running!<br>
+            When PRIMARY is shutdown, the following print :<br>
+            <span style="font-weight: bold;">Verifying connection with
+              web
+              server ...</span><br style="font-weight: bold;">
+            <span style="font-weight: bold;">No entries for this Server
+              in DB
+              as Primary<br>
+            </span>&amp; the server got shutdown properly<big><big><span
+                  style="font-weight: bold;"></span></big></big> </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;">Testing other parameters: -
+      BACKUP, INCLUDE / EXCLUDE, HOT_STANDBY_PROCESSES &amp;
+      SERVER_PARAMS:<br>
+      <br>
+      <span style="color: rgb(51, 51, 255);">(V) INCLUDE / EXCLUDE tag:</span><br>
+    </span><span style="font-family: Times New Roman,Times,serif;">The
+      backup of conf &amp; users directories should be
+      periodically (specified by BACKUP_INTERVAL) copied to the STANDBY
+      server.</span><span style="font-weight: bold; font-family: Times
+      New Roman,Times,serif;"><br>
+    </span><span style="font-family: Times New Roman,Times,serif;">The
+      directories / files included in INCLUDE tag should be copied
+      to the STANDBY server in the same directory structure.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      &nbsp;&nbsp;&nbsp; When the file / folder is not there for the
+      first
+      time &amp; if it is there in the next backup, it should be backed
+      up</span><br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      The folders / files listed in EXCLUDE tag should NOT be copied to
+      STANDBY server.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      Any changes in the files / directories listed in INCLUDE tag
+      should
+      reflect in the next Backup in the STANDBY server.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"><br>
+        Result: </span></span><span style="font-family: Times New
+      Roman,Times,serif;">Only those files included in the INCLUDE tag
+      were copied to the STANDBY server.</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      Files / Folders given in the EXCLUDE tag, were excluded when
+      taking
+      backup.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      The changes in the Files / Folders were reflected in the next
+      BACKUP
+      period in the STANDBY server.</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="font-weight: bold; font-family:
+      Times New Roman,Times,serif;"><span style="color: rgb(51, 51,
+        255);">(VI) </span><span style="color: rgb(51, 51, 255);">HOT_STANDBY
+        PROCESSES:</span><br>
+    </span><span style="font-family: Times New Roman,Times,serif;">The
+      processes specified in this tag should start once the
+      STANDBY process starts.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      Once the swap happens, these processes should still start when the
+      new
+      STANDBY server starts</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);"><br>
+        Result: </span></span><span style="font-family: Times New
+      Roman,Times,serif;">The Hot Standby Processes started once the
+      STANDBY server started up.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      Once the PRIMARY was down, the remaining processes started within
+      the
+      expected time</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <hr style="width: 100%; height: 2px; font-family: Times New
+      Roman,Times,serif;"><span style="font-weight: bold; font-family:
+      Times New Roman,Times,serif;"><span style="color: rgb(51, 51,
+        255);">(VII) </span></span><span style="font-weight: bold;
+      color: rgb(51, 51, 255); font-family: Times New
+      Roman,Times,serif;">SERVER_PARAMS</span><span style="color:
+      rgb(51, 51, 255); font-family: Times New Roman,Times,serif;">:</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      (Kindly read about the same in
+      &lt;NMS_HOME&gt;\default_impl\failover\README.html)</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      The testing of this tag will be done with the default
+      implementation
+      FailOverTransmitter.java</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; color: rgb(51, 51, 255);
+      font-family: Times New Roman,Times,serif;"><span style="color:
+        rgb(51, 204, 0);">Result:&nbsp; </span></span><span
+      style="font-family: Times New Roman,Times,serif;">For this
+      tag to take effect the HOT_STANDBY_PROCESSES tag is also to be
+      defined.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      Once this tag is properly configured, the method calls
+      (corresponding
+      to PRIMARY &amp; STANDBY servers) were properly made.</span><br>
+    <hr style="width: 100%; height: 2px;"><a style="font-family: Courier
+      New,Courier,monospace;" name="BEFailOver"></a><span
+      style="font-family: Courier New,Courier,monospace;">+-----------------+-----------+-----------------+-----------+------------+-------------------+</span><br
+      style="font-family: Courier New,Courier,monospace;">
+    <span style="font-family: Courier New,Courier,monospace;">
+      | HOSTADDRESS&nbsp;&nbsp;&nbsp;&nbsp; | NMSBEPORT |
+      RMIREGISTRYPORT |
+      LASTCOUNT | SERVERROLE | STANDBYSERVERNAME |</span><br
+      style="font-family: Courier New,Courier,monospace;">
+    <span style="font-family: Courier New,Courier,monospace;">
++-----------------+-----------+-----------------+-----------+------------+-------------------+</span><br
+      style="font-family: Courier New,Courier,monospace;">
+    <span style="font-family: Courier New,Courier,monospace;">
+      | 192.168.117.127 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2000
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1099
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 35 |
+      FAILED&nbsp;&nbsp;&nbsp;&nbsp; | 192.168.117.67&nbsp;&nbsp;&nbsp;
+      |</span><br style="font-family: Courier New,Courier,monospace;">
+    <span style="font-family: Courier New,Courier,monospace;">
+      | 192.168.117.67&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2000
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1099
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45 |
+      PRIMARY&nbsp;&nbsp;&nbsp; |
+NULL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      |</span><br style="font-family: Courier New,Courier,monospace;">
+    <span style="font-family: Courier New,Courier,monospace;">
++-----------------+-----------+-----------------+-----------+------------+-------------------+</span><br>
+    <span style="font-weight: bold;"></span><span style="font-weight:
+      bold;"></span><span style="font-weight: bold;"></span><span
+      style="font-weight: bold;"></span><span style="font-weight: bold;">
+    </span>
+  </body>
+</html>

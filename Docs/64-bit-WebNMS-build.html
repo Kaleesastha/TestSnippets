@@ -1,0 +1,1346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>64-bit-WebNMS-build</title>
+  </head>
+  <body>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;">
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;">
+        <div style="color: rgb(0, 0, 0); font-family:
+          Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+          font-style: normal; font-variant: normal; font-weight: normal;
+          letter-spacing: normal; line-height: normal; orphans: 2;
+          text-align: start; text-indent: 0px; text-transform: none;
+          white-space: normal; widows: 2; word-spacing: 0px;"><br>
+          <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+            Helvetica, sans-serif; font-size: 11px; font-style: normal;
+            font-variant: normal; font-weight: normal; letter-spacing:
+            normal; line-height: normal; orphans: auto; text-align:
+            start; text-indent: 0px; text-transform: none; white-space:
+            normal; widows: auto; word-spacing: 0px;
+            -webkit-text-stroke-width: 0px;"><font face="times new
+              roman, times, serif" size="3">Dear Team<br>
+            </font><br>
+            <font face="times new roman, times, serif" size="3">We had
+              got a&nbsp;<b style="font-style: italic;">5.2</b>&nbsp;(<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_with_lib_pgsql_jre.zip">Linux</a>&nbsp;/&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_WebNMS_with_64_bit_postgres_lib.zip">Windows</a>)<b
+                style="font-style: italic;">&nbsp;+&nbsp;<a
+                  href="http://www.webnms.com/webnms/servicepack5_2.html">5.2-sp1</a></b>&nbsp;build
+              (SP1 ppm&nbsp;<a
+href="http://www.webnms.com/webnms/help/installation_guide/installation_and_setup/installing_service_pack.html">applied</a>&nbsp;over
+              5.2) at&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18fjqi7531n85141l8p1oa01t0h0/5.2_sp1_for_atca_ipv6.zip">WebNMS
+                upload server</a>.</font><font face="times new roman,
+              times, serif" size="3"><br>
+              Please unzip the same and run the server.<br>
+            </font>
+            <hr size="2" width="100%"><font face="times new roman,
+              times, serif" size="3"><font face="times new roman, times,
+                serif" size="3">5.2 SP1 consolidated build for Linux is
+                at:&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18fjqi7531n85141l8p1oa01t0h0/5.2_sp1_for_atca_ipv6.zip">WebNMS
+                  upload server</a>. For Windows, the same is <a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18l5h9oonj0pb7i10ibdvj1f360/64_bit_5.2_SP1_Windows_with_64_bit_postgres_lib.zip">available
+                  here</a></font></font>
+            <div><font face="times new roman, times, serif" size="3">Please
+                follow the below steps to start this build.<br>
+                <br>
+              </font></div>
+            <div><font face="times new roman, times, serif" size="3">1.
+                Unzip this in a Linux machine and unzip&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p18fjrn4ukjh119kdo9519pupqa0/fresh_dat_files.zip">this
+                  zip</a>&nbsp;under NMS_HOME/classes.</font></div>
+            <div><font face="times new roman, times, serif" size="3">2.
+                Note down the JRE-6 /&nbsp;JRE-7 (preferably) directory
+                in your machine and configure the same in JAVA_HOME in
+                setEnv.sh</font></div>
+            <div><font face="times new roman, times, serif" size="3">3.
+                Start the server and choose evaluation mode.<br>
+              </font></div>
+            <div style="color: rgb(0, 0, 0); font-style: normal;
+              font-variant: normal; font-weight: normal; letter-spacing:
+              normal; line-height: normal; orphans: auto; text-align:
+              start; text-indent: 0px; text-transform: none;
+              white-space: normal; widows: auto; word-spacing: 0px;
+              -webkit-text-stroke-width: 0px; font-family: Arial,
+              Helvetica, sans-serif; font-size: 13px;">
+              <div><font face="times new roman, times, serif" size="3"><br>
+                  If you face any issues, please mail to WebNMS support
+                  about the same along with the logs and the below
+                  files.</font></div>
+              <div><font face="times new roman, times, serif" size="3">&nbsp;
+                  &nbsp; &nbsp; 1. files in NMS_HOME/lib directory</font></div>
+              <div><font face="times new roman, times, serif" size="3">&nbsp;
+                  &nbsp; &nbsp; 2. wrapper executable under NMS_HOME</font></div>
+              <div><font face="times new roman, times, serif" size="3">&nbsp;
+                  &nbsp; &nbsp; 3. NMS_HOME/conf/wrapper.conf file</font></div>
+              <div><font face="times new roman, times, serif" size="3">&nbsp;
+                  &nbsp; &nbsp; 4. NMS_HOME/logs</font></div>
+              <div><font face="times new roman, times, serif" size="3"><br>
+                </font></div>
+              <div><font face="times new roman, times, serif" size="3">These
+                  details will help us to analyze the issue.</font></div>
+            </div>
+            <br>
+            <font face="times new roman, times, serif" size="3">Please
+              get back to us for any further clarification in this
+              regard.</font><font face="times new roman, times, serif"
+              size="3"><br>
+              <br>
+              Thanks &amp; regards</font></div>
+          <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+            Helvetica, sans-serif; font-size: 11px; font-style: normal;
+            font-variant: normal; font-weight: normal; letter-spacing:
+            normal; line-height: normal; orphans: auto; text-align:
+            start; text-indent: 0px; text-transform: none; white-space:
+            normal; widows: auto; word-spacing: 0px;
+            -webkit-text-stroke-width: 0px;"><font face="times new
+              roman, times, serif" size="3">Venkatramanan</font></div>
+          <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+            Helvetica, sans-serif; font-size: 11px; font-style: normal;
+            font-variant: normal; font-weight: normal; letter-spacing:
+            normal; line-height: normal; orphans: auto; text-align:
+            start; text-indent: 0px; text-transform: none; white-space:
+            normal; widows: auto; word-spacing: 0px;
+            -webkit-text-stroke-width: 0px;">
+            <div style="font-family: Arial, Helvetica, sans-serif;
+              font-size: 13px;">
+              <blockquote style="border: 1px solid rgb(204, 204, 204);
+                padding: 7px; background-color: rgb(245, 245, 245);">
+                <div><font size="3"><i><font face="times new roman,
+                        times, serif"><br
+                          class="Apple-interchange-newline">
+                        P.S. If you face any issues, please let us
+                        know&nbsp;&nbsp;</font><font face="times new
+                        roman, times, serif">what files have been
+                        changed &amp;&nbsp;&nbsp;the changes in the
+                        configuration files.&nbsp;<br>
+                        Describe the details of&nbsp;&nbsp;the error you
+                        are facing.&nbsp;Attach the snapshot of the
+                        error and the message that gets logged in the
+                        client's&nbsp;&nbsp;<a
+                          href="https://nmskbase.wiki.zoho.com/_attach/1.1/Java_console.JPG">Java
+                          console&nbsp;</a>.&nbsp;<br>
+                        <br>
+                        <span style="background-color: rgb(204, 204,
+                          204);">Have you tried&nbsp;&nbsp;<a
+                            href="http://kbase.webnms.com/kbasenmssearch.jsp">WebNMS
+                            KBase&nbsp;</a>&nbsp;/&nbsp;&nbsp;<a
+                            href="https://nmskbase.wiki.zoho.com/siteindex.zhtml">wiki&nbsp;</a>?
+                          |&nbsp;Join our&nbsp;&nbsp;<a
+                            href="https://forums.webnms.com/webnms-framework">Developer
+                            Community&nbsp;</a>&nbsp;|&nbsp;Still facing
+                          issues?&nbsp;&nbsp;</span></font></i><span
+                      style="background-color: rgb(204, 204, 204);"><font
+                        face="times new roman, times, serif"><i>Execute&nbsp;&nbsp;<a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger&nbsp;</a>&nbsp;&amp;
+                          upload your logs to our&nbsp;&nbsp;<a
+                            href="http://bonitas2.zohocorp.com/">upload
+                            server</a></i></font></span></font></div>
+                <div><font face="times new roman, times, serif" size="3"><span
+                      style="background-color: rgb(204, 204, 204);"></span></font></div>
+              </blockquote>
+            </div>
+          </div>
+          <hr size="2" width="100%"><font face="times new roman, times,
+            serif" size="3"><br>
+            Dear Chris<br>
+            <br>
+            We will answer your other questions tomorrow.</font></div>
+        <div style="color: rgb(0, 0, 0); font-family:
+          Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+          font-style: normal; font-variant: normal; font-weight: normal;
+          letter-spacing: normal; line-height: normal; orphans: 2;
+          text-align: start; text-indent: 0px; text-transform: none;
+          white-space: normal; widows: 2; word-spacing: 0px;"><font
+            style="background-color: rgb(255, 255, 255);" face="times
+            new roman, times, serif" size="3"><br>
+            The 5.2 (equivalent to 5.0 SP1) builds for Japanese Windows
+            OS are uploaded at the following locations:<br>
+            <div style="font-size: 16px;"><br>
+              With featurepack (<a
+                href="http://www.webnms.com/webnms/application-monitoring.html">Appln
+
+
+                monitoring</a><span class="Apple-converted-space">&nbsp;</span>&amp;<span
+                class="Apple-converted-space">&nbsp;</span><a
+                href="http://www.webnms.com/webnms/syslog-monitoring.html">Syslog</a>)
+              :&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese_with_Featurepack.zip">http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese_with_Featurepack.zip</a></div>
+            <div style="font-size: 16px;">5.2 without featurepack:&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese.zip">http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese.zip</a><br>
+            </div>
+            <div style="font-size: 11px; font-family:
+              Verdana,arial,Helvetica,sans-serif;"><font face="times new
+                roman, times, serif" size="3">Japanese Website of
+                WebNMS:<span class="Apple-converted-space">&nbsp;</span><a
+                  href="http://www.webnms.jp/webnms/">http://www.webnms.jp/webnms/</a><br>
+                <br>
+              </font>
+              <div style="font-family:
+                verdana,arial,helvetica,sans-serif;"><font face="times
+                  new roman, times, serif" size="3">
+                  <div style="font-size: 16px;">
+                    <div style="font-size: 11px; font-family:
+                      verdana,arial,helvetica,sans-serif;"><font
+                        face="times new roman, times, serif" size="3">
+                        <div style="font-size: 16px;">If you face any
+                          issues, please mail to WebNMS support about
+                          the same along with the logs and the below
+                          files.</div>
+                      </font></div>
+                  </div>
+                </font>
+                <div style="font-size: medium; font-family: 'times new
+                  roman',times,serif;">
+                  <div style="font-size: 11px; font-family:
+                    verdana,arial,helvetica,sans-serif;">
+                    <div style="font-size: medium; font-family: 'times
+                      new roman',times,serif;">&nbsp; &nbsp; &nbsp; 1.
+                      files in&nbsp;NMS_HOME/lib directory</div>
+                    <div style="font-size: medium; font-family: 'times
+                      new roman',times,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.
+wrapper
+
+
+                      executable under NMS_HOME</div>
+                    <div style="font-size: medium; font-family: 'times
+                      new roman',times,serif;">&nbsp; &nbsp; &nbsp;
+                      3.&nbsp;NMS_HOME/conf/wrapper.conf file<br>
+                    </div>
+                  </div>
+                  <div style="font-size: 16px;">&nbsp; &nbsp; &nbsp; 4.
+                    NMS_HOME/logs</div>
+                  <div style="font-size: 16px;"><br>
+                    These details will help us to analyze the issue.<br>
+                    <br>
+                    Thanks &amp; regards<br>
+                    Venkatramanan</div>
+                </div>
+              </div>
+            </div>
+          </font></div>
+        <font face="times new roman, times, serif" size="3"></font>
+        <hr style="width: 100%; height: 2px;"><font face="times new
+          roman, times, serif" size="3">Dear Ravi<br>
+          <br>
+          As of now, We do not have 64-bit installation for WebNMS 5.2
+          (Though we have it for 5.0)<br>
+          <br>
+          Hence we had created &amp; uploaded 5.2 for 64-bit OS as zip
+          in the following locations:<br>
+          <div>Linux :&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_with_lib_pgsql_jre.zip"
+              target="_blank">http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_with_lib_pgsql_jre.zip</a></div>
+          <div>Windows :&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_WebNMS_with_64_bit_postgres_lib.zip"
+              target="_blank">http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_WebNMS_with_64_bit_postgres_lib.zip</a><br>
+            <font><font face="times new roman, times, serif" size="3">(32-bit<span
+                  class="Apple-converted-space">&nbsp;</span><i><b><u>binaries</u></b></i><span
+                  class="Apple-converted-space">&nbsp;</span>can be
+                downloaded from the<span class="Apple-converted-space">&nbsp;</span><a
+href="http://www.webnms.com/webnms/download-professional.html"
+                  target="_blank">download page</a>).<br>
+              </font></font><font face="times new roman, times, serif"
+              size="3"><br>
+              If you need NMS tutorials, please download the
+              All-Tutorials zip&nbsp;from the<span
+                class="Apple-converted-space">&nbsp;</span><a
+                href="http://www.webnms.com/webnms/tutorials.html"
+                target="_blank">WebNMS site</a><span
+                class="Apple-converted-space">&nbsp;</span>(</font><a
+              href="http://www.webnms.com/webnms/all_tutorials.zip"
+              target="_blank" style="font-family: 'times new roman',
+              times, serif; font-size: medium;">direct download link</a><span
+              style="font-family: 'times new roman', times, serif;
+              font-size: medium;">) and unzip the same under NMS_HOME.</span>
+            <div style="color: rgb(0, 0, 0); font-family: Arial,
+              Helvetica, sans-serif; font-size: 13px; font-style:
+              normal; font-variant: normal; font-weight: normal;
+              letter-spacing: normal; line-height: normal; orphans:
+              auto; text-align: start; text-indent: 0px; text-transform:
+              none; white-space: normal; widows: auto; word-spacing:
+              0px; -webkit-text-size-adjust: auto;
+              -webkit-text-stroke-width: 0px;"><font face="times new
+                roman, times, serif" size="3">This has all the files
+                &amp; jars required to work with NMS tutorials.</font></div>
+            <br>
+          </div>
+        </font>
+        <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+          font-size: 11px;"><span style="font-family: 'times new
+            roman',times,serif; font-size: medium;">Download them and
+            you can use the same.&nbsp;</span><span style="font-family:
+            'times new roman',times,serif; font-size: medium;">If you
+            face any issues, please mail to WebNMS support about the
+            same along with the logs and the below files.</span></div>
+        <div style="font-family: 'times new roman',times,serif;
+          font-size: medium;">
+          <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+            font-size: 11px;">
+            <div style="font-family: 'times new roman',times,serif;
+              font-size: medium;">&nbsp; &nbsp; &nbsp; 1. files
+              in&nbsp;NMS_HOME/lib directory</div>
+            <div style="font-family: 'times new roman',times,serif;
+              font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.
+              wrapper executable under NMS_HOME</div>
+            <div style="font-family: 'times new roman',times,serif;
+              font-size: medium;">&nbsp; &nbsp; &nbsp;
+              3.&nbsp;NMS_HOME/conf/wrapper.conf file<br>
+            </div>
+          </div>
+          <div>&nbsp; &nbsp; &nbsp; 4. NMS_HOME/logs</div>
+          <div><br>
+            These details will help us to analyze the issue.<br>
+            <br>
+            Thanks &amp; regards<br>
+            Venkatramanan
+            <hr style="width: 100%; height: 2px;">Now we had applied
+            featurepack PPMs over 5.2 and modified the postgres schema
+            so that the build properly runs in postgres database.<br>
+            <div style="color: black; font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3">The links are as follows:</font></div>
+            <div style="color: black; font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3"><br>
+              </font></div>
+            <div style="color: rgb(0, 0, 0); font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3">
+                <div>Windows :<span class="Apple-converted-space">&nbsp;</span><a
+href="https://bonitas.zohocorp.com/232530/webnms4/06Feb2013/5.2_with_featurepack_modified_for_postgres.zip">https://bonitas.zohocorp.com/232530/webnms4/06Feb2013/5.2_with_featurepack_modified_for_postgres.zip</a></div>
+                <div>Linux &nbsp; :<span class="Apple-converted-space">&nbsp;</span><a
+href="https://bonitas.zohocorp.com/232530/webnms4/06Feb2013/5.2_Linux_with_featurepack_modified_for_postgres.zip">https://bonitas.zohocorp.com/232530/webnms4/06Feb2013/5.2_Linux_with_featurepack_modified_for_postgres.zip</a></div>
+                <div style="color: black; font-family:
+                  Verdana,Arial,Helvetica,sans-serif; font-size: 11px;"><br>
+                </div>
+              </font></div>
+            <div style="color: black; font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3">Please note that the links are only for
+                64-bit OS.<br>
+                In addition, note that we claim featurepack support
+                officially for only 3 databases - MySQL, Oralce &amp;
+                Sybase.<br>
+                But with the above build, we verified that the server
+                &amp; client got connected in postgres without any
+                issues.</font></div>
+            <div style="color: black; font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3"><br>
+                Hence if you face any issues in this build, please
+                provide us as much details as you can (along with logs
+                &amp; conf files) so that we can analyze the same.</font></div>
+            <div style="color: black; font-family:
+              Verdana,Arial,Helvetica,sans-serif; font-size: 11px;
+              font-style: normal; font-variant: normal; font-weight:
+              normal; letter-spacing: normal; line-height: normal;
+              orphans: 2; text-align: start; text-indent: 0px;
+              text-transform: none; white-space: normal; widows: 2;
+              word-spacing: 0px;"><font face="times new roman, times,
+                serif" size="3">Based on the issue, we will fix them in
+                a piecewise fashion.<br>
+              </font>
+              <hr style="width: 100%; height: 2px;"><br>
+            </div>
+          </div>
+        </div>
+        <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+          font-size: 11px;"><font face="'times new roman', times, serif"
+            size="3"><br>
+          </font></div>
+      </div>
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;"><font
+          face="times new roman, times, serif" size="3">&lt;Ravikumar&gt;
+
+
+          wrote--------------</font></div>
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;"><font
+          face="times new roman, times, serif" size="3">Hi</font></div>
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;"><span
+          style="font-family: 'times new roman',times,serif; font-size:
+          medium;"><br>
+          Can you provide the 64 bit windows &amp; linux version of
+          webnms 5.2?</span></div>
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;"><span
+          style="font-family: 'times new roman',times,serif; font-size:
+          medium;"><br>
+          Thanks,</span></div>
+      <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-family: Verdana; font-size: 12px;"><font
+          face="times new roman, times, serif" size="3">Ravi</font>
+        <hr style="width: 100%; height: 2px;"></div>
+      <br>
+      <font face="times new roman, times, serif" size="3">Dear Ravi<br>
+        <br>
+        As of now, We do not have 64-bit installation for WebNMS 5.2
+        (Though we have it for 5.0)<br>
+      </font>
+      <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size: 11px;"><font face="'times new roman', times, serif"
+          size="3">Please follow the below procedure to convert your
+          32-bit installation into 64-bit ones.<br>
+          (Once you did this in a Windows/ Linux machine, you can zip it
+          and you can unzip it as &amp; when you need)<br>
+        </font><span style="font-family: 'times new roman',times,serif;
+          font-size: medium;"><br>
+          1. Download&nbsp;</span><span style="font-family: 'times new
+          roman',times,serif; font-size: medium;">Postgres-64-bit
+          database &amp;&nbsp;</span><span style="font-family: 'times
+          new roman',times,serif; font-size: medium;">64-bit&nbsp;</span><span
+          style="font-family: 'times new roman',times,serif; font-size:
+          medium;">JRE</span><span style="font-family: 'times new
+          roman',times,serif; font-size: medium;">&nbsp;from the below
+          links:</span></div>
+      <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size: 11px;"><font face="'times new roman', times, serif"
+          size="3">
+          <div><br>
+            <a
+href="http://get.enterprisedb.com/postgresql/postgresql-9.1.4-1-windows-x64-binaries.zip">http://get.enterprisedb.com/postgresql/postgresql-9.1.4-1-windows-x64-binaries.zip</a>&nbsp;-
+
+
+            Pgsql 64-bit-Windows&nbsp;</div>
+          <div><a
+href="http://get.enterprisedb.com/postgresql/postgresql-9.1.3-1-linux-x64-binaries.tar.gz">http://get.enterprisedb.com/postgresql/postgresql-9.1.3-1-linux-x64-binaries.tar.gz</a>&nbsp;-&nbsp;64-bit-Linux</div>
+          <div><br>
+            JRE :&nbsp;<a
+href="http://www.oracle.com/technetwork/java/javase/downloads/jre6u35-downloads-1836473.html"
+              target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/jre6u35-downloads-1836473.html</a><br>
+            <br>
+          </div>
+          <div>2. Rename the existing pgsql directory (under NMS_HOME)
+            to&nbsp;<b>32-bit-pgsql</b></div>
+          <div>3. Create a new directory&nbsp;<b><i>pgsql</i></b>&nbsp;under
+
+
+            NMS_HOME</div>
+          <div>4. Unzip the above zip into this directory</div>
+          <div>5. Unzip&nbsp;<a
+href="https://nmskbase.wiki.zoho.com/_attach/1.0/postgres-files-for-webnms.zip">this
+
+
+              zip</a>&nbsp;under&nbsp;NMS_HOME/<b><i>pgsql</i></b>&nbsp;<br>
+            6. Run the&nbsp;NMS_HOME/pgsql/<b>initdb</b>&nbsp;script and
+            ensure that&nbsp;NMS_HOME/pgsql /data gets created.</div>
+          <div>7. Now start the server.<br>
+          </div>
+          <div>8.&nbsp;Ensure to have 64-bit JRE configured in setEnv.sh</div>
+          <div>9. Ensure that you have the following files as 64-bit
+            ones<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. files
+            in&nbsp;NMS_HOME/lib directory</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. wrapper executable
+            under NMS_HOME</div>
+          <div>&nbsp; &nbsp; &nbsp; 3.&nbsp;NMS_HOME/conf/wrapper.conf
+            file<br>
+            If you do not have them, you can download the same
+            from&nbsp;<a
+href="https://nmskbase.wiki.zoho.com/_attach/1.0/32-64-bit-lib-files-for-windows-linux.zip">WebNMS
+
+
+              Wiki</a>.<br>
+            <br>
+          </div>
+        </font></div>
+      <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size: 11px;"><font face="'times new roman', times, serif"
+          size="3">10. Now restart the server. If you face any issues,
+          please mail to WebNMS support about the same along with the
+          logs and the below files.</font></div>
+      <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size: 11px;">
+        <div style="font-family: 'times new roman',times,serif;
+          font-size: medium;">&nbsp; &nbsp; &nbsp; 1. files
+          in&nbsp;NMS_HOME/lib directory</div>
+        <div style="font-family: 'times new roman',times,serif;
+          font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.
+          wrapper executable under NMS_HOME</div>
+        <div style="font-family: 'times new roman',times,serif;
+          font-size: medium;">&nbsp; &nbsp; &nbsp;
+          3.&nbsp;NMS_HOME/conf/wrapper.conf file<br>
+        </div>
+      </div>
+      <div style="font-family: 'times new roman',times,serif; font-size:
+        medium;">&nbsp; &nbsp; &nbsp; 4. NMS_HOME/logs</div>
+      <div style="font-family: 'times new roman',times,serif; font-size:
+        medium;"><br>
+        These details will help us to analyze the issue.<br>
+        <br>
+        Thanks &amp; regards<br>
+        Venkatramanan</div>
+      <div style="font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size: 11px;"><font face="'times new roman', times, serif"
+          size="3"><br>
+        </font></div>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><font face="times new roman, times,
+        serif" size="3">&lt;Ravikumar&gt; wrote--------------</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><font face="times new roman, times,
+        serif" size="3">Hi</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><span style="font-family: 'times
+        new roman',times,serif; font-size: medium;"><br>
+        Can you provide the 64 bit windows &amp; linux version of webnms
+        5.2?</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><span style="font-family: 'times
+        new roman',times,serif; font-size: medium;"><br>
+        Thanks,</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana; font-size:
+      12px; font-style: normal; font-variant: normal; font-weight:
+      normal; letter-spacing: normal; line-height: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px;"><font face="times new roman, times,
+        serif" size="3">Ravi</font></div>
+    <br>
+    <font style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: 2; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      background-color: rgb(255, 255, 255);" face="'times new roman',
+      times, serif" size="3"><br>
+    </font>
+    <hr style="width: 100%; height: 2px;"><br>
+    <font style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: 2; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      background-color: rgb(255, 255, 255);" face="'times new roman',
+      times, serif" size="3">WebNMS 5.0 (for 32-bit) can be downloaded
+      from the following links:<br>
+    </font>
+    <div style="color: rgb(0, 0, 0); font-weight: normal; font-size:
+      13px; font-family: arial,helvetica,sans-serif; font-style: normal;
+      font-variant: normal; letter-spacing: normal; line-height: normal;
+      orphans: 2; text-indent: 0px; text-transform: none; white-space:
+      normal; widows: 2; word-spacing: 0px; background-color: rgb(255,
+      255, 255);"><font face="'times new roman', times, serif" size="3"><a
+href="http://archives.manageengine.com/webnms/5.0GA/AdventNet_WebNMS_5_Linux.bin"
+          target="_blank" style="color: rgb(89, 143, 222); font-weight:
+          normal; font-size: 16px; text-decoration: underline;
+          outline-style: none;">Linux</a>&nbsp;/ <a
+href="http://archives.manageengine.com/webnms/5.0GA/AdventNet_WebNMS_5_Solaris.bin"
+          target="_blank" style="color: rgb(89, 143, 222); font-weight:
+          normal; font-size: 16px; text-decoration: underline;
+          outline-style: none;">Solaris</a> / <a
+href="http://archives.manageengine.com/webnms/5.0GA/AdventNet_WebNMS_5_Windows.exe"
+          target="_blank" style="color: rgb(89, 143, 222); font-weight:
+          normal; font-size: 16px; text-decoration: underline;
+          outline-style: none;">Windows</a><br>
+        <br>
+      </font></div>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3">To run WebNMS in
+        64-bit OS, we do have a separate builds (<a
+href="http://bonitas.zohocorp.com/patches/webnms5/19Mar2010/AdventNet_WebNMS_5_Windows_64.zip">Windows</a>,
+        <a
+href="http://bonitas.zohocorp.com/patches/webnms5/19Mar2010/AdventNet_WebNMS_5_Linux_64.bin">Linux</a>
+        &amp; </font><span style="color: rgb(0, 0, 0); font-family:
+        'times new roman',times,serif; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px; font-size: medium; display: inline !
+        important; float: none;"><a
+href="http://bonitas.zohocorp.com/webnms4/18Jun2011/AdventNet_WebNMS_5_Solaris_x86_64.bin">Solaris</a>)
+      </span><font face="'times new roman', times, serif" size="3">which
+        you can unzip / install.</font></div>
+    <font face="'times new roman', times, serif" size="3"><font
+        style="color: black; background-color: rgb(255, 255, 255);">Alternatively,&nbsp;when
+you
+unzip
+the
+below
+zip
+(&amp;
+use
+the
+
+
+        corresponding 64-bit MySQL &amp; jre), you can run a 32-bit
+        Windows installation in a 64-bit Windows OS.</font></font>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3"><a
+          href="https://nmskbase.wiki.zoho.com/_attach/1.1/64-bit-wrapper.zip">https://nmskbase.wiki.zoho.com/_attach/1.1/64-bit-wrapper.zip</a></font></div>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3"><br>
+        <font>Once you install / unzip the corresponding file for your
+          OS, download&nbsp;</font><b>the service pack 5.0 SP1</b><font>&nbsp;(</font><a
+          href="http://www.webnms.com/webnms/servicepack_5.html">available
+
+
+          in from this page</a><font>) and&nbsp;</font><a
+href="http://www.webnms.com/webnms/help/installation_guide/installation_and_setup/installing_service_pack.html">install
+
+
+          the same</a><font>&nbsp;over WebNMS 5.0</font><br>
+        <font>You can refer the&nbsp;</font><a
+          href="http://www.webnms.com/webnms/help/release_notes">release
+          notes</a><font>&nbsp;too (</font><a
+          href="http://www.webnms.com/webnms/webnms5_help_releasenotes.zip">zip
+
+
+          available</a><font>)</font><br>
+      </font>
+      <div style="color: rgb(0, 0, 0); font-family:
+        Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-style:
+        normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: normal; orphans: 2;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: 2; word-spacing: 0px;">
+        <div style="font-family: 'Times New Roman'; font-size: medium;
+          background-color: rgb(255, 255, 255);"><font face="'times new
+            roman', times, serif" size="3"><br>
+            To run WebNMS in 64-bit OS, we do have a separate builds (<a
+href="http://bonitas.zohocorp.com/patches/webnms5/19Mar2010/AdventNet_WebNMS_5_Windows_64.zip">Windows</a>,&nbsp;<a
+href="http://bonitas.zohocorp.com/patches/webnms5/19Mar2010/AdventNet_WebNMS_5_Linux_64.bin">Linux</a>&nbsp;&amp;&nbsp;</font><span
+            style="font-family: 'times new roman',times,serif;"><a
+href="http://bonitas.zohocorp.com/webnms4/18Jun2011/AdventNet_WebNMS_5_Solaris_x86_64.bin">Solaris</a>)&nbsp;</span><font
+            face="'times new roman', times, serif" size="3">which you
+            can unzip / install.</font></div>
+        <font face="'times new roman', times, serif" size="3">For your
+          ease of use, we have got all the library files for</font><font
+          face="'times new roman', times, serif" size="3">&nbsp;32-bit
+          &amp; 64-bit (Linux &amp; Windows) and for Sparc Solaris
+          as&nbsp;<a
+            href="https://nmskbase.wiki.zoho.com/_attach/1.0/webnms-lib.zip">a
+            zip at our wiki</a>.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family:
+        Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-style:
+        normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: normal; orphans: 2;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: 2; word-spacing: 0px;">
+        <div><font style="font-size: medium;" size="3"><font
+              style="background-color: rgb(255, 255, 255);"><font
+                face="'times new roman', times, serif">You can use a
+                32-bit installation replacing the library files from the
+                above zip (&amp; use the corresponding 64-bit MySQL
+                &amp; jre), to run the product in the corresponding
+                64-bit OS</font><font face="'Times New Roman'">.</font></font></font></div>
+        <div><span style="font-family: 'times new roman',times,serif;
+            font-size: medium;">Please go through the same (You can
+            bundle them as you require in your product).</span></div>
+      </div>
+      <div style="color: rgb(0, 0, 0); font-family:
+        Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-style:
+        normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: normal; orphans: 2;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: 2; word-spacing: 0px;"><font face="'times new roman',
+          times, serif" size="3"><br>
+        </font></div>
+      <br>
+      <font face="'times new roman', times, serif" size="3"><font>We
+          believe this will help you to achieve your requirement.</font><br>
+        <font>If you face any issues, please get back to us with the
+          following files:</font><br>
+        <br>
+        1. zip of lib $NMS_HOME/directory</font></div>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3">2. startnms.bat</font></div>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3">3. Logs in the
+        startup Console as well as log files in NMS_HOME/logs</font></div>
+    <div style="color: black; background-color: rgb(255, 255, 255);"><font
+        face="'times new roman', times, serif" size="3"><font>4. Details
+          w.r.t how the server is started - using startnms.bat /
+          $NMS_HOME/&nbsp;</font><a
+href="http://www.webnms.com/webnms/help/installation_guide/startup_options/startingfrom_nmstoolkit.html">WebNMSLauncher.bat</a><font>&nbsp;/&nbsp;</font><a
+href="http://www.webnms.com/webnms/help/installation_guide/installation_and_setup/ntservice.html">Wrapper
+
+
+          service</a><font>.</font><br>
+        <br>
+      </font></div>
+    <div style="background-color: rgb(255, 255, 255);"><font
+        style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px;" face="'times new roman', times, serif"
+        size="3"><font style="color: black;">Thanks &amp; regards<br>
+          Venkatramanan</font><br>
+      </font>
+      <hr style="color: black; font-family:
+        Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-style:
+        normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: normal; orphans: 2;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: 2; word-spacing: 0px; width: 1262px; height: 2px;"><font
+        style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: 2; text-indent: 0px;
+        text-transform: none; white-space: normal; widows: 2;
+        word-spacing: 0px;" face="'times new roman', times, serif"
+        size="3"><font style="color: black;"><span style="font-style:
+            italic;">P.S. If you face any issue, please let us
+            know&nbsp;</span></font><font style="color: black;
+          font-style: italic;">what files have been changed &amp;&nbsp;</font><font
+          style="color: black; font-style: italic;">the changes in the
+          configuration files.<br>
+        </font><font style="color: black; font-style: italic;">Describe
+          the details of&nbsp;</font><font style="color: black;
+          font-style: italic;">the error you are facing.<br>
+          Attach the snapshot of the error and the message that gets
+          logged in the client's&nbsp;<a
+            href="https://nmskbase.wiki.zoho.com/_attach/1.1/Java_console.JPG">Java
+
+
+            console</a>.<br>
+        </font><font style="color: black; font-style: italic;"><br>
+          In addition, please execute the $NMS_HOME/bin/<a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger</a>&nbsp;tool
+
+
+          (Give&nbsp;<span style="font-weight: bold;">NO option</span>&nbsp;when
+asked
+
+
+          for) &amp; attach or upload your logs to our&nbsp;<a
+href="mailto:http://bonitas.zohocorp.com/upload/index.jsp?to=nms-support@webnms.com">upload
+
+
+            server</a></font><font style="color: black; font-style:
+          italic;"><br>
+        </font><font style="color: black; font-style: italic;">These
+          details will help us to analyze the issue.<br>
+        </font><font style="color: black; font-style: italic;"><br>
+        </font><font class="Apple-style-span" style="color: black;
+          font-style: italic;">Have you tried&nbsp;<a
+            href="http://kbase.webnms.com/kbasenmssearch.jsp">WebNMS
+            KBase</a>? |&nbsp;Join our&nbsp;<a
+            href="https://forums.webnms.com/webnms-framework">Developer
+            Community</a>&nbsp;|&nbsp;Still facing issues?&nbsp;</font><font
+          style="color: black; font-style: italic;">Execute&nbsp;<a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger</a>&nbsp;&amp;
+
+
+          upload your logs to our&nbsp;<a
+href="mailto:http://bonitas.zohocorp.com/upload/index.jsp?to=nms-support@webnms.com">upload
+
+
+            server</a><br>
+        </font></font>
+      <hr style="color: black; font-family:
+        Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-style:
+        normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: normal; orphans: 2;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: 2; word-spacing: 0px; width: 1262px; height: 2px;"><br>
+      <meta http-equiv="content-type" content="text/html;
+        charset=windows-1252">
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">Dear
+          Team</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;">
+        <div><font face="times new roman, times, serif" size="3"><br>
+          </font></div>
+        <div><font face="times new roman, times, serif" size="3">The 5.2
+            builds for Japanese Windows OS are uploaded at the following
+            locations:<br>
+          </font>
+          <div><font size="3">
+              <div style="font-family: 'times new roman', times, serif;"><br>
+                With application &amp; syslog monitoring
+                featurepack:&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese_with_Featurepack.zip">http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese_with_Featurepack.zip</a><br>
+                5.2 with syslog patch alone :<span
+                  class="Apple-converted-space">&nbsp;</span><a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p186gu7ue317mm1q0j1h1e2b316ct0/5.2_fresh_Japanese_build_windows_with_syslog.zip">http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p186gu7ue317mm1q0j1h1e2b316ct0/5.2_fresh_Japanese_build_windows_with_syslog.zip</a><br>
+                5.2 without featurepack:&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese.zip">http://bonitas.zohocorp.com/232530/webnms4/13Feb2013/WebNMS_5.2_Japanese.zip</a></div>
+              <div><font face="times new roman, times, serif"><br>
+                  (You can apply 5.2 SP1 over these installations.</font><br>
+                <font face="times new roman, times, serif">Ensure that
+                  in<span class="Apple-converted-space">&nbsp;</span><b>conf/update_conf.xml</b>,
+                  you see the following entry:&nbsp;</font><font
+                  color="#3333ff" face="courier new, courier, monospace"><small>&lt;property
+
+                    name="ProductVersion" value="<u><b
+                        style="background-color: rgb(254, 255, 51);">5.2</b></u>"/&gt;</small></font><font
+                  face="times new roman, times, serif">)</font><br>
+                <br>
+              </div>
+            </font>
+            <div><font face="times new roman, times, serif" size="3">Since
+
+                we do not have a Linux OS in Japanese, we had not
+                created the build for Linux.<br>
+                If you need them, you can create them as per the
+                procedure you mentioned in mail</font></div>
+          </div>
+          <font face="times new roman, times, serif" size="3"><br>
+            For English OS:</font>
+          <hr><font face="times new roman, times, serif" size="3">5.2
+            SP1 for Linux is at:&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18fjqi7531n85141l8p1oa01t0h0/5.2_sp1_for_atca_ipv6.zip">WebNMS
+
+              upload server</a>.<span class="Apple-converted-space">&nbsp;</span><br>
+          </font>
+          <div>
+            <div><font face="times new roman, times, serif" size="3">5.2
+                SP1 for windows at:<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18l5h9oonj0pb7i10ibdvj1f360/64_bit_5.2_SP1_Windows_with_64_bit_postgres_lib.zip">http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18l5h9oonj0pb7i10ibdvj1f360/64_bit_5.2_SP1_Windows_with_64_bit_postgres_lib.zip</a><i><a
+href="http://uploads.zohocorp.com/Internal_Useruploads/dnd/Web_NMS/p18l5h9oonj0pb7i10ibdvj1f360/64_bit_5.2_SP1_Windows_with_64_bit_postgres_lib.zip"><br>
+                  </a></i><font face="times new roman, times, serif"
+                  size="3"><br>
+                  (Note that 5.2 for 64-bit</font><font face="times new
+                  roman, times, serif" size="3"><font face="times new
+                    roman, times, serif" size="3"><span
+                      class="Apple-converted-space">&nbsp;</span>is also
+                    available</font></font><span
+                  class="Apple-converted-space">&nbsp;</span><font
+                  face="times new roman, times, serif" size="3"><font
+                    face="times new roman, times, serif" size="3"><font
+                      face="times new roman, times, serif" size="3"><font
+                        face="times new roman, times, serif" size="3">(<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_with_lib_pgsql_jre.zip">Linux</a>&nbsp;/&nbsp;<a
+href="http://bonitas.zohocorp.com/232530/webnms4/28Sep2012/64_bit_5.2_WebNMS_with_64_bit_postgres_lib.zip">Windows</a>).<br>
+                      </font></font></font></font><font face="times new
+                  roman, times, serif" size="3"><font face="times new
+                    roman, times, serif" size="3"><font face="times new
+                      roman, times, serif" size="3"><font face="times
+                        new roman, times, serif" size="3"><font
+                          face="times new roman, times, serif" size="3">The
+
+                          above zips are<span
+                            class="Apple-converted-space">&nbsp;</span><b
+                            style="font-style: italic;">5.2</b><b
+                            style="font-style: italic;">+&nbsp;<a
+                              href="http://www.webnms.com/webnms/servicepack5_2.html">5.2-sp1</a></b>&nbsp;build
+
+                          : SP1 ppm&nbsp;<a
+href="http://www.webnms.com/webnms/help/installation_guide/installation_and_setup/installing_service_pack.html">applied</a>&nbsp;over
+
+                          5.2)<br>
+                          <br>
+                        </font></font></font></font></font>Please follow
+                the below steps to start this build.<br>
+              </font></div>
+            <div><font face="times new roman, times, serif" size="3">1.
+                Unzip this in a Linux machine and unzip&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p18fjrn4ukjh119kdo9519pupqa0/fresh_dat_files.zip">this
+
+                  zip</a>&nbsp;under NMS_HOME/classes.</font></div>
+            <div><font face="times new roman, times, serif" size="3">2.
+                Note that default JRE is JRE 6.<br>
+                If you need JAVA 7 to be used, Note down the JRE-6
+                /&nbsp;JRE-7 (preferably) directory in your machine and
+                configure the same in JAVA_HOME in setEnv.sh</font></div>
+            <div><font face="times new roman, times, serif" size="3">3.
+                Start the server and choose evaluation mode.<br>
+              </font></div>
+          </div>
+          <div>
+            <hr><font face="times new roman, times, serif" size="3">If
+              you face any issues, please mail to WebNMS support about
+              the same along with the logs and the below files.</font></div>
+          <div><font face="times new roman, times, serif" size="3">&nbsp;
+
+              &nbsp; &nbsp; 1. files in NMS_HOME/lib directory</font></div>
+          <div><font face="times new roman, times, serif" size="3">&nbsp;
+
+              &nbsp; &nbsp; 2. wrapper executable under NMS_HOME</font></div>
+          <div><font face="times new roman, times, serif" size="3">&nbsp;
+
+              &nbsp; &nbsp; 3. NMS_HOME/conf/wrapper.conf file</font></div>
+          <div><font face="times new roman, times, serif" size="3">&nbsp;
+
+              &nbsp; &nbsp; 4. NMS_HOME/logs</font></div>
+          <div><font face="times new roman, times, serif" size="3"><br>
+            </font></div>
+          <div><font face="times new roman, times, serif" size="3">These
+              details will help us to analyze the issue.</font></div>
+          <font size="3"><font face="times new roman, times, serif">P</font></font><font
+            face="times new roman, times, serif" size="3"><font
+              face="times new roman, times, serif" size="3">lease get
+              back to us for any further clarification in this regard.</font><font
+              face="times new roman, times, serif" size="3"><br>
+              <br>
+            </font>Thanks &amp; regards</font></div>
+        <div><font face="times new roman, times, serif" size="3">Venkatramanan</font></div>
+        <div>
+          <div>
+            <blockquote style="border: 1px solid rgb(204, 204, 204);
+              padding: 7px; background-color: rgb(245, 245, 245);"><i><font
+                  size="3"><font face="times new roman, times, serif"><br
+                      class="Apple-interchange-newline">
+                    <small>P.S. If you face any issues, please let us
+                      know&nbsp;&nbsp;</small></font><small><font
+                      face="times new roman, times, serif">what files
+                      have been changed &amp;&nbsp;&nbsp;the changes in
+                      the configuration files.&nbsp;<br>
+                      Describe the details of&nbsp;&nbsp;the error you
+                      are facing.&nbsp;Attach the snapshot of the error
+                      and the message that gets logged in the
+                      client's&nbsp;&nbsp;<a
+                        href="https://nmskbase.wiki.zoho.com/_attach/1.1/Java_console.JPG">Java
+
+                        console&nbsp;</a>.&nbsp;<br>
+                      <br>
+                    </font></small></font></i></blockquote>
+          </div>
+        </div>
+      </div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font size="3"><i style="background-color: rgb(245, 245,
+            245);"><small><font face="times new roman, times, serif"><span
+                  style="background-color: rgb(204, 204, 204);">Have you
+                  tried&nbsp;&nbsp;<a
+                    href="http://kbase.webnms.com/kbasenmssearch.jsp">WebNMS
+
+                    KBase&nbsp;</a>&nbsp;/&nbsp;&nbsp;<a
+                    href="https://nmskbase.wiki.zoho.com/siteindex.zhtml">wiki&nbsp;</a>?
+                  |&nbsp;Join our&nbsp;&nbsp;<a
+                    href="https://forums.webnms.com/webnms-framework">Developer
+
+                    Community&nbsp;</a>&nbsp;|&nbsp;Still facing
+                  issues?&nbsp;&nbsp;</span></font></small></i><small
+            style="background-color: rgb(245, 245, 245);"><span
+              style="background-color: rgb(204, 204, 204);"><font
+                face="times new roman, times, serif"><i>Execute&nbsp;&nbsp;<a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger&nbsp;</a>&nbsp;&amp;
+
+                  upload your logs to our&nbsp;&nbsp;<a
+                    href="http://bonitas2.zohocorp.com/">upload server</a></i></font></span></small></font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">&lt;michiaki.seki&gt;
+
+          wrote--------------</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">Dear
+          Team</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">I
+          tried to install WebNMS ver.5.2 to Linux Cent OS 64bit with
+          install bin file in the following reference process.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">********************
+
+          &nbsp;reference process
+          &nbsp;*******************************************</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">1.
+          Download Postgres-64-bit database &amp; 64-bit JRE from the
+          below links:</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">http://get.enterprisedb.com/postgresql/postgresql-9.1.4-1-windows-x64-binaries.zip
+
+          - Pgsql 64-bit-Windows&nbsp;</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">http://get.enterprisedb.com/postgresql/postgresql-9.1.3-1-linux-x64-binaries.tar.gz
+
+          - 64-bit-Linux</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">JRE :
+http://www.oracle.com/technetwork/java/javase/downloads/jre6u35-downloads-1836473.html</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">2.
+          Rename the existing pgsql directory (under NMS_HOME) to
+          32-bit-pgsql</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">3.
+          Create a new directory pgsql under NMS_HOME</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">4.
+          Unzip the above zip into this directory</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">5.
+          Unzip this zip under NMS_HOME/pgsql&nbsp;</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">6. Run
+          the NMS_HOME/pgsql/initdb script and ensure that
+          NMS_HOME/pgsql /data gets created.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">7. Now
+          start the server.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">8.
+          Ensure to have 64-bit JRE configured in setEnv.sh</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">9.
+          Ensure that you have the following files as 64-bit ones</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">&nbsp;
+          &nbsp; &nbsp; 1. files in NMS_HOME/lib directory</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">&nbsp;
+          &nbsp; &nbsp; 2. wrapper executable under NMS_HOME</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">&nbsp;
+          &nbsp; &nbsp; 3. NMS_HOME/conf/wrapper.conf file</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">If you
+          do not have them, you can download the same from WebNMS Wiki.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">********************************************************************************</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">But I
+          could not start the install.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">the
+          process which I did :</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">1. set
+          WebNMS install bin file to the server.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">2.
+          execute the following command because of setting
+          &nbsp;executable permission.</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">&nbsp;chmod
+
+          a+x &lt;filename&gt;</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">3.
+          execute the following command &nbsp; &lt;File Name&gt;.bin
+          -console</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">4. But
+          not start install (refer to 1.png)</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">5. So
+          the next, Set installoptions.txt to the same directory with
+          WebNMS install bin</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">6.
+          execute the following command</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">./WebNMS_Framework_Linux_5.2.bin
+
+          -is:javaconsole -silent -options installoptions.txt -P
+          ProductRoot.installLocation="/opt"</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">7. But
+          not start install (refer to 2.png)</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3"><br>
+        </font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">So,
+          Would you tell me the way to install WebNMS to Linux
+          64bit?&nbsp;</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">Regards,</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">Japan
+          WebNMS Team,</font></div>
+      <div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica,
+        sans-serif; font-size: 13px; font-style: normal; font-variant:
+        normal; font-weight: normal; letter-spacing: normal;
+        line-height: normal; orphans: auto; text-align: start;
+        text-indent: 0px; text-transform: none; white-space: normal;
+        widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+        0px;"><font face="times new roman, times, serif" size="3">Seki.</font></div>
+      <br class="Apple-interchange-newline">
+    </div>
+  </body>
+</html>

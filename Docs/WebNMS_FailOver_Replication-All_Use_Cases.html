@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="content-type">
+    <title>WebNMS FailOver Replication - All Use Cases - ACME Document</title>
+  </head>
+  <body>
+    <i style="font-family: Times New Roman,Times,serif;"><b></b></i><span
+      style="font-family: Times New Roman,Times,serif;">Dear Team</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> We have
+      received the requirements document.</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> We assume
+      the following conventions for explaining WebNMS behaviour:</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;">In Host1:
+      Server1 runs with MySQL1 <br>
+      In Host2: Server2 runs with MySQL2<br>
+      And also note that, in Host1 (PRIMARY) when either of the two -
+      database or WebNMS fails, STANDBY server takes over.<br>
+    </b><span style="font-family: Times New Roman,Times,serif;">BEFailOver
+
+
+      table is the key for FailOver.</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Under this
+      condition, find our results as below</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#3">Scenario
+
+
+      3&nbsp; Host 1: Primary Server Shut Down &#8211; MySQL remains running</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#4">
+      Scenario 4&nbsp; Host 1: MySQL is shutdown while Primary Server is
+      running</a><br style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#5">
+      Scenario 5&nbsp; Host 2: StandBy Server Shut Down &#8211; MySQL remains
+      running</a><br style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#6">
+      Scenario 6&nbsp; Host 2: MySQL is shutdown while StandBy Server is
+      running</a><br style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#7">
+      Scenario 7&nbsp; Host 1: Looses connectivity with the network</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#8">
+      Scenario 8&nbsp; Host 2: Looses connectivity with the network</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#9">
+      Scenario 9&nbsp; Host 1 and 2: Loose connectivity with the network</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#10">
+      Scenario 10&nbsp; Host 1 looses power</a><br style="font-family:
+      Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#11">
+      Scenario 11&nbsp; Host 2 looses power</a><br style="font-family:
+      Times New Roman,Times,serif;">
+    <a style="font-family: Times New Roman,Times,serif;" href="#12">
+      Scenario 12&nbsp; Both Host 1 and Host 2 loose power</a><br
+      style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><br>
+        <a name="3"></a>Scenario:3. Host 1: Primary Server Shut Down &#8211;
+        MySQL remains running. what happens:</b></font><br
+      style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the WebNMS
+      server on Host 2?</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font> </b><span style="font-family:
+      Times New Roman,Times,serif;">After ensuring that the PRIMARY is
+      really shutdown (by getting a RMI handle &amp; double checking
+      with the database's primary row) the STANDBY starts as a primary
+      for its database.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the WebNMS
+      server of host 1 when it is re-started?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;">When the MySQL 1 is running, server1
+      starts as STANDBY to the existing PRIMARY server</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">
+      &nbsp;&nbsp;&nbsp; </span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="4"></a>Scenario:</b><b>4 In Host
+        machine 1, the MySQL database is shut down while Primary Server
+        is running. what happens;</b></font><br style="font-family:
+      Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the WebNMS
+      server on Host 2?</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Server1 will shutdown &amp;
+      eventually Server2 will start as PRIMARY (When either the database
+      or the server shuts down, its a failover &amp; STANDBY will take
+      over)</span><br style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the WebNMS
+      server on Host 1 when MySQL is re-started?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Again this will start as STANDBY
+      server for the existing PRIMARY server</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. If on Host1
+      MySQL is down for 30 minutes?</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> On the next database restart, only
+      the replication happens.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> If you have
+    </span><a style="font-family: Times New Roman,Times,serif;"
+href="http://www.adventnet.com/products/webnms/help/developer_guide/resource_manager/accessing_resources/fw_access_connect.html#Connection%20loss">configured
+for
+
+
+      DB_RECONNECTION</a><span style="font-family: Times New
+      Roman,Times,serif;"> &amp; RECONNECTION_TIMEOUT is less than 30
+      minutes, PRIMARY will wait for DB1. (Any way 30 min. for
+      DB_RECONNECTION_TIMEOUT is highly undesirable). If you have not
+      specified these &amp; then you down MySQL1 for 30 min, then
+      server1 will go down; If you manually restart the server1, it will
+      start as STANDBY server</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="5"></a>Scenario:</b><b>5 Host 2:
+        standby Server Shut Down &#8211; MySQL remains running. what happens:</b></font><br
+      style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the WebNMS
+      server on Host 1?</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> It will continue to be running as
+      PRIMARY server. (MySQL 1 &amp; 2 will be replicating). BEFailOver
+      table will be properly cleaned up</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the WebNMS
+      server on Host 2 when it is re-started?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> It will again start as the STANDBY
+      server</span><br style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#ff9900"><a name="6"></a>Scenario: 6 Host 2: MySQL is
+        shutdown while Standby Server is running. what happens:</font></b><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the WebNMS
+      server on Host 1?</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Server1 will run properly as
+      PRIMARY. The replication will be lost (on the database level)</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the WebNMS
+      server on Host 2 when MySQL is re-started?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> When Server2 is manually restarted,
+      it will be started as STANDBY.</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. If on Host2
+      MySQL is down for 30 minutes?</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Again if there is no </span><a
+      style="font-family: Times New Roman,Times,serif;"
+href="http://www.adventnet.com/products/webnms/help/developer_guide/resource_manager/accessing_resources/fw_access_connect.html#Connection%20loss">DB_RECONNECTION</a><span
+      style="font-family: Times New Roman,Times,serif;">&nbsp;
+      configured. it will get shutdown (Again here it is not desirable
+      to keep the TIMEOUT as 30 min)</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="7"></a>Scenario:7 Host 1: Looses
+        connectivity with the network</b></font><br style="font-family:
+      Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> From your
+      past supports, we infer that you keep the </span><font
+      style="font-family: Times New Roman,Times,serif;" face="Courier
+      New, Courier, monospace"><b><a
+href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/failover_developer_tips.html#how_to_disable_rmi_lookup">DISABLE_RMI_LOOKUP_FOR_FAILOVER</a></b></font><span
+      style="font-family: Times New Roman,Times,serif;"> as true. Even
+      if its not, in the case of Network loss possibilities, it is
+      strongly recommended that you keep this as </span><b
+      style="font-family: Times New Roman,Times,serif;">true</b><span
+      style="font-family: Times New Roman,Times,serif;">. Now we can see
+      the queries.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> what
+      happens;</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the
+      original WebNMS server on Host 1?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> We believe the database url in
+      database_params.conf is configured as localhost in server1. In
+      this case, even on Network loss, the connectivity between server1
+      &amp; MySQL1 is still present (same machine) &amp; server1 will
+      NOT get shutdown.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the
+      original WebNMS server on Host 2?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> This will start as a new PRIMARY
+      server.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. What happens
+      when the connectivity is restored to Host 1?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> When the intermediate time (time
+      for loss &amp; recovery) is more than the </span><b
+      style="font-family: Times New Roman,Times,serif;">FAIL_OVER_INTERVAL</b><span
+      style="font-family: Times New Roman,Times,serif;">, Server2 will
+      start as PRIMARY. If it is within the limit, no changes will
+      happen.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">4. What happens
+      when the connectivity is restored to Host 1 after a considerable
+      length of time?</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> We do not predict the results here
+      as we have not done the same. If you need the results, then it
+      will take us some time to test &amp; exactly tell what will
+      happen.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Moreover if
+      you could sense the network loss for Host1, it is strongly
+      recommended that you shutdown the server1</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="8"></a>Scenario:8 Host 2: Looses
+        connectivity with the network</b></font><br style="font-family:
+      Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> From your
+      past supports, we infer that you keep the </span><font
+      style="font-family: Times New Roman,Times,serif;" face="Courier
+      New, Courier, monospace"><b><a
+href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/failover_developer_tips.html#how_to_disable_rmi_lookup">DISABLE_RMI_LOOKUP_FOR_FAILOVER</a></b></font><span
+      style="font-family: Times New Roman,Times,serif;"> as true. Even
+      if its not, in the case of Network loss possibilities, it is
+      strongly recommended that you keep this as </span><b
+      style="font-family: Times New Roman,Times,serif;">true</b><span
+      style="font-family: Times New Roman,Times,serif;">. Now we can see
+      the queries.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> what
+      happens;</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the
+      original WebNMS server on Host 1?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> It will continue to run as PRIMARY.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the
+      original WebNMS server on Host 2?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> We believe the database url in
+      database_params.conf is configured as localhost in server2. In
+      this case, even on Network loss, the connectivity between server2
+      &amp; MySQL2 is still present (same machine) &amp; server2 will
+      start as as PRIMARY server for MySQL1.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. What happens
+      when the connectivity is restored to both Host 2?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> When the intermediate time (time
+      for loss &amp; recovery) falls before the time that PRIMARY checks
+      for the STANDBY's presence, then no changes will happen. If the
+      PRIMARY detects the STANDBY's loss, then BEFailOver will get
+      cleaned up.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">4. What happens
+      when the connectivity is restored to Host2 after a considerable
+      length of time.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Again this is an inopportune case
+      wherein Server2 would have started as a PRIMARY server for MySQL2
+      (This is a complete standalone setup!) Now if another PRIMARY
+      comes into picture (already running Server1 for MySQL1), the
+      results are not predictable. It will take some time for us to test
+      the same for results.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="9"></a>Scenario:</b><b>9 Host 1 and 2:
+        Loose connectivity with the network</b></font><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> what
+      happens;</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. To the
+      original WebNMS server on Host 1?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. To the
+      original WebNMS server on Host 2?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> Both will run on its own as PRIMARY
+      servers. No replication will happen as both databases got
+      separated.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. What happens
+      when the connectivity is restored to both Host 1 and 2?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">4. What happens
+      when the connectivity is restored after a considerable length of
+      time?</span><br style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> We have not tried the same. We will
+      get back to you after testing the same.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="10"></a>Scenario: 10 Host 1 looses
+        power<br>
+        <a name="11"></a>Scenario: 11 Host 2 looses power<br>
+      </b></font> <font style="font-family: Times New
+      Roman,Times,serif;" color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">What happens to
+      Server1 &amp; Server2.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> When </span><font
+      style="font-family: Times New Roman,Times,serif;" face="Courier
+      New, Courier, monospace"><b><a
+href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/failover_developer_tips.html#how_to_disable_rmi_lookup">DISABLE_RMI_LOOKUP_FOR_FAILOVER</a></b></font><span
+      style="font-family: Times New Roman,Times,serif;"> is set as true,
+      a connection loss &amp; a power down are treated as same scenarios</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#ff9900"><b><a name="12"></a>Scenario: 12 Both Host 1 and
+        Host 2 loose power</b></font><br style="font-family: Times New
+      Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">1. What happens
+      when the power is restored to both Host 1 and Host 2?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">2. What is the
+      recommended startup procedure for WebNMS and MySQL when power is
+      restored on both Host 1 and Host 2?</span><br style="font-family:
+      Times New Roman,Times,serif;">
+    <font style="font-family: Times New Roman,Times,serif;"
+      color="#33cc00"><b>[Customer]: </b></font><span
+      style="font-family: Times New Roman,Times,serif;">3. What happens
+      when the power is restored after a considerable length of time?</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <b style="font-family: Times New Roman,Times,serif;"><font
+        color="#990000">[WebNMS]:</font></b><span style="font-family:
+      Times New Roman,Times,serif;"> </span><b style="font-family:
+      Times New Roman,Times,serif;">In all the above cases both servers
+      &amp; databases should be restarted. (In the order of MySQL1,
+      MySQL2, Server1, Server2)</b><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;">Customer
+      wrote--------------</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Dear WebNMS
+      support,</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> We are
+      currently running WebNMS with several patches provided by
+      AdventNet.</span><br style="font-weight: bold; font-family: Times
+      New Roman,Times,serif;">
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;">We are attempting to provide support to our
+      customers for a pair of WebNMS servers configured for failover
+      support with replicated database.</span><br style="font-weight:
+      bold; font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;">However because of the various failure
+      conditions encountered it is imperative that we have a more
+      detailed understanding of the characteristics of each WebNMS
+      server configured as part of the HA with replication support
+      during these failures.</span><br style="font-weight: bold;
+      font-family: Times New Roman,Times,serif;">
+    <span style="font-weight: bold; font-family: Times New
+      Roman,Times,serif;">The attached document provides a list of
+      specific failure scenarios in which we need to understand how the
+      WebNMS server&#8217;s will react. Each failure scenario section has a
+      set of questions where responses are requested.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> What we are
+      looking for is as follows;</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> 1. A
+      detailed description of what each WebNMS server is doing during
+      the failure conditions.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> 2.
+      Recommendations on how to best set up the environment for recovery
+      from a failure condition.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> 3. After
+      this exercise the ability to ensure that our customers have as
+      robust as possible true failover support with replicated
+      databases.</span><br style="font-family: Times New
+      Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Again
+      please provide inputs to the questions pertaining to each failure
+      condition as outlined in the attached document.</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Also please
+      open a ticket on this issue.</span><br style="font-family: Times
+      New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Thanks</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <span style="font-family: Times New Roman,Times,serif;"> Customer</span><br
+      style="font-family: Times New Roman,Times,serif;">
+    <br style="font-family: Times New Roman,Times,serif;">
+  </body>
+</html>

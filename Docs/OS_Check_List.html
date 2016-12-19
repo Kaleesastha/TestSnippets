@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNMS OS Checklist</title>
+</head>
+<body>
+<table style="text-align: left; width: 761px; height: 1629px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="5" rowspan="1"
+ style="vertical-align: top; background-color: rgb(255, 255, 0); width: 2%; text-align: center;"><span
+ style="font-weight: bold;">WebNMS OS CheckList</span> </td>
+    </tr>
+    <tr>
+      <td colspan="5" rowspan="1" style="vertical-align: top;">Java
+versions (For WebNMS 5): JDK 1.6 &amp; above<br>
+For WebNMS 4.7 &amp; SP3 -&nbsp; <span style="font-weight: bold;">Jdk:
+1.4.2_08 </span>(build
+1.4.2_08-b03) &amp; <span style="font-weight: bold;">jdk 1.5.0_0 </span>(latest
+build)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">S.No<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">Operation</span><br>
+      </td>
+      <td style="vertical-align: top; text-align: center; width: 19%;"><span
+ style="font-weight: bold;">JDK</span><br>
+      </td>
+      <td style="vertical-align: top; width: 10%; text-align: center;"><span
+ style="font-weight: bold;">Result</span><br>
+      </td>
+      <td style="vertical-align: top;">Remarks<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">1<br>
+      </td>
+      <td style="vertical-align: top;">Start the Backend Server<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">2<br>
+      </td>
+      <td style="vertical-align: top;">Start the Standalone BE server
+&amp; Shutdown it <br>
+Ensure that there are no errors / exceptions in log
+files<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">3<br>
+      </td>
+      <td style="vertical-align: top;">Start the Standalone FE server
+&amp; Shutdown it <br>
+Ensure that there are no errors / exceptions in log
+files </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">4<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://adventnet.com/products/webnms/help/developer_guide/policy_framework/policy_framework.html">Policy
+Execution</a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">5<br>
+      </td>
+      <td style="vertical-align: top;">Do some basic operations in <a
+ href="http://adventnet.com/products/webnms/download-express.html?free">WebNMS
+Express Editions <br>
+      </a> </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">6<br>
+      </td>
+      <td style="vertical-align: top;">Check the <a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/java_client_framework/conf_client_parameters/java_conf_clientparameters.html#Description_of_parameters">ALLOWED_IDLE_TIME_BEFORE_LOCKOUT
+      </a>functionality in <span style="font-weight: bold;">Applet /
+WebStart</span> giving the following permission in <span
+ style="font-weight: bold;">java.policy </span>file:<small><br>
+      <span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">permission
+java.awt.AWTPermission "listenToAllAWTEvents";</span></small></td>
+      <td style="vertical-align: top; width: 19%;">Any JDK </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">7<br>
+      </td>
+      <td style="vertical-align: top;">Install the <a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/installation_guide/installation_and_setup/install_webnms_various_os.html#AWT%20mode">Standalone
+Client </a>and start the same &amp; doing some basic operations in it<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">8<br>
+      </td>
+      <td style="vertical-align: top;">Starting &amp; testing in
+WebClient<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">9<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/discovery/configuring_discovery/disc_configuration.html#exampleseed">Configuring
+using seed.file </a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">10<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/maps/map_creation.html">Creating
+Maps and Map Objects</a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">11<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/fault_management/notifications/conf_trap_filter.html">Configuring
+Trap Filters</a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">12<br>
+      </td>
+      <td style="vertical-align: top;">Configuration - Task Execution<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">13<br>
+      </td>
+      <td style="vertical-align: top;">Provisioning Templates -<span
+ style="font-weight: bold;"> Tested Telnet to a remote device</span><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">14<br>
+      </td>
+      <td style="vertical-align: top;">Add User<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">15<br>
+      </td>
+      <td style="vertical-align: top;">Add Custom View Scopes from
+Security Admin UI<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">16<br>
+      </td>
+      <td style="vertical-align: top;">Audit Trails - Login, delete
+MOs, etc. &amp; check whether they are audited. Also do a bulk delete
+of Audit trails &amp; ensure that no OutofMemory Exception arises.<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">17<br>
+      </td>
+      <td style="vertical-align: top;">Regenerating &amp; Recompiling
+Security Administration project in BeanBuilder </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">18<br>
+      </td>
+      <td style="vertical-align: top;">Check from web client whether
+Data Collection is properly happens for the OIDs mentioned in
+polling.conf<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">19<br>
+      </td>
+      <td style="vertical-align: top;">FailOver happens - BE, FE, Client<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">20<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/backup/backupservice.html">BackUp
+(Offline &amp; Online) /
+Restore</a> operation<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">21<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://adventnet.com/products/webnms/help/developer_guide/resource_manager/accessing_resources/fw_access_connect.html#Connection%20loss">DB
+Reconnection </a>happens properly <br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">22<br>
+      </td>
+      <td style="vertical-align: top;">Start all clients - Applet,
+WebStart &amp;
+Application Client<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">23<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html">SSL
+Communication </a>Check whether the server starts properly &amp; all
+the clients get connected properly<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">24<br>
+      </td>
+      <td style="vertical-align: top;">Connecting with <a
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html#Database">All
+Databases supported by WebNMS </a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">25<br>
+      </td>
+      <td style="vertical-align: top;">Completely using the Launcher
+(start, stop, reinitilaize &amp; shutdown)<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">26<br>
+      </td>
+      <td style="vertical-align: top;">Running All Scripts in WebNMS<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">27<br>
+      </td>
+      <td style="vertical-align: top;">From WebNMS Studio create a
+project - Package it - Nar - Install
+it in WebNMS &amp; Uninstall it<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">28<br>
+      </td>
+      <td style="vertical-align: top;">Check whether WarmStart &amp;
+Cold start of the server doesn't create any issues<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">29<br>
+      </td>
+      <td style="vertical-align: top;">Testing Rmi registry. Test
+whether all the APIs are bound in RMI<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">30<br>
+      </td>
+      <td style="vertical-align: top;">Start the server Native Ping
+Enabled. Ensure for proper discovery<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">31<br>
+      </td>
+      <td style="vertical-align: top;">Apply PPM<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">32<br>
+      </td>
+      <td style="vertical-align: top;">Trial licence to permanent
+license<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">Any JDK<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">33<br>
+      </td>
+      <td style="vertical-align: top;">Start WebNMS as <a
+ href="http://adventnet.com/products/webnms/help/installation_guide/installation_and_setup/installing_unix_service.html">Unix
+service </a>/ <a
+ href="http://adventnet.com/products/webnms/help/installation_guide/installation_and_setup/ntservice.html">Windows
+service</a><br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">34<br>
+      </td>
+      <td style="vertical-align: top;">Check whether Snmp V3 nodes are
+discovered properly<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">35<br>
+      </td>
+      <td style="vertical-align: top;">Check whether <a
+ href="http://adventnet.com/products/webnms/help/administrator_guide/general_admin/telnet_and_ssh.html#telnet">Telnet
+      </a>/ <a
+ href="http://adventnet.com/products/webnms/help/administrator_guide/general_admin/telnet_and_ssh.html#SSH">SSH
+      </a>properly happens.<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">36<br>
+      </td>
+      <td style="vertical-align: top;">API Testing (Topo, severity,
+Fault) - Ensure for basic functionality of <br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 2%; text-align: center;">37<br>
+      </td>
+      <td style="vertical-align: top;">Filter configurations <a
+ href="http://ppt-server/general/webnms4_7sp2/help/developer_guide/fault_management/notifications/conf_trap_filter.html">-
+Configure Event / Alert filters </a>&amp; check whether the actions
+like
+Send Mail action , Run command actions get invoked<br>
+      </td>
+      <td style="vertical-align: top; width: 19%;">All Supported JDK's<br>
+      </td>
+      <td style="vertical-align: top; width: 10%;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</body>
+</html>

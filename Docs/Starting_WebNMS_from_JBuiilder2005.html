@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>starting WebNMS from JBuiilder2005</title>
+</head>
+<body>
+<h1 style="font-family: times new roman,times,serif;">Starting
+AdventNet Web NMS server in JBuilder 2005</h1>
+<p style="font-family: times new roman,times,serif;">&nbsp;<span
+ style="color: rgb(0, 51, 0);">Before starting Web NMS
+Server in JBuilder LD_LIBRARY_PATH has to be exported from the console
+from which the JBuilder is started. Export LD_LIBRARY_PATH as follows.</span><br
+ style="color: rgb(0, 51, 0);">
+</p>
+<p style="font-family: times new roman,times,serif;"><span
+ style="color: rgb(0, 51, 0);">LD_LIBRARY_PATH=$LD_LIBRARY_PATH:&lt;Web
+NMS Home&gt;/lib:&lt;Web NMS Home&gt;/apache/lib</span><br
+ style="color: rgb(0, 51, 0);">
+<span style="color: rgb(0, 51, 0);">export LD_LIBRARY_PATH<br>
+</span></p>
+<p style="font-family: times new roman,times,serif;">In Windows just
+setting the LD_LIBRARY_PATH is not needed<br>
+<font color="darkblue"><strong></strong></font></p>
+<p style="font-family: times new roman,times,serif;"><span
+ style="font-weight: bold;">For starting Web NMS Server in
+JBuilder, the following steps are to
+be followed</span>.</p>
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Create a new project in JBuilder 2005.<br>
+    </p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">On the Project menu, click <span
+ style="font-weight: bold;"><b>Project Properties</b></span>.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Select the <span style="font-weight: bold;"><b>Paths</b></span>
+tab and then select <span style="font-weight: bold;"><b>Required
+Libraries</b></span> tab.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Click the <span style="font-weight: bold;"><b>Add</b></span>
+button.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">On the tree that appears, select <span
+ style="font-weight: bold;"><b>User Home</b></span> and then click the <span
+ style="font-weight: bold;"><b>New</b></span> button.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Type a name for your library and click the <span
+ style="font-weight: bold;"><b>Add</b></span> button to add the library
+paths.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Browse and add the following directories and
+jar files to the list. You can select multiple items by pressing Ctrl
+key.</p>
+  </li>
+</ul>
+<p style="font-family: times new roman,times,serif;">After adding these
+directories and jars to your classpath, please
+check if the classpath entries are in the following order. (You can
+edit, remove or rearrange the entries in the project properties window).</p>
+<p style="font-family: times new roman,times,serif;">&nbsp;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;Web NMS Home&gt;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;Web NMS Home&gt;/classes</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSnmp.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSAS.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>jaxp.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>crimson.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>xalan.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>Mail.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>activation.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>ManagementServer.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>ManagementClient.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetUI.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetUtils.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>ApiUtils.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetTftp.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetCLI.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetJta.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetCLIClient.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>jta.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSnmpDistributedAPI.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>JimiProClasses.zip</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetFramework.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetARUtils.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-weight: bold;"><b>&lt;</b></span><span
+ style="font-style: italic;"><i>Web NMS Home&gt;/classes/</i></span><span
+ style="font-weight: bold;"><b>xmojo.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetJmxAgent.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSnmpAgent.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSnmpV3USM.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetTL1.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetWebNmsAgent.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>test</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span>ldap_jars/<span
+ style="font-weight: bold;"><b>jndi.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span>ldap_jars/<span
+ style="font-weight: bold;"><b>ldap.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span>ldap_jars/<span
+ style="font-weight: bold;"><b>providerutil.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/mysql/driver/</i></span><span style="font-weight: bold;"><b>mysqlconnector.jar<br>
+<br>
+</b></span><span style="font-style: italic;"><i>&lt;Web NMS
+Home&gt;/apache/tomcat/common/lib/</i></span><span
+ style="font-weight: bold;"><b>jasper-compiler.jar<br>
+<br>
+</b></span><span style="font-style: italic;"><i>&lt;Web NMS
+Home&gt;/apache/tomcat/common/lib/</i></span><span
+ style="font-weight: bold;"><b>jasper-runtime.jar<br>
+<br>
+</b></span><span style="font-style: italic;"><i>&nbsp;</i></span><span
+ style="font-weight: bold;"></span>&lt;Web NMS
+Home&gt;/apache/tomcat/bin/<span
+ style="font-weight: bold; font-style: normal;"><b>bootstrap.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span><span
+ style="font-weight: bold; font-style: italic;"><i><b>&lt;</b></i></span></span><span
+ style="font-style: italic;"><i>Web NMS
+Home&gt;/apache/tomcat/common/lib/</i></span><span
+ style="font-weight: bold;"><b>servlet.jar</b></span> </p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetNPrevalent.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetUpdateManagerInstaller.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>AdventNetSUMServer.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/classes/</i></span><span style="font-weight: bold;"><b>bsh-1.2b3.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/</i></span>classes/<span style="font-weight: bold;"><b>AdventNetProBeans.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;Web NMS Home&gt;/classes/<span
+ style="font-weight: bold;"><b>AdventNetDMPModels.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;/</i></span>classes/<span style="font-weight: bold;"><b>AdventNetCCLLibrary.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content"><span style="font-weight: bold;"><b></b></span><span
+ style="font-style: italic;"><i>&lt;Web NMS Home&gt;/</i></span>classes/<span
+ style="font-weight: bold;">SNMPDebugger.jar<br>
+<span style="font-weight: bold;"></span></span><span
+ style="font-style: italic;"><i><br>
+&lt;Web NMS Home&gt;/</i></span>classes/<span style="font-weight: bold;"><span
+ style="font-weight: bold;">AdventNetTL1Tools.jar</span></span></p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;Web NMS Home&gt;/NetMonitor/build/<span
+ style="font-weight: bold;"><b>ConfigPanel.jar</b></span></p>
+<p style="font-family: times new roman,times,serif;">&nbsp;</p>
+<!--(Table)=========================================================-->
+<table
+ style="font-family: times new roman,times,serif; width: 1044px; height: 77px;"
+ x-use-null-cells="" class="whs1" border="1" bordercolor="#000000"
+ cellspacing="0">
+  <col class="whs2"> <col class="whs3"><tbody>
+    <tr>
+      <td colspan="1" rowspan="1" class="whs7" width="792">
+      <p><b style="font-weight: bold;">Note</b>: When &lt;WebNMS
+Home&gt; is added in to the
+path some of the unnecessary files may enter and they provide some
+inconsistencies. These files has to be removed. Some of the files are
+all the files and directories in the &lt;WebNMS Home&gt;/StudioTools
+directory, all the directories and the files available in the
+&lt;WebNMS home&gt;/jre directory, all the files and directories
+available in the &lt;WebNMS home&gt;/ejb_jars directory.<br>
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Save</b></span>
+the project.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">On the Project menu, click <span
+ style="font-weight: bold;"><b>Project Properties</b></span>.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Select the <span style="font-weight: bold;"><b>Run</b></span>
+tab and then click the <span style="font-weight: bold;"><b>New Button </b></span>available
+in the right side<span style="font-weight: bold;"><b>.</b></span></p>
+  </li>
+  <li class="kadov-p-CBulletted">On the dialog that appears select the<span
+ style="font-weight: bold;"><b> application </b></span>tab<span
+ style="font-weight: bold;"><b>.<br>
+    </b></span></li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Click the Browse button (the button with
+"...") to &lt;Web NMS Home&gt;/classes/com/adventnet/launcher/nms and
+set the StartNmsJdbc as Main Class.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Copy and Paste the following in the VM
+Parameters textfield.</p>
+  </li>
+</ul>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">-Dwebnms.rootdir=&lt;Web NMS Home&gt;/<br>
+-Djava.library.path=&lt;Web NMS Home&gt;/lib</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">-Djava.rmi.server.codebase="http://localhost:9090/classes/</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">http://localhost:9090/classes/ManagementServer.jar</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">http://localhost:9090/classes/AdventNetTftp.jar
+http://localhost:9090/classes/AdventNetCLI.jar</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">http://localhost:9090/classes/AdventNetSnmp.jar
+http://localhost:9090/AdventNetSNMPv3/classes/</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">http://localhost:9090/classes/AdventNetJmxAgent.jar</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">http://localhost:9090/classes/xmojo.jar<br>
+http://localhost:9090/classes/jta.jar" -mx100m<br>
+</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">Enter these fields such that there is a
+single space between each arguments.<br>
+</p>
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Enter the following in the <span
+ style="font-weight: bold;"><b>Application Parameters</b></span>
+textfield.</p>
+  </li>
+</ul>
+<span style="font-family: times new roman,times,serif;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; APACHE_DIR
+&lt;WebNMS Home&gt;/apache WEBSERVER_PORT 9090 WEBCONTAINER_PORT 8009
+TOMCAT_SHUTDOWNPORT 8005 TOMCAT_DIR &lt;WebNMSHome&gt;apache/tomcat
+ROOT_DIR &lt;WebNMS Home&gt;/</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Run the Project. You can run the Project in
+Debug Mode also.</p>
+  </li>
+</ul>
+<p style="font-weight: bold; font-family: times new roman,times,serif;"
+ class="Sub-topic-1">Starting Web NMS
+Client in JBuilder 5</p>
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Create a new project in JBuilder.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">On the Project menu, click <span
+ style="font-weight: bold;"><b>Project Properties</b></span>.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Select the <span style="font-weight: bold;"><b>Paths</b></span>
+tab and then select <span style="font-weight: bold;"><b>Required
+Libraries</b></span> tab.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Click the <span style="font-weight: bold;"><b>Add</b></span>
+button.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">On the tree that appears, select <span
+ style="font-weight: bold;"><b>User Home</b></span> and then click the <span
+ style="font-weight: bold;"><b>New</b></span> button.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Type a name for your library and click the <span
+ style="font-weight: bold;"><b>Add</b></span> button to add the library
+paths.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Browse and add the following listed
+directories and jar files to the list. You can select multiple items by
+pressing ctrl key.</p>
+  </li>
+</ul>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNms
+HOme&gt;/classes/NmsClientClasses.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetSnmp.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/JimiProClasses.zip;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/jaxp.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/crimson.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/xalan.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetUI.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetUtils.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/ApiUtils.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/ManagementClient.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetTL1.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetCLIClient.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/AdventNetSnmpV3USM.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/classes/ClientExamples.jar;</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/jnlp.jar<br>
+</p>
+<span style="font-family: times new roman,times,serif;">&lt;WebNMS
+Home&gt;/classes/AdventNetProBeans.jar</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">&lt;WebNMS
+Home&gt;/classes/SNMPDebugger.jar</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">&lt;WebNMS
+Home&gt;/classes/AdventNetCCLLibrary.jar</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">&lt;WebNMS
+Home&gt;/classes/AdventNetDMPModels.jar</span><br
+ style="font-family: times new roman,times,serif;">
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes;<br>
+</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS
+Home&gt;/NetMonitor/build/ConfigPanel.jar<br>
+</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&lt;WebNMS Home&gt;/classes/jfreechart.jar<br>
+</p>
+<p style="font-family: times new roman,times,serif;"
+ class="Sub-topic2-Content">&nbsp;&lt;WebNMS
+Home&gt;/classes/jcommon.jar<br>
+</p>
+<ul style="font-family: times new roman,times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Save</b></span>
+the Project.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Click <span style="font-weight: bold;"><b>Project
+Properties </b></span>in the Project menu.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Select the <span style="font-weight: bold;"><b>Run</b></span>
+tab and then click the <span style="font-weight: bold;"><b>Application</b></span>
+tab.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Click the Browse (<span
+ style="font-weight: bold;"><b>...</b></span>) button to <span
+ style="font-style: italic;"><i>&lt;WebNMS
+Home&gt;/classes/com/adventnet/nms/startclient</i></span> and
+set the WebNMSClient as Main Class.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">If the WebNMS server is running in the same
+machine, enter <span style="font-weight: bold;"><b>localhost 9090</b></span>
+in Application Parameters textfield. If it is running in a different
+machine, specify the host name of that machine instead of localhost.</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">Run the Web NMS Client project.</p>
+  </li>
+</ul>
+<p style="font-family: times new roman,times,serif;">Ensure that the
+Web NMS Server is started before running the client.</p>
+<font style="font-family: times new roman,times,serif;" color="#666666"
+ face="arial,helvetica" size="-1"><br>
+</font>
+</body>
+</html>

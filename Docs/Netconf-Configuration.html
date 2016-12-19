@@ -1,0 +1,619 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><div dir="LTR" lang="en-US">
+<p align="CENTER"><a name="zw-12d97a84b5f8C9OIH4b7679"></a><a name="zw-12d97ac29b7FFSPgu4b7679"></a>
+<font face="Arial, sans-serif"><font size="4"><b>Netconf Configuration
+Support in WebNMS</b></font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97ac57d8JzlZJ4b7679"></a><a name="zw-12d97ac57d8bnXLMv4b7679"></a>
+<font face="Arial, sans-serif"><font size="3"><b>Overview</b></font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97ac58e8wZStRx4b7679"></a><a name="zw-12d97ac58e8s22ihp4b7679"></a>
+<font face="Arial, sans-serif"><font size="2">Netconf protocol based
+configuration support is added into WebNMS seamlessly integrating
+into the WebNMS Configuration module. This will allow the WebNMS
+framework to communicate with any Netconf supported device and
+retrieve, modify or delete configurations from the Management system.
+Each configuration is defined as a Configuration Task either through
+XML , Configuration API, or from a easy to use Graphical User
+Interface (GUI). The GUI allows the user to have full control on the
+configuration without the need to know the nitty-gritty of WebNMS
+Config XML formats as well as Netconf APIs or Protocol specifics.  A
+sample Netconf based XML configuration template is shown below (This
+gets auto-generated from the GUI):</font></font></p>
+<p style="margin-bottom: 0in"><a name="zw-12d97af3710ygPB9d4b7679"></a><a name="zw-12d97af37109yqXbM4b7679"></a><a name="zw-12d97af7efezUdyzU4b7679"></a><a name="zw-12d97af7efe8iKkt4b7679"></a><a name="zw-12d97af7efew5SPsw4b7679"></a>
+<br>
+</p>
+<table width="645" border="1" cellpadding="7" cellspacing="0">
+	<colgroup><col width="629">
+	</colgroup><tbody><tr>
+		<td width="629">
+			<p><a name="zw-12d97af7efe8RmqWs4b7679"></a><a name="zw-12d97af5530G9ZMC4b7679"></a><a name="zw-12d97af7f507oQQiQ4b7679"></a><a name="zw-12d97af7f51pCAv4b7679"></a><a name="zw-12d97af7f51cZ1zo14b7679"></a><a name="zw-12d97af7f51ifMB1a4b7679"></a><a name="zw-12d97af7f51kXnjx54b7679"></a><a name="zw-12d97af7f51yGeVTz4b7679"></a><a name="zw-12d97af7f51uzgap4b7679"></a><a name="zw-12d97af7f51VaXbUR4b7679"></a><a name="zw-12d97af7f51MoY5fe4b7679"></a><a name="zw-12d97af7f51vrz69e4b7679"></a><a name="zw-12d97af7f52iIFg3r4b7679"></a><a name="zw-12d97af7f52GIzm654b7679"></a><a name="zw-12d97af7f52I1ryJU4b7679"></a><a name="zw-12d97af7f52fY5DKF4b7679"></a><a name="zw-12d97af7f52jrylf4b7679"></a><a name="zw-12d97af7f52eEsdYc4b7679"></a><a name="zw-12d97af7f52aogW24b7679"></a><a name="zw-12d97af7f52qMuXvw4b7679"></a><a name="zw-12d97af7f52VjeF8S4b7679"></a><a name="zw-12d97af7f52v6zShQ4b7679"></a><a name="zw-12d97af7f52quTLPk4b7679"></a><a name="zw-12d97af7f53VwxXyx4b7679"></a><a name="zw-12d97af7f533odbrw4b7679"></a><a name="zw-12d97af7f53i2h8r4b7679"></a><a name="zw-12d97af7f53WGBWNU4b7679"></a><a name="zw-12d97af7f53zlX-Y54b7679"></a><a name="zw-12d97af7f53fcKLB-4b7679"></a><a name="zw-12d97af7f53wvsKo4b7679"></a><a name="zw-12d97af7f53O5fFEG4b7679"></a><a name="zw-12d97af7f53gZnVVM4b7679"></a><a name="zw-12d97af7f53FAIayv4b7679"></a><a name="zw-12d97af7f53qRXBo4b7679"></a><a name="zw-12d97af7f53DPh3ps4b7679"></a><a name="zw-12d97af7f54iaH3124b7679"></a><a name="zw-12d97af7f54xk3DtD4b7679"></a><a name="zw-12d97af7f54eoV9_V4b7679"></a><a name="zw-12d97af7f54E70SxW4b7679"></a><a name="zw-12d97af7f54Ygetv24b7679"></a><a name="zw-12d97af7f54zOfd2e4b7679"></a><a name="zw-12d97af7f54VkeFGy4b7679"></a><a name="zw-12d97af7f54am4nAe4b7679"></a><a name="zw-12d97af7f54VbMn7F4b7679"></a><a name="zw-12d97af7f541N7T9l4b7679"></a><a name="zw-12d97af7f54DJddGz4b7679"></a><a name="zw-12d97af7f55NE747h4b7679"></a><a name="zw-12d97af7f55MJ_Ej64b7679"></a><a name="zw-12d97af7f55EJH-ms4b7679"></a><a name="zw-12d97af7f553yJhh4b7679"></a><a name="zw-12d97af7f55iesrPz4b7679"></a><a name="zw-12d97af7f55zWk1Y4b7679"></a><a name="zw-12d97af7f552kquD4b7679"></a><a name="zw-12d97af7f55oaQTy4b7679"></a><a name="zw-12d97af7f55RU9vp34b7679"></a><a name="zw-12d97af7f55kdL_E4b7679"></a><a name="zw-12d97af7f55Pei9rG4b7679"></a><a name="zw-12d97af7f55TmeZJS4b7679"></a><a name="zw-12d97af7f56scJVFS4b7679"></a><a name="zw-12d97af7f565Gb9b4b7679"></a><a name="zw-12d97af7f56Dg7VER4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">&lt;?xml version="1.0"
+			encoding="ISO-8859-1"?&gt;<br>&lt;ConfigTask
+			taskName="Netconf_edit-config"<br>&nbsp;&nbsp;&nbsp;
+			description="NetConf edit-config merge operation"<br>&nbsp;&nbsp;&nbsp;
+			version="1.0"<br>&nbsp;&nbsp;&nbsp;
+			isTemplate="false"<br>&nbsp;&nbsp;&nbsp;
+			isNewTask="true"<br>&nbsp;&nbsp;&nbsp;
+			isSequential="false"<br>&nbsp;&nbsp;&nbsp;
+			isOverwrite="true"<br>&nbsp;&nbsp;&nbsp;
+			persistence="true"<br>&nbsp;&nbsp;&nbsp;
+			rollbackNeeded="false"&gt;<br><br>&nbsp;&nbsp;
+			&lt;ProtocolMap name="netconf"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&lt;Device host="192.168.129.23" port="2022"
+			/&gt;<br>&nbsp;&nbsp; &lt;/ProtocolMap&gt;<br><br>&nbsp;&nbsp;
+			&lt;Attribute configOperation="edit-config"<br>&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			configAction="merge"<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaultAction="merge"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			target="running"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			configPath="/hosts"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			subPath="host[name='Web-LB', enabled='false',
+			numberOfServers='23']"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			namespace="http://acme.com/ns/simple/1.0" /&gt;<br><br>&nbsp;
+			&lt;Attribute configOperation="edit-config"<br>&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			configAction="create"<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaultAction="merge"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			target="running"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			configPath="/hosts"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			subPath="host[name='Web-Bkup', enabled='false',
+			numberOfServers='2']"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			namespace="http://acme.com/ns/simple/1.0"
+			/&gt;<br>&lt;/ConfigTask&gt;</font></font></p>
+		</td>
+	</tr>
+</tbody></table>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97af5534P1LfD4b7679"></a><a name="zw-12d97b017e0shCE9u4b7679"></a>
+<br><br>
+</p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b017degGD_z4b7679"></a><a name="zw-12d97b01cedTvduJ4b7679"></a>
+<font face="Arial, sans-serif"><font size="2">The above task definition
+aims at performing two configuration tasks:</font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b0cdafyLHJz-4b7679"></a><a name="zw-12d97b182ffVoPEQi4b7679"></a><a name="zw-12d97b182ffV6djUc4b7679"></a><a name="zw-12d97b1968dGVpqVe4b7679"></a>
+<font face="Arial, sans-serif"><font size="2">1. Merging the attribute
+value changes in the Host Element ​"<i>host[name='Web-LB',
+enabled='false', numberOfServers='23']</i>"</font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b1a4fcTmiS974b7679"></a><a name="zw-12d97b22eff8BC8Ca4b7679"></a><a name="zw-12d97b22f009RXupA4b7679"></a><a name="zw-12d97b22f00zJpj_r4b7679"></a><a name="zw-12d97b2663etQgK294b7679"></a>
+<font face="Arial, sans-serif"><font size="2">2. Creating a new Host
+entry​ corresponding to ​"<i>host[name='Web-Bkup',
+enabled='false', numberOfServers='2']</i>"</font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b2deaf8lIwfA4b7679"></a><a name="zw-12d97b2e2e1eE6nRi4b7679"></a>
+<br><br>
+</p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b2e2dfdYxFSR4b7679"></a><a name="zw-12d97b31694ZP6zTT4b7679"></a><a name="zw-12d97b3353e-gJXtK4b7679"></a><a name="zw-12d97b2f28f_XIsj4b7679"></a><a name="zw-12d97b2e2dfc9fsJ4b7679"></a><a name="zw-12d97b2e2dfE_CU8p4b7679"></a>
+<font face="Arial, sans-serif"><font size="2"><font size="3"><b>Supported
+​Netconf ​Configuration Operations</b></font>​</font></font></p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">WebNMS
+provides support to the following configuration operations:</font></font></p>
+<ol>
+	<li><p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">Get-Config</font></font></p>
+	</li><li><p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">Edit-Config</font></font></p>
+	</li><li><p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">Copy-Config</font></font></p>
+	</li><li><p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">Delete-Config</font></font></p>
+</li></ol>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">In
+addition, the Validate, Lock, Unlock and Commit are executed
+automatically as per the configurations provided in the task
+definition.</font></font></p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2"><i><b>Get-Config
+Operation </b></i></font></font>
+</p>
+<p style="margin-bottom: 0.17in; font-style: normal; font-weight: normal">
+<font face="Arial, sans-serif"><font size="2">The Netconf operation
+get-config allows the configuration to be retrieved from the device.
+The parameters allow the user to specify the target datastore,
+complete configuration or a filtered sub-config to be retrieved, etc.</font></font></p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b3c360GTez4S4b7679"></a><a name="zw-12d97b3c360Oa6IuV4b7679"></a>
+<font face="Arial, sans-serif"><font size="2"><i><b>Edit-Config
+Operation </b></i></font></font>
+</p>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b4a40fAmAUN4b7679"></a><a name="zw-12d97b4a40f0kDtPl4b7679"></a>
+<font face="Arial, sans-serif"><font size="2">The Netconf operation
+edit-config allows to edit an existing configuration in a target
+datastore. The actions such as creating new elements, changing
+element or attribute values, replacing exiting elements, or deleting
+elements are possible from this edit-config operation. The parameters
+to represent a edit-config operation in an WebNMS Netconf
+configuration XML task are listed below:</font></font></p>
+<p style="margin-bottom: 0in"><a name="zw-12d97b7663b9fK9uP4b7679"></a><a name="zw-12d97b7663bXYd1El4b7679"></a><a name="zw-12d97c83c54Q92b9D4b7679"></a><a name="zw-12d97c83c54GPmYfb4b7679"></a><a name="zw-12d97b90cbdXkJTC4b7679"></a>
+<br>
+</p>
+<table width="1402" border="1" cellpadding="7" cellspacing="0">
+	<colgroup><col width="187">
+	<col width="292">
+	<col width="465">
+	<col width="400">
+	</colgroup><tbody><tr>
+		<td width="187" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b90cbdcFfJcQ4b7679"></a><a name="zw-12d97b9234c95cWcy4b7679"></a><a name="zw-12d97b932d7m-xfuT4b7679"></a><a name="pos_Cursor"></a><a name="zw-12d97b90cbdHLX56u4b7679"></a><a name="zw-12d97b93076BnSlwv4b7679"></a><a name="zw-12d97b9234fkfC-2U4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2"><b>Task XML Attribute
+			Name​</b></font></font></p>
+		</td>
+		<td width="292" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b9619aw--kN4b7679"></a><a name="zw-12d97b9619cOd48Eh4b7679"></a><a name="zw-12d97b90cbdWE0s4C4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2"><b>Sample Value​</b></font></font></p>
+		</td>
+		<td width="465" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b9bd8bM3x_Cq4b7679"></a><a name="zw-12d97b9bd8dbe0WqR4b7679"></a><a name="zw-12d97b90cbd8zyVUV4b7679"></a><a name="zw-12d97b9bd8bYOlGP4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2"><b>Usage​</b></font></font></p>
+		</td>
+		<td width="400" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b9f17bRnac1p4b7679"></a><a name="zw-12d97b9f17d0nqBiV4b7679"></a><a name="zw-12d97ba7178ncxYOE4b7679"></a><a name="zw-12d97b7d0a7o3BAb4b7679"></a><a name="zw-12d97b9f17bTnuQq4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2"><b>Comments​</b></font></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97b784bbi2Q8wt4b7679"></a><a name="zw-12d97b7d106Z1oe6D4b7679"></a><a name="zw-12d97bb9ca7zZU-Qs4b7679"></a><a name="zw-12d97b7d1079AIciE4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configOperation</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97ba71e4pN2gAd4b7679"></a><a name="zw-12d97b784bb4gLsl4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configOperation="edit-config"</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">The
+			config operation defines the type of configuration that is going
+			to be executed. Supported types are: </font></font>
+			</p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><a name="zw-12d97bb1babuae8Sk4b7679"></a><a name="zw-12d97bb20e45QQ_l4b7679"></a><a name="zw-12d97bb20e6ExpjmP4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">edit-config</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><a name="zw-12d97bb2e479LlJy24b7679"></a><a name="zw-12d97bb2e47m4JqbH4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">copy-config</font></font></p>
+				</li><li><p><a name="zw-12d97bb74279iz9f84b7679"></a><a name="zw-12d97bb7427HW_fBN4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">delete-config</font></font></p>
+			</li></ol>
+			<p><a name="zw-12d97bb9e9blmaNTc4b7679"></a><a name="zw-12d97bba925ORwesp4b7679"></a><a name="zw-12d97b784bc8hog874b7679"></a><a name="zw-12d97bb9e9cGpNZLZ4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Edit-config is used to
+			edit or change any of the configurations on a existing datastore.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97bc5a3btqkQD4b7679"></a><a name="zw-12d97b7e974dVQoHW4b7679"></a>
+			<br>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97bd41a480kINO4b7679"></a><a name="zw-12d97b7e9b6g0cfBW4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configAction</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97bc5aa11B4f6i4b7679"></a><a name="zw-12d97b784bcYlpFH24b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configAction="merge"</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">This
+			parameter defines the configuration action to be done. The
+			permitted actions are:</font></font></p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><a name="zw-12d97bdf242hmTM6E4b7679"></a><a name="zw-12d97bdf6aeydsVVJ4b7679"></a><a name="zw-12d97be32b0DlQTIl4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">create</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><a name="zw-12d97be0802bqGBqc4b7679"></a><a name="zw-12d97be0802jLa-W4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">merge</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><a name="zw-12d97be15421sWry4b7679"></a><a name="zw-12d97be15422FRe634b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">replace</font></font></p>
+				</li><li><p><a name="zw-12d97be40b2a-Hk_14b7679"></a><a name="zw-12d97be40b24B-uGc4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">delete</font></font></p>
+			</li></ol>
+			<p style="margin-bottom: 0in"><a name="zw-12d97bde8602xY614b7679"></a><a name="zw-12d97bde860igdkGN4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Create action is used
+			when a new element is added to the target datastore.</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97be5972Jk-lhe4b7679"></a><a name="zw-12d97be5c24Nl7_1F4b7679"></a><a name="zw-12d97be59729WQazI4b7679"></a>
+			<br>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97be5c22Ch3ibe4b7679"></a><a name="zw-12d97be5c22NKsawC4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Merge action is used
+			whenever a attribute / Element value change is to be merged into
+			an existing configuration.</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97beff11SjTgAI4b7679"></a><a name="zw-12d97bf0203ucbap4b7679"></a><a name="zw-12d97beff11fCCpM14b7679"></a>
+			<br>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97bf0201M79Y914b7679"></a><a name="zw-12d97bf020173cvd4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Replace is used when
+			an Element with same name is to be completely replaced with the
+			given Element.</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97bfccd1VHRgYd4b7679"></a><a name="zw-12d97bfcf938Iy-4r4b7679"></a><a name="zw-12d97bfccd1sTiMH4b7679"></a>
+			<br>
+			</p>
+			<p><a name="zw-12d97bfcf91lO7EG4b7679"></a><a name="zw-12d97bfcf91hVnmP4b7679"></a><a name="zw-12d97b784bc3OxnYH4b7679"></a><a name="zw-12d97bdac50k2tIOD4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Delete is used when
+			the given Element is to be deleted from the existing
+			configuration.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97c0c7a0wb1vv74b7679"></a><a name="zw-12d97b81b25HmWtU4b7679"></a>
+			<br>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97c0c7a0tlRFFA4b7679"></a><a name="zw-12d97b81c06faxvWo4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">defaultAction</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97c0c841kYpVx14b7679"></a><a name="zw-12d97b7eef69TXE0u4b7679"></a><a name="zw-12d97c0c841fgtTu14b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">defaultAction="merge"</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">Default
+			action is taken when the configAction is not defined. </font></font>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c10ae5Vvhxx4b7679"></a><a name="zw-12d97c10cb7-dMxd84b7679"></a><a name="zw-12d97c10ae5-WHxnI4b7679"></a>
+			<br>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c10cb5sIpi84b7679"></a><a name="zw-12d97c10cb5aLR44u4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">The allowed values are
+			</font></font>
+			</p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><a name="zw-12d97c1ab40xuh6ki4b7679"></a><a name="zw-12d97c1af97VfNZPT4b7679"></a><a name="zw-12d97c1af99d9Ioo-4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">merge</font></font></p>
+				</li><li><p><a name="zw-12d97c1b3daHDKYEg4b7679"></a><a name="zw-12d97c1b3daBeyUC4b7679"></a><a name="zw-12d97b7eef5vsA7l4b7679"></a>
+				<font face="Arial, sans-serif"><font size="2">replace</font></font></p>
+			</li></ol>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97b7eef6xKlbTy4b7679"></a><a name="zw-12d97b7eef6mXEOiT4b7679"></a><a name="zw-12d97b845b2aFRj_4b7679"></a><a name="zw-12d97b845b2fOiQN4b7679"></a>
+			<br>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97b82236ri4p84b7679"></a><a name="zw-12d97b845b4LJauCG4b7679"></a><a name="zw-12d97b845b4nMmc64b7679"></a><a name="zw-12d97b82236F6YS2A4b7679"></a><a name="zw-12d97b845b4prGpml4b7679"></a><a name="zw-12d97b845f60lqeCH4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">target</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97b82236jUUrCx4b7679"></a><font face="Arial, sans-serif"><font size="2">target="running"</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><a name="zw-12d97b82236zOaLqH4b7679"></a><a name="zw-12d97b82236rYZ_G54b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">Netconf devices can
+			support various configuration datastores such as :</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c2735ax9SKbM4b7679"></a><a name="zw-12d97c2771cltUobM4b7679"></a><a name="zw-12d97c2735aKaXl134b7679"></a>
+			<br>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c2771a0vRS1g4b7679"></a><a name="zw-12d97c2771a37Zz1x4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">1. Running </font></font>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c286cal7Rhuc4b7679"></a><a name="zw-12d97c286ca6mhA5z4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">2. Startup</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c2a3caNdVYRK4b7679"></a><a name="zw-12d97c2a3ca3UBoBE4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">3. Candidate</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c3c3f9UeFf_g4b7679"></a><a name="zw-12d97c3c60bwV-3Y4b7679"></a><a name="zw-12d97c3c3f9j_t19L4b7679"></a>
+			<br>
+			</p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c3c609aOclaV4b7679"></a><a name="zw-12d97c3c609lcBAEd4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">So a configuration
+			change via Netconf can be effected in any one of the above
+			datastores.</font></font></p>
+			<p style="margin-bottom: 0in"><a name="zw-12d97c47e28Nm86QJ4b7679"></a><a name="zw-12d97c47e28oyt_Hy4b7679"></a>
+			<br>
+			</p>
+			<p><a name="zw-12d97c47fc8aaF2cM4b7679"></a><a name="zw-12d97c47fc89ToXgk4b7679"></a><a name="zw-12d97b8223541twX4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">The target parameter
+			represents the datastore into which the configuration change needs
+			to be effected.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97c603camyJqgV4b7679"></a><a name="zw-12d97b88232uSbC84b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">The various supported
+			datastores are published in the devices capabilities list.</font></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97b85cb6OrMcxT4b7679"></a><a name="zw-12d97b88265Hvr1Ia4b7679"></a><a name="zw-12d97c603c9bX1XuA4b7679"></a><a name="zw-12d97b88265fG7gVc4b7679"></a><a name="zw-12d97b88234Gj234_4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configPath</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97c60422-7-S84b7679"></a><a name="zw-12d97b85cb5NFTFt14b7679"></a><a name="zw-12d97c60423xAS60k4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">configPath="/hosts"</font></font></p>
+		</td>
+		<td width="465">
+			<p><a name="zw-12d97b85cb5N5XUz74b7679"></a><font face="Arial, sans-serif"><font size="2">This
+			represents the root node of the device's configuration.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97b85cb5pfcAMZ4b7679"></a><a name="zw-12d97b85cb5HZrXYD4b7679"></a><a name="zw-12d97c76082KmH94b7679"></a><a name="zw-12d97b888d6QMgd844b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">The root as well as
+			allowed elements and attributes are listed in the device's schema
+			definition</font></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97c76082JKfnU4b7679"></a><font face="Arial, sans-serif"><font size="2">subPath</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97c760bcG_-nZo4b7679"></a><a name="zw-12d97b888d5NtOIbQ4b7679"></a><a name="zw-12d97c760bcSqlxcY4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">subPath="host[name='Web-LB',
+			enabled='false', numberOfServers='23']"</font></font></p>
+		</td>
+		<td width="465">
+			<p><a name="zw-12d97b888d5ZcpAwv4b7679"></a><font face="Arial, sans-serif"><font size="2">This
+			is the actual element being configured or changed.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97c83c54wvahe4b7679"></a><a name="zw-12d97b8ba94mka7Dq4b7679"></a>
+			<br>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><a name="zw-12d97b8bac7lCd3af4b7679"></a><a name="zw-12d97c83c54EDeuqd4b7679"></a><a name="zw-12d97b8bac7u9MTFR4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">namespace</font></font></p>
+		</td>
+		<td width="292">
+			<p><a name="zw-12d97c83c90bRPWS64b7679"></a><a name="zw-12d97b891a5Ua22qk4b7679"></a><a name="zw-12d97c83c91XSqZdF4b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">namespace="http://acme.com/ns/simple/1.0"</font></font></p>
+		</td>
+		<td width="465">
+			<p><a name="zw-12d97b891a5oFgc84b7679"></a><font face="Arial, sans-serif"><font size="2">This
+			refers to the schema in which this configuration is defined.</font></font></p>
+		</td>
+		<td width="400">
+			<p><a name="zw-12d97b891a5Lq4XKM4b7679"></a><a name="zw-12d97b891a5SDFOY34b7679"></a>
+			<font face="Arial, sans-serif"><font size="2">A single device may
+			implement various schema for various configuration.</font></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><font face="Arial, sans-serif"><font size="2">errorOption</font></font></p>
+		</td>
+		<td width="292">
+			<p><font face="Arial, sans-serif"><font size="2">errorOption=”stop-on-error”</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">This
+			parameter is used to indicate the action to be taken when an error
+			is encountered while performing the configuration. The allowed
+			values are:</font></font></p>
+			<p style="margin-bottom: 0in"><br>
+			</p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">stop-on-error</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">continue-on-error</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">rollback-on-error</font></font></p>
+			</li></ol>
+		</td>
+		<td width="400">
+			<p><font face="Arial, sans-serif"><font size="2">Rollback-on-error
+			is supported only when the “<i>rollback”</i>
+			<span style="font-style: normal">capability is supported by the
+			Netconf agent on the device.</span></font></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="187">
+			<p><font face="Arial, sans-serif"><font size="2">testOption</font></font></p>
+		</td>
+		<td width="292">
+			<p><font face="Arial, sans-serif"><font size="2">testOption=”test-then-set”</font></font></p>
+		</td>
+		<td width="465">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">TestOption
+			allows the user to configuration needs to be validated before
+			setting.</font></font></p>
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">I.e
+			if the Test-then-set value is used, the configuration change is
+			first validated to check if it is proper before a configuration is
+			set. The allowed values for this parameter are:</font></font></p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">test-then-set</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">set</font></font></p>
+			</li></ol>
+		</td>
+		<td width="400">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+</tbody></table>
+<p style="margin-bottom: 0.17in"><a name="zw-12d97b784c1gEftL4b7679"></a><a name="zw-12d97b784c1rCMvcN4b7679"></a>
+<br><br>
+</p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2"><i><b>Copy-Config
+Operation </b></i></font></font>
+</p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">The
+Netconf operation copy-config allows the configurations to be copied
+from one datastore to another. Say for instance when a running
+configuration needs to be upgraded, the running configuration can be
+copied to the candidate configuration, then upgraded, then copied
+back to the running configuration. The parameters to represent a
+copy-config operation in an WebNMS Netconf configuration XML task are
+listed below:</font></font></p>
+<table width="100%" border="1" cellpadding="4" cellspacing="0">
+	<colgroup><col width="64*">
+	<col width="39*">
+	<col width="89*">
+	<col width="64*">
+	</colgroup><tbody><tr valign="TOP">
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b932d7m-xfuT4b76791"></a><font face="Arial, sans-serif"><font size="2"><b>Task
+			XML Attribute Name</b></font></font></p>
+		</td>
+		<td width="15%" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b9619cOd48Eh4b76791"></a><font face="Arial, sans-serif"><font size="2"><b>Sample
+			Value</b></font></font></p>
+		</td>
+		<td width="35%" bgcolor="#cccccc">
+			<p align="CENTER"><font face="Arial, sans-serif"><font size="2"><b>Usage</b></font></font></p>
+		</td>
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><font face="Arial, sans-serif"><font size="2"><b>Comments</b></font></font></p>
+		</td>
+	</tr>
+	<tr valign="TOP">
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">configOperation</font></font></p>
+		</td>
+		<td width="15%">
+			<p><font face="Arial, sans-serif"><font size="2">configOperation="copy-config"</font></font></p>
+		</td>
+		<td width="35%">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">The
+			config operation defines the type of configuration that is going
+			to be executed. Supported types are: </font></font>
+			</p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">edit-config</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><a name="zw-12d97bb2e479LlJy24b76791"></a><a name="zw-12d97bb2e47m4JqbH4b76791"></a>
+				<font face="Arial, sans-serif"><font size="2">copy-config</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">delete-config</font></font></p>
+			</li></ol>
+			<p><font face="Arial, sans-serif"><font size="2">The copy-config
+			operation allows the configuration to be copied from one datastore
+			to another.</font></font></p>
+		</td>
+		<td width="25%">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+	<tr valign="TOP">
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">Source / sourceURL</font></font></p>
+		</td>
+		<td width="15%">
+			<p><font face="Arial, sans-serif"><font size="2">source=”running”</font></font></p>
+		</td>
+		<td width="35%">
+			<p><font face="Arial, sans-serif"><font size="2">The source can be
+			any valid supported datastores like :</font></font></p>
+			<ol>
+				<li><p><font face="Arial, sans-serif"><font size="2">Startup</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Running</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Candidate</font></font></p>
+			</li></ol>
+			<p><font face="Arial, sans-serif"><font size="2">In case the
+			configuration needs to be copied from a File or an URL then the
+			sourceURL parameter can be used to indicate the file / url from
+			which the configuration needs to be copied.</font></font></p>
+		</td>
+		<td width="25%">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+	<tr valign="TOP">
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">Target / targetURL</font></font></p>
+		</td>
+		<td width="15%">
+			<p><font face="Arial, sans-serif"><font size="2">target=”candidate”</font></font></p>
+		</td>
+		<td width="35%">
+			<p><font face="Arial, sans-serif"><font size="2">The target can be
+			any of the valid supported datastores as above.</font></font></p>
+			<ol>
+				<li><p><font face="Arial, sans-serif"><font size="2">Startup</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Running</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Candidate</font></font></p>
+			</li></ol>
+			<p><font face="Arial, sans-serif"><font size="2">In case the
+			configuration needs to be copied from a File or an URL then the
+			targetURL parameter can be used to indicate the file / url into
+			which the configuration needs to be copied.</font></font></p>
+		</td>
+		<td width="25%">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+</tbody></table>
+<p style="margin-bottom: 0.17in"><br><br>
+</p>
+<p style="margin-bottom: 0.17in"><br><br>
+</p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2"><i><b>Delete-Config
+Operation </b></i></font></font>
+</p>
+<p style="margin-bottom: 0.17in"><font face="Arial, sans-serif"><font size="2">The
+Netconf operation delete-config is used for deleting an existing
+configuration or datastore. The parameters to represent a
+delete-config operation in an WebNMS Netconf configuration XML task
+are listed below:</font></font></p>
+<table style="page-break-inside: avoid;" width="100%" border="1" cellpadding="4" cellspacing="0">
+	<colgroup><col width="64*">
+	<col width="64*">
+	<col width="64*">
+	<col width="64*">
+	</colgroup><tbody><tr valign="TOP">
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b932d7m-xfuT4b767911"></a><font face="Arial, sans-serif"><font size="2"><b>Task
+			XML Attribute Name</b></font></font></p>
+		</td>
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><a name="zw-12d97b9619cOd48Eh4b767911"></a><font face="Arial, sans-serif"><font size="2"><b>Sample
+			Value</b></font></font></p>
+		</td>
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><font face="Arial, sans-serif"><font size="2"><b>Usage</b></font></font></p>
+		</td>
+		<td width="25%" bgcolor="#cccccc">
+			<p align="CENTER"><font face="Arial, sans-serif"><font size="2"><b>Comments</b></font></font></p>
+		</td>
+	</tr>
+	<tr valign="TOP">
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">configOperation</font></font></p>
+		</td>
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">configOperation="delete-config"</font></font></p>
+		</td>
+		<td width="25%">
+			<p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">The
+			config operation defines the type of configuration that is going
+			to be executed. Supported types are: </font></font>
+			</p>
+			<ol>
+				<li><p style="margin-bottom: 0in"><font face="Arial, sans-serif"><font size="2">edit-config</font></font></p>
+				</li><li><p style="margin-bottom: 0in"><a name="zw-12d97bb2e479LlJy24b767911"></a><a name="zw-12d97bb2e47m4JqbH4b767911"></a>
+				<font face="Arial, sans-serif"><font size="2">copy-config</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">delete-config</font></font></p>
+			</li></ol>
+			<p><font face="Arial, sans-serif"><font size="2">The delete-config
+			operation allows the configuration to be deleted from the give
+			datastore.</font></font></p>
+		</td>
+		<td width="25%">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+	<tr valign="TOP">
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">Target / targetURL</font></font></p>
+		</td>
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">target=”candidate”</font></font></p>
+		</td>
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">The target can be
+			any of the valid supported datastores as above. </font></font>
+			</p>
+			<ol>
+				<li><p><font face="Arial, sans-serif"><font size="2">Startup</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Running</font></font></p>
+				</li><li><p><font face="Arial, sans-serif"><font size="2">Candidate</font></font></p>
+			</li></ol>
+			<p><font face="Arial, sans-serif"><font size="2">In case the
+			configuration needs to be deleted from a File or an URL then the
+			targetURL parameter can be used.</font></font></p>
+		</td>
+		<td width="25%">
+			<p><font face="Arial, sans-serif"><font size="2">The configuration
+			present in this datastore will be deleted.</font></font></p>
+		</td>
+	</tr>
+</tbody></table>
+<p style="margin-bottom: 0.17in"><br><br>
+</p>
+</div>
+</body></html>

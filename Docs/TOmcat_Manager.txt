@@ -1,0 +1,20 @@
+Dear Team,
+
+                     Till WebNMS 4.7 SP3 for an active webclient development, we provide a tomcat manager tool to developers/customers(direct).
+The tool will replace some of our existing tomcat configuration files such as web.xml, mod_jk.conf-auto etc. This is with respect to tomcat 4.
+
+Now in Tomcat 5, they are providing the tool as a link in the tomcat home page with a simple configuration.
+
+The file needed to modified is <WebNMS_HOME>/apache/tomcat/conf/tomcat-users.xml.
+
+The sample entry for the same is
+
+<role rolename="manager"/>
+ <user username="jeyaprakash" password="<password>" roles="manager"/>
+
+Further the link access will permitted only for configured users. This is a good functionality. We need to integrate it so that our customers will be benefited.
+
+Thanks and Regards
+Jeyaprakash
+
+Net Insight - http://bonitas.adventnet.com/webnms4/18May2009/AdventNet_Web_NMS_4_7_SP-3_10_May_18_09_17_17_34.ppm

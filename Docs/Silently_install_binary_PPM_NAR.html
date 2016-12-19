@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>Silently install binary or PPM or NAR</title>
+  </head>
+  <body>
+    <font size="3"><a
+href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/install_webnms_various_os.html"
+        style="font-family: times new roman,times,serif;">To silently
+        install WebNMS</a><br>
+      <br>
+      Execute the command (<font size="2"><span style="font-family:
+          courier new,courier,monospace; color: rgb(0, 0, 255);
+          font-weight: bold;"><span style="background-color: rgb(255,
+            255, 0);">optional parameters</span></span></font>):<br>
+      <br>
+      <font size="2"><span style="font-family: courier
+          new,courier,monospace; color: rgb(0, 0, 255); font-weight:
+          bold;">&lt;Absolute_Path_of_binary/exe&gt; -is:javaconsole -<span
+            style="background-color: rgb(255, 255, 0);">is:javahome
+            yourjavapath/jre -is:log log.txt -is:tempdir
+            &lt;New_Temp_Directory&gt;</span> -silent -options
+          &lt;absolute_path_if_installoptions.txt&gt; -P
+          ProductRoot.installLocation=&lt;Install_Location&gt; </span></font><br>
+      <span style="font-family: times new roman,times,serif;">Where
+        installoptions.txt is the following file:</span><br>
+      <br>
+      <small><span style="font-family: courier new,courier,monospace;
+          color: rgb(0, 0, 255);">#******************************************************</span><br
+          style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">-W locale.lang=English</span><br
+          style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">-W
+          OEMProducts.selectedValue=OEMADV</span><br style="font-family:
+          courier new,courier,monospace; color: rgb(0, 0, 255);
+          font-weight: bold;">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">-W
+          OEMAdvance.selectedValue=OEMADVBE</span><br
+          style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">#The above can be changed as OEMADVFE or
+          OEMADVClient accordingly</span><br style="font-family: courier
+          new,courier,monospace; color: rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">-W
+          StdCustom.optComponents=Javadocs,Tutorials</span><br
+          style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">#The above can be changed as None if you do
+          not want Tutorials/Javadocs</span><br style="font-family:
+          courier new,courier,monospace; color: rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255); font-weight: bold;">-G
+          replaceExistingResponse="yesToAll"</span><br
+          style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">
+        <span style="font-family: courier new,courier,monospace; color:
+          rgb(0, 0, 255);">#*******************************************************</span></small><br>
+      <br>
+      <span style="font-family: times new roman,times,serif;
+        font-weight: bold;"><span style="text-decoration: underline;">To
+          silently install a service pack</span>:</span><br>
+      <span style="font-family: courier new,courier,monospace; color:
+        rgb(0, 0, 255);"><font size="2">sh UpdateManager.sh -u conf -c
+          -option i -ppmPath &lt;Absolute_Path_of_PPM&gt; -h
+          &lt;Absolute_Path_of_NMS_Home&gt; -DJAVAHOME=&lt;JDK_Home&gt;
+          -DLANGUAGE=English</font><br>
+      </span><br>
+      <span style="font-family: times new roman,times,serif;">If you do
+        not want to compile JSPs, configure</span> <span
+        style="font-family: courier new,courier,monospace; color: rgb(0,
+        0, 255);"><font size="2">-DJAVAHOME=NONE<br>
+        </font></span></font>
+    <hr style="width: 100%; height: 2px;"><font size="3"><span
+        style="font-family: times new roman,times,serif; font-weight:
+        bold;"><span style="text-decoration: underline;">To conf update
+          in command mode (without UI)</span>:</span><br>
+      <font size="2">&nbsp;</font><span style="font-family: courier
+        new,courier,monospace; color: rgb(0, 0, 255);"><font size="2">ConfigurationUpdater.bat
+          UPDATE</font></span></font><font size="3"><span
+        style="font-family: times new roman,times,serif;"> OR </span></font><font
+      size="3"><span style="font-family: courier new,courier,monospace;
+        color: rgb(0, 0, 255);"><br>
+      </span></font><font size="3"><span style="font-family: times new
+        roman,times,serif;"> OR Replace </span></font><font size="3"><span
+        style="font-family: courier new,courier,monospace; color: rgb(0,
+        0, 255);"><font size="2">ConfigurationUpdater.bat</font></span></font><font
+      size="3"><span style="font-family: times new roman,times,serif;">
+        file the as follows (Remove the file &amp; configure it as
+        follows)</span></font><font size="3"><span style="font-family:
+        courier new,courier,monospace; color: rgb(0, 0, 255);"></span>:<br>
+    </font><font size="3"><span style="font-family: courier
+        new,courier,monospace; color: rgb(0, 0, 255);"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          MODTYPE=$1<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VERSION=$2<br>
+          <br>
+          cd ..<br>
+          . ./setEnv.sh<br>
+          <br>
+CLASSPATH=$NMS_SERVER_CLASSES:$NMS_CLASSES:$XML_CLASSPATH:$BUILDER_CLASSPATH:$JIMI_CLASSPATH:$NMS_ARC:$NMS_CLASSES/AdventNetCCLLibrary.jar:$NMS_CLASSES/AdventNetUpdateManagerInstaller.jar:<br>
+          export CLASSPATH<br>
+          <br>
+          #$JAVA_HOME/bin/java -Djava.awt.headless="true"
+          com.adventnet.nms.tools.confchanges.UpdateConfChanges
+          $NMS_HOME $MODTYPE $VERSION<br>
+          if [ $# -eq 7 ]<br>
+          then<br>
+          $JAVA_HOME/bin/java -Djava.awt.headless="true"
+          com.adventnet.nms.tools.confchanges.UpdateConfChanges
+          $NMS_HOME $MODTYPE $2 $3 $4 $5 $6 $7 $8<br>
+          else<br>
+          $JAVA_HOME/bin/java -Djava.awt.headless="true"
+          com.adventnet.nms.tools.confchanges.UpdateConfChanges
+          $NMS_HOME $MODTYPE $VERSION<br>
+          fi<br>
+          <br>
+          cd bin</font></span></font><br>
+    <hr style="width: 100%; height: 2px;"><font size="3"><span
+        style="font-family: times new roman,times,serif;"><span
+          style="font-family: times new roman,times,serif;"><span
+            style="font-weight: bold;"><span style="text-decoration:
+              underline;">Command Line installation of Nar</span>:</span><br>
+        </span></span></font><font face="'times new roman', times,
+      serif" size="3">Execute the following commands in the command
+      prompt (from<span style="font-weight: bold;">
+        $NMS_Client_home/bin/developertools </span>)<br>
+    </font><br>
+    <font size="3"><span style="font-family: times new
+        roman,times,serif;"><span style="font-family: times new
+          roman,times,serif;"><span style="text-decoration: underline;">Command
+            Line installation of Nar:</span><br>
+        </span></span></font>
+    <font style="font-size: medium;"><b><font face="'courier new',
+          courier, monospace">*</font></b><font face="'times new roman',
+        times, serif"> CommandLineStudioNarInstaller.bat
+        &lt;Absolute_path_of_the_nar&gt;</font></font><br>
+    <font style="font-size: medium;" face="'times new roman', times,
+      serif">Eg:&nbsp;</font><font color="#0000FF" face="'courier new',
+      courier, monospace" size="2">CommandLineStudioNarInstaller.bat
+      C:\WebNMS\DiamondTest03__21.0.nar</font><font style="font-size:
+      medium;" face="'times new roman', times, serif">This installs the
+      Nar in the client<br>
+    </font><br>
+    <font size="3"><span style="font-family: times new
+        roman,times,serif;"><span style="font-family: times new
+          roman,times,serif;"><span style="text-decoration: underline;">Command
+            Line un-installation of Nar</span>:</span></span></font><br>
+    <font style="font-family: 'times new roman',times,serif;"
+      class="Apple-style-span" size="3"><span style="font-family:
+        verdana,arial,helvetica,sans-serif;"><b><font
+            class="Apple-style-span" face="'courier new', courier,
+            monospace">*</font></b><font class="Apple-style-span"
+          face="'times new roman', times, serif">&nbsp;CommandLineStudioNar<span
+            style="font-style: italic;">Un</span>Installer.bat
+          &lt;Name_of_the_nar&gt;</font></span></font><br>
+    <font style="font-size: medium; font-family: 'times new
+      roman',times,serif;" class="Apple-style-span">Eg:&nbsp;</font><font
+      class="Apple-style-span" color="#0000FF" face="'courier new',
+      courier, monospace" size="2">CommandLineStudioNar<b><u><i>Un</i></u></b>Installer.bat
+      DiamondTest03__21.0</font><br>
+    <font style="font-family: 'times new roman',times,serif;"
+      class="Apple-style-span" size="3">(Name got
+      from&nbsp;NetMonitor/build/<b>uninstall.xml</b>&nbsp;(</font><font
+      class="Apple-style-span" color="#0000FF" face="'courier new',
+      courier, monospace" size="2"><span style="background-color:
+        rgb(255, 255, 0);">&lt;INSTALLED-NARS
+        APP_VER="DiamondTest03__21.0" NAME="</span><b><u
+          style="background-color: rgb(0, 255, 0);">DiamondTest03__21.0</u></b><span
+        style="background-color: rgb(255, 255, 0);">"
+        TYPE="PWSAPPLICATION"&gt;</span></font><font style="font-size:
+      medium; font-family: 'times new roman',times,serif;"
+      class="Apple-style-span">)<br>
+    </font>
+    <font face="'times new roman', times, serif" size="3"><br>
+      This uninstalls the Nar in the client.<br>
+      <br>
+    </font><font size="3"><span style="font-family: times new
+        roman,times,serif;"><span style="font-family: times new
+          roman,times,serif;">
+          If you choose to install a standalone client, please follow
+          the below steps to make the above scripts work:<br>
+          <br>
+        </span></span></font><font face="'times new roman', times,
+      serif" size="3">1. Create $NMS_Client_home/bin/<b>developertools</b>
+      directory in the Standalone client<br>
+      2. </font><span style="font-family: 'times new
+      roman',times,serif; font-size: medium;">Copy</span><font
+      face="'times new roman', times, serif" size="3">&nbsp;</font><span
+      style="font-family: 'times new roman',times,serif; font-size:
+      medium;">CommandLineStudioNarInstaller.bat &amp;&nbsp;</span><span
+      style="font-family: 'times new roman',times,serif; font-size:
+      medium;">CommandLineStudioNarUnInstaller.bat to&nbsp;</span><span
+      style="font-family: 'times new roman',times,serif; font-size:
+      medium;">$<span style="font-weight: bold;">NMS_Client_home</span>/bin/developertools<br>
+      3. Copy NmsServerClasses.jar to&nbsp;</span><font face="'times new
+      roman', times, serif" size="3">$NMS_Client_home/classes&nbsp;</font><font
+      face="'times new roman', times, serif" size="3">(all these files
+      from BE server</font><font face="'times new roman', times, serif"
+      size="3">)<br>
+      <br>
+      Now execute the above commands.<br>
+    </font>
+  </body>
+</html>

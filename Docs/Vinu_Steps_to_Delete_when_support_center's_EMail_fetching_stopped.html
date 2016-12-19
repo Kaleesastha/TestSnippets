@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Steps to Delete when support center's EMail fetching stopped</title>
+</head>
+<body>
+<div style="text-align: center;"><span
+ style="font-weight: bold; text-decoration: underline;">Steps to Delete
+when support center's EMail fetching stopped</span><br>
+</div>
+telnet pop 110<br>
+user nms-scp<br>
+pass nms-scp<br>
+uidl<br>
+DELE 1<br>
+quit<br>
+<a href="http://nms-support:8080/SetUpWizard.do?forwardTo=email">Fetch
+EMail</a><br>
+</body>
+</html>

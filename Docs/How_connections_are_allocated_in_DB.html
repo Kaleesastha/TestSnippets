@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How connections are allocated in DB</title>
+</head>
+<body>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Times New Roman,Times,serif; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="border-collapse: collapse; font-size: 12px;">The following
+describes how connections are allocated in 4.7 SP3<br style=""
+ clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ style="" clear="none">
+Transactional Connection</span><br style="" clear="none">
+<br style="" clear="none">
+The Connection Pool in NMS maintains two data structures for holding
+the transactional connections namely<br style="" clear="none">
+<ul style="">
+  <li style="">Free connections array<br style="" clear="none">
+  </li>
+  <li style="">Currently used connections mapping (Thread Vs connection
+mapping ) (Hashtable)<br style="" clear="none">
+  </li>
+</ul>
+When NMS starts, it would create transactional connections as
+configured and store the same in the free connections array.<br style=""
+ clear="none">
+<br style="" clear="none">
+<span style="text-decoration: underline;">What happens when a thread
+tries to execute queries in transaction mode :</span><br style=""
+ clear="none">
+<ul style="">
+  <li style="">Whenever a thread begins a transaction, the Connection
+Pool moves a connection from the free connection array to the currently
+used array and it would be mapped to that particular thread.<span
+ class="Apple-converted-space">&nbsp;</span><br style="" clear="none">
+  </li>
+  <li style="">The database queries performed by that particular thread
+are executed through the connection mapped with the thread<br style=""
+ clear="none">
+  </li>
+  <li style="">Once a commit or rollback occurs in that particular
+thread, the ConnectionPool is notified of the same and it would remove
+the respective connection from the currently used connection to the
+free connection array.</li>
+  <li style="">In case, a thread begins a transaction with a timeout
+value, the<span class="Apple-converted-space">&nbsp;</span><span
+ style="font-style: italic;">TransactionAPI</span><span
+ class="Apple-converted-space">&nbsp;</span>would schedule a<span
+ style="font-style: italic;">TransactionTimeoutHandler</span><span
+ class="Apple-converted-space">&nbsp;</span>with the timeout after the
+Connection Pool associates a connection with the thread. If the thread
+does not commit before this timeout value, the timeout handler would be
+executed and a rollback would happen. Then the Connection Pool would
+remove the respective connection from the currently used connection to
+the free connection array.</li>
+  <li style="">The<span class="Apple-converted-space">&nbsp;</span><span
+ style="font-style: italic;">TransactionTimeoutHandler</span><span
+ class="Apple-converted-space">&nbsp;</span>would be scheduled in all
+cases except when the timeout value is set as -1. In such a case, there
+would be no time out check.<br style="" clear="none">
+  </li>
+</ul>
+<br style="" clear="none">
+<span style="text-decoration: underline;">What happens when a thread
+tries to execute queries in transaction mode when all the connections
+are currently used :</span><br style="" clear="none">
+<br style="" clear="none">
+In case all the transaction connections are being used when a new
+thread begins a transaction, the Connection Pool would would wait until
+a connection is available in the free connection array and then map the
+same with the thread. The Connection Pool would check the free
+connection array every second until it crosses its timeout value. In
+case it is not able to fetch a connection within the timeout value, an
+exception stating that Free connection is not available would be thrown.<span
+ class="Apple-converted-space">&nbsp;</span><br style="" clear="none">
+Please note, if the timeout is set as -1, the Connection Pool would
+indefinitely check the free connection array until it gets one.<br
+ style="" clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ style="" clear="none">
+Non Transactional Connection<br style="" clear="none">
+</span><span style="text-decoration: underline; font-weight: bold;"><br
+ style="" clear="none">
+</span>The Connection Pool in NMS maintains a single array for holding
+the non transaction connections. It also maintains a tracker to keep
+track of the last connection given. The tracker's value fall within the
+range of the non transactional connections i.e if there are 2 non
+transactional connection its values would be 0,1.<span
+ class="Apple-converted-space">&nbsp;</span><br style="" clear="none">
+<br style="" clear="none">
+Whenever a thread requests for a connection, the tracker increments it
+value and return the non transactional connection present at that index
+in the connection array. When the tracker's value crosses the max
+value, it would be reset to its initial value.<span
+ class="Apple-converted-space">&nbsp;</span><br style="" clear="none">
+For example, assume there are 2 non transactional connections (c1, c2)
+and 3 threads (t1, t2, t3) tries to obtain connections simultaneously.
+Then thread t1 would get connection c1 , t2 would get c2 and t3 would
+get c1.<span class="Apple-converted-space">&nbsp;</span><br style=""
+ clear="none">
+As of now, there is no provision to lock the connection if it is used
+by another thread. The locking of connections was avoided as
+simultaneous execution of queries through a common connection by
+different threads is handled by the JDBC implementation. And hence
+there would not be any issues of data corruption.<br style=""
+ clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ style="" clear="none">
+<br style="" clear="none">
+Handling Non transactional connection similar to Transactional
+connections</span><br style="" clear="none">
+<br style="" clear="none">
+The locking of transaction connections has been implemented as the
+Connection Pool would be notified whenever the usage of a transactional
+connection starts and stops i.e through the begin and commit mechanisms.<span
+ class="Apple-converted-space">&nbsp;</span><br style="" clear="none">
+However such a provision does not exist for non transactional
+connections. A module would request a connection and execute queries
+using the same. However it would not send any notification to the
+Connection Pool after using the same. Hence the Connection Pool would
+never know if the module/ thread has used the connection or not.<br
+ style="" clear="none">
+</span></span>
+</body>
+</html>

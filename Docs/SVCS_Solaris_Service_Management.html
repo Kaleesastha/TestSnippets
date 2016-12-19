@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>SVCS</title>
+</head>
+<body>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+NAME<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs - report service status<br>
+<br>
+SYNOPSIS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs [-aHpv?] [-o col[,col]...]&nbsp; [-R
+instance_FMRI]...&nbsp; [-sS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; col]... [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs {-d |&nbsp; -D}&nbsp;&nbsp; [-Hpv?]&nbsp;
+[-o col[,col]...]&nbsp;&nbsp; [-sS&nbsp; col]...<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs -l [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs -x [-v] [FMRI]...<br>
+<br>
+DESCRIPTION<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The&nbsp; svcs&nbsp; command&nbsp;
+displays&nbsp;&nbsp; information&nbsp;&nbsp; about&nbsp;&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances&nbsp; as&nbsp; recorded in the
+service configuration reposi-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; tory. The first form prints&nbsp;
+one-line&nbsp; status&nbsp; listings&nbsp; for<br>
+&nbsp;&nbsp;&nbsp;&nbsp; service&nbsp; instances specified by the
+arguments. Each instance<br>
+&nbsp;&nbsp;&nbsp;&nbsp; is listed only once. With no arguments, all
+enabled&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances, even if temporarily disabled, are
+listed with the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; columns indicated below. The&nbsp;
+second&nbsp; form&nbsp; prints&nbsp; one-line<br>
+&nbsp;&nbsp;&nbsp;&nbsp; status&nbsp; listings&nbsp; for&nbsp; the
+dependencies or dependents of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; service instances specified by the arguments.
+The third form<br>
+&nbsp;&nbsp;&nbsp;&nbsp; prints&nbsp; detailed&nbsp; information&nbsp;
+about&nbsp; specific&nbsp; services and<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The fourth form explains the states&nbsp;
+of&nbsp; service&nbsp; instances.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; For&nbsp; each&nbsp; argument,&nbsp; a&nbsp;
+block&nbsp; of&nbsp; human-readable&nbsp; text&nbsp; is<br>
+&nbsp;&nbsp;&nbsp;&nbsp; displayed which explains what state the
+service is&nbsp; in,&nbsp; and<br>
+&nbsp;&nbsp;&nbsp;&nbsp; why it is in that state. With no arguments,
+problematic ser-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; vices are described.<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+NAME<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs - report service status<br>
+<br>
+SYNOPSIS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs [-aHpv?] [-o col[,col]...]&nbsp; [-R
+instance_FMRI]...&nbsp; [-sS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; col]... [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs {-d |&nbsp; -D}&nbsp;&nbsp; [-Hpv?]&nbsp;
+[-o col[,col]...]&nbsp;&nbsp; [-sS&nbsp; col]...<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs -l [FMRI | pattern] ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; svcs -x [-v] [FMRI]...<br>
+<br>
+DESCRIPTION<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The&nbsp; svcs&nbsp; command&nbsp;
+displays&nbsp;&nbsp; information&nbsp;&nbsp; about&nbsp;&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances&nbsp; as&nbsp; recorded in the
+service configuration reposi-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; tory. The first form prints&nbsp;
+one-line&nbsp; status&nbsp; listings&nbsp; for<br>
+&nbsp;&nbsp;&nbsp;&nbsp; service&nbsp; instances specified by the
+arguments. Each instance<br>
+&nbsp;&nbsp;&nbsp;&nbsp; is listed only once. With no arguments, all
+enabled&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances, even if temporarily disabled, are
+listed with the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; columns indicated below. The&nbsp;
+second&nbsp; form&nbsp; prints&nbsp; one-line<br>
+&nbsp;&nbsp;&nbsp;&nbsp; status&nbsp; listings&nbsp; for&nbsp; the
+dependencies or dependents of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp; service instances specified by the arguments.
+The third form<br>
+&nbsp;&nbsp;&nbsp;&nbsp; prints&nbsp; detailed&nbsp; information&nbsp;
+about&nbsp; specific&nbsp; services and<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instances.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The fourth form explains the states&nbsp;
+of&nbsp; service&nbsp; instances.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; For&nbsp; each&nbsp; argument,&nbsp; a&nbsp;
+block&nbsp; of&nbsp; human-readable&nbsp; text&nbsp; is<br>
+&nbsp;&nbsp;&nbsp;&nbsp; displayed which explains what state the
+service is&nbsp; in,&nbsp; and<br>
+&nbsp;&nbsp;&nbsp;&nbsp; why it is in that state. With no arguments,
+problematic ser-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; vices are described.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+col&nbsp; should&nbsp; be&nbsp; a&nbsp; column name. See<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+COLUMNS below for available columns.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+-p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Lists processes associated with each<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+service instance. A service instance<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+may have&nbsp; no&nbsp; associated&nbsp; processes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The process ID, start time, and com-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mand&nbsp; name&nbsp; (PID,&nbsp; STIME,&nbsp; and&nbsp;&nbsp; CMD<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fields from ps(1)) are displayed for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+each process.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; -R
+instance_FMRI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Selects service
+instances that&nbsp; have<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the&nbsp; given service instance as their<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+restarter.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; -s
+col&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Sorts output by column.&nbsp; col&nbsp; should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+be&nbsp; a column name. See COLUMNS below<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for available columns.&nbsp; Multiple&nbsp; -s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+options behave additively.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; -S
+col&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Sorts by col in the&nbsp; opposite&nbsp; order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+as option -s.<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Without&nbsp;&nbsp; -x,&nbsp;&nbsp;&nbsp; displays&nbsp;&nbsp;&nbsp;
+verbose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+columns: STATE, NSTATE, STIME, CTID,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+and FMRI.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+With -x, displays extra&nbsp; information<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for each explanation.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+-x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Displays&nbsp; explanations&nbsp; for&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+states.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Without&nbsp; arguments,&nbsp; the&nbsp; -x&nbsp; option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+explains&nbsp;&nbsp; the&nbsp; states&nbsp; of&nbsp; services<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+which:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+o&nbsp; are enabled, but are&nbsp; not&nbsp; run-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ning.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+o&nbsp; are preventing another&nbsp; enabled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+service from running.<br>
+<br>
+OPERANDS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The following operands are supported:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; instance_FMRI&nbsp;&nbsp; An FMRI that
+specifes an instance.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+FMRI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+An FMRI that specifes one or more instances.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FMRIs&nbsp; can&nbsp; be abbreviated by specifying the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance name, or the&nbsp; trailing&nbsp; portion&nbsp; of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the&nbsp; service&nbsp; name.&nbsp; For&nbsp; example, given the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FMRI:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svc:/network/smtp:sendmail<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The following are valid abbreviations:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+smtp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+smtp:sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+network/smtp<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The following are invalid abbreviations:<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+network<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+network/smt<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+If the FMRI specifies a&nbsp; service,&nbsp; then&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+command&nbsp; applies&nbsp; to&nbsp; all&nbsp; instances of that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+service,&nbsp; except&nbsp; when&nbsp; used&nbsp; with&nbsp;
+the&nbsp;&nbsp; -D<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+option.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Abbreviated forms of FMRIs are unstable, and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+should&nbsp; not be used in scripts or other per-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+manent tools.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+pattern&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A pattern that
+is matched against the&nbsp; FMRIs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+of service instances according to the "glob-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bing" rules described by fnmatch(5). If&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pattern does not begin with svc:, then svc:/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+is prepended.<br>
+<br>
+COLUMNS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Column names are case insensitive. The default
+output format<br>
+&nbsp;&nbsp;&nbsp;&nbsp; is&nbsp; equivalent to "-o state,stime,fmri".
+The default sorting<br>
+&nbsp;&nbsp;&nbsp;&nbsp; columns are STATE, STIME, FMRI.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+CTID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The primary&nbsp; contract&nbsp; ID&nbsp; for&nbsp; the&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance.&nbsp; Not all instances have valid pri-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mary contract IDs.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+DESC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A brief description of the service, from its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+template&nbsp; element.&nbsp; A service may not have a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+description&nbsp; available,&nbsp; in&nbsp; which&nbsp;
+case&nbsp;&nbsp; a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hyphen (-) is used to denote an empty value.<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+FMRI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The FMRI of the service instance.<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+INST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The instance name of the service instance.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+NSTA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The abbreviated next state&nbsp; of&nbsp; the&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance,&nbsp;&nbsp; as&nbsp;&nbsp; given&nbsp; in&nbsp; the&nbsp;
+STA&nbsp; column<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+description.&nbsp; A&nbsp; hyphen&nbsp; denotes&nbsp; that&nbsp;&nbsp;
+the<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance&nbsp; is&nbsp; not transitioning. Same as STA<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+otherwise.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+NSTATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The next
+state of the service. A&nbsp; hyphen&nbsp; is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+used&nbsp; to&nbsp; denote&nbsp; that&nbsp; the&nbsp; instance is not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+transitioning. Same as STATE otherwise.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+SCOPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The
+scope name of the service instance.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+SVC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The service name of the service instance.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The&nbsp; abbreviated&nbsp; state&nbsp;&nbsp; of&nbsp;&nbsp;
+the&nbsp;&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DGD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; degraded<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DIS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disabled<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LRC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legacy&nbsp;&nbsp;&nbsp;
+rc*.d&nbsp;&nbsp;&nbsp; script-initiated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+instance<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MNT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; maintenance<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offline<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; online<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; online<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uninitialized<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Absent or unrecognized states are denoted by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+a&nbsp; question&nbsp; mark (?) character. An asterisk<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(*) is appended for instances in transition,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+unless&nbsp; the&nbsp; NSTA&nbsp; or&nbsp; NSTATE column is also<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+being displayed.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+See smf(5) for&nbsp; an&nbsp; explanation&nbsp; of&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+states.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The
+state of the service instance. An aster-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+isk is appended for instances in transition,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+unless the NSTA or&nbsp; NSTATE&nbsp; column&nbsp; is&nbsp; also<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+being displayed.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+See smf(5) for&nbsp; an&nbsp; explanation&nbsp; of&nbsp; service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+states.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If
+the service instance entered the&nbsp; current<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state&nbsp; within the last 24 hours, this column<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+indicates the time that it&nbsp; did&nbsp; so.&nbsp; Other-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+wise,&nbsp; this&nbsp; column&nbsp; indicates&nbsp; the&nbsp; date on<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+which it did so,&nbsp; printed&nbsp; with&nbsp; underscores<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(_) in place of blanks.<br>
+<br>
+EXAMPLES<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Example 1: Displaying the Default Output<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; This example displays default output:<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; example% svcs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+STIME&nbsp;&nbsp;&nbsp; FMRI<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp; legacy_run&nbsp;&nbsp;&nbsp;&nbsp; 13:25:04
+lrc:/etc/rc3_d/S42myscript<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13:21:50
+svc:/system/svc/restarter:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13:25:03
+svc:/milestone/multi-user:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13:25:07
+svc:/milestone/multi-user-server:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Example 2: Listing All Local Instances<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; This example lists all local instances of the
+service1&nbsp; ser-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; vice.<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; example% svcs -o state,nstate,fmri service1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NSTATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FMRI<br>
+&nbsp;&nbsp;&nbsp;&nbsp; online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svc:/service1:instance1<br>
+&nbsp;&nbsp;&nbsp;&nbsp; disabled&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svc:/service1:instance2<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Example 3: Listing Verbose Information<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; This example lists verbose information.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; example% svcs -v smtp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NSTATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+STIME&nbsp;&nbsp;&nbsp; CTID&nbsp;&nbsp; FMRI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+13:25:13&nbsp;&nbsp;&nbsp; 141 svc:/network/smtp:sendmail<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Example 4: Listing Detailed Information<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This example lists detailed information
+about all instances<br>
+&nbsp;&nbsp;&nbsp;&nbsp; of&nbsp; system/service3.&nbsp; Additional
+fields can be displayed, as<br>
+&nbsp;&nbsp;&nbsp;&nbsp; appropriate to the managing restarter.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; example% svcs -l system/service3<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+fmri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svc:/system/service3:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; description&nbsp; Example service 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp; enabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; online<br>
+&nbsp;&nbsp;&nbsp;&nbsp; next_state&nbsp;&nbsp; none<br>
+&nbsp;&nbsp;&nbsp;&nbsp; restarter&nbsp;&nbsp;&nbsp;
+svc:/system/svc/restarter:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; dependency&nbsp;&nbsp; require_all/refresh
+svc:/system/service2:default (online<br>
+&nbsp;&nbsp;&nbsp;&nbsp; dependency&nbsp;&nbsp; require_all/none
+svc:/system/service1:default (online)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+fmri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svc:/system/service3:backup<br>
+&nbsp;&nbsp;&nbsp;&nbsp; description&nbsp; Example service 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp; enabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disabled<br>
+&nbsp;&nbsp;&nbsp;&nbsp; next_state&nbsp;&nbsp; none<br>
+&nbsp;&nbsp;&nbsp;&nbsp; restarter&nbsp;&nbsp;&nbsp;
+svc:/system/svc/restarter:default<br>
+&nbsp;&nbsp;&nbsp;&nbsp; dependency&nbsp;&nbsp; require_all
+svc:/system/service2:backup (-)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Example 5: Listing Processes<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; example% svcs -p sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+STATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+STIME&nbsp;&nbsp;&nbsp; FMRI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+online&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13:25:13
+svc:/network/smtp:sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+13:25:15&nbsp;&nbsp; 100939 sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 13:25:15&nbsp;&nbsp; 100940 sendmail<br>
+<br>
+EXIT STATUS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The following exit values are returned:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Successful command invocation.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+13:25:15&nbsp;&nbsp; 100939 sendmail<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 13:25:15&nbsp;&nbsp; 100940 sendmail<br>
+<br>
+EXIT STATUS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The following exit values are returned:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Successful command invocation.<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7<br>
+<br>
+User
+Commands&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+svcs(1)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Fatal error.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Invalid command line options were specified.<br>
+<br>
+ATTRIBUTES<br>
+&nbsp;&nbsp;&nbsp;&nbsp; See attributes(5) for descriptions of
+the&nbsp; following&nbsp; attri-<br>
+&nbsp;&nbsp;&nbsp;&nbsp; butes:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+____________________________________________________________<br>
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATTRIBUTE
+TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATTRIBUTE
+VALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp;
+|_____________________________|_____________________________|<br>
+&nbsp;&nbsp;&nbsp; |
+Availability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+SUNWcsu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|<br>
+&nbsp;&nbsp;&nbsp;
+|_____________________________|_____________________________|<br>
+&nbsp;&nbsp;&nbsp; | Interface
+Stability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | See
+below.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|<br>
+&nbsp;&nbsp;&nbsp;
+|_____________________________|_____________________________|<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The human readable output is&nbsp;
+Unstable.&nbsp; The&nbsp; invocation&nbsp; is<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Evolving.<br>
+<br>
+SEE ALSO<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ps(1),&nbsp;&nbsp;&nbsp;
+svc.startd(1M),&nbsp;&nbsp;&nbsp; libscf(3LIB),&nbsp;&nbsp;&nbsp;
+attributes(5),<br>
+&nbsp;&nbsp;&nbsp;&nbsp; fnmatch(5), smf(5)<br>
+<br>
+SunOS 5.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Last
+change: 18 Nov
+2004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>SSL enabled WebNMS as Windows service</title>
+</head>
+<body>
+<small><font face="Times New Roman, Times, serif"><big><font
+ color="#000025"><br>
+</font></big></font></small><font color="#009900"><span
+ style="font-style: italic; text-decoration: underline;"></span></font><font
+ color="#009900"><span
+ style="color: rgb(102, 0, 204); font-style: italic;"></span></font><small><font
+ face="Times New Roman, Times, serif"><big><font color="#000025"><big><font
+ color="#6600cc"><font color="#000000"><small><b>If you like to install
+SSL-enabled WebNMS as Windows service &amp; to start (SSL enabled)
+apache as a dependent service, follow the below procedure:</b></small></font><br>
+</font></big></font></big></font></small><br>
+<font color="#000025" size="3">Copy <b>libeay32.dll and ssleay32.dll </b>from
+&lt;NMS_Home&gt;\apache\bin into &lt;Windows_Dir&gt; (Follow this </font><font
+ color="#000025" size="3"><a
+ href="http://developer.softwareag.com/tamino/documentation/ssl/ssl_support/apache.htm#apache-install">link</a>
+</font>for a detailed explanation)<font size="3"><br>
+</font><br>
+<font color="#000025" size="3">Install the Apache service from
+&lt;NMS_Home&gt;\apache\bin directory as:<br>
+<b>Apache.exe -k install -n "SSLApache" -D SSL<br>
+<br>
+</b></font><font color="#000025">Also note that in case of starting SSL
+enabled WebNMS as a windows service, the startup class has to <b>NmsMainBE</b>
+(and not the default <b>StartNmsJdbc</b>). Hence java_service.ini has
+to be modified accordingly. This also involves the following:</font><br>
+<font color="#000025" size="3">
+<br>
+1. Un-installing the present service (Javaservice -uninstall)<br>
+2. Changing the arguments specific to NmsMainBE<br>
+3. Adding the system properties (for SSL_PORT, truststore file etc.)<br>
+</font><font color="#000025" size="3">4. Installing the service with
+new java_service.ini (Javaservice -install)<br>
+</font><font size="3"><br>
+</font><font color="#000025" size="3">For your reference we had also
+given below here the modified java_service.ini file with the changes in
+<font color="#000099"><b>blue</b></font>. Kindly refer the same for
+your changes.<br>
+<br>
+</font><font color="#000025" size="3"><u>Modified java_service.ini</u><br>
+<br>
+<font face="Courier New, Courier, monospace">[SERVICE_INFO]<br>
+SERVICE_NAME=NMS<br>
+SERVICE_DISPLAY_NAME=NMS<br>
+SERVICE_BINARY_NAME=JavaService.exe<br>
+SERVICE_DEPENDENCY=</font><font color="#000099"
+ face="Courier New, Courier, monospace"><b>SSLApache</b></font><font
+ face="Courier New, Courier, monospace"><br>
+SERVICE_DESCRIPTION=EMS/NMS<br>
+SERVICE_START_TYPE=<br>
+WEBNMS_DIR=C:\SP2<br>
+[JAVA_INFO]<br>
+WORKING_DIR=${WEBNMS_DIR}<br>
+JRE_HOME="${WEBNMS_DIR}\jre"<br>
+JRE_EXE=java.exe<br>
+JVM_DLL=DEFAULT<br>
+CLASSPATH=-Xmx100m -Dcatalina.home=.\\apache\\tomcat
+-Dwebserver.rootdir=.\\apache <font
+ face="Times New Roman, Times, serif">-Djava.class.path=.\\classes;.;.\\classes\\jaxp.jar;.\\classes\\crimson.jar;.\\classes\\xalan.jar;.\\classes\\AdventNetSnmp.jar;.\\classes\\SNMPDebugger.jar;.\\classes\\AdventNetJmxAgent.jar;.\\classes\\AdventNetARUtils.jar;.\\classes\\AdventNetSnmpAgent.jar;.\\classes\\Mail.jar;.\\classes\\activation.jar;.\\classes\\ManagementServer.jar;.\\apache\\tomcat\\common\\lib\\servlet.jar;.\\apache\\tomcat\\bin\\bootstrap.jar;.\\apache\\tomcat\\common\\lib\\jasper-compiler.jar;.\\apache\\tomcat\\common\\lib\\jasper-runtime.jar;.\\mysql\\driver\\mysql_connector.jar;.\\classes\\AdventNetUI.jar;.\\classes\\AdventNetUtils.jar;.\\classes\\ApiUtils.jar;.\\classes\\AdventNetSAS.jar;.\\classes\\AdventNetTftp.jar;.\\classes\\AdventNetCLI.jar;.\\classes\\AdventNetWebNmsAgent.jar;.\\classes\\AdventNetjta.jar;.\\classes\\jta.jar;.\\classes\\AdventNetTL1.jar;.\\classes\\AdventNetTL1Tools.jar;.\\classes\\xmojo.jar;.\\classes\\AdventNetSUMServer.jar;.\\classes
+\\AdventNetSUMClient.jar;.\\classes\\AdventNetUpdateManagerInstaller.jar;.\\classes\\AdventNetNPrevalent.jar;.\\classes\\bsh-1.2b3.jar;.\\classes\\AdventNetCLIClient.jar;.\\classes\\AdventNetSnmpDistributedAPI.jar;.\\classes\\JimiProClasses.zip;.\\classes\\jfreechart.jar;.\\classes\\<a
+ class="moz-txt-link-abbreviated"
+ href="ftp://ftp.jar;.%5C%5Cclasses%5C%5Cjcommon.jar">ftp.jar;.\\classes\\jcommon.jar</a></font>
+-Djava.library.path=.\\lib <br>
+<br>
+SERVER_JAVA_OPT=-Dresource_check=8009,8005</font><font color="#000099"
+ face="Courier New, Courier, monospace"><b>
+-Djavax.net.ssl.trustStore=.\\conf\\Truststore.truststore
+-Dssl.port=8443 -Dwebserver.port=8443</b></font>
+<br>
+-Djava.rmi.server.codebase="<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/">http://localhost:9090/classes/</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/ManagementServer.jar">http://localhost:9090/classes/ManagementServer.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetTftp.jar">http://localhost:9090/classes/AdventNetTftp.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetCLI.jar">http://localhost:9090/classes/AdventNetCLI.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/xmojo.jar">http://localhost:9090/classes/xmojo.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetSnmp.jar">http://localhost:9090/classes/AdventNetSnmp.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/SNMPDebugger.jar">http://localhost:9090/classes/SNMPDebugger.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetJmxAgent.jar">http://localhost:9090/classes/AdventNetJmxAgent.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetARUtils.jar">http://localhost:9090/classes/AdventNetARUtils.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/AdventNetSAS.jar">http://localhost:9090/classes/AdventNetSAS.jar</a>
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://localhost:9090/classes/jta.jar">http://localhost:9090/classes/jta.jar</a>"<font
+ face="Courier New, Courier, monospace"><br>
+<br>
+CLASSNAME=</font><font color="#000099"
+ face="Courier New, Courier, monospace"><b>com.adventnet.nms.startnms.NmsMainBE
+</b></font><font face="Courier New, Courier, monospace"><br>
+<br>
+OPTIONS=</font><font color="#000099"
+ face="Courier New, Courier, monospace"><b>NMS_BE_PORT 2000 ROOT_DIR
+"${WEBNMS_DIR}" NATIVE_PING true</b></font><font
+ face="Courier New, Courier, monospace"><br>
+<br>
+SHUTCLASSNAME=com.adventnet.nms.util.StandAloneShutDown<br>
+<br>
+SHUTDOWNOPTIONS= -h localhost -wp 9090 -rp 1099 -tp 2000 -u root -p
+public<br>
+<br>
+</font></font><font color="#000025" size="3">This would enable to <b>run
+SSL Enabled WebNMS (disabling http) as windows service with Apache as a
+dependent service.</b></font>
+</body>
+</html>

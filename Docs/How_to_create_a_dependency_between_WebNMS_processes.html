@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How to create a dependency between WebNMS processes</title>
+</head>
+<body>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ face="times new roman, times, serif" size="3">
+<div>
+<div style="text-align: center;"><big
+ style="text-decoration: underline;"><span style="font-weight: bold;">How
+to create a dependency between WebNMS processes</span></big><br>
+</div>
+<br>
+You can create a priority for a process as follows:<br>
+<br>
+Note that every process which implements the RunProcessInterface
+contains the method<span class="Apple-converted-space">&nbsp;</span><b>isInitialized()</b>.
+This method will return a boolean variable as "true" if the
+corresponding process has started&nbsp;completely. So you can use this
+method to achieve your requirement.</div>
+<div><br>
+</div>
+<div>Let us assume, process-A ----&gt; reading the license file and
+initializes some variables.</div>
+<div>process-B ----&gt; doing some database operation based on those
+variables.</div>
+<div><br>
+</div>
+<div>In this case process-B should be started after the complete
+startup of the process-A. So you have to call the 'isInitialized'
+method of the process-A inside the process-B. If this 'isIntialized()'
+returns true, it indicates that the process-A has started completely.
+In the 'callMain()' method of the process-B, provide your
+implementation in such a way that it should get started only after the
+'isInitialized' for process-A</div>
+<div>returns 'true'.&nbsp;</div>
+<div><br>
+</div>
+<div>Example code snippet:</div>
+</font>
+<hr>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">public class Process-B implements RunProcessInterface</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">{</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; private boolean initialized =
+false;</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2"><br>
+</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; public void callMain (String[]
+args)</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; {</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+This method is called by the NMS server during startup.</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2"><br>
+</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+RunProcessInterface process =
+(RunProcessInterface)(NmsUtil.runProcessModules).get("Process-A");&nbsp;</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /*If
+the process is properly started, then this will return the object
+reference of Process-A. Otherwise, this will return null value. If the
+value is null, then the Process-B should wait for some time until the
+initialization of Process-A. */</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+while(!process.isInitialized())</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; Thread.sleep(1000);</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+implement your operation logic</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+initialized = true; // This is very important</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; }</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2"><br>
+</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; public boolean isInitialized ()</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; {</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+return initialized;</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; }</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2"><br>
+</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; public void shutDown ()</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; {</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+handle shutdown for the process</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ...</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; ...</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">&nbsp; &nbsp; &nbsp; &nbsp; }</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2"><br>
+</font></div>
+<div><font color="#0000ff" face="courier new, courier, monospace"
+ size="2">} // End of class NmsProcess</font></div>
+<div>
+<hr></div>
+<div
+ style="font-size: medium; font-family: 'times new roman',times,serif;">We
+believe this will help you to achieve your requirement. Please do write
+to us, in case, you need any clarifications.</div>
+<div
+ style="font-size: medium; font-family: 'times new roman',times,serif;"><br>
+At the end of the process startup, you can call&nbsp;<a
+ href="http://www.webnms.com/webnms/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/NmsUtil.html#webNMSModulesInitialized">NmsUtil.webNMSModulesInitialized</a>&nbsp;which
+will be initialized only when all the modules are initialized.<br>
+Based on your business logic, you can choose to shutdown WebNMS as
+follows:<br>
+<hr>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">try</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">{
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; Thread ShutdownThread=new Thread("Shutdown
+Thread") //NO I18N</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; public void run()</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; try{</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="Apple-converted-space">&nbsp;</span><b
+ style="background-color: rgb(254, 255, 51);">com.adventnet.nms.admin.ShutDownAPIImpl.getInstance().shutDownNMSServer(true);<span
+ class="Apple-converted-space">&nbsp;</span></b>// Shuts down the server</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; catch(Exception e) &nbsp;&nbsp;</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.printStackTrace();</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; };</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; ShutdownThread.start();</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">}</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">catch(Exception
+se)</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">{</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp; &nbsp; &nbsp; System.err.println("Exception in Shuting Down the
+server &nbsp; " + &nbsp;se); //No Internationalization</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">}</div>
+<hr></div>
+<span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">We
+believe this meets your requirement. Please get back to us for any
+further clarification in this regard.</span><br
+ style="font-family: 'times new roman',times,serif; font-size: medium;">
+<br
+ style="font-family: 'times new roman',times,serif; font-size: medium;">
+<span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">Thanks
+&amp; regards</span><br
+ style="font-family: 'times new roman',times,serif; font-size: medium;">
+<span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">Venkatramanan</span></div>
+</body>
+</html>

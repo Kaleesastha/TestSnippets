@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Upgrade</title>
+</head>
+<body>
+<p align="center"><b><font size="2" face="Verdana" color="#800000">Document
+explaining Product upgrade from Web NMS 2.3 + SP7 to Web NMS 4.0 + SP2</font></b></p>
+<p align="left"><font size="2" face="Verdana">This document explains
+the steps
+to be followed to ensure smooth upgrade from SP7 to SP8. The document
+has the
+following main sections.</font></p>
+<ul>
+  <li>
+    <p align="left"><font size="2" face="Verdana"><a
+ href="#Constraints%20for%20Project%20Upgrade:">Constraints</a></font><font
+ size="2" face="Verdana"> for Project Upgrade.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font size="2" face="Verdana"><a href="#Suggested">Suggested</a>
+Migration Path.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font size="2" face="Verdana"><a
+ href="#List%20of%20Customizable%20files">List</a> of Customizable
+Files that will be over-written in SP8.</font> </p>
+  </li>
+</ul>
+<p align="left"><font face="Verdana" size="2" color="#800000"><b><a
+ name="Constraints for Project Upgrade:">Constraints
+for Project Upgrade:</a></b></font></p>
+<p align="left"><font face="Verdana" size="2">The following are the
+constraints
+in the Project Upgrade to Web NMS 4.0 SP2 from Web NMS 2.3 SP7.</font></p>
+<ul>
+  <li>
+    <p align="left"><font face="Verdana" size="2">The Web NMS over
+which the SP8 PPM will be applied should not have any structural
+changes (like renaming a script file, creating a Jar file for default
+Web NMS classes, etc). Instead of renaming/removing a script file, make
+a copy of the file and make the changes in the new file. This ensures
+that all changes pertaining to that file in SP8 are properly merged.</font>
+    </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">Ensure that there are
+no comments in the xml files (like logging_parameters.conf, Tree.xml,
+launcher_conf.txt). If you have any comments, remove the comment nodes
+and add them after the updation process is completed.</font> </p>
+  </li>
+</ul>
+<p align="left"><b><font face="Verdana" size="2" color="#800000"><a
+ name="Suggested">Suggested
+Migration path</a>:</font></b></p>
+<ul>
+  <li>
+    <p align="left"><font face="Verdana" size="2">Make sure you take a
+backup of your customized files that will be overwritten (Please refer
+the table below for details).</font> </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">Ensure that the above
+mentioned constraints are taken care.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">Apply the Service
+Pack 8 over Web NMS 2.3 + SP 7.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">After installing the
+SP8 PPM, apply the WEBSERVER PPM (will be of name
+WEBSERVER_Platform.ppm) that will be placed under the WebNMSHome.</font>
+    </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">Apply the Web NMS 4
+SP2 PPM over the product.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">For JSP and servlets,
+    <b>merge</b> the changes that you have done.</font> </p>
+  </li>
+  <li>
+    <p align="left"><font face="Verdana" size="2">For the conf files,
+if you have not modified any files that are listed in the below
+mentioned table, there will not be any issues as we do not overwrite
+the user's modifications.</font> </p>
+  </li>
+</ul>
+<p><b><font size="2" face="Verdana" color="#800000"><a
+ name="List of Customizable files">List
+of Customizable files modified between SP7 and SP8</a></font></b></p>
+<p align="left"><font face="Verdana" size="2">The following are the
+complete
+list of customizable files that are over-written by while applying the
+Web NMS
+SP8 Patch. The list includes all the files that a customer could have
+modified.
+You can omit the directories/files that you have not customized. Also,
+the list
+contains platform specific files (like .bat and .sh files). Kindly
+exclude those
+files also. The following are the list of directories for which the
+list has
+been prepared.<br>
+<br>
+<b>PS:</b> We do not overwrite any configuration files in SP2.</font></p>
+<p align="left"><font face="Verdana" size="2"><b><a
+ href="#admin_servlets">admin_servlets</a>,
+<a href="#adminjsp"> adminjsp</a>, <a href="#apache">apache</a>, <a
+ href="#bin">bin</a>,
+<a href="#conf">conf</a>, <a href="#genTrap">genTrap</a>, <a
+ href="#html">html</a>,
+<a href="#icons">icons</a>, <a href="#listmenus"> listmenus</a>, <a
+ href="#mapdata"> mapdata</a>,
+<a href="#projects">projects</a>, <a href="#tutorials">tutorials</a>, <a
+ href="#users">users</a>,
+<a href="#default_impl"> default_impl</a>, <a href="#examples">examples</a>,
+<a href="#jsp"> jsp</a>,
+<a href="#servlets">servlets</a>, <a href="#unauthenticatedservlets">
+unauthenticatedservlets</a></b></font></p>
+<table border="2" bordercolorlight="#C0C09C" cellspacing="0"
+ bordercolordark="#C0C09C" bordercolor="#c0c09c">
+  <tbody>
+    <tr>
+      <td bgcolor="#eff0dd"><font size="2" face="Verdana">Directory</font></td>
+      <td bgcolor="#eff0dd"><font size="2" face="Verdana">Files</font></td>
+    </tr>
+    <tr>
+      <td><font size="2" face="Verdana"><a name="admin_servlets">admin_servlets</a></font></td>
+      <td> <font size="2" face="Verdana">No Changes.</font> </td>
+    </tr>
+    <tr>
+      <td><font size="2" face="Verdana"><a name="adminjsp">adminjsp</a></font></td>
+      <td> <font size="2" face="Verdana">Almost all JSP Files</font> </td>
+    </tr>
+    <tr>
+      <td><font size="2" face="Verdana"><a name="apache">apache</a></font></td>
+      <td> <font size="2" face="Verdana">No Changes.</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="bin">bin</a>
+(Most of the files are related to development tools)</font></td>
+      <td> <font size="2" face="Verdana">bin/BeanBuilder.bat<br>
+bin/BeanBuilderWebSvr.bat<br>
+bin/BeanBuilderWebSvr.sh<br>
+bin/CLIBrowser.bat<br>
+bin/ConfigFileChecker.bat<br>
+bin/ConfigurationUpdater.bat<br>
+bin/ConfigurationUpdater.sh<br>
+bin/DBXmlTool.bat<br>
+bin/DeploymentWizard.bat<br>
+bin/MOWizard.bat<br>
+bin/MenuConfigurator.bat<br>
+bin/MenuConfigurator.sh<br>
+bin/MibBrowser.bat<br>
+bin/Migrate.bat<br>
+bin/ObjectToRelational.bat<br>
+bin/ShutDown.bat<br>
+bin/ShutDown.sh<br>
+bin/TL1Browser.bat<br>
+bin/compileJSP.bat<br>
+bin/compileJSP.sh<br>
+bin/idltoxml.bat<br>
+bin/idltoxml.sh<br>
+bin/reinitialize_nms.bat<br>
+bin/reinitialize_nms.sh<br>
+bin/snmpUSMKeyChange.bat<br>
+bin/snmpUSMRemoteConfigure.bat<br>
+bin/startThemeManager.bat<br>
+bin/startThemeManager.sh<br>
+bin/migrate/MigratePolicies.bat<br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="conf">conf</a></font></td>
+      <td> <font size="2" face="Verdana">conf/idltoxml.conf<br>
+      </font><font size="2" face="Verdana">conf/WebNMS.jnlp</font><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="gentrap">gentrap</a></font></td>
+      <td> <font size="2" face="Verdana">Nil</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="html">html</a></font></td>
+      <td> <font size="2" face="Verdana">html/ShutDown.html<br>
+html/TemplateTesterApplet.html<br>
+html/defaultsToAllUsers/alertsmenu.xml<br>
+html/defaultsToAllUsers/configauditmenu.xml<br>
+html/defaultsToAllUsers/configmenu.xml<br>
+html/defaultsToAllUsers/dbmenu.xml<br>
+html/defaultsToAllUsers/eventsmenu.xml<br>
+html/defaultsToAllUsers/pollmenu.xml<br>
+html/MibBrowser.properties<br>
+html/ReinitializeNmsResources.properties<br>
+html/ShutDownNmsServerResources.properties<br>
+html/EnglishToNativeAncillary.properties<br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="icons">icons</a></font></td>
+      <td> <font size="2" face="Verdana">Nil</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="listmenus">listmenus</a></font></td>
+      <td> <font size="2" face="Verdana">Nil</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="mapdata"><font size="2" face="Verdana">mapdata</font></a></td>
+      <td> <font size="2" face="Verdana">Nil</font> </td>
+    </tr>
+    <tr>
+      <td><font size="2" face="Verdana"><a name="jsp">jsp</a></font></td>
+      <td> <font size="2" face="Verdana">Almost all the files have
+been
+modified.</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="servlets">servlets</a></font></td>
+      <td> <font size="2" face="Verdana">servlets/AuthenticationServlet.java<br>
+servlets/AvgReportServlet.java<br>
+servlets/BaseDBServlet.java<br>
+servlets/BaseReportServlet.java<br>
+servlets/ChangePasswordServlet.java<br>
+servlets/DBGraph.java<br>
+servlets/Jmx.java<br>
+servlets/StartClientServlet.java<br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a
+ name="unauthenticatedservlets">unauthenticatedservlets</a></font></td>
+      <td> <font size="2" face="Verdana">unauthenticatedservlets/FetchAppletParameters.java<br>
+unauthenticatedservlets/FetchPollData.java<br>
+unauthenticatedservlets/GetTreeFromDB.java<br>
+unauthenticatedservlets/MenuFileParser.java<br>
+unauthenticatedservlets/SaveFrameSizeServlet.java<br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="examples">examples</a></font></td>
+      <td> <font size="2" face="Verdana">Some modifications /
+additions have
+been done.</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="tutorials">tutorials</a></font></td>
+      <td> <font size="2" face="Verdana">tutorials/xml_southbound_tutorial<br>
+tutorials/ems_tutorial/help/index.html<br>
+tutorials/layer2_tutorial/help/index.html<br>
+tutorials/corba_southbound_tutorial<br>
+tutorials/corba_northbound_tutorial<br>
+tutorials/tl1_tutorial/</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="users"><font size="2" face="Verdana">users</font></a></td>
+      <td> <font size="2" face="Verdana">Nil</font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="2" face="Verdana"><a name="projects">projects</a></font></td>
+      <td> <font size="2" face="Verdana">projects/PerformanceGraphs/<br>
+projects/ElementConfiguration/<br>
+projects/RuntimeAdministration/<br>
+projects/SecurityAdministration/<br>
+      </font> </td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="default_impl"><font size="2"
+ face="Verdana">default_impl</font></a></td>
+      <td> <font size="2" face="Verdana">Some modifications /
+additions have
+been done.</font> </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

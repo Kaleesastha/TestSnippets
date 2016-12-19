@@ -1,0 +1,503 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>Why Security operations has 3 states</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="font-family: verdana,arial,helvetica,sans-serif; font-size: 11px;">
+<div><xmeta http-equiv="content-type" content="text/html; charset=utf-8"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">Dear
+</span></span></span>team,</font></xmeta></div>
+<xmeta http-equiv="content-type" content="text/html; charset=utf-8">
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><br>
+</span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">This
+has
+been an oft-repeated question in security Administration. Although
+the answer is not so complicated, it has many use cases.<br>
+Hence please read patiently the below answers &amp; the explanation
+that follows.<br>
+If you find any contradiction or any thing is vague, do not hesitate to
+mail us.<br>
+</span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><br>
+Now please find our answers as follows:<br>
+<br>
+(TICKED means allowed or&nbsp;</span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(51, 255, 51);">[+]</span></span></span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span><span
+ class="Apple-converted-space">&nbsp;</span>&amp;<span
+ class="Apple-converted-space">&nbsp;</span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(255, 0, 0);">[x]</span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span><span
+ class="Apple-converted-space">&nbsp;</span>means not permitted.)<br>
+<br>
+1. TICKING the root permission as a whole is equivalent to (leave the
+root permission as blank &amp;) TICKING all child permissions.<br>
+<br>
+2. Once you mark the root permission as&nbsp;</span></span><span
+ style="background-color: rgb(255, 0, 0);">[x]</span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span>,
+you&nbsp;<span
+ style="font-weight: bold; text-decoration: underline; font-style: italic;">cannot</span>&nbsp;allow
+any
+of its child permission! (i.e. Once Performance Management is
+marked as<span class="Apple-converted-space">&nbsp;</span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span></span></span><span
+ style="background-color: rgb(255, 0, 0);">[x]</span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span>,
+Create
+Performance Report or Edit Performance Objects cannot be marked
+as<span class="Apple-converted-space">&nbsp;</span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(51, 255, 51);">[+]</span></span></span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span></span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span>.<br>
+<br>
+3. The total permissions for a user is the Union (<span
+ style="font-weight: bold; text-decoration: underline; font-style: italic;">NOT
+intersection</span>) of all its group's permissions<br>
+(This answers the collision part, right? So in your example, a user is
+still allowed to perform&nbsp;</span></span><span
+ style="font-weight: bold; font-style: italic;">Create Performance
+Objects</span>)<br>
+</span><br>
+4. If the root permission is TICKED(</span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"></span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(51, 255, 51);">[+]</span></span></span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span></span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">),
+all
+its child operations are allowed to that user / group unless &amp;
+otherwise the child permission is marked as<span
+ class="Apple-converted-space">&nbsp;</span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span>&nbsp;</span></span><span
+ style="background-color: rgb(255, 0, 0);">[x]</span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">.
+(So<span class="Apple-converted-space">&nbsp;</span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"></span><span
+ style="background-color: rgb(51, 255, 51);"></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(51, 255, 51);">[+]</span></span></span></span></span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ class="Apple-converted-space">&nbsp;</span>for a root operation &amp;<span
+ class="Apple-converted-space">&nbsp;</span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="background-color: rgb(255, 255, 0);">[ ]</span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ class="Apple-converted-space">&nbsp;</span>for a child operation means
+the child operation is<span class="Apple-converted-space">&nbsp;</span><span
+ style="font-weight: bold; text-decoration: underline; font-style: italic;">allowed</span>)<br>
+<span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><br>
+Ok. some history beyond this.&nbsp;Having 3 states for security
+operations is an interesting discussion and let us try my best to
+answer your question:<br>
+</span></span></span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><br>
+Lets start with definitions:<br>
+Operations can be configured at TWO level:<br>
+1. Group Specific level. Operation will be assigned by selecting the
+group.<br>
+2. User Specific level.&nbsp; Operation will be assigned by selecting
+the User.<br>
+<br>
+1. Definition for the Check box states:<br>
+<br>
+CHECKED - Operation not permitted for the Group/User. FIXED.<br>
+TICKED - Operation permitted for the Group/User. FIXED<br>
+BLANK/UNCHECKED - Onceagain operation is not permitted for the Group.
+But MUTABLE for Users through USER SPECIFIC permission setting. Not
+clear!!&nbsp;&nbsp; Let us see this with examples:<br>
+<br>
+Consider Group Group_1 has the following permission setting:<br>
+<br>
+1. Security Administration - CHECKED&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp; (i.e ) Not authorized to perform security administration
+work.<br>
+2. System Administration - CHECKED&nbsp;&nbsp;&nbsp; -&nbsp; Not
+authorized<br>
+3. Alert User Operation&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp; TICKED -
+Authorized to perform the alert related operation.<br>
+4. Event User Operation&nbsp;&nbsp; -&nbsp; TICKED - Authorized<br>
+5. Map Editing Operation -&nbsp; TICKED - Authorized<br>
+<br>
+Also there are bunch of Operations like<br>
+6. PollingObjects<br>
+7. Polling Units<br>
+8. Provisioning<br>
+9. Threshold Object, etc. All these operations will fall under
+UNCHECKED state.<br>
+<br>
+According to Authorization engine,&nbsp; for Group Group_1 only
+Operation (3), (4) and (5) are authorized and all other permissions are
+considered not authorized.<br>
+<br>
+Now User guest is assigned to (Group) Group_1. Therefore the group
+permission settings of Group_1 will be applied to guest.&nbsp; Now
+guest badly need a permission to configure the PollingObjects but the
+Authorization engine will not permit the guest to configure because
+UNCHECKED state for Group_1 is considered as not authorized.<br>
+<br>
+What is User Specific Permission:<br>
+<br>
+For a given User, It is possible to assign additional (User specific)
+permission apart from the group inherited permissions with the
+following rule applied:<br>
+<br>
+RULE 1: If any user is assigned to group, it is not possible for user
+to modify the Group inherited permission. (ie) In the security admin
+UI, TICK &amp; CHECKED will be disabled for the User operation settings
+in the operation tree.<br>
+RULE 2: Only the operation that are in BLANK/UNCHECKED (undefined)
+state is allowed for modification for assigning the user specific
+permission. Note: Permission can be Include or Exclude.<br>
+<br>
+Great!. Now i can assign the PollingObjects operation to user guest
+through User specific permission setting as the operation is in
+UNCHECKED state for group Group_1.<br>
+<br>
+Advantages of this model:<br>
+<br>
+1. For a User/Group, only operations that are Included and Excluded (
+TICK and CHECKED respectively) will be maintained in the
+SecuritydbData.xml and in the Database. UNCHECKED state will not be
+maintained. This saves us the space and increases the processing
+speed.&nbsp; We will not maintain all the operations status for all the
+users/group.<br>
+<br>
+2. Has two level of operation permission settings 1. Group Specific
+Level and 2. User Specific Level<br>
+<br>
+If we maintain only TWO STATE:<br>
+<br>
+Consider for a given group, all the available operations(Consider if we
+have hundreds of operations) will fall in any one of the two state. (
+TICK and CHECKED/UNCHECKED ).<br>
+<br>
+<span
+ style="font-weight: bold; font-style: italic; background-color: rgb(255, 255, 0);">1.&nbsp;
+Currently
+for the Group/User, only the Included and Excluded state will
+be maintained in the Database and in the SecurityDBdata.xml file. The
+undefined state will be not be stored in the database/xml file. If we
+removed the undefined(UNCHECKED) state, all the available permission
+has to be stored in the database/xml file for every user &amp; group.
+This will increase the storage space and the processing of the XML,
+which will be a performance hit if we have more number of users/groups
+and permissions.</span><br
+ style="font-weight: bold; font-style: italic; background-color: rgb(255, 255, 0);">
+<br
+ style="font-weight: bold; font-style: italic; background-color: rgb(255, 255, 0);">
+<span
+ style="font-weight: bold; font-style: italic; background-color: rgb(255, 255, 0);">2.
+The
+User based operations setting functionality will be lost completely
+as we will disable the operation corresponds to the group. If we
+attempt to have two state, this will be a functionality breakage where
+customer will never accept. I believe you too.</span><br>
+<br>
+We believe the above stand is acceptable.<br>
+<br>
+Note that we will be penalized with all the above demerits when we
+maintained a 2-state permissions for operations.<br>
+Please get back to us for further clarification in this regard.<br>
+<br>
+Thanks and regards,<br>
+Venkatramanan<br>
+<br>
+</span></span>&lt;Ritscher, Stephan&gt; wrote--------------</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Hi,</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">I'm testing NovaTEN
+which is based on WebNMS 5.0 SP1 and have some trouble understanding
+the user right management. I would be glad if you were so kind to
+provide some clarifying answers.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">1. First of all, the
+structure of the rights is hierarchical. Do only the leaves of this
+tree correspond to actual rights or do all nodes of the tree correspond
+to user rights? Example: Do users with the settings</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><span
+ style="background-color: rgb(255, 255, 0);">[ ]</span><span
+ class="Apple-converted-space">&nbsp;</span>Performance Management</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span><span
+ style="background-color: rgb(51, 255, 51);"></span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);"></span><span
+ class="Apple-converted-space">&nbsp;</span>Create Performance Report</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp; ...</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Edit
+Performance Objects</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">respectively</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="font-weight: bold;"></span>&nbsp;Performance
+Management</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span><span
+ style="font-weight: bold;"></span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="font-weight: bold;"></span><span
+ class="Apple-converted-space">&nbsp;</span>Create Performance Report</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp; ...</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Edit
+Performance Objects</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">respectively</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><span
+ style="background-color: rgb(255, 0, 0);">[x]</span><span
+ class="Apple-converted-space">&nbsp;</span>Performance Management</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Create
+Performance Report</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp; ...</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Edit
+Performance Objects</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">have the same rights?
+Is this similar for other parts of the tree?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Does the third setting
+make sense at all (in general, are there situations where one can
+exclude a parent permission and include a child permission)?&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">(</font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(255, 255, 0);">[ ]</span></font></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3">=no selection,<span class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>= right
+included,<span class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(255, 0, 0);">[x]</span></font></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>= right
+excluded)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">2. Secondly, I wonder
+how rights for users belonging to several groups are handled. Example:
+Consider a user belonging to Group1 and Group2 with</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Group1:</font></div>
+<div><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Polling
+Object</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Group2:</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">[-] Polling Object</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Is the user allowed to
+poll objects?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">What happens if we
+include hierarchical structures? Consider a user belonging to Group3
+and Group4 with</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Group3:</font></div>
+<div><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Performance
+Management</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(51, 255, 51);">[+]</span></font></span></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Create
+Performance Objects</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Group4:</font></div>
+<div><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(255, 255, 0);">[ ]</span></font></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Performance
+Management</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;<span
+ class="Apple-converted-space">&nbsp;</span></font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span style="background-color: rgb(255, 0, 0);">[x]</span></font></span><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>Create
+Performance Objects<br>
+<br>
+Can the user create performance objects?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">What if some of the
+rights are set for the user directly: If the user belongs to a group,
+in which "Performance Management" is set, this option cannot be set in
+the user preferences. However, if I create a user which does not belong
+to any group, set his "Performance Management" option, and then add it
+to a group in which "Performance Management" is also set, how will the
+collision be handeled?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Best regards</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Stephan Ritscher</font></div>
+</xmeta></span></span>
+</body>
+</html>

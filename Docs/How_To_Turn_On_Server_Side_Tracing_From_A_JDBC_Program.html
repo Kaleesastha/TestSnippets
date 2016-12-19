@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How To Turn On Server Side Tracing From A JDBC Program [ID
+434462.1]</title>
+</head>
+<body>
+<font face="helvetica">
+<table border="0" cellpadding="0" cellspacing="6" width="100%">
+  <tbody>
+    <tr>
+      <td colspan="2" valign="TOP" width="25%"><br>
+      </td>
+      <td colspan="3" nowrap="nowrap" valign="TOP" width="50%"><em>Modified</em>
+01-NOV-2011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Type</em>
+HOWTO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Status</em> PUBLISHED</td>
+      <td valign="TOP">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</font>
+<p><b>In this Document</b><br>
+<font size="-1">&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#GOAL">Goal</a><br>
+&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#FIX">Solution</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#aref1">Turning
+on SQL Tracing from a JDBC program.</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#aref2">Tracing
+Oracle Errors </a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#aref3">Sample
+Program </a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#aref4">How
+To Determine The SQL Trace File Name From JDBC</a><br>
+&nbsp;&nbsp;<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;doctype=HOWTO&amp;id=434462.1&amp;addClickInfo=%3Cdata%20search_text=%22434462.1%22%20search_result_size=%224%22%20search_result_count=%224%22%20powerview_id=%22%22%20on_off=%22off%22/%3E#REF">References</a><br>
+</font></p>
+<hr size="1">
+<p></p>
+<p></p>
+<h2 class="km">Applies to: </h2>
+JDBC - Version: 10.2.0.0 and later&nbsp;&nbsp;&nbsp;[Release: and later
+]<br>
+Information in this document applies to any platform.<br>
+<h2 class="km"><a name="GOAL"></a>Goal</h2>
+There are many notes on server-side tracing via setting events on a
+session or system level (see references below). What the sample code
+included in this note shows is how to turn on server-side tracing from
+a JDBC program. By doing this we can set tracing only for the portion
+of the Java code that is causing the problem.
+<h2 class="km"><a name="FIX"></a>Solution</h2>
+<h3 class="km"><a name="aref1"></a>Turning on SQL Tracing from a JDBC
+program.</h3>
+<p>A JDBC program when executing SQL passes that SQL along with maybe
+bind parameters to the Database. At that point on the Database Server,
+performance problems or errors can occur. The Database will either
+cause the JDBC application to perform badly or will report an ORA
+error&nbsp; This is often not enough to diagnose the problem. </p>
+<p>To get more information, we can turn on SQL tracing from the JDBC
+program. From the JDBC program, we can limit diagnostic information
+gathering to&nbsp;the specific portion of code that is experiencing the
+problem. See <strong>Trace.java</strong> at the end of this document
+for a full code sample, but basically you turn on and off tracing by
+doing the following:<br>
+</p>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">...<br>
+alterStatement.execute("alter&nbsp;session&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;forever,&nbsp;level&nbsp;12'");&nbsp;<br>
+<br>
+/*<br>
+** do&nbsp;some&nbsp;database&nbsp;activity&nbsp;using&nbsp;JDBC...<br>
+*/&nbsp;<br>
+<br>
+alterStatement.execute("alter&nbsp;session&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;off'");<br>
+...<br>
+</code></div>
+<br>
+The higher the level is set for the tracing, the higher the logging is.
+Possible values are 1, 4, 8 and 12. The Java code above
+is&nbsp;equivalent with following statements in SQL*Plus:<br>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">SQL&gt;&nbsp;alter&nbsp;session&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;forever,&nbsp;level&nbsp;12';&nbsp;<br>
+SQL&gt;&nbsp;-&nbsp;execute&nbsp;statement,&nbsp;then&nbsp;turn&nbsp;tracing&nbsp;off&nbsp;with:&nbsp;<br>
+SQL&gt;&nbsp;alter&nbsp;session&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;off';&nbsp;</code></div>
+<br>
+<p>The alternative to this is to "set events" at a system level to get
+the SQL trace. This method however will result in too much information
+since it gathers information system wide instead of for a single
+session. The command looks like:<br>
+</p>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">SQL&gt;&nbsp;alter&nbsp;system&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;forever,&nbsp;level&nbsp;{level}';</code></div>
+<br>
+<p>After you have generated the required trace file, you can turn
+tracing off by:<br>
+</p>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">SQL&gt;&nbsp;alter&nbsp;system&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;off';&nbsp;</code></div>
+<p><br>
+After the Java code or SQL*Plus code above has been executed, you can
+find the generated trace file in the UDUMP directory. The program "<strong>Trace.java"</strong>
+included below&nbsp;prints out the UDUMP directory where the trace
+files are generated.</p>
+<br>
+<p><strong>Example: Output of SQL Trace To Analyze Index Usage</strong><br>
+<br>
+Below we show two similar SQL statements which were executed from a
+JDBC program&nbsp;whose only difference is the bind value:</p>
+<div class="kmcodeblock" style="width: 95%;">
+<pre class="km">conn.prepareStatement("select * from t x_99 where id = ?"); //id=99      <p>conn.prepareStatement("select * from t x_1 where id = ?"); // id =1</p></pre>
+</div>
+<p><br>
+In this case we want to see what bind values cause an index to be used.
+Here is the output from&nbsp;turning&nbsp;on&nbsp;SQL tracing that
+shows that the select statement <strong>"select * from t x_1 where id
+= :1"</strong> uses a INDEX and select statement <strong>"select *
+from t x_99 where id = :1</strong>" uses a FULL table scan.&nbsp; <br>
+</p>
+<div class="kmnotebox">Case 1. Bind value id = 1 uses index. <br>
+<br>
+PARSING IN CURSOR #5 len=33 dep=0 uid=5 oct=3 lid=5 tim=9201313264
+hv=1408072753 ad='24db5f44' <br>
+select * from t x_1 where id = :1 <br>
+END OF STMT <br>
+PARSE
+#5:c=40058,e=130018,p=2,cr=281,cu=0,mis=1,r=0,dep=0,og=1,tim=9201313260
+<br>
+STAT #5 id=1 cnt=1 pid=0 pos=1 obj=61449 op='TABLE ACCESS BY INDEX
+ROWID T (cr=3 pr=0 pw=0 time=89 us)' <br>
+STAT #5 id=2 cnt=1 pid=1 pos=1 obj=61450 op='INDEX RANGE SCAN T_IDX
+(cr=2 pr=0 pw=0 time=53 us)' <br>
+<br>
+Case 2. Bind value id = 99 uses full table scan. <br>
+<br>
+PARSING IN CURSOR #3 len=34 dep=0 uid=5 oct=3 lid=5 tim=9201368709
+hv=1724939124 ad='34294a7c' <br>
+select * from t x_99 where id = :1 <br>
+END OF STMT <br>
+PARSE #3:c=0,e=612,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,tim=9201368704 <br>
+EXEC #3:c=0,e=632,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,tim=9201369404 <br>
+FETCH #3:c=0,e=102,p=0,cr=4,cu=0,mis=0,r=10,dep=0,og=1,tim=9201370312 <br>
+STAT #3 id=1 cnt=10 pid=0 pos=1 obj=61449 op='TABLE ACCESS FULL T (cr=4
+pr=0 pw=0 time=100 us)' </div>
+<p><br>
+<strong>Example: SQL Trace output from Trace.java sample given below<br>
+</strong><br>
+If you run <strong>Trace.java</strong>&nbsp; given below the following
+will be executed:<br>
+</p>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">alterStatement.execute("alter&nbsp;session&nbsp;set&nbsp;events&nbsp;'10046&nbsp;trace&nbsp;name&nbsp;context&nbsp;forever,&nbsp;level&nbsp;12'");</code></div>
+<br>
+<br>
+This statement will start tracing of calls made from the JDBC client to
+the server and write the generated trace files to the UDUMP destination
+of the server.<br>
+Here is the&nbsp;trace output&nbsp;from which you can see the SQL and
+the stored procedure (along with input variable value="a4111") that was
+executed in <strong>Trace.java</strong>: <br>
+<p>&nbsp;</p>
+<div class="kmnotebox">PARSING IN CURSOR #2 len=57 dep=0 uid=5 oct=3
+lid=5 tim=13369834294 hv=3333953729 ad='253d1b08' <br>
+select value from V$parameter where name='user_dump_dest' <br>
+END OF STMT <br>
+PARSE #2:c=0,e=47,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,tim=13369834289 <br>
+BINDS #2: <br>
+EXEC #2:c=0,e=113,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,tim=13369834712 <br>
+WAIT #2: nam='SQL*Net message to client' ela= 3 driver id=1952673792
+#bytes=1 p3=0 obj#=-1 tim=13369834789 <br>
+WAIT #2: nam='SQL*Net message from client' ela= 3758 driver
+id=1952673792 #bytes=1 p3=0 obj#=-1 tim=13369838643 <br>
+&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&brvbar;. <br>
+PARSING IN CURSOR #3 len=23 dep=0 uid=5 oct=47 lid=5 tim=13369925234
+hv=1636523186 ad='24d2b538' <br>
+begin number1(:1); end; <br>
+END OF STMT <br>
+PARSE #3:c=0,e=99,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,tim=13369925229 <br>
+BINDS #3: <br>
+kkscoacd <br>
+Bind#0 <br>
+oacdty=01 mxl=32512(32512) mxlc=00 mal=00 scl=00 pre=00 <br>
+oacflg=03 fl2=1000010 frm=01 csi=178 siz=32512 off=0 <br>
+kxsbbbfp=074747d8 bln=32512 avl=05 flg=05 <br>
+value="a4111" <br>
+<br>
+</div>
+<p>&nbsp;</p>
+<h3 class="km"><a name="aref2"></a>Tracing Oracle Errors <br>
+</h3>
+<p>When an Oracle error occurs on the Database Server, the JDBC program
+gets a SQLException that can be printed out as in <strong>Trace.java</strong>
+Here is the typical information returned to a JDBC program when a
+Server side oracle error occurs (and is the output from <strong>Trace.java</strong>)
+</p>
+<div class="kmnotebox">Output File is ./jdbcenviron.txt <br>
+Trace files will be located at : <br>
+D:\ORACLE\PRODUCT\10.2.0\ADMIN\DB102\UDUMP <br>
+SQL State: 65000 <br>
+Vendor Specific code: 6502 <br>
+java.sql.SQLException: ORA-06502: PL/SQL: numeric or value error:
+character to number conversion error <br>
+ORA-06512: at "SYSTEM.NUMBER1", line 4 <br>
+ORA-06512: at line 1 <br>
+<br>
+at
+oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:112)
+<br>
+at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:331) <br>
+at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:288) <br>
+at oracle.jdbc.driver.T4C8Oall.receive(T4C8Oall.java:745) <br>
+at
+oracle.jdbc.driver.T4CCallableStatement.doOall8(T4CCallableStatement.java:215)
+<br>
+at
+oracle.jdbc.driver.T4CCallableStatement.executeForRows(T4CCallableStatement.java:965)
+<br>
+at
+oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1170)
+<br>
+at
+oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3339)
+<br>
+at
+oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3445)
+<br>
+at
+oracle.jdbc.driver.OracleCallableStatement.execute(OracleCallableStatement.java:4394)
+<br>
+at generic.Trace.main(Trace.java:114) <br>
+</div>
+<p><br>
+However, often more information is needed from the Server side. To do
+this for a specific Oracle error use the following line (as seen in
+Trace.java) in your java code: <br>
+</p>
+<div class="kmcodeblock" style="width: 95%;">
+<pre class="km">alterStatement.execute("alter session set events '6502 trace name ERRORSTACK level 12'"); <br></pre>
+</div>
+<p><br>
+In this case, the use of the above statement generates trace
+information, when an ORA-6502 occurs, in a .trc file
+(d:\oracle\product\10.2.0\admin\db102\udump\db102_ora_2976.trc on my
+system). The trace information includes: <br>
+<br>
+- Current SQL statement <br>
+- PL/SQL Call Stack <br>
+- Function Call Stack <br>
+- A cursor dump <br>
+<br>
+When running Trace.java here is the the output of the ora-6502 event
+trace: </p>
+<div class="kmnotebox">*** SERVICE NAME:(SYS$USERS) 2007-05-31
+15:43:56.171 <br>
+*** SESSION ID:(142.152) 2007-05-31 15:43:56.171 <br>
+*** 2007-05-31 15:43:56.171 <br>
+ksedmp: internal or fatal error <br>
+ORA-06502: PL/SQL: numeric or value error: character to number
+conversion error <br>
+Current SQL statement for this session: <br>
+begin number1(:1); end; <br>
+----- PL/SQL Call Stack ----- <br>
+&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&brvbar;. <br>
+Bind#0 <br>
+oacdty=01 mxl=32512(32512) mxlc=00 mal=00 scl=00 pre=00 <br>
+oacflg=03 fl2=1000010 frm=01 csi=178 siz=32512 off=0 <br>
+kxsbbbfp=08113488 bln=32512 avl=05 flg=05 <br>
+value="a4111" </div>
+<p>From this you can see that the value of the first bind value is <br>
+&nbsp;&nbsp;&nbsp;
+value=&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#153;a41111&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#153;
+<br>
+in the statement: <br>
+&nbsp;&nbsp; begin number1(:1); end; <br>
+<br>
+So you could deduce that number1, which should take a number
+value,&nbsp;was passed a bad bind variable (a4111) which caused the
+error.&nbsp;See Trace.java for how the
+&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#156;mistake&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#157;
+was made in the java code. Also the call stack is often useful in
+mapping your problem to an existing bug.<br>
+<br>
+<br>
+Here are some examples of other ORA Errors that can be traced in this
+manner. You just need to substitute these statements in the
+AlterStatement.execute from Trace.java<br>
+</p>
+<div class="kmnotebox">alter session set events
+&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#152;3113 trace name
+errorstack level
+3&Atilde;&#131;&Acirc;&cent;&Atilde;&#130;&Acirc;&#128;&Atilde;&#130;&Acirc;&#153; <br>
+alter session set events '1940 trace name ERRORSTACK level 3'; <br>
+alter session set events '1483 trace name errorstack level 12' ; <br>
+alter session set events '1400 trace name errorstack level 3'; </div>
+<h3 class="km"><a name="aref3"></a>Sample Program <br>
+</h3>
+<p>The java program will invoke a small PL/SQL procedure to force an
+error to occur. The used PL/SQL procedure is:<br>
+</p>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">&nbsp;&nbsp;&nbsp;CREATE&nbsp;OR&nbsp;REPLACE&nbsp;PROCEDURE&nbsp;number1(chnum&nbsp;VARCHAR2)&nbsp;AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;realnum&nbsp;NUMBER;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;realnum&nbsp;:=&nbsp;TO_NUMBER(SUBSTR(chnum,1,1));&nbsp;<br>
+&nbsp;&nbsp;&nbsp;END;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;/</code>
+</div>
+<br>
+<br>
+When giving the wrong value for <em>chnum</em> it will return
+following error:<br>
+<div class="kmcodeblock" style="width: 95%;"><code class="km">ORA-06502:&nbsp;PL/SQL:&nbsp;numeric&nbsp;or&nbsp;value&nbsp;error:&nbsp;character&nbsp;to&nbsp;number&nbsp;conversion&nbsp;error<br>
+ORA-06512:&nbsp;at&nbsp;"SCOTT.NUMBER1",&nbsp;line&nbsp;4<br>
+ORA-06512:&nbsp;at&nbsp;line&nbsp;2</code></div>
+<br>
+<br>
+The java program itself looks like:<br>
+<div class="kmcodeblock" style="width: 95%;">import java.util.*;<br>
+import java.sql.*;<br>
+import java.io.*;<br>
+import oracle.jdbc.pool.OracleDataSource;
+<pre class="km">public class Trace {</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp; public static void main(String[] args) {</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String userId = "system";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String password = "password";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String url = "jdbc:oracle:thin:@localhost:1521:db102";</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OracleDataSource ods = new OracleDataSource();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ods.setUser(userId);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ods.setPassword(password);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ods.setURL(url);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Connection connection = ods.getConnection();</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String jdbcEnviron = "./jdbcenviron.txt";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Output File is " + jdbcEnviron);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter printdoc = new PrintWriter(new BufferedWriter(new FileWriter(jdbcEnviron)));</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DatabaseMetaData dmd = connection.getMetaData();</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println(url);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("DriverVersion:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [" + dmd.getDriverVersion() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("DriverMajorVersion: [" + dmd.getDriverMajorVersion() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("DriverMinorVersion: [" + dmd.getDriverMinorVersion() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("DriverName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [" + dmd.getDriverName() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("URL:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [" + dmd.getURL() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println("UserName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [" + dmd.getUserName() + "]");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println(dmd.getDatabaseProductName());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println(dmd.getDatabaseProductVersion());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Properties props = System.getProperties();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.println(props.toString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printdoc.close();<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Statement alterStatement = connection.createStatement();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Statement stmt = connection.createStatement();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResultSet rset = stmt.executeQuery("select value from V$parameter where name='user_dump_dest'");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rset.next();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Trace files will be located at : ");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(rset.getString(1));</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Turn on sql tracing<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alterStatement.execute("alter session set events '10046 trace name context&nbsp; forever, level 12'");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Turn on ORA error tracing<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alterStatement.execute("alter session set events '6502 trace name ERRORSTACK level 12'");</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // A simple select to demonstrate sql tracing in the output trace file.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rset = stmt.executeQuery("select value from V$parameter where name='user_dump_dest'");</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // A bindvariable of "a4111" causes the ORA-6502 error used in the note. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CallableStatement cstmt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cstmt = connection.prepareCall("begin number1(?); end;");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cstmt.setString(1, "a4111");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cstmt.execute();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Turn tracing off<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alterStatement.execute("alter session set events '10046 trace name context off'");</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (SQLException e) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (e != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("SQL State: " + e.getSQLState());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Vendor Specific code: " + e.getErrorCode());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Throwable te = e.getCause();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (te != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Throwable: " + te);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; te = te.getCause();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e = e.getNextException();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {</pre>
+<pre class="km">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(" Exception = " + e.getMessage());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; }<br>}<br></pre>
+</div>
+<br>
+<h3 class="km"><a name="aref4"></a>How To Determine The SQL Trace File
+Name From JDBC</h3>
+refer to :<br>
+<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;id=454951.1&amp;type=NOT">Document
+454951.1</a> - How To Determine The Trace File Name From a JDBC Program<br>
+<br>
+<br>
+<h2 class="km"><a name="REF"></a>References</h2>
+<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=121491.1">NOTE:121491.1</a>
+- How to enable Oracle8i server tracing or set events - from JDBC
+program<br>
+<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=139548.1">NOTE:139548.1</a>
+- How to Determine the Cause of ORA-6502 Errors<br>
+<a
+ href="https://support.oracle.com/CSP/main/article?cmd=show&amp;type=NOT&amp;id=454951.1">NOTE:454951.1</a>
+- How To Determine The Trace File Name From a JDBC Program<br>
+<br>
+<table width="100%">
+  <tbody>
+    <tr>
+      <td colspan="2">
+      <p> <img id="collapseImg2" alt="Show Related Information"
+ src="https://support.oracle.com/CSP/ui/images/collapse_white.png?MOS_6.0.0.1.0FLASH_GENERIC_120205.1"
+ style="cursor: pointer;"> <b>Related</b><br>
+      </p>
+      <div id="collapsibleRelatedData"
+ style="margin-left: 20px; display: inline; width: 100%;">
+      <hr size="1/"> <b style="margin-left: 20px;">Products</b>
+      <hr style="margin-left: 20px;" size="1">
+      <ul>
+        <li>Middleware &gt; Developer Tools &gt; Java Development &gt;
+JDBC
+        </li>
+      </ul>
+      <b style="margin-left: 20px;">Keywords</b>
+      <hr style="margin-left: 20px;" size="1">
+      <table style="margin-left: 30px;" border="0" cellpadding="0"
+ cellspacing="2">
+        <tbody>
+          <tr>
+            <td valign="TOP">DYNAMIC ADV DEBUG</td>
+          </tr>
+        </tbody>
+      </table>
+      <b style="margin-left: 20px;">Errors</b>
+      <hr style="margin-left: 20px;" size="1">
+      <table style="margin-left: 30px;" border="0" cellpadding="0"
+ cellspacing="2">
+        <tbody>
+          <tr>
+            <td valign="TOP">ORA-6502; ORA-6512; ERROR USE</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

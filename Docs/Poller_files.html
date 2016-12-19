@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Poller files</title>
+</head>
+<body>
+DISTRIBUTED_POLLER<br>
+<br>
+&#9474;&nbsp; LICENSE_AGREEMENT<br>
+&#9474;&nbsp; setEnv.bat<br>
+&#9474;<br>
+&#9500;&#9472;bin<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ConfigurationUpdater.bat<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reinitialize_poller.bat<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ShutDownPoller.bat<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startMySQL.bat<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startpoller.bat<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UpdateManager.bat<br>
+&#9474;<br>
+&#9500;&#9472;classes<br>
+&#9474;&nbsp; &#9474;&nbsp; activation.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; AdventNetNPrevalent.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; AdventNetSnmp.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; AdventNetTL1.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; AdventNetUpdateManagerInstaller.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; ApiUtils.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; jgroups-all.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; jta.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; license-LGPL.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_ACTIVATION.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_ANTLR.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_ASM.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_C3P0.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_COMMONS_COLLECTIONS.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_DOM4J.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_EHCACHE.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_HIBERNATE.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_JGROUPS.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_jta.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_MAIL.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; LICENSE_XML.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; log4j.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; LOG4J_LICENSE.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; Mail.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; ManagementServer.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; NmsServerClasses.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; p6spy.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; p6spy_license.txt<br>
+&#9474;&nbsp; &#9474;&nbsp; SNMPDebugger.jar<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9500;&#9472;hbnlib<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; ant-antlr-1.6.5.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; antlr-2.7.6.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; asm-attrs.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; asm.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; c3p0-0.9.1.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; c3p0.properties<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; cglib-2.1.3.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; commons-collections-2.1.1.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; commons-logging-1.0.4.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; dom4j-1.6.1.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; ehcache-1.2.3.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; ehcache.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; hibernate.cfg.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;&nbsp; hibernate3.jar<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9474;&nbsp; &#9492;&#9472;com<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9492;&#9472;adventnet<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9492;&#9472;nms<br>
+&#9474;&nbsp;
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&#9492;&#9472;poll<br>
+&#9474;&nbsp;
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PolledData.hbm.xml<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9492;&#9472;test<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RMISocketFactoryImpl.class<br>
+&#9474;<br>
+&#9500;&#9472;conf<br>
+&#9474;&nbsp; &#9474;&nbsp; ConfFileChanges_Poller.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; corba_parameters.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; DatabaseAliases.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; DatabaseSchema.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; DBObjects.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; log4j.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; MailMessage.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; nmsInterfaces.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; PollerParams.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; Polling.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; relationalclasses.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; ReportsManagement.dtd<br>
+&#9474;&nbsp; &#9474;&nbsp; ReportsManagement.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; SchemaChanges.dtd<br>
+&#9474;&nbsp; &#9474;&nbsp; SchemaChanges_Poller.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; serverparameters.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; SeverityInfo.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; SmartUpdateManager.dtd<br>
+&#9474;&nbsp; &#9474;&nbsp; SmartUpdateManager.xml<br>
+&#9474;&nbsp; &#9474;&nbsp; snmpDatabaseSchema.config<br>
+&#9474;&nbsp; &#9474;&nbsp; spy.properties<br>
+&#9474;&nbsp; &#9474;&nbsp; threads.conf<br>
+&#9474;&nbsp; &#9474;&nbsp; update_conf.xml<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9500;&#9472;MSSQL<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DatabaseSchema.conf<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9500;&#9472;MySQL<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DatabaseSchema.conf<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9500;&#9472;Oracle<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DatabaseSchema.conf<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9500;&#9472;postgresql<br>
+&#9474;&nbsp; &#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DatabaseSchema.conf<br>
+&#9474;&nbsp; &#9474;<br>
+&#9474;&nbsp; &#9492;&#9472;sybase<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DatabaseSchema.conf<br>
+&#9474;<br>
+&#9500;&#9472;html<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EnglishToNative.properties<br>
+&#9474;<br>
+&#9500;&#9472;lib<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AdventnetOper.dll<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DiscSpace.dll<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UniqueID.dll<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wrapper.dll<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wrapper.jar<br>
+&#9474;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ws2ping.dll<br>
+&#9474;<br>
+&#9492;&#9472;logs<br>
+<br>
+setEnv.bat<br>
+<br>
+<big><big>bin\</big></big><br>
+ConfigurationUpdater.bat<br>
+reinitialize_poller.bat<br>
+ShutDownPoller.bat<br>
+startMySQL.bat<br>
+startpoller.bat<br>
+UpdateManager.bat<br>
+<br>
+<big><big>classes\</big></big><br>
+activation.jar<br>
+AdventNetNPrevalent.jar<br>
+AdventNetSnmp.jar<br>
+AdventNetTL1.jar<br>
+AdventNetUpdateManagerInstaller.jar<br>
+ApiUtils.jar<br>
+jgroups-all.jar<br>
+jta.jar<br>
+license-LGPL.txt<br>
+LICENSE_ACTIVATION.txt<br>
+LICENSE_ANTLR.txt<br>
+LICENSE_ASM.txt<br>
+LICENSE_C3P0.txt<br>
+LICENSE_COMMONS_COLLECTIONS.txt<br>
+LICENSE_DOM4J.txt<br>
+LICENSE_EHCACHE.txt<br>
+LICENSE_HIBERNATE.txt<br>
+LICENSE_JGROUPS.txt<br>
+LICENSE_jta.txt<br>
+LICENSE_MAIL.txt<br>
+LICENSE_XML.txt<br>
+log4j.jar<br>
+LOG4J_LICENSE.txt<br>
+Mail.jar<br>
+ManagementServer.jar<br>
+NmsServerClasses.jar<br>
+p6spy.jar<br>
+p6spy_license.txt<br>
+SNMPDebugger.jar<br>
+test\RMISocketFactoryImpl.class<br>
+<br>
+<big><big>hbnlib\classes</big></big><br>
+ant-antlr-1.6.5.jar<br>
+antlr-2.7.6.jar<br>
+asm-attrs.jar<br>
+asm.jar<br>
+c3p0-0.9.1.jar<br>
+c3p0.properties<br>
+cglib-2.1.3.jar<br>
+commons-collections-2.1.1.jar<br>
+commons-logging-1.0.4.jar<br>
+dom4j-1.6.1.jar<br>
+ehcache-1.2.3.jar<br>
+ehcache.xml<br>
+hibernate.cfg.xml<br>
+hibernate3.jar<br>
+hbnlib\classes\com\adventnet\nms\poll\PolledData.hbm.xml<br>
+<br>
+<big><big>conf\</big></big><br>
+ConfFileChanges_Poller.xml<br>
+corba_parameters.conf<br>
+DatabaseAliases.conf<br>
+DatabaseSchema.conf<br>
+DBObjects.conf<br>
+log4j.xml<br>
+MailMessage.conf<br>
+MSSQL\DatabaseSchema.conf<br>
+MySQL\DatabaseSchema.conf<br>
+nmsInterfaces.conf<br>
+Oracle\DatabaseSchema.conf<br>
+PollerParams.xml<br>
+Polling.conf<br>
+postgresql\DatabaseSchema.conf<br>
+relationalclasses.conf<br>
+ReportsManagement.dtd<br>
+ReportsManagement.xml<br>
+SchemaChanges.dtd<br>
+SchemaChanges_Poller.xml<br>
+serverparameters.conf<br>
+SeverityInfo.conf<br>
+SmartUpdateManager.dtd<br>
+SmartUpdateManager.xml<br>
+snmpDatabaseSchema.config<br>
+spy.properties<br>
+sybase\DatabaseSchema.conf<br>
+threads.conf<br>
+update_conf.xml<br>
+<br>
+html\EnglishToNative.properties<br>
+<br>
+<big><big>lib\</big></big><br>
+AdventnetOper.dll<br>
+DiscSpace.dll<br>
+UniqueID.dll<br>
+wrapper.dll<br>
+wrapper.jar<br>
+ws2ping.dll<br>
+<br>
+</body>
+</html>

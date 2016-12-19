@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta name="GENERATOR" content="OpenOffice.org 3.3  (Unix)">
+  <meta name="AUTHOR" content="pupot">
+  <meta name="CREATED" content="20121005;17160000">
+  <meta name="CHANGEDBY" content="pupot">
+  <meta name="CHANGED" content="20121005;19360000">
+  <meta name="AppVersion" content="12.0000">
+  <meta name="DocSecurity" content="0">
+  <meta name="HyperlinksChanged" content="false">
+  <meta name="LinksUpToDate" content="false">
+  <meta name="ScaleCrop" content="false">
+  <meta name="ShareDoc" content="false">
+  <style type="text/css">
+	<!--
+		@page { size: 21.59cm 27.94cm; margin: 2.54cm }
+		P { margin-bottom: 0.21cm; direction: ltr; color: #000000; widows: 2; orphans: 2 }
+	-->
+	</style>
+</head>
+<body dir="LTR" lang="en-IN" text="#000000">
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;">Install
+JDK 1.6 in both WebNMS server and
+WebNMS client machine- JDK comes with some debug tools to capture
+thread
+dump and application profiles which will help us debug the issue.
+Installing additional JDK separately does not interfere with the WebNMS
+application. </p>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;">Solaris
+Installation</p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li>
+    <p style="margin-bottom: 0cm;">FTP jdk-6u22-solaris-sparc.sh in
+binary mode to the solaris server machine.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Create a jdk directory and copy
+jdk-6u22-solaris-sparc.sh to this directory and run ./
+jdk-6u22-solaris-sparc.sh from the bash prompt</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Once all the files are extracted
+there will be a message “Press Enter to continue”. Press enter and wait
+for a few seconds for bash prompt to come back. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">This should create a jdk1.6.22
+directory under the current working directory.</p>
+  </li>
+</ul>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;">Windows
+InstallationWebNMS </p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li>
+    <p style="margin-bottom: 0cm;">Create a jdk directory and unzip the
+attached jdk1.6.0_31.zip in it.</p>
+  </li>
+</ul>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;">When
+this issue occurs (when the client
+is unable to connect to the server and hangs on loading), do the
+following before restarting the WebNMS server or before killing the
+WebNMS
+client java process.</p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li>
+    <p style="margin-bottom: 0cm;">Note the approximate timestamp when
+this issue was first noticed.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Backup server logs and the client
+logs to another directory. </p>
+    <ul>
+      <li>
+        <p style="margin-bottom: 0cm;">The server logs are present
+under <span style="font-weight: bold;">NMS_HOME/logs</span> directory
+and NMS_HOME/apache/tomcat/logs directory</p>
+      </li>
+      <li>
+        <p style="margin-bottom: 0cm;">The client logs are present
+under NMS_HOME/clientlogs directory.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Note the ip addresses of the WebNM
+server machine and the WebNMS client machine.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">In both WebNMS server and WebNMS
+client machines, run netstat command for the following ports and save
+the results</p>
+    <ul>
+      <li>
+        <p style="margin-bottom: 0cm;">netstat –an | grep 9090</p>
+      </li>
+      <li>
+        <p style="margin-bottom: 0cm;">netstat –an | grep 8005</p>
+      </li>
+      <li>
+        <p style="margin-bottom: 0cm;">netstat –an | grep 7000</p>
+      </li>
+      <li>
+        <p style="margin-bottom: 0cm;">netstat –an | grep 7001</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Take thread dumps and heap dumps
+through jvisualvm tool. To start jvisualvm in the server machine, cd to
+jdk1.6.22/bin directory and run ./jvisualvm </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">In the GUI that comes up, the left
+side tree will have the list of java processes that are running in the
+server side. Double click on the com.adventnet.nms.startnms.NmsMainBE
+process which will bring up a new tab titled
+“com.adventnet.nms.startnms.NmsMainBE” on the right hand side.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Right click on the
+com.adventnet.nms.startnms.NmsMainBE process in the left side tree and
+you should see a list of options as shown below.</p>
+  </li>
+</ul>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li>
+    <p style="margin-bottom: 0cm;">Click on “Thread Dump” option to
+take a thread dump and click on “Heap Dump” to take heap dump. Take one
+more thread dump again after 1 minute (By this time you should have 2
+thread dumps and 1 heap dump). Do not close this tool at this point.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Start jvisualVM on the WebNMS client
+machine. If there is a java process named
+“com.adventnet.nms.startclient.WebNMSClient”, double click on it to
+connect to it. Follow the process given for WebNMS server machine to
+take 2 thread dumps and 1 heap dump. Click on “Application snapshot”
+option on the left side tree which will create a new entry under
+snapshots tree. Right click on the newly created snapshot and select
+“Save As” to save the snapshot.</p>
+  </li>
+</ul>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li>
+    <p style="margin-bottom: 0cm;">Kill the WebNMS client java process
+that is hanging.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Repeat netstat commands in the
+server and client machines as given above.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Wait for a minute and take one
+thread dump and one heap dump from the jvisualVm in WebNMS server
+machine. Click on “Application snapshot” option on the left side tree
+which will create a new entry under snapshots tree. Right click on the
+newly created snapshot and select “Save As” to save the snapshot.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Finally send us all the information
+you have collected so far.</p>
+  </li>
+</ul>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;"><br>
+</p>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;"><br>
+</p>
+<p style="margin-bottom: 0cm; font-family: Times New Roman,Times,serif;"><br>
+</p>
+</body>
+</html>

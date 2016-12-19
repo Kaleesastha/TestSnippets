@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>IPV6 support in WebNMS</title>
+</head>
+<body>
+<div><font class="Apple-style-span"
+ face="'courier new', courier,
+        monospace"><span
+ style="font-size: medium;"><b><span
+ style="font-family: 'times new roman',times,serif; font-weight: normal;">Dear
+Team<br>
+<br>
+Here are our pointers in V6 IP support.<br>
+</span></b></span></font><font
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"
+ face="times new roman,times,serif" size="3"><br>
+</font></div>
+<font class="Apple-style-span"
+ face="'times new roman', times,
+      serif"><span
+ style="font-size: medium;"><xmeta http-equiv="content-type"
+ content="text/html; charset=utf-8"><font
+ face="'times new roman', times, serif"><b><font
+ class="Apple-style-span"
+ face="'courier new', courier,
+                monospace">* </font></b>WebNMS
+5.0
+support IPv6 managed nodes</font><span
+ style="font-family: tahoma,helvetica,arial,sans-serif; border-collapse: collapse;">
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>On
+IPv6 OS, if there is IPv6 node, Web NMS can manage it. Also on IPv6 OS
+if there is IPv4 node, Web NMS can manage it. So if a node supports
+both IPv4 and IPv6, Web NMS can manage it using IPv4 or IPv6.</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>No
+special configurations are required to support mixed status. To manage
+a device in IPv6 node, you have to discover that node in IPv6 by
+configuring the seed.file. To configure seed.file to discover IPv6
+device, refer:</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><a
+ href="http://www.webnms.com/webnms/help/developer_guide/discovery/configuring_discovery/disc_configuration.html#IPV6">http://www.webnms.com/webnms/help/developer_guide/discovery/configuring_discovery/disc_configuration.html#IPV6</a></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>Instead
+of seed.file, you can also use the client "Add Node" GUI to discover
+IPv6 node. This UI has a separate option for providing and adding IPv6
+nodes.</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>you
+should dicover the device in IPv6 using seed.file or through add node
+UI. If the device is already discovered in Ipv4, then you have to
+delete and discover it again in IPv6 mode.</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>you need
+not change the database/schema for this.</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><br>
+</font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace">*</font>&nbsp;</b>You
+can add IPv6 device by seed.file configuration or through add node UI.
+In seed.file, you can give multiple IPv6 addresses of multiple devices
+so that all the devices will be discovered in a single run. If the
+device is already discovered in Ipv4, then you have to delete and
+discover it again in IPv6 mode.<br>
+</font>
+<hr style="width: 100%; height: 2px;"><font
+ face="'times new roman', times, serif"></font>
+<div
+ style="color: rgb(0, 0, 0); font-size: 11px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-family: Verdana,Arial,Helvetica,sans-serif;"><font
+ style="font-family: 'times new roman',times,serif;" size="3">Ensure
+the following to discover IPV6 nodes:<br>
+(Here we are taking<span class="Apple-converted-space">&nbsp;</span></font><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3"><b>ff02::1</b></font></font></font></font><font
+ style="font-family: 'times new roman',times,serif;" size="3"><span
+ class="Apple-converted-space">&nbsp;</span>as an example)<br>
+</font><font size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3"><br>
+1. Pinging the multicast ip,<span class="Apple-converted-space">&nbsp;</span><b>ff02::1</b><span
+ class="Apple-converted-space">&nbsp;</span>returns a valid output (</font><b><font
+ class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">ping6 ff02::1 -I eth0</font></b><font
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">)<br>
+<br>
+2. Ensure that the path<span class="Apple-converted-space">&nbsp;</span><b>/usr/sbin/ping6</b><span
+ class="Apple-converted-space">&nbsp;</span>is present in your Linux
+machine. If not create a soft link as:<span
+ class="Apple-converted-space">&nbsp;</span></font><b><font
+ class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">ln -s
+&lt;Real_Path_of_ping6&gt; /usr/sbin/ping6</font></b><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;"></span><br>
+<font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif"><br>
+3.<span class="Apple-converted-space">&nbsp;</span></font><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3">In seed.file,<span class="Apple-converted-space">&nbsp;</span></font><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><font
+ class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">DISCOVER_LOCALNET</font></font></font></font></font><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><span class="Apple-converted-space">&nbsp;</span>has to be
+set as true.<br>
+</font><font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif"><br>
+4. Configure seed.file as:</font><br>
+<div><font class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">&lt;TO_DISCOVERIPV6&gt;</font></div>
+<div><font class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">&lt;MULTICAST
+ADDRESS="ff02::1"/&gt;</font></div>
+</font></font></font></font></font></font></font></font></font></font>
+<div style="font-size: medium;"><font class="Apple-style-span"
+ color="#0000ff" face="'courier new', courier, monospace" size="2">&lt;/TO_DISCOVERIPV6&gt;</font></div>
+<div><font class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2"><br>
+</font></div>
+<font size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font style="font-family: 'times new roman',times,serif;"
+ size="3">Now restart the server.<span class="Apple-converted-space">&nbsp;</span><br>
+If you face any issues, please get back to us with the following:<br>
+<br>
+1. Output of<span class="Apple-converted-space">&nbsp;</span></font><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><b><font class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">ping6 ff02::1 -I eth0</font></b><font
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">. (In
+windows,</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">the
+command
+to ping IPV6 nodes is:</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;</span><font
+ color="#0000ff" face="Courier New" size="2">ping -n 1
+&lt;v6_address&gt;&nbsp;</font><strong
+ style="font-family: 'times new roman',times,serif; font-size: medium;">Eg:&nbsp;</strong><span
+ style="color: rgb(0, 0, 255); font-family: 'Courier New'; font-size: small;">ping
+-n
+1 fe80:0:0:0:868f:69ff:fe44:282d</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)</span></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font
+ style="font-family: 'times new roman',times,serif;" size="3">2.
+seed.file<br>
+3. Output of the command<span class="Apple-converted-space">&nbsp;</span></font><font
+ style="font-family: Verdana,Arial,Helvetica,sans-serif;" size="+0"><font
+ size="+0"><font size="+0"><font size="+0"><font size="+0"><font
+ class="Apple-style-span" color="#0000ff"
+ face="'courier new', courier, monospace" size="2">ls -latr
+/usr/sbin/ping6</font></font></font></font><br>
+<font style="font-family: 'times new roman',times,serif;" size="3"><br>
+This will help us to resolve the issue.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></div>
+</div>
+</span>
+<hr style="width: 100%; height: 2px;"><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ style="border-collapse: collapse; font-family: tahoma,helvetica,arial,sans-serif; font-size: 12px;">
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><big><b
+ style="font-family: Times New Roman,Times,serif;"><u><span
+ style="font-size: medium;">IPV6 Trap processing</span></u><span
+ style="font-size: medium;">:</span></b><span style="font-size: medium;"><br
+ style="font-family: Times New Roman,Times,serif;">
+</span> </big><span style="font-size: medium;"> </span><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="font-size: medium;"><span
+ style="border-collapse: collapse; font-family: tahoma,helvetica,arial,sans-serif;"></span></span></span><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace"><span
+ style="font-size: medium;">*</span></font><span
+ style="font-size: medium;">&nbsp;</span></b><span
+ style="font-size: medium;">You can use trap filter to process traps
+from IPV6 nodes. But note that to retrieve the IPV6 address of the
+agent from the Snmp PDU you have to use SnmpPDU.getRemoteHost() in the
+trap filter.</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">Here
+are
+some limitations on IPV6 nodes with respect to SNMP traps :</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace"><span
+ style="font-size: medium;">*</span></font><span
+ style="font-size: medium;">&nbsp;</span></b><span
+ style="font-size: medium;">In SnmpV1 traps, the agent-addr field is
+declared as 'NetworkAddress'. Since the IPv6 Agent does not have a
+valid IPV4 address, it can put an unspecified address( '0.0.0.0') in
+agent-addr field.</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><xmeta
+ http-equiv="content-type"
+ content="text/html;
+                      charset=utf-8"><span
+ style="border-collapse: separate; font-family: verdana,arial,helvetica,sans-serif; font-size: 12px;">
+<div><span style=""><span style="font-size: medium;">Following
+code&nbsp;</span></span><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-size: medium;">snippet&nbsp;</span></span><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-size: medium;">in the trap filter</span></span><span
+ style="font-family: 'times new roman',times,serif;"><span
+ style="font-size: medium;">&nbsp;retrieves the IPV6 address of the
+agent.<br>
+</span></span></div>
+<div>
+<div><font class="Apple-style-span"
+ style="font-family: 'Courier New',Courier,monospace;"
+ face="'times new
+                              roman', times, serif"><a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv3/javadocs/com/adventnet/snmp/snmp2/UDPProtocolOptions.html#getRemoteHost%28%29">UDPProtocolOptions</a></font><font
+ class="Apple-style-span"
+ face="'courier
+                              new', courier, monospace"><span
+ style="background-color: rgb(255, 255, 0);"><span
+ style="font-size: medium;">&nbsp;opt = (UDPProtocolOptions)</span></span></font><a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv3/javadocs/com/adventnet/snmp/snmp2/SnmpPDU.html">SnmpPDU</a><font
+ class="Apple-style-span"
+ face="'courier
+                              new', courier, monospace"><span
+ style="background-color: rgb(255, 255, 0);"><span
+ style="font-size: medium;">.getProtocolOptions();&nbsp;</span></span></font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace"><span
+ style="background-color: rgb(255, 255, 0);"><span
+ style="font-size: medium;">String remoteHost = opt.</span></span></font><a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv3/javadocs/com/adventnet/snmp/snmp2/UDPProtocolOptions.html#getRemoteHost%28%29">getRemoteHost</a><font
+ class="Apple-style-span"
+ face="'courier
+                              new', courier, monospace"><span
+ style="background-color: rgb(255, 255, 0);"><span
+ style="font-size: medium;">();<br>
+<br>
+</span></span></font></div>
+</div>
+</span></xmeta></span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace"><span
+ style="font-size: medium;">*</span></font><span
+ style="font-size: medium;">&nbsp;</span></b><span
+ style="font-size: medium;">In Snmpv2c traps, there is no field like
+agent-addr. But the SnmpTrapAddress OID is one of the optional varbind
+in Snmpv2c trap in case of proxy Agent. The type of this OID is
+declared as 'IpAddress'. But IPV6 Agent can not use SnmpTrapAddress OID
+as a varbind.</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">There
+are
+no specific separate tables for IPV6 in Web NMS. All data are
+persisted in the default Web NMS database tables only.</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace"><span
+ style="font-size: medium;">*</span></font><span
+ style="font-size: medium;">&nbsp;</span></b><span
+ style="font-size: medium;">Information on Discovery and Topology of
+IPV6 nodes is available in the following links :</span></font></div>
+<div
+ style="font-family: Times New Roman,Times,serif; color: rgb(0, 0, 0); font-weight: normal;"><big><a
+ href="http://www.webnms.com/webnms/help/developer_guide/discovery/configuring_discovery/disc_configuration.html#IPV6">http://www.webnms.com/webnms/help/developer_guide/discovery/configuring_discovery/disc_configuration.html#IPV6</a></big></div>
+<div
+ style="font-family: Times New Roman,Times,serif; color: rgb(0, 0, 0); font-weight: normal;"><big><a
+ href="http://www.webnms.com/webnms/help/developer_guide/topo/topo_modelingresourcesasmo.html#modeling_ipv6_nodes">http://www.webnms.com/webnms/help/developer_guide/topo/topo_modelingresourcesasmo.html#modeling_ipv6_nodes</a></big></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span> </font><span
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;"><span
+ style="font-family: verdana,arial,helvetica,sans-serif;">
+<div><span
+ style="font-family: 'times new roman',times,serif; font-size: medium; border-collapse: collapse;">Note
+that
+we do not have any discovery filter or trap filter example
+specific to IPV6.</span></div>
+</span></span></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">Following
+are
+the OIDs that are queried for IPV6 discovery :&nbsp;</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">.1.3.6.1.2.1.55.1.3.0
+-
+&nbsp;To check if the IPV6 MIB is supported in the device</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">.1.3.6.1.2.1.55.1.1.0
+
+&nbsp;-
+To check if it is an IPV6 router</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">.1.3.6.1.2.1.55.1.11.1.5
+
+&nbsp;-
+To get the IPV6 routing table address&nbsp;</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">.1.3.6.1.2.1.55.1.12.1.2
+
+-
+To get the IPV6Addresses defined in the ipv6NetToMediaTable</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;">.1.3.6.1.2.1.55.1.8.1.2
+-
+To get the IPV6 interfaces</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><span style="font-size: medium;"><br>
+</span></font></div>
+<div
+ style="font-family: tahoma,helvetica,arial,sans-serif; color: rgb(0, 0, 0); font-weight: normal;"><font
+ face="'times new roman', times, serif"><b><font
+ face="'courier new', courier, monospace"><span
+ style="font-size: medium;">*</span></font><span
+ style="font-size: medium;">&nbsp;</span></b><span
+ style="font-size: medium;">Web NMS does support IPv6 discovery in
+SNMPv1, v2c &amp; v3 versions</span></font></div>
+<div><font style="" face="'times new roman', times, serif"><span
+ style="font-size: medium;"><br>
+We believe this answers your queries &amp; addresses your concerns.
+Kindly get back to us for any further clarification in this regard.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</span></font></div>
+</span></span></xmeta></span></font>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>MySQL Master Master Replication</title>
+</head>
+<body>
+<h1 id="title">MySQL Master Master Replication</h1>
+<!-- start main content --><!-- begin content -->
+<div class="info">Submitted by sheikhsa on Sun, 2006-09-10 08:31.<span
+ class="taxonomy"> :: <a
+ href="http://www.howtoforge.com/taxonomy/term/7?s=aa61028a646d735d81af010c94d3568e&amp;">MySQL</a></span></div>
+<h2>MySQL Master Master Repliction Tutorial
+</h2>
+<p align="justify">This tutorial describes how to set up MySQL
+master-master replication. We need to replicate MySQL servers to
+achieve high-availability (HA). In my case I need two masters that are
+synchronized with each other so that if one of them drops down, other
+could take over and no data is lost. Similarly when the first one goes
+up again, it will still be used as slave for the live one.</p>
+<p align="justify">Here&nbsp; is a basic step by step tutorial, that
+will
+cover the mysql master and slave replication and also will describe the
+mysql master and master replication.</p>
+<p><b>Notions:</b> <i>we will call system 1 as master1 and slave2 and
+system2 as master2 and slave 1.</i></p>
+<h3>Step 1:</h3>
+<p> Install mysql on master 1 and slave 1. configure network services
+on both system, like <br>
+</p>
+<p>Master 1/Slave 2 ip: 192.168.16.4</p>
+<p>Master 2/Slave 1 ip : 192.168.16.5&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Step 2: </h3>
+<p>On Master 1, make changes in my.cnf:</p>
+<br>
+<p><span class="system">[mysqld]<br>
+datadir=/var/lib/mysql<br>
+socket=/var/lib/mysql/mysql.sock<br>
+old_passwords=1<br>
+<br>
+log-bin<br>
+binlog-do-db=&lt;database name&gt;&nbsp; # input the database which
+should be replicated<br>
+binlog-ignore-db=mysql&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+# input the database that should be ignored for replication<br>
+binlog-ignore-db=test<br>
+<br>
+server-id=1<br>
+<br>
+[mysql.server]<br>
+user=mysql<br>
+basedir=/var/lib<br>
+<br>
+<br>
+[mysqld_safe]<br>
+err-log=/var/log/mysqld.log<br>
+pid-file=/var/run/mysqld/mysqld.pid</span><br>
+<br>
+</p>
+<h3>Step 3:</h3>
+<p> On master 1, create a replication slave account in mysql.</p>
+<p class="command">mysql&gt; grant replication slave on *.* to
+'replication'@192.168.10.5 \<br>
+identified by 'slave';</p>
+<p>and restart the mysql master1.&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Step 4: </h3>
+<p>Now edit my.cnf on Slave1 or Master2 :</p>
+<p> <span class="system">[mysqld]<br>
+datadir=/var/lib/mysql<br>
+socket=/var/lib/mysql/mysql.sock<br>
+old_passwords=1<br>
+</span></p>
+<p><span class="system">server-id=2<br>
+<br>
+master-host = 192.168.16.4<br>
+master-user = replication<br>
+master-password = slave<br>
+master-port = 3306<br>
+<br>
+[mysql.server]<br>
+user=mysql<br>
+basedir=/var/lib<br>
+<br>
+[mysqld_safe]<br>
+err-log=/var/log/mysqld.log<br>
+pid-file=/var/run/mysqld/mysqld.pid</span><br>
+<br>
+</p>
+<h3>&nbsp;Step 5: </h3>
+<p>Restart mysql slave 1 and at</p>
+<p class="command">mysql&gt; start slave;<br>
+mysql&gt; show slave status\G;</p>
+<p><span class="system"><br>
+*************************** 1. row ***************************<br>
+</span></p>
+<div align="left"><span class="system">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_IO_State: Waiting for master to send event<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Host: 192.168.16.4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_User: replica<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Port: 3306<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Connect_Retry: 60<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Log_File: MASTERMYSQL01-bin.000009<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Read_Master_Log_Pos: 4<br>
+</span>
+<address><span class="system">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_File: MASTERMYSQL02-relay-bin.000015</span></address>
+<span class="system">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_Pos: 3630<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Relay_Master_Log_File:
+MASTERMYSQL01-bin.000009<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_IO_Running: Yes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_SQL_Running: Yes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Replicate_Do_DB:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Ignore_DB:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Do_Table:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Ignore_Table:<br>
+&nbsp;&nbsp;&nbsp; Replicate_Wild_Do_Table:<br>
+Replicate_Wild_Ignore_Table:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Last_Errno: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Last_Error:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Skip_Counter: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exec_Master_Log_Pos: 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_Space: 3630<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Condition: None<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Log_File:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Log_Pos: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_Allowed: No<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_CA_File:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_CA_Path:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Cert:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Cipher:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Key:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Seconds_Behind_Master: 1519187<br>
+</span></div>
+<p><span class="system">1 row in set (0.00 sec)<br>
+<br>
+</span></p>
+<p>Above highlighted rows must be indicate related log files and&nbsp;
+Slave_IO_Running and &nbsp; Slave_SQL_Running: must be to YES.</p>
+<p>&nbsp;</p>
+<h3>Step 6:</h3>
+<p>On master 1: </p>
+<p><span class="system">mysql&gt; show master status;<br>
++------------------------+----------+--------------+------------------+<br>
+|
+File&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| Position | Binlog_Do_DB | Binlog_Ignore_DB |<br>
++------------------------+----------+--------------+------------------+<br>
+|MysqlMYSQL01-bin.000008 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 410 |
+adam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|<br>
++------------------------+----------+--------------+------------------+<br>
+1 row in set (0.00 sec)<br>
+</span><br>
+The
+above scenario is for master-slave, now we will create a slave master
+scenario for the same systems and it will work as master master.</p>
+<p>&nbsp;</p>
+<h3>Step 7: </h3>
+<p>On Master2/Slave 1, edit my.cnf and master entries into it:</p>
+<p><span class="system">&nbsp;[mysqld]<br>
+datadir=/var/lib/mysql<br>
+socket=/var/lib/mysql/mysql.sock<br>
+# Default to using old password format for compatibility with mysql 3.x<br>
+# clients (those using the mysqlclient10 compatibility package).<br>
+old_passwords=1<br>
+server-id=2<br>
+<br>
+master-host = 192.168.16.4<br>
+master-user = replication<br>
+master-password = slave<br>
+master-port = 3306<br>
+<br>
+log-bin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+#information for becoming master added<br>
+binlog-do-db=adam <br>
+<br>
+[mysql.server]<br>
+user=mysql<br>
+basedir=/var/lib<br>
+</span></p>
+<p><span class="system">[mysqld_safe]<br>
+err-log=/var/log/mysqld.log<br>
+pid-file=/var/run/mysqld/mysqld.pid</span></p>
+<p>&nbsp;</p>
+<h3>Step 8:</h3>
+<p> Create a replication slave account on master2 for master1:</p>
+<p><span class="command">mysql&gt; grant replication slave on *.* to
+'replication'@192.168.16.4 identified by 'slave2';</span></p>
+<p>&nbsp;</p>
+<h3>Step 9:</h3>
+<p><b> </b>Edit my.cnf on master1 for information of its master.</p>
+<p><span class="system">[mysqld]<br>
+datadir=/var/lib/mysql<br>
+socket=/var/lib/mysql/mysql.sock<br>
+<br>
+# Default to using old password format for compatibility with mysql 3.x<br>
+# clients (those using the mysqlclient10 compatibility package).<br>
+old_passwords=1<br>
+<br>
+<br>
+log-bin<br>
+binlog-do-db=adam<br>
+binlog-ignore-db=mysql<br>
+binlog-ignore-db=test<br>
+<br>
+server-id=1<br>
+#information for becoming slave.<br>
+master-host = 192.168.16.5<br>
+master-user = replication<br>
+master-password = slave2<br>
+master-port = 3306<br>
+</span></p>
+<p><span class="system">[mysql.server]user=mysqlbasedir=/var/lib&nbsp;</span></p>
+<p>&nbsp;</p>
+<h3>Step 10:</h3>
+<p> Restart both mysql master1 and master2.</p>
+<p>On mysql master1:</p>
+<p class="command">mysql&gt; start slave;</p>
+<p>On mysql master2:&nbsp;</p>
+<p class="command">mysql &gt; show master status;</p>
+<p>On mysql master 1:</p>
+<p class="command">mysql&gt; show slave status\G;</p>
+<p><br>
+<span class="system">*************************** 1. row
+***************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_IO_State: Waiting for master to send event<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Host: 192.168.16.5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_User: replica<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Port: 3306<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Connect_Retry: 60<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_Log_File: Mysql1MYSQL02-bin.000008<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Read_Master_Log_Pos: 410<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_File: Mysql1MYSQL01-relay-bin.000008<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_Pos: 445<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Relay_Master_Log_File:
+Mysql1MYSQL02-bin.000008<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_IO_Running: Yes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Slave_SQL_Running: Yes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Replicate_Do_DB:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Ignore_DB:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Do_Table:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Replicate_Ignore_Table:<br>
+&nbsp;&nbsp;&nbsp; Replicate_Wild_Do_Table:<br>
+Replicate_Wild_Ignore_Table:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Last_Errno: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Last_Error:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Skip_Counter: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Exec_Master_Log_Pos: 410<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relay_Log_Space: 445<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Condition: None<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Log_File:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Until_Log_Pos: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_Allowed: No<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_CA_File:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_SSL_CA_Path:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Cert:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Cipher:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Master_SSL_Key:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Seconds_Behind_Master: 103799<br>
+1 row in set (0.00 sec)<br>
+<br>
+ERROR:<br>
+No query specified</span></p>
+Check for the hightlighted rows, make sure its running. Now you can
+create tables in the database and you will see changes in slave. <b>Enjoy!!</b>
+</body>
+</html>

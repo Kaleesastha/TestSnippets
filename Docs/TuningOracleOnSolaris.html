@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>TuningOracleOnSolaris</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<div align="center"><b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;TIPS ON HOW
+TO TUNE ORACLE FOR SOLARIS</b><br>
+</div>
+<br>
+<br>
+1. &nbsp;Before creating the database ensure that the DB_BLOCK_SIZE parameter
+is equal to the size of the pagefile of the Operating System.<br>
+<br>
+&nbsp; &nbsp; &nbsp;DB_BLOCK_SIZE = File System Block Size &gt;= OS Page
+Size<br>
+<br>
+&nbsp; &nbsp; &nbsp;In order to find out the page size of the OS in Solaris
+issue the following command<br>
+<br>
+&nbsp;&nbsp; &nbsp; Pagesize<br>
+<br>
+2. &nbsp;JAVA_POOL_SIZE&nbsp; :&nbsp; If Java applications are running predominantly
+then this pool size has to be increased. <br>
+&nbsp;&nbsp;&nbsp; &nbsp;When this is increased simultaneously the shared
+pool size must also be increased in proportion.<br>
+<br>
+3.&nbsp; SHARED_POOL_SIZE&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp; For every 10 concurrent
+users 16 MB of memory must bw allotted.<br>
+<br>
+4.&nbsp; LOG_BUFFER&nbsp; :&nbsp; For medium size it should be 512K.&nbsp;
+Above 1 MB should be questioned as bigger size will cause unnecessary contention
+for redo allocation &nbsp; &nbsp; &nbsp; &nbsp;latch.<br>
+<br>
+5.&nbsp; LOG_SIMULTANEOUS_COPIES&nbsp; :&nbsp; The default is 01 times of
+CPU. This can be set in between the default and 2 times of CPU.<br>
+<br>
+6.&nbsp; LOG_SMALL_MAX_ENTRY_SIZE :&nbsp; This should be set to 0.<br>
+<br>
+7.&nbsp; If&nbsp; possible the Redo Logs file should be kept on separate
+disks from the datafiles. &nbsp;<br>
+<br>
+8.&nbsp; The LOG_CHECKPOINT_INTERVAL&nbsp; should be set appropriately. <br>
+<br>
+9.&nbsp; The LOG_CHECKPOINT_TIMEOUT&nbsp; also must be set.<br>
+<br>
+10. The SGA or the settings of the memory for Oracle must be considered in
+the following ratios :<br>
+<br>
+&nbsp;&nbsp; &nbsp;Total SGA&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;:&nbsp;&nbsp; &nbsp; 100 %<br>
+&nbsp;&nbsp; &nbsp;Database Buffer Cache&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+80%<br>
+&nbsp;&nbsp; &nbsp;Shared Pool Area&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp; 12%<br>
+&nbsp;&nbsp; &nbsp;Fixed and Misc&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1%<br>
+&nbsp;&nbsp; &nbsp;Redo Log Buffer&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;.1%<br>
+<br>
+Then some parameters has to be changed for the Solaris OS in order to tune
+the server to effectively work with Oracle.<br>
+<br>
+1.&nbsp; In the /etc/system file the following lines are to be added.<br>
+<br>
+&nbsp;&nbsp; &nbsp;set priority_paging = 1<br>
+&nbsp;&nbsp; &nbsp;set fastscan = 131072<br>
+&nbsp;&nbsp; &nbsp;set maxpgio = 65536<br>
+<br>
+2.&nbsp;&nbsp; If you are having a large number of users set this parameter
+in /etc/system.<br>
+<br>
+&nbsp;&nbsp; &nbsp;seminfo_semmns = 2000<br>
+<br>
+3.&nbsp; The following parameters are to be set exclusively for the Oracle
+Server to work at optimum.<br>
+<br>
+&nbsp;&nbsp; &nbsp;SHMMAX&nbsp; :&nbsp;&nbsp; &nbsp;4294967295&nbsp; : Maximum
+size of a single shared memory segment.<br>
+<br>
+&nbsp;&nbsp; &nbsp;SHMMIN&nbsp;&nbsp; :&nbsp;&nbsp; &nbsp;1&nbsp;&nbsp; &nbsp;:
+&nbsp;&nbsp; &nbsp;Min size of a single shared memory segment<br>
+<br>
+&nbsp;&nbsp; &nbsp;SHMMNI&nbsp;&nbsp; :&nbsp;&nbsp; &nbsp;100&nbsp;&nbsp;
+&nbsp;:&nbsp;&nbsp; &nbsp;Max number of shared memory segments in entire
+system<br>
+<br>
+&nbsp;&nbsp; &nbsp;SHMSEG&nbsp;&nbsp; :&nbsp;&nbsp; &nbsp;10&nbsp;&nbsp;
+&nbsp;:&nbsp;&nbsp; &nbsp;Max&nbsp; number of shared memory segments one
+process can attach.<br>
+<br>
+&nbsp;&nbsp; &nbsp;SEMMNS&nbsp; :&nbsp;&nbsp; &nbsp;2000&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;Maximum number os semaphores in entire system.<br>
+<br>
+&nbsp;&nbsp; &nbsp;SEMMSL&nbsp;&nbsp; :&nbsp;&nbsp; &nbsp;1000&nbsp;&nbsp;
+&nbsp;:&nbsp;&nbsp; &nbsp;Maximum number of semaphores per set.<br>
+<br>
+&nbsp;&nbsp; &nbsp;SEMMNI&nbsp; :&nbsp;&nbsp; &nbsp;100&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;Max number of semaphores sets in entire system<br>
+<br>
+&nbsp;&nbsp; &nbsp;SEMOPM :&nbsp;&nbsp; &nbsp;100&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;Maximum number of operations per semop call<br>
+<br>
+&nbsp;&nbsp; &nbsp;SEMVMX :&nbsp;&nbsp; &nbsp;32767&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp;
+&nbsp;Max&nbsp; value of a semaphore.<br>
+<br>
+** Note&nbsp; : The init.ora parameter file must be configured correctly.<br>
+<br>
+</body>
+</html>

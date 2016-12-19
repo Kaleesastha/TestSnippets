@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNMS Failover Replication logic</title>
+</head>
+<body>
+<font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3">Dear&nbsp; </font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3">Li<br>
+Yes! You can be assured that <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/replication/mysql_replication.html">WebNMS
+5 also supports high availability with replication</a><span
+ style="font-weight: bold;">.</span><br>
+<br>
+The key is to set up replication. Once you setup replication, the
+WebNMS configuration is simple &amp; straight forward to do.<br>
+<br>
+Assume DB1 &amp; DB2 replicates:<br>
+<span style="font-weight: bold;">1. </span>When you start BE1 for DB1,
+the <span style="font-weight: bold;">BEFailOver </span>table in BE1
+table gets updated with PRIMARY information.<br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">2. </span></font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3">Since DB2 is replicating with DB1, this value gets updated in
+DB2 also.<br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">3. </span></font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3">Start BE2 with DB2<br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">4. </span></font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3">DB2's
+BEfailOver table already has entry for PRIMARY(as BE1). Now BE2 will
+check whether there is a PRIMARY server running in BE1<br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">5. </span>After cross-checking (with RMI
+Lookup of BE1,)<span style="font-weight: bold;"> </span>BE2</font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3"> starts as STANDBY.<br>
+<span style="font-weight: bold;">6. </span>Now the heartbeat updated
+in
+BE1 &amp; BE2 will get mutually transferred. Once BE1 gets shutdown,
+the
+heartbeat remains at -1 (&amp; the SERVERROLE is shutdown)<br>
+<span style="font-weight: bold;">7. </span>This gets transferred to
+DB2's BEFailOver &amp; hence BE2 will start as PRIMARY.<br>
+<br>
+We believe this clarifies your queries. Kindly refer the <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/replication/mysql_replication.html">MySQL
+replication</a> &amp; <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/replication/oracle_replication.html">Oracle</a></font></font><font
+ color="#000000"><font style="font-family: times new roman,times,serif;"
+ size="3"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/replication/oracle_replication.html">
+replication</a> docs at <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/index.html">WebNMS
+Developer Guide</a> &amp; get back to us for any further clarification
+in this regard.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</font></font><br>
+<font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3">&lt;Li
+Zhu&gt; wrote--------------<br>
+The following is copied from WebNMS deployment guide.<br>
+<br>
+<a
+ href="http://www.adventnet.com/products/webnms/help/deployment_guide/deployment_models/server_deployment_models.html#Failover%20Support%20with%20Replicated%20Database">Failover
+Support with Replicated Database</a><br>
+<br>
+There
+are some situations where the database application could fail. In such
+situations, where you need high availability of database, you can
+choose to have two databases that support data replication and
+mirroring. In this type of deployment, we would employ two databases
+DB1 and DB2, with primary BE connecting to DB1 and secondary BE
+connecting to DB2. In this case, even if the primary BE or the primary
+database DB1, burns out, the secondary BE is in a position to continue
+monitoring the devices, by using the DB2 available with it.<br>
+<br>
+Would you please confirm if WebNMS version 5 supports this deployment
+mode or not?<br>
+How does WebNMS support the primary/back scenario if you have two
+separate databases?<br>
+How does Data Replication/Mirroring work? What works do we need to make
+it work?<br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3"><br>
+</font></font><font color="#000000"><font
+ style="font-family: times new roman,times,serif;" size="3">Thanks,<br>
+Li Zhu</font></font><font
+ style="font-family: times new roman,times,serif;" size="3">
+</font>
+</body>
+</html>

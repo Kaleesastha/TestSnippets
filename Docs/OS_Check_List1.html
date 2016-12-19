@@ -1,0 +1,1122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>OS_Check_List1</title>
+</head>
+<body>
+<table style="border-collapse: collapse; width: 912pt;" border="1"
+ cellpadding="1" cellspacing="1">
+  <col style="width: 38pt;" width="51"> <col style="width: 486pt;"
+ width="648"> <col style="width: 95pt;" width="127"> <col
+ style="width: 90pt;" width="120"> <col style="width: 203pt;"
+ width="271"> <tbody>
+    <tr style="height: 12.75pt;" height="17">
+      <td class="xl65" style="height: 12.75pt; width: 38pt;" height="17"
+ width="51">Test Case ID</td>
+      <td class="xl67" style="width: 486pt;" width="648">Test Case
+Header</td>
+      <td class="xl65" style="width: 95pt;" width="127">Test Result<span
+ style="">&nbsp;</span></td>
+      <td class="xl65" style="width: 90pt;" width="120">Remarks</td>
+      <td style="width: 203pt;" width="271"><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Start the BE
+server</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl70" style="width: 486pt;" width="648">Shutdown it
+using TCP Shutdown</td>
+      <td class="xl71">PASS</td>
+      <td colspan="2" style="">Wrong validation yesterday. By default
+TCP socket is tried in localhost IP. But the server in which WebNMS was
+running was different &amp; hence the issue. Once the host IP is
+properly given, TCP shutdown was proper.</td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Shutdown it
+using Web server Shutdown</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Shutdown it
+using RMI Shutdown</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">FE server
+startup</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Policy
+Execution</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 38.25pt;" height="51">
+      <td style="height: 38.25pt;" height="51"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Negative test
+case - Configure the ALLOWED_IDLE_TIME_BEFORE_LOCKOUT parameter without
+the corresponding permission in java.policy - In Applet client the
+alarm popup that the necessary permission is not given should occur</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 25.5pt;" height="34">
+      <td style="height: 25.5pt;" height="34"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Applet client
+- ALLOWED_IDLE_TIME_BEFORE_LOCKOUT should work properly when the
+java.policy is configured</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - DISCOVER</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - DISCOVER_LOCALNET</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">web client
+testing - Reports are properly appearing</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">web client
+testing - All tabs are rendered properly.</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">web client
+testing - All Network maps are properly rendered</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Backup &amp;
+Restore - Generate a backup online (when server is running, from web
+client)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Backup &amp;
+Restore - Generate a backup offline (with .sh file)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Restore the
+backup while the server is running</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Restore the
+backup while the server is not running</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - startnms.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - reinitialize_nms.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts testing<span
+ style="">&nbsp; </span>- ShutDown.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - UpdateManager.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - compileJSP.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - CommandLineStudioNarInstaller.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - CommandLineStudioNarUnInstaller.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - DBXmlTool.sh (Invokded in Command line mode)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - DiscoveryConfigurator.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - EncryptPassword.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - RMIREG.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - UserConfig.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - UniqueId</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Studio -
+Install the nar (NMS ARchive) over the product (Possible from the
+Command line)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Studio -
+Uninstall the nar (NMS ARchive) from the product (Possible from the
+Command line)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Warm start -
+should not create any issues</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Cold start -
+should not create any issues</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Apply any PPM
+over the product</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Uninstall the
+PPM from the product</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">DB
+Reconnection happens</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 38.25pt;" height="51">
+      <td style="height: 38.25pt;" height="51"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Negative test
+case - Configure the ALLOWED_IDLE_TIME_BEFORE_LOCKOUT parameter without
+the corresponding permission in java.policy - In web start client the
+alarm popup that the necessary permission is not given should occur</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 25.5pt;" height="34">
+      <td style="height: 25.5pt;" height="34"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Web start
+client - ALLOWED_IDLE_TIME_BEFORE_LOCKOUT should work properly when the
+java.policy is configured</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Audit Trails -
+Check whether audits are properly happening for login</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Audit Trails -
+Check whether audits are properly happening for delete</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Audit Trails -
+Check whether No out of Memory happens while viewing the Audit trails</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Failover
+testing - Standby server is invoked for an already running PRIMARY
+server</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Failover
+testing - FE server switches to the STANDBY server after a failover
+happens</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Scripts
+testing - startdebugger.sh</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">RMI Registry -
+Start the RMI registry along with the product (By default)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">RMI Registry -
+Start the RMI registry separately &amp; then start WebNMS</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Stop WebNMS
+Unix service</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Start the
+server Native Ping Enabled. Ensure for proper discovery</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Add / Delete /
+change profiles of a user</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Web client gets connected</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Applet client gets connected</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Web start client gets connected</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Server starts up in pure SSL Mode (No listening of http port - all
+https port)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Failover happens in SSL Mode</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">RMI Registry -
+start WebNMS with service operation set as true - (RMI registry started
+in the same JVM)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Add Custom
+View Scopes from Security Admin UI &amp; ensure that they got effect</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Delete Custom
+View Scopes from Security Admin UI &amp; ensure that they got effect</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+FE server starts up in SSL Mode</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+TopoAPI_addObject</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+deleteObject</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getByName</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getDiscoveryParameters</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing
+-getInterface</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing
+-getNetworks</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing
+-getNode</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+EventAPI - addEvent</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getCleanEventInterval</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getEventByID</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getEventQueueSize</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing
+-getTrapPort</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+purgeEventDB</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+AlertAPI getAlertCount</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing
+-updateAlert</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+purgeAlertDB</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+pickUpAlert</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+getAlertQueueSize</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - ENABLE_SNMP_DISCOVERY</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - DISCOVERY_INTERVAL</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - REDISCOVER_INTERVAL</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - REDISCOVER_ALREADY_DISCOVER</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - SNMP_PORTS</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - ENABLE_LOG</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - TO_DISCOVER</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - NOT_TO_DISCOVER</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">seed.file
+configuration - NOT_TO_DISCOVERIP</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">web client
+testing - calendar view is proper (tested from fault management tab)</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Start WebNMS
+as a Unix service</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Creating Maps
+with maps.conf</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Maps - Add a
+new map</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Maps - Update
+a map</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Maps -
+Deleting a map</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Check from web
+client whether Data Collection is properly happens for the OIDs
+mentioned in polling.conf</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">SSL testing -
+Invoking Web client from java client should invoke the corresponding
+page in <font class="font5">http</font><font class="font0">s</font></td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+UpdateObject</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">API Testing -
+deleteObjects</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Provisioning
+Templates testing - Any template like MO Fetching</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+      <td style="height: 12.75pt;" height="17"><br>
+      </td>
+      <td class="xl69" style="width: 486pt;" width="648">Data
+collection happens fine for the oids configured in polling.conf</td>
+      <td>PASS</td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

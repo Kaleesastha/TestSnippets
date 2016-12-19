@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>MySQL Different port And Accessing Connection And how
+reconnection works</title>
+</head>
+<body>
+<div id="editDiv"
+ style="padding: 3px; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;"><font
+ style="font-family: times new roman,times,serif;" color="#000000"
+ size="3"><b><i><span
+ style="font-size: 12pt; font-weight: bold; font-style: italic;"></span></i></b></font><font
+ style="font-family: times new roman,times,serif;" color="#000025"
+ size="3"><a
+ href="http://nms-support:8080/WorkOrder.do?woMode=viewWO&amp;woID=3047640">Ticket
+Id: 3047640</a><br>
+</font>
+<div
+ style="padding: 3px; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;"
+ id="editDiv"><font style="font-family: times new roman,times,serif;"
+ color="#000000" size="3"><i><span
+ style="font-size: 12pt; font-style: italic;">Note to Customers :
+Please do not modify the mail Subject when you reply to this mail<br>
+</span></i><b><i><span
+ style="font-size: 12pt; font-weight: bold; font-style: italic;"><br>
+</span></i></b></font><font
+ style="font-family: times new roman,times,serif;" color="#000025"
+ size="3">Dear Pankaj<br>
+<br>
+Kindly find our answers below for your concerns.<br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;">MyISAM
+table type</span><br>
+WebNMS' tables were by default MyISAM because, WebNMS 4.7 (<span
+ style="font-weight: bold;">released in June 2004</span>) was bundled
+with an <span style="font-weight: bold;">older version of MySQL
+3.23.58, which does not support
+transactions.</span><br>
+But we do support <span style="font-weight: bold;">MySQL 5.0.x</span>
+(with 4.7 SP3) &amp; hence
+transactions are also supported. Kindly download the SP3 from the site
+&amp; install the same to use transactions &amp; a higher
+version of MySQL. (the installation process is documented here &amp; is
+very easy to do so)<br>
+<br>
+</font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3"><span
+ style="font-weight: bold; text-decoration: underline;">Changing the
+MySQL port</span></font><br>
+<font style="font-family: times new roman,times,serif;" color="#000025"
+ size="3">And reg. starting MySQL: </font><font
+ style="font-family: times new roman,times,serif;" size="3">Although
+the MySQL port is hardcoded for WebNMS, you can change it as follows:<br>
+1. In the &lt;NMS_Home&gt;\conf\database_params.conf, change the URL as
+follows:<br>
+<br>
+<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;"></span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">1. </span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">url
+jdbc:mysql://localhost:<span style="background-color: rgb(153, 0, 204);">2306</span>/WebNmsDB&nbsp;</span></font><font
+ style="font-family: times new roman,times,serif;" size="3"> // <span
+ style="color: rgb(0, 0, 255);">Assuming your desired port is </span><span
+ style="font-weight: bold; color: rgb(0, 0, 255);">2306.</span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><br>
+<br>
+<span style="font-weight: bold;">2. </span>If its Linux, MySQL has to
+be started &amp; stopped outside WebNMS. If its Solaris / Windows,
+modify the </font><font
+ style="font-family: times new roman,times,serif;" size="3">&lt;NMS_Home&gt;\</font><font
+ style="font-family: times new roman,times,serif;" size="3">bin\startMySQL.<span
+ style="font-weight: bold;">bat /sh </span>as follows:<br>
+</font><font style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">mysqld
+-b .. --standalone <span style="background-color: rgb(153, 0, 204);">--port=2306</span></span></font>
+<font style="font-family: times new roman,times,serif;" size="3">// <span
+ style="color: rgb(0, 0, 255);">Add your desired port here as an
+argument.</span></font><br>
+<font style="font-family: times new roman,times,serif;" size="3"><br>
+Now if you need to shutdown the MySQL when WebNMS is shutdown (in
+Windows / Solaris) kindly follow the below process:<br>
+</font><font color="#000025"><span style="text-decoration: underline;"></span></font><span><font
+ size="3"><font face="Times New Roman">A </font></font><big
+ style="font-family: times new roman,times,serif;"> process
+implementing
+RunProcessInterface </big> <font face="Times New Roman" size="3">
+could be written. The shutDown() method of this process, should be
+having the
+logic to Shutdown to mysql. This process should be given as the first
+process in NmsProcessesBE.conf (We have given a sample implementation
+here as <span style="font-weight: bold;">Test.java</span>, <span
+ style="font-weight: bold; text-decoration: underline;">below</span>)<br>
+The process order in NmsProcessesBE.conf is<br>
+<strong><font face="Courier New">*</font></strong> At <strong>startup</strong>,
+from<strong> top to bottom</strong> the&nbsp;processes are started in
+order<br>
+<strong><font face="Courier New">*</font></strong> At <strong>shutdown</strong>,
+from <strong>bottom to top </strong>processes are shutdown in order
+(So that MySQL gets shutdown after all the other processes are shutdown)<br>
+Note
+that, you could not start MySQL using this method, since in WebNMS
+before the processes start, there are some database operations involved.<br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;">MySQL
+Connections<br>
+</span></font></span><span><font face="Times New Roman" size="3"><span
+ style="font-weight: bold;">1. </span>Once
+WebNMS is started, it starts the MySQL server (if not started already)
+&amp; it creates a pool of Connections (total no. = TRANS_CONNECTIONS +
+NON_TRANS_CONNECTIONS specified in conf\database_params.conf).<br>
+</font></span><span><font face="Times New Roman" size="3"><span
+ style="font-weight: bold;">2. </span></font></span><span><font
+ face="Times New Roman" size="3">After
+this, every other query or transaction is executed with these
+connections (Connections maintained by WebNMS ConnectionPool )<br>
+(The below steps are given on an assumption that you have set </font></span><font
+ color="#000000" size="3"><b><font color="blue" face="Courier New"><span
+ style="" courier="" new="" ;="" font-weight="" bold="" color="" blue="">ENABLE_DB_RECONNECTION</span></font></b>
+<span style="font-family: times new roman,times,serif;">as</span> <b><font
+ color="blue" face="Courier New"><span style="" courier="" new="" ;=""
+ font-weight="" bold="" color="" blue="">TRUE </span></font></b></font><font
+ color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;">in <span
+ style="font-weight: bold;">serverparameters.conf </span></span></font><font
+ color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;">&amp; </span></font><font
+ color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;">once this is set as
+true, </span></font><span></span><font color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;"></span><b><font
+ color="blue" face="Courier New"><span style="" courier="" new="" ;=""
+ font-weight="" bold="" color="" blue="">DB_RECONNECTION_TIMEOUT </span></font></b></font><font
+ color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;">by default is 20
+seconds &amp; can be changed in serverparameters.conf before starting
+the server)<br>
+</span></font><br>
+<span><font face="Times New Roman" size="3"><span
+ style="font-weight: bold;">3. </span></font></span><span><font
+ face="Times New Roman" size="3">Once an SQLException happens</font></span><span><font
+ face="Times New Roman" size="3"> when executing any query, (this
+occurs only due to MySQL-WebNMS connection loss / MySQL killed)</font></span><span><font
+ face="Times New Roman" size="3">, the connection break handler is
+called &amp; <span style="font-weight: bold;">all the schedulers are
+suspended immediately.</span><br>
+</font></span><span><font face="Times New Roman" size="3"><span
+ style="font-weight: bold;">4. </span></font></span><span><font
+ face="Times New Roman" size="3">After the </font></span><font
+ color="#000000" size="3"><span
+ style="font-family: times new roman,times,serif;"></span><b><font
+ color="blue" face="Courier New"><span style="" courier="" new="" ;=""
+ color="" blue="" font-weight="" bold="">DB_RECONNECTION_TIMEOUT </span></font></b></font><span><font
+ face="Times New Roman" size="3">seconds, the connection is
+re-attempted.<br>
+</font></span><span><font face="Times New Roman" size="3"><span
+ style="font-weight: bold;">5. </span></font></span><span><font
+ face="Times New Roman" size="3">Once the Connection is gained, all the
+schedulers are resumed &amp; after which WebNMS resumes normally<br>
+<br>
+We believe this answers all your queries completely. Kindly get back to
+us for any furthe clarification in this regard.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</font></span><font
+ style="font-family: times new roman,times,serif;" color="#000025"
+ size="3"><span style="font-style: italic;"><br>
+Note to Customers : Please do not modify the mail Subject when you
+reply to this mail </span><br style="font-style: italic;">
+<br>
+&lt;Pankaj Ganguly&gt; wrote--------------<br>
+Hi Venkatramanan,<br>
+Thanks for your reply. I&#8217;m using WebNMS 4.7 on Win XP 32 bit machine.<br>
+1. I was really very surprised to know that WebNMS is by default using
+MyISAM. We know MyISAM does not support transaction but InnoDB does. I
+would like to know how WebNMS performs or ensures atomic task on mysql
+server.<br>
+<br>
+2. Can user configure the mysql port in AdventNet 4.7? if yes, could
+you please explain the steps or forward me the link?<br>
+3. Explaining query 1 of earlier mail &#8211; We know launching WebNMS server
+internally starts mysql server. Logically WebNMS server is a client to
+mysql server. Now it can happen<br>
+* Case A - WebNMS connects to mysql server only once (during its
+launch), holds it as some internal object and makes use of it for all
+operations of all clients of WebNMS. The internal object is being
+monitored after say few minutes (configurable time or so) and if it is
+down/inactive, it does the job as per user&#8217;s setting (graceful shutdown
+or retry etc)<br>
+* Case B &#8211; WebNMS finds whether it has connection to mysql before
+performing each operation of each client and reconnects to mysql server
+if connection is lost<br>
+<br>
+May query is &#8211; what&#8217;s the strategy of WebNMS for connecting to mysql
+server?<br>
+Regards<br>
+Pankaj<br>
+</font>
+<div class="Section1">
+<div style="font-family: times new roman,times,serif;"><font
+ color="#000000" size="3"><b><span
+ style="font-size: 10pt; font-weight: bold;">From:</span></b><span
+ style="font-size: 10pt;"> AdventNet Web NMS Support
+[mailto:nms-support@adventnet.com] <br>
+<b><span style="font-weight: bold;"><br>
+</span></b></span></font></div>
+<font color="#000000" size="3"><b
+ style="font-family: times new roman,times,serif;"><i><span
+ style="font-size: 12pt; font-weight: bold; font-style: italic;">Note
+to Customers : Please do not modify the mail Subject when you reply to
+this mail </span></i></b><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Ticket ID :
+3047640</span><br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Ticket Title :
+[Fwd: ##8866069## : Query - WebNMS and mysql related]</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Dear Pankaj</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> We believe
+your questions are with respect to WebNMS 4.7 (or 4.7 SP3 or 4.5)</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Regarding the
+storage engine, by default it is MyISAM, you can change the same to
+InnoDB.</span><br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> And similarly
+Unicode support too, its mainly the MySQL level feature, which you can
+use it in WebNMS.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> For using both
+the options, you need to edit the &lt;NMS_Home&gt;/bin/startMySQL.bat
+as follows:</span><br style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Instead of :</span>
+<font color="blue" face="Courier New"><span style="" courier="" new=""
+ ;="" color="" blue="">mysqld-nt -b .. --standalone </span></font><br>
+<span style="font-family: times new roman,times,serif;"> Give the
+following command to start MySQL:</span><br>
+<font color="blue" face="Courier New"><span style="" courier="" new=""
+ ;="" color="" blue="">mysqld-nt -b .. --standalone <b><span
+ style="font-weight: bold;">--default-table-type=<u>InnoDB</u>
+--default-character-set=<u>utf8</u></span></b></span></font><br>
+<br>
+<span style="font-family: times new roman,times,serif;"> (For
+Linux/Solaris start the safe_mysqld file as follows:</span><br>
+<font face="Courier New"><span style="" courier="" new="" ;="">$MYSQL_HOME&gt;
+<font color="blue"><span style="color: blue;">bin/safe_mysqld <b><span
+ style="font-weight: bold;">--default-table-type=InnoDB
+--default-character-set=<u>utf8</u></span></b> &amp;</span></font></span></font>)<br>
+<br>
+<span style="font-family: times new roman,times,serif;"> Additionally
+(for UTF-8) in &lt;NMS_Home&gt;\conf\database_params.conf, edit the URL
+as:</span><br>
+<font color="blue" face="Courier New"><span style="" courier="" new=""
+ ;="" color="" blue="">jdbc:mysql://localhost/WebNmsDB<b><span
+ style="font-weight: bold;">?useUnicode=true&amp;amp;characterEncoding=UTF-8</span></b></span></font><br>
+<br>
+<span style="font-family: times new roman,times,serif;">This will make
+the database read-write to be done completely in UTF-8
+encoding. (Have a new DB or drop the existing DB to see the effect of
+these changes)</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Regarding your
+first question, we could not understand it properly.
+(i.e) For every select / insert / delete / update, there is a query to
+the database. And if there is an intermittent DB loss, we do have the </span>
+DB RECONNECTION feature <span
+ style="font-family: times new roman,times,serif;"> (where you have to
+specify the</span> <b><font color="blue" face="Courier New"><span
+ style="" courier="" new="" ;="" color="" blue="" font-weight="" bold="">ENABLE_DB_RECONNECTION</span></font></b>
+<span style="font-family: times new roman,times,serif;">as</span> <b><font
+ color="blue" face="Courier New"><span style="" courier="" new="" ;=""
+ color="" blue="" font-weight="" bold="">TRUE </span></font></b><span
+ style="font-family: times new roman,times,serif;">before starting
+&amp; specify the </span><b><font color="blue" face="Courier New"><span
+ style="" courier="" new="" ;="" color="" blue="" font-weight="" bold="">DB_RECONNECTION_TIMEOUT</span></font></b><span
+ style="font-family: times new roman,times,serif;"> value in seconds).</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> If you have
+any other queries, kindly detail us in your reply so that we could help
+you in a better way.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> We believes
+this answers your queries. Kindly get back to us for any furthe
+clarification in this regard.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Thanks &amp;
+regards</span><br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Venkatramanan<br>
+<br>
+</span><span style="font-family: times new roman,times,serif;">-----&lt;Pankaj
+Ganguly&gt; wrote-------</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">I am currently
+using mysql, the default database of WebNMS. I have gone
+through the some documents but failed to get answers of few queries.
+So, I am forwarding those to you, if you kindly answer those, I will be
+thankful to you.&nbsp;&nbsp; </span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">&nbsp;&nbsp; 1.
+Mysql Connection related &#8211; Does WebNMS connect to mysql server
+before each query? If no, does it auto-reconnect (using mysql&#8217;s
+auto-reconnect feature) if connection terminates in-between?&nbsp; </span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> &nbsp;&nbsp;
+2. Mysql Storage engine &#8211; Does WebNMS use MyISAM as default storage
+engine? Or does it use InnoDB?</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> &nbsp;&nbsp;
+3. Unicode support &#8211; Does WebNMS provide Unicode support? Even at data
+storage (into mysql DB) level?</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Regards</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"> Pankaj</span></font></div>
+</div>
+<br>
+<hr
+ style="width: 100%; height: 2px; font-family: courier new,courier,monospace; color: rgb(51, 51, 255);"><big><span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">package
+test;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">import
+com.adventnet.nms.util.*;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">import
+com.adventnet.nms.util.RunProcessInterface;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">public
+class Test implements RunProcessInterface</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public void callMain(String args[])</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("===== Test started");</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+public boolean isInitialized()</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return true;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;public void shutDown()</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+try</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("ShutDownHook called");</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(System.getProperty("os.name").startsWith("Linux")) // Could be
+customized based on your requirement</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; {</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String
+mysqlhome=System.getProperty("mysql.home");</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String commandToExecute =
+mysqlhome+"/bin/mysqladmin -u --port=2306 root shutdown";</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //mysqladmin.exe --port=33306 -u root
+shutdown</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Runtime.getRuntime().exec(commandToExecute);</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}catch(Exception e)</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Exception from ShutDownHook");</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+&nbsp;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">}</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+<br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">
+</big>
+<hr
+ style="width: 100%; height: 2px; font-family: courier new,courier,monospace; color: rgb(51, 51, 255);"><font
+ style="font-family: times new roman,times,serif;" color="#000025"
+ size="3"><span style="font-style: italic;"></span></font></div>
+</body>
+</html>

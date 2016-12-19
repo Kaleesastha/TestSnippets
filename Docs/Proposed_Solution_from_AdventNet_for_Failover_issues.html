@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Proposed Solution from AdventNet for Failover issues</title>
+</head>
+<body>
+<p style="text-align: center; font-family: times new roman,times,serif;"
+ class="MsoBodyText"><u><big>Proposed Solution from AdventNet for
+Failover issues.</big><o:p></o:p></u></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><u>Goals
+and Objectives</u><br>
+This document details the issue and the proposed solution for the
+problem that
+arise in the Failover mechanism. The document also list each of the
+case that
+impacts the failover system and the proposed solution for the same.
+This also
+list the detail on the current failover mechanism and the changes that
+would
+give more failover cases to be handled.<span
+ style="text-decoration: underline;"><br>
+</span><u>Failover Scenarios and solutions<o:p></o:p></u></p>
+<table class="MsoNormalTable"
+ style="border-collapse: collapse; font-family: times new roman,times,serif; width: 961px; height: 1095px;"
+ border="2" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td
+ style="border-style: double none double double; border-color: gray -moz-use-text-color gray gray; border-width: 1pt medium 1pt 1pt; padding: 2.75pt; width: 46.65pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="62">
+      <p class="TableContents" style="">Failover case index<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: double none double double; border-color: gray -moz-use-text-color gray gray; border-width: 1pt medium 1pt 1pt; padding: 2.75pt; width: 87.7pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="117">
+      <p class="TableContents" style="">Possible Cases for Failover <o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: double none double double; border-color: gray -moz-use-text-color gray gray; border-width: 1pt medium 1pt 1pt; padding: 2.75pt; width: 1.3in; background-color: rgb(192, 192, 192);"
+ valign="top" width="125">
+      <p class="TableContents" style="">Possible issues if not addressed<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: double none double double; border-color: gray -moz-use-text-color gray gray; border-width: 1pt medium 1pt 1pt; padding: 2.75pt; width: 98.5pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="131">
+      <p class="TableContents" style="">Solutions already Available in
+WebNMS<o:p></o:p></p>
+      </td>
+      <td
+ style="border: 1pt double gray; padding: 2.75pt; width: 172.3pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="230">
+      <p class="TableContents" style="">Solutions Proposed,which can be
+enacted into WebNMS<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 46.65pt;"
+ valign="top" width="62">
+      <p class="TableContents" style="">1<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 87.7pt;"
+ valign="top" width="117">
+      <p class="TableContents" style="">Shuting down the WebNMS server.
+This case arise when the Primary or the Standby server are shutdown,
+using (Ctrl-c) or by using the shutdown script or Due to some other
+possible Server Failures which brings the Application down<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; vertical-align: top; width: 1.3in;">
+      <p class="TableContents" style="">This is the Primary case that
+need to handled so that the Failover mechanism is in place with WebNMS.<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 98.5pt;"
+ valign="top" width="131">
+      <p class="TableContents" style="">Yes- <o:p></o:p></p>
+      <p class="TableContents">WebNMS Primary server and the Standby
+Server continuously updates the Database on the availability of self by
+updating the LASTCOUNT, a counter value through which the status of
+each servers will be known to each other. Also, this is done by getting
+last count through the RMI handle.<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 172.3pt;"
+ valign="top" width="230">
+      <p class="TableContents" style="">Not Applicable<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 46.65pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="62">
+      <p class="TableContents" style="">2<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 87.7pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="117">
+      <p class="TableContents" style="">WebNMS Server's(Primary or
+Standby) cable is plugged out or the server's network interface is not
+properly set.<o:p></o:p></p>
+      <p class="TableContents"><o:p>&nbsp;</o:p></p>
+      <p class="TableContents"><o:p>&nbsp;</o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 1.3in; background-color: rgb(192, 192, 192);"
+ valign="top" width="125">
+      <p class="TableContents" style="">The Servers would hold on in
+its role and would not perform any monitoring activity due to non
+reachability of the network. If at any point the server regains the
+lost connection, would continue to exist as the Primary server and may
+case a Split Brain(Both servers taking the Primary role) scenario, As
+the standby server would have taken the primary role and would be
+updating the Database.<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 98.5pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="131">
+      <p class="TableContents" style="">NO-Though the WebNMS server
+does not handle the case explicitly, this case is highly dependent on
+the underlying TCP timeout configured on the server.<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 172.3pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="230">
+      <p class="TableContents" style="">Yes -<span style="">&nbsp; </span>The
+Current Proposal is to monitor the server's Network Interface using the
+Java Provided APIs. If at any point the Network interface is found to
+be inactive or disabled the server would shutdown, this would stop the
+Split brain from occurring and hence the DB is intact.<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 46.65pt;"
+ valign="top" width="62">
+      <p class="TableContents" style="">3<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 87.7pt;"
+ valign="top" width="117">
+      <p class="TableContents" style="">Database(Primary or the
+Standby) is lost from the network due to the cable being pluged out, or
+due to some network interface<span style="">&nbsp; </span>issues<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 1.3in;"
+ valign="top" width="125">
+      <p class="TableContents" style="">The Servers would hold on in
+its role and would be held in the Database activities, due to non
+reachability of the database. If at any point the server regains the
+lost connection, would continue to exist as the Primary server and may
+case a Split Brain scenario, if the standby server would have taken the
+primary role and would be updating its Database.<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 98.5pt;"
+ valign="top" width="131">
+      <p class="TableContents" style="">No- <o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 172.3pt;"
+ valign="top" width="230">
+      <p class="TableContents" style="">Yes- It is proposed to solve
+this issue by monitoring the reachability of the database. The database
+form the central system for the proper functioning of the WebNMS
+system. If the Database communication is lost, the server will
+automatically shutdown after the repeated retrial and hence would avoid
+the Split brain case.<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr style="">
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 46.65pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="62">
+      <p class="TableContents" style="">4<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 87.7pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="117">
+      <p class="TableContents" style="">Losing the Network
+Communication :<o:p></o:p></p>
+      <p class="TableContents">Happens if the communication between the
+servers existing in two different network is lost due to the
+intermediate communication channel <o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 1.3in; background-color: rgb(192, 192, 192);"
+ valign="top" width="125">
+      <p class="TableContents" style="">the Primary Server and the
+Standby server does not have any real mechanism to know the status of
+each other and would cause both the servers to takeover the primary
+role. A Split brain case<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 98.5pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="131">
+      <p class="TableContents" style="">No-<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 172.3pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="230">
+      <p class="TableContents" style="">No- This is not handled from
+WebNMS and would be handled only if a network failover support is
+possible.<span style="">&nbsp; </span>We recommend having a failover
+network so that the Network failover is handled.<o:p></o:p></p>
+      <p class="TableContents" style=""><span style="">&nbsp;</span>OR <o:p></o:p></p>
+      <p class="TableContents" style="">We recommends the Communication
+between servers exists at the least through the DB <o:p></o:p></p>
+      <p class="MsoBodyText">OR<o:p></o:p></p>
+      <p class="MsoBodyText">The WebNMS servers, Primary and Standby
+which form part of the failover system should be present in the same
+Network <o:p></o:p></p>
+      <p class="TableContents" style=""><o:p>&nbsp;</o:p></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><o:p></o:p>Note:
+The above Occurrence percentage column list the
+usual cases, but would vary depending on the environment.<o:p></o:p></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><u>Proposed
+Solutions for Handling Case 4<o:p></o:p></u></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText">As
+pointed earlier, Case 4 can be avoided when the
+AdventNet recommendations viz., servers can communicate through the DB
+or if
+both the servers are present in the same network can be made possible
+or my
+supporting the network failover.<o:p></o:p></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><u>AdventNet
+proposes the following solutions
+for handling the Case 4: Network Outages;<o:p></o:p></u></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText">During
+the network outage, and the subsequent
+resumption of the communication between the servers and the DB, the
+following
+issues can occur, the table below list the AdventNet's workaround for
+these
+issues. Note that the Workaround listed below would make the system to
+function
+and to resume the db replication. But, its highly recommended to follow
+AdventNet's recommendations mentioned above which can avoid this case.<o:p></o:p></p>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><o:p>&nbsp;</o:p></p>
+<table class="MsoNormalTable"
+ style="margin-left: 2.75pt; border-collapse: collapse; font-family: times new roman,times,serif; width: 1124px; height: 431px;"
+ border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="border-style: double none double double; border-color: gray -moz-use-text-color gray gray; border-width: 1pt medium 1pt 1pt; padding: 2.75pt; width: 249.25pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="332">
+      <p class="TableContents" style="">Problem<o:p></o:p></p>
+      </td>
+      <td
+ style="border: 1pt double gray; padding: 2.75pt; width: 249.6pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="333">
+      <p class="TableContents" style="">Solutions suggested from
+AdventNet<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 249.25pt;"
+ valign="top" width="332">
+      <p class="ListParagraph" style="text-indent: -0.25in;"><!--[if !supportLists]--><span
+ style="">-<span
+ style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span><!--[endif]-->attempts to write events of the same
+ID to the Events table cause the SLAVE thread to exit; database
+replication ceases at this point. There is considerable effort required
+to establish a functioning primary/standby<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 249.6pt;"
+ valign="top" width="333">
+      <p class="TableContents" style=""><span class="SourceText">MySql
+replication would not continue if the replication process identifies
+any conflict. This would stop the replication to continue between the
+DB. To Avoid this use the startup option <o:p></o:p></span></p>
+      <p class="TableContents"><span class="SourceText">--slave-skip-errors=all<o:p></o:p></span></p>
+      <p class="ListParagraph" style="margin-left: 0in;"><span
+ class="SourceText">while starting the MySql server. This option would
+ignore all the replication which has unique key conflicts and continue
+with the replication process. Note that this solution is proposed so
+that the system status of single Primary is maintained, and to continue
+with the replication, but, the mysql server will drop all these
+conflicting updates.<o:p></o:p></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 249.25pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="332">
+      <p class="ListParagraph" style="text-indent: -0.25in;"><!--[if !supportLists]--><span
+ style="">-<span
+ style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span><!--[endif]-->both systems continue to act in the
+role of primary i.e., there is no detection that both systems are
+running in primary mode<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 249.6pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="333">
+      <p class="TableContents" style="">The Above solution proposed
+would stop this issue from occurring. Note that if the errors are
+skipped the replication will continue in the BEFailOver table, hence
+any server which notices the presence of another Primary server first,
+would shutdown itself.<o:p></o:p></p>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 249.25pt;"
+ valign="top" width="332">
+      <p class="ListParagraph" style="text-indent: -0.25in;"><!--[if !supportLists]--><span
+ style="">-<span
+ style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span><!--[endif]-->duplicate entries are written to the
+STATS tables leading to inaccurate reporting data<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 249.6pt;"
+ valign="top" width="333">
+      <p class="TableContents" style="">We suggest to use cleanup
+script to remove these duplicate rows from the Database. This issue
+occurs if two servers perform the statistical collection on the same
+ManagedObject. this would cause two poll values being polled by each of
+the servers, and would cause two times of the expected polled values.<o:p></o:p></p>
+      <p class="TableContents">Note that this issue will happen only
+for the Managed Object that can be reached by both the servers,
+although, the communication between the servers does not exist.<o:p></o:p></p>
+      <p class="TableContents"><o:p>&nbsp;</o:p></p>
+      </td>
+    </tr>
+    <tr style="">
+      <td
+ style="border-style: none none double double; border-color: -moz-use-text-color -moz-use-text-color gray gray; border-width: medium medium 1pt 1pt; padding: 2.75pt; width: 249.25pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="332">
+      <p class="ListParagraph" style="">Common workaround to address
+all three issues listed above<o:p></o:p></p>
+      </td>
+      <td
+ style="border-style: none double double; border-color: -moz-use-text-color gray gray; border-width: medium 1pt 1pt; padding: 2.75pt; width: 249.6pt; background-color: rgb(192, 192, 192);"
+ valign="top" width="333">
+      <p class="TableContents" style="">Its suggested to stop the MySql
+replication, if the communication is lost between the servers due to
+network loss. this can be done by setting a minimal retry timeout for
+the MySQL replication as a start up parameter.<o:p></o:p></p>
+      <p class="TableContents">When the Network is restored, user
+should enable the Replication process, by choosing a candidate DB and
+replicating the same with the other DB. <o:p></o:p></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-family: times new roman,times,serif;" class="MsoBodyText"><o:p>&nbsp;</o:p><u>Recommendations
+for the Failover System<o:p></o:p></u></p>
+<span style="font-size: 12pt; font-family: times new roman,times,serif;">The
+primary purpose of having the failover
+mechanism is to maintain a High availability of the WebNMS system. The
+failover
+system would require the communication between the Primary standby
+server to be
+intact either through the RMI or through the Database for achieving
+this High
+Availability. Thus the communication between the servers should not be
+compromised so as to successfully maintain failover system<br>
+</span>
+<hr style="width: 100%; height: 2px;">Once the
+network connection resumes, the logs in the mysql servers would be
+replicated from the servers and, once the BeFailOver table replication
+happens both the server would shutdown. <br clear="none">
+<br clear="none">
+Below lists the set of sql statements executed in both the mysql server.<br
+ clear="none">
+<b>Primary Server will remove the Standby Entry from its database </b><br
+ clear="none">
+<br clear="none">
+MySql statement would be "Delete from BEFailOver where
+serverhostaddress = "Standby name"; <br clear="none">
+<br clear="none">
+<b>Standby Server would perform two updates in its DB viz., </b><br
+ clear="none">
+<br clear="none">
+"update BEFailOver set serverrole = "Failed" where
+serverhostaddress="primary name"; <br clear="none">
+and <br clear="none">
+"update BEFailover set serverrole = "primary" where
+serverhostaddress="standby name"; <br clear="none">
+<br clear="none">
+After this, both the server finds its role changed and hence will
+shutdown only. I would suggest you to use any watchdog application,
+which can watch the shutdown of the webnms application and restart
+immediately. Note that, once both the servers are started, one of the
+server would take the primary role and the other standby role.<br>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>How to restore the security module configuration across
+installations?</title>
+</head>
+<body>
+<font style="font-family: times new roman,times,serif;" color="#000025"
+ size="3">Regarding the security configuration,&nbsp; the data is
+stored in the following 3
+entities:<br>
+1. In database<br>
+2. In </font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3">&lt;NMS_Home&gt;\conf\<b>securitydbData.xml
+</b><br>
+3. </font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3">&lt;NMS_Home&gt;\<b>users</b></font><font
+ style="font-family: times new roman,times,serif;" size="3"><br>
+</font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3"><br>
+</font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3">So if you need to preserve your user
+configuration,&nbsp; you need to copy
+the above files &amp; directories and then you can take a <span
+ style="text-decoration: underline;"></span><a
+ href="http://www.adventnet.com/products/webnms/help4_7/developer_guide/backup/backupservice.html#how_to_take_backup_when_server_not_running">selective
+database backup of security related tables</a> and then you can <a
+ href="http://www.adventnet.com/products/webnms/help4_7/developer_guide/backup/backupservice.html#how_to_restore">restore
+the database in the new setup</a> as follows: (Using the same database
+in both the
+setups will also suffice this need)<br>
+<br>
+</font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3">1. Have the Backup.conf (the text titled
+BackUp.conf) in the existing installation<br>
+2. Take the backup &amp; zip the &lt;NMS_Home&gt;\backup directory<br>
+3. </font><font style="font-family: times new roman,times,serif;"
+ color="#000025" size="3">Install the new WebNMS &amp; have the text
+TablesToRestore.conf (under bin\backup\TablesToRestore.conf) in the new
+installatio<br>
+4. Unzip the Backup directory into</font><font
+ style="font-family: times new roman,times,serif;" color="#000025"
+ size="3"> &lt;new_WebNMS_home&gt;</font><br>
+<font style="font-family: times new roman,times,serif;" color="#000025"
+ size="3">5. Restore as<span
+ style="font-family: courier new,courier,monospace; color: rgb(0, 0, 255);">&nbsp;</span></font><font
+ style="font-family: courier new,courier,monospace; color: rgb(0, 0, 255);"
+ color="#000025" size="3"> &lt;new_WebNMS_home&gt;/bin/backup/<span
+ style="font-weight: bold;">RestoreDB.bat</span> </font><font
+ style="font-family: courier new,courier,monospace; color: rgb(0, 0, 255);"
+ color="#000025" size="3"> &lt;new_WebNMS_home&gt;\backup\<span
+ style="font-weight: bold;">Backup_xxx.data file</span></font><br>
+<font style="font-family: times new roman,times,serif;" color="#000025"
+ size="3">This will ensure that the new installation is restored with
+the existing Security configurations.<br>
+<br>
+</font><font color="#000025">&nbsp;</font><font
+ style="font-family: times new roman,times,serif; font-weight: bold; text-decoration: underline;"
+ size="3">&lt;NMS_Home&gt;\conf\BackUp.conf</font><br>
+<font style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;?xml
+version="1.0" encoding="ISO-8859-1"?&gt;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;BACKUP_CONF&gt;<br>
+<span style="font-weight: bold;">&lt;TABLES_TO_BACKUP</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">TABLES= "LISTED"</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">TABLE_NAMES="UserPasswordTable,
+UserGroupTable, ViewPropertiesTable, ViewsToGroupTable,
+OperationsTreeTable, NamedViewToAuthorizedViewTable"&gt;</span><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;">&lt;/TABLES_TO_BACKUP&gt;</span></span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;FILES_TO_BACKUP</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">FILE_NAMES="conf/securitydbData.xml"</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">DIR_NAMES="html,
+users"&gt;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;/FILES_TO_BACKUP&gt;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;/BACKUP_CONF&gt;</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<br>
+</font><font
+ style="font-family: times new roman,times,serif; font-weight: bold; text-decoration: underline;"
+ size="3">&lt;NMS_Home&gt;\</font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold; text-decoration: underline;">bin\backup\TablesToRestore.conf</span><br
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">
+<span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);"></span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);">&lt;?xml
+version="1.0" encoding="ISO-8859-1"?&gt;<br>
+&lt;RESTORE_CONF&gt;<br>
+&lt;FILES_TO_RESTORE<br>
+FILE_NAMES="conf/securitydbData.xml"<br>
+DIR_NAMES="conf"&gt;<br>
+&lt;/FILES_TO_RESTORE&gt;<br>
+&lt;RESTORE<br>
+TABLES="LISTED"<br>
+<span style="font-weight: bold;"></span></span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);"><span
+ style="font-weight: bold;">TABLE_NAMES="UserPasswordTable,
+UserGroupTable, ViewPropertiesTable,
+ViewsToGroupTable, OperationsTreeTable,
+NamedViewToAuthorizedViewTable"&gt;</span></span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-family: courier new,courier,monospace; color: rgb(51, 102, 255);"><span
+ style="font-weight: bold;"></span><br>
+&lt;/RESTORE&gt;<br>
+&lt;/RESTORE_CONF&gt;</span></font>
+</body>
+</html>

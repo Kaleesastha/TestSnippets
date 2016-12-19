@@ -1,0 +1,1001 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Dependency between Web NMS Modules</title>
+</head>
+<body>
+<h1 style="font-family: Times New Roman,Times,serif;"><small><small>Dependency
+between
+Web
+NMS Modules</small></small> <br>
+</h1>
+<!--(HR)============================================================-->
+<hr style="font-family: Times New Roman,Times,serif;" class="whs1"
+ color="#000000" align="left">
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/modules_and_services_overview/dependency_intro.html#overview">Overview</a></p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/modules_and_services_overview/dependency_intro.html#mandatory_processes">Mandatory
+Processes</a></p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/modules_and_services_overview/dependency_intro.html#terminologies">A
+Note
+on
+the
+Terminologies Used</a></p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/modules_and_services_overview/dependency_intro.html#dependency">Process
+Dependency</a></p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/modules_and_services_overview/dependency_intro.html#misc">Miscellaneous
+Processes</a></p>
+  </li>
+  <li class="kadov-p-CBulletted"><a href="#dependent_process">How to
+create a dependency between WebNMS
+processes</a></li>
+</ul>
+<!--(HR)============================================================-->
+<hr style="font-family: Times New Roman,Times,serif;" class="whs1"
+ color="#000000" align="left">
+<p style="font-family: Times New Roman,Times,serif;"><br>
+</p>
+<p style="font-family: Times New Roman,Times,serif;" class="Sub-topic-1"><a
+ name="overview"></a><b>Overview</b> </p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;<span
+ style="font-weight: bold;"><b>NmsProcessesBE.conf</b></span>
+and <span style="font-weight: bold;"><b>NmsProcessesFE.conf</b></span>
+are the main configuration files which contain the list of all the
+processes (also called 'modules') that get started when Web NMS Server
+is started. Different services offered by Web NMS such as Discovery,
+Topology, Fault Management, Performance Management, Security
+Management, SAS Server, TAS Server, TFTP Server, WebNMSAgentApp,
+Policy, Backup etc., are initiated and managed by their corresponding
+processes defined in <span style="font-weight: bold;"><b>NmsProcessesBE.conf</b></span>
+and <span style="font-weight: bold;"><b>NmsProcessesFE.conf.</b></span></p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;Among the
+various processes present in <span style="font-weight: bold;"><b>NmsProcessesBE/FE.conf,</b></span>
+some
+are mandatory for the normal functioning of Web NMS and some others are
+for serving specific functions. </p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;This document</p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">lists down the processes which are mandatory
+for the functioning of Web NMS</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">lists the processes needed by each of the
+services offered by Web NMS</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">brings out the dependency between various
+processes/services</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">lists the processes that can be
+enabled/disabled on need basis</p>
+  </li>
+</ul>
+<p style="font-family: Times New Roman,Times,serif;" class="Sub-topic-1"><a
+ name="mandatory_processes"></a>Mandatory
+Processes</p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;Mandatory
+processes are those which are required for the proper
+functioning of other modules such as Topo, Map, Provisioning etc. </p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;The
+following processes in <b>NmsProcessesBE.conf</b> are mandatory
+: </p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunRmiRegistry</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunApacheExeModule</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunJSPModule</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.security.authorization.NmsAuthManager</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.security.authentication.
+NmsAuthenticationManager</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.authentication.UserConfigProcess</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.startnms.NmsMainFE</p>
+  </li>
+</ul>
+<p style="font-family: Times New Roman,Times,serif;">The following
+processes in <b>NmsProcessesFE.conf</b> are mandatory
+:</p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunRmiRegistry</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunApacheExeModule</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.util.RunJSPModule</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.fe.security.authentication.
+AuthenticationManagerFE</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.fe.security.authorization.
+AuthorizationManagerFE</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">com.adventnet.nms.fe.authentication.UserConfigProcessFE</p>
+  </li>
+</ul>
+<p style="font-family: Times New Roman,Times,serif;" class="Sub-topic-1"><a
+ name="terminologies"></a>A Note on the
+Terminologies Used </p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;Throughout
+this document, three important terminologies have been
+frequently used :</p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Process</b></span>
+: A process is an independent entity performing a specific
+functionality. </p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Module</b></span>
+: The term 'Module' is synonymous with process and these terms are used
+interchangeably. </p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Service</b></span>
+: A group of processes collectively perform a specific function. That
+specific function is known as a Service. In some cases, even a single
+process performs a specific service.</p>
+  </li>
+</ul>
+<p style="font-family: Times New Roman,Times,serif;" class="Sub-topic-1"><a
+ name="dependency"></a>Process Dependency</p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;As mentioned
+earlier, in Web NMS, dependencies exist between various
+processes/services. </p>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;The
+following table </p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">lists the processes required for the
+functioning of specific services</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">lists the dependency between services (or
+processes)</p>
+  </li>
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted">explains whether each individual service can
+be disabled if there is no need for that service</p>
+  </li>
+</ul>
+<!--(Table)=========================================================-->
+<table
+ style="font-family: Times New Roman,Times,serif; width: 1053px; height: 1612px;"
+ x-use-null-cells="" class="whs2" border="1" bordercolor="#000000"
+ cellspacing="0">
+  <col class="whs3"> <col class="whs4"><col class="whs5"> <col
+ class="whs5"><col class="whs5"> <tbody>
+    <tr class="whs6">
+      <th colspan="1" rowspan="2" class="whs7" width="81">
+      <p>Service</p>
+      </th>
+      <th colspan="2" rowspan="1" class="whs8" width="118">
+      <p>Process Involved</p>
+      </th>
+      <th colspan="1" rowspan="2" class="whs9" width="418">
+      <p>Dependency</p>
+      </th>
+      <th colspan="1" rowspan="2" class="whs9" width="418">
+      <p>Can the Service be Disabled if not needed? </p>
+      </th>
+    </tr>
+    <tr class="whs6">
+      <th colspan="1" rowspan="1" class="whs8" width="118">
+      <p>NmsProcessBE.Conf</p>
+      </th>
+      <th colspan="1" rowspan="1" class="whs9" width="418">
+      <p>NmsProcessFE.Conf</p>
+      </th>
+    </tr>
+    <tr class="whs6">
+      <td colspan="5" rowspan="1" class="whs10" width="81">
+      <p class="whs11">Web NMS OEM Edition</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p class="whs11">Web Service</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.util.RunApacheExeModule<br>
+com.adventnet.nms.util.RunJSPModule</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.util.RunApacheExeModule<br>
+com.adventnet.nms.util.RunJSPModule</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>The process com.adventnet.nms.utilRunJSPModule depends on
+com.adventnet.nms.utilRunApacheExeModule. </p>
+      <p>In BE-FE combination, if these processes are running in BE,
+the same will not start in FE. </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> All servlets and JSPs
+are executed through these processes. If these processes are disabled,
+clients cannot be connected.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">RMI Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.util.RunRmiRegistry&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.util.RunRmiRegistry</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>In BE-FE combination,&nbsp; if
+com.adventnet.nms.util.RunRmiRegistry is running in BE, the same will
+not run in FE.</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> This process starts RMI
+Registry and hence if this is not available, no process can be bound to
+the RMI Registry. So, all the processes that bind remote API into RMI
+registry are dependent on this process.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Backup Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.startnms.WebNMSBackUp</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>__ </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> If Backup service is
+not needed, this process can be disabled.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Policy Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.management.policydb.NmsPolicyMgr</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.policy.PolicyFE&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> If Policy Service is
+not needed, this process can be disabled.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">TL1 Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.topodb.tl1.TL1DiscProcess<br>
+com.adventnet.nms.eventdb.tl1.TL1EventProcess<br>
+com.adventnet.nms.topodb.tl1.TL1CustomViewsMgr<br>
+com.adventnet.nms.tl1.NMSTAServer</p>
+      <p>com.adventnet.nms.topodb.tl1.TL1GatewayProcess</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.tas.TAServerFE&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This Service depends on <b>Management Server</b>
+(com.adventnet.nms.ms.NMSMServer).</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> This is a standalone
+service and no other service is dependent on this.&nbsp;</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Telnet Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.telnet.telnetwindow.StartTelnetClient<br>
+com.adventnet.nms.telnet.telnetwindow.CLIFactoryBinder</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.telnet.telnetwindow.StartTelnetClientFE </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> If you do not have the
+need to connect to linux machines using the telnet option provided in
+the client menu, you can disable these processes.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Tftp Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.tftp.NmsTftpServer</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>----- </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes</b>. This service can be
+started as a standalone application. No other process is dependent on
+this.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">CORBA</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.topodb.corba.CORBADiscProcess</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>----- </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> If you do not have the
+need to discover devices using CORBA, you can disable this service.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Management Server</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.ms.NMSMServer</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.ms.MServerFE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service needs <b>Topology Service</b>
+(com.adventnet.nms.topodb.DBServer)for initialization.</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> TL1 Service and
+Configuration Management Service are dependent on this.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Topology Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.topodb.DBServer <br>
+com.adventnet.nms.topodb.TopoNotificationRegistry</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.topo.TopoFE&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418"><b
+ style="font-weight: bold;">No.</b> Because, Management Server
+(com.adventnet.nms.fe.ms.MServerFE), Map
+Service(com.adventnet.nms.mapdb.MapServerBE), Configuration Service
+com.adventnet.nms.config.NmsConfigurationServer) and Performance
+Management Service (com.adventnet.nms.poll.Collector) are dependent on
+com.adventnet.nms.topodb.DBServer.</td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Map Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.mapdb.MapServerBE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.map.MapFE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes.</b> &nbsp;While disabling
+this service, you need to remove the entries which contain map-related
+tags in Tree.xml and NmsPanels.conf, in addition to disabling the
+processes.</p>
+      <p>Ensure that you do not have any tree related transaction based
+operation when commenting this service. </p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Fault Management Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.eventdb.EventMgr&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.event.EventFE&nbsp; <br>
+com.adventnet.nms.fe.alert.AlertFE&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service needs&nbsp; <b><br>
+Topology Service</b> (com.adventnet.nms.topodb.DBServer) when there is
+a need to add Status poll Events, <b>Performance Management Service</b>
+(com.adventnet.nms.poll.Collector) if there is requirement for
+generating Threshold Events, <b>JMX Agent Service</b>
+(com.adventnet.nms.jmxagent.WebNMSAgentApp), if North bound interface
+functions are required to be performed and <b>TL1 Service</b>
+(com.adventnet.nms.eventdb.tl1.TL1EventProcess), if TL1 autonomous
+messages are to be received and processed.</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> This service is required
+for Threshold event generation for Performance module, Status Poll
+event generation for Topology module and MO update through alerts for
+Topology module.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Configuration Management Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.config.NmsConfigurationServer</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.config.ConfigFE&nbsp;</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service <b><i>needs</i></b><b><br>
+Topology Service</b> (com.adventnet.nms.topodb.DBServer) and <b>Management
+Server</b> (com.adventnet.nms.ms.NMSMServer).</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> Provisioning Service<b> </b>(com.adventnet.nms.provisioning.ProvisioningModule)
+
+
+
+      <i>is dependent</i> on this service. If Provisioning is not
+required, this can be disabled.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Performance Management Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.poll.Collector</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.perf.PollFE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service needs <b>Topology Service</b>
+(com.adventnet.nms.topodb.DBServer). It needs <b>Fault Management
+Service</b> (com.adventnet.nms.eventdb.EventMgr) for generating
+Threshold events.</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> Topology Service depends
+on this service for Status Polling.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Provisioning Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.provisioning.StartProvModule</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p class="whs14">com.adventnet.nms.fe.provisioning.ProvisioningFE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service needs <b>Configuration Service</b>
+(com.adventnet.nms.config.NmsConfigurationServer)</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p class="whs15"><b style="font-weight: bold;">Yes.</b> No other
+process is dependent on this.&nbsp;</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">Security Management Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.security.authentication.NmsAuthenticationManager
+
+
+
+      <br>
+com.adventnet.nms.security.authorization.NmsAuthManager <br>
+com.adventnet.management.authorization.AuthMgr <br>
+com.adventnet.nms.authentication.UserConfigProcess</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>com.adventnet.nms.fe.security.authentication.AuthenticationManagerFE
+
+
+
+      <br>
+com.adventnet.nms.fe.authorization.AuthorizationManagerFE <br>
+com.adventnet.nms.fe.authentication.UserConfigProcessFE</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>None</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">No.</b> The processes in this
+service are mandatory.</p>
+      </td>
+    </tr>
+    <tr class="whs6">
+      <td colspan="1" rowspan="1" class="whs10" width="81">
+      <p><b style="font-weight: bold;">JMX Agent Service</b></p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs12" width="118">
+      <p>com.adventnet.nms.jmxagent.WebNMSAgentApp</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>----- </p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p>This service needs <b>Topology Service</b>
+(com.adventnet.nms.topodb.DBServer).</p>
+      </td>
+      <td colspan="1" rowspan="1" class="whs13" width="418">
+      <p><b style="font-weight: bold;">Yes. </b>If you do not need
+AdventNet JMX Agent, you can disable this service.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-family: Times New Roman,Times,serif;">&nbsp;</p>
+<p style="font-family: Times New Roman,Times,serif;" class="Sub-topic-1"><a
+ name="misc"></a>Miscellaneous Processes </p>
+<ul style="font-family: Times New Roman,Times,serif;">
+  <li class="kadov-p-CBulletted">
+    <p class="Bulletted"><span style="font-weight: bold;"><b>Process
+added for explanatory purpose</b></span><br>
+    <br>
+The process named <b>'com.adventnet.nms.tester.ProcessTest'</b> has
+been included in <span style="font-weight: bold;"><b>NmsprocessesBE.conf</b></span>
+to explain the implementation of <span
+ style="font-weight: bold; font-style: italic;"><i><b>com.adventnet.nms.util.RunProcessInterface.</b></i></span>
+You can disable this process, if you so desire.</p>
+  </li>
+</ul>
+<span class="f"><font face="Times New Roman">W.r.t. NmsSUM &amp; SAS:<br>
+NmsSUM&nbsp; - <strong>S</strong>mart <strong>U</strong>pdate <strong>M</strong>anager,
+which
+takes
+care
+of the sync of the server &amp; client. (i.e) Both are
+in the same product versions (For eg: both are in 4.7 SP1). If you are
+connecting a 4.7 application client to a 4.7 SP1 server you are
+prompted to whether install the ppm from the server or not. NmsSUM also
+ensures this sync when in case of Failover also.<br>
+<br>
+SAS - <strong>S</strong>NMP <strong>A</strong>pplet <strong>S</strong>erver<br>
+To
+start the SAS which provides communication for applets which are unable
+to connect directly to managed devices due to security limits<br>
+<br>
+SAS Functionalities are documented at WebNMS developer guide at:<br>
+</font><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_sas_functionalities.html"><font
+ face="Times New Roman">http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_sas_functionalities.html</font></a><br>
+<font face="Times New Roman">How to invoke SAS is documented at:<br>
+</font><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_invoke_sas.html"><font
+ face="Times New Roman">http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_invoke_sas.html</font></a><br>
+<br>
+</span><span class="f"><font face="Times New Roman"><strong><font
+ color="#ff0000">com.adventnet.nms.util.NmsSUM</font></strong><br>
+</font><span class="f"><font face="Times New Roman">NmsSUM&nbsp; - <strong>S</strong>mart
+<strong>U</strong>pdate <strong>M</strong>anager,
+which takes care of the sync of the server &amp; client. (i.e) Both are
+in the same product versions (For eg: both are in 4.7 SP1). If you are
+connecting a 4.7 application client to a 4.7 SP1 server you are
+prompted to whether install the ppm from the server or not. NmsSUM also
+ensures this sync when in case of Failover also. (whether primary &amp;
+secondary servers are in same version &amp; service pack ) <strong>Hence
+c</strong><span style="font-weight: bold;">ommenting this is not
+recommended.</span><br>
+<br>
+</font></span><font face="Times New Roman"><span
+ style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.store.DBUserStorageServer<br>
+</span>From<span style="color: rgb(255, 0, 0);">&nbsp;</span><span
+ style="color: rgb(255, 0, 0);"></span></font><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/persistence_services/commonconf_cache.html#Configuring%20the%20number%20of%20user-defined%20objects%20to%20be%20cached"><font
+ face="Times New Roman">WebNMS developer guide</font></a><span
+ style="font-weight: bold; color: rgb(255, 0, 0);"></span><br>
+<br>
+<font face="Times New Roman">The
+cache size for user-defined objects (those persisted using
+UserStorageAPI) that are persisted in the database, can also be set in
+NmsProcessesBE.conf located in the &lt;Web NMS Home&gt;/conf directory.<br>
+<br>
+For
+example, say you want to store 100 user-defined objects in memory. You
+can pass the argument 100 for the process
+com.adventnet.nms.store.DBUserStorageServer, as mentioned below :<br>
+<br>
+PROCESS&nbsp;&nbsp;&nbsp; com.adventnet.nms.store.DBUserStorageServer<br>
+ARGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100<br>
+By
+default, a NULL value is specified, which implies that 25 user-defined
+objects will be stored in memory (This number is specified in the
+program DBUserStorageServer !) <span style="font-weight: bold;">When
+there are no user defined objects to be persisted, this could be
+commented.</span><br>
+<br>
+<span style="font-weight: bold; color: rgb(255, 0, 0);">com.adventnet.nms.startnms.AdminModuleInit</span><br
+ style="font-weight: bold;">
+This is to get the server related information (like IP, various ports,
+FE details, client details) in the webclient. <span
+ style="font-weight: bold;">This could be commented out if you are not
+using webclient</span><br>
+<br>
+</font><span style="font-weight: bold;"><span
+ style="color: rgb(255, 0, 0);"><font face="Times New Roman">com.adventnet.nms.sas.NMSSAServer
+&amp;
+com.adventnet.nms.fe.sas.NmsSAServerFE<br>
+</font></span></span><span style="color: rgb(255, 0, 0);"><br>
+</span><span style="font-weight: bold;"><span
+ style="color: rgb(255, 0, 0);"></span></span><font
+ face="Times New Roman">This
+service is to establish a contact between WebNMS with the devices. This
+process should be present in either (NmsProcessesBE / NmsProcessesFE)
+of the BE / FE side.<br>
+A detailed explanation is given at <span style="color: rgb(255, 0, 0);"><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/management_protservices/mgmnt_protocols/snmp/sas/proto_invoke_sas.html#sas%20in%20web%20nms">WebNMS
+developer
+guide</a></span></font><span
+ style="font-weight: bold; color: rgb(255, 0, 0);"><br>
+<br>
+<font face="Times New Roman">com.adventnet.nms.example.befe.ExampleFE<br>
+</font></span><font face="Times New Roman">This
+is an example implementation of client-server communication. But this
+code is also used in WebNMS. In the java client when you select the
+menu item Events And Alarms for a Snmp Node, you could see the details
+of Events &amp; Alarms of that particular SNMP Node. See the attached
+image (ExampleFE.JPG) for details. <span style="font-weight: bold;">This
+should
+not
+be
+commented</span> <strong>when you require to see the
+events and alerts for a particular node in a separate frame.</strong></font></span><br>
+<hr style="width: 100%; height: 2px;"><font
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"
+ face="times new roman, times, serif" size="3">
+<div>
+<div style="text-align: center;"><big
+ style="text-decoration: underline;"><span style="font-weight: bold;"><a
+ name="dependent_process"></a>How to create a dependency between WebNMS
+processes</span></big><br>
+</div>
+<br>
+You can create a priority for a process as follows:<br>
+<br>
+Note that every process which implements the RunProcessInterface
+contains the method<span class="Apple-converted-space">&nbsp;</span><b>isInitialized()</b>.
+This
+method will return a boolean variable as "true" if the
+corresponding process has started&nbsp;completely. So you can use this
+method to achieve your requirement.</div>
+<div><br>
+</div>
+<div>Let us assume, process-A ----&gt; reading the license file and
+initializes some variables.</div>
+<div>process-B ----&gt; doing some database operation based on those
+variables.</div>
+<div><br>
+</div>
+<div>In this case process-B should be started after the complete
+startup of the process-A. So you have to call the 'isInitialized'
+method of the process-A inside the process-B. If this 'isIntialized()'
+returns true, it indicates that the process-A has started completely.
+In the 'callMain()' method of the process-B, provide your
+implementation in such a way that it should get started only after the
+'isInitialized' for process-A</div>
+<div>returns 'true'.&nbsp;</div>
+<div><br>
+</div>
+<div>Example code snippet:</div>
+</font><span
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; display: inline ! important; float: none;"></span>
+<hr
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">public
+class Process-B implements RunProcessInterface</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">{</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; private boolean initialized = false;</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; public void callMain (String[] args)</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; {</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // This method is
+called by the NMS server during startup.</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RunProcessInterface
+process =
+(RunProcessInterface)(NmsUtil.runProcessModules).get("Process-A");&nbsp;</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /*If the process is
+properly started, then this will return the object reference of
+Process-A. Otherwise, this will return null value. If the value is
+null, then the Process-B should wait for some time until the
+initialization of Process-A. */</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+while(!process.isInitialized())</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; Thread.sleep(1000);</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // implement your
+operation logic</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; initialized = true; //
+This is very important</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; }</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; public boolean isInitialized ()</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; {</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return initialized;</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; }</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; public void shutDown ()</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; {</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // handle shutdown for
+the process</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ...</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; ...</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;
+&nbsp; &nbsp; &nbsp; }</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">} //
+End of class NmsProcess</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<hr></div>
+<div
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-size: medium; font-family: 'times new roman',times,serif;">At
+the
+end of the process startup, you can call&nbsp;<a
+ href="http://www.webnms.com/webnms/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/NmsUtil.html#webNMSModulesInitialized">NmsUtil.webNMSModulesInitialized</a>&nbsp;which
+will
+be initialized only when all the modules are initialized.<br>
+Based on your business logic, you can choose to shutdown WebNMS as
+follows:<br>
+<hr>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">try</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">{
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; Thread ShutdownThread=new Thread("Shutdown
+Thread") //NO I18N</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; public void run()</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; try{</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="Apple-converted-space">&nbsp;</span><b
+ style="background-color: rgb(254, 255, 51);">com.adventnet.nms.admin.ShutDownAPIImpl.getInstance().shutDownNMSServer(true);<span
+ class="Apple-converted-space">&nbsp;</span></b>// Shuts down the server</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; catch(Exception e) &nbsp;&nbsp;</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; {</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.printStackTrace();</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; };</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; ShutdownThread.start();</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">}</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">catch(Exception
+se)</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">{</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">&nbsp;
+&nbsp;
+&nbsp; &nbsp; System.err.println("Exception in Shuting Down the
+server &nbsp; " + &nbsp;se); //No Internationalization</div>
+<div
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">}</div>
+<hr><span
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: 'times new roman',times,serif; font-size: medium;">We
+believe
+this meets your requirement. Please get back to us for any
+further clarification in this regard.</span><br
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: 'times new roman',times,serif; font-size: medium;">
+</div>
+<span
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: 'times new roman',times,serif; font-size: medium;"></span><span
+ style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: 'times new roman',times,serif; font-size: medium;"></span>
+</body>
+</html>

@@ -1,0 +1,1043 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>MySQL Commands</title>
+</head>
+<body>
+<pre>./bin/safe_mysqld --defaults-file=/home/test/5045_mysql/mysql-5.0.45-linux-i686/m<br>y.cnf --datadir=/home/test/5045_mysql/mysql-5.0.45-linux-i686/data/ --socket=/tmp/mysql.sock &amp;<br><br>grant replication slave on *.* to 'replication'@'nms-reg119' identified by 'slave';<br><br>master-host = sqa-linux6<br>master-user = replication<br>master-password = slave<br>master-port = 3306<br><br>grant replication slave on *.* to 'replication'@'sqa-linux6' identified by 'slave2';<br><br><br>master-host=sqa-linux6<br>master-user=replication<br>master-password=slave2<br>master-port=3306<br><br>grant replication slave on *.* to 'replication'@'sqa-linux6' identified by 'slave2';<br><br>change master to MASTER_HOST='sqa-linux6', MASTER_PASSWORD='slave', MASTER_USER='replication', MASTER_PORT=3306;<br>grant all privileges on *.* to 'root'@'%';<br>flush privileges;<br><br><big><big><a
+ href="#trouble"><small
+ style="font-family: times new roman,times,serif;">MySQL Trouble Shooting</small></a><br><a
+ style="font-family: times new roman,times,serif;" href="#tuning">MySQL tuning</a></big></big><br><big><big><b>Selecting a database:</b><br><br>mysql&gt; USE database;<br><br><b>Listing databases:</b><br><br>mysql&gt; SHOW DATABASES;<br><br><b>Listing tables in a db:</b><br><br>mysql&gt; SHOW TABLES;<br><br><b>Describing the format of a table:</b><br><br>mysql&gt; DESCRIBE table;<br><br><b>Creating a database:</b><br><br>mysql&gt; CREATE DATABASE db_name;<br><br><b>Creating a table:</b><br><br>mysql&gt; CREATE TABLE table_name (field1_name TYPE(SIZE), field2_name TYPE(SIZE));<br>Ex: mysql&gt; CREATE TABLE pet (name VARCHAR(20), sex CHAR(1), birth DATE);<br><br><b>Load tab-delimited data into a table:</b><br><br>mysql&gt; LOAD DATA LOCAL INFILE "infile.txt" INTO TABLE table_name;<br>(Use \n for NULL)<br><br><b>Inserting one row at a time:</b><br><br>mysql&gt; INSERT INTO table_name VALUES ('MyName', 'MyOwner', '2002-08-31');<br>(Use NULL for NULL)<br><br><b>Retrieving information (general):</b><br><br>mysql&gt; SELECT from_columns FROM table WHERE conditions;<br>All values: SELECT * FROM table;<br>Some values: SELECT * FROM table WHERE rec_name = "value";<br>Multiple critera: SELECT * FROM TABLE WHERE rec1 = "value1" AND rec2 = "value2";<br><br><b>Reloading a new data set into existing table:</b><br><br>mysql&gt; SET AUTOCOMMIT=1; # used for quick recreation of table<br>mysql&gt; DELETE FROM pet;<br>mysql&gt; LOAD DATA LOCAL INFILE "infile.txt" INTO TABLE table;<br><br><b>Fixing just one record:</b><br><br>mysql&gt; UPDATE table SET value = "new_value" WHERE record_name = "value";<br><br><b>Selecting specific columns:</b><br><br>mysql&gt; SELECT column_name FROM table;<br><br><b>Retrieving unique output records:</b><br><br>mysql&gt; SELECT DISTINCT column_name FROM table;<br><br><b>Sorting:</b><br><br>mysql&gt; SELECT col1, col2 FROM table ORDER BY col2;<br>Backwards: SELECT col1, col2 FROM table ORDER BY col2 DESC;<br><br><b>Date calculations:</b><br><br>mysql&gt; SELECT CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(date_col)) AS time_diff [FROM table];<br>MONTH(some_date) extracts the month value and DAYOFMONTH() extracts day.<br><br><b>Pattern Matching:</b><br><br>mysql&gt; SELECT * FROM table WHERE rec LIKE "blah%";<br>(% is wildcard - arbitrary # of chars)<br>Find 5-char values: SELECT * FROM table WHERE rec like "_____";<br>(_ is any single character)<br><br><b>Extended Regular Expression Matching:</b><br><br>mysql&gt; SELECT * FROM table WHERE rec RLIKE "^b$";<br>(. for char, [...] for char class, * for 0 or more instances<br>^ for beginning, {n} for repeat n times, and $ for end)<br>(RLIKE or REGEXP)<br>To force case-sensitivity, use "REGEXP BINARY"<br><br><b>Counting Rows:</b><br><br>mysql&gt; SELECT COUNT(*) FROM table;<br><br><b>Grouping with Counting:</b><br><br>mysql&gt; SELECT owner, COUNT(*) FROM table GROUP BY owner;<br>(GROUP BY groups together all records for each 'owner')<br><br><b>Selecting from multiple tables:</b><br><br>(Example)<br>mysql&gt; SELECT pet.name, comment FROM pet, event WHERE pet.name = event.name;<br>(You can join a table to itself to compare by using 'AS')<br><br><b>Currently selected database:</b><br><br>mysql&gt; SELECT DATABASE();<br><br><b>Maximum value:</b><br><br>mysql&gt; SELECT MAX(col_name) AS label FROM table;<br><br><b>Auto-incrementing rows:</b><br><br>mysql&gt; CREATE TABLE table (number INT NOT NULL AUTO_INCREMENT, name CHAR(10) NOT NULL);<br>mysql&gt; INSERT INTO table (name) VALUES ("tom"),("dick"),("harry");<br><br><b>Adding a column to an already-created table:</b><br><br>mysql&gt; ALTER TABLE tbl ADD COLUMN [column_create syntax] AFTER col_name;<br><br><b>Removing a column:</b><br><br>mysql&gt; ALTER TABLE tbl DROP COLUMN col;<br>(Full <a
+ href="http://www.mysql.com/doc/en/ALTER_TABLE.html">ALTER TABLE</a> syntax available at mysql.com.)<br><br><b>Batch mode (feeding in a script):</b><br><br># mysql -u user -p &lt; batch_file<br>(Use -t for nice table layout and -vvv for command echoing.)<br>Alternatively: mysql&gt; source batch_file;<br></big></big></pre>
+<big><big> </big></big>
+<p><!-- start - ssi menu --></p>
+<!-- start - ssi menu -->
+<center>
+<table bgcolor="#aaaaaa" border="1" cellpadding="6" cellspacing="0">
+  <tbody>
+    <tr>
+      <td><a href="http://www.pantz.org/index.shtml">Main Menu</a> </td>
+      <td><a href="http://www.pantz.org/blog">Blog</a></td>
+      <td><a href="http://www.pantz.org/about.shtml">About</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<!-- end - ssi menu -->
+<center>
+<table>
+  <tbody>
+    <tr>
+      <td>
+      <pre>  __  __       ____   ___  _<br> |  \/  |_   _/ ___| / _ \| |<br> | |\/| | | | \___ \| | | | |<br> | |  | | |_| |___) | |_| | |___<br> |_|  |_|\__, |____/ \__\_\_____|<br>         |___/<br> </pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<br>
+<table border="1">
+  <tbody>
+    <tr>
+      <td colspan="2" align="center" bgcolor="#aaaaaa"> <font size="3"><b>Handy
+MySQL Commands</b></font> </td>
+    </tr>
+    <tr>
+      <td><b>Description</b></td>
+      <td><b>Command</b></td>
+    </tr>
+    <tr>
+      <td>To login (from unix shell) use -h only if needed.</td>
+      <td> [mysql dir]/bin/mysql -h hostname -u root -p</td>
+    </tr>
+    <tr>
+      <td>Create a database on the sql server.</td>
+      <td>create database [databasename];</td>
+    </tr>
+    <tr>
+      <td>List all databases on the sql server.</td>
+      <td>show databases;</td>
+    </tr>
+    <tr>
+      <td>Switch to a database.</td>
+      <td>use [db name];</td>
+    </tr>
+    <tr>
+      <td>To see all the tables in the db.</td>
+      <td>show tables;</td>
+    </tr>
+    <tr>
+      <td>To see database's field formats.</td>
+      <td>describe [table name];</td>
+    </tr>
+    <tr>
+      <td>To delete a db.</td>
+      <td>drop database [database name];</td>
+    </tr>
+    <tr>
+      <td>To delete a table.</td>
+      <td>drop table [table name];</td>
+    </tr>
+    <tr>
+      <td>Show all data in a table.</td>
+      <td>SELECT * FROM [table name];</td>
+    </tr>
+    <tr>
+      <td>Returns the columns and column information pertaining to the
+designated table.</td>
+      <td>show columns from [table name];</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Show certain selected rows with the value "whatever".</td>
+      <td> SELECT * FROM [table name] WHERE [field name] = "whatever";</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Show all records containing the name "Bob" AND the phone
+number '3444444'.</td>
+      <td>SELECT * FROM [table name] WHERE name = "Bob" AND
+phone_number = '3444444';</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Show all records not containing the name "Bob" AND the phone
+number '3444444' order by the phone_number field.</td>
+      <td>SELECT * FROM [table name] WHERE name != "Bob" AND
+phone_number = '3444444' order by phone_number;</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Show all records starting with the letters 'bob' AND the
+phone number '3444444'.</td>
+      <td>SELECT * FROM [table name] WHERE name like "Bob%" AND
+phone_number = '3444444';</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Use a regular expression to find records. Use "REGEXP
+BINARY" to force case-sensitivity. This finds any record beginning with
+a. </td>
+      <td>SELECT * FROM [table name] WHERE rec RLIKE "^a$";</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Show unique records.</td>
+      <td>SELECT DISTINCT [column name] FROM [table name];</td>
+    </tr>
+    <tr>
+      <td>Show selected records sorted in an ascending (asc) or
+descending (desc).</td>
+      <td>SELECT [col1],[col2] FROM [table name] ORDER BY [col2] DESC;</td>
+    </tr>
+    <tr>
+      <td>Count rows.</td>
+      <td>SELECT COUNT(*) FROM [table name];</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Join tables on common columns.</td>
+      <td>select lookup.illustrationid, lookup.personid,person.birthday
+from lookup<br>
+left join person on lookup.personid=person.personid=statement to join
+birthday in person table with primary illustration id;</td>
+    </tr>
+    <tr>
+      <td>Switch to the mysql db. Create a new user.</td>
+      <td>INSERT INTO [table name] (Host,User,Password)
+VALUES('%','user',PASSWORD('password'));</td>
+    </tr>
+    <tr>
+      <td>Change a users password.(from unix shell).</td>
+      <td>[mysql dir]/bin/mysqladmin -u root -h hostname.blah.org -p
+password 'new-password'</td>
+    </tr>
+    <tr>
+      <td>Change a users password.(from MySQL prompt).</td>
+      <td>SET PASSWORD FOR 'user'@'hostname' = PASSWORD('passwordhere');</td>
+    </tr>
+    <tr>
+      <td>Switch to mysql db.Give user privilages for a db.</td>
+      <td>INSERT
+INTO [table name]
+(Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv)
+VALUES ('%','db','user','Y','Y','Y','Y','Y','N');</td>
+    </tr>
+    <tr>
+      <td>To update info already in a table.</td>
+      <td>UPDATE [table name] SET Select_priv = 'Y',Insert_priv =
+'Y',Update_priv = 'Y' where [field name] = 'user';</td>
+    </tr>
+    <tr>
+      <td>Delete a row(s) from a table.</td>
+      <td>DELETE from [table name] where [field name] = 'whatever';</td>
+    </tr>
+    <tr>
+      <td>Update database permissions/privilages.</td>
+      <td>FLUSH PRIVILEGES;</td>
+    </tr>
+    <tr>
+      <td>Delete a column.</td>
+      <td>alter table [table name] drop column [column name];</td>
+    </tr>
+    <tr>
+      <td>Add a new column to db.</td>
+      <td>alter table [table name] add column [new column name] varchar
+(20);</td>
+    </tr>
+    <tr>
+      <td>Change column name.</td>
+      <td>alter table [table name] change [old column name] [new column
+name] varchar (50);</td>
+    </tr>
+    <tr>
+      <td>Make a unique column so you get no dupes.</td>
+      <td>alter table [table name] add unique ([column name]);</td>
+    </tr>
+    <tr>
+      <td>Make a column bigger.</td>
+      <td>alter table [table name] modify [column name] VARCHAR(3);</td>
+    </tr>
+    <tr>
+      <td>Delete unique from table.</td>
+      <td>alter table [table name] drop index [colmn name];</td>
+    </tr>
+    <tr>
+      <td>Load a CSV file into a table.</td>
+      <td>LOAD DATA INFILE '/tmp/filename.csv' replace INTO TABLE
+[table name]
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+(field1,field2,field3);</td>
+    </tr>
+    <tr>
+      <td>Dump all databases for backup.Backup file is sql commands to
+recreate all db's.</td>
+      <td>[mysql dir]/bin/mysqldump --user=root --password=blah
+--all-databases &gt;/tmp/sql-01_backup.sql</td>
+    </tr>
+    <tr>
+      <td>Create Table Example 1.</td>
+      <td>CREATE TABLE [table name] (firstname VARCHAR(20),
+middleinitial VARCHAR(3), lastname VARCHAR(35),suffix VARCHAR(3),<br>
+officeid VARCHAR(10),userid VARCHAR(15),username VARCHAR(8),email
+VARCHAR(35),phone VARCHAR(25), groups <br>
+VARCHAR(15),datestamp DATE,timestamp time,pgpemail VARCHAR(255)); </td>
+    </tr>
+    <tr>
+      <td>Create Table Example 2.</td>
+      <td>create table [table name] (personid int(50) not null
+auto_increment
+primary key,firstname varchar(35),middlename varchar(50),lastname
+varchar(50) default 'bato');</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">To know the detail of each table<br>
+      </td>
+      <td style="vertical-align: top;">SELECT table_name, table_type,
+engine FROM information_schema.tables WHERE table_schema = 'WebNmsDB'
+ORDER BY table_name DESC;<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p>A collection of 10 FAQs on MySQL command-line interface mysql. Clear
+answers are provided with tutorial exercises on mysql command option;
+running SQL and mysql commands; running mysql command files in batch
+mode; returning query output in HTML and XML formats.
+Topics included in this collection are:</p>
+<ol>
+  <li>What Is the Command Line End User Interface - mysql?</li>
+  <li>What Are the "mysql" Command Line Options?</li>
+  <li>What Are the "mysql" Command Line Arguments?</li>
+  <li>How Many SQL DDL Commands Are Supported by "mysql"?</li>
+  <li>How Many SQL DML Commands Are Supported by "mysql"?</li>
+  <li>What Are the Non-Standard SQL Commands Supported by "mysql"?</li>
+  <li>How To Get Help Information from the Server?</li>
+  <li>How To Run "mysql" Commands from a Batch File?</li>
+  <li>How To Return Query Output in HTML Format?</li>
+  <li>How To Return Query Output in XML Format?</li>
+</ol>
+<p>Please note that all answers and tutorials are based on MySQL 5.0.</p>
+<p style="font-weight: bold;" class="heading">What Is the Command Line
+End User Interface - mysql?</p>
+<p>"mysql", official name is "MySQL monitor", is a command-line
+interface for end users to manage user data objects. "mysql" has the
+following main features:</p>
+<ul>
+  <li>"mysql" is command line interface. It is not a Graphical User
+Interface (GUI).</li>
+  <li>"mysql" supports all standard SQL Data Definition Language (DDL)
+commands for the server to execute.</li>
+  <li>"mysql" supports all standard SQL Data Manipulation Language
+(DML) commands for the server to execute.</li>
+  <li>"mysql" supports many of non-SQL commands that "mysql" will
+execute by itself.</li>
+  <li>"mysql" provides access to the server-side help system.</li>
+  <li>"mysql" allows command files to be executed in a batch mode.</li>
+  <li>"mysql" allows query output to be formated as HTML tables.</li>
+  <li>"mysql" allows query output to be formated as XML elements.</li>
+</ul>
+<p class="heading">What Are the "mysql" Command Line Options?</p>
+<p>"mysql" offers a big list of command line options. Here are some
+commonly used options:</p>
+<ul>
+  <li>"-?" - Displays a help message on how to use "mysql" and
+terminates the program.</li>
+  <li>"-u userName" - Specifies a user name for the server to
+authenticate when connecting to the server.</li>
+  <li>"-p[password]" - Specifies a password for the server to
+authenticate when connecting to the server.</li>
+  <li>"-h hostName" - Specifies a host name where the MySQL server is
+running. The default host name "localhost".</li>
+  <li>"-P portNumber" - Specifies a port number where the MySQL server
+is listening for connections.
+The default port number is 3306.</li>
+  <li>"-e command" - Executes the specified command and terminates the
+program.</li>
+  <li>"-t" - Specifies that the query output is displayed in text table
+format. This is the default display format for interactive mode.</li>
+  <li>"-H" - Specifies that the query output is displayed in HTML table
+format.</li>
+  <li>"-X" - Specifies that the query output is displayed in XML
+element format.</li>
+</ul>
+<p>Here is a tutorial exercise of how to use the "-?" option with
+"mysql":</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -?<br>mysql  Ver 14.12 Distrib 5.0.24, for Win32 (ia32)<br>Copyright (C) 2002 MySQL AB<br>...<br>Usage: mysql [OPTIONS] [database]<br>  -?, --help    Display this help and exit.<br>  -I, --help    Synonym for -?<br>  --auto-rehash Enable automatic rehashing. One doesn't <br>                need to use 'rehash' to get table and field<br>                completion, but startup and reconnecting may<br>                take a longer time. Disable with <br>                --disable-auto-rehash.<br>  -A, --no-auto-rehash<br>...<br><br></pre>
+<p class="heading">What Are the "mysql" Command Line Arguments?</p>
+<p>"mysql" supports only one optional command line argument,
+"database". But "mysql" allows the operating system to redirect input
+and output streams at the command line level. Here are some good
+examples:</p>
+<ul>
+  <li>"mysql databaseName" - Starts "mysql" in interactive mode and use
+the specified database.</li>
+  <li>"mysql &lt; fileName" - Starts "mysql" in batch mode and executes
+all commands in the specified file.</li>
+  <li>"mysql &lt; fileName &gt; fileName" - Starts "mysql" in batch
+mode, executes all commands in the specified file, and write output to
+the specified file.</li>
+</ul>
+<p>Here is a tutorial exercise of how to use the command line argument
+to specify the database to use:</p>
+&gt;cd \mysql\bin
+&gt;mysql -u root test
+Welcome to the MySQL monitor. Commands end with ; or \g.
+Your MySQL connection id is 4 to server version: 5.0.24
+mysql&gt; show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| links |
++----------------+
+1 row in set (0.00 sec)
+mysql&gt; quit;
+Bye
+<p class="heading">How Many SQL DDL Commands Are Supported by "mysql"?</p>
+<p>There are 4 SQL Data Definition Language (DDL) commands that are
+supported by "mysql". They are listed below with short descriptions:</p>
+<ul>
+  <li>"CREATE dataObjectType dataObjectName" - Creates new databases,
+tables, views, triggers, indexes, and other data objects.</li>
+  <li>"RENAME dataObjectType dataObjectName" - Renames existing
+databases, tables, views, triggers, indexes, and other data objects.</li>
+  <li>"ALTER dataObjectType dataObjectName" - Alters properties of
+existing databases, tables, views, triggers, indexes, and other data
+objects.</li>
+  <li>"DROP dataObjectType dataObjectName" - Drops existing databases,
+tables, views, triggers, indexes, and other data objects.</li>
+</ul>
+<p>Here is a tutorial exercise of how to use DDL commands to create a
+database and a table:</p>
+&gt;cd \mysql\bin
+&gt;mysql -u root
+mysql&gt; CREATE DATABASE fyi;
+Query OK, 1 row affected (0.50 sec)
+mysql&gt; CREATE TABLE articles (name VARCHAR(80));
+Query OK, 0 rows affected (0.25 sec)
+mysql&gt; DROP DATABASE fyi;
+Query OK, 0 rows affected (0.41 sec)
+<p class="heading">How Many SQL DML Commands Are Supported by "mysql"?</p>
+<p>There are 4 SQL Data Manipulation Language (DML) commands that are
+supported by "mysql". They are listed below with short descriptions:</p>
+<ul>
+  <li>"INSERT INTO tableName ..." - Inserts new data rows into the
+specified table.</li>
+  <li>"DELETE FROM tableName ..." - Deletes existing data rows from the
+specified table.</li>
+  <li>"UPDATE tableName SET ..." - Updates existing data rows in the
+specified table.</li>
+  <li>"SELECT expressionList FROM ..." - Selects rows from tables and
+returns rows of values resulted from the specified expression list.</li>
+</ul>
+<p>Here is a tutorial exercise of how to use DML commands to insert and
+select data rows:</p>
+&gt;cd \mysql\bin
+&gt;mysql -u root test
+mysql&gt; CREATE TABLE links (id INTEGER, name VARCHAR(80));
+Query OK, 0 rows affected (0.10 sec)
+mysql&gt; INSERT INTO links VALUES (1, 'dba.fyicenter.com');
+Query OK, 1 row affected (0.02 sec)
+mysql&gt; SELECT * FROM links<br>
++------+-------------------+<br>
+| id | name |<br>
++------+-------------------+<br>
+| 1&nbsp; | dba.fyicenter.com |<br>
++------+-------------------+<br>
+1 row in set (0.04 sec)<br>
+<p class="heading">What Are the Non-Standard SQL Commands Supported by
+"mysql"?</p>
+<p>There are many non-standard SQL commands that are supported by
+"mysql". Here is short list of some commonly used commands:</p>
+<ul>
+  <li>"SHOW infoName" - Shows basic information of based on the
+specified information name.</li>
+  <li>"SHOW infoName" - Shows basic information of based on the
+specified information name.</li>
+  <li>"SET ..." - Sets new values to server or connection session
+variables.</li>
+  <li>"GRANT ..." - Grants access privileges to users.</li>
+  <li>"REVOKE ..." - Revokes access privileges from users.</li>
+  <li>"CHECK TABLE tableName" - Checks the specified table for errors.</li>
+  <li>"ANALYZE TABLE tableName" - Analyzes the specified table.</li>
+  <li>"REPAIR TABLE tableName" - Repairs the specified table.</li>
+  <li>"BACKUP TABLE tableName" - Backs up the specified table.</li>
+  <li>"RESTORE TABLE tableName" - Restores the specified table.</li>
+  <li>"USE databaseName" - Uses the specified database as the current
+database.</li>
+  <li>"HELP topicName" - Returns help information on the specified
+topic.</li>
+</ul>
+<p>Here is a tutorial exercise of how to use SHOW, USE and ANALYZE
+commands in "mysql":</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -u root<br><br>mysql&gt; USE test;<br>Database changed<br><br>mysql&gt; SHOW TABLES;<br>+----------------+<br>| Tables_in_test |<br>+----------------+<br>| articles       |<br>| links          |<br>+----------------+<br>2 rows in set (0.00 sec)<br><br>mysql&gt; ANALYZE TABLE links;<br>+----------+-------+--------+---------------------------+<br>|Table     |Op     |Msg_type|Msg_text                   |<br>+----------+-------+--------+---------------------------+<br>|test.links|analyze|status  |Table is already up to date|<br>+----------+-------+--------+---------------------------+<br>1 row in set (0.14 sec)<br></pre>
+<p class="heading">How To Get Help Information from the Server?</p>
+<p>While you are at the "mysql&gt;" prompt, you can get help
+information from the server
+by using the "HELP" command. The tutorial exercise below shows sevearal
+examples:</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -u root<br><br>mysql&gt; HELP;<br>...<br>List of all MySQL commands:<br>Note that all text commands must be end with ';'<br>?         (\?) Synonym for `help'.<br>clear     (\c) Clear command.<br>connect   (\r) Reconnect to the server. <br>...<br><br>mysql&gt; HELP SHOW;<br>Name: 'SHOW'<br>Description:<br>SHOW has many forms that provide information about <br>databases, tables, columns, or status information about <br>the server. This section describes those following:<br><br>SHOW CREATE DATABASE db_name<br>SHOW CREATE FUNCTION funcname<br>SHOW CREATE PROCEDURE procname<br>SHOW CREATE TABLE tbl_name<br>SHOW DATABASES [LIKE 'pattern']<br>SHOW ENGINE engine_name {LOGS | STATUS }<br>...<br><br>mysql&gt; HELP CREATE TABLE;<br>Name: 'CREATE TABLE'<br>Description:<br>Syntax:<br>CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name<br>    (create_definition,...)<br>    [table_option ...]<br>...</pre>
+<br>
+<p class="heading">How To Run "mysql" Commands from a Batch File?</p>
+<p>If you have group of "mysql" commands that need to be executed
+repeatedly,
+you can put them into a file, and run them from the file in "mysql"
+batch mode.
+Here is a batch file, \temp\links.sql, contains following commands:</p>
+<pre class="code">USE test;<br>INSERT INTO links VALUES (10, 'dba.fyicenter.com');<br>SELECT * FROM links;<br></pre>
+<p>To run this batch file, you need to follow this tutorial:</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -u root &lt; \temp\links.sql<br>id      name<br>1       dba.fyicenter.com<br>10      dba.fyicenter.com<br></pre>
+<p class="heading">How To Return Query Output in HTML Format?</p>
+<p>By default, "mysql" returns query output in text table format. If
+you want to receive query output in HTML format, you need to use
+the "-H" command option. Here is a good tutorial exercise:</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -u root -H test<br><br>mysql&gt; SELECT * FROM links;<br>&lt;TABLE BORDER=1&gt;&lt;TR&gt;&lt;TH&gt;id&lt;/TH&gt;&lt;TH&gt;name&lt;/TH&gt;&lt;/TR&gt;<br>&lt;TR&gt;&lt;TD&gt;1&lt;/TD&gt;&lt;TD&gt;dba.fyicenter.com&lt;/TD&gt;&lt;/TR&gt;<br>&lt;TR&gt;&lt;TD&gt;10&lt;/TD&gt;&lt;TD&gt;dba.fyicenter.com&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;<br>2 rows in set (0.00 sec)<br></pre>
+<p class="heading">How To Return Query Output in XML Format?</p>
+<p>By default, "mysql" returns query output in text table format. If
+you want to receive query output in XML format, you need to use
+the "-X" command option. Here is a good tutorial exercise:</p>
+<pre class="code">&gt;cd \mysql\bin<br>&gt;mysql -u root -X test<br><br>mysql&gt; SELECT * FROM links;<br>&lt;?xml version="1.0"?&gt;<br>&lt;resultset statement="SELECT * FROM links"&gt;<br>  &lt;row&gt;<br>        &lt;field name="id"&gt;1&lt;/field&gt;<br>        &lt;field name="name"&gt;dba.fyicenter.com&lt;/field&gt;<br>  &lt;/row&gt;<br>  &lt;row&gt;<br>        &lt;field name="id"&gt;10&lt;/field&gt;<br>        &lt;field name="name"&gt;dba.fyicenter.com&lt;/field&gt;<br>  &lt;/row&gt;<br>&lt;/resultset&gt;<br>2 rows in set (0.00 sec)<br></pre>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a name="trouble"></a><span
+ style="text-decoration: underline; font-weight: bold;">Starting Up TL1
+Simulator<br>
+<br>
+</span><span style="font-weight: bold;">This document is intended to
+solve mysql problems which sometimes occur
+while starting both WebNMS and TL1 Simulator in the same machine</span><span
+ style="text-decoration: underline; font-weight: bold;"><br>
+<br>
+</span><span style="font-weight: bold;"><span
+ style="text-decoration: underline; color: rgb(153, 0, 0);">To start
+the TL1 simulator with already running mysql.</span><br
+ style="color: rgb(0, 0, 153);">
+<br>
+</span>1. Change the <span style="font-weight: bold;">port=&lt;Port
+number where mysql is already running&gt; </span>in <span
+ style="font-weight: bold;">&lt;simulator
+home&gt;/conf/database_params.conf</span> file<br>
+&nbsp;&nbsp;&nbsp; ex:-&nbsp; <span style="font-weight: bold;">port=3306&nbsp;&nbsp;
+</span>(Default port for mysql is 3306)<br>
+<br>
+2. <span style="font-weight: bold;">If</span>&nbsp; <span
+ style="font-weight: bold;">&lt;simulator
+home&gt;/conf/settings/Tl1AgSimStartUp.prop</span> file is present (
+gets
+created when simulator is started for the first time )<br>
+&nbsp;&nbsp;&nbsp; then change the&nbsp; <span
+ style="font-weight: bold;">port=&lt;Port number where mysql is already
+running&gt; </span>there also.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ex:&nbsp; <span style="font-weight: bold;">port=3306<br>
+<br>
+<span style="text-decoration: underline; color: rgb(153, 0, 0);">To
+start the TL1 simulator with mysql bundled (4.0.2.0)&nbsp; in simulator
+5100 with mysql starting at another port say 2306(Assuming one mysql is
+already running ) </span><br
+ style="text-decoration: underline; color: rgb(153, 0, 0);">
+<span style="text-decoration: underline; color: rgb(153, 0, 0);">i.e
+running and using 2&nbsp; Instances of mysql in same machine.</span><br
+ style="text-decoration: underline; color: rgb(153, 0, 0);">
+<br>
+</span>Make the Changes as follows:-<br>
+<br>
+1. Change the <span style="font-weight: bold;">port=&lt;Port number
+where user wants to start mysql bundled in simulator &gt; </span>in
+&lt;simulator home&gt;/conf/database_params.conf file<br>
+&nbsp;&nbsp;&nbsp; ex:-&nbsp; <span style="font-weight: bold;">port=2306&nbsp;&nbsp;
+</span><br>
+2. <span style="font-weight: bold;">If</span>&nbsp; &lt;simulator
+home&gt;/conf/settings/Tl1AgSimStartUp.prop file is present ( gets
+created when simulator is started for the first time )<br>
+&nbsp;&nbsp;&nbsp; then change the&nbsp; <span
+ style="font-weight: bold;">port=&lt;Port number where user wants to
+start mysql bundled in simulator&gt; </span>there also.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ex:&nbsp; <span style="font-weight: bold;">port=2306</span><br>
+3. Edit &lt;Simulator Home&gt;/bin/StartMySQL.sh as follows<br>
+&nbsp;&nbsp;&nbsp; (i) Comment $STK_HOME/mysql/bin/mysqld -u root -P
+2306 --basedir=$STK_HOME/mysql &amp; line and <br>
+&nbsp;&nbsp;&nbsp; (ii) Add&nbsp; $STK_HOME/mysql/bin/mysqld <span
+ style="font-weight: bold;">--no-defaults </span>-u root <span
+ style="font-weight: bold;">-P 2306</span> --basedir=$STK_HOME/mysql
+&amp;<br>
+<br>
+4.Run the StartMySQL.sh file. This will start mysql 4.0.20 bundled in
+simulator at port 2306<br>
+5.Then run TL1AgentSimulator.sh to start the simulator.<br>
+<br>
+<span style="font-weight: bold; color: rgb(153, 0, 0);">Some usefull
+Checks for simulator:</span><br>
+<br>
+1.To check whether the database connection is proper for TL1 simulator.
+Open the file <span style="font-weight: bold;">&lt;simulator home&gt;/
+logs/tl1_agent_simulator_1.log<br>
+</span>&nbsp;&nbsp;&nbsp; Search for <span style="font-weight: bold;">datadir
+</span>value to check where does the mysql stores database file.<br>
+&nbsp;&nbsp;&nbsp; Search for <span style="font-weight: bold;">port</span>
+to check it is connected to which port of mysql<br>
+<br>
+<span style="font-weight: bold;"><span style="color: rgb(102, 0, 0);">Some
+usefull mysql commands to debug mysql problems</span><br>
+<br>
+</span>1. run the unix command&nbsp; <span style="font-weight: bold;">netstat
+-ln | grep mysql </span>to find mysql servers are running at what unix
+sockets.<br>
+<span style="font-weight: bold;"></span><br>
+2. <span style="font-weight: bold;">mysqladmin&nbsp; -S&nbsp;
+&lt;socket at which mysql server is running&gt; variables&nbsp; |&nbsp;
+less </span>will list all the variables value like <span
+ style="font-weight: bold;">datadir,port</span> which that particular
+mysql server is running at.<br>
+&nbsp; For ex:- <span style="font-weight: bold;">mysqladmin -S
+/var/lib/mysql/mysql.sock variables |&nbsp; less<br>
+<br>
+</span>3.We should use&nbsp; <span style="font-weight: bold;">--no-defaults&nbsp;
+</span>option for starting another instance of mysql server in same
+machine&nbsp; since mysql will try to use <span
+ style="font-weight: bold;">/etc/my.cnf </span>by default which might
+create problems in starting up.<br>
+&nbsp; <br>
+<span style="font-weight: bold;"></span><a name="tuning"></a><span
+ style="font-weight: bold;"><br>
+</span><span style="text-decoration: underline; font-weight: bold;"></span>
+MySQL tuning<br>
+Windows:<br>
+---------<br>
+my.ini<br>
+-------<br>
+[client]<br>
+<br>
+port= 3306<br>
+<br>
+# The MySQL server<br>
+[mysqld]<br>
+port= 3306<br>
+skip-locking<br>
+<br>
+table_cache = 256<br>
+innodb_data_home_dir = C:\Poller\mysql\data\mysqldata<br>
+innodb_data_file_path = ibdata1:10M:autoextend<br>
+innodb_log_group_home_dir = C:\Poller\mysql\data\mysqldata<br>
+innodb_buffer_pool_size = 256M<br>
+innodb_additional_mem_pool_size = 20M<br>
+innodb_flush_log_at_trx_commit = 2<br>
+innodb_lock_wait_timeout = 50<br>
+innodb_file_io_threads = 150<br>
+<br>
+[mysql]<br>
+no-auto-rehash<br>
+<br>
+Command:<br>
+mysqld-nt.exe --defaults-file=D:\nms5_may12\mysql\my.ini
+--default-table-type=InnoDB --innodb_file_per_table=1
+--open-files-limit=512&nbsp; --disable-log-bin
+--skip-innodb_doublewrite -b .. --standalone<br>
+_____________________________________________________________________________________________________________________________<br>
+Linux<br>
+-------<br>
+my.cnf<br>
+-------<br>
+[mysqld]<br>
+#innodb_data_home_dir=/export/home/guest/poller/mysql/mysqldata<br>
+#innodb_data_file_path=ibdata1:10M:autoextend<br>
+#innodb_log_group_home_dir=/export/home/guest/poller/mysql/mysqldata<br>
+default-table-type=InnoDB<br>
+bulk_insert_buffer_size=64M<br>
+binlog_cache_size=1M<br>
+innodb_flush_method=O_DIRECT<br>
+innodb_log_buffer_size=8M<br>
+innodb_log_file_size=100M<br>
+innodb_thread_concurrency=16<br>
+innodb_file_per_table=1<br>
+open_files_limit=512<br>
+table_cache=256<br>
+innodb_buffer_pool_size=256M<br>
+innodb_additional_mem_pool_size=20M<br>
+innodb_flush_log_at_trx_commit=0<br>
+innodb_lock_wait_timeout=50<br>
+innodb_file_io_threads=150<br>
+skip-innodb_doublewrite<br>
+disable-log-bin<br>
+<br>
+Command: ./bin/safe_mysqld
+--defaults-file=/export/home/guest/poller/mysql/my.ini &amp;<br>
+<span style="font-weight: bold;">To add index:</span><br>
+Alter Table PolledData add index (TIMEVAL);<br>
+show index from PolledData;<br>
+<span style="color: rgb(153, 51, 51); font-weight: bold;">ALTER</span> <span
+ style="color: rgb(153, 51, 51); font-weight: bold;">TABLE</span> t1 <span
+ style="color: rgb(153, 51, 51); font-weight: bold;">ADD</span> <span
+ style="color: rgb(153, 51, 51); font-weight: bold;">KEY</span> idx_i<span
+ style="color: rgb(0, 102, 0); font-weight: bold;">(</span>i<span
+ style="color: rgb(0, 102, 0); font-weight: bold;">)</span>;<br>
+<br>
+<span style="text-decoration: underline;">Queries across tables</span><br>
+select * from Node, ManagedObject where (Node.Name = ManagedObject.Name
+and ManagedObject.Name like '%t-%');<br>
+select ManagedObject.Name, Node.ISROUTER from Node, ManagedObject where
+(Node.Name = ManagedObject.Name and ManagedObject.Name like '%t-%');<br>
+select <br>
+<br>
+<font face="Arial" size="4"><b>MySQL Field Types
+</b></font><font face="Arial" size="2"><b>MySQL</b> supports a number
+of column types, which may be grouped into three
+categories: numeric types, date and time types, and string (character)
+types. This
+section first gives an overview of the types available. Please refer to
+the MySQL
+manuals for more details.
+</font>
+<table>
+  <tbody>
+    <tr valign="top">
+      <td><font face="Arial" size="1"><b>Type <br>
+      </b></font></td>
+      <td><font face="Arial" size="1"><b>Use for <br>
+      </b></font></td>
+      <td><font face="Arial" size="1"><b>Size <br>
+      </b></font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">TINYINT <br>
+      </font></td>
+      <td><font face="Arial" size="1">A very small integer <br>
+      </font></td>
+      <td><font face="Arial" size="1">The signed range is </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">128 to 127. The unsigned range is 0 to 255. <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">SMALLINT <br>
+      </font></td>
+      <td><font face="Arial" size="1">A small integer <br>
+      </font></td>
+      <td><font face="Arial" size="1">The signed range is </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">32768 to 32767. The unsigned range is 0 to 65535 <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">MEDIUMINT <br>
+      </font></td>
+      <td><font face="Arial" size="1">A medium-size integer <br>
+      </font></td>
+      <td><font face="Arial" size="1">The signed range is </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">8388608 to 8388607. The unsigned range is 0 to 16777215 <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">INT or INTEGER <br>
+      </font></td>
+      <td><font face="Arial" size="1">A normal-size integer <br>
+      </font></td>
+      <td><font face="Arial" size="1">The signed range is </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">2147483648 to 2147483647. The unsigned range is 0 to
+4294967295 <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">BIGINT <br>
+      </font></td>
+      <td><font face="Arial" size="1">A large integer <br>
+      </font></td>
+      <td><font face="Arial" size="1">The signed range is </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">9223372036854775808 to 9223372036854775807. The unsigned
+range is 0 to
+18446744073709551615 <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">FLOAT <br>
+      </font></td>
+      <td><font face="Arial" size="1">A small (single-precision)
+floating-point number. Cannot be unsigned <br>
+      </font></td>
+      <td><font face="Arial" size="1">Ranges are </font><font
+ face="Times New Roman Baltic" size="1">&#8211;</font><font face="Arial"
+ size="1">3.402823466E+38 to </font><font face="Times New Roman Baltic"
+ size="1">&#8211;</font><font face="Arial" size="1">1.175494351E-38, 0 and
+1.175494351E-38 to 3.402823466E+38. If the number of
+Decimals is not set or &lt;= 24 it is a single-precision floating point
+number <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">DOUBLE, <br>
+DOUBLE PRECISION, <br>
+REAL <br>
+      </font></td>
+      <td><font face="Arial" size="1">A normal-size (double-precision)
+floating-point number. Cannot be unsigned <br>
+      </font></td>
+      <td><font face="Arial" size="1">Ranges are
+-1.7976931348623157E+308 to -2.2250738585072014E-308, 0 and
+2.2250738585072014E-308 to 1.7976931348623157E+308. If the number of
+Decimals is not
+set or 25 &lt;= Decimals &lt;= 53 stands for a double-precision
+floating point number <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">DECIMAL, <br>
+NUMERIC <br>
+      </font></td>
+      <td><font face="Arial" size="1">An unpacked floating-point
+number. Cannot be unsigned <br>
+      </font></td>
+      <td><font face="Arial" size="1">Behaves like a CHAR column: </font><font
+ face="Times New Roman Baltic" size="1">&#8220;</font><font face="Arial"
+ size="1">unpacked</font><font face="Times New Roman Baltic" size="1">&#8221;</font><font
+ face="Arial" size="1"> means the number is stored as a string, using
+one character for each digit of
+the value. The decimal point, and, for negative numbers, the </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">-</font><font face="Times New Roman Baltic" size="1">&#8216;</font><font
+ face="Arial" size="1"> sign is not counted in Length. If Decimals is
+0, values will have no decimal
+point or fractional part. The maximum range of DECIMAL values is the
+same as
+for DOUBLE, but the actual range for a given DECIMAL column may be
+constrained by
+the choice of Length and Decimals. If Decimals is left out it</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">s set to 0. If Length is left out it</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">s set to 10. Note that in MySQL 3.22 the Length includes the
+sign and the
+decimal point <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">DATE <br>
+      </font></td>
+      <td><font face="Arial" size="1">A date <br>
+      </font></td>
+      <td><font face="Arial" size="1">The supported range is </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">1000-01-01</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1"> to </font><font face="Times New Roman Baltic"
+ size="1">&#8216;</font><font face="Arial" size="1">9999-12-31</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">. MySQL displays DATE values in </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">YYYY-MM-DD</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1"> format <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">DATETIME <br>
+      </font></td>
+      <td><font face="Arial" size="1">A date and time combination <br>
+      </font></td>
+      <td><font face="Arial" size="1">The supported range is </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">1000-01-01 00:00:00</font><font face="Times New Roman Baltic"
+ size="1">&#8217;</font><font face="Arial" size="1"> to </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">9999-12-31 23:59:59</font><font face="Times New Roman Baltic"
+ size="1">&#8217;</font><font face="Arial" size="1">. MySQL displays DATETIME
+values in </font><font face="Times New Roman Baltic" size="1">&#8216;</font><font
+ face="Arial" size="1">YYYY-MM-DD HH:MM:SS</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1"> format <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">TIMESTAMP <br>
+      </font></td>
+      <td><font face="Arial" size="1">A timestamp <br>
+      </font></td>
+      <td><font face="Arial" size="1">The range is </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">1970-01-01 00:00:00</font><font face="Times New Roman Baltic"
+ size="1">&#8217;</font><font face="Arial" size="1"> to sometime in the year
+2037. MySQL displays TIMESTAMP values in
+YYYYMMDDHHMMSS, YYMMDDHHMMSS, YYYYMMDD or YYMMDD format, depending on
+whether M is 14 (or
+missing), 12, 8 or 6, but allows you to assign values to TIMESTAMP
+columns using
+either strings or numbers. A TIMESTAMP column is useful for recording
+the date
+and time of an INSERT or UPDATE operation because it is automatically
+set to
+the date and time of the most recent operation if you don</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">t give it a value yourself <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">TIME <br>
+      </font></td>
+      <td><font face="Arial" size="1">A time <br>
+      </font></td>
+      <td><font face="Arial" size="1">The range is </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">-838:59:59</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1"> to </font><font face="Times New Roman Baltic"
+ size="1">&#8216;</font><font face="Arial" size="1">838:59:59</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">. MySQL displays TIME values in </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">HH:MM:SS</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1"> format, but allows you to assign values to TIME
+columns using either strings
+or numbers <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">YEAR <br>
+      </font></td>
+      <td><font face="Arial" size="1">A year in 2- or 4- digit formats
+(default is 4-digit) <br>
+      </font></td>
+      <td><font face="Arial" size="1">The allowable values are 1901 to
+2155, and 0000 in the 4 year format and
+1970-2069 if you use the 2 digit format (70-69). MySQL displays YEAR
+values in YYYY
+format, but allows you to assign values to YEAR columns using either
+strings or
+numbers. (The YEAR type is new in MySQL 3.22.) <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">CHAR <br>
+      </font></td>
+      <td><font face="Arial" size="1">A fixed-length string that is
+always right-padded with spaces to the specified
+length when stored <br>
+      </font></td>
+      <td><font face="Arial" size="1">The range of Length is 1 to 255
+characters. Trailing spaces are removed when
+the value is retrieved. CHAR values are sorted and compared in
+case-insensitive
+fashion according to the default character set unless the BINARY
+keyword is
+given <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">VARCHAR <br>
+      </font></td>
+      <td><font face="Arial" size="1">A variable-length string. Note:
+Trailing spaces are removed when the value is
+stored (this differs from the ANSI SQL specification) <br>
+      </font></td>
+      <td><font face="Arial" size="1">The range of Length is 1 to 255
+characters. VARCHAR values are sorted and
+compared in case-insensitive fashion unless the BINARY keyword is given
+      <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">TINYBLOB, <br>
+TINYTEXT <br>
+      </font></td>
+      <td><br>
+      </td>
+      <td><font face="Arial" size="1">A BLOB or TEXT column with a
+maximum length of 255 (2^8 - 1) characters <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">BLOB, <br>
+TEXT <br>
+      </font></td>
+      <td><br>
+      </td>
+      <td><font face="Arial" size="1">A BLOB or TEXT column with a
+maximum length of 65535 (2^16 - 1) characters <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">MEDIUMBLOB, <br>
+MEDIUMTEXT <br>
+      </font></td>
+      <td><br>
+      </td>
+      <td><font face="Arial" size="1">A BLOB or TEXT column with a
+maximum length of 16777215 (2^24 - 1) characters <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">LONGBLOB, <br>
+LONGTEXT <br>
+      </font></td>
+      <td><br>
+      </td>
+      <td><font face="Arial" size="1">A BLOB or TEXT column with a
+maximum length of 4294967295 (2^32 - 1) characters <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">ENUM <br>
+      </font></td>
+      <td><font face="Arial" size="1">An enumeration <br>
+      </font></td>
+      <td><font face="Arial" size="1">A string object that can have
+only one value, chosen from the list of values </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">value1</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1">, </font><font face="Times New Roman Baltic"
+ size="1">&#8216;</font><font face="Arial" size="1">value2</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">, ..., or NULL. An ENUM can have a maximum of 65535 distinct
+values. <br>
+      </font></td>
+    </tr>
+    <tr valign="top">
+      <td><font face="Arial" size="1">SET <br>
+      </font></td>
+      <td><font face="Arial" size="1">A set <br>
+      </font></td>
+      <td><font face="Arial" size="1">A string object that can have
+zero or more values, each of which must be
+chosen from the list of values </font><font
+ face="Times New Roman Baltic" size="1">&#8216;</font><font face="Arial"
+ size="1">value1</font><font face="Times New Roman Baltic" size="1">&#8217;</font><font
+ face="Arial" size="1">, </font><font face="Times New Roman Baltic"
+ size="1">&#8216;</font><font face="Arial" size="1">value2</font><font
+ face="Times New Roman Baltic" size="1">&#8217;</font><font face="Arial"
+ size="1">, ... A SET can have a maximum of 64 members <br>
+      <br>
+      </font></td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-weight: bold; text-decoration: underline;">Create a
+new user for MySQL</span><span style="font-weight: bold;">:</span><br>
+<br>
+============ Forwarded message ============<br>
+From : jayaprakashp&lt;<a subj="" mailid="jayaprakashp%40zohocorp.com"
+ href="mailto:jayaprakashp@zohocorp.com" target="_blank">jayaprakashp@zohocorp.com</a>&gt;<br>
+To : &lt;<a subj="" mailid="venkatramanan%40zohocorp.com"
+ href="mailto:venkatramanan@zohocorp.com" target="_blank">venkatramanan@zohocorp.com</a>&gt;<br>
+Date : Tue, 24 Nov 2009 16:28:10 +0530<br>
+Subject : Re: To create a new MySQL User &amp; change MySQL user
+password<br>
+============ Forwarded message ============<br>
+<span style="font-family: georgia,times new roman,times,serif;">hi
+venkat,</span><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none">
+<br style="font-family: georgia,times new roman,times,serif;"
+ clear="none">
+<span style="font-family: georgia,times new roman,times,serif;">for
+creating new user, please try this, it works fine,</span><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none">
+<br style="font-family: georgia,times new roman,times,serif;"
+ clear="none">
+<pre><span style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">    -&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>    WITH GRANT OPTION;</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">    -&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>    WITH GRANT OPTION;</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>CREATE USER 'admin'@'localhost';</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong
+ style="font-family: georgia,times new roman,times,serif;"><code>GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost';</code></strong><br
+ style="font-family: georgia,times new roman,times,serif;" clear="none"><span
+ style="font-family: georgia,times new roman,times,serif;">mysql&gt; </span><strong><code><span
+ style="font-family: georgia,times new roman,times,serif;">CREATE USER 'dummy'@'localhost'</span></code></strong></pre>
+<br>
+<pre>-<br clear="none"><br clear="none">jp<br clear="none"></pre>
+<strong><code><span
+ style="font-family: georgia,times new roman,times,serif;"></span></code></strong><br>
+---- On Tue, 24 Nov 2009 01:38:02 -0800 <b>venkatramanan &lt;<a subj=""
+ mailid="venkatramanan%40zohocorp.com"
+ href="mailto:venkatramanan@zohocorp.com" target="_blank">venkatramanan@zohocorp.com</a>&gt;</b>
+wrote ---- <br clear="none">
+INSERT INTO user (Host,User,Password)
+VALUES('%','root2',PASSWORD('password'));<br clear="none">
+<br clear="none">
+mysqladmin -u root password NEWPASSWORD<br>
+</body>
+</html>

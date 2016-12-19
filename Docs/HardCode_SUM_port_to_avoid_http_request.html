@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>HardCode SUM port to avoid http request</title>
+</head>
+<body>
+The Smart service pack check with the primary will be performed during
+the startup of the standby &amp; the standalone FE.<br>
+<br>
+The Primary server will write the SUMPORT in the html/SUMPort.html.
+When the secondary or standlaone starts it will try to read the file as
+http://primaryserver:webserverport/html/SUMPort.html. Since the primary
+has no apache in the setup, it cannot read the file &amp; you are
+getting the error.<br>
+<br>
+SOLUTION:<br>
+<br>
+By setting the SUMPORT as constant , we can avoid this error.<br>
+<br>
+Changes in Primary BE &amp; Standby BE setup.<br>
+1. Open the SmartUpdateManager.xml under the conf directory of NMSHOME.
+Fix the server port as follows to avoid the reading of SUMPort.html
+under Existing line:<br>
+<br>
+&lt;UpdateManagerServer Port="" SmartUpdate="true"
+DownLoadEnabled="true"<br>
+Modify as &lt;UpdateManagerServer Port="1947" SmartUpdate="true"
+DownLoadEnabled="true"<br>
+<br>
+It can be a any free port, based on your environment.<br>
+2. The make the similar changes for Client node as follows in the same
+file<br>
+Existing one: &lt;UpdateManagerClient Host="" Port=""
+SmartUpdate="true" SmartRevert="false"<br>
+Modify as &lt;UpdateManagerClient Host="" Port="1947"
+SmartUpdate="true" SmartRevert="false"<br>
+<br>
+Chnages in StandloneFE:<br>
+Open the SmartUpdateManager.xml under the conf directory of WEBNMSFEHOME<br>
+Since you are going to run the standlone FE &amp; BE in the same
+machine. Changes need to be done only for the
+&lt;UpdateMangerClientHost node<br>
+<br>
+Existing one:.<br>
+&lt;UpdateManagerClient Host="" Port="" SmartUpdate="true"
+SmartRevert="false"<br>
+Modify as &lt;UpdateManagerClient Host="" Port="1947"
+SmartUpdate="true" SmartRevert="false"<br>
+<br>
+We believe the above configuration will surely avoid the updatemanger
+issue in your setup. We could understand your frusteration &amp; pains
+in setting up the environment with your proposed model without the
+proper documentation for this particular setup. We earnestly apologize
+for the inconvenience caused in this regard. We assure you that we will
+definitely capture these steps in our documentation for our next
+release.<br>
+<br>
+RMI Conflict:<br>
+As Mark suggested you can also remove the serverparameters.conf node
+from the DownloadFiles.xml to overcome the RMI Conflict issue. But this
+removal should be done after the downloading the conf files atleast
+once form the BE. You can very well use the DownloadFiles.xml attached
+by Mark earlier in this thread.<br>
+<br>
+PollUnitProcess:<br>
+We could not see such process in the the default NmsProcessesFE.conf of
+4.7 installtion. Any how, could you send the logs of the standlone FE
+to check for possible error for this process failure.<br>
+Please get back to us, if you need further assistance.<br>
+Thanks and Regards,<br>
+Swaminatha Prabhu<br>
+----- Mark Ward&lt;mward@adventnet.com wrote: -----<br>
+Hello Simone,<br>
+<br>
+With respect to the PollUnitProcess issue, you have the following entry
+at the end of the NmsProcessesFE.conf file that is not present in my
+installation. I hope support can shed some light on what it does but<br>
+meanwhile you can delete it to get rid of the error: <br>
+#java com.adventnet.nms.pollui.PollUnitProcess<br>
+PROCESS com.adventnet.nms.pollui.PollUnitProcess<br>
+ARGS NULL<br>
+<br>
+With respect to the Update Manager error, I believe it that this is due
+to the random generation of the Update Manager port in the BE not being
+available to the FE. You can get around this by including the following
+entry in the SERVER_FILES tag of the &lt;FE_home\conf\downloadFiles.xml
+file: <br>
+&lt;FILEhtml/SUMPort.html &lt;/FILE&gt;<br>
+You will need to put downloadEachTime="true" for the SERVER-FILES but
+exclude the file serverparameters.conf from the list (as this would
+affect the RMI port used by the FE). I attach an example file that has
+worked on my installation.<br>
+<br>
+I ask Support to check the above.<br>
+Regards, Mark<br>
+<br>
+-----Original Message-----<br>
+From: simone.catenacci@accenture.com
+[mailto:simone.catenacci@accenture.com]<br>
+<br>
+Hi Mark, in attachment you can find the requested files.<br>
+Anyway I?d like to synthesize the steps of configuration we made today
+in order to have this situation:<br>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+1. We commented out the following lines:<br>
+On the BE:<br>
+#java com.adventnet.nms.startnms.NmsMainFE [NMS_FE_PORT
+WebNMSSocketPort] [USE_QUOTES_IN_DATABASE_TABLES true/false] [CLIENT_<br>
+#PROCESS com.adventnet.nms.startnms.NmsMainFE<br>
+#ARGS CLIENT_SERVER TCP<br>
+<br>
+2. Ports changes we made on the FE server:<br>
+we changed the ports number in order to avoid ports conflict (RMI port,
+webserver port etc?) as in the nms-support mail <br>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+<br>
+With these configuration steps we succeed in starting all the modules
+with no apparent conflict or problems but the PollUnitProcess failure
+in the FE standalone instance startup.<br>
+<br>
+ISSUES:<br>
+* We don?t know if the current configuration can create any problem
+(i.e. RMI connections FE-BE for failover purposes or some other
+functionalities we are not able to foresee). Can you certificate that
+it can<br>
+work correctly? <br>
+* We?d like to disable all of the FE components on the BE Tier still
+active: Apache and JSP modules (that now we didn?t commented out as the
+supportsaid!!! because if we did it, we obtain an error as the Update
+manager cannot be started). How can we solve the problems we?ll get if
+we follow this way?<br>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- -- -<br>
+UPDATE MANAGER PROBLEM:<br>
+root@emas1 # ./startnmsFE.sh<br>
+Checking and getting Front End Server related files from the Back End
+Server<br>
+..<br>
+Downloaded file : /product/AdventNet/WebNMSFE/conf/serverparameters.conf<br>
+Downloaded file : /product/AdventNet/WebNMSFE/conf/database_params.conf<br>
+Downloaded file : /product/AdventNet/WebNMSFE/conf/DatabaseAliases.conf<br>
+?..<br>
+?..<br>
+Downloaded file :
+/product/AdventNet/WebNMSFE/conf/tl1craftinterface.config<br>
+Downloaded file :
+/product/AdventNet/WebNMSFE/conf/tl1craftinterface_csh.xml<br>
+Downloaded directory from Back End Server : stylesheets<br>
+File .: /stylesheets<br>
+File .: /stylesheets/ListConfigurator.tss<br>
+File .: /stylesheets/TL1Configuration.tss<br>
+<br>
+Wed Nov 10 11:31:33 MET 2004 Time taken to download Server related
+files from Back End Server is 60 Milliseconds.<br>
+<br>
+Unable to connect to UpdateManagerServer in emas1<br>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- -- -<br>
+THANKS<br>
+Simone C.<br>
+<br>
+From: Mark Ward [mailto:mward@adventnet.com]<br>
+<br>
+Hello Simone,<br>
+As requested on the telephone, please send the log and conf files from
+the FE environment.<br>
+Thanks, Mark<br>
+<br>
+-----Original Message-----<br>
+From: simone.catenacci@accenture.com
+[mailto:simone.catenacci@accenture.com]<br>
+<br>
+Thanks,<br>
+We resolved the problem of the RMI conflict we still have a process
+that doesn?t start correctly on the FE. The ?PollUnitProcess? is not
+started successfully when the standalone FE is started even though
+there is no more RMI conflict. Any hint for this new issue?<br>
+Thanks<br>
+Simone C.<br>
+<br>
+_____<br>
+From: AdventNet NMS Support [mailto:nms-support@adventnet.com]
+</body>
+</html>

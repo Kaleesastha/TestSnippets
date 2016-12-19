@@ -1,0 +1,521 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Romi">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (WinNT; U) [Netscape]">
+   <title>SPCT</title>
+</head>
+<body>
+
+<center><b><font size=+2>Service Pack Creation Tool</font></b></center>
+
+<hr ALIGN=LEFT SIZE=1 WIDTH="100%">
+<ul>
+<li>
+<a href="#Introduction">Introduction</a></li>
+
+<ul>
+<li>
+<a href="#package">Package Structure of the Tool</a></li>
+
+<li>
+<a href="#Preamble">The Preamble for Running the Tool</a></li>
+
+<li>
+<a href="#Usages">Usages and Options of the Tool</a></li>
+</ul>
+
+<li>
+<a href="#Description">Description of Configurable Files</a></li>
+
+<li>
+<a href="#SP Creation build time">SP Creation at Build Time</a></li>
+</ul>
+
+<hr ALIGN=LEFT SIZE=1 WIDTH="100%">
+<br><a NAME="Introduction"></a><b><font size=+1>Introduction</font></b>
+<p>The Service Pack Creation tool (SPC) is used to create Service Pack
+(SP) files, which are packaged as product updates. The created SP file
+has a
+<b>.ppm</b> extension and is created under the <i>&lt;SPC tool Home></i>
+directory. The tool accepts two different versions of product zips (e.g.
+JSR 1.0. zip and JSR 1.1.zip) and creates the .ppm (or SP) file. The created
+SP or PPM comprises only the modified files, which are extracted from the
+two product zips. It must be ensured that one product zip is of an older
+version than the other.
+<blockquote><a NAME="package"></a><b>Package Structure of the Tool</b>
+<p>The package structure of the tool is as follows:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bin
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|_createSP.bat/sh
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conf
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |_Input.xml
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |_CreateSP.xml
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; help
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |_README.html
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jars
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |_AdventNetCCLLoader.jar,
+crimson.jar, jaxp.jar, PatchCreation.jar, SPCreation.jar, xalan.jar
+<p><a NAME="Preamble"></a><b>The Preamble for Running the Tool</b>
+<ul>
+<li>
+You need to ensure that the mandatory file namely <b>update_conf.xml
+</b>is
+available in the "&lt;<i>Product Home>/conf</i>" directory of both the
+product zips. These product zips are given as inputs to the SPC tool. This
+file is read by the tool for,</li>
+
+<ul>
+<li>
+Verifying the compatibility of the two product zips. It is verified whether
+both the product zips are of BE or FE or Client context. You cannot provide
+one FEzip and another BE zip as inputs to the tool.</li>
+</ul>
+
+<li>
+If you want to package files other than those extracted from the product
+zips then you need to create a "<b>Resources</b>" directory under <i>&lt;SPC
+tool Home></i> directory for storing these files.</li>
+
+<li>
+<font color="#000000">The <b>README </b>file<b> </b>is mandatory for creating
+the SP or the PPM. The absolute path of location of the file must be specified
+for the "SPReadMe" property in the CreateSP.xml file.</font></li>
+
+<li>
+<font color="#000000">Please ensure that you do not place files to be packaged
+for the SP inside the &lt;Product Home>/<b>Patch </b>directory. This is
+because, the tool <b>does not</b> package the files of the "Patch" directory
+into the SP or PPM.</font></li>
+</ul>
+</blockquote>
+
+<blockquote><a NAME="Usages"></a><b>Usages and Options of the Tool</b>
+<p>Besides creating SPs or PPMs, the tool can be used for several other
+options as given below:
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center><b>&nbsp;Command&nbsp;</b></center>
+</td>
+
+<td>
+<center><b>Description&nbsp;</b></center>
+</td>
+</tr>
+
+<tr>
+<td>createSP.bat -l OldZip NewZip&nbsp;</td>
+
+<td>It is to retrieve the list of modified or/and added files contained
+in both the product zips(given as inputs to the tool). The explanation
+of the arguments are,
+<br><b>-l</b>: It is the switch to list the modified or/and added files
+<br><b>OldZip</b>: It is the base product zip (mostly the SP is appled
+over it e.g.&nbsp; "JSR_1_0.zip").&nbsp;
+<br><b>NewZip</b>: It is the latest product zip containing the customizations
+performed over the base product e.g."JSR_1_0.zip"&nbsp;
+<p>Example Command:&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<b>createSP.bat - l&nbsp; JSR_1_0.zip&nbsp; JSR_1_1.zip</b>
+<p><b>Note</b>: You can maintain copy of the modified files in any file
+e.g. <b>a.txt</b>. The a.txt file is created inside the <i>&lt;SPC tool
+Home>/bin </i>directory with all the modified files. The command must be
+as,
+<center><b>SP.bat -l OldZip NewZip >a.txt</b></center>
+</td>
+</tr>
+
+<tr>
+<td>createSP.bat -c OldZip NewZip ConfFile</td>
+
+<td>It is to create the SP or the PPM.. The SP or the PPM is created based
+on the inputs of the configuration file namely "CreateSP.xml". The explanation
+of the arguments are,&nbsp;
+<br><b>-c</b>: Its is the switch to create the SP or PPM based on the inputs
+provided by the configuration file passed for the "confFile" argument.&nbsp;
+<br><b>ConfFile</b>: It is the configuration file based on whose inputs
+the the .ppm file is created. Specify the CreateSP.xml file for this argument.&nbsp;
+<p>The definition for the <b>OldZip </b>and<b> NewZip </b>is same as given
+for the above command.&nbsp;
+<p>Example Command
+<center><b>creatSP.bat -c JSR_1_0.zip&nbsp; JSR_1_1.zip&nbsp; conf/CreateSP.xml&nbsp;</b></center>
+</td>
+</tr>
+
+<tr>
+<td>createSP.bat -x OldZip NewZip ConfFile</td>
+
+<td>It is to extract the modified or/and added files and place them in
+the created "SPDir". The files are extracted based on the inputs of the
+configuration file namely "CreateSP.xml". The explanation of the arguments
+are,&nbsp;
+<p><b>-x</b>: It is the switch to extract the modified or/and added files
+from the two product zips and place them in the "SPDir" directory created
+under the <i>&lt;SPC tool Home> </i>directory.&nbsp;
+<p>The definition for the <b>OldZip, NewZip, </b>and<b> ConfFile </b>is
+same as given for the above command.
+<p>Example Command
+<center><b>createSP.bat -x&nbsp; JSR_1_0.zip&nbsp;&nbsp; JSR_1_1.zip&nbsp;
+conf/CreateSP.xml&nbsp;</b></center>
+</td>
+</tr>
+</table>
+</blockquote>
+<a NAME="Description"></a><b><font size=+1>Description of Configurable
+Files</font></b>
+<p>The two main configurable files of the SPC tool are Input.xml and CreateSP.xml.
+The details of these files are as follows:
+<ul>
+<li>
+<font size=+1><b>CreateSP.xml</b>:</font> This configuration file (located
+in <i>&lt;SPC tool Home>/conf</i> directory) is used by the SPC tool for
+extracting the modified files from the two zipped products which are provided
+as inputs to the tool. The various configurable options (i.e., XML definitions)
+provided in this file enables you to choose or reject the files which you
+want or don't want to be packaged into the SP. All the XML definitions
+of this file are as explained here:</li>
+</ul>
+
+<ul>
+<ul>
+<li>
+<b>&lt;createsp></b>: This is the root mandatory XML tag of the file. All
+other tags must be specified inside it.</li>
+
+<li>
+<b>&lt;properties></b>: This is the main XML tag used for specifying the
+various properties, which are mandatory for file extraction. The "<b>name</b>"
+of the property cannot be modified whereas the "<b>value</b>" can be modified.
+The definitions of the properties are as follows:</li>
+</ul>
+
+<ul>&nbsp;
+<table BORDER >
+<tr>
+<td><b>SPDir</b></td>
+
+<td>This is a mandatory property, which represents the folder (or directory)
+that stores the extracted files of the product zip (i.e., NewZip). You
+can specify any desired folder name for this property. For example, you
+can have a folder namely "MyDir" as value for this property, which is as
+shown here;
+<p>&nbsp; &lt;property name="SPDir" value="<b>MyDir</b>"/>
+<p>This folder (or directory) is created under the &lt;SPC Tool Home> directory.
+By default, the folder "SPDir" is created inside the &lt;SPC Tool Home>
+directory.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>RelativeProductHome</b></td>
+
+<td>This is a mandatory property, which accepts the home path of the zipped
+products, which are input to the tool. The home path of both the input
+zipped products must be same. For example, if your input zipped products
+are "AdvenNet_4_0_2.zip" and "AdvenNet_4_1.zip" and they both comprise
+a package structure as "AdventNet/WebNMS/&lt;all other directories>", then
+their home path is "AdventNet/WebNMS". The value specified for this property
+is as shown here,
+<p>&nbsp; &lt;property name="RelativeProductHome" value="<b>AdventNet/WebNMS</b>"/>
+<p>The relative product home is required as reference for the tool to locate
+and read the "update_coThe files located in this directory are packaged
+in the SP or PPM in the same structure as available here.&nbsp;
+<p>For example, assume you want to package a file namely "Sample.class"
+of directory structure "com/nms/test". You must then create a resource
+folder, e.g.,"MyResourceDir" inside &lt;SPC tool Home>, and place the file
+i.e. <b>com/nms/test/Sample.class</b> into this folder. Enter the value
+for this property as shown here,&nbsp;
+<p><font color="#000000">&nbsp;&lt;property name="ResourceDir" value="<b>MyResourceDir</b>"/></font>
+<p><font color="#000000">As per the above entry the folder, i.e., <b>MyResourceDir
+</b>is
+created under the &lt;SPC tool Home> directory and the files under it are
+packaged in the same directory structure i.e. com/nms/test/Sample.class
+into the SP or the PPM. The packaging of files located in this directory&nbsp;
+takes precedence over those located in the "SPDir". </font>nf.xml" file
+for further extraction of other files. The extracted files are placed inside
+the "SPDir" directory.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>ResourceDir</b></td>
+
+<td>This is an optional property, which represents the folder (or directory),
+in which you can place any file (other than those extracted from the product
+zips) that is to be packaged in the SP or the PPM.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>SPReadMe</b></td>
+
+<td>This is a mandatory property, which indicates the path of location
+of the SP readme file. For example, if you have a "MyReadMe.html" in your
+"<b>C:/winnt/temp</b>" directory, then specify the same path as value for
+this parameter, as shown below:&nbsp;
+<p>&nbsp; &lt;property name="SPReadMe" value="<b>C:/winnt/temp/MyReadMe.html</b>"/>
+<p>The MyReadMe.html file is copied from the given location to the "SPDir"
+(located under &lt;SPC tool Home>) for packaging it into the SP or the
+PPM.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>InputXML</b></td>
+
+<td>This is a mandatory property, which is used to indicate the path of
+location of the Input.xml file. By default, the Input.xml file is located
+in the &lt;SPC tool Home>/conf directory. But, if the Input.xml file is
+in a different location, then you must specify its&nbsp; path of location
+for this property. For example, if the file is located in your "<b>C:/Temp</b>"
+directory then you need to specify the value for this property as shown
+below:&nbsp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="InputXML"
+value="<b>C:/Temp/Input.xml</b>"/>
+<p>The Input.xml file is used for creating the SP or the PPM. More details
+about this file is given below.&nbsp;</td>
+</tr>
+</table>
+</ul>
+
+<ul>
+<li>
+<b>&lt;filter></b>: This is the filtering XML tag inside which the filtering
+properties and criteria are specified. The definitions of these filtering
+properties are given below:</li>
+
+<ul>
+<li>
+<b>id</b>: This attribute is used to identify the filter based on whose
+criteria files are extracted from the product zips. The two types of filters
+are,</li>
+</ul>
+
+<ul>&nbsp;
+<table BORDER WIDTH="100%" >
+<tr>
+<td><b>UpdateJarFilter</b></td>
+
+<td>This filter is used to segregate the JARs, which are to be packaged
+with an extension as ".ujar" (i.e.,as&nbsp; updatejar). This means, only
+the updated files (i.e., modified and added files) of these JARs are to
+be packaged into the SP or the PPM. As per the entry of this filtering
+property, the tool segregates the JARs to be packaged as "ujar" while extracting
+them from the product zips. You must specify the complete path of location
+of the JAR (in the product) for this property.&nbsp;
+<p>The advantage of ".ujar"s is to prevent packaging a complete JAR (in
+an SP or PPM) when its being updated by just a single file. This is conducive
+in reducing the packaging size of the created SP or PPM.&nbsp;
+<p>For example, assume you have added two new files namely Test1.class
+and Test2.class into a JAR namely "ZAP.jar" (located in &lt;Product Home>/clases
+directory). To package this ZAP.jar as "ujar" specify the entry for the
+property as shown here,&nbsp;
+<p>&lt;filter id="UpdateJarFilter"&nbsp; classname="com.adventnet.tools.update.util.EnhancedFileFilter">&nbsp;
+<br>&lt;criterion key="<b>classes/ZAP.jar</b>" action="ACCEPT"/>&nbsp;
+<br>&lt;/filter>&nbsp;
+<p>As per the above entry, the "ZAP.jar" is extracted into the "SPDir"
+as "<b>ZAP.ujar</b>". This jar contains only the newly added ".class" files,
+i.e., Test1.class and Test2.class.The ZAP.jar is packaged with only these
+two added files, which gets applied on the product during SP or PPM installation.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>GenericFilter</b></td>
+
+<td>This filter is used to segregate files (of the SPDir), which are not
+to be packaged into the SP or the PPM. This property is handy when you
+<b>do
+not</b> want to package all the files extracted into the "SPDir".
+<p>For example, if you do not want to package the "tutorials" and "adventnet_specifications"
+files extracted from the product zip into SPDir, then specify them for
+this filter as shown here,
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;filter id="GenericFilter" classname="com.adventnet.tools.update.util.EnhancedFileFilter">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;criterion key="<b>tutorials/*</b>"
+action="REJECT"/>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;criterion
+key="<b>adventnet_specification/*</b>" action="REJECT"/>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/filter>
+<p><b>Note</b>: The "<b>/*</b>" after every specified directory for the
+"criterion" tag means, that all the files of the directory must be rejected
+for packaging.&nbsp;</td>
+</tr>
+</table>
+</ul>
+
+<li>
+<b>classname</b>: This attribute specifies the name of the class, which
+is invoked for the specific filter type.</li>
+</ul>
+
+<ul>
+<ul>
+<li>
+<b>&lt;criterion></b>: This XML tag is used for setting the criteria for
+the filters. It comprises two attributes namely "key" and "action", whose
+descriptions are given below:</li>
+</ul>
+
+<table BORDER WIDTH="100%" >
+<tr>
+<td><b>key</b></td>
+
+<td>This attribute is to indicate files or folders (along with their complete
+path of location), which are to be filtered based on the filter type i.e,.
+Generic or UpdateJar filter.For example, if you <b>do not</b> want to package
+an "XYZ.jar", then the entry for this attribute will be as shown here,&nbsp;
+<p>&nbsp;&nbsp; &lt;filter id="UpdateJarFilter"&nbsp; classname="com.adventnet.tools.update.util.EnhancedFileFilter">&nbsp;
+<br>&nbsp;&nbsp; &lt;criterion key="<b>classes/XYZ.jar</b>" action="REJECT"/>
+<br>&nbsp;&nbsp;&nbsp; &lt;/filter></td>
+</tr>
+
+<tr>
+<td><b>action</b></td>
+
+<td>This attribute is to indicate the action, which is to be performed
+on the files or folders specified for the "key" attribute.Generally, this
+attribute holds either of the two action types, viz., ACCEPT and REJECT.&nbsp;
+<p>ACCEPT: This action type indicates acceptance of files or folders (specified
+for the "key" attribute), for packaging into the SP or PPM.&nbsp;
+<br>REJECT: This action type indicates rejection of files or folders (specified
+for the "key" attribute), from being packaged into the SP or the PPM.</td>
+</tr>
+</table>
+</ul>
+</ul>
+
+<ul>
+<li>
+<b><font size=+1>Input.xml</font></b>:&nbsp; This configuration file (located
+in<i> &lt;SPC tool Home>/conf </i>directory) is interpreted by the SPC
+tool for creating the SP (or PPM). It provides input details such as the
+product name, product version, and SP version, which are read and used
+by the tool to define the name for the created SP. For example, if an SP
+of the following <i>product name- <b>JSR;</b> product version -<b> 4.0</b>;&nbsp;
+and SP version - <b>1.0&nbsp;</b></i><b> </b>is to be created then, the
+SP filename will be <b>JSR_4_0_SP-1_0.ppm.</b></li>
+
+<p><br>The input parameters namely product name and version (product and
+SP) must be specified correctly in this file, as these are verified and
+compared with that of the "update_conf.xml" file of the base product during
+SP application. If there is a mismatch of the product name or version (either
+product or SP), then the SP doesn't get applied on the base product.
+<p>The explanation of these mandatory input parameters specified inside
+the root node i.e., &lt;patchDetails> of the file are as follows:
+<br>&nbsp;
+<table BORDER WIDTH="100%" >
+<tr>
+<td><b>patch Description</b></td>
+
+<td>It is the description of the created SP file for your reference.</td>
+</tr>
+
+<tr>
+<td><b>product Name</b></td>
+
+<td>It is the name of the product for which the SP is to be create. For
+example, if your product name is "JSR EMS" then the entry for this paramter
+is as shown here,&nbsp;
+<p>&nbsp;&nbsp;&nbsp; &lt;productName><b>JSR EMS</b>&lt;/productName>&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>productVersion</b></td>
+
+<td>It is the base product version over which the SP or the PPM is to be
+applied.The product version specified here must be same as that of the
+base product over which the created SP or PPM is to be applied. For example,
+if your base product version is "JSR EMS 4.5.0" for which you want to create
+an SP 1.0, then the product version specified here too must be "4.5.0".
+The entry for this parameters is as shown here,&nbsp;
+<p>&nbsp;&nbsp;&nbsp; &lt;productVersion><b>4.5.0</b>&lt;/productVersion>
+<p>The default product version specified in this Input.xml (located in
+&lt;SPC tool Home> directory) is "4.0.1". In this case, you can create
+SP or PPM only for the base product of version "4.0.1". Please ensure that
+you change the default value of the parameter in this file to that of your
+base product.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>SPVersion</b></td>
+
+<td>It is the version of the created SP or the PPM. This version must be
+greater than the SP version (if any) of the base product over which it
+is to be applied. For example, if your base product is of version "4.5.0"
+and SP version "1.0" then the created SP or PPM version must be greater
+than "1.0" i.e. "1.1". The entry for this parameter is as shown here,&nbsp;
+<p>&nbsp;&nbsp;&nbsp; &lt;patchVersion><b>1.1</b>&lt;/patchVersion></td>
+</tr>
+
+<tr>
+<td><b>SPReadme</b></td>
+
+<td>It is the name of the SP's "Readme" file. It is the same file, which
+is specified for the "SPReadMe" property in the CreateSP.xml file. For
+example, if your ReadMe file is "MyReadMe.html" (and whose location is
+specified in CreateSP.xml file) then the entry for this parameter is as
+shown here,&nbsp;
+<p>&nbsp;&nbsp;&nbsp; &lt;patchReadme><b>MyReadMe.html</b>&lt;/patchReadme></td>
+</tr>
+
+<tr>
+<td><b>Updation Context</b></td>
+
+<td><font color="#000000">It is to indicate the context directory viz.
+BE, FE or CLIENT required for SP or PPM creation. The context directory
+is decided based on the type of installation setup i.e. combo, distributed,
+etc., for which the SP or PPM is to be created.&nbsp;</font>
+<p><font color="#000000">This context specified here is verified and compared
+with,</font>
+<ul>
+<li>
+<font color="#000000">The context directory created inside the "SPDir".For
+example, if you have two FE product zips for SP creation and have specified
+"BE"context for this parameter of the file, then the tool does not create
+the SP or PPM.</font></li>
+
+<li>
+<font color="#000000">The context specified in the "update_conf.xml" file
+of the base product over which the SP or PPM is applied. For example, you&nbsp;
+create a SP or PPM for a standalone FE setup.This SP or PPM can be be applied
+<b>only</b>
+over the base version of a standalone FE product. It cannot be applied
+over a combo (BE+FE+CLIENT) product installation.&nbsp;</font></li>
+</ul>
+<font color="#000000">By default, the context specified in this file is
+for a combo setup. You can modify the entry for this parameter here as
+per your requirement.&nbsp;</font>
+<p><font color="#000000">The other attributes of this tag are:&nbsp;</font>
+<br><font color="#000000"><b>readme</b>: This is for specifying the name
+of the README.html file located inside the context directory e.g., BE.
+This README file is different from that of the created SP or PPM.&nbsp;</font>
+<br><font color="#000000"><b>type</b>:This is to indicate that the specified
+context directory is mandatory for the created SP or PPM. The value "Mandatory"
+for this attribute signifies that the given context must be same as that
+in "update_conf.xml" file (located in &lt;Product Home>/conf directory)
+of the product. A mismatch of context prevents the installation of the
+SP or PPM on the product.&nbsp;</font>
+<br><font color="#000000"><b>details</b>:This is for the description of
+the context directory.</font>
+<p><font color="#000000">For example, for a combo installation setup, specify
+the context type as "BE" since it contains all the server and client related
+files. The entry for the parameter is as shown here,&nbsp;</font>
+<br><font color="#000000">&nbsp; &lt;context></font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; &lt;updation context="<b>BE</b>"
+readme="<b>README.html</b>" type="<b>Mandatory</b>" details="the details
+about BE context"></font>
+<br><font color="#000000">&nbsp;&nbsp; &lt;/updation></font>
+<br><font color="#000000">&nbsp;&nbsp; &lt;/context></font></td>
+</tr>
+</table>
+</ul>
+<a NAME="SP Creation build time"></a><b>SP Creation at Build Time:</b>
+It is possible to invoke this SPC tool through your build script for creating
+SP or PPM during automated build time. Please refer to the document <b>"<font color="#000000"><a href="http://adventnet.com/products/webnms/help/developer_guide/guidelines_build_package/creating_service_pack.html">Creating
+Service Pack</a></font></b>" in DG for more details.
+<br>&nbsp;
+<p>
+<hr ALIGN=LEFT SIZE=1 WIDTH="100%">
+<br>&nbsp;
+</body>
+</html>

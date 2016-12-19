@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How to get the handle before the java client gets closed</title>
+</head>
+<body>
+<font size="3"><span style="font-family: times new roman,times,serif;"><span
+ style="font-family: times new roman,times,serif;"><span
+ style="font-family: times new roman,times,serif;">Please find the
+below procedure to get the handle of the server closed dialog.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Write a class
+by extending JOptionPane and overwrite the createDialog(Componet,
+String) method.</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Write a class
+by extending AbstractBaseNmsPanel and provide this class name in<span
+ style="font-weight: bold;"> NmsPanels.conf</span> file present under
+$NMS_HOME/conf directory as follows:</span><br
+ style="font-family: times new roman,times,serif;">
+<font style="color: rgb(0, 0, 255);" size="2"><span
+ style="font-family: courier new,courier,monospace;">&lt;PANEL
+className="test.TestPanel" PANEL-KEY="TestPanel"/&gt;</span></font><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">In
+init(JApplet) method of this class, you need to create your extended
+JOptionPane instance and set as close dialog in MainSocketClient by
+using the showCustomizedServerClosedDialog(JComponent, String) method.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Note : The
+MainSocketClient class instance in WebNMS Client can be accessed by
+using PureClientUtils.commonSocket variable.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">By doing this,
+whenever the server shut down, your extended JOptionPane class's
+createDialog(Component, String) method will be called.</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Inside this
+method you can write your implementations and return the super value.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">Please refer
+the uploaded zip (<a
+ href="http://bonitas.zohocorp.com/4264249/webnms4/13Dec2011/ClientCloseDialog.zip"
+ target="_blank">http://bonitas.zohocorp.com/4264249/webnms4/13Dec2011/ClientCloseDialog.zip</a>)
+which contains <span style="font-weight: bold;">TempDialog.java and
+TestPanel.java &amp; its class files</span> for details.</span></span></span></font>
+</body>
+</html>

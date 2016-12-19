@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Case Sensitive Schema in MySQL</title>
+  <meta content="&Ntilde;and&uacute; 0.6" name="GENERATOR">
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+<img
+ src="http://media.techtarget.com/expertAnswerCenter/images/spacer.gif"
+ class="block" height="10" width="1"> <b>We
+have a Java-based product that uses JDBC to hit any relational
+databases, including MySQL. All was cool except when a client ran MySQL
+on Linux, and we ran into a file name case sensitive issue (not an
+issue on Windows). After digging we found that the Linux OS has case
+senstive file names. Since all of our SQL was uppercase, we simply
+changed the file names of the MySQL file names to uppercase, but this
+didn't fully fix the issue. What is the required or recommended method
+to name or rename MySQL files? Further, are there metadata files that
+actually hold pointers to the actual files that would need altering?</b>
+<img
+ src="http://media.techtarget.com/expertAnswerCenter/images/spacer.gif"
+ class="block" height="10" width="1"> <span class="small"><span
+ class="text6">QUESTION POSED ON:</span></span> 10 JAN 2005<br>
+<span class="small"><span class="text6">QUESTION ANSWERED BY:</span></span>
+<a
+ href="http://expertanswercenter.techtarget.com/eac/knowledgebaseExpertBio/0,295210,sid63_gci1054457,00.html">
+Mike Hillyer</a> <img
+ src="http://media.techtarget.com/expertAnswerCenter/images/spacer.gif"
+ class="block" height="10" width="1">
+<p>When migrating an application or SQL script from using a Windows
+based MySQL
+server to a Linux or Unix based MySQL server, you may encounter error
+messages similar to the following:
+</p>
+<pre>mysql&gt; SELECT * FROM city;<br><br>ERROR 1146 (42S02): Table 'world.city' doesn't exist<br></pre>
+This error is encountered when your application has not used consistent
+case-sensitivity: a MySQL server running on Windows is not
+case-sensitive
+with regards to database and table names. For example, MySQL on Windows
+considers the city and City table references to refer to the same
+table. On
+Linux or Unix, the MySQL server will consider city and City to be two
+seperate tables.
+<p>Solution: If you have trouble remembering the allowable lettercase
+for database and
+table names, adopt a consistent convention, such as always creating
+databases and tables using lowercase names.
+</p>
+<p>How table and database names are stored on disk and used in MySQL is
+defined
+by the lower_case_table_names system variable, which you can set when
+starting mysqld. lower_case_table_names can take one of the following
+values:
+</p>
+<ul>
+  <li><b>0</b> - Table and database names are stored on disk using the
+lettercase
+specified in the CREATE TABLE or CREATE DATABASE statement. Name
+comparisons
+are case sensitive. This is the default on Unix systems. Note that if
+you
+force this to 0 with --lower-case-table-names=0 on a case-insensitive
+filesystem and access MyISAM tablenames using different lettercases,
+this
+may lead to index corruption.
+  </li>
+  <li><b>1</b> - Table names are stored in lowercase on disk and name
+comparisons are not
+case sensitive. MySQL converts all table names to lowercase on storage
+and
+lookup. This behavior also applies to database names as of MySQL 4.0.2,
+and
+to table aliases as of 4.1.1. This value is the default on Windows and
+Mac
+OS X systems.
+  </li>
+  <li><b>2</b> - Table and database names are stored on disk using the
+lettercase
+specified in the CREATE TABLE or CREATE DATABASE statement, but MySQL
+converts them to lowercase on lookup. Name comparisons are not case
+sensitive. Note: This works only on filesystems that are not case
+sensitive!
+InnoDB table names are stored in lowercase, as for
+lower_case_table_names=1.
+Setting lower_case_table_names to 2 can be done as of MySQL 4.0.18.
+  </li>
+</ul>
+If you are using MySQL on only one platform, you don't normally have to
+change the lower_case_table_names variable. However, you may encounter
+difficulties if you want to transfer tables between platforms that
+differ in
+filesystem case sensitivity. For example, on Unix, you can have two
+different tables named my_table and MY_TABLE, but on Windows those
+names are
+considered the same. To avoid data transfer problems stemming from
+database
+or table name lettercase, you have two options:
+<ol>
+  <li> Use lower_case_table_names=1 on all systems. The main
+disadvantage
+with this is that when you use SHOW TABLES or SHOW DATABASES, you don't
+see
+the names in their original lettercase. </li>
+  <li> Use lower_case_table_names=0 on Unix and
+lower_case_table_names=2 on
+Windows. This preserves the lettercase of database and table names. The
+disadvantage of this is that you must ensure that your queries always
+refer
+to your database and table names with the correct lettercase on
+Windows. If
+you transfer your queries to Unix, where lettercase is significant,
+they
+will not work if the lettercase is incorrect.
+  </li>
+</ol>
+Note that before setting lower_case_table_names to 1 on Unix, you must
+first
+convert your old database and table names to lowercase before
+restarting
+mysqld<span style="font-weight: bold;">.</span><b></b>
+</body>
+</html>

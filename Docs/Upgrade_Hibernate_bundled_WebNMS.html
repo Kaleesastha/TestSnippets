@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>How to upgrade Hibernate bundled in WebNMS</title>
+  </head>
+  <body>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255); text-align: center;
+      font-family: Verdana, Arial, Helvetica, sans-serif; font-size:
+      11px;"><span style="font-family: 'times new roman', times, serif;
+        font-size: medium;"><b>How to upgrade Hibernate bundled in
+          WebNMS<br>
+          <br>
+        </b></span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><span style="font-family: 'times new roman',
+        times, serif; font-size: medium;">Please note that the highest
+        version of hibernate that WebNMS can support is 3.3.2 hibernate.<br>
+        To support higher versions of hibernate, we need to make code
+        changes in WebNMS which will not allow WebNMS to run with the
+        bundled (3.2.6) hibernate.<br>
+        Hence we will be able to support only 3.3.2 hibernate for which
+        the procedure is given below.<br>
+        <br>
+        We had got the hibernate_3.3.2 jars (required for WebNMS
+        Modelling) at:&nbsp;</span><span style="font-family: 'times new
+        roman', times, serif; font-size: medium;"><a
+href="http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p17v13rd6lh9k2282n41bt1mjc0/hibernate_jar_files_final.zip">http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p17v13rd6lh9k2282n41bt1mjc0/hibernate_jar_files_final.zip</a></span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+        Since this requires some changes in WebNMS MO Modelling, ensure
+        to test this with the latest&nbsp;<a
+          href="http://www.webnms.com/webnms/servicepack5_2.html"
+          target="_blank"><b>5.2 SP1</b>&nbsp;PPM</a>.</font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+        Please do the following steps to migrate hibernate_326 to the
+        332 version in WebNMS 5.2 build:<br>
+        <br>
+        1. Unzip&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p17v13rd6lh9k2282n41bt1mjc0/hibernate_jar_files_final.zip">this
+          zip</a>&nbsp;into&nbsp;<b>NMS_HOME/hibernate_3.3.2</b><br>
+        <br>
+        2. In setEnv.sh/bat, configure&nbsp;</font><span style="color:
+        rgb(0, 0, 255); font-family: 'courier new', courier, monospace;
+        font-size: small;">HBN_332_HOME=$NMS_HOME/hibernate_3.3.2</span><font
+        face="times new roman, times, serif" size="3"><br>
+        <br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3">3. Comment:&nbsp;</font><span style="color: rgb(0, 0,
+        255); font-family: 'courier new', courier, monospace; font-size:
+        small;">H</span><span style="color: rgb(0, 0, 255); font-family:
+        'courier new', courier, monospace; font-size: small;">BN_CLASSPATH=$HBN_LIB_HOME/hibernate3.jar</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3">4. Add:&nbsp;</font><span style="color: rgb(0, 0, 255);
+        font-family: 'courier new', courier, monospace; font-size:
+        small;">H</span><span style="color: rgb(0, 0, 255); font-family:
+        'courier new', courier, monospace; font-size: small;">BN_CLASSPATH=$HBN_332_HOME/hibernate-core.jar</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3">5. Comment:&nbsp;</font><span style="color: rgb(0, 0,
+        255); font-family: 'courier new', courier, monospace; font-size:
+        small;">H</span><span style="color: rgb(0, 0, 255); font-family:
+        'courier new', courier, monospace; font-size: small;">BN_LIB_CLASSPATH=$HBN_LIB_HOME/c3p0-0.9.1.jar:$HBN_LIB_HOME/hibernate3.jar:$HBN_LIB_HOME:$HBN_LIB_HOME/ant-antlr-1.6.5.jar:$HBN_LIB_HOME/ehcache-1.2.3.jar:$HBN_LIB_HOME/antlr-2.7.6.jar:$HBN_LIB_HOME/asm-attrs.jar:$HBN_LIB_HOME/asm.jar:$HBN_LIB_HOME/cglib-2.1.3.jar:$HBN_LIB_HOME/dom4j-1.6.1.jar:$HBN_LIB_HOME/commons-collections-2.1.1.jar:$HBN_LIB_HOME/commons-logging-1.0.4.jar</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+        6. Add:&nbsp;</font><span style="color: rgb(0, 0, 255);
+        font-family: 'courier new', courier, monospace; font-size:
+        small;">H</span><span style="color: rgb(0, 0, 255); font-family:
+        'courier new', courier, monospace; font-size: small;">BN_LIB_CLASSPATH=$HBN_LIB_HOME:$HBN_332_HOME/ant-antlr.jar:$HBN_332_HOME/antlr.jar:$HBN_332_HOME/asm-attrs-1.5.3.jar:$HBN_332_HOME/asm.jar:$HBN_332_HOME/c3p0-0.9.1.2.jar:$HBN_332_HOME/cglib.jar:$HBN_332_HOME/commons-collections.jar:$HBN_332_HOME/commons-logging.jar:$HBN_332_HOME/dom4j.jar:$HBN_332_HOME/ehcache.jar:$HBN_332_HOME/hibernate-c3p0.jar:$HBN_332_HOME/hibernate-core.jar:$HBN_332_HOME/hibernate-ehcache.jar:$HBN_332_HOME/slf4j-api.jar:$HBN_332_HOME/slf4j-log4j12.jar</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+        7. In startnms.sh include&nbsp;</font><span style="font-family:
+        'times new roman', times, serif; font-size: medium;">-Dhibernate.bytecode.provider=cglib
+        as follows:<br>
+      </span><font color="#0000ff" face="courier new, courier,
+        monospace" size="2">... -cp $CLASS_PATH&nbsp;</font><b
+        style="color: rgb(0, 0, 255); font-family: 'courier new',
+        courier, monospace; font-size: small; background-color: rgb(254,
+        255, 51);">-Dhibernate.bytecode.provider=cglib</b><font
+        color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;-Dcatalina.home=$TOMCAT_HOME...</font><br>
+      <br>
+      <font face="times new roman, times, serif" size="3">8. In
+        startnms.sh, update&nbsp;</font><span style="color: rgb(0, 0,
+        255); font-family: 'courier new', courier, monospace; font-size:
+        small;"><b>$HBN_LIB_CLASSPATH</b></span><span
+        style="font-family: 'times new roman', times, serif; font-size:
+        medium;">&nbsp;as the first entry in the CLASS_PATH
+        variable&nbsp;</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3"><br>
+        9.&nbsp;In&nbsp;reinitialize_nms.sh&nbsp;include&nbsp;</font><span
+        style="font-family: 'times new roman', times, serif; font-size:
+        medium;">-Dhibernate.bytecode.provider=cglib as follows:</span></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font color="#0000ff" face="courier new,
+        courier, monospace" size="2">$JAVA_HOME/bin/java&nbsp;</font><b
+        style="font-size: small; color: rgb(0, 0, 255); font-family:
+        'courier new', courier, monospace; background-color: rgb(254,
+        255, 51);">-Dhibernate.bytecode.provider=cglib</b><font
+        color="#0000ff" face="courier new, courier, monospace" size="2">&nbsp;-Dpgsql.home=$PGSQL_HOME
+        -Dwebnms.rootdir=$NMS_HOME jdbc.DropSchema $MODE_VALUE</font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><br>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3">If you face any issues, please get back to us with the
+        modified files (startnms &amp; setEnv) and the complete logs.</font></div>
+    <div style="color: rgb(0, 0, 0); font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-size-adjust: auto;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;"><font face="times new roman, times, serif"
+        size="3">This will help us to analyze the issue</font></div>
+  </body>
+</html>

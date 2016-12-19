@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>S P Y L O G</title>
+</head>
+<body>
+<p><span style="font-weight: bold;">I want to log all the
+queries/statements that are getting executed
+along with their connection number, thread, timetaken, etc, in the log
+file. How can I do this?</span><br>
+<br>
+</p>
+<p>There is a tool called <b>p6spy</b> which can be used for this
+purpose. The tool logs all the statements that are getting executed at
+any point of time. The tool is available in the following URL:&nbsp; <br>
+<br>
+http://www.p6spy.com<br>
+<br>
+Download the tool and extract it. <br>
+<br>
+<b>How to use the p6spy tool ?<br>
+</b><br>
+1. In p6spy, we will use the following two files: <br>
+</p>
+<br>
+<ul>
+  <li><b>p6spy.jar </b><br>
+  </li>
+  <li><b>spy.properties</b></li>
+</ul>
+<p>2. Keep the <b>p6spy.jar</b> in the server classpath. Also, specify
+the location where the <b>spy.properties</b> file is present in the
+classpath. For example, if you have these 2 files under <b>c:\p6spy\</b>
+directory, you need to have <b>c:\p6spy\p6spy.jar;c:\p6spy;</b>in your
+classpath. If you are using <b>startnms.bat/sh,</b> make the changes
+in the same file in the beginning of the line <i><b>set
+CLASS_PATH=.....</b></i> If you are using launcher to start the server,
+make these changes in <b>launcher_conf.txt</b> present under <i>&lt;Web
+NMS Home&gt;/conf </i>directory.
+In launcher_conf.txt file, add these in the property value field for
+property name="Classpath" under property name="AppName" value="Start
+Web NMS Server".<br>
+<br>
+3. Change the drivername in <b>database_params.conf</b> as shown below:<br>
+drivername com.p6spy.engine.spy.P6SpyDriver AppModules
+TopoDB-MapDB-EventDB-AlertDB-PollDB-PolicyDB-USERSTORAGEDB<br>
+<br>
+The realdriver name org.gjt.mm.mysql.Driver has to be given in
+spy.properties file.<br>
+<br>
+4. In spy.properties, make the following changes:<br>
+<br>
+a)
+change the location of the log file directory in accordance with your
+machine. (i.e., give a valid path for the property logfile). <br>
+<br>
+b) dateformat=MM-dd-yy HH:mm:ss:SS<br>
+<br>
+c) includecategories=statement,commit,rollback,result<br>
+<br>
+d) excludecategories=info,debug,batch<br>
+<br>
+After
+carrying out all these changes, if you start Web NMS, all the queries
+that are getting executed along with their connection number, thread,
+time taken etc., will be logged to the specified log file. <br>
+<br>
+<b>Note:
+Since this spy log file will grow in size drastically, use it whenever
+you have the need to log all the messages and revert to default
+settings thereafter. </b></p>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+  <meta name="Author" content="nms-support">
+   
+  <meta name="GENERATOR" content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+  <title>timeVectorStructure</title>
+</head><body>
+<b>TimeVectorStructure</b>
+<p><font face="Arial,Helvetica"><font size="-1">TimeVector in PolicyObject
+contains information about scheduling pattern configured for it. TimeVector
+contains either</font></font></p>
+<ul>
+  <ul>
+    <ul>
+      <li><font face="Arial,Helvetica"><font size="-1">7 vectors (in case
+of day wise )&nbsp;&nbsp; <b>or</b></font></font></li>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <ul>
+      <li><font face="Arial,Helvetica"><font size="-1">31 Vectors (in case
+of date wise) .</font></font></li>
+    </ul>
+  </ul>
+</ul>
+<font face="Arial,Helvetica"><font size="-1"></font></font>
+<p><br>
+<font face="Arial,Helvetica"><font size="-1">In each and every vector, information
+about scheduling hours will be stored as Integer Objects.</font></font><font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">For example,</font></font><font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">If you have scheduled PolicyObject
+at 1, l5 and 20 hrs for all 31 dates then time vector will look like</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">{</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">&nbsp;&nbsp;&nbsp; [1, 15, 20]</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">}</font></font><font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">Here 1, 5 and 20 are IntegerObjects
+holding the value 1 , 5 and 20 respectively.</font></font><font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">If you have scheduled PolicyObject
+as</font></font></p>
+<ul>
+  <li><font face="Arial,Helvetica"><font size="-1">1st date 1,10 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">20th date 18 , 22 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">25th date&nbsp; 5 , 16
+hrs</font></font></li>
+</ul>
+<font face="Arial,Helvetica"><font size="-1">then the vector will look like</font></font>
+<br>
+<font face="Arial,Helvetica"><font size="-1">{</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[1,10]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[18,22]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[5,15]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><font face="Arial,Helvetica"><font size="-1"></font></font>
+<p><font face="Arial,Helvetica"><font size="-1">}</font></font><br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;<font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">In case of day wise scheduling,
+Vector size will be seven. If you are going to schedule the Policy in day
+wise mode as</font></font></p>
+<ul>
+  <li><font face="Arial,Helvetica"><font size="-1">Sunday 3, 6 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">Monday 6, 7 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">Tuesday 4, 9 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">Wednesday 9, 11 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">Friday 9, 11 hrs</font></font></li>
+  <li><font face="Arial,Helvetica"><font size="-1">Saturday 3, 13 hrs</font></font></li>
+</ul>
+<font face="Arial,Helvetica"><font size="-1">then timeVector would look like</font></font><font face="Arial,Helvetica"><font size="-1"></font></font>
+<p><font face="Arial,Helvetica"><font size="-1">{</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[ 3, 6]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[ 6 , 7]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[ 4 , 9]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[ 9 , 11]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[9,11]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">[3 , 13]</font></font><br>
+<font face="Arial,Helvetica"><font size="-1">}</font></font><br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;<font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p><font face="Arial,Helvetica"><font size="-1">&nbsp;If no time is mentioned
+for a particular day / date then the corresponding vector size for that particular
+day / date will be zero.</font></font><font face="Arial,Helvetica"><font size="-1"></font></font></p>
+<p>&nbsp;</p>
+<p><br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;<br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;<br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;<br>
+<font face="Arial,Helvetica"><font size="-1"></font></font>&nbsp;</p>
+<br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How to enable pg_stat_statements in Postgres</title>
+</head>
+<body>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">In pgsql directory:&nbsp;</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">cp
+$PGSQL_HOME/share/postgresql/extension/pg_stat_statements--1.0.sql
+$PGSQL_HOME/pg_stat_statements.sql</span></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><span
+ style="font-size: medium;"><br>
+Configure the following in data/postgresql.conf:</span></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">dynamic_library_path='/home/test/webnms/pgsql/lib/postgresql'<br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2"><span
+ style="font-weight: bold;">#In the above variable, the path should be
+set specific to your pgsql directory</span><br>
+<br>
+shared_preload_libraries='pg_stat_statements'</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">custom_variable_classes='pg_stat_statements'</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">pg_stat_statements.max=10000</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ color="#0000ff" face="courier new, courier, monospace" size="2">pg_stat_statements.track=all</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">In another prompt:
+execute :<br>
+</font><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">sudo
+sysc</span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">tl
+-w kernel.shmmax=17179869184<br>
+<span style="font-weight: bold;">export
+LD_LIBRARY_PATH=$PGSQL_HOME/lib/postgresql:$</span></span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small; font-weight: bold;">LD_LIBRARY_PATH</span></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3"><br>
+start postgres from this prompt:</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">In pgsql directory login
+to psql prompt:&nbsp;</font><b
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">CREATE
+EXTENSION pg_stat_statements</b></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3"><br>
+</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">restart postgres.</font></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">Execute :&nbsp;</font><b
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">./bin/psql
+-U postgres -h localhost WebNmsDB -H -c "SELECT * FROM
+pg_stat_statements ORDER BY total_time DESC" &gt; file.html<br>
+<br>
+</b></div>
+<div
+ style="color: rgb(0, 0, 0); font-weight: normal; font-size: 13px; font-family: 'times new roman',times,serif; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255);"><font
+ face="times new roman, times, serif" size="3">Now file.html will have
+the queries.<br>
+When the postgres is started from a script, the </font><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">sysc</span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">tl</span><font
+ face="times new roman, times, serif" size="3"> &amp; </font><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;"><span
+ style="font-weight: bold;">export LD_LIBRARY_PATH </span></span><font
+ face="times new roman, times, serif" size="3">commands should be given
+inside the script.<br>
+</font></div>
+<br class="Apple-interchange-newline">
+</body>
+</html>

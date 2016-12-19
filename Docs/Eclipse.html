@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+  <meta name="GENERATOR" content="Microsoft FrontPage 4.0"><title>:: NMS PROJECT IN ECLIPSE 3.0 ::</title>
+  
+  <script language="JavaScript" fptype="dynamicoutline">
+<!--
+function dynOutline() {}
+//-->
+  </script>
+  <script language="JavaScript1.2" fptype="dynamicoutline" src="outline.html">
+  </script>
+  <script language="JavaScript1.2" fptype="dynamicoutline" for="document" event="onreadystatechange()">
+<!--
+initOutline()
+//-->
+  </script></head><body onclick="dynOutline()" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<div style="background-color: rgb(255, 255, 255);" align="center">
+<center>
+<table bgcolor="#fafafa" border="1" bordercolor="#d4d4d4" cellpadding="20" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <td width="100%">
+      <p align="center"><font color="#008000" face="Trebuchet MS" size="5"><b>WEB NMS&nbsp; IN ECLIPSE 3.0<br>
+      </b></font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</div>
+<p style="background-color: rgb(255, 255, 255);" align="left"><font face="Verdana" size="2"></font></p>
+<hr style="background-color: rgb(255, 255, 255);" size="1">
+<p style="background-color: rgb(255, 255, 255);" align="left"><b><font size="2">&nbsp;<br>
+</font><font face="Verdana" size="2"><a name="Table_Of_Contents"></a>
+Table Of Contents</font></b></p>
+<ol style="font-family: Verdana; font-size: 10pt; font-weight: bold; background-color: rgb(255, 255, 255);">
+  <li>
+    <p align="left"><a href="#Introduction"><b><font color="#008000" face="Verdana" size="2">Introduction</font></b></a> </p>
+  </li>
+  <li>
+    <p align="left"><a href="#gettingstarted"><b><font color="#008000" face="Verdana" size="2">Getting started</font></b></a></p>
+  </li>
+  <ol>
+    <li style="color: rgb(0, 128, 0);"><font><a href="#creating_webnmspro"><font color="#008000" face="Verdana" size="2">Creating WebNMS Project</font></a></font></li>
+    <li style="color: rgb(0, 128, 0);"><font><a href="#runningserver"><font color="#008000" face="Verdana" size="2">Running the server <br>
+      </font></a></font></li>
+    <li style="color: rgb(0, 128, 0);"><font><font><a href="#run_client"><font color="#008000" face="Verdana" size="2">Running the client</font></a></font></font></li>
+  </ol>
+  <li>
+    <p align="left"><font><font><a href="#other_ref"><font color="#008000" face="Verdana" size="2">Other
+References</font></a></font></font></p>
+  </li>
+</ol>
+<center style="background-color: rgb(255, 255, 255);">
+<hr size="1"></center>
+<ol style="font-family: Verdana; font-size: 10pt; font-weight: bold; background-color: rgb(255, 255, 255);">
+</ol>
+<p style="background-color: rgb(255, 255, 255);" align="left"><font face="Verdana" size="2"><b>1</b>.&nbsp;<a name="Introduction"></a><b>Introduction</b></font></p>
+<p style="background-color: rgb(255, 255, 255);" align="left"><font face="Verdana" size="2">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; </font><font face="Verdana" size="2">This document
+explains the
+steps to be followed to run Web NMS server and client using&nbsp;
+Eclipse.</font></p>
+<blockquote style="background-color: rgb(255, 255, 255);">
+  <blockquote> </blockquote>
+  <blockquote>
+    <blockquote> </blockquote>
+  </blockquote>
+</blockquote>
+<center style="background-color: rgb(255, 255, 255);">
+<hr size="1"></center>
+<p style="background-color: rgb(255, 255, 255);" align="left"><font face="Verdana" size="2"><b>2.&nbsp;</b><a name="gettingstarted"></a><b>Getting
+Started.</b></font><font color="#000000" face="Verdana" size="2"><b></b></font>
+&nbsp;</p>
+<blockquote style="background-color: rgb(255, 255, 255);"> <font color="#000000" face="Verdana" size="2"><br>
+  <a name="creating_webnmspro"></a><b>2.1.&nbsp; Creating WebNMS Project</b></font><br>
+</blockquote>
+<ul style="margin-left: 80px; background-color: rgb(255, 255, 255);">
+  <li>Invoke the Eclipse IDE</li>
+  <li>&nbsp;Select the menu item <strong>File &gt; New &gt;
+Project...</strong>. to open the <strong>New Project</strong> wizard.</li>
+  <li>Select <strong>Java Project</strong>&nbsp; and click <strong>Next</strong>.
+In the next dialog, type "WebNMS" in the <strong>Project name.</strong></li>
+  <li><span class="postbody">Select the radio button <span style="font-weight: bold;">Create project at <span style="text-decoration: underline;">e</span>xternal location</span>.
+Specify the Web NMS installation directory in the Directory field. For
+example. if your WebNMS is installed at
+/home/sam/AdventNet/WebNMS/ then the path of external directory should
+be /home/sam/AdventNet/WebNMS/ </span></li>
+  <li><span class="postbody"> Click next, to view the details about the
+build path. <br>
+    </span></li>
+  <li>Add the classes directory... using <span style="font-weight: bold;">Add Class folder</span> option. Click tthe
+"Create New Folder" &amp; then in the popup provide some name (eg.
+nmsclasses) in the Folder name:&nbsp;
+and then click <span style="font-weight: bold;">Advanced</span> &amp;
+enable the <span style="font-weight: bold;">Link to folder</span> <span style="font-weight: bold;">in the file system</span> , then browse and
+provide the NMSHOME/classes directory</li>
+  <li>In the <span style="font-weight: bold;">Order and Export</span>
+tab select all and then bring the
+"nmsclasses" to the top.</li>
+  <li>Change the default output folder NMSHOME/projectclasses<br>
+  </li>
+  <li><span class="postbody">Click finish to create the project</span></li>
+  <li><span class="postbody">Once this done, lot of errors and warnings
+will be listed in the Problems tab. Approximately 488 (errors+warnings)
+will be displayed in the right side Problems tab.<br>
+    </span></li>
+  <li><span class="postbody">In the left handside tree,&nbsp; under the
+project the source files which have errors will be marked in red cross.
+Please delete those problematic files by selecting the file/directory
+in the tree
+and then deleting using the right click menu. This deletion will delete
+from the Product installation directory itself. If you wish to keep the
+following directories for your refrence, take a backup of these
+directories and keep it in a directory outside the NMSHOME directory
+structure. Then perform the following deletion<br>
+    </span></li>
+  <ul>
+    <li><span class="postbody">Delete the
+default_impl/client_server_communication directory</span></li>
+    <li><span class="postbody">Delete the examples/corba/sources/
+directory</span></li>
+    <li><span class="postbody">Delete the examples/ejb_snmp directory</span></li>
+    <li><span class="postbody">Delete the
+examples/provisioning/templates/scheduling/</span><span class="postbody">(default
+package)</span><span class="postbody">&nbsp; directory<br>
+      </span></li>
+    <li><span class="postbody">Delete the
+examples/topo_notification_registry/(default package) directory<br>
+      </span></li>
+    <li><span class="postbody">Delete the genTrap/(default package)
+directory</span></li>
+    <li><span class="postbody">Delete the genTrap/nmsagent_v3settings
+directory<br>
+      </span></li>
+  </ul>
+  <li>Fix the compilation warnings by changing the compiler
+properties.</li>
+  <ul>
+    <li>Right click on the project on the tree and select the
+properties.</li>
+    <li>Select the java Compiler.</li>
+    <li>On the right side pane, select "<span style="font-weight: bold;">Use
+project settings"</span><br style="font-weight: bold;">
+    </li>
+    <li>Change warning messages to ignore for the following</li>
+    <ul>
+      <li>Usage of deprecated API: (Advanced tab)<br>
+      </li>
+      <li>Unused imports&nbsp; (Unused Code tab)<br>
+      </li>
+      <li>Assignment has no effects (Style tab)<br>
+      </li>
+      <li>Non-static access to static member (Style tab)</li>
+    </ul>
+  </ul>
+  <li>The README files may generate warnings, please delete them from
+the left side tree.<br>
+  </li>
+  <li><span style="font-weight: bold; color: rgb(255, 0, 0);">After
+fixing the errors rebuild the project. The above step of
+fixing the errors &amp; warnings is important for the debugging the
+project later</span></li>
+</ul>
+<blockquote style="background-color: rgb(255, 255, 255);"><font color="#000000" face="Verdana" size="2"><b><a name="runningserver"></a>2.2.
+Running
+the Server<br>
+  </b></font>
+  <blockquote></blockquote>
+</blockquote>
+<ul style="margin-left: 80px; background-color: rgb(255, 255, 255);">
+  <li>Select the project "WebNMS" in the tree &amp; then select the
+menu item <span style="font-weight: bold;">Run &gt; Run</span> <strong></strong><strong></strong>.</li>
+  <li>Select <strong>Java Project</strong> from the configurations
+list <strong></strong>&amp; click New<strong></strong></li>
+  <li>Provide some name to the New configuration... say <span style="font-weight: bold;">server</span>.</li>
+  <li>Provide the main class as
+"com.adventnet.launcher.nms.StartNmsJdbc"</li>
+  <li>Click on the Include external jars when searching for a main
+class.</li>
+  <li>Select the Arguments tab &amp; provide the following
+entries.</li>
+</ul>
+<br>
+<table style="width: 841px; height: 150px; text-align: left; margin-left: auto; margin-right: auto; background-color: rgb(255, 255, 238); color: rgb(51, 51, 255);" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold; text-decoration: underline; color: rgb(3, 99, 51);">Program
+Arguments:</span><br>
+      <br>
+      <ul>
+        <ul>
+          <ul style="color: rgb(0, 102, 0);">
+            <li style="background-color: rgb(255, 255, 238);"><span style="font-weight: bold;">APACHE_DIR</span> &lt;Web NMS
+Home&gt;/apache <span style="font-weight: bold;">TOMCAT_DIR</span>
+&lt;Web NMS Home&gt;/apache/tomcat <span style="font-weight: bold;">WEBSERVER_PORT</span>
+9090 <span style="font-weight: bold;">WEBCONTAINER_PORT</span> 8009 <span style="font-weight: bold;">TOMCAT_SHUTDOWNPORT</span>
+8005&nbsp;</li>
+          </ul>
+          <ol>
+            <ol>
+              <li style="color: rgb(0, 102, 0);">where &lt;Web NMS
+Home&gt; should be replaced by
+actual WebNMS
+Home of a installation</li>
+              <li style="color: rgb(0, 102, 0);">Else, you can define a
+variable nmshome to have the
+reference to actual WEB NMS HOME, by clicking the variables button.</li>
+            </ol>
+          </ol>
+        </ul>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="width: 939px; height: 150px; text-align: left; margin-right: auto; margin-left: 40px; background-color: rgb(255, 255, 255);" border="1" cellpadding="2" cellspacing="2">
+</table>
+<br>
+<br>
+<table style="width: 851px; height: 165px; text-align: left; margin-left: auto; margin-right: auto; background-color: rgb(255, 255, 238); color: rgb(51, 51, 255);" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold; text-decoration: underline; color: rgb(3, 99, 51);">VM
+Arguments:</span><br>
+      <ul style="color: rgb(0, 102, 0);">
+        <ul>
+          <ul>
+            <li>-Dresource_check="9090,8009,8005,1099"&nbsp; <br>
+            </li>
+          </ul>
+          <ul>
+            <li>-Djava.rmi.server.codebase="http://localhost:9090/classes/
+http://localhost:9090/classes/ManagementServer.jar
+http://localhost:9090/classes/AdventNetTftp.jar
+http://localhost:9090/classes/AdventNetCLI.jar
+http://localhost:9090/classes/AdventNetSnmp.jar
+http://localhost:9090/AdventNetSNMPv3/classes/
+http://localhost:9090/classes/AdventNetJmxAgent.jar
+http://localhost:9090/classes/xmojo.jar
+http://localhost:9090/classes/jta.jar" -mx100m</li>
+            <li>-Djava.library.path=&lt;Web NMS Home&gt;/lib</li>
+          </ul>
+        </ul>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<ul>
+  <ul>
+    <ul>
+      <li>At the bottom of the Arguments tab remove the selection of "<span style="font-weight: bold;">Use default working space".</span></li>
+      <li>Click on the "<span style="font-weight: bold;">File System</span>"
+&amp; browse to the Web NMS home &amp; click OK.</li>
+      <li>In the environment tab... click New ... in the Name column
+give LD_LIBRARY_PATH and in the value give
+NMSHOME/lib:NMSHOME/apache/lib.&nbsp; (not needed for Windows)</li>
+    </ul>
+  </ul>
+</ul>
+<blockquote style="background-color: rgb(255, 255, 255);"><font color="#000000" face="Verdana" size="2"><b><a name="run_client"></a>2.3.
+Running
+the Client<br>
+  </b></font> </blockquote>
+<ul style="margin-left: 80px; background-color: rgb(255, 255, 255);">
+  <li><span class="postbody"></span>Select the project "WebNMS" in the
+tree &amp; then select the
+menu item <span style="font-weight: bold;">Run &gt; Run</span> <strong></strong><strong></strong>.</li>
+  <li>Select <strong>Java Project</strong> from the configurations
+list <strong></strong>&amp; click New<strong></strong></li>
+  <li>Provide some name to the New configuration... say <span style="font-weight: bold;">client</span>.</li>
+  <li>Provide the main class as
+"com.adventnet.nms.startclient.WebNMSClient"</li>
+  <li>Click on the Include external jars when searching for a main
+class.</li>
+  <li>Select the Arguments tab &amp; provide the following entries</li>
+</ul>
+<br>
+<table style="width: 841px; height: 150px; text-align: left; margin-left: auto; margin-right: auto; background-color: rgb(255, 255, 238);" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold; text-decoration: underline; color: rgb(3, 99, 51);">Program
+Arguments:</span><br style="color: rgb(51, 51, 255);">
+      <br style="color: rgb(51, 51, 255);">
+      <ul>
+        <ul>
+          <ul>
+            <li style="background-color: rgb(255, 255, 238); color: rgb(51, 51, 255);"><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="color: rgb(0, 102, 0);">hostname
+port yes/no</span></li>
+            <ul style="background-color: rgb(255, 255, 238); color: rgb(0, 102, 0);">
+              <li style="background-color: rgb(255, 255, 238);">hostname
+---&gt; in which server running (e.g localhost or green)</li>
+              <li style="background-color: rgb(255, 255, 238);">port
+---&gt; webserver port (eg. 9090)</li>
+              <li style="background-color: rgb(255, 255, 238);">yes
+---&gt; to show log console.</li>
+            </ul>
+            <li style="background-color: rgb(255, 255, 238);"><span style="color: rgb(0, 102, 0);">Example entry will be like this </span><span style="font-weight: bold; color: rgb(0, 102, 0);">localhost 9090 yes</span><br>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <ul>
+    <ul>
+      <li>At the bottom of the Arguments tab remove the selection of "<span style="font-weight: bold;">Use default working space".</span></li>
+    </ul>
+  </ul>
+  <ul>
+    <ul>
+      <li>Click on the "<span style="font-weight: bold;">File System"</span>
+&amp; browse to the Web NMS home &amp; click OK.&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+      </li>
+    </ul>
+  </ul>
+</ul>
+<center style="background-color: rgb(255, 255, 255);">
+<hr size="1">
+<div style="text-align: justify;"><b>3.&nbsp;</b><a name="other_ref"></a><span style="font-weight: bold;"><span style="font-family: verdana;"> </span></span><font face="Verdana" size="2"><b>Other References</b></font></div>
+</center>
+<font face="Verdana" size="2"><b></b></font>
+<blockquote style="background-color: rgb(255, 255, 255);"><font face="Verdana" size="2"><span style="font-weight: bold;"></span></font>
+  <blockquote></blockquote>
+</blockquote>
+<ul style="background-color: rgb(255, 255, 255);">
+  <ul>
+    <ul>
+      <li>After starting the eclipse, select the help menu&nbsp; and
+then click the help contents.</li>
+      <li>Go through the Java Development User guide.</li>
+    </ul>
+  </ul>
+</ul>
+<div style="border: 2px solid orange; margin: 0px; padding: 0px; position: absolute; width: 0px; display: none; z-index: 99999;" id="Clipmarks244BorderDiv5490"></div><div style="border: 2px solid orange; margin: 0px; padding: 0px; position: absolute; width: 0px; display: none; z-index: 99999;" id="Clipmarks850BorderDiv6121"></div><div style="border: 2px solid orange; margin: 0px; padding: 0px; position: absolute; height: 0px; display: none; z-index: 99999;" id="Clipmarks270BorderDiv996"></div><div style="border: 2px solid orange; margin: 0px; padding: 0px; position: absolute; height: 0px; display: none; z-index: 99999;" id="Clipmarks902BorderDiv5952"></div></body></html>

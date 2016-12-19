@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>possible reasons for Graceful shutdown of WebNMS</title>
+</head>
+<body>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="font-family: verdana,arial,helvetica,sans-serif; font-size: 11px;"><font
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">These are
+the<span class="Apple-converted-space">&nbsp;</span></font><span
+ style="font-style: italic; font-size: medium; font-family: 'times new roman',times,serif;">possible</span><font
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3"><span
+ class="Apple-converted-space">&nbsp;</span>reasons for Graceful
+shutdown of WebNMS?</font><br>
+<font
+ style="font-size: medium; font-family: 'times new roman',times,serif;"
+ color="#000025"><br>
+<span style="text-decoration: underline;">In Linux:</span><br>
+1. When /tmp directory was not accessible (not writable) to the user
+starting WebNMS.<br>
+<font color="#000000">2. When WebNMS was started in Redhat Linux 7.3<br>
+3. When the IP is not resolved. (i.e) the IP given in<span
+ class="Apple-converted-space">&nbsp;</span><span
+ style="font-weight: bold;">/etc/hosts</span><span
+ class="Apple-converted-space">&nbsp;</span>is not the real IP of the
+machine.<br>
+<br>
+<u>In SSL setup:</u></font></font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">In
+addition to the steps documented in<span class="Apple-converted-space">&nbsp;</span></font><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html#gracefully_shutting_down_in_ssl"
+ style="font-size: medium; font-family: 'times new roman',times,serif;">WebNMS
+SSL document</a><font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">, these
+are the other reasons for graceful shutting down of WebNMS in a SSL
+setup:</font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">1. In
+&lt;NMS_Home&gt;\apache\backup\conf\httpd.conf, the following entry
+might be commented out:</font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">&lt;IfModule
+mod_ssl.c&gt;</font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">&nbsp;&nbsp;
+Include ssl/ssl.conf</font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">&lt;/IfModule&gt;</font><br>
+<br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">2. While<span
+ class="Apple-converted-space">&nbsp;</span></font><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html#Changing_server_client_script%20files"
+ style="font-size: medium; font-family: 'times new roman',times,serif;">modifying
+startnms script</a><font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">, The
+path of the truststore file may be improperly given or not at all
+configured.</font><br>
+<font class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3">3. The<span
+ class="Apple-converted-space">&nbsp;</span></font><big><font
+ class="Apple-style-span" face="'courier new', courier, monospace"
+ size="2"><b><big>-D SSL</big><span class="Apple-converted-space">&nbsp;</span></b></font></big><a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html#NmsProcessesBE.conf"
+ style="font-size: medium; font-family: 'times new roman',times,serif;">modification</a><font
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif;" size="3"><span
+ class="Apple-converted-space">&nbsp;</span>may not be present in
+NmsProcessesBE.conf &amp; NmsProcessesFE.conf</font><br>
+<div>
+<hr>
+<div><font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif">Dear Team</font><br>
+<br>
+<font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif">Please note that there is no
+exclusive issues in connecting a SSL enabled WebNMS (SP4) in 1.6 JRE.</font><br>
+<font class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"><font class="Apple-style-span">If there are any issues, it
+should get reflected when running in JRE 1.5 also.<br>
+</font>In addition, the restriction w.r.t IP address is that the same
+name should be used in both places (while creating&nbsp;</font><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">BEServer.key</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;&amp;&nbsp;</span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">BETransKey.key</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)<br>
+<br>
+</span></div>
+<xmeta http-equiv="content-type" content="text/html; charset=utf-8"><xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8">
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><font
+ class="Apple-style-span">Please ensure that you had executed all the
+below commands:</font><br>
+</font>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">openssl
+genrsa -rand world.png -out BEServer.key 1024</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">openssl
+req -new -key BEServer.key -out BEServer.csr</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">openssl
+x509 -req -days 3000 -in BEServer.csr -signkey BEServer.key -out
+BEServer.cer</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">$JAVA_HOME/bin/keytool
+-import -alias bessl -keystore Truststore.truststore -file BEServer.cer</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">$JAVA_HOME/bin/keytool
+-genkey -alias betransssl -validity 3000 -keystore BETransKey.key
+-storepass webnms -keypass webnms</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">$JAVA_HOME/bin/keytool
+-export -alias betransssl -keystore BETransKey.key -file BETransCer.cer</font></div>
+<div><font class="Apple-style-span"
+ face="'courier new', courier, monospace" size="2" color="#0000ff">$JAVA_HOME/bin/keytool
+-import -alias betransssl -keystore Truststore.truststore -file
+BETransCer.cer</font><br>
+<br>
+</div>
+<font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif">Please carry out the below
+steps &amp; provide us the details:<br>
+</font><br>
+<font class="Apple-style-span" style="font-size: medium;"
+ face="'times new roman', times, serif">1. Check whether build properly
+starts in 1.5 JRE</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+2. We have got one set of certificates (<a style="font-style: italic;"
+ href="https://nmskbase.wiki.zoho.com/_attach/1.0/certs_1024_3083775.zip">certs_1024_3083775.zip</a>)
+where the common name for the server is kept as&nbsp;<i><b>localhost</b></i>.<br>
+Please backup your set of certificates &amp; unzip this zip over WebNMS
+home. Now restart the server<br>
+(We had kept the names of the certificate &amp; keystore files as the
+same name given in the&nbsp;<a
+ href="http://www.webnms.com/webnms/help4_7/developer_guide/communication_services/ssl/ssl_combo.html">WebNMS
+SSL Document</a>. Hence if you had changed any of those names, ensure
+to update the conf files or rename the certs we had given)<br>
+<br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">If the issues
+persists, please provide us the following:<br>
+<br>
+1. transportProvider.conf, NmsProcessesBE.conf &amp;&nbsp;<xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8">NmsProcessesBE.conf
+(from $NMS_Home<b>/conf</b>)<br>
+2. setEnv.sh (</xmeta></font><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">from
+$NMS_Home</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)<br>
+3. apache/conf/backup/httpd.conf</span></div>
+<div><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">4.
+apache/ssl/backup/ssl.conf</span></div>
+<div><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">5.
+$NMS_Home/apache/tomcat/logs,&nbsp;</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">$NMS_Home/apache/logs
+&amp;&nbsp;</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">$NMS_Home/logs
+(if possible zip the whole apache directory &amp;<a
+ href="http://bonitas.zohocorp.com/upload/index.jsp?to=nms-support@webnms.com">upload</a><span
+ class="Apple-converted-space">&nbsp;</span>the same)<br>
+<br>
+6. Output of the following commands from the system.<br>
+<xmeta http-equiv="content-type" content="text/html; charset=utf-8"><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;"><xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8"><span
+ style="font-family: 'times new roman',times,serif; color: rgb(0, 0, 0); font-size: medium;">1.&nbsp;</span>nslookup
+&lt;machine_name&gt;<br>
+<span
+ style="font-family: 'times new roman',times,serif; color: rgb(0, 0, 0); font-size: medium;">2.&nbsp;</span>nslookup
+&lt;<xmeta http-equiv="content-type" content="text/html; charset=utf-8">IPAddress&gt;
+//Here&nbsp;</xmeta></xmeta></span><xmeta http-equiv="content-type"
+ content="text/html; charset=utf-8"><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">IPAddress
+is the ip address returned in the above command</span><br>
+3.&nbsp;<span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">cat
+/etc/hosts<br>
+</span>4.&nbsp;<span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">/sbin/ifconfig</span><br>
+(All the above should be mutually agreeing. i.e. output of&nbsp;</xmeta></xmeta></span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">nslookup
+&lt;machine_name&gt;</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;should
+be the same as the output of&nbsp;</span><span
+ style="color: rgb(0, 0, 255); font-family: 'courier new',courier,monospace; font-size: small;">/sbin/ifconfig</span><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">.
+i.e Both IP addresses should be one and the same)<br>
+<br>
+</span></div>
+<xmeta http-equiv="content-type" content="text/html; charset=utf-8"><xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8">
+<div><span
+ style="font-family: 'times new roman',times,serif; font-size: medium;">7.
+As which Linux user (root / normal), WebNMS is started.</span></div>
+<xmeta http-equiv="content-type" content="text/html; charset=utf-8"><xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8"><xmeta
+ http-equiv="content-type" content="text/html; charset=utf-8">
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+Thanks &amp; regards</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Venkatramanan</font></div>
+</xmeta></xmeta></xmeta></xmeta></xmeta></xmeta></xmeta></div>
+</span></span>
+</body>
+</html>

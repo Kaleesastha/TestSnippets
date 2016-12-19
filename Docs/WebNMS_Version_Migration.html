@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNMS Version Migration</title>
+</head>
+<body>
+<font size="-1"><font face="Tahoma"><b><i>Note to Customers : Please do
+not modify the mail Subject when you reply to this mail </i></b><br>
+Ticket ID : 34047<br>
+Ticket Title : WebNMS new version upgrade and migration?<br>
+<br>
+Dear Reddy<br>
+<br>
+You can make use of the <a
+ href="http://www.adventnet.com/products/webnms/maintenance_and_support_tools.html">Web
+NMS Maintenance and Support Tools</a> to migrate the configuration
+files.<br>
+<br>
+In case of database migration, you can take the backup of the data in
+the previous version &amp; restore the same in 4.7 SP2<br>
+(<b>If the EMS version is based on a version less that 4.7 namely 4.5
+or 4.0, kindly tell us the existing WebNMS version he is using</b>. <span
+ style="font-weight: bold;">We will instruct you accordingly</span>)<br>
+Refer the <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/backup/backupservice.html">WebNMS
+Developer guide</a> for more options in this case.<br>
+<br>
+</font></font><span class="article_disp_answer"><font
+ style="font-family: tahoma;" size="-1">If
+there are any DatabaseSchema changes between the EMS versions, , <font
+ face="Tahoma">Kindly verify the</font></font></span><font size="-1"><font
+ face="Tahoma"> WebNMS KBase article - </font></font><span
+ class="article_disp_answer"><font style="font-family: tahoma;"
+ size="-1"><span style="font-weight: bold;"><a
+ href="http://kbase.adventnet.com/kb/onlineviewarticle.jsp?ArticleID=110838">To
+take care of Data Migration between EMS versions:</a><br>
+</span></font></span><span class="article_disp_answer"><font
+ style="font-family: tahoma;" size="-1"><span style="font-weight: bold;"></span><font
+ color="#000099"><u><br>
+<font color="#ff6600">Excerpts from the article</font></u></font><br>
+If
+there are any DatabaseSchema changes between the EMS versions, the
+older data has to be migrated into the new format in the new
+DatabaseSchema. For this to be done, the implementation has to be
+written and invoked in the pre/post-script process of the UpdateManager
+tool, while applying the ".ppm".&nbsp; The following methodology is
+suggested to achieve the needs:</font><br style="font-family: tahoma;">
+<ul style="font-family: tahoma;">
+  <li><font size="-1">A new database has to be created with the changed
+DatabaseSchema.</font> </li>
+  <li><font size="-1">Once created, all the information present in the
+existing database has to be copied to the new one.</font>
+  </li>
+  <li><font size="-1">Once this is done, Web NMS can use this new
+database to get started.</font> </li>
+</ul>
+<font style="font-family: tahoma;" size="-1">The advantage is that the
+collected data is secure and the previous version of Web NMS can be run
+anytime.<br>
+<br>
+The implementation should take care of the following while copying down
+the data into the new database.</font><br style="font-family: tahoma;">
+<ul style="font-family: tahoma;">
+  <li><font size="-1">The newly created database has to be clean
+without any data.</font> </li>
+  <li><font size="-1">When a table is not present in the new version
+and present in the deployed version, then the data in the deployed
+version has to be inserted into another table in the new version.</font>
+  </li>
+  <li><font size="-1">When a table is present in both the new and
+the deployed versions, then the data present in the deployed version
+has to be read and populated in the new version.</font></li>
+</ul>
+</span><font face="Tahoma"><small>Also note that a</small></font><small
+ style="font-family: tahoma;">s <b>NAR </b>is the final packaged
+output
+of the application, there is no mechanism to upgrade the NAR built on
+Web NMS 2.3 to Web NMS 4. However, the projects can be upgraded to Web
+NMS 4 and the application NAR can be re-created. (from KBase - </small><small
+ style="font-family: tahoma;"><b><a
+ href="http://kbase.adventnet.com/kb/onlineviewarticle.jsp?ArticleID=110876">Is
+there any tool to migrate a NAR built on Web NMS 2.3 to Web NMS 4 ?</a></b>)<br>
+<br>
+You can also refer the KBase <b>article </b></small><b><small
+ style="font-family: tahoma;"><a
+ href="http://kbase.adventnet.com/kb/onlineviewarticle.jsp?ArticleID=112347">Upgrade
+Path from Web NMS 2.3 to Web NMS 4.7- SP1</a></small></b><br>
+<font size="-1"><font face="Tahoma"><br>
+We believe this answers your queries. Kindly get back to us for any
+further clarification in this regard.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan<br>
+&lt;reddy@force10networks.com&gt; wrote--------------<br>
+<br>
+Hi,<br>
+How do your customers do migration to newer versions?<br>
+I have a customer who runs on an older version. Now he wants to migrate
+to new version which is based on WebNMS 4.7 SP2.<br>
+Is there any migration tool, that I can use, which will do DB migration
+and conf file migration?<br>
+<br>
+Thanks,<br>
+Reddy
+</font></font>
+</body>
+</html>

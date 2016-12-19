@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Steps to compile apache in Linux or Solaris</title>
+</head>
+<body>
+<pre style="font-family: times new roman,times,serif;">We have given herewith the steps to compile the apache for the Solaris / Linux OS.<br><font
+ color="#000000"><font size="3"><font face="Times New Roman"><br>Ensure beforehand to <b>make, gcc, ar, autoconf, libtool, perl (&gt;5), automake </b>packages are there in the system &amp; the system PATH variable contain the following:</font></font></font><br>Download <a
+ href="http://archive.apache.org/dist/httpd/httpd-2.2.8.tar.gz"><span
+ style="font-weight: bold;">httpd-2.2.8.tar.gz</span> </a>or <a
+ style="font-weight: bold;"
+ href="http://archive.apache.org/dist/httpd/httpd-2.2.6.tar.gz">httpd-2.2.6.tar.gz</a><a
+ href="http://archive.apache.org/dist/httpd/httpd-2.0.47.tar.gz"></a> from http://archive.apache.org/dist/httpd/ and issue the following compounds:<br><br><font
+ color="#000066"><big><font face="Courier New, Courier, monospace">$ gunzip  httpd-2.2.6.tar.gz<br>$ tar xvfi httpd-2.2.6.tar<br>$ export PATH=/usr/local/ssl:/etc/usr/ccs:/usr/bin:/usr/local/bin:/usr/ucb:/etc:/etc/usr/ccs:/usr/bin:/opt/sfw/share:/opt/sfw/bin:/usr/ccs/bin:$PATH<br>$ cd </font></big></font>&lt;Directory in which the httpd-2.0.47 is created&gt;<br><br><b>For non-ssl</b><br><font
+ color="#000066" face="Courier New, Courier, monospace"><big>$ ./configure --enable-rewrite=shared --prefix=&lt;APACHE2_HOME&gt;<br>$ make<br>$ make install</big></font><br><br><b>To Install OpenSSL:</b><br>Download OpenSSL from http://www.openssl.org/source/openssl-0.9.7b.tar.gz <br>After unzipping openssl-0.9.7b.tar.gz <b>follow the below commands as root user</b> from &lt;Dir_in_which_OpenSSL_is_present&gt;:<br><font
+ color="#000066" face="Courier New, Courier, monospace"><big><br># ./configure<br># make<br># make install</big></font><br><br><b>And installing Apache in SSL Mode:</b><font
+ color="#000066" face="Courier New, Courier, monospace"><big><br>$ ./configure --enable-ssl --with-ssl="OpenSSL_HOME" --with-egd-pool=/var/run/egd-pool --disable-threads --enable-rewrite=shared --prefix="APACHE2_HOME"<br>$ make<br>$ make install<br><br></big></font><a
+ href="http://archive.apache.org/dist/httpd/httpd-2.2.8.tar.gz"><br></a><a
+ href="http://archive.apache.org/dist/httpd/httpd-2.2.6.tar.gz"></a></pre>
+</body>
+</html>

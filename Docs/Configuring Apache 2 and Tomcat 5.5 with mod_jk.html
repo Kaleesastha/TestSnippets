@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Configuring Apache 2 and Tomcat 5.5 with mod_jk</title>
+</head>
+<body>
+<h3 class="post-title"> Configuring Apache 2 and Tomcat 5.5 with mod_jk
+</h3>
+<div class="post-body"> I
+recently went through the painful exercise of configuring Tomcat 5.5
+behind Apache 2 using the mod_jk connector. I had done it before with
+mod_jk2, but it seems that mod_jk2 is deprecated, so I wanted to redo
+it with the officially supported mod_jk connector. Although I found
+plenty of tutorials and howtos on Google, they all missed some
+important details or were not exactly tailored to my situation. So
+here's my own howto:<br>
+<br>
+<span style="font-size: 130%;"><span style="font-weight: bold;">Step 1:
+Install Apache 2</span></span><br>
+<br>
+I
+won't go into many details, as this a very well documented process. I
+installed httpd-2.0.55 and I used the following configuration options:<br>
+<br>
+<span style="font-family: courier new;">./configure --enable-so
+--enable-mods-shared=most</span><br>
+<br>
+In the following discussion, I will assume that Apache 2 is installed
+in /usr/local/apache2.<br>
+<br>
+<span style="font-size: 130%;"><span style="font-weight: bold;">Step 2:
+Install JDK 1.5</span></span><br>
+<br>
+In my case, I put the JDK files in /usr/local/java and I added this
+line to root's .bash_profile file:<br>
+<br>
+<span style="font-family: courier new;">export
+JAVA_HOME=/usr/java/jdk1.5.0_05</span><br>
+<br>
+<span style="font-size: 130%;"><span style="font-weight: bold;">Step 3:
+Install Tomcat 5.5</span></span><br>
+<br>
+Download <a
+ href="http://www.reverse.net/pub/apache/tomcat/tomcat-5/v5.5.12/bin/apache-tomcat-5.5.12.tar.gz">apache-tomcat-5.5.12.tar.gz</a>
+and put it in /usr/local. Unpack the package, create tomcat user and
+group, change ownership:<br>
+<br>
+<span style="font-family: courier new;"># cd /usr/local; tar xvfz
+apache-tomcat-5.5.12</span><br>
+<span style="font-family: courier new;"># ln -s
+/usr/local/apache-tomcat-5.5.12 /usr/local/tomcat</span><br>
+<span style="font-family: courier new;"># groupadd tomcat; useradd
+tomcat -g tomcat -d /usr/local/tomcat tomcat</span><br>
+<span style="font-family: courier new;"># chown -R tomcat.tomcat
+/usr/local/apache-tomcat-5.5.12 /usr/local/tomcat</span><br>
+<br>
+<span style="font-weight: bold;">Modify .bash_profile for user tomcat
+and source it</span><br>
+<br>
+Become user tomcat and modify .bash_profile file by adding following
+lines:<br>
+<br>
+<span style="font-family: courier new;">export
+PATH=$PATH:/usr/local/bin:/usr/local/tomcat/bin</span><br>
+<span style="font-family: courier new;">export
+JAVA_HOME=/usr/java/jdk1.5.0_05</span><br>
+<span style="font-family: courier new;">export
+CATALINA_HOME=/usr/local/tomcat</span><br>
+<br>
+<span style="font-family: courier new;">$ . ~/.bash_profile</span><br>
+<br>
+<span style="font-weight: bold;">Test starting/stopping the Tomcat
+server</span><br>
+<br>
+Try to start up tomcat by running <span
+ style="font-family: courier new;">startup.sh</span> (it's in bin
+subdir, should be in PATH)<br>
+<br>
+If you do <span style="font-family: courier new;">ps -def | grep tomcat</span>
+you should see something like:<br>
+<br>
+<span style="font-family: courier new;">tomcat
+18591 1 88 06:40 pts/0 00:00:02 /usr/java/jdk1.5.0_05/bin/java
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+-Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties
+-Djava.endorsed.dirs=/usr/local/tomcat/common/endorsed -classpath
+:/usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/commons-logging-api.jar
+-Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat
+-Djava.io.tmpdir=/usr/local/tomcat/temp
+org.apache.catalina.startup.Bootstrap start</span><br>
+<br>
+Try to shut down tomcat by running <span
+ style="font-family: courier new;">shutdown.sh</span> (it's in bin
+subdir, should be in PATH)<br>
+<br>
+If you do <span style="font-family: courier new;">ps -def | grep tomcat</span>
+you shouldn't see the above process running.<br>
+<br>
+<span style="font-size: 130%;"><span style="font-weight: bold;">Step 4:
+Install the mod_jk connector</span></span><br>
+<br>
+Download <a
+ href="http://www.apache.org/dist/jakarta/tomcat-connectors/jk/source/jk-1.2.14/jakarta-tomcat-connectors-1.2.14.1-src.tar.gz">jakarta-tomcat-connectors-1.2.14.1-src.tar.gz</a>
+and unpack it, then configure and build it:<br>
+<br>
+<span style="font-family: courier new;"># cd
+jakarta-tomcat-connectors-1.2.14.1-src/jk/native</span><br>
+<span style="font-family: courier new;"># ./buildconf.sh</span><br>
+<span style="font-family: courier new;"># ./configure
+--with-apxs=/usr/local/apache2/bin/apxs</span><br>
+<span style="font-family: courier new;"># make; make install</span><br>
+<br>
+Verify that mod_jk.so is in /usr/local/apache2/modules and is chmod 755.<br>
+<br>
+<span style="font-weight: bold; font-size: 130%;">Step 5: Connect
+Tomcat to Apache</span><br>
+<br>
+Create <span style="font-family: courier new;">workers.properties</span>
+file in /usr/local/apache2/conf with following contents:<br>
+<br>
+<span style="font-family: courier new;">#</span><br>
+<span style="font-family: courier new;"># This file provides minimal jk
+configuration properties needed to</span><br>
+<span style="font-family: courier new;"># connect to Tomcat.</span><br>
+<span style="font-family: courier new;">#</span><br>
+<span style="font-family: courier new;"># We define a worked named
+'default'</span><br>
+<span style="font-family: courier new;">#</span><br>
+<br>
+<span style="font-family: courier new;">workers.tomcat_home=/usr/local/tomcat</span><br>
+<span style="font-family: courier new;">workers.java_home=/usr/java/jdk1.5.0_05</span><br>
+<span style="font-family: courier new;">ps=/</span><br>
+<span style="font-family: courier new;">worker.list=default</span><br>
+<br>
+<span style="font-family: courier new;">worker.default.port=8009</span><br>
+<span style="font-family: courier new;">worker.default.host=localhost</span><br>
+<span style="font-family: courier new;">worker.default.type=ajp13</span><br>
+<span style="font-family: courier new;">worker.default.lbfactor=1</span><br>
+<br>
+Edit
+httpd.conf and add the following mod_jk-specific directives (I added
+them just before the start of Section 3 / Virtual Hosts).<br>
+<br>
+<span style="font-weight: bold;">Important note</span>:
+the name of the worker defined in the workers.properties file
+('default' in this example) needs to be the same as the worker that
+appears in httpd.conf in the <span style="font-weight: bold;">JkMount</span>
+lines. Also note that the <span style="font-weight: bold;">JkMount</span>
+lines below only map the two sample JSP/servlet applications that ship
+with Tomcat. You need to add similar lines for your custom application.<br>
+<br>
+<br>
+<span style="font-family: courier new;"> #</span><br>
+<span style="font-family: courier new;"> # Mod_jk settings</span><br>
+<span style="font-family: courier new;"> #</span><br>
+<span style="font-family: courier new;"> # Load mod_jk module</span><br>
+<span style="font-family: courier new;"> LoadModule jk_module
+modules/mod_jk.so</span><br>
+<span style="font-family: courier new;"> # Where to find
+workers.properties</span><br>
+<span style="font-family: courier new;"> JkWorkersFile
+conf/workers.properties</span><br>
+<span style="font-family: courier new;"> # Where to put jk logs</span><br>
+<span style="font-family: courier new;"> JkLogFile logs/mod_jk.log</span><br>
+<span style="font-family: courier new;"> # Set the jk log level
+[debug/error/info]</span><br>
+<span style="font-family: courier new;"> JkLogLevel debug</span><br>
+<span style="font-family: courier new;"> # Select the log format</span><br>
+<span style="font-family: courier new;"> JkLogStampFormat "[%a %b %d
+%H:%M:%S %Y] "</span><br>
+<span style="font-family: courier new;"> # JkOptions indicate to send
+SSL KEY SIZE,</span><br>
+<span style="font-family: courier new;"> JkOptions +ForwardKeySize
++ForwardURICompat -ForwardDirectories</span><br>
+<span style="font-family: courier new;"> # JkRequestLogFormat set the
+request format</span><br>
+<span style="font-family: courier new;"> JkRequestLogFormat "%w %V %T"</span><br>
+<span style="font-family: courier new;"> # Send JSPs for context
+/jsp-examples to worker named default</span><br>
+<span style="font-family: courier new;"> JkMount /jsp-examples/*.jsp
+default</span><br>
+<span style="font-family: courier new;"> # Send servlets-examples to
+worker named default</span><br>
+<span style="font-family: courier new;"> JkMount /servlets-examples/*
+default</span><br>
+<br>
+Keep
+editing httpd.conf and add following Alias directives (for example
+under the entry for the icon Alias). These directives tell Apache to
+map /jsp-examples and servlets-examples to the sample directories that
+ship with Tomcat.<br>
+<br>
+<span style="font-family: courier new;"># Static files in the
+jsp-examples webapp are served by apache</span><br>
+<span style="font-family: courier new;">Alias /jsp-examples
+"/usr/local/tomcat/webapps/jsp-examples/"</span><br>
+<span style="font-family: courier new;"><directory></directory></span><br>
+<span style="font-family: courier new;"> Options FollowSymLinks</span><br>
+<span style="font-family: courier new;"> AllowOverride None</span><br>
+<span style="font-family: courier new;"> Allow from all</span><br>
+<span style="font-family: courier new;"></span><br>
+<br>
+<span style="font-family: courier new;"># The following line prohibits
+users from directly access WEB-INF</span><br>
+<span style="font-family: courier new;"><location></location></span><br>
+<span style="font-family: courier new;"> AllowOverride None</span><br>
+<span style="font-family: courier new;"> deny from all</span><br>
+<span style="font-family: courier new;"></span><br>
+<br>
+<span style="font-family: courier new;"># Static files in the
+servlets-examples webapp are served by apache</span><br>
+<span style="font-family: courier new;">Alias /servlets-examples
+"/usr/local/tomcat/webapps/servlets-examples/"</span><br>
+<span style="font-family: courier new;"><directory></directory></span><br>
+<span style="font-family: courier new;"> Options FollowSymLinks</span><br>
+<span style="font-family: courier new;"> AllowOverride None</span><br>
+<span style="font-family: courier new;"> Allow from all</span><br>
+<span style="font-family: courier new;"></span><br>
+<br>
+<span style="font-family: courier new;"># The following line prohibits
+users from directly access WEB-INF</span><br>
+<span style="font-family: courier new;"><location></location></span><br>
+<span style="font-family: courier new;"> AllowOverride None</span><br>
+<span style="font-family: courier new;"> deny from all</span><br>
+<span style="font-family: courier new;"></span><br>
+<br>
+Restart Apache via <span style="font-family: courier new;">/etc/rc.d/init.d/httpd
+restart</span><br>
+<br>
+Test standalone Tomcat server by going to
+http://Web_server_name_or_IP:8080<br>
+<br>
+Test
+Apache/Tomcat integration by going to
+http://Web_server_name_or_IP/jsp-examples and
+http://Web_server_name_or_IP/servlets-examples<br>
+<br>
+That should be
+it. At least it did the trick for me. In future posts I'll cover Tomcat
+clustering/session replication and some tips for tuning Apache/Tomcat.<br>
+<br>
+Helpful articles/howtos/tutorials:<br>
+<br>
+A. Ramnishath's Knowledge Base: <a
+ href="http://www.icast.org.in/%7Eramnishath/kb.php?article=2">Configuring
+AJP1.3 Connector for Tomcat</a><br>
+<a href="http://tomcat.apache.org/connectors-doc/howto/apache.html">Jakarta
+Tomcat Connector -- Apache Howto</a><br>
+<a href="http://www.sitepoint.com/article/jsp-quick-start-guide-linux/4">JSP
+Quick-Start for Linux</a> </div>
+<p class="post-footer">posted by Grig Gheorghiu at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html"
+ title="permanent link">7:34 AM</a> <span
+ class="item-control blog-admin pid-1884999965"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/post-edit.g?blogID=9238405&amp;postID=113077599799067645"
+ title="Edit Post"><span class="quick-edit-icon">&nbsp;</span></a></span></p>
+<!-- End .post --><!-- Begin #comments --> <a name="comments"></a>
+<h4>25 Comments:</h4>
+<ul>
+  <li id="c113174916235290026"><a name="c113174916235290026"></a>
+    <div class="comment-body">
+    <p>Thanks for posting this!! I've never used Tomcat before, and
+these instructions were great. Everything worked on the first try.<br>
+    <br>
+(BTW, you might want to remind people to run "restart.sh" at the same
+time they Restart Apache in Step 5.)<br>
+    <br>
+Thanks again!!<br>
+    <br>
+--Mike</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113174916235290026"
+ title="comment permalink">2:46 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113174916235290026"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113313946879997441"><a name="c113313946879997441"></a>
+    <div class="comment-body">
+    <p>looks
+like a nice article... does anyone know of one to connect apache 2 and
+tomcat 5.5 on a windows machine? feel free to email me
+kewlken6@hotmail.com</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113313946879997441"
+ title="comment permalink">4:57 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113313946879997441"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113356070260763785"><a name="c113356070260763785"></a>
+    <div class="comment-body">
+    <p>Thank
+you for your post! I was trying to follow apache's instructions for
+apache2,tomcat 5.0, and mod_jk for windows and failing miserably. <br>
+    <br>
+After following yours and adapting it for windows, I was able to get
+the server up and kicking within minutes.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113356070260763785"
+ title="comment permalink">1:58 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113356070260763785"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113739724222138888"><a name="c113739724222138888"></a>
+    <div class="comment-body">
+    <p>Same as the others. Tried lots of other how-to's on the web, but
+none of them got me going until I came across yours.<br>
+    <br>
+THANK YOU, THANK YOU, THANK YOU!!</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113739724222138888"
+ title="comment permalink">11:40 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113739724222138888"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113918116375074838"><a name="c113918116375074838"></a>
+    <div class="comment-body">
+    <p>Mate,
+very helpful. You made me laugh with the "painful" comment. Its
+true...i was going in circles using Apaches own docs until I found your
+page. Only a few more configurations and I can maybe actually start
+coding :). This works on Windows too for others. <br>
+    <br>
+Cheers again.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113918116375074838"
+ title="comment permalink">3:12 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113918116375074838"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113942706786744106"><a name="c113942706786744106"></a>
+    <div class="comment-body">
+    <p>No idea about how to configure PUT methods....maybe some other
+people reading this page will have ideas.<br>
+    <br>
+Grig</p>
+    </div>
+    <p class="comment-data">By <a
+ href="http://www.blogger.com/profile/17863511617654196370"
+ rel="nofollow">Grig Gheorghiu</a>, at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113942706786744106"
+ title="comment permalink">11:31 AM</a> <span
+ class="item-control blog-admin pid-1884999965"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113942706786744106"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113942719797520644"><a name="c113942719797520644"></a>
+    <div class="comment-body">
+    <p>Any
+idea how to get this configuration to work with the PUT request method?
+Apache does not support it out of the box and I was wondering if it
+could be forwarded through mod_jk.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113942719797520644"
+ title="comment permalink">11:33 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113942719797520644"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113962107228303039"><a name="c113962107228303039"></a>
+    <div class="comment-body">
+    <p>I got it working, but shouldn't there be directory tags
+surrounding the <br>
+Options FollowSymLink<br>
+AllowOverride None<br>
+Allow from all<br>
+under Alias /servlets-examples
+"/usr/local/tomcat/webapps/servlets-examples/?</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113962107228303039"
+ title="comment permalink">5:24 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113962107228303039"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113963087300578456"><a name="c113963087300578456"></a>
+    <div class="comment-body">
+    <p>You're
+right, there should be directory tags in the apache directives. It's
+just that the Blogger editor doesn't like HTML tags and it silently
+eliminates them when it shows the post....</p>
+    </div>
+    <p class="comment-data">By <a
+ href="http://www.blogger.com/profile/17863511617654196370"
+ rel="nofollow">Grig Gheorghiu</a>, at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113963087300578456"
+ title="comment permalink">8:07 PM</a> <span
+ class="item-control blog-admin pid-1884999965"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113963087300578456"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c113968241146646504"><a name="c113968241146646504"></a>
+    <div class="comment-body">
+    <p>Thank You very much, but...<br>
+    <br>
+I am very sorry for asking stupid questions, but I can`t ask another
+any more...<br>
+    <br>
+How must I change those configuration settings to be able to do such
+thing:<br>
+place file like C:/sites/my_virtual_host_N/www/my_file.jsp and view
+them in http://my_virtual_host_N/my_file.jsp.<br>
+    <br>
+Actually, I want them to behavior like PHP files, with possibility to
+use JSP.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c113968241146646504"
+ title="comment permalink">10:26 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=113968241146646504"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114056593433958901"><a name="c114056593433958901"></a>
+    <div class="comment-body">
+    <p>Just a hint, but if you ever want to set this up with
+Apache/SSL, add the following to your httpd.conf:<br>
+JkExtractSSL On<br>
+JkHTTPSIndicator HTTPS<br>
+JkSESSIONIndicator SSL_SESSION_ID<br>
+JkCIPHERIndicator SSL_CIPHER<br>
+JkCERTSIndicator SSL_CLIENT_CERT<br>
+    <br>
+Then you can type in the secure website name:<br>
+https://Web_server_name_or_IP</p>
+    </div>
+    <p class="comment-data">By <a
+ href="http://www.blogger.com/profile/18172461" rel="nofollow">Ah-muh-na</a>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114056593433958901"
+ title="comment permalink">3:52 PM</a> <span
+ class="item-control blog-admin pid-874151509"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114056593433958901"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114200922819277451"><a name="c114200922819277451"></a>
+    <div class="comment-body">
+    <p>Grig Rocks</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114200922819277451"
+ title="comment permalink">8:47 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114200922819277451"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114357599654248516"><a name="c114357599654248516"></a>
+    <div class="comment-body">
+    <p>Fantastic instructions! Thank you.<br>
+Would
+you please include instructions how to have the tomacat service startup
+on boot (add to chkconfig for startup and service restart)<br>
+Thanks again!</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114357599654248516"
+ title="comment permalink">11:59 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114357599654248516"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114392673938425344"><a name="c114392673938425344"></a>
+    <div class="comment-body">
+    <p>Good
+stuff. Thanks. The apache.org docs use worker name of ajp13 but their
+generated file uses worker1. So, you have to correct this as you point
+out.</p>
+    </div>
+    <p class="comment-data">By <a
+ href="http://www.blogger.com/profile/15837064" rel="nofollow">timjowers</a>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114392673938425344"
+ title="comment permalink">1:25 PM</a> <span
+ class="item-control blog-admin pid-1709448770"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114392673938425344"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114474946984265957"><a name="c114474946984265957"></a>
+    <div class="comment-body">
+    <p>You idiot! After 2 hours I realized that your configuration
+files misses the &lt;directory&gt; tags.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114474946984265957"
+ title="comment permalink">2:57 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114474946984265957"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114476817954438360"><a name="c114476817954438360"></a>
+    <div class="comment-body">
+    <p>I
+used to have directory tags in there, but the angle brackets have been
+stripped by the Blogger editor. So thanks for pointing it out. It
+didn't seem to stop other people from getting it to work though :-)</p>
+    </div>
+    <p class="comment-data">By <a
+ href="http://www.blogger.com/profile/17863511617654196370"
+ rel="nofollow">Grig Gheorghiu</a>, at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114476817954438360"
+ title="comment permalink">8:09 AM</a> <span
+ class="item-control blog-admin pid-1884999965"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114476817954438360"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c114716812204904333"><a name="c114716812204904333"></a>
+    <div class="comment-body">
+    <p><b>Tip:</b> instead of editing <b>httpd.conf</b> manually, you
+can use the Tomcat autoconfigure feature. It generates the appropriate
+section to be <i>Include</i>d in <b>httpd.conf</b>, including all
+context root mappings.<br>
+    <br>
+I saw a pretty good discussion of this at
+http://www.howtoforge.com/apache2_tomcat5_mod_jk<br>
+    <br>
+-- Zwets</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c114716812204904333"
+ title="comment permalink">2:48 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=114716812204904333"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c115029577166093783"><a name="c115029577166093783"></a>
+    <div class="comment-body">
+    <p>i
+tried this a million times and it does not work for me. i think apache
+is not sending 8080 stuff to tomcat. how can i debug this on apache
+side. debuggin on tomcat side is useless as 8009 recieves nothing.
+telnetting to 8009 works fine.<br>
+    <br>
+email addres jkoorts at gmail.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c115029577166093783"
+ title="comment permalink">7:36 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=115029577166093783"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c115324902033892876"><a name="c115324902033892876"></a>
+    <div class="comment-body">
+    <p>Thank you so very much.</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c115324902033892876"
+ title="comment permalink">11:57 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=115324902033892876"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c116154761739044404"><a name="c116154761739044404"></a>
+    <div class="comment-body">
+    <p>Excellent article!!! After struggling for countless hours got it
+working with the help of this article!!<br>
+    <br>
+Cheers!<br>
+-Parvinder Bhasin</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c116154761739044404"
+ title="comment permalink">1:06 PM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=116154761739044404"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c116222078667200545"><a name="c116222078667200545"></a>
+    <div class="comment-body">
+    <p>The
+article helped me to get things running. Good example. Directory tags
+are indeed needed. Too bad you didn't mention it, but hey, you won't
+hear me complaining :)</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c116222078667200545"
+ title="comment permalink">7:06 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=116222078667200545"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c116248963025847730"><a name="c116248963025847730"></a>
+    <div class="comment-body">
+    <p>Great tutorial, but whne I restart Apache 2, I get this error ...<br>
+    <br>
+Syntax error on line 448 of /usr/local/apache2/conf/httpd.conf:<br>
+AllowOverride not allowed here<br>
+    <br>
+Complaining about the commented line<br>
+    <br>
+Alias /jsp-examples "/usr/local/tomcat/webapps/jsp-examples/"<br>
+    <br>
+Options FollowSymLinks<br>
+# Complains about "AllowOverride"<br>
+AllowOverride None<br>
+Allow from all</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c116248963025847730"
+ title="comment permalink">9:47 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=116248963025847730"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c116273588982132397"><a name="c116273588982132397"></a>
+    <div class="comment-body">
+    <p>1 question. I've been trying to do this for several days with no
+effect..<br>
+    <br>
+Is
+there a way to browse files using apache2 thoug server and when
+selecting *.jsp file (wherewer it is) make Tomcat compile it and
+show..? I managed to compile files that were in webapps dir or ROOT and
+tried some things so i wouldn't have to write http://localhost:8080 and
+so on but it fails..i'd be really happy if someone there could help me
+with it. mail testament777(at)gmail.com</p>
+    </div>
+    <p class="comment-data">By <span class="anon-comment-author">Anonymous</span>,
+at <a
+ href="http://agiletesting.blogspot.com/2005/10/configuring-apache-2-and-tomcat-55.html#c116273588982132397"
+ title="comment permalink">6:11 AM</a> <span
+ class="item-control blog-admin pid-2111946133"><a
+ style="border: medium none ;"
+ href="http://www2.blogger.com/delete-comment.g?blogID=9238405&amp;postID=116273588982132397"
+ title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span></p>
+  </li>
+  <li id="c116282500535881156"><a name="c116282500535881156"></a>
+    <div class="comment-body">
+    <p>http://ramnishath.blogspot.com/2006/05/configuring-ajp13-connector-for-tomcat.html</p>
+    </div>
+  </li>
+</ul>
+</body>
+</html>

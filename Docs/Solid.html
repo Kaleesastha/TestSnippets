@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Solid</title>
+</head>
+<body>
+Dear Vishnu<u1:p> </u1:p><br>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">Thanks for providing us the database. We have
+successfully installed it &amp; connected to
+it. Now we have some issues when installing it as a
+service. I have attached an image Solid_err.JPG, which I got when I
+tried to
+install the Solid service. Also, there was no details in EventLogs.<u1:p>
+</u1:p>Kindly do help in installing Solid Service.<u1:p></u1:p><o:p></o:p></span></font></p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">Regards<br>
+</span></font><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">Venkatramanan</span></font><br>
+</p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">Do you have a license file? (solid.lic)<u1:p></u1:p><br>
+If yes, here is what we do to install solid as a
+windows service:<u1:p></u1:p><o:p></o:p></span></font></p>
+<p class="MsoPlainText"><b><font color="red" face="Tahoma" size="2"><span
+ style="font-size: 10pt; color: red; font-weight: bold;">D:\CVS\framework\db\bin\solid.exe
+-sinstall,"ConSentry InSight Database",
+D:\CVS\framework\db\bin\solid.exe,autostart</span></font></b><font
+ color="blue" face="Tahoma" size="2"><span style="font-size: 10pt;"><u1:p></u1:p><o:p></o:p></span></font></p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">We call the above command from
+D:\CVS\framework\db\data directory. This takes care of 2 things. One,
+the
+solid.lic file is present in this directory. Two, when solid gets
+installed as
+a windows service, it executes in this directory making sure the
+license file
+is found.<u1:p></u1:p><o:p></o:p></span></font></p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;">If you open the services window and right
+click on
+solid service (ConSentry InSight Database), and select Properties, a
+window
+will pop up. Under the general tab, there is a non editable text field
+called
+"Path to executable". Here is what it reads like for us after we do
+the above step:<u1:p></u1:p><o:p></o:p></span></font></p>
+<p class="MsoPlainText"><b><font color="red" face="Tahoma" size="2"><span
+ style="font-size: 10pt; color: red; font-weight: bold;">D:\CVS\framework\db\bin\solid.exe
+-c "D:\CVS\framework\db\data" -n "ConSentry InSight
+Database" -s start<br>
+Rubal.<u1:p></u1:p></span></font></b><o:p></o:p></p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;"><u1:p>&nbsp;Vishnu is right. What we do is
+that once solid is installed as a windows service, we run solid.exe to
+create an empty database (.db files) and<br>
+then run solid as a windows service. Here is the command we execute
+from D:\CVS\framework\db\data directory to create an empty database.<br>
+..\bin\solid.exe -C &lt;Database Name&gt; -U &lt;Username&gt; -P
+&lt;Password&gt;<br>
+Hope this helps.<br>
+<br>
+-----Original Message-----<br>
+From: Vishnu.Dommeti@solidtech.com [mailto:Vishnu.Dommeti@solidtech.com]<br>
+<br>
+Hi Venkat,<br>
+<br>
+You have the solid.lic file in the dir C:\Solid\DatabaseEngine4.1 Does
+this directory have a existing solid database file in it. When starting
+SOLID as a service it is required that there needs to be a DB file
+existing in the directory to which the -c option points to. If the DB
+file is present and you still cannot start SOLID as a service then
+browsing the solmsg.out and solerror.out will give you info as to the
+possible reasons.<br>
+regards<br>
+vishnu<br>
+<br>
+venkatramanan &lt;venkatramanan@adventnet.com&gt; on 08/10/2005
+10:52:27 AM<br>
+<br>
+Dear Rubal<br>
+Thanks for your response.<br>
+I have got the following directory structure:
+C:\Solid\DatabaseEngine4.1\bin<br>
+Solid.lic is present in C:\Solid\DatabaseEngine4.1\solid.lic. The
+procedure I used to install the Solid Database service is to execute
+the following command from C:\Solid\DatabaseEngine4.1 (i.e)
+C:\Solid\DatabaseEngine4.1&gt; C:\Solid\DatabaseEngine4.1\bin\solid.exe
+-sinstall,"SOLID41", C:\Solid\DatabaseEngine4.1\bin\solid.exe,autostart
+<br>
+<br>
+I could see the following command (in the path to executable) on
+clicking the properties of the Solid service
+C:\Solid\DatabaseEngine4.1\bin\solid.exe -c
+"C:\Solid\DatabaseEngine4.1" -n "SOLID41" -s start<br>
+<br>
+But when I started the service the same error dialog (which I reported
+yesterday) thrown up. Also I could start the Solid as a standalone
+process as prescribed (i.e) bin\solid -c eval_kit\standalone From
+C:\Solid\DatabaseEngine4.1\ as C:\Solid\DatabaseEngine4.1&gt; bin\solid
+-c eval_kit\standalone<br>
+I believe that I have not committed any mistake in using the double
+quotes.<br>
+Kindly guide me.<br>
+Thanks &amp; regards<br>
+Venkatramanan<br>
+<br>
+Rubal Wrote:<br>
+Check the license file again (maybe it has expired) or make sure you
+are giving the same commands as I have given below (in the image you
+sent<br>
+yesterday, I had noticed that the double quotes may have been wrongly
+placed).<br>
+<br>
+I have no idea why it isn't working for you. You have asked for help
+and I would be glad to provide it, but tell me how. <br>
+</u1:p></span></font></p>
+<p class="MsoPlainText"><font color="blue" face="Tahoma" size="2"><span
+ style="font-size: 10pt;"><u1:p>Rubal.<br>
+<br>
+<br>
+</u1:p></span></font></p>
+</body>
+</html>

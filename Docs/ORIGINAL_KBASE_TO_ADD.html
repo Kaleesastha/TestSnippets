@@ -1,0 +1,1655 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>KBASE_TO_ADD</title>
+</head>
+<body>
+<span class="f">
+<blockquote>
+  <p><span class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span></span></span></span></span></span></span><span
+ class="f"><font face="Times New Roman"><strong>Ticket ID : 11332103<br>
+Ticket Title : Re:webnms server as service<br>
+  <br>
+  </strong>Dear Pujari<br>
+  <br>
+  </font><font face="Times New Roman">Sorry that we had mentioned the
+parameter name as TIMEOUT instead of <strong>SERVICE_STARTUP_WAIT. </strong><br>
+  <br>
+  </font><font face="Times New Roman">We had analysed your requirement
+and had arrived at the following solution.<br>
+  <br>
+  </font><font face="Times New Roman">There would be a configurble
+boolean parameter (eg: <strong>SERVICE_STARTUP_WAIT</strong>) in the <strong>java_services.ini
+  </strong>file.<br>
+  <br>
+  </font><font face="Times New Roman">Setting <strong>SERVICE_STARTUP_WAIT</strong>&nbsp;to
+  <strong>FALSE </strong>would&nbsp;&lt;!--StartFragment --&gt; <font
+ face="Times New Roman">not wait for all of the&nbsp; WebNMS modules to
+be&nbsp; initialized as in 4.7SP1. The WebNMS service would </font>&lt;!--StartFragment
+--&gt;<font face="Times New Roman">be declared to be started as soon as
+StartNmsJdbc is initialised as in 4SP1. <br>
+  </font>On setting <strong>SERVICE_STARTUP_WAIT</strong>&nbsp;to <strong>TRUE
+  </strong>(or if it's not specified), WebNMS would be declared started
+only on complete initialization of the modules.<br>
+  <br>
+  </font><font face="Times New Roman">We believe that this would meet
+your requirement.<br>
+We
+ensure that the changes carried out (in 4.5 SP2) is not nullified to
+assure that for some customers it is necessary that the status of
+WebNMS should be displayed as <strong>STARTED only on complete start
+up of the service. </strong>.<br>
+  <br>
+  </font><font face="Times New Roman">We would give you a patch over
+4.7 SP1 with this issue fixed on or before&nbsp; <strong>23.03.2005</strong><br>
+  <br>
+  </font><font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan<br>
+  <br>
+  </font><font face="Times New Roman">&gt;-----
+&lt;CJohnson@airespace.com&gt; wrote: -----<br>
+  <br>
+Venkatramanan,<br>
+  <br>
+I
+believe the correct approach to this problem is to go back to the
+solution in WebNMS 4SP1. NT services are not designed to take a long
+time to start up, thus I think you will find an alternative solution<br>
+difficult
+if not impossible. This bug will cause us not to ship our next release,
+thus we need a timeline for when we can expect a patch for this issue.<br>
+  <br>
+Regards,<br>
+C.J.<br>
+Chris Johnson<br>
+Senior Software Engineer<br>
+Airespace<br>
+_______________________________<br>
+  <br>
+From: Devesh Pujari <br>
+Sent: Tuesday, March 15, 2005 10:20 AM<br>
+To: Chris Johnson<br>
+Subject: FW: [Ticket ID : 11332103] Re:webnms server as service<br>
+  <br>
+This is the reply. So they have given up on net start and sc.exe is
+only for XP. So what next ? <br>
+-Devesh.<br>
+  <br>
+-----Original Message-----<br>
+From: venkatramanan<br>
+[mailto:venkatramanan@adventnet.com] <br>
+Sent: Tuesday, March 15, 2005 5:29 AM<br>
+To: Devesh Pujari<br>
+Cc: nms-support@adventnet.com;<br>
+charumathi@adventnet.com<br>
+Subject: [Ticket ID : 11332103] Re:webnms server as service<br>
+  </font><font face="Times New Roman"><strong><br>
+Ticket ID : 11332103<br>
+Ticket Title : Re:webnms server as service<br>
+  </strong><br>
+Dear Devesh.<br>
+  <br>
+We could reproduce the issue regarding <strong>net Start
+&lt;Service_Name&gt;. </strong><br>
+  <br>
+There did exist a change in the source of <strong>javaservice.exe </strong>between
+WebNMS4 &amp; WebNMS 4.7. and we are trying to isolate the change
+between the versions. Kindly note that We are treating this issue with
+top priority and would resolve at the earliest<br>
+  <br>
+Meanwhile we found a MicroSoft KBase article which says:<br>
+  <br>
+  <font color="blue">To
+create a script to create and start a service on a remote computer, use
+the Sc.exe tool from the Resource Kit. The syntax for this utility is: <br>
+  <br>
+  </font></font><font color="blue" face="Times New Roman">sc
+\\&lt;VAR&gt;computername&lt;/VAR&gt; create notepad binpath=
+c:\winnt\system32\notepad.exe type= own start= auto depend= "+TDI
+Netbios" <br>
+  <br>
+  </font><font face="Times New Roman"><font color="darkblue"><font
+ color="blue">This
+particular command instructs the remote computer to create the
+"Notepad" service, then tells the computer where it can find the
+program file for this service.</font><br>
+  </font><br>
+More details at </font><a
+ href="http://support.microsoft.com/?kbid=252340"><font color="#932526"
+ face="Times New Roman">http://support.microsoft.com/?kbid=252340</font></a><br>
+  <br>
+  <font face="Times New Roman">Check whether the above could help you.<br>
+  <br>
+Regarding the scenario of WebNMS not installing in Windows 2000:<br>
+  <br>
+There
+is no parameter called SERVICE_DIR in java_service.ini. We only have a
+variable called WEBNMS_DIR in that file. And we also regret that we
+could not reproduce this scenario in our environment. <br>
+  <br>
+Regards &amp; Thanks<br>
+Venkatramanan<br>
+&gt;----- &lt;</font><a href="mailto:DPujari@airespace.com"><font
+ color="#932526" face="Times New Roman">DPujari@airespace.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----<br>
+  <br>
+Hi Venkat/ Charumathi, <br>
+  <br>
+Sc.exe
+is only for XP and its family products. We support our product for
+windows 2000 also. So it's not working for windows 2000. Mainly we
+would like to start the service using 'net start' as it was working
+earlier with WEBNMS 4.0 but with WEBNMS 4.7 it does not. Also while
+installing in 2000 as service we are getting this error: <br>
+3/9/105 14:43:53 - SERVICE_DIR value is not set. <br>
+Please set SERVICE_DIR value in java_service.ini.<br>
+  <br>
+I
+don't see SERVICE_DIR in documentation of java_service.ini This problem
+is going on for long. We would like to fix this ASAP. We are having
+conference call today 6.30PM PST to talk about other issues. Please be
+on this call to discuss this&nbsp;also or make sure some one is there
+about
+this issue.<br>
+  <br>
+Thanks,<br>
+Devesh.<br>
+  <br>
+-----Original Message-----<br>
+From: AdventNet nms-support [mailto:nms-<br>
+support@adventnet.com] <br>
+Sent: Monday, March 07, 2005 3:04 AM<br>
+To: Devesh Pujari<br>
+Cc: nms-support@adventnet.com<br>
+Subject: [Ticket ID : 11332103] Re:webnms server as service<br>
+  <br>
+  </font><font face="Times New Roman"><strong>Ticket ID : 11332103<br>
+Ticket Title : Re:webnms server as service<br>
+  <br>
+  </strong>Dear Devesh,<br>
+  <br>
+We analysed the scenario of WebNMS starting as a service in Windows
+machines. We found that:<br>
+WebNMS could be started from the command prompt (like other
+services)&nbsp;&nbsp;with the help of <strong>sc.exe </strong>present
+in </font><font face="Times New Roman"><strong>&lt;Windows_Home&gt;\system32.
+  <br>
+  <br>
+  </strong>(i.e) To start WebNMS as a service from command prompt type<br>
+  <strong>sc start &lt;NMS_Service_Name&gt; </strong>or </font><font
+ face="Times New Roman"><strong>sc.exe start &lt;NMS_Service_Name&gt; <br>
+  </strong><br>
+We had tested with the mentioned commands and found that WebNMS runs
+without any issues. <br>
+To stop from the command prompt<br>
+  <strong>sc&nbsp;stop &lt;NMS_Service_Name&gt; </strong>or </font><font
+ face="Times New Roman"><strong>sc.exe&nbsp;stop
+&lt;NMS_Service_Name&gt; <br>
+  <br>
+  </strong>For
+the options associated with sc.exe type sc from the command prompt and
+hit enter. This may also be used to pause, delete (from the registry) a
+service, etc. Kindly follw the given URLs for further understanding:<br>
+  <br>
+  </font><a
+ href="http://www.microsoft.com/resources/documentation/Windows/XP/all/reskit/en-us/Default.asp?url=/resources/documentation/Windows/XP/all/reskit/en-us/prmb_tol_cnxc.asp"><font
+ color="#932526" face="Times New Roman">http://www.microsoft.com/resources/documentation/Windows/XP/all/reskit/en-us/Default.asp?url=/resources/documentation/Windows/XP/all/reskit/en-us/prmb_tol_cnxc.asp</font></a><br>
+  <br>
+  <a
+ href="http://www.computing.net/windowsnt/wwwboard/forum/21892.htmlhttp://windows.about.com/od/myfavoritestuff/l/aa010318b.htm"><font
+ color="#932526" face="Times New Roman">http://www.computing.net/windowsnt/wwwboard/forum/21892.html<br>
+  <br>
+  </font></a><a
+ href="http://windows.about.com/od/myfavoritestuff/l/aa010318b.htm"><font
+ color="#932526" face="Times New Roman">http://windows.about.com/od/myfavoritestuff/l/aa010318b.htm</font></a><br>
+  <br>
+  <font face="Times New Roman">We
+believe that this would solve your requirement of starting WebNMS as a
+service. Please get back to us for further clarifications, if any, in
+this regard.<br>
+  <br>
+  </font><font face="Times New Roman"><strong>Ticket ID : 11332103<br>
+Ticket Title : Re:webnms server as service</strong><br>
+  <br>
+Dear Devesh<br>
+  <br>
+Sorry for the delayed response. <br>
+  <br>
+When WebNMS, as a service is started from the command promt using "<strong>javaservice
+-start</strong>"
+it would not get reflected in the Services window.This is true for any
+WebNMS version.We confirmed this&nbsp;by starting both WebNMS 4 and
+WebNMS
+4.7 by using "javaservice -start".Kindly test the same in your
+environment and get back to us incase of any clarifications.<br>
+  <br>
+Regarding
+WebNMS service not starting with "net start", we are analysing this in
+our environment and we will get back to you by monday. <br>
+  <br>
+Thanks for your understanding.<br>
+  <br>
+Regards &amp; thanks<br>
+Venkatramanan<br>
+(NMS_Support)<br>
+  <br>
+&gt;----- &lt;</font><a href="mailto:DPujari@airespace.com"><font
+ color="#932526" face="Times New Roman">DPujari@airespace.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----<br>
+Hi Venkat, <br>
+I am ready now . Can you call me now ?Call me at 408-481-9380.<br>
+Thanks,<br>
+Devesh.<br>
+  <br>
+Hi Venkat, <br>
+Please
+call me at 10pm (PST) today that is your time 11.30am. If you have any
+other question. Also we can set up web-ex session so that I can show
+you error. My numbers are : <br>
+408-481-9380
+(Home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+408-757-2553 (Cell)<br>
+Thanks,<br>
+Devesh.<br>
+  <br>
+Hi Venkat, <br>
+This
+is the output of javaservice -start. I have attached the webnms logs
+also. I have attached java_service.ini file also. It does start the
+service but there are some errors shown on console and on
+administrativetools-&gt;service It does not show that it has started. <br>
+Also
+'net start' does not start it ( Adventnet webnms 4.7). With our 2.2
+release ( Adventnet webnms 4.0) it does start&nbsp; using net start. <br>
+C:\WINDOWS&gt;JavaService -start<br>
+Debug: java_exe is -
+C:\\PROGRA~1\\ACS30\\bin\\..\\webnms\jre1.4\bin\java.exe<br>
+--copy 1--tcchar=-Xms512m<br>
+--copy 1--tcchar=-Xmx512m<br>
+--copy 1--tcchar=-ea<br>
+--copy 1--tcchar=-Djava.awt.headless=true<br>
+--copy 1--tcchar=-Daes.dir=.<br>
+--copy 1--tcchar=-Dmibs.root=.\\mibs<br>
+--copy 1--tcchar=-DfirewallPort=6789<br>
+--copy 1--tcchar=-Dcatalina.home=.\\apache\\tomcat<br>
+--copy 1--tcchar=-Dwebserver.rootdir=.\\apache<br>
+--copy
+--tcchar=-
+Djava.class.path=.\\classes;.\\classes\\ACSServer.jar;.\\apache\\tomcat\\common\\lib\\servlet.jar;.\\apache\\tom<br>
+cat\\bin\\bootstrap.jar;.\\apache\\tomcat\\lib\\jasper-compiler.jar;.\\apache\\tomcat\\lib\\jasper-runtime.jar;.\\db\\jdbc\\SolidDriver2.0.jar;.;--copy
+1--tcchar=-a.library.path=.\\lib;.\\RFdlls;.\\lib\\tools.<br>
+jar<br>
+--quote start state--end of quote start
+state--copy1--tcchar=-Dresource_check="8009"<br>
+--quote start state--end of quote start state--copy
+1--tcchar=-Djava.rmi.server.<br>
+codebase=""</font><a href="http://localhost/classes/"><font
+ color="#932526" face="Times New Roman">http://localhost:80/classes/</font></a><br>
+  <font face="Times New Roman">--copy
+1--tcchar=http://localhost:80/classes/ManagementServer.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/AdventNetTftp.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/AdventNetCLI.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/AdventNetJmx.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/AdventNetSnmp.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/AdventNetSAS.jar<br>
+--copy 1--tcchar=http://localhost:80/classes/jta.jar<br>
+--quote start state--copy 1--tcchar=ROOT_DIR<br>
+--quote start state--end of quote start state<br>
+--copy1--tcchar="C:\\Program Files\\ACS30\\bin\\..\\webnms"<br>
+--copy
+1--tcchar=APACHE_DIR--quote start state--end of quote start
+state--copy1--cchar="C:\\Program Files\\ACS30\\bin\\..\\webnms\apache"<br>
+--copy 1--tcchar=WEBSERVER_PORT<br>
+--copy 1--tcchar=80<br>
+--copy 1--tcchar=WEBCONTAINER_PORT<br>
+--copy 1--tcchar=8009<br>
+--copy 1--tcchar=TOMCAT_DIR<br>
+--quote start state--end of quote start state--<br>
+copy 1--tcchar="C:\\Program Files\\ACS30\\bin\\..\\webnms\apache\tomcat"<br>
+--copy 1--tcchar=NATIVE_PING<br>
+--copy 1--tcchar=true<br>
+--copy 1--tcchar=SERVICE<br>
+--copy 1--tcchar=true<br>
+--copy 1--tcchar=NMS_BE_PORT<br>
+--copy 1--tcchar=2000<br>
+--copy 1--tcchar=NMS_BE_FAILOVER<br>
+--copy 1--tcchar=false<br>
+--copy 1--tcchar=SOLID<br>
+--quote start state--end of quote start statejvmopt[0]=-Xms512m<br>
+jvmopt[1]=-Xmx512m<br>
+jvmopt[2]=-ea<br>
+jvmopt[3]=-Djava.awt.headless=true<br>
+jvmopt[4]=-Daes.dir=.<br>
+jvmopt[5]=-Dmibs.root=.\\mibs<br>
+jvmopt[6]=-DfirewallPort=6789<br>
+jvmopt[7]=-Dcatalina.home=.\\apache\\tomcat<br>
+jvmopt[8]=-Dwebserver.rootdir=.\\apache<br>
+jvmopt[9]=-<br>
+Djava.class.path=.\\classes;.\\classes\\ACSServer.jar;.\\apache\\tomcat\\common\\lib\\servlet.jar;.\\apache\\tomcat\\bi<br>
+n\\bootstrap.jar;.\\apache\\tomcat\\lib\\jasper-compiler.jar;.\\apache\\tomcat\\lib\\jasper-runtime.jar;.\\db\\jdbc\\SolidDriver2.0.jar;.;<br>
+jvmopt[10]=-Djava.library.path=.\\lib;.\\RFdlls;.\\lib\\tools.jarjvmopt[11]=-Dresource_check="8009"<br>
+jvmopt[12]=-Djava.rmi.server.codebase=""</font><a
+ href="http://localhost/classes/"><font color="#932526"
+ face="Times New Roman">http://localhost:80/classes/</font></a><br>
+  <font face="Times New Roman">jvmopt[13]=http://localhost:80/classes/ManagementServer.jar<br>
+jvmopt[14]=http://localhost:80/classes/AdventNetTftp.jar<br>
+jvmopt[15]=http://localhost:80/classes/AdventNetCLI.jar<br>
+jvmopt[16]=http://localhost:80/classes/AdventNetJmx.jar<br>
+jvmopt[17]=http://localhost:80/classes/AdventNetSnmp.jar<br>
+jvmopt[18]=http://localhost:80/classes/AdventNetSAS.jar<br>
+jvmopt[19]=http://localhost:80/classes/jta.jar<br>
+jvmopt[20]=http://localhost:80/classes/ACSServer.jar"<br>
+javaarg[0]=ROOT_DIR<br>
+javaarg[1]=C:\\Program Files\\ACS30\\bin\\..\\webnms<br>
+javaarg[2]=APACHE_DIR<br>
+javaarg[3]=C:\\Program Files\\ACS30\\bin\\..\\webnms\apache<br>
+javaarg[4]=WEBSERVER_PORT<br>
+javaarg[5]=80<br>
+javaarg[6]=WEBCONTAINER_PORT<br>
+javaarg[7]=8009<br>
+javaarg[8]=TOMCAT_DIR<br>
+javaarg[9]=C:\\Program Files\\ACS30\\bin\\..\\webnms\apache\tomcat<br>
+javaarg[10]=NATIVE_PING<br>
+javaarg[11]=true<br>
+javaarg[12]=SERVICE<br>
+javaarg[13]=true<br>
+javaarg[14]=NMS_BE_PORT<br>
+javaarg[15]=2000<br>
+javaarg[16]=NMS_BE_FAILOVER<br>
+javaarg[17]=false<br>
+javaarg[18]=SOLID<br>
+javaarg[19]=C:\\Program Files\\ACS30\\bin\\..\\webnms\..\bin\startdb.bat<br>
+--Library loaded...<br>
+--Got ServiceClass<br>
+--Got MainMethod<br>
+--Got StringClass<br>
+--Try to call mainMethod<br>
+getting socket connection for Solid DB......<br>
+Trying Again to get Solid Socket connection...<br>
+getting socket connection for Solid DB......<br>
+Trying Again to get Solid Socket connection...<br>
+getting socket connection for Solid DB......<br>
+Trying Again to get Solid Socket connection...<br>
+getting socket connection for Solid DB......<br>
+Trying Again to get Solid Socket connection...<br>
+getting socket connection for Solid DB......<br>
+Trying Again to get Solid Socket connection...<br>
+ARGUMENTS SOLID
+C:\\ProgramFiles\\ACS30\\bin\\..\\webnms\..\bin\startdb.bat<br>
+Starting Solid...<br>
+getting socket connection for Solid DB......<br>
+SOLID has started....<br>
+Starting Apache...<br>
+current dir is C:\Program Files\ACS30\webnms<br>
+command is C:\Program Files\ACS30\webnms\apache\bin\apache.exe -k<br>
+restart -D SSL<br>
+-n "Nms_Apache"<br>
+exitVal 0<br>
+Error while doing resource checkFor input string: ""8009"" - why this
+error is coming ?<br>
+Starting AdventNet Web NMS Server Modules, please wait<br>
+Process : NmsTftpServer [ Started ]<br>
+Process : RunJSPModule [ Started ]<br>
+Process : NmsAuthManager [ Started ]<br>
+Process : NmsPolicyMgr [ Started ]<br>
+Process : RunRmiRegistry [ Started ]<br>
+Process : AuthMgr [ Started ]<br>
+Process : DBUserStorageServer [ Started ]<br>
+Process : NmsAuthenticationManager [ Started ]<br>
+Process : UserConfigProcess [ Started ]<br>
+Process : EventMgr [ Started ]<br>
+Process : DBServer [ Started ]<br>
+Process : BsnManager [ Started ]<br>
+Process : AuthenticationManagerFE [ Started ]<br>
+Debug: [Control Server] SetServiceStatus error 6 - why this error is
+coming ?<br>
+Process : UserConfigProcessFE [ Started ]<br>
+Process : NmsMainFE [ Started ]<br>
+Process : TopoFE [ Started ]<br>
+Process : PolicyFE [ Started ]<br>
+Process : EventFE [ Started ]<br>
+Process : AuthorizationManagerFE [ Started ]<br>
+Process : AlertFE [ Started ]<br>
+Verifying connection with web server ... verified<br>
+Web NMS Server modules started successfully <br>
+Please connect your client to the web server on port: 80<br>
+Thanks,<br>
+Devesh.<br>
+  <br>
+Hi, <br>
+I
+installed Airespace Control Service(ACS) which is using WEB NMS 4.7 as
+service. I can start the service from Administrative tools
+-&gt;services. But when when I use commnd prompt and do 'net start
+NMS_SERVER' it does not start the service. Have you seen this problem ?
+Can you suggest what<br>
+could be the problem ?<br>
+  <br>
+Thanks,<br>
+Devesh.</font></span><br>
+  </p>
+  <p><span class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><font face="Times New Roman"><strong></strong></font></span></span></span></span></span></span></span></span></span><span
+ class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span></span></span></span></span></span></span></span></span><br>
+Ticket ID : 11320502<br>
+  <span class="f">
+  <blockquote>
+    <p><font face="Times New Roman">Ticket Title : Re:Problems on
+integrating MySQL 4.0.21 with WebNMS 4.7 SP1<br>
+&nbsp;<br>
+Dear Saurabh,<br>
+    <br>
+    </font><font face="Times New Roman">Thanks for the mail.<br>
+    <br>
+    </font><font face="Times New Roman">We
+tried with the option "--defaults-file" in the script
+startMySQL.bat&nbsp;
+and we were able to start the mysql deamon using the script without any
+issues. Please note that in the mail, the option was specified as <strong>-defaults-file=&lt;path_name&gt;</strong>.
+Actually it should be <strong>--defaults-file=&lt;path_name&gt; </strong>.Please
+check if&nbsp; the same was given like that in startMySQL.bat.<br>
+    <br>
+    </font><font face="Times New Roman">Also ensure that MYSQL_HOME
+(the mysql directory) is correctly given in setEnv.bat file .<br>
+    <br>
+    </font><font face="Times New Roman">MySQL daemon won't start when
+the above conditions are not met. <br>
+    <br>
+    </font><font face="Times New Roman">We believe that this would
+resolve your query. Kindly get back to us for any further
+clarifications in this regard.<br>
+    <br>
+    </font><font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan<br>
+[NMS-Support]<br>
+    <br>
+    </font><font face="Times New Roman">&gt;----- &lt;</font><a
+ href="mailto:saurabhc@noida.hcltech.com"><font face="Times New Roman">saurabhc@noida.hcltech.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----<br>
+    </font><font face="Times New Roman">Hi,<br>
+    <br>
+    </font><font face="Times New Roman">While integrating MySQL 4.0.21
+pro with WebNMS 4.7SP1, we are facing a problem as I am explaining
+below.<br>
+    <br>
+As
+a background, we are replacing the default bundle MySQL with the
+4.0.21pro MySQL for WebNMS 4.7 SP1. Also, we would need to run the
+mysql daemon with a specific configuration file. Thus, as our
+requirement, the mysqld would require a parameter like
+-defaults-file=&lt;path_name&gt; mentioned in the batch startMySQL.bat.
+    <br>
+    <br>
+    </font><font face="Times New Roman">While we mention this and
+try to run the server using startnms, we receive an error that says
+'Unable to start mysql daemon' in the console and the server exits.<br>
+    <br>
+    </font><font face="Times New Roman">Please suggest us a way to
+achieve this.<br>
+Thanks and Regards,<br>
+Saurabh</font></p>
+  </blockquote>
+  </span><br>
+  <span class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><span class="f"><span class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span></span></span></span></span><span
+ class="f"><span style="font-family: times new roman;"><strong>Ticket
+ID : 11307697<br>
+Ticket Title : Re:can not start NMS server<br>
+  </strong></span><br>
+  <font face="Times New Roman">Dear Kazu,<br>
+  <br>
+This is in continuation with our previous mail.<br>
+We have given here the steps to install the MySQL rpm in Linux OS. <br>
+  <br>
+MySQL downloads are avalable at the following link:&nbsp;&nbsp; </font><a
+ class="moz-txt-link-freetext" href="http://dev.mysql.com/downloads/"><font
+ face="Times New Roman">http://dev.mysql.com/downloads/</font></a><br>
+  <br>
+  <font face="Times New Roman">By default, WebNMS is bundled with <b>MySQL
+3.23.58. </b>So it's preferable that the MySQL they install is 3.23.58
+or higher. <br>
+For the <b>changes to be done for MySQL 4.x </b>with respect to
+WebNMS please refer WebNMS installation guide at the following link:<br>
+  </font><a class="moz-txt-link-freetext"
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/database_setup.html#Procedure%20for%20MySQL"><font
+ face="Times New Roman">http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/database_setup.html#Procedure%20for%20MySQL</font></a><br>
+  <br>
+  <font face="Times New Roman">For the details regarding the <b>driver
+files </b>of different versions of MySQL please refer our Installation
+guide at:<br>
+  </font><a class="moz-txt-link-freetext"
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html"><font
+ face="Times New Roman">http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html</font></a><br>
+  <br>
+  <font face="Times New Roman">Here are the steps to install MySQL. <br>
+  </font><u><br>
+  <font face="Times New Roman">Step :1 </font></u><br>
+  <br>
+  <font face="Times New Roman">If mysql already exists </font><b><br>
+  </b><br>
+  <font face="Times New Roman">Remove
+old mysql version and its dependencies.Before this need to stop mysql
+service if running inorder to overcome database corruption problem. <br>
+  <b>#/etc/init.d/mysqld stop </b><br>
+  <br>
+  <u>Step :2</u>&nbsp;&nbsp; List the set of mysql bundled
+softwares.They should&nbsp; be removed </font><b><br>
+  <br>
+  </b><font face="Times New Roman">You can get the list using the
+command:<br>
+  <b>#rpm -qa | grep -i mysql </b><br>
+This will give a list of packages and dependencies. Uninstall them one
+by one:<br>
+  <b>#rpm -e &lt;listed packages&gt; and its dependencies. </b><br>
+  <br>
+  <u>Step :3 </u>&nbsp;&nbsp;&nbsp; Now you can install the desired
+version of mysql rpm. <br>
+  <b>#rpm -ivh Mysql-server</b> (server first ,client and then devel) <br>
+  <br>
+In case of any excpetions and errors please see the following url:<br>
+  </font><a class="moz-txt-link-freetext"
+ href="http://dev.mysql.com/doc/mysql/en/linux-rpm.html"><font
+ face="Times New Roman">http://dev.mysql.com/doc/mysql/en/linux-rpm.html</font></a><br>
+  <br>
+  <font face="Times New Roman">We believe that this would meet their
+requirements. Please get back to us in case of any clarification in
+this regard. <br>
+  <br>
+Regards<br>
+Venkatramanan<br>
+  <br>
+  <span style="font-family: times new roman;"><strong>Ticket ID :
+11307697<br>
+Ticket Title : Re:can not start NMS server<br>
+  </strong></span><br>
+  </font><span style="font-family: times new roman;">Dear Kazu,<br>
+  <br>
+Thanks for the mail.<br>
+  <br>
+Please find our replies inline<br>
+  <br>
+Qn:
+It seems that NMS server always use "/usr/bin/mysqladmin" command to
+create database. Web NMS should use mysqladmin command in
+"MYSQL_HOME/bin" directory which is specified in setEnv.sh<br>
+Ans:
+&lt;!--StartFragment --&gt; As per current implementation, WebNMS
+always looks for the MySQL installation under /usr/bin in Linux OS. It
+seems that in their environment MySQL is not installed under /usr/bin.
+So there was a problem starting WebNMS. So Kindly make sure that mysql
+is always installed using rpm under /usr/bin<br>
+  <br>
+Qn: When they execute "startMySQL.sh" by "root" user,&nbsp; the
+following message was shown.<br>
+chown: 'mysql'$B!'(B invalid user<br>
+After they add the "mysql" user in /etc/passwd file,&nbsp;
+"startMySQL.sh" can be executed.<br>
+Please tell me whether this is expected process during installation.<br>
+  <br>
+Ans Yes. This is indeed an expected behaviour. Since Linux expects
+mysql user to be present, this should be done.<br>
+  <br>
+Qn: The "Installation Guide" describes as follows.<br>
+Should we install rpm for MySQL in Redhad Linux before stating MySQL ?
+Can we use "bin/startMySQL.sh" ?<br>
+Once
+we need to install rpm of MySQL , why does Web NMS bundle mysql ?
+http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/database_setup.html<br>
+1. Login as super user 2. Start MySQL. Syntax: $ /etc/rc.d/init.d/mysql
+start<br>
+  <br>
+Ans:
+Please make sure that the startMySQL script is only for Windows and
+Solaris and not for Linux. In Linux MySQL has to be started as a
+service.<br>
+  <br>
+Qn: KDDI executed "bin/startMySQL" after they create
+the symbolic link for mysqladmin. Then the following message was shown
+in the console.<br>
+bin/safe_mysqld: line 1: my_print_defaults: command not found<br>
+Note
+: They does not install the rpm of MySQL. They are using the MySQL in
+Web NMS 4.7. Should they install the rpm of MySQL ? Are there any your
+customers who use MySQL bundled in Web NMS in Redhat Linux without rpm
+of MySQL ?<br>
+  <br>
+Yes. MySQL need to be installed in a Linux machine
+and it has to be started as mentioned in the Installation guide. As of
+now, we have not come across any customer who doesn't have Linux
+without MySQL rpm<br>
+  <br>
+We believe that this explanation would solve
+the issues reported. Please Get back to us incase of any further
+clarification is this regard.<br>
+  <br>
+Regards &amp; thanks<br>
+Venkatramanan<br>
+  <br>
+----- &lt;satyad@adventnet.com wrote: -----<br>
+Dear Team,<br>
+  <br>
+First,
+this is not an issue as pointed out by Kazu.Rather the root problem is
+KDDI has not installed MySQL and they have this problem. And for Linux
+it has to be<br>
+installed. "startMySQL" script is used to start the
+MySQL DB in Windows and Soalris, whereas in Linux it is not.*So, please
+do not get mislead by the issue point<br>
+of view. * Please clarify the
+use of startMySQL script in respective OSs and in the document. Also
+the steps to install normal MySQL rpm in Linux.<br>
+Thank you for your patience and support,<br>
+Satya<br>
+  <br>
+Dear team,<br>
+  <br>
+KDDI
+executed "bin/startMySQL" after they create the symbolic link for
+mysqladmin.Then the following message was shown in the console.
+bin/safe_mysqld: line 1: my_print_defaults: command not found<br>
+&nbsp;&nbsp;&nbsp;
+Note : They does not install the rpm of MySQL. They are using the MySQL
+in Web NMS 4.7. Should they install the rpm of MySQL ? Are there any
+your customers who use MySQL&nbsp; bundled in Web NMS in Redhat Linux
+without rpm of MySQL ?<br>
+  <br>
+Regards,<br>
+Kazu<br>
+  <br>
+Dear team,<br>
+  <br>
+The "Installation Guide" describes as follows. Should we install rpm
+for MySQL in Redhad Linux before stating MySQL ?<br>
+Can we use "bin/startMySQL.sh" ? Once we need to install rpm of MySQL ,
+why does Web NMS bundle mysql ?<br>
+http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/database_setup.html<br>
+1. Login as super user&nbsp;&nbsp;&nbsp; 2. Start MySQL. Syntax: $
+/etc/rc.d/init.d/mysql start<br>
+Regards,<br>
+Kazu<br>
+  <br>
+Dear team,<br>
+&nbsp;<br>
+&nbsp;KDDI has the following issue.<br>
+&nbsp;<br>
+When they execute "startMySQL.sh" by "root" user, the following message
+was shown.<br>
+&nbsp;chown: 'mysql'$B!'(B invalid user&nbsp; After they add the
+"mysql" user in /etc/passwd file, "startMySQL.sh" can be executed.<br>
+&nbsp; Please tell me whether this is expected process during
+installation.<br>
+&nbsp; Regards,<br>
+Kazu<br>
+&nbsp;<br>
+&nbsp;----- Original Message -----<br>
+&nbsp;From: "Kazu Ohyama" &lt;ohyama@adventnet.com<br>
+&nbsp;To: "AdventNet nms-support" &lt;nms-<br>
+&nbsp;&nbsp;&nbsp; support@adventnet.com<br>
+&nbsp;Cc: "Satya Narayan Dash"<br>
+&lt;satyad@adventnet.com; &lt;japan-tech@adventnet.com<br>
+&nbsp;Sent: Wednesday, February 16, 2005 1:02 PM<br>
+&nbsp;Subject: can not start NMS server<br>
+&nbsp;Dear team,&nbsp; Our customer , KDDI , has a problem.&nbsp;
+Please check the following scenario.<br>
+&nbsp;(1) Install Web NMS 4.7 in Redhat Linux&nbsp;&nbsp; Note : MySQL
+is not installed in Linux.<br>
+&nbsp;(2) create symbolic link for libdb.so to start Apache web server <br>
+&nbsp;# cd /usr/lib<br>
+&nbsp;# ln -s ../../lib/libdb-4.0.so ./libdb-3.2.so<br>
+(3) start MySQL with NMS_HOME/bin/startMySQL.sh <br>
+(4) start NMS server with NMS_HOME/bin/startnms.sh<br>
+&nbsp;(5) NMS could not started.<br>
+&nbsp;Please see attached log files.<br>
+&nbsp;<br>
+&nbsp;It
+seems that NMS server always use "/usr/bin/mysqladmin" command to
+create database. Web NMS should use mysqladmin command in
+"MYSQL_HOME/bin" directory which is specified in setEnv.sh. After I
+execute the following command,&nbsp; NMS server has been started.<br>
+&nbsp;ln - /home/kddi/AdventNet/WebNMS/mysql/bin/mysqladmin<br>
+/usr/bin/mysqladmin<br>
+Please fix the issue.<br>
+Regards,<br>
+Kazu<br>
+  <br>
+Dear team,<br>
+  <br>
+KDDI has the following issue.<br>
+When they execute "startMySQL.sh" by "root" user, the following message
+was shown.<br>
+chown: 'mysql'$B!'(B invalid user<br>
+After they add the "mysql" user in /etc/passwd<br>
+file, "startMySQL.sh" can be executed.<br>
+Please tell me whether this is expected process during installation.<br>
+Regards,<br>
+Kazu</span></span><br>
+  <span class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><span class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span></span></span></span><span
+ class="f">
+  <p><font face="Times New Roman"><strong>Ticket ID : 11292143<br>
+Ticket Title : Re:RE: RMI error</strong></font><br>
+  <br>
+  <font face="Times New Roman">Dear Basha,</font><br>
+  <br>
+  <font face="Times New Roman">To reproduce the scenario we followed
+the below steps:</font><br>
+  <br>
+  <font face="Times New Roman">1. In the server side a <strong>process
+was started </strong>(FileServer) <strong>which binds the RMI
+registry </strong>using, RMIUtil.bindObjectInRegistry<br>
+  <br>
+2. A <strong>Java class </strong>(FileClient) <strong>implementing
+CustomClassInterface </strong>is written in which, the file transfer
+procedure is performed in setProperties <br>
+  <br>
+3. This class is given <strong>as a menu item </strong>in
+&lt;NMS_HOME&gt;\html\defaultsToAllUsers\<strong>eventsmenu.xml.<br>
+  <br>
+  </strong>4. Now on starting the <strong>JavaClient </strong>in
+WebNMS and <strong>clicking on that Menu item File tranfer </strong>takes
+place.</font></p>
+  <br>
+  <p><font face="Times New Roman">While doing so we kept the <strong>heap
+memory as 512M (-Xmx512m) </strong>in WebNMS' Application Client and
+got&nbsp; <strong>Successfully transferred a 69 MB </strong>file; but
+  <strong>out of memory exception </strong>occurred while transferring
+an <strong>85 MB file</strong>. </font></p>
+  <br>
+  <p><font face="Times New Roman">Now it would be of great help if we
+are provided with <br>
+  <strong><br>
+*the specific requirement <br>
+*code snippet you followed </strong>to carry out the implementation <br>
+  <strong>*approximate size of free memory your operation would require</strong>.
+  <br>
+  <br>
+We apologize for the delay caused. Looking forward to hear from you.</font><br>
+  <br>
+  <font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan</font><br>
+  <br>
+  <font face="Times New Roman">&gt;----- &lt;</font><a
+ href="mailto:basha@TidalNetworks.net"><font face="Times New Roman">basha@TidalNetworks.net</font></a><font
+ face="Times New Roman">&gt; wrote: -----</font><br>
+  <br>
+  <font face="Times New Roman">Just
+to update you, we were able to run it successfully if we eliminate
+AdventNet. We ran the server with -Xmx512m -Xss8m and client with
+-Xmx256m for our ests. In addition to the AdventNet defaults, we also
+ran AdventNet with the above parameters and got the same error.<br>
+Thanks,<br>
+Basha</font></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p><font face="Times New Roman">From: Basha Mahammad <br>
+Sent: Tuesday, February 08, 2005 11:33 AM<br>
+To: 'AdventNet nms-support'; </font><a href="mailto:jay@adventnet.com"><font
+ face="Times New Roman">jay@adventnet.com</font></a><br>
+  <font face="Times New Roman">Subject: FW: RMI error</font></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p><font face="Times New Roman">Hi Jay,<br>
+We have added a new Query FE
+module which binds to RMI and we are using RMI from the client to
+access it. It is working&nbsp; fine when we get small amount of data
+from
+the server. But if we try to get large amount of data, we are getting
+this RMI error. We tried bumping up the JVM memory, but that did not
+help. Our initial guess is that&nbsp; the AdventNet's RMI process
+thread may
+be running out of memory. We&nbsp; don't see any errors in the log
+files.
+Have you seen this error before? Any idea what&nbsp; may be going wrong?<br>
+Thanks,<br>
+Basha</font></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p><br>
+  <font face="Times New Roman">From: Sudhakar Patibandla <br>
+Sent: Tuesday, February 08, 2005 11:12 AM<br>
+To: Basha Mahammad<br>
+Subject: RMI error</font></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p><font face="Times New Roman">Testing Query: userAppTableView table<br>
+Testing query template : userAppTableView<br>
+ERROR accessing/executing query interface : <br>
+java.rmi.UnmarshalException:<br>
+error unmarshalling return; nested exception is:<br>
+java.io.EOFException<br>
+java.rmi.UnmarshalException: error unmarshalling return; nested<br>
+exception is: java.io.EOFException<br>
+at sun.rmi.server.UnicastRef.invoke (Unknown Source)<br>
+at net.tidalnetworks.tms.server.common.query.TmsQuery
+Mgr_Stub.executeQuery(Unknown Source)<br>
+at
+net.tidalnetworks.tms.server.framework.opt.test.TmsQueryTestClient.testQuery(TmsQueryTestClient.java:201)<br>
+at
+net.tidalnetworks.tms.server.framework.opt.test.TmsQueryTestClient.main(TmsQueryTestClient.java:136)<br>
+Caused by: java.io.EOFException at
+java.io.ObjectInputStream$BlockDataInputStream.readFully(Unknown Source)<br>
+at java.io.ObjectInputStream.defaultReadFields(Unknown Source)<br>
+at java.io.ObjectInputStream.readSerialData(Unknown Source)<br>
+at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.defaultReadFields(Unknown Source)<br>
+at java.io.ObjectInputStream.readSerialData(Unknown Source)<br>
+at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.readArray(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.defaultReadFields(Unknown Source)<br>
+at java.io.ObjectInputStream.readSerialData(Unknown Source)<br>
+at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.readArray(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.defaultReadFields(Unknown Source)<br>
+at java.io.ObjectInputStream.readSerialData(Unknown Source)<br>
+at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject0(Unknown Source)<br>
+at java.io.ObjectInputStream.readObject(Unknown Source)<br>
+at sun.rmi.server.UnicastRef.unmarshalValue(Unknown Source)<br>
+... 4 more</font></p>
+  </span><br>
+  <span class="f"><span class="f"><span class="f"><span class="f"><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span></span></span><span class="f">
+  <blockquote>
+    <p><font face="Times New Roman"><strong>Ticket ID : 11279396<br>
+Ticket Title : Re:Working list of bugs, minor issues, and requests - NT
+Service</strong></font></p>
+    <br>
+    <p><font face="Times New Roman">Dear Sisson,<br>
+    <br>
+Thanks for the mail. <br>
+    </font><font face="Times New Roman"><br>
+    <strong>For Question 1:<br>
+    </strong><br>
+By
+mistake The escape sequence was missed in the java_service.ini file;
+please add the escape sequence as ;.\\classes\AdventNetWebNmsAgent.jar <br>
+    </font><font face="Times New Roman"><br>
+    <strong>For Question 2: <br>
+    <br>
+    </strong>Please note that </font><font face="Times New Roman"><br>
+    <br>
+* As a service by keeping JavaService.exe &amp; java_service.ini in
+c:\WinNT. (</font><a
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/ntservice.html"><font
+ face="Times New Roman">http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/ntservice.html</font></a><font
+ face="Times New Roman">)</font></p>
+    <p><font face="Times New Roman">* In the command prompt by runnning
+startnms.bat.<br>
+    </font><font face="Times New Roman">* From the Launcher&nbsp;<br>
+    <br>
+    </font><font face="Times New Roman">The
+classpath in java_service.ini is sufficent enough to start the server
+alone. In Launcher, the classpath has to be separately set for clients
+and other applications (Or in the respective files). So there is no
+specific need for the classpath set in WebNMSLauncher.bat to be
+reflected in java_service.ini. Please get back to us incase of any
+further clarifications in this regard.</font></p>
+    <p><font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan</font></p>
+    <br>
+    <p><font face="Times New Roman">&gt;----- &lt;</font><a
+ href="mailto:DSisson@ussignalcom.com"><font face="Times New Roman">DSisson@ussignalcom.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----</font></p>
+    <br>
+    <p><font face="Times New Roman">In working with WebNMS, we have
+identified a number of items we would like to bring to your attention.
+If you need further information regarding any<br>
+of the following, please do not hesitate to ask:</font></p>
+    <br>
+    <br>
+    <p><font face="Times New Roman">1. Missing escape sequence in
+java_service.ini CLASSPATH (.\\classes\AdventNetWebNmsAgent.jar;). May
+be related to our previous issues when running WebNMS as an NT service.
+    </font></p>
+    <br>
+    <p><font face="Times New Roman">2. java_service.ini CLASSPATH
+doesn't mirror WebNMS Launcher Options/Settings.<br>
+    <br>
+    </font><font face="Times New Roman">Thanks
+in advance and as I mentioned earlier, please do not hesitate to
+forward any questions you may have regarding any&nbsp; of the
+aforementioned
+items of interest.</font></p>
+    <br>
+    <p><font face="Times New Roman">David Sisson<br>
+Enterprise Systems Developer<br>
+US Signal Company<br>
+616-988-7493 (office)<br>
+    </font><a href="mailto:dsisson@ussignalcom.com"><font
+ face="Times New Roman">dsisson@ussignalcom.com</font></a><font
+ face="Times New Roman"> <br>
+&lt;</font><a href="mailto:dsisson@ussignalcom.com"><font
+ face="Times New Roman">mailto:dsisson@ussignalcom.com</font></a><font
+ face="Times New Roman">&gt;</font></p>
+  </blockquote>
+  </span><br>
+  <span class="f"><span class="f"><span class="f"><span class="f"><font
+ face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span></span></p>
+  <p><font face="Times New Roman">Ticket ID : 11275945<br>
+Ticket Title : Re:ORA-01654</font><br>
+  </p>
+  <br>
+  <br>
+  <p><font face="Times New Roman">Dear Kasi,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<br>
+Thanks
+for the mail. We have inferred that during bulk addition of events,
+although there are a lot of free extents, there is an <strong>absence
+of a single extent with the required (bulk) space. </strong>We
+found that increasing the extent size would solve the issue. We
+searched for ORA01654 and increasing the size of the extent and found
+the following link in a forum:<br>
+  <br>
+  </font><a
+ href="http://www.tek-tips.com/viewthread.cfm?qid=983550&amp;page=1"><font
+ face="Times New Roman">http://www.tek-tips.com/viewthread.cfm?qid=983550&amp;page=1</font></a><font
+ face="Times New Roman"><br>
+  <br>
+The error metioned in the page <strong>(ORA-01654: unable to extend
+index SYS.I_COL3 by 50 in tablespace SYSTEM) </strong>is similar to
+the problem in discussion. The page also provides a solution - <strong>how
+to increase the SYSTEM tablespace by making the existing datafile to
+AUTOEXTEND. </strong>We believe that this would meet your requirement.
+Please get back to us incase of any further clarifications in this
+regard.</font><br>
+  <br>
+  <font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan<br>
+&nbsp;<br>
+&gt;----- &lt;</font><a href="mailto:kpydi@infinera.com"><font
+ face="Times New Roman">kpydi@infinera.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----<br>
+Hi</font><br>
+  <br>
+  <font face="Times New Roman">We have observed the following exception
+in the logs: - </font></p>
+  <br>
+  <br>
+  <br>
+  <p><font face="Times New Roman">NmsStorageException while adding bulk
+events in BATCHUPDATE mode - update(Observable,Object) at: <br>
+com.adventnet.nms.store.NmsStorageException:<br>
+ORA-01654: unable to extend index MPOWERSOLDB.EVENT0_NDX by 16 in
+tablespace MPOWERSOLDB_INDX <br>
+at
+com.adventnet.management.transaction.ConnectionPool.executeBatch(Connect
+ionPool.java:2229)<br>
+at
+com.adventnet.nms.store.relational.RelationalObject$ForAdd.addBatchObjects(RelationalObject.java:1028)<br>
+at
+com.adventnet.nms.store.relational.RelationalObject.addBatchObjects(RelationalObject.java:2225)<br>
+at
+com.adventnet.nms.store.relational.CommonEventToRelational.addObjects(CommonEventToRelational.java:1201)<br>
+at
+com.adventnet.nms.eventdb.CommonEventAPI.addObjects(CommonEventAPI.java:302)<br>
+at com.adventnet.nms.eventdb.EventLog.update(EventLog.java:193)<br>
+at com.adventnet.nms.eventdb.EventMgr.run(EventMgr.java:764)<br>
+at
+com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:66)<br>
+WorkAround when we observe this issue is:&nbsp; WarmStart the Server.<br>
+WE
+have checked the index space on oracle. Though there is enough index
+space, Oracle is trying to increase the index space. We are not sure why<br>
+it is trying to increase space. Please look into the it and let us know
+how we can resolve this issue.</font></p>
+  <font face="Times New Roman">Kasi</font>
+  <p><span class="f"><span class="f"><span class="f"><font
+ face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span></span> Incident Date: <span
+ class="fred">2005-01-27 05:05:32</span><br>
+  <br>
+Orginator: <span class="fred">srividya@adventnet.com</span>
+  <br>
+Instance Date: <span class="fred">2005-01-28 10:44:00</span><br>
+  <br>
+I have some business logic classes that use the <br>
+commons-digester package. Which is used by almost <br>
+everything Jakarta (including Tomcat). When I <br>
+add it to the class path for WebNMS, Tomcat will <br>
+not start. The issue is from the way that Tomcat <br>
+uses a classloader for it\'s packages. I\'ve <br>
+tested this with a stand alone version of Tomcat <br>
+as well. Since WebNMS must share it\'s classpath <br>
+with Tomcat I am unable to use my classes that <br>
+reference commons-digester.<br>
+  <span class="f">
+  <blockquote>
+    <p><font face="Times New Roman">Dear&nbsp; kusnier,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;This issue arises due to the presence of webserver (business
+logic) related classes in <strong>&lt;NMS_HOME&gt;\classes</strong>.
+You could try keeping those classes in any one of the four locations
+mentioned below.Given below is the compilation order.</font></p>
+    <p><font face="Times New Roman">&lt;NMS_HOME&gt;\WEB-INF\classes<br>
+&lt;NMS_HOME&gt;\WEB-INF\lib<br>
+&lt;NMS_HOME&gt;\apache\tomcat\common\lib<br>
+&lt;NMS_HOME&gt;\apache\tomcat\server\lib </font></p>
+    <p><font face="Times New Roman">We believe that this would solve
+the issue. Kindly let us know if this solved your issue..</font></p>
+    <p><font face="Times New Roman">Regards &amp; thanks<br>
+Venkatramanan</font></p>
+  </blockquote>
+  </span><br>
+  <span class="f"><span class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************<br>
+  </strong></font></span></span><span class="f">Ticket ID : 11239898<br>
+Ticket Title : Re:access-control for NEs<br>
+  <br>
+Dear Raghava,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+We sincerely apologize for the delay caused in this regard. We would
+like to provide detailed information to achieve your requirement:<br>
+  <br>
+&nbsp;As you may be aware WebNMS offers 2 levels of security:<br>
+  <br>
+&nbsp;1. Simple authorization where you would like to associate
+operations to users. This could be done by selecting the operations in
+the Operation tree.<br>
+  <br>
+&nbsp;2. A fine-grained authorization based on the specific MOs that
+can be operated by Users. This could be acheived through Custom View
+Scope.<br>
+  <br>
+&nbsp;Web NMS provides a set of default Managed Objects like Network,
+Node, IpAddress etc., The default ManagedObjects and their properties
+provided may not be sufficient to capture or manage a specific network
+element. Hence, to represent a specific devices or to add additional
+properties, the users extend the default ManagedObjects. In such cases,
+the property names and values defined by the users could be given as
+scope criteria. There is no restriction.<br>
+  <br>
+&nbsp;Your requirement falls under the second category. You can add an
+Extended property say <span style="font-weight: bold;">Name_of_the_group
+  </span>(since
+Web NMS has already one property named groupName, it is better to have
+some other name) by extending the MOs. This can be achieved either
+using the <span style="font-weight: bold;">WebNMS Studio</span> or by <span
+ style="font-weight: bold;">Dynamic Schema Extension</span><br>
+  <br>
+&nbsp;WebNMS studio takes care of : Automating the entire process of
+creating the ManagedObjects for specific network elements <br>
+  <br>
+  <br>
+&nbsp;Adding the objects into the database as relational database
+objects<br>
+  <br>
+&nbsp;Given the input, the tool generates<br>
+&nbsp;java source files<br>
+&nbsp;SQL statements<br>
+&nbsp;creates the RDBMS tables for the new objects<br>
+&nbsp;compiles them and integrates them into the Web NMS product<br>
+  <br>
+&nbsp;For the detailed procedure related to <span
+ style="font-weight: bold;">Dynamic Schema Extension</span>
+please refer the following link:
+http://www.adventnet.com/products/webnms/help/developer_guide/topo/topo_modelingresourcesasmo.html<br>
+  <br>
+&nbsp;For your reference, we attach herewith a snapshot
+(Extended_MOs.jpeg) taken while creating CVS after extending the MO
+SnmpNode. This shows how a CVS could be created based on the Extended
+property <span style="font-weight: bold;">moProp1 &amp; moProp2.</span><br>
+  <br>
+&nbsp;We believe that this would meet your requirement. Please do write
+to us, in case, you need any further clarifications in this regard.<br>
+  <br>
+&nbsp;Regards &amp; thanks<br>
+&nbsp;Venkatramanan<br>
+  <br>
+&gt;----- &lt;kraghavaiah@velankani.com&gt; wrote: -----<br>
+Hi Veankataramanan,<br>
+Thanks for reply. Yaah we are struck at this point. It will be a
+greater help for u if u can provide the solution for this. <br>
+  <br>
+-----Original Message-----<br>
+From: AdventNet security-support [mailto:security-<br>
+support@adventnet.com] <br>
+Sent: Saturday, January 22, 2005 1:04 AM<br>
+To: kraghavaiah@velankani.com<br>
+Cc: security-support@adventnet.com<br>
+Subject: [Ticket ID : 11239898] Re:access-control <br>
+for NEs<br>
+  <br>
+  <br>
+  <br>
+Ticket ID : 11239898<br>
+Ticket Title : Re:access-control for NEs<br>
+&gt;----- &lt;kraghavaiah@velankani.com&gt; wrote: -----<br>
+  <br>
+Dear Raghava,<br>
+We are working on this issue. We will reply at <br>
+the earliest. Thanks for<br>
+your understanding.<br>
+  <br>
+Regards<br>
+Venkatramanan<br>
+Hi ,<br>
+  <br>
+  <br>
+  <br>
+In that case can we do by having a <br>
+managed object property that<br>
+can be used for the fine-grained security?<br>
+  <br>
+For example we will define a new property <br>
+called "groupname" Then, via the<br>
+Security Administration Tool, can we define <br>
+Custom View Scope for a given<br>
+User Group, which includes properties/values of <br>
+allowed Managed Objects<br>
+  <br>
+  <br>
+  <br>
+Thanks<br>
+  <br>
+Raghava<br>
+  <br>
+  <br>
+  <br>
+-----Original Message-----<br>
+From: AdventNet security-support [mailto:security-<br>
+support@adventnet.com] <br>
+Sent: Thursday, January 13, 2005 11:42 PM<br>
+To: kraghavaiah@velankani.com<br>
+Cc: security-support@adventnet.com<br>
+Subject: [Ticket ID : 11239898] Re:access-control <br>
+for NEs<br>
+  <br>
+  <br>
+  <br>
+Ticket ID : 11239898<br>
+Ticket Title : Re:access-control for NEs<br>
+  <br>
+Dear Raghava,<br>
+  <br>
+We infer that groupname is a custom property <br>
+or an extended property of<br>
+ManagedObject. But User defined properties (user <br>
+properties and extended<br>
+event/alarm properties) are not supported as <br>
+criteria for the operations of<br>
+Authorized Scope and for the Authorized Scopes of <br>
+CustomViewScope. Also<br>
+please refer the following link in developer <br>
+guide for more details<br>
+regarding access control and fine grained <br>
+authorization provided in WebNMS<br>
+:<br>
+  <br>
+  <br>
+http://www.adventnet.com/products/webnms/help/deve<br>
+loper_guide/security_servi<br>
+ces/authorization/authorization.html<br>
+  <br>
+Please write to us for further clarifications.<br>
+  <br>
+Regards<br>
+Venkatramanan<br>
+Hi,<br>
+  <br>
+  <br>
+  <br>
+Thanks for the reply. This is slightly matching <br>
+our requirements. We need<br>
+to provide access-control for group of NE's <br>
+based on logical grouping. I<br>
+will explain the scenario with sample.<br>
+  <br>
+  <br>
+  <br>
+1. Providing access-control for group <br>
+of NE's:<br>
+  <br>
+  <br>
+  <br>
+Say 6 NE's discovered namely d01, d02, d03, d04, <br>
+d05, d06 belong to same<br>
+parentnetwork. Based on some criteria the NE's <br>
+(d01, d03, d05) will be<br>
+placed in group (master). The other 3 NE's (d02, <br>
+d04, d06) will be placed in<br>
+group (slave).<br>
+  <br>
+  <br>
+  <br>
+Now I wanted to provide access-control for master <br>
+group and slave group<br>
+separately. Is this possible through "Custom View <br>
+scope name ". As per your<br>
+suggestion I have gone thru CustomViewScope for <br>
+Map and NetwotkDatabase, but<br>
+in that I didn't see any option "groupname". <br>
+  <br>
+Please advice me how to provide access-control <br>
+for group of NE's in this<br>
+scenario. We are using <br>
+AdventNet_WebNMS4_7_0_Windows_Professional. U can<br>
+reach me at &lt;mailto:kraghavaiah@velankani.com&gt; <br>
+kraghavaiah@velankani.com<br>
+  <br>
+Thanks <br>
+  <br>
+Raghava<br>
+Hi,<br>
+  <br>
+  <br>
+  <br>
+Thanks for the reply. But, this is not my <br>
+actual requirement. What u has<br>
+suggested is based on ipaddress.<br>
+  <br>
+I will explain this with sample. <br>
+  <br>
+  <br>
+  <br>
+Let's say we have two groups namely group-1 and <br>
+group-2 . <br>
+  <br>
+In group-1 we have NE's namely master1, master2, <br>
+master3<br>
+  <br>
+In group-2 we have NE's namely slave1, slave2, <br>
+slave3 <br>
+  <br>
+  <br>
+  <br>
+Can I reflect the same objects in operation tree <br>
+as<br>
+  <br>
+  <br>
+  <br>
+Network<br>
+  <br>
+|<br>
+  <br>
+|--------group-1<br>
+  <br>
+| |<br>
+  <br>
+| |-----------<br>
+master1 <br>
+  <br>
+| |-----------<br>
+master2<br>
+  <br>
+| |-----------<br>
+master3<br>
+  <br>
+|--------group-2<br>
+  <br>
+|<br>
+  <br>
+|-----------<br>
+slave1 <br>
+  <br>
+|-----------<br>
+slave2<br>
+  <br>
+|-----------<br>
+slave3<br>
+  <br>
+  <br>
+  <br>
+and assign operations to usergroup? <br>
+  <br>
+  <br>
+  <br>
+In this I wanted to have access-control on <br>
+particular NE's and as well as<br>
+group of NE's. I think this is clear.<br>
+  <br>
+Please help me in this regard. U can reach me at <br>
+kraghavaiah@velankani.com<br>
+  <br>
+  <br>
+  <br>
+Thanks<br>
+  <br>
+Raghava<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+-----Original Message-----<br>
+From: AdventNet security-support [mailto:security-<br>
+support@adventnet.com] <br>
+Sent: Tuesday, January 11, 2005 11:09 PM<br>
+To: kraghavaiah@velankani.com<br>
+Cc: security-support@adventnet.com<br>
+Subject: [Ticket ID : 11239898] Re:access-control <br>
+for NEs<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+Ticket ID : 11239898<br>
+Ticket Title : Re:access-control for NEs<br>
+  <br>
+Dear Raghav,<br>
+  <br>
+Thanks for the mail.<br>
+  <br>
+&gt;From your mail, we infer that the following is <br>
+your requirement:<br>
+  <br>
+You want to allow a particular group of users to <br>
+access only certain NEs.<br>
+This can be achieved using our Custom View Scope <br>
+mechanism.<br>
+  <br>
+Do the following steps to create a Custom View <br>
+Scope (CSV):<br>
+  <br>
+Open Security Administration UI<br>
+&gt;From the left tree select the desired group<br>
+On the right select the "Custom view scope <br>
+for"group tab<br>
+On the "Custom view Scope name" Combo box select <br>
+the appropriate option from<br>
+Events, Neteork Database, Alerts, Maps, Stats <br>
+Admin, Provisioning<br>
+  <br>
+For example when you select the Network Database <br>
+&amp; click on AddAuthorized<br>
+scope the options would be name, Display name. <br>
+Status, isDHCP, etc<br>
+  <br>
+When you select Maps &amp; select the parentnetwork <br>
+as 192.168.4.0 only NEs from<br>
+that network would be shown to that group.<br>
+  <br>
+Likewise there would be appropriate parameters <br>
+for the six options. Set the<br>
+custom View Scope for a group as per your <br>
+requirement. <br>
+  <br>
+The significance of each parameter in various <br>
+options are given in following<br>
+URLs<br>
+  <br>
+Map &amp; Network Database<br>
+http://www.adventnet.com/products/webnms/help/user<br>
+_guide/appendix/appendix_m<br>
+ap_device_details.html<br>
+  <br>
+Events &amp; Alerts<br>
+http://www.adventnet.com/products/webnms/help/user<br>
+_guide/appendix/appendix_f<br>
+ault_details.html<br>
+  <br>
+Stats Admin<br>
+http://origin.adventnet.com/products/webnms/help/a<br>
+dministrator_guide/appendi<br>
+x/appendix_performance.html<br>
+  <br>
+Also please refer at the following link for <br>
+details regarding<br>
+CustomViewScope API<br>
+http://www.adventnet.com/products/webnms/help/java<br>
+docs/consolidated_javadocs<br>
+/com/adventnet/security/authorization/CustomViewSc<br>
+opeAPI.html<br>
+  <br>
+Now you can login to the application client as a <br>
+user from the above group.<br>
+You could see that only those NEs specified in <br>
+the Custom View Scope are<br>
+shown for the user. We believe that this would <br>
+meet your requirement. Please<br>
+write to us for further clarifications.<br>
+  <br>
+Regards<br>
+Venkatramanan<br>
+Hi , <br>
+  <br>
+Here is a question regarding security. Is there a <br>
+way in which we can<br>
+provide access-control for a group of NE's . <br>
+Please help me in this regard.<br>
+U can reach me at kraghavaiah@velankani.com<br>
+  <br>
+thanks <br>
+Raghava</span><br>
+  <span class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><span
+ class="f"><font face="Times New Roman"><strong>***********************************************************</strong></font></span><br>
+  <font face="Times New Roman"><strong>Ticket ID : 11259683<br>
+Ticket Title : Re:ORA-01628<br>
+  </strong><br>
+  </font><font face="Times New Roman">Dear Kazu,<br>
+&nbsp;We would like to provide you the following piece of information
+on rollback segment.</font> </p>
+  <p><font face="Times New Roman"><em>When performing a transaction (a
+series of queries) once a query fails in between, all the pre-generated
+queries should be undone. Hence for every query in a transaction,
+Oracle maintains a backup like thing which will be activated on
+reverting back. And all this backed up data is stored in the Rollback
+segments. Rollback segments are constituted of extents. </em></font></p>
+  <br>
+  <p><font face="Times New Roman">We see an error message <strong>ORA
+01562 </strong>which has occurred when <strong>failed to extend
+rollback segment YY </strong>(YY refers to the segment name; since it
+is written in Japanese in the nmserr.txt file we couldn't get it)</font><br>
+  <br>
+  <font face="Times New Roman">We infer while doing a bulk delete
+operation, <strong>deletion of plenty of tables had resulted in the
+lack of space </strong>in rollback segments. Hence the error occurred.
+We recommend you with the following steps to increase the segment size:</font><br>
+  <br>
+  <font face="Times New Roman">1. In the ORA-01562 error note the
+SEGMENT ID and do a query <br>
+  <strong>SELECT SEGMENT_NAME FROM DBA_ROLLBACK_SEGS WHERE
+SEGMENT_ID=YY; </strong>(YY refers to the segment name)</font><br>
+  <br>
+  <font face="Times New Roman">2.&nbsp; Now make the extent size of
+that particular segment unlimited by <br>
+  <strong>ALTER ROLLBACK SEGMENT YY STORAGE (MAXEXTENTS UNLIMITED); </strong></font><br>
+  <br>
+  <font face="Times New Roman">We believe that the above steps would
+successfully solve the issue. <br>
+  <br>
+  </font><font face="Times New Roman">If it still persists please check
+the parameter <strong>CLEAN_DATA_INTERVAL, </strong>one
+of the argument for the process com.adventnet.nms.poll.Collector(in
+&lt;NMS_HOME&gt;/conf/NmsProcessesBE.conf). It refers to <strong>"How
+many days old events are deleted". </strong>By <strong>default </strong>it
+is <strong>7 days </strong>(and is <strong>not configured</strong>).
+You could set it a lesser number of days <strong>(3 / 4)</strong>. If
+the issue still persists get tback to us with the following info:</font><br>
+  <br>
+  <font face="Times New Roman"><strong>* WebNMS and Oracle versions<br>
+* Number of rows in Events Table<br>
+* The value for CLEAN_DATA_INTERVAL.</strong></font><br>
+  <font face="Times New Roman">Regards &amp; thanks <br>
+Venkatramanan</font><br>
+  <br>
+  <font face="Times New Roman">&gt;----- &lt;</font><a
+ href="mailto:ohyama@adventnet.com"><font face="Times New Roman">ohyama@adventnet.com</font></a><font
+ face="Times New Roman">&gt; wrote: -----<br>
+Dear team,</font></p>
+  <br>
+  <p><font face="Times New Roman">Please tell me the status of
+analyzing issue.</font></p>
+  <br>
+  <p><font face="Times New Roman">Regards,<br>
+Kazu<br>
+----- Original Message ----- <br>
+From: AdventNet nms-support<br>
+To: </font><a href="mailto:ohyama@adventnet.com"><font
+ face="Times New Roman">ohyama@adventnet.com</font></a><br>
+  <font face="Times New Roman">Cc: </font><a
+ href="mailto:japan-tech@adventnet.com"><font face="Times New Roman">japan-tech@adventnet.com</font></a><font
+ face="Times New Roman"> ; nms-<br>
+  </font><a href="mailto:support@adventnet.com"><font
+ face="Times New Roman">support@adventnet.com</font></a><br>
+  <font face="Times New Roman">Sent: Saturday, January 22, 2005 1:25 AM<br>
+Subject: [Ticket ID : 11259683] Re:ORA-01628</font></p>
+  <br>
+  <p><br>
+  <font face="Times New Roman">Ticket ID : 11259683<br>
+Ticket Title : Re:ORA-01628</font></p>
+  <br>
+  <p><font face="Times New Roman">Dear Kazu,</font></p>
+  <br>
+  <p><font face="Times New Roman">We are analysing this issue and will
+get back <br>
+to you early next week. Kindly bear with us till <br>
+then.</font></p>
+  <br>
+  <p><font face="Times New Roman">Thanks and Regards,<br>
+Vidya <br>
+Dear team,</font></p>
+  <br>
+  <p><font face="Times New Roman">I got all log files.<br>
+Please check it and let me know why the issue <br>
+occurred.</font></p>
+  <br>
+  <p><font face="Times New Roman">Regards,<br>
+Kazu</font></p>
+  <br>
+  <p><font face="Times New Roman">Dear team,</font></p>
+  <br>
+  <p><font face="Times New Roman">Our customer , NTT Software , have a
+problem in <br>
+Web NMS.<br>
+The message include some Japanese message for ORA-<br>
+01628.<br>
+Please tell me how to resolve the following issue.</font></p>
+  <br>
+  <p><br>
+  <font face="Times New Roman">11:18:24:180 EVENT: Exception in <br>
+CommonEventToRelational.bulkDeleteOfEvents() at:<br>
+com.adventnet.nms.store.NmsStorageException: ORA-<br>
+01562: $B%m!&lt;%k%P%C%/!&amp;%;%0%a%s%HHV9f<br>
+(B1$B$N3HD%$K&lt;:GT$7$^$7$?(B<br>
+ORA-01628: $B:GBg%(%/%9%F%s%H?t(B(30)$B$KC#$7<br>
+$^$7$?(B($B%m!&lt;%k%P%C%/!&amp;%;%0%a%s%H<br>
+(BWEBNMS_ROLLBACK1)</font></p>
+  <br>
+  <p><font face="Times New Roman">at <br>
+com.adventnet.management.transaction.ConnectionPoo<br>
+l.executeUpdate(ConnectionPool.java:1827)<br>
+at <br>
+com.adventnet.nms.store.relational.RelationalAPI.e<br>
+xecuteUpdate(RelationalAPI.java:638)<br>
+at <br>
+com.adventnet.nms.store.relational.CommonEventToRe<br>
+lational.bulkDeleteOfEvents<br>
+(CommonEventToRelational.java:622)<br>
+at <br>
+com.adventnet.nms.eventdb.CommonEventAPI.bulkDelet<br>
+eOfEvents(CommonEventAPI.java:243)<br>
+at com.adventnet.nms.eventdb.EventLog.cleanLogs<br>
+(EventLog.java:441)<br>
+at com.adventnet.nms.eventdb.EventMgr.run<br>
+(EventMgr.java:794)<br>
+at <br>
+com.adventnet.management.scheduler.WorkerThread.ru<br>
+n(WorkerThread.java:66)<br>
+11:18:24:182 EVENT: Exception while clearing <br>
+Events for CLEAN_EVENT_INTERVAL at:<br>
+com.adventnet.nms.store.NmsStorageException: ORA-<br>
+01562: $B%m!&lt;%k%P%C%/!&amp;%;%0%a%s%HHV9f<br>
+(B1$B$N3HD%$K&lt;:GT$7$^$7$?(B<br>
+ORA-01628: $B:GBg%(%/%9%F%s%H?t(B(30)$B$KC#$7<br>
+$^$7$?(B($B%m!&lt;%k%P%C%/!&amp;%;%0%a%s%H<br>
+(BWEBNMS_ROLLBACK1)</font></p>
+  <br>
+  <p><font face="Times New Roman">at <br>
+com.adventnet.nms.store.relational.CommonEventToRe<br>
+lational.bulkDeleteOfEvents<br>
+(CommonEventToRelational.java:793)<br>
+at <br>
+com.adventnet.nms.eventdb.CommonEventAPI.bulkDelet<br>
+eOfEvents(CommonEventAPI.java:243)<br>
+at com.adventnet.nms.eventdb.EventLog.cleanLogs<br>
+(EventLog.java:441)<br>
+at com.adventnet.nms.eventdb.EventMgr.run<br>
+(EventMgr.java:794)<br>
+at <br>
+com.adventnet.management.scheduler.WorkerThread.ru<br>
+n(WorkerThread.java:66)<br>
+11:18:50:037 TOPO: Exception in checkStatus for <br>
+GroupMOForMap <br>
+1102904233762_192.168.114.69_Map.netmap.MapForMO <br>
+at:<br>
+java.lang.IllegalArgumentException: Cannot <br>
+compare. This severity has no criticality : 7<br>
+at com.adventnet.nms.severity.SeverityInfo.compare<br>
+(SeverityInfo.java:534)<br>
+at <br>
+jp.co.ntts.docsis.mo.GroupMOForMap.checkObjStatus<br>
+(GroupMOForMap.java:96)<br>
+at jp.co.ntts.docsis.mo.GroupMOForMap.checkStatus<br>
+(GroupMOForMap.java:72)<br>
+at <br>
+com.adventnet.nms.topodb.ManagedObject.pollStatus<br>
+(ManagedObject.java:1987)<br>
+at <br>
+jp.co.ntts.docsis.server.DocsicTopoObserverForGrou<br>
+pMap.update<br>
+(DocsicTopoObserverForGroupMap.java:208)<br>
+at com.adventnet.nms.topodb.Dispatcher.update<br>
+(Dispatcher.java:106)<br>
+at java.util.Observable.notifyObservers<br>
+(Observable.java:142)<br>
+at <br>
+com.adventnet.nms.store.Notifier.sendNotification<br>
+(Notifier.java:189)<br>
+at <br>
+com.adventnet.nms.store.Notifier.checkNotification<br>
+(Notifier.java:172)<br>
+at com.adventnet.nms.store.Notifier.notify<br>
+(Notifier.java:142)<br>
+at com.adventnet.nms.topodb.TopoDB.updateStatus<br>
+(TopoDB.java:2580)<br>
+at <br>
+com.adventnet.nms.alertdb.FaultToTopoImpl.updateSt<br>
+atus(FaultToTopoImpl.java:104)<br>
+at <br>
+com.adventnet.nms.alertdb.FaultMgr$UpdateStatus.ru<br>
+n(FaultMgr.java:4748)<br>
+at <br>
+com.adventnet.management.scheduler.WorkerThread.ru<br>
+n(WorkerThread.java:66)</font></p>
+  <br>
+  <p><br>
+  <font face="Times New Roman">Regards,<br>
+Kazu</font></p>
+</blockquote>
+</span>
+</body>
+</html>

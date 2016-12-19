@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNms-ES4 / AS4</title>
+</head>
+<body>
+<div class="moz-text-html" lang="x-western">
+<div class="moz-text-html" lang="x-western"><font
+ face="Helvetica, Arial, sans-serif"><small><br>
+</small></font>
+<div align="center"><font face="Helvetica, Arial, sans-serif"><small><font
+ size="+1"><small><span style="font-weight: bold;"></span></small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font size="+1"><small><span
+ style="font-weight: bold;"></span></small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font size="+1"><small><span
+ style="font-weight: bold;"> </span></small></font><font size="+1"><small><span
+ style="font-weight: bold;">AS4 / </span></small></font><font size="+1"><small><span
+ style="font-weight: bold;">ES4 Operating System support<br>
+<br>
+</span></small></font></small></font></div>
+<font face="Helvetica, Arial, sans-serif"><small><span
+ style="font-style: italic; font-weight: bold;"></span><u><b>Introduction:</b></u><br>
+<br>
+&nbsp;&nbsp;&nbsp; AdventNet Web NMS officially claims support for AS4
+/ ES4 from <span style="font-weight: bold;">SP3 of Web NMS 4.7.0</span>.
+There are few limitations and issues, while using Web NMS with AS4 /
+ES4. This document details about those limitations and issues, along
+with the solutions/workarounds for the same.<br>
+<br>
+</small></font>
+<div align="left"><font face="Helvetica, Arial, sans-serif"><small><small><font
+ size="+1"><small><small><span style="font-weight: bold;"></span></small></small></font></small><u><b>Environment:</b></u></small></font><br>
+<ul>
+  <li><font color="#000000" face="Helvetica, Arial, sans-serif"><small>Red
+Hat Enterprise Linux <span style="font-weight: bold;">AS release 4 <span
+ style="color: rgb(255, 102, 0);">(</span></span><span
+ style="color: rgb(255, 102, 0); font-weight: bold;">Nahant) (Kernel
+2.6.9-5.EL)</span></small></font></li>
+  <li><font color="#000000" face="Helvetica, Arial, sans-serif"><small>Red
+Hat Enterprise Linux <span style="font-weight: bold;">ES release 4 <span
+ style="color: rgb(255, 102, 0); font-weight: bold;">(</span></span><span
+ style="color: rgb(255, 102, 0); font-weight: bold;">Nahant Update 2)
+(Kernel 2.6.9-22.EL)</span></small></font></li>
+  <li><font color="#000000" face="Helvetica, Arial, sans-serif"><small>java
+versions: JDK: 1.4.2_08 (<span
+ style="font-weight: bold; color: rgb(255, 102, 0);">build 1.4.2_08-b03</span>)
+&amp; JDK 1.5.0_06 (<span
+ style="color: rgb(255, 102, 0); font-weight: bold;">build 1.5.0_06-b05</span>)</small></font></li>
+  <li><font color="#000000" face="Helvetica, Arial, sans-serif"><small><span
+ style="font-weight: bold; color: rgb(255, 102, 0);">MySQL:
+4.0.17-standard</span></small></font></li>
+</ul>
+<u><b><font face="Helvetica, Arial, sans-serif"><small>Limitations
+&amp; Solutions:</small></font></b></u><br>
+<br>
+<font face="Helvetica, Arial, sans-serif"><small><font size="+1"><small><span
+ style="font-weight: bold;"></span></small></font></small></font></div>
+<font face="Helvetica, Arial, sans-serif"><small><font size="+1"><small><span
+ style="font-weight: bold;">
+</span></small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><span
+ style="font-style: italic; font-weight: bold;"></span></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><span
+ style="color: rgb(0, 102, 0); font-weight: bold;">1) Higher
+version of libdb issue :</span><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; A file named <span
+ style="font-weight: bold;">libdb-3.2.so </span>is
+needed by Apache 2.0.47 bundled with Web NMS linux binary distribution.
+The libdb-3.2so file is <span style="font-weight: bold;">no longer
+bundled in the newer versions of glibc </span>packaged
+in AS4 / ES4 . This file was bundled in the older versions of glibc .
+AS4 / ES4 ships with higher version of libdb ( eg libdb-4.x.so). As
+this file with the expected version is not present in AS4 / ES4 ,
+Apache 2.0.47 bundled with Web NMS will not start.<br>
+<br>
+<span style="color: rgb(0, 0, 153); font-weight: bold;">Solution :<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; To start Web NMS 4.7.0 +
+SP3 in AS4 / ES4 , you need to
+create a
+soft
+link for libdb-3.2.so pointing to libdb-4.x.so present in AS4 / ES4.
+For example :<br>
+<span
+ style="font-weight: bold; font-family: courier new,courier,monospace;"><br>
+<font color="#000099">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ln
+-s /lib/libdb-4.2.so&nbsp; /lib/libdb-3.2.so<br>
+<br>
+</font></span></small></font>
+<hr size="2" width="100%"><font face="Helvetica, Arial, sans-serif"><small><span
+ style="font-weight: bold; font-family: courier new,courier,monospace;"><font
+ color="#000099"><br>
+</font></span></small></font><font face="Helvetica, Arial, sans-serif"><small><span
+ style="font-weight: bold; color: rgb(0, 102, 0);">2) Mysql Issue :<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; AS4 / ES4 ships with
+higher version of mysql 4.1.xx.&nbsp;
+Adventnet
+Web
+NMS&nbsp; does not claim official support for this version of&nbsp;
+Mysql<br>
+<br>
+<span style="color: rgb(0, 0, 153); font-weight: bold;">Solution :</span><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Use <a
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html#Database">any
+one of the the Mysql Versions </a>officially supported by AdventNet
+Web NMS.<br>
+</small></font><br>
+<hr size="2" width="100%"><font face="Helvetica, Arial, sans-serif"><small><br>
+<span style="color: rgb(0, 102, 0); font-weight: bold;">3) IPV6 and
+jdk1.4.2 issue :<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; There is an issue in&nbsp;
+Socket creation&nbsp; using jdk1.4.2
+and its
+higher
+version&nbsp; on a dual stack host ( one that supports both IPv4 and
+IPv6)
+.&nbsp;&nbsp; Due to this Socket issue Web Nms will not start when
+jdk1.4.2&nbsp; or
+its higher version is used . <br>
+<br>
+<span style="color: rgb(0, 0, 153); font-weight: bold;">Solution :<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; a) This issue has <a
+ href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5083013">been
+fixed in jdk1.5.0_02</a>. Hence one can use this version of jdk
+When&nbsp; dual stack host ( AS4 / ES4) is used. Refer <a
+ href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5087907">SUN's
+bugs database&nbsp;</a> to know about other bugs regarding Jdk1.4.2 and
+its higher version on a dual stack host <br>
+<br>
+<span style="font-weight: bold;">OR<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; b) If you are using <span
+ style="font-weight: bold;">jdk1.4.2
+</span>try
+adding the parameter <span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">Djava.net.preferIPv4Stack=true
+</span>to
+the Web NMS application startup parameters in startnms.sh file and
+startApplicationClient.sh file .This will make sure only IPV4 address
+are&nbsp; used from with in the java runtime . Doing this configuration
+will
+make WebNms to perform discovery only only IPv4 Nodes and not IPv6
+nodes.<br>
+<br>
+</small></font>
+<hr size="2" width="100%"><font face="Helvetica, Arial, sans-serif"><small><br>
+<span style="font-weight: bold; color: rgb(0, 102, 0);">4)&nbsp; Web
+Start Issue :<br>
+<br>
+</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; AS4 / ES4 with new
+versions of glibc (<span style="font-weight: bold;">greater
+than 2.3.3</span>) . The webstart version of jdk 1.4.x will not work
+for this new versions of glibc . You can refer <a
+ href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6188963">SUN's
+bugs database</a>, regarding this bug<br>
+<span style="font-weight: bold;"><br>
+</span><span style="color: rgb(0, 0, 153); font-weight: bold;">Solution
+:</span><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; This bug has been&nbsp; fixed in
+jdk1.5.0_02 . Hence webstart from
+AS4/
+ES4
+will start successfully when jdk1.5.0_02 or higher versions is used<br>
+<br>
+</small></font>
+<hr size="2" width="100%"><font face="Helvetica, Arial, sans-serif"><small><span
+ style="font-weight: bold; color: rgb(0, 102, 0);"></span><br>
+<span style="font-weight: bold; color: rgb(0, 102, 0);">5)&nbsp; Applet
+Client&nbsp; in Mozilla:<br>
+<br>
+</span>To&nbsp; start the Applet client in Mozilla browser create the
+following soft link under &lt;Mozilla_Home&gt;/plugins<br>
+<br>
+<small style="font-family: courier new,courier,monospace;"><font
+ color="#000099"><big><span style="font-weight: bold;">ln -s &lt;jdk1.5
+Home&gt;/jre/plugin/i386/ns7/libjavaplugin_oji.so&nbsp;&nbsp;
+/usr/lib/&lt;FireFox Home&gt;/plugins/libjavaplugin_oji.so</span></big></font><br>
+</small><br>
+<span style="font-weight: bold; text-decoration: underline;"></span><br>
+<span style="font-weight: bold; color: rgb(255, 102, 0);"></span></small></font></div>
+</div>
+</body>
+</html>

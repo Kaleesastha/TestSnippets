@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>How to create a PPM with SP creation tool that can be applied
+over multiple contexts with variation of files in between contexts</title>
+</head>
+<body>
+Click <a shape="rect"
+ href="http://it-server/jsp/login.jsp?zfirstTime=notFirst&amp;userName=venkatramanan&amp;password=mailcountry&amp;Login="
+ target="_blank">here</a> to login to Support Manager &amp; then <a
+ shape="rect"
+ href="http://it-server/mail/ReplyView.jsp?PAGETYPE=RepliedMail&amp;showAs=HtmlView&amp;MESSAGEID=11545645&amp;REPLYID=1254881&amp;component=NMS-SUPPORT&amp;userName=d6DQ9NeVCe776Qlf68J97b6lb6J819duK6u&amp;ims=Yes&amp;tableName=SUPPORT_TICKET&amp;ShowEach=No&amp;FromMail=Yes"
+ target="_blank">here</a> to view the the reply.<br clear="none">
+Here is the content of the reply<br>
+<p>We believe your requirement is to create a single PPM that can be
+applied over BE, FE and Client builds. We feel sorry<br clear="none">
+to
+say that the PPM created using the SPCreation tool can be applied only
+over the product context for which it is created. That is, a PPM
+created by giving BE zips can be applied only on BE build and cannot be
+applied on Client builds.<br clear="none">
+<br clear="none">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; However, you can
+achieve your requirement by proceeding by the below mentioned
+work-around.<br clear="none">
+<br clear="none">
+1. Create separate versions of CreateSP.xml files, one for each
+context. For example, you can have the CreateSP_BE.xml &amp;<br
+ clear="none">
+CreateSP_CLIENT.xml files for BE and CLIENT contexts respectively.<br
+ clear="none">
+<br clear="none">
+2.
+In the CreateSP_BE.xml/CreateSP_CLIENT.xml file, provide appropriate
+values for the SPDir, SPReadMe and RelativeProductHome parameters.
+After the modification these entries should be present as follows:<br
+ clear="none">
+<br clear="none">
+<strong><font color="mediumblue">CreateSP_BE.xml</font></strong><br
+ clear="none">
+<br clear="none">
+&lt;PROPERTIES&gt;<br clear="none">
+&lt;property value="BESPDir" name="SPDir"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;property value="ReadMe.html" name="SPReadMe"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;property value="AdventNet/WebNMS"
+name="RelativeProductHome"&gt;&lt;/property&gt;<br clear="none">
+&lt;!-- &lt;property name="ResourceDir" value="Resources"/&gt; --&gt;<br
+ clear="none">
+&lt;property value="conf/Input.xml" name="InputXML"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;/PROPERTIES&gt;<br clear="none">
+<br clear="none">
+<strong><font color="mediumblue">CreateSP_CLIENT.xml<br clear="none">
+</font></strong><br clear="none">
+&lt;PROPERTIES&gt;<br clear="none">
+&lt;property value="ClientSPDir" name="SPDir"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;property value="ReadMe.html" name="SPReadMe"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;property value="AdventNet/WebNMSClient"
+name="RelativeProductHome"&gt;&lt;/property&gt;<br clear="none">
+&lt;!-- &lt;property name="ResourceDir" value="Resources"/&gt; --&gt;<br
+ clear="none">
+&lt;property value="conf/Input.xml" name="InputXML"&gt;&lt;/property&gt;<br
+ clear="none">
+&lt;/PROPERTIES&gt;<br clear="none">
+<br clear="none">
+3.
+Also, REJECT the classes/AdventNetUpdateManagerInstaller.jar,
+classes/AdventNetSUMServer.jar and classes/AdventNetSUMClient.jar in
+the UpdateJarFilter. The sample entry is as follows: <br clear="none">
+<br clear="none">
+<br clear="none">
+&lt;FILTER id=UpdateJarFilter
+classname="com.adventnet.tools.update.util.EnhancedFileFilter"&gt;<br
+ clear="none">
+&lt;CRITERION action="REJECT" key="jre/*.jar" /&gt;<br clear="none">
+&lt;CRITERION action="REJECT" key="apache/*.jar" /&gt;<br clear="none">
+&lt;CRITERION action="REJECT" key="mysql/*.jar" /&gt;<br clear="none">
+&lt;CRITERION action="REJECT"
+key="classes/AdventNetUpdateManagerInstaller.jar"/&gt;<br clear="none">
+&lt;CRITERION action="REJECT" key="classes/AdventNetSUM*.jar" /&gt;<br
+ clear="none">
+&lt;/FILTER&gt;<br clear="none">
+<br clear="none">
+4. Additionally, REJECT the conf/update_conf.xml file from the PPM by
+putting entry in the CreateSP_BE.xml and<br clear="none">
+CreateSP_CLIENT.xml files. We have also attached the sample
+CreateSP_BE.xml &amp; CreateSP_CLIENT.xml files for your<br clear="none">
+reference.<br clear="none">
+<br clear="none">
+5. Instead of directly creating the PPM for both BE and Client, kindly
+use the below mentioned command to extract the files that<br
+ clear="none">
+differs in the base and latest zip files under the specified SPDir
+directory. <br clear="none">
+<br clear="none">
+<font color="mediumblue">sh createSP.sh <strong><font color="green">-x</font></strong>
+"BASE Version of BE/Client&nbsp;zip file" "LATEST version of Client/BE
+zip file" "CREATESP.XML file of BE/Client version"<br clear="none">
+</font><br clear="none">
+6.
+Now, the BE related files will be present under BESPDir and Client
+related files will be present under ClientSPDir directories as
+mentioned in the CreateSP_BE/CLIENT.xml files.<br clear="none">
+<br clear="none">
+7. Move the AdventNetUpdateManagerInstaller.jar, AdventNetSUMClient.jar
+and AdventNetSUMServer.jar files from<br clear="none">
+BESPDir/BE/AdventNet/WebNMS/classes directory to
+BESPDIR/BE/AdventNet/WebNMS directory. Repeat this step for<br
+ clear="none">
+ClientSPDir directory also (ClientSPDir/CLIENT/AdventNet/WebNMSClient).<br
+ clear="none">
+<br clear="none">
+8. In the Input.xml file, we have to add the context entries for BE and
+CLIENT. The sample entries are as follows:<br clear="none">
+<br clear="none">
+&lt;!--BE Context Related entries--&gt;<br clear="none">
+&lt;UPDATION details="the details about BE context"&gt;<br clear="none">
+&lt;PREINSTALL&gt;&lt;/PREINSTALL&gt;<br clear="none">
+&lt;ADD&gt;&lt;/ADD&gt;<br clear="none">
+&lt;POSTINSTALL&gt;&lt;/POSTINSTALL&gt;<br clear="none">
+&lt;/UPDATION&gt;<br clear="none">
+<br clear="none">
+&lt;!-- CLIENT Context Related entries--&gt;<br clear="none">
+&lt;UPDATION details="the details about&nbsp;CLIENT context"&gt;<br
+ clear="none">
+&lt;PREINSTALL&gt;&lt;/PREINSTALL&gt;<br clear="none">
+&lt;ADD&gt;&lt;/ADD&gt;<br clear="none">
+&lt;POSTINSTALL&gt;&lt;/POSTINSTALL&gt;<br clear="none">
+&lt;/UPDATION&gt;<br clear="none">
+<br clear="none">
+<br clear="none">
+9. Next, you need to create a patch by invoking the patch creation
+tool. This can be done by writing a simple java class<br clear="none">
+that creates an instance of PatchCreationCMD and calls the
+processXmlFile method. We have attached an example file<br clear="none">
+(CmdLinePatchCreator.java) for your convenience.<br clear="none">
+<br clear="none">
+10. Invoke the java class as follows&nbsp;</p>
+<font color="mediumblue">java -classpath<br clear="none">
+.:jars/AdventNetCCLLoader.jar:jars/jaxp.jar:jars/crimson.jar:jars/PatchCreation.jar:jars/xalan.jar<br
+ clear="none">
+test.CmdLinePatchCreator "LOCATION&nbsp;of Input.xml file" "DIRECTORY
+under which&nbsp;BE and CLIENT files are present "<br clear="none">
+</font><br clear="none">
+11. The PPM will be created in the directory from which you run the
+above mentioned command.<br>
+</body>
+</html>

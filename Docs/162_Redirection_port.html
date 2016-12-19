@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>How to receive traps in port 162 even if Web NMS is started by
+a non-root user in Linux/Solaris ?</title>
+</head>
+<body>
+<div style="text-align: center;"><b>How to receive traps in
+port 162 even if Web NMS is started by a
+non-root user in Linux/Solaris ? </b><br>
+</div>
+<span class="fontBlack"></span><br>
+There are two possible solutions to meet
+this requirement:<br>
+----------------------------------------------------------------<br>
+<strong>Solution 1 :</strong>
+Redirection of packets from&nbsp;the privileged port (162) to a
+non-previliged port (1024-65535) by configuring the iptables in the
+Linux System.<br>
+<br>
+The following are the steps :<br>
+<br>
+Before starting Web NMS<br>
+<br>
+1)Login as root user<br>
+<br>
+2) Make sure the linux kernel is 2.4.x<br>
+# uname -a <br>
+<br>
+3) Remove the ipchains<br>
+# /sbin/lsmod | grep ipchains<br>
+-If ipchains is loaded, remove it using<br>
+# /sbin/rmmod ipchains<br>
+<br>
+4) Load the iptables modules <br>
+# /sbin/insmod ip_tables <br>
+# /sbin/insmod ip_conntrack<br>
+# /sbin/insmod iptable_filter<br>
+# /sbin/insmod iptable_mangle<br>
+# /sbin/insmod iptable_nat<br>
+<br>
+5) Add rule to iptables<br>
+<br>
+# iptables -t nat -A PREROUTING -p udp --dport 162 -j REDIRECT<br>
+--to-ports &lt;NON-PREVILIGED PORT&gt; <br>
+<br>
+6) To configure it permanently,you can add points<br>
+4 &amp; 5 in /etc/rc.d/rc.local <br>
+<br>
+----------------------------------------------------------------<br>
+<strong>Solution 2 :</strong>
+Operating Systems have support for sudo user concept where you can
+configure normal users to run some specific commands as root users.<br>
+<br>
+We
+can make use of the sudo user concept to start (only) WebNMS as root
+user from the normal user login itself, to enable opening port 162 for
+trap reception<br>
+<br>
+To achieve this, do the following configurations in the machine where
+you are trying to start WebNMS server.
+<ol>
+  <li>Login as root</li>
+  <li>Edit /etc/sudoers file and add the following entries</li>
+  <ul>
+    <li>Cmnd_Alias TEST
+=/bin/sh,&lt;WebNMSHome&gt;/bin/startnms.sh</li>
+    <li>normalUserName ALL=NOPASSWD: TEST</li>
+  </ul>
+  <li>Logout from root</li>
+  <li>Execute the following command to start WebNMS<br>
+o sudo sh startnms.sh</li>
+</ol>
+<p>Note:</p>
+<ul>
+  <li>normalUserName refers to the name of the Normal User</li>
+  <li>&lt;Web NMS Home&gt; refers to the&nbsp;directory where Web NMS
+is installed.</li>
+</ul>
+</body>
+</html>

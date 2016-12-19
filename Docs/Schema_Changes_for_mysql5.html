@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Schema Changes</title>
+</head>
+<body>
+<font color="#000025">Sumitha's email to modify the Schema<br>
+</font><font color="#000099"><u>In &lt;
+WebNMSHome&gt;/conf/DatabaseSchema.conf</u></font><br>
+<br>
+create table USMTABLE( <br>
+"DBKEY" varchar(116) NOT NULL,<br>
+.....<br>
+<b>"USMLOCALTIME" varchar(30),</b><br>
+PRIMARY KEY ("DBKEY"))<br>
+....<br>
+<br>
+create table PollingAttributes(<br>
+....<br>
+<b>"POLLCONDITION" varchar(50),</b><br>
+...<br>
+<br>
+<font color="#000099">
+In <u>&lt;WebNMSHome&gt;/conf/DatabaseAliases.conf</u></font><br>
+# In the table PollingAttributes<br>
+<br>
+type TYPE<br>
+<b>condition POLLCONDITION</b><br>
+....<br>
+<br>
+<u><font color="#000099">In
+&lt;WebNMSHome&gt;/conf/MySQL/SNmpDatabaseSchema.config</font><br>
+</u>#-------------------------- USMTABLE --------------------------#<br>
+.....<br>
+#&nbsp;&nbsp;
+ColumnKey&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ColumnName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Datatype <br>
+...<br>
+&nbsp;&nbsp;&nbsp;
+LOCALTIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>USMLOCALTIME&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VARCHAR(30)
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="GENERATOR" content="Mozilla/4.79 [en] (Windows NT 5.0; U) [Netscape]">
+  <title>Code Flow of Topo module</title>
+</head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" link="#0000ee" alink="#ff0000" vlink="#551a8b">
+&nbsp;
+<table style="width: 100%;" border="0" cols="1">
+  <tbody>
+    <tr>
+      <td style="background-color: rgb(238, 238, 238);">
+      <center>
+      <hr noshade="noshade" width="100%"> <br>
+      <b><font color="#000099">AdventNet <span style="font-style: italic;">Web NMS</span> - <span style="font-style: italic;">Advanced Framework</span>&nbsp;</font></b>
+      <p><b><font size="+1">Code Flow</font></b><b><font size="+1">
+Document&nbsp; : <i>TOPO <br>
+      </i></font></b></p>
+      </center>
+      <p><b><u>Document Owner</u><font size="+1"> :</font></b>
+Swaminatha Prabhu<br>
+      </p>
+      <hr noshade="noshade" width="100%"></td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+</p>
+<p><b><u>Revision History</u></b> <br>
+&nbsp;
+<table style="width: 100%;" border="1" cellpadding="2" cellspacing="1" cols="5">
+  <tbody>
+    <tr bgcolor="#ffcee7">
+      <td align="center" bgcolor="#eeeeee" valign="middle">
+      <center><b>Version</b></center>
+      </td>
+      <td align="center" bgcolor="#eeeeee" valign="middle">
+      <center><b>Date of update</b></center>
+      </td>
+      <td align="center" bgcolor="#eeeeee" valign="middle">
+      <center><b>Author(s)</b></center>
+      </td>
+      <td align="center" bgcolor="#eeeeee" valign="middle">
+      <center><b>Reviewer(s)</b></center>
+      </td>
+      <td align="center" bgcolor="#eeeeee" valign="middle">
+      <center><b>Change notes</b></center>
+      </td>
+      <td style="vertical-align: top; text-align: center; background-color: rgb(238, 238, 238); width: 20%;" align="center" valign="middle"><span style="font-weight: bold;">Requested
+By</span><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0.1&nbsp; <br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+19-08-2003</td>
+      <td style="vertical-align: top;">&nbsp;&nbsp; Swaminatha Prabhu</td>
+      <td style="vertical-align: top;">&nbsp; Rajalakshmi Ezhilan<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ali Akbar </td>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Initial version</td>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Rajalakshmi
+Ezhilan</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p><br>
+</p>
+<table border="1" cellpadding="2" cellspacing="2" width="100%">
+  <tbody>
+    <tr>
+      <td bgcolor="#eeeeee" valign="top"><b>Table of Contents :</b></td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <blockquote><a href="#1._Introduction">1. Introduction<br>
+        </a><a href="#2._Purpose">2. Purpose</a><br>
+        <a href="#3._Input">3. Input</a><br>
+        <a href="#4._Client_Design_and_Usage">4. Client Design and Usage</a><br>
+        <a href="#5._Low_Level_Design">5. Low Level Design</a><br>
+        <a href="#6._Limitation_and_Issues">6. Limitation and Issues</a><br>
+      </blockquote>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p><font color="#000099"><b><font size="+1"><a name="1._Introduction"></a>1.
+Introduction</font></b></font></p>
+<blockquote>In case of DMS architecture, all the probes will be
+managing their respective domain/devices, then propagate the data to
+their NOC server. In case of Topo, the Topo related data will be
+propagated from Regional to NOC and also from NOC to Regional server.
+This document will explain the complete Topo data flow from Regional to
+NOC and then to Regional.<br>
+</blockquote>
+<b><font color="#990000"><font size="+1"><font color="#000099"><a name="2._Purpose"></a>2. Purpose</font></font></font></b><br>
+<br>
+<div style="margin-left: 40px;">This feature facilitates the
+Administrators to know
+the number of manageable devices in the discovered remote networks by
+the Regional servers by connecting the client to the Central server.
+They can monitor and change the essential proprieties of the MOs of the
+remote network. They can also monitor the status of the MOs and act
+accordingly.<br>
+</div>
+<br>
+<b><font color="#990000"><font size="+1"><font color="#000099"><a name="3._Input"></a>3. Input<br>
+</font></font></font></b>
+<ul>
+  <li><span style="font-weight: bold;">NOC Server</span></li>
+</ul>
+<ul>
+  <ul>
+    <li>NOC&nbsp; Topo module is initialized from the CentralServerBE
+process during the NOC server initialization.The configuration
+file <span style="font-weight: bold;">NmsProcessesBE.conf</span> will
+be having the process entry for the CentralServerBE.</li>
+  </ul>
+</ul>
+<ul>
+</ul>
+<ul>
+  <li><span style="font-weight: bold;">Regional Server:</span></li>
+</ul>
+<ul>
+  <ul>
+    <li>Regional&nbsp; Topo module is initialized from the RemoteProbe
+process during the Regional server initialization.The configuration
+file <span style="font-weight: bold;">NmsProcessesBE.conf</span> will
+be having the process entry for the RemoteProbe.</li>
+  </ul>
+</ul>
+<ul>
+</ul>
+<ul>
+  <ul>
+  </ul>
+</ul>
+<ul>
+</ul>
+<b><font color="#990000"><font size="+1"><font color="#000099"><a name="4._Client_Design_and_Usage"></a>4. Client Design and Usage<br>
+</font></font></font></b>
+<blockquote>
+  <ul>
+    <li>In the client, this feature can be accessed by clicking the
+Network Database customview in the left side tree of the client. In
+that all the nodes, switches, routers and network can be viewed. For
+each specific category, there will be separate customviews in the left
+side tree view.</li>
+    <li>Deletion of&nbsp; MO can be done rightClicking the
+correspoonding MO in the right side panel and selecting the menu Delete
+MO.</li>
+  </ul>
+</blockquote>
+<b><font color="#990000"><font size="+1"><font color="#000099"><a name="5._Low_Level_Design"></a>5. Low Level Design</font></font></font></b><br>
+<blockquote><span style="font-weight: bold;"><br>
+  </span>
+  <table border="1" cellpadding="2" cellspacing="2" width="100%">
+    <tbody>
+      <tr>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Class Name<br>
+        </b> </th>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Purpose</b><br>
+        </th>
+      </tr>
+      <tr>
+        <td valign="top">AbstractTopoNotifier.java<br>
+        </td>
+        <td valign="top">
+        <ul>
+          <li>Implements TopoActionListener, TopoListener and
+ModuleListener</li>
+          <li>Prevents duplication of code,as this is the Abstract Base
+class for both Regional and NOC TopoListeners </li>
+        </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <span style="font-weight: bold;">REGIONAL Server</span><br>
+  <br>
+  <table border="1" cellpadding="2" cellspacing="2" width="100%">
+    <tbody>
+      <tr>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Class Name<br>
+        </b> </th>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Purpose</b><br>
+        </th>
+      </tr>
+      <tr>
+        <td valign="top">RegionalTopoListener.java<br>
+        </td>
+        <td valign="top">
+        <ul>
+          <li>Extends AbstractTopoNotifier</li>
+          <li>Registers with TopoAPI as TopoActionListener and
+TopoListener for updates on CUD operation of MOs.</li>
+          <li>Registers with NOC-REGIONAL communication framework with
+DataTransfer ID as TOPOLOGY to get notifications from the NOC topo
+module.</li>
+          <li>Propagates MO related data to the NOC server via
+communication framework</li>
+        </ul>
+        <ul>
+        </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <span style="font-weight: bold;"><br>
+NOC Server:</span><br>
+  <br>
+  <table style="width: 878px; height: 55px;" border="1" cellpadding="2" cellspacing="2">
+    <tbody>
+      <tr>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Class Name<br>
+        </b> </th>
+        <th align="center" bgcolor="#cccccc" valign="top"><b>Purpose</b><br>
+        </th>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">NocTopoListener.java<br>
+        </td>
+        <td style="vertical-align: top;">
+        <ul>
+          <li>Extends AbstractTopoNotifier</li>
+          <li>Registers with TopoAPI as TopoActionListener and
+TopoListener for updates on CUD operation of MOs.</li>
+          <li>Registers with NOC-REGIONAL communication framework with
+DataTransfer ID as TOPOLOGY to get notifications from the Regional topo
+module.</li>
+          <li>Propagates MO related data to the Regional server via
+communication framework</li>
+        </ul>
+        <ul>
+        </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <span style="font-weight: bold;"><big>TOPOACTIONLISTENER</big>:</span><br>
+</blockquote>
+<blockquote>
+  <ul>
+    <li>The NocTopoListener and the RegionalTopoListener are basically <a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoActionListener.html">TopoActionListeners</a>,
+registered with TopoAPI for receiving notifications for any change in
+the NOC and Regional Topology Database respectively.</li>
+    <li>Whenever a MO gets added, deleted or updated, the
+TopoActionListener's implementation method viz. update()&nbsp; will be
+invoked with the <a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoNotificationEvent.html">TopoNotificationEvent</a>.</li>
+    <li>From the TopoNotificationEvent, the type of the update for the
+MO, the modified list of properties of the MO, the&nbsp; old MO
+instance and the new MO instance can be obtained.</li>
+  </ul>
+  <ul>
+    <li><span style="font-weight: bold;">REGIONAL SERVER</span> <span style="font-weight: bold;">TO NOC SERVER Data Flow</span><br style="font-weight: bold;">
+    </li>
+  </ul>
+  <ul style="margin-left: 40px;">
+    <li>Whenever a MO gets added, deleted or updated in the
+RegionalServer's DB, the update() method of RegionalTopoListener will
+be invoked.</li>
+    <li>From the TopoNotificationEvent, the new MO instance and the <a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoNotificationEvent.html#getUpdateType%28%29">update
+type</a> will be obtained. If the new MO instance is null, then the old
+MO instance will be obtained. <span style="font-weight: bold;">NOTE: </span><span style="font-style: italic;">For update of type Delete, the new MO
+instance will be null.</span></li>
+    <li>Based on the update type the respective cache(addCache,
+deleteCache,managedCache,updateCache) will be checked for the presence
+of MO. If the MO is present in that cache then this&nbsp; notification
+should be dropped(not propagated to NOC), as this is the <span style="font-style: italic;">notification for the modification done in
+Regional topology DB, for the request from NOC server</span>. Before
+dropping the notification the respective cache will be cleared for that
+MO. If the MO is not in these cache, then the notification should not
+be dropped, as this one is due to the actual change in the Regional
+topolgy DB.</li>
+    <li>Modified propertykeys vector is obtained from the
+TopoNotificationEvent and checks to avoid redundant notification is
+done. Generally the update types such as "<span style="font-weight: bold;">Status Update</span>","<span style="font-weight: bold;">Manage Update</span>","<span style="font-weight: bold;">StatusPollEnabled Update</span>","<span style="font-weight: bold;">Discover Update</span>" will generate <span style="font-weight: bold;">one
+more notification</span> with update type as "<span style="font-weight: bold;">Property
+Update</span>".Hence if the update type is of&nbsp; "<span style="font-weight: bold;">Property Update</span>", then check for the
+above said four special types in the modified propertykeys vector will
+be done. If any of the special type is present in the modified keys for
+the Property Update, then this notification will be dropped and will
+not be propagated to the NOC server.</li>
+    <li>If the update type is of "<span style="font-weight: bold;">StatusPollEnabled
+Update</span>", then check for the size of modifiedPropertykeys vector
+will be done, if it equals one then the notification will be dropped.
+If the size is not equal to one, then the&nbsp; "statusPollEnabled "
+key will be removed from the modifiedPropertykeys vector. Since the
+"statusPollEnabled" value is always set to false in NOC server, this
+property is&nbsp; removed while&nbsp; propagating the notification to
+the NOC server.</li>
+    <li>ManagedObject proprieties is obtained from the ManagedObject
+instance.<br>
+    </li>
+    <li>If the update type is of "<span style="font-weight: bold;">Added</span>"
+, then we will be setting the value of <span style="font-weight: bold;">regionID</span>
+for <span style="font-weight: bold;">webNMS</span> property of MO
+property, if not present already for the MO. Generally this value will
+be set for all the MOs which came through Discovery filter
+(WebNMSFieldFilter.java), but if the MO is added using the TopoAPI,
+this value won't be there, hence explicit setting of this property is
+required. Then XML element is created with the MO properties and the
+requestID(update type).&nbsp;</li>
+    <li>If the update type is of "<span style="font-weight: bold;">Deleted</span>",
+then a new property object is created with the name of the MO as value
+for property name. Then a XML element is constructed with this new
+property object and the requestID(update type).<span style="font-weight: bold;"></span></li>
+    <li>If the update type is of<span style="font-weight: bold;"> </span>any
+other updates, only the modifiedPropertiesKeys and the corresponding
+values will be constructed into new property object. Then a XML element
+is constructed with this new property object and requestID(update type).</li>
+    <li> The regionID will be set in the above constructed XML element
+and&nbsp; propagated, to the NOC server via communication framework,
+with the priority as <span style="font-weight: bold;">HIGH.</span></li>
+    <li>The setRequest() method of NocTopoListener will be invoked by
+the communication fwk with the XML element. The regionID, requestID and
+the properties of the MO are retrieved from the XML element.</li>
+    <li>If the requestID is of <span style="font-weight: bold;">"Added"</span>,<span style="font-weight: bold;"> </span>check for the parent object is
+done. If the parent object is deleted, then the MO will not be added in
+the NOC side. If the parentobject is present, then the MO will be added
+in the NOC TopoListener's addCache(to avoid recursive notification).<br>
+    </li>
+    <li>Check for the Network instance is performed. If the MO is a
+network , the discovery will be set to false. Then the MO is added in
+the RegionalServerToMOMap table using UserStorageAPI with the mapping
+for their corresponding Region name. This mapping will be of of great
+use for identifying the Regional server name, for the corresponding MO
+while performing operations like "Command". Finally the MO is added in
+the NOC server's DB using TopoAPI.addObject()</li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Deleted</span>",
+the MO will be checked out from NOC DB, if available&nbsp; the MO will
+be added in the&nbsp; deleteCache (to avoid recursive&nbsp;
+notification) and then deleted from NOC server's DB using
+TopoAPI.deleteObject(). <br>
+    </li>
+    <li>If the requestID is of any other updates, the MO properties
+will be checked for the Managed property, if present the value of this
+property is verified with Managed value of checked out MO. If both the
+Managed value differs, then setManaged() for the MO&nbsp; will be done
+with latest Managed value(from Regional) using TopoAPI. Before invoking
+setManged() method the MO will be added in the updateCache(to avoid
+recursive notification)<br>
+    </li>
+    <li>If the MO properties does not contain managed property, then
+these properties will be set for the checked out MO and the MO is
+updated in the NOC server's DB using TopoAPI. Here also the MO is added
+in updateCache before invoking updateObject().<br>
+    </li>
+  </ul>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; <br>
+  <ul>
+    <li><span style="font-weight: bold;">NOC SERVER</span> <span style="font-weight: bold;">TO REGIONAL SERVER Data Flow</span><br style="font-weight: bold;">
+    </li>
+  </ul>
+  <ul style="margin-left: 40px;">
+    <li>Whenever a MO gets added, deleted or updated in the
+Client connected to the NOC server, the NOC server's DB will be updated
+and&nbsp; the update() method of NOCTopoListener will
+be invoked.</li>
+    <li>From the TopoNotificationEvent, the new MO instance and the <a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoNotificationEvent.html#getUpdateType%28%29">update
+type</a> will be obtained. If the new MO instance is null, then the old
+MO instance will be obtained. <span style="font-weight: bold;">NOTE: </span><span style="font-style: italic;">For update of type Delete, the new MO
+instance will be null.</span></li>
+    <li>Based on the update type the respective cache(addCache,
+deleteCache,managedCache,updateCache) will be checked for the presence
+of MO. If the MO is present in that cache then this&nbsp; notification
+should be dropped(not propagated to Regional), as this is the <span style="font-style: italic;">notification for the modification done in
+NOC topology DB, for the request from Regional server</span>.
+Before dropping the notification the respective cache will be cleared
+for that MO. If the MO is not in these cache, then the notification
+should not be dropped, as this one is due to the actual change in the
+NOC topolgy DB due to some operation from the client.<br>
+    </li>
+    <li>Modified propertykeys vector is obtained from the
+TopoNotificationEvent and checks to avoid redundant notification is
+done. Generally the update types such as "<span style="font-weight: bold;">Status Update</span>","<span style="font-weight: bold;">Manage Update</span>","<span style="font-weight: bold;">StatusPollEnabled Update</span>","<span style="font-weight: bold;">Discover Update</span>" will generate <span style="font-weight: bold;">one
+more notification </span>with update type as "<span style="font-weight: bold;">Property
+Update</span>".Hence if the update type is of&nbsp; "<span style="font-weight: bold;">Property Update</span>",
+then check for the above said four special types in the modified
+propertykeys vector will be done. If any of the special type is present
+in the modified keys for the Property Update, then this notification
+will be dropped and will not be propagated to the Regional server.</li>
+    <li>If the update type is of "<span style="font-weight: bold;">Property
+Update</span>",
+then check for the size of modifiedPropertykeys vector will be done, if
+it equals one and if the modifiedPropertykeys contains "<span style="font-weight: bold;">lastUpdateTime</span>" then the
+notification will be dropped considering&nbsp; this is the notification
+for the RegionServer modelled&nbsp; MO for every write interval. This
+check can be avoided, if check for the RegionalServerInfo instance and
+dropping the notification is done, in the begining itself.<br>
+    </li>
+    <li>ManagedObject properties is obtained from the ManagedObject
+instance.</li>
+    <li>The regionId will be obtained from the MO. If it is not
+available, it will be retrieved from the <span style="font-weight: bold;">RegionalServerToMoMap</span>.<br>
+    </li>
+    <li>If the update type is of "<span style="font-weight: bold;">Added</span>"
+.Then XML element is created with the MO
+properties and the requestID(update type).&nbsp;</li>
+    <li>If the update type is of "<span style="font-weight: bold;">Deleted</span>",
+then a new property object is created with the name of the MO as value
+for property name. Then a XML element is constructed with this new
+property object and the requestID(update type). </li>
+    <li>If the update type is of<span style="font-weight: bold;"> </span>any
+other updates, only the modifiedPropertiesKeys and the corresponding
+values will be constructed into new property object. Then a XML element
+is constructed with this new property object and requestID(update type).</li>
+    <li> The corresponding session for the particular Regional server
+is obtained from the regionID and then the XML element is propagated to
+the Regional server via communication framework<span style="font-weight: bold;"> </span>using the session<span style="font-weight: bold;">.</span></li>
+    <li>The setRequest() method of RegionalTopoListener will be invoked
+by the
+communication fwk with the XML element. The regionID, requestID and the
+properties of the MO are retrieved from the XML element.</li>
+    <li>If the requestID is of <span style="font-weight: bold;">"Added"</span>,<span style="font-weight: bold;"> </span>check
+for the parent object is done. If the parent object is deleted, then
+the MO will not be added in the Regional side. If the parentobject is
+present, then the MO will be added in the RegionalTopoListener's
+addCache(to avoid recursive notification) and then added using
+TopoAPI.addObject().<br>
+    </li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Deleted</span>",
+the MO will be checked out from Regional DB, if available&nbsp; the MO
+will be
+added in the&nbsp; deleteCache (to avoid recursive&nbsp; notification)
+and then
+deleted from Regional server's DB using TopoAPI.deleteObject(). <br>
+    </li>
+    <li>If the requestID is of any other updates, the MO properties
+will
+be checked for the Managed property, if present the value of this
+property is verified with Managed value of checked out MO. If both the
+Managed value differs, then setManaged() for the MO&nbsp; will be
+done with latest Managed value(from NOC) using TopoAPI. Before
+invoking setManaged() method the MO will be added in the updateCache(to
+avoid recursive notification) <br>
+    </li>
+    <li>If the MO properties does not contain managed property, then
+these properties will be set for the checked out MO and the MO is
+updated in the RegionalServer's DB using TopoAPI. Here also the MO is
+added
+in updateCache before invoking updateObject().</li>
+  </ul>
+  <br>
+  <span style="font-weight: bold;"><big>TOPOLISTENER</big>:</span><br>
+  <br>
+  <ul>
+    <li>NocTopoListener and RegionalTopoListener are also <a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoListener.html">TopoListeners</a>
+registered with TopoAPI for getting the notifications on&nbsp; bulk
+delete operations of Managed Objects.</li>
+    <li>Whenever a network or container object is deleted, it's
+considered to be a bulk delete operation in Web NMS. at that time the
+TopoListener implementation deleteObject() method will be invoked with
+the XML Node.</li>
+    <li>The<a href="http://ppt-server/general/webnms4/help/javadocs/consolidated_javadocs/com/adventnet/nms/topodb/TopoListener.html#deleteObject%28com.adventnet.nms.util.XMLNode%29">
+pattern</a> of the XML Node depends on the method used for performing
+bulk delete operation.</li>
+  </ul>
+  <ul>
+    <li><span style="font-weight: bold;">NOC&nbsp; to REGIONAL data flow</span></li>
+  </ul>
+  <ul style="margin-left: 40px;">
+    <li>Whenever a Network or container object of a region is deleted
+from the client connected to the NOC server, the deleteObject() method
+of NOCTopoListener is invoked with XML Node.</li>
+    <li>The XML Node is parsed to get the properties of the deleted
+object and also level, if available. (levels will be there, if the
+delete operation is done using level upto which the children has to be
+deleted)</li>
+    <li>When a Network is deleted, the order of <a href="#LOGIC">notification</a>
+will be
+first for deletion of Nodes, then for the deletion of Interfaces or for
+the deletion of container objects&nbsp; children(ports) and finally for
+the deletion of Network. So ideally, it is enough, if we sent&nbsp;
+only one&nbsp; notification for a
+network deletion to the Regional&nbsp; server. On receiving the Network
+deletion
+notifcation the Regional server will delete all the sub elements of
+Network. </li>
+    <li>Check for the parentNet is performed. If the notification is
+for the deletion of Nodes or Interfaces, then the "<span style="font-weight: bold;">parentNet" </span>property will be there.</li>
+    <li>If the <span style="font-weight: bold;">"parenNet"</span> is
+present then check for <span style="font-weight: bold;">"isNode"</span>
+property value is done. If the isNode value is <span style="font-weight: bold;">true</span>, then moCache is checked for
+the presence of the "parentNet". If the parentNet is present in the
+moCache, then the notification is dropped and not propagated to the
+Regional server. Before dropping the notification, the parentNet is
+added in a <span style="font-weight: bold;">toSendCallBack</span>
+vector.<br>
+    </li>
+    <li>If the parentNet is not there in the moCache, the nodeList for
+the parentNet is obtained&nbsp; and updated in the&nbsp; <span style="font-weight: bold;">deletedObjsHash</span> hashtable( node vs
+parentNet mapping). This hashtable is basically maintained to avoid
+further addition of Events by the NocEventListener for the deleted
+nodes. Then the deletion of Network is propagated to the Regional
+server. </li>
+    <li>If the <span style="font-weight: bold;">isNode</span> value is
+false, then check for the <span style="font-weight: bold;">isInterface
+      </span>value is done. If the <span style="font-weight: bold;">isInterface
+      </span>value is<span style="font-weight: bold;"> true </span>and
+if the deletedObjsHash contains<span style="font-weight: bold;"> </span>the
+parenNet<span style="font-weight: bold;">,</span> the interface
+list&nbsp; for the parentNet is obtained and updated in the<span style="font-weight: bold;"> deletedObjsHash</span> hashtable(
+Interface vs parentNet mapping).After this the notification will be
+dropped and not&nbsp; propagated to the Regional&nbsp; server&nbsp; to
+avoid multiple notifcation for the same Network deletion.</li>
+    <li>If the "<span style="font-weight: bold;">parentNet</span>"
+value is null, then check for the parentKey is done (assuming container
+children objects), if the parenKey is present, then the child objects
+are
+retrieved and the <span style="font-weight: bold;">deletedObjsHash</span>
+is updated(childObject vs parentkey mapping).</li>
+    <li>Then check for the parentkey or parentNet in the moCache is
+done. If present, the parentKey will be removed from the moCache. The
+presence of parentKey or parentNet indicates that this the notifcation
+for deletion done in NOC for the request from the Regional
+server.&nbsp; In this case a&nbsp; notifcation with <span style="font-weight: bold;">requestID</span> as "<span style="font-weight: bold;">Bulk Delete Callback Response</span>" will
+be sent to the Regional server, so that the RegionalTopoListener will
+clear this parentKey or parentNet and it's associated&nbsp; objects
+from it's <span style="font-weight: bold;">deletedObjsHash </span>hashtable.</li>
+    <li>If the the parentkey or parentNet is not there in the moCache,
+then the <span style="font-weight: bold;">requestID</span> will be "<span style="font-weight: bold;">Bulk Delete</span>".</li>
+    <li>New property object is constructed with the "parentKey"
+property with parentKey or parentNet as value. If the level is
+available from the XML node, then the level will be added as additional
+property.</li>
+    <li>This property object and requestID are constructed into XML
+element and propagated to the Regional server via communication fwk.</li>
+    <li>The <span style="font-weight: bold;">setRequest()</span>
+method of RegionalTopoListener will be invoked by
+the communication fwk with the XML element. The regionID, requestID and
+the properties&nbsp; are retrieved from the XML element.</li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Bulk
+Delete</span>", the parentkey and level values are retrieved. Then the
+parentKey is added in the the&nbsp; RegionalTopoListener's moCache.</li>
+    <li>If the level is present, then&nbsp; the&nbsp;
+deleteObjectAndSubElements() method of TopoAPI with level and parentkey
+argument is invoked, if not the deleteObjectAndSubElements() method of
+TopoAPI accepting only parentkey is invoked.</li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Bulk
+Delete</span> <span style="font-weight: bold;">Callback Response</span>"
+, the parentkey and it's related objects will be cleared from the
+deltedObjsHash hashtable of RegionalTopoListener.<br>
+    </li>
+  </ul>
+  <ul>
+    <li><span style="font-weight: bold;">REGIONAL to NOC data flow</span><br>
+    </li>
+  </ul>
+  <ul style="margin-left: 40px;">
+    <li>Whenever a Network or container object is deleted from
+the Regional server, the deleteObject() method of RegionalTopoListener
+is invoked with XML Node.</li>
+    <li>The XML Node is parsed to get the properties of the deleted
+object
+and also level, if available. (levels will be there, if the delete
+operation is done using level upto which the children has to be deleted)</li>
+    <li>When a Network is deleted, the order of <a href="#LOGIC">notification</a>
+will be
+first for deletion
+of Nodes, then for the deletion of Interfaces or for the deletion of
+container objects&nbsp; children(ports) and finally for the deletion of
+Network. So ideally, it is enough, if we sent&nbsp; only one&nbsp;
+notification for a network deletion to the NOC server. On receiving the
+Network deletion notifcation the NOC server will delete all the sub
+elements of Network.<br>
+    </li>
+    <li>Check for the parentNet is performed. If the notification is
+for the deletion of Nodes or Interfaces, then the "<span style="font-weight: bold;">parentNet" </span>property will be there.</li>
+    <li>If the <span style="font-weight: bold;">"parenNet"</span> is
+present then check for <span style="font-weight: bold;">"isNode"</span>
+property value is done. If the isNode value is <span style="font-weight: bold;">true</span>,
+then moCache is checked for the presence of the "parentNet". If the
+parentNet is present in the moCache, then the notification is dropped
+and not propagated to the Regional server. Before dropping the
+notification, the parentNet is added in a <span style="font-weight: bold;">toSendCallBack</span> vector.<br>
+    </li>
+    <li>If the parentNet is not there in the moCache, the nodeList for
+the parentNet is obtained&nbsp; and updated in the&nbsp; <span style="font-weight: bold;">deletedObjsHash</span>
+hashtable( node vs parentNet mapping).Then the deletion of Network is
+propagated to the NOC server.<br>
+    </li>
+    <li>If the <span style="font-weight: bold;">isNode</span> value is
+false, then check for the <span style="font-weight: bold;">isInterface
+      </span>value is done. If the <span style="font-weight: bold;">isInterface
+      </span>value is<span style="font-weight: bold;"> true </span>and
+if the deletedObjsHash contains<span style="font-weight: bold;"> </span>the
+parenNet<span style="font-weight: bold;">,</span> the interface list
+for the parentNet is obtained and updated in the<span style="font-weight: bold;"> deletedObjsHash</span> hashtable(
+Interface vs parentNet mapping). After this the notification will be
+dropped and not propagated to the NOC server&nbsp; to avoid multiple
+notifcation for the same Network deletion.<br>
+    </li>
+    <li>If the "<span style="font-weight: bold;">parentNet</span>"
+value is
+null, then check for the parentKey is done (assuming container child
+objects), if the parenKey is present, then the child objects are
+retrieved and the <span style="font-weight: bold;">deletedObjsHash</span>
+is updated(childObject vs parentkey mapping)</li>
+    <li>Then check for the parentkey or parentNet in the moCache is
+done.
+If present, the parentKey will be removed from the moCache. The
+presence of parentKey or parentNet indicates that this the notifcation
+for deletion done in Regional for the request from the NOC
+server.&nbsp; In
+this case a&nbsp; notifcation with <span style="font-weight: bold;">requestID</span>
+as "<span style="font-weight: bold;">Bulk Delete Callback Response</span>"
+will be sent to the NOC server, so that the NocTopoListener
+will clear this parentKey or parentNet and it's associated&nbsp;
+objects
+from it's <span style="font-weight: bold;">deletedObjsHash </span>hashtable.</li>
+    <li>If the the parentkey or parentNet is not there in the moCache,
+then the <span style="font-weight: bold;">requestID</span> will be "<span style="font-weight: bold;">Bulk Delete</span>".</li>
+    <li>New property object is constructed with the "parentKey"
+property
+with parentKey or parentNet as value. If the level is available from
+the XML node, then the level will be added as additional property.</li>
+    <li>This property object and requestID are constructed into XML
+element and propagated to the NOC server via communication fwk.</li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Bulk
+Delete</span>", then the data will be send to the Noc server with "<span style="font-weight: bold;">HIGH PRIORITY</span>". If the requestID is
+of "<span style="font-weight: bold;">Bulk Delete Callback Response</span>",
+then the data will be send to the Noc server with "<span style="font-weight: bold;">LOW PRIORITY</span>"</li>
+    <li>The <span style="font-weight: bold;">setRequest()</span>
+method of NocTopoListener will be invoked by
+the communication fwk with the XML element. The regionID, requestID and
+the properties&nbsp; are retrieved from the XML element.</li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Bulk
+Delete</span>", the parentkey and level values are retrieved. Then the
+parentKey is added in the the&nbsp; NocTopoListener's <span style="font-weight: bold;">moCache</span>.</li>
+    <li>If the level is present, then&nbsp; the&nbsp;
+deleteObjectAndSubElements()
+method of TopoAPI with level and parentkey argument is invoked, if not
+thedeleteObjectAndSubElements() method of TopoAPI accepting only
+parentkey is invoked. </li>
+    <li>If the requestID is of "<span style="font-weight: bold;">Bulk
+Delete</span> <span style="font-weight: bold;">Callback Response</span>"
+, the parentkey and it's related objects will be cleared from the
+deltedObjsHash hashtable of NocTopoListener.</li>
+  </ul>
+  <span style="font-weight: bold;"><a name="LOGIC"></a>NOTIFICATION
+LOGIC</span><br>
+  <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+    <tbody>
+      <tr>
+        <td style="vertical-align: top;">SNO<br>
+        </td>
+        <td style="vertical-align: top;"><span style="font-weight: bold;">Network Deletion Notifcation order</span><br>
+        </td>
+        <td style="vertical-align: top;"><span style="font-weight: bold;">Propagation to Counter part</span><br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">1<br>
+        </td>
+        <td style="vertical-align: top;">Nodes<br>
+        </td>
+        <td style="vertical-align: top;">Yes<br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">2<br>
+        </td>
+        <td style="vertical-align: top;">Interfaces<br>
+        </td>
+        <td style="vertical-align: top;">NO<br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">3<br>
+        </td>
+        <td style="vertical-align: top;">Container children<br>
+        </td>
+        <td style="vertical-align: top;">Yes (Need to be fixed.
+Actually it should be NO )<br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">4<br>
+        </td>
+        <td style="vertical-align: top;">Network<br>
+        </td>
+        <td style="vertical-align: top;">NO<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+</blockquote>
+<b><font color="#990000"><font size="+1"> <font color="#000099"><a name="6._Limitation_and_Issues"></a>6. Limitation and Issues<br>
+</font></font></font></b><br>
+<ul>
+  <li>Bulk delete notification handling for deleteObjects() method is
+not done.</li>
+  <li>MO added in the RegionalServerToMOMap table is cleared on
+deletion of the MO, using separate TopoObserver
+mechanism(DistributedMODeletionHandler.java)</li>
+  <li>A Network deletion notifcation is propagated twice to Counter
+part,in
+case of bulk delete notifcation.</li>
+  <li>Instead of lastUpdateTime check, the RegionalServerInfo instance
+should be checked and the notifcation should be dropped.<br>
+  </li>
+</ul>
+<br>
+<blockquote>
+  <ul>
+  </ul>
+</blockquote>
+</body></html>

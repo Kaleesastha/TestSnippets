@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>How do I tune the MyISAM key buffer and InnoDB buffer pool in MySQL</title>
+</head>
+<body>
+<h1 style="margin-bottom: 15px;">How do I tune the MyISAM key
+buffer and InnoDB buffer pool in MySQL?</h1>
+<div class="article_content">
+<p>The most important memory component for MySQL performance
+tuning are the buffer pools. Any data being accessed on disk, first has
+to be loaded into the buffer pools for users to access it. Therefore,
+it's the primary focus of database optimization. By default, MySQL will
+only use 8MB for MyISAM's key buffer and 8MB for InnoDB's buffer pool.
+Therefore, databases of any significant size will need these
+configurations tuned. The upper limit is determined in part by your
+operating system process limits, and how much memory is available with
+your system's hardware.</p>
+<h3>InnoDB Buffer Pool</h3>
+<p>The InnoDB storage engine has a buffer pool that caches
+requests to indexes and data files on disk. It will pre-allocate its
+buffer pool when MySQL is started. It won't use more memory than is
+allocated. This can be set in the option or configuration file (i.e., <tt>my.cnf</tt>
+or <tt>my.ini</tt>, depending on your system) for MySQL as:<br>
+</p>
+<pre>[mysqld]<br>set-variable = innodb_buffer_pool_size = 512M<br>...<br>      </pre>
+<p>If a system is being configured to run solely as a database
+server using the InnoDB storage engine, this configuration could be set
+up to 80% of total system memory for the best effect.</p>
+<p>To examine the performance of an InnoDB buffer pool, use the <tt>SHOW</tt>
+statement like so:<br>
+</p>
+<pre>SHOW INNODB STATUS;<br>      </pre>
+<p>Below is an except from the results of this statement:<br>
+</p>
+<pre>----------------------<br>BUFFER POOL AND MEMORY<br>----------------------<br>Total memory allocated 571450402; in additional pool allocated 171904<br>Buffer pool size   32000<br>Free buffers       29034<br>Database pages     2965<br>Modified db pages  0<br>Pending reads 0<br>Pending writes: LRU 0, flush list 0, single page 0<br>Pages read 64, created 2901, written 3855<br>0.00 reads/s, 39.00 creates/s, 119.07 writes/s<br>Buffer pool hit rate 1000 / 1000<br>      </pre>
+<p>Notice the last line above that reads <i>Buffer pool hit rate</i>.
+It's important to get that rate as close to 100% as possible. For large
+databases, however, 95%-99% is the best that can be achieved and
+indicates a well tuned system.</p>
+<h3>MyISAM Key Buffer</h3>
+<p>The MyISAM storage engine uses a key buffer for caching index
+data from disk. Actual row data is buffered by the operating system
+file cache, and this difference requires another tuning method than for
+the InnoDB buffer pool. Because the operating system is caching row
+data, some system memory must remain free to cache the row data on
+disk. Typically, the key buffer will be set to use up to 50% of the
+main memory of a dedicated database using MyISAM as its storage engine
+for optimal database performance. It is configured like this:<br>
+</p>
+<pre>   set-variable = key_buffer = 256M<br>      </pre>
+<p>Unlike the InnoDB buffer pool, the MyISAM key buffer will not
+pre-allocate itself at MySQL startup, but will instead only be used as
+required, so having a high setting for a small database will not do any
+harm.</p>
+<p>In order to evaluate the performance of the MyISAM key buffer,
+you may look at the MySQL status like so:<br>
+</p>
+<pre>SHOW STATUS LIKE 'key%';<br><br>+------------------------+---------+<br>| Variable_name          | Value   |<br>+------------------------+---------+<br>| Key_blocks_not_flushed | 0       |<br>| Key_blocks_unused      | 229554  |<br>| Key_blocks_used        | 6987    |<br>| Key_read_requests      | 3011875 |<br>| Key_reads              | 6987    |<br>| Key_write_requests     | 1071612 |<br>| Key_writes             | 1071612 |<br>+------------------------+---------+<br>      </pre>
+<p>To determine the cache read miss rate, simply divide the <tt>Key_reads</tt>
+by the <tt>Key_read_requests</tt>. In this case the cache miss ratio
+is 23% which suggests a fairly well tuned database.</p>
+<h3>Mixed Storage Engines</h3>
+<p>In the case where the database application will mix the use of
+storage engines, both the <tt>innodb_buffer_pool_size</tt> and <tt>key_buffer</tt>
+will have to be configured, but keeping in mind the total system
+memory, as well as the per process memory limits on the system. With
+32-bit systems, the per process limit will usually be 2G memory in
+which case care must also be taken not to exceed this total memory
+allocation for the MySQL database process. One must also factor in
+other settings like the per connection thread memory buffers: <tt>sort_buffer_size</tt>,
+<tt>read_rnd_buffer_size</tt>, <tt>read_buffer_size</tt>, and <tt>join_buffer_size</tt>.</p>
+<p>A typical usage of mixed storage engines might be InnoDB
+tables used to capture data in a transaction safe way, and then batch
+copied into MyISAM tables for its <tt>FULLTEXT</tt> search and <tt>RTREE</tt>
+spatial search capabilities, so this kind of set up is not uncommon.</p>
+<h3>32-bit vs. 64-bit Hardware</h3>
+<p>On 32-bit platforms, the usual limit for memory allocated to
+MySQL is 2GB, so the MyISAM key buffer and InnoDB buffer pool will need
+to be configured well below that to allow memory to be allocated for
+connecting threads. Even if a system has more than 2GB memory, the
+MySQL server process can only use 2GB memory on these systems, and if
+its tries to use more memory, it will crash. In the case of MyISAM,
+this is not so bad because the operating system is relied upon for
+caching access to the data files. Therefore, databases with 4GB or 6GB
+memory can be tuned effectively for MyISAM access, even with this 2GB
+limit.</p>
+<p>On 64-bit platforms, which for x86-64 systems requires both
+operating system and hardware support, the per process memory limits
+are increased. The InnoDB buffer pool could then be set as high as
+128GB, which is not the limit. Also, MyISAM key buffer can be
+configured as high as 4GB. This is currently the maximum limit for the <tt>key_buffer</tt>
+configuration.</p>
+</div>
+</body>
+</html>

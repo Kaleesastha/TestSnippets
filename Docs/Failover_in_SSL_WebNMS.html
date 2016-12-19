@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Failover in SSL WebNMS</title>
+</head>
+<body>
+1. Create <strong>key</strong> and&nbsp;<strong>certificate</strong>
+for&nbsp;for the <strong>web server of BE</strong>
+in Primary&nbsp;and Secondary server as given in the Help Documentation
+"Creating Key, certificate, and Truststore files for BE Server" under
+the section "Enabling SSL in Combo Setup". You can refer to the section
+from the link below:<br>
+<br>
+<a
+ href="http://adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html">http://adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html</a><br>
+<br>
+2. Create <strong>key</strong> and <strong>certificate</strong> for <strong>Transport
+Provider Implementation</strong> in Primary and Secondary server.
+<p>3. Create <strong>Truststore</strong> file for the primary server.
+Here&nbsp;in addition to importing the&nbsp;Web server and Transport
+Provider&nbsp;certificate of the Primary, <strong>import the Web
+server and Transport Provider&nbsp;certificate</strong> of the <strong>Secondary</strong>
+server too. Use the command below for the same:<br>
+<br>
+<u>For Primary Server</u>:<br>
+keytool -import -alias <span style="font-weight: bold;"><b>bessl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file <span style="font-weight: bold;">BEServer.cer</span></p>
+<p>keytool -import -alias <span style="font-weight: bold;"><b>betransssl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file <span style="font-weight: bold;"><b>BETransCer.cer<br>
+</b></span><br>
+<u>For Secondary Server</u>:<br>
+keytool -import -alias <span style="font-weight: bold;"><b>secssl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file <span style="font-weight: bold;"><b>SecServer.cer</b></span><br>
+<br>
+keytool -import -alias <span style="font-weight: bold;"><b>sectransssl</b></span>
+-keystore <span style="font-weight: bold;"><b>Truststore.truststore</b></span>
+-file <span style="font-weight: bold;"><b>SecTransCer.cer</b></span></p>
+4. Make the configuration file changes for SSL in primary and
+secondary, as given in the Help Documentation link mentioned above.<br>
+<br>
+5. Make the script file changes in the primary and secondary.<br>
+<br>
+6. Start the primary server and secondary server.<br>
+<br>
+7.
+Grant the necessary permissions (as listed <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/failover_service/fe_failover.html#Steps_toconfigure_javapolicyfiles">here</a>
+&amp; <a
+ href="http://www.adventnet.com/products/webnms/help/developer_guide/communication_services/ssl/ssl_combo.html#Applet_webstart_configuration">here</a>)
+in java.policy
+file &amp; place the Truststore.truststore file
+from primary under &lt;jre_home&gt;/lib/security&nbsp;and connect a
+Web-Start client to the primary.<br>
+<br>
+8. Now, shutdown the primary server.<br>
+<br>
+9. The Secondary will take over as primary and the client will get
+reconnected.<br>
+</body>
+</html>

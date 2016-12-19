@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Modified_SP_creation_tool</title>
+</head>
+<body>
+<div class="moz-text-html" lang="x-western"><!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--> <o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="country-region"> <o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="address"><o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="City">
+<o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="Street"><o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="place">
+<o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceType"><o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceName"> <o:smarttagtype
+ namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PersonName"><!--[if !mso]>
+<style>
+st1\:*{behavior:url(#default#ieooui) }
+</style>
+<![endif]-->
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1" />
+ </o:shapelayout></xml><![endif]--></o:smarttagtype></o:smarttagtype></o:smarttagtype></o:smarttagtype></o:smarttagtype></o:smarttagtype></o:smarttagtype></o:smarttagtype>
+<div class="moz-text-html" lang="x-western"> <font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><i><b>Dear Rubal,</b></i><br>
+<br>
+&nbsp;&nbsp;&nbsp; Please find the workaround below for integrating
+both PatchCreation
+tool and SP Creation tool.<br>
+</small></font></font></small></font>
+<ul>
+  <li><font face="Helvetica, Arial, sans-serif"><small><font
+ color="#000025"><font size="3"><small>From a single script, both SP
+creation tool and patch creation tool
+will be invoked</small></font></font></small></font></li>
+  <li><font face="Helvetica, Arial, sans-serif"><small>The SP creation
+tool will be called first with "-X" option that will extract the
+differential file
+between the two input zip files into a common directory (<b>PATCH_DIR</b>).<br>
+    <br>
+%JAVA_HOME%\bin\java -Xmx100m
+com.adventnet.tools.update.upgrade.SPCreator -x %1 %2 %3<br>
+    <br>
+    </small></font></li>
+  <li><font face="Helvetica, Arial, sans-serif"><small>Now, the Patch
+Creation tool will get invoked </small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small> and the required options has to be
+selected from the GUI. Once the options are selected, </small></font></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small>the Patch Creation Tool
+will use the differential files in PATCH_DIR to create the servicepack.<br>
+    <br>
+%JAVA_HOME%\bin\java -Xmx100m
+com.adventnet.tools.update.creator.PatchCreation -g<br>
+    </small></font></li>
+</ul>
+<font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><br>
+<br>
+&nbsp;&nbsp;&nbsp; The below mentioned steps have to be followed in
+order to </small></font></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small>include <b>Patch Creation tool inside
+the SP Creation tool</b>:</small></font></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><br>
+</small></font></font></small></font>
+<blockquote><font face="Helvetica, Arial, sans-serif"><small><font
+ color="#000025"><font size="3"><small><b>1. </b>Copy the contents of
+the Patch creation of tool
+into SP creation tool as follows:</small></font></font></small></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><big><b>* </b></big></small></font></font><font
+ color="#000025"><font size="3"><small>Copy
+the </small></font></font><font color="#000025"><font size="3"><small><font
+ color="#cc33cc"><b>jars</b></font></small></font></font><font
+ color="#000025"><font size="3"><small> (except <i><b>PatchCreation.jar</b></i>)
+from &lt;Patch_Creation_Tool_Home&gt;\<font color="#cc33cc"><b>jars </b></font>into
+&lt;SP_Creation_Tool_Home&gt;\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>jars </b></font></small></font></font></small></font><br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><big><b>* </b></big></small></font></font><font
+ color="#000025"><font size="3"><small>Copy
+the </small></font></font><font color="#000025"><font size="3"><small><font
+ color="#cc33cc"><b>conf files </b></font></small></font></font><font
+ color="#000025"><font size="3"><small>from
+&lt;Patch_Creation_Tool_Home&gt;\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>conf</b></font></small></font></font><font
+ color="#000025"><font size="3"><small> into
+&lt;SP_Creation_Tool_Home&gt;\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>conf</b></font></small></font></font><font
+ color="#000025"><font size="3"><small> </small></font></font></small></font><br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><big><b>* </b></big></small></font></font><font
+ color="#000025"><font size="3"><small>Copy
+the <font color="#cc33cc"><b>script</b></font></small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b> files</b></font></small></font></font><font
+ color="#000025"><font size="3"><small> from
+&lt;Patch_Creation_Tool_Home&gt;\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>bin</b></font></small></font></font><font
+ color="#000025"><font size="3"><small> into
+&lt;SP_Creation_Tool_Home&gt;\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>bin</b></font></small></font></font></small></font><br>
+</blockquote>
+<font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><br>
+&nbsp;&nbsp;&nbsp; Now, here are the modifications to be done in the</small></font></font><font
+ color="#000025"><font size="3"><small>&lt;SP_Creation_Tool_Home&gt;\bin\</small></font></font><font
+ color="#000025"><font size="3"><small><font color="#cc33cc"><b>PatchCreation.bat<br>
+</b></font></small></font></font></small></font>
+<blockquote><font face="Helvetica, Arial, sans-serif"><small><font
+ color="#000025"><font size="3"><small><b>2. </b>The
+CLASS<small><small><small><small><small><small><small><small><small><small><small><small>
+  </small></small></small></small></small></small></small></small></small></small></small></small>PATH
+of the SP Creation tool has to be added with the extra jars that are
+added from the Patch Creation tool. For example, the CLASSPATH entry
+should be as follows:<br>
+  <br>
+  </small></font></font></small><i><small><font color="#000025"><font
+ size="3"><small>set
+CLASSPATH=.;.\jars\PatchCreation.jar;.\jars\crimson.jar;.\jars\jaxp.jar;.\jars\xalan.jar;.\jars\ApiUtils.jar;.\jars\AdventNetCCLLoader.jar;.\jars\AdventNetCCLUtils.jar;.\jars\AdventNetUtils.jar;.\jars\AdventNetUI.jar;.\jars\JimiProClasses.zip;.\jars\AdventNetProBeans.jar;.\jars\SPCreation.jar</small></font></font></small></i></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><b>3.</b> The PATCH_DIR and README_FILE parameter has
+to be defined in the
+script file. (</small></font></font><font color="#000025"><font size="3"><small>PATCH_DIR
+and
+README_FILE are explained above</small></font></font><font
+ color="#000025"><font size="3"><small>)<br>
+  <br>
+  </small></font></font></small></font><font color="#009900"
+ face="Helvetica, Arial, sans-serif"><small><font size="3"><small><b>PATCH_DIR</b>:
+The location where the files required for the service pack
+are extracted.<br>
+  <b>README_FILE</b>: The absolute path of the read<small><small><small><small><small><small><small><small><small>
+  </small></small></small></small></small></small></small></small></small>me
+needed for the whole service pack. </small></font><font size="3"><small><big><br>
+  </big></small></font></small></font><br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><b>4. </b>SP creation tool has to be called with <b>-x
+  </b>option.
+The differential files are extracted in the directory specified in the
+CreateSP.xml (as value for <i><b>SPDir</b></i>). <font color="#cc0000"><i><b>Kindly
+note that </b></i></font></small></font></font></small></font><font
+ color="#cc0000"><i><b><font face="Helvetica, Arial, sans-serif"><small><font
+ size="3"><small>PATCH_DIR </small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font size="3"><small>should
+be same as </small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font size="3"><small>SPDir</small></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font size="3"><small>. </small></font></small></font></b></i></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><b>5. </b>The Read<small><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small>
+  </small></small></small></small></small></small></small></small></small></small></small></small></small></small></small><big>me
+file defined in the </big></small></small></font></font><font
+ color="#000025"><font size="3"><small>README_FILE
+parameter has to be copied into the PATCH_DIR location in the script
+file as follows.(<font color="#330099">We are manually copying this
+read me file because,
+only when the SP creation tool is called through <b>-c </b>option,
+this read me file is automatically copied. As we are using the <b>-x </b>option
+for this requirement,
+this has to be copied manually</font>)</small></font></font></small></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><font color="#000099"><b>copy %README_FILE% %PATCH_DIR%</b></font></small></font></font></small></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><b>6. </b>Now, Patch creation tool has to be called
+and in the first time you
+can configure the required options like <i>pre</i></small></font></font><i><font
+ color="#000025"><font size="3"><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small>
+  </small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></font></font></i><font
+ color="#000025"><font size="3"><small><i>invocation</i>, </small></font></font><i><font
+ color="#000025"><font size="3"><small>post</small></font></font><font
+ color="#000025"><font size="3"><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small><small>
+  </small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></small></font></font></i><font
+ color="#000025"><font size="3"><small><i>invocation</i>,
+the <i>mandatory / optional </i>files, the <i>operators </i>(</small></font></font><font
+ color="#000025"><font size="3"><small>Patch
+versions </small></font></font><font color="#000025"><font size="3"><small>Greater
+than,
+equal to, etc...) and save it as a PROFILE. Hereafter, you can select
+this PROFILE and create the servicepack.</small></font></font></small></font><br>
+  <br>
+</blockquote>
+<font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small>&nbsp;&nbsp;&nbsp; We have also attached the sample </small></font></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small>Patch<small><small><small><small><small><small><small><small><small><small><small><small><small>
+</small></small></small></small></small></small></small></small></small></small></small></small></small>Creation
+script with the above steps. Kindly use this script file as reference
+and modify your script file as per your requirement. Please find below
+some guidelines to follow</small></font></font></small></font><font
+ face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><br>
+</small></font></font></small></font>
+<blockquote><font face="Helvetica, Arial, sans-serif"><small><font
+ color="#000025"><font size="3"><small>* The Patch Creation script has
+to be called as follows:</small></font></font></small></font><br>
+  <br>
+  <font color="#000099"><b><font face="Helvetica, Arial, sans-serif"><small><font
+ size="3"><small>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+PatchCreator.bat &lt;old zip&gt; &lt;new
+zip&gt; &lt;Path of the CreateSP.xml file&gt; &lt;Patch Dir&gt;
+&lt;Absolute Path of ReadMe&gt;</small></font></small></font></b></font><br>
+  <br>
+  <font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><small><big><b>* </b></big></small></font></font><font
+ color="#000025"><font size="3"><small>You
+can have <b>different </b></small></font></font><font color="#000025"><font
+ size="3"><small><b>CreateSP.xml
+files </b>for different contexts. This will eliminate the need to
+change the XML for creating the service pack every time</small></font></font></small></font><br>
+</blockquote>
+<font face="Helvetica, Arial, sans-serif"><small><font color="#000025"><font
+ size="3"><b>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </b></font></font><font
+ color="#000025"><font size="3"><small>All
+the options available in the Patch creation tool GUI (pre
+invocation, post invocation, etc...) can be configured in <b>Input.xml
+</b>file of SP Creation tool. Hence, by configuring a single XML file
+in SP creation tool, you can create the servicepack in required format
+without performing all the above mentioned changes. Also, the
+SP creation tool is the latest tool available with all the bug fixes
+and the recent enhancements. Hence, we recommend you to use the SP
+Creation tool to generate your patch files.<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</small></font></font></small></font><br>
+</div>
+<br>
+<font face="Helvetica, Arial, sans-serif"><small><i><b></b></i></small></font></div>
+<div class="moz-text-plain" wrap="true" graphical-quote="true"
+ style="font-family: -moz-fixed; font-size: 13px;" lang="x-unicode">
+<pre wrap=""><br>@rem Please set your Java path here.set<br><br>set JAVA_HOME=C:\java<br>echo off<br>cd ..<br><br>if NOT EXIST %JAVA_HOME%\bin\java.exe echo "Please set the JAVA_HOME parameter in" %0<br>if NOT EXIST %JAVA_HOME%\bin\java.exe goto FINISH<br>echo on<br><br>set CLASSPATH=.;.\jars\PatchCreation.jar;.\jars\crimson.jar;.\jars\jaxp.jar;.\jars\xalan.jar;.\jars\ApiUtils.jar;.\jars\AdventNetCCLLoader.jar;.\jars\AdventNetCCLUtils.jar;.\jars\AdventNetUtils.jar;.\jars\AdventNetUI.jar;.\jars\JimiProClasses.zip;.\jars\AdventNetProBeans.jar;.\jars\SPCreation.jar<br><br>rem PATCH_DIR is the location where the files needed for the ppm will be getting copied<br>rem README_FILE is the common Readme file, needed for the whole ppm. This is different from the CONTEXT Specific Readme,<br>rem which is given in input.xml<br><br>set PATCH_DIR=%4<br>set README_FILE=%5<br><br>%JAVA_HOME%\bin\java -Xmx100m com.adventnet.tools.update.upgrade.SPCreator -x %1 %2 %3<br><br>copy %README_FILE% %PATCH_DIR%<br><br>%JAVA_HOME%\bin\java -Xmx100m com.adventnet.tools.update.creator.PatchCreation -g<br><br>cd bin<br></pre>
+</div>
+</body>
+</html>

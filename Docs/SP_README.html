@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta content="text/html; charset=windows-1252"
+ http-equiv="CONTENT-TYPE">
+  <title>ApertoNet ReadMe</title>
+  <meta content="OpenOffice.org 1.0  (Win32)" name="GENERATOR">
+  <meta content="sivaprakash" name="AUTHOR">
+  <meta content="20040812;15042962" name="CREATED">
+  <meta content="Jerald Antony" name="CHANGEDBY">
+  <meta content="20041220;18382293" name="CHANGED">
+</head>
+<body lang="en-US">
+<h2 align="center">Customer Patch for <font color="#000000">APERTONET</font></h2>
+<hr>
+<h2 align="center">README</h2>
+<p style="margin-bottom: 0cm;" align="center">© Copyright 1996-2005
+AdventNet, Inc. <br>
+All Rights Reserved. </p>
+<hr>
+<h3>ApertoNet Patch</h3>
+<p>1.&nbsp; Added a feature so that the registered <span
+ style="color: rgb(153, 0, 0);">TopoActionListener</span> can get
+notified when the Number of ManagedObjects /Devices<br>
+&nbsp;&nbsp;&nbsp;&nbsp; exceeds the limit specified in the License
+file.<br>
+&nbsp;&nbsp; &nbsp; Whenever&nbsp; a ManagedObject is
+added,deleted,updated or its license limit is exceeded , the <span
+ style="color: rgb(153, 51, 0);">update(TopoNotificationEvent evt) </span>method<br>
+&nbsp;&nbsp;&nbsp;&nbsp; of the <span style="color: rgb(153, 0, 0);">TopoActionListener</span>
+will be called . The notification type can be got from the <span
+ style="color: rgb(153, 51, 0);">getUpdateType( )</span> method of <br>
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: rgb(153, 0, 0);">TopoNotificationEvent</span>
+class .<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp; &nbsp; &nbsp; For License limit Notification the&nbsp; <span
+ style="color: rgb(153, 51, 0);">getUpdateType()</span> method will
+return the String&nbsp; "<span
+ style="color: rgb(51, 51, 0); font-weight: bold;">License Limit
+Exceeded</span>". <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; When ever the ManagedObject exceeds the
+license limit WebNms will add 2 additonal Properties to the
+ManagedObject&nbsp; .<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The description&nbsp; of the property is
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a)&nbsp; <span
+ style="color: rgb(153, 51, 153);">license_type</span>&nbsp; = This
+property specifies the type of License used&nbsp; ( <span
+ style="color: rgb(0, 0, 153);">MO_bases</span>/<span
+ style="color: rgb(0, 0, 153);">Device_based</span>).<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) <span
+ style="color: rgb(153, 51, 153);">license_limit</span>= This property
+specifies limit of ManagedObject/Devices&nbsp; specified in the license
+file<br>
+</p>
+<p>For eg :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Suppose the License limit is 200 ManagedObjects . Now if the count of
+the ManagedObject in the database<br>
+exceeds 200 the <span style="color: rgb(153, 51, 0);">TopoActionListener.update()</span>
+method will be called . The below code snippet will be give the type<br>
+of license&nbsp; used with the Managedobject limit ,when the License
+limit is exceeded.<br>
+</p>
+<p style="color: rgb(255, 102, 102);">// code snippet</p>
+<p style="color: rgb(0, 102, 0);">public void
+update(TopoNotificationEvent evt)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+<br>
+<br>
+String type = evt.getUpdateType();<br>
+if(type.equals("License Limit Exceeded "))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; ManagedObject obj=evt.getNewManagedObject();<br>
+Properties prop =obj.getProperties();<br>
+<span style="color: rgb(255, 102, 102);">// The below line will get the
+type of license used</span><br>
+String <span style="font-weight: bold;">licenceType</span>=prop.getProperty("license_type");<br>
+<span style="color: rgb(255, 102, 102);">// The below line will return
+the license limit for the ManagedObject</span><br>
+</p>
+<p style="color: rgb(0, 102, 0);">String&nbsp; <span
+ style="font-weight: bold;">licenceLimit</span>
+=prop.getProperty("license_limit");<br>
+</p>
+<p style="color: rgb(0, 102, 0);">System.out.println("license
+limit&nbsp; is "+licenceLimit +" and type is " +licenceType);<br>
+<br>
+}<br>
+<br>
+</p>
+<p>In the above code snippet the value of <span
+ style="color: rgb(0, 102, 0);">licenceLimit</span> will be <span
+ style="color: rgb(0, 0, 153);">200</span> and the value of <span
+ style="font-weight: bold; color: rgb(0, 102, 0);">licenceType</span>
+will be <span style="color: rgb(0, 0, 153);">MO_based&nbsp; </span><br>
+</p>
+<p>&nbsp;2. "AdventNet" string reference in the FileChooser dialog of
+License Registration screen has been removed<br>
+<span style="font-family: monospace;"></span></p>
+<p>&nbsp;</p>
+<p>This&nbsp; patch must be applied over NMS 4.7.0+SP1 The steps to
+apply the
+patch are given below. <br>
+&nbsp; </p>
+<ol>
+  <li>
+    <p style="margin-bottom: 0cm;">Stop the NMS server if it is
+running. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Run the <b>UpdateManager.sh/bat</b>
+from <i>&lt;NMS Home&gt;/bin</i> directory. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">In the UpdateManager UI, click <b>Install</b>
+button </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">In the Installation Wizard, click
+the <b>Browse</b> button and select the patch file. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Click <b>OK</b> in the confirmation
+dialog that pops up and then click <b>Close</b>. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Click <b>Close</b> in the
+Installation Wizard. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Click <b>Finish</b>. </p>
+  </li>
+  <li>
+    <p>Click <b>Exit</b> to close the Update Manager. </p>
+  </li>
+</ol>
+<p><b>Steps to revert the patch:</b> </p>
+<p>If you want to revert the applied patch, <br>
+&nbsp; </p>
+<ol>
+  <li>
+    <p style="margin-bottom: 0cm;">Stop the NMS server if it is
+running. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Run UpdateManager.sh/bat from <i>&lt;NMS
+Home&gt;/bin</i> directory. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Select the installed patch from the
+displayed list, and click <b>Uninstall</b>. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;">Click <b>Finish.</b> </p>
+  </li>
+  <li>
+    <p>Click <b>Exit</b>. </p>
+  </li>
+</ol>
+<p><br>
+Now, the patch will be reverted. </p>
+<hr>
+<p style="margin-bottom: 0cm;"><br>
+</p>
+<hr>
+<p><br>
+&nbsp; </p>
+</body>
+</html>

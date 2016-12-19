@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Folders_in_NMS</title>
+</head>
+<body>
+<table
+ style="text-align: left; width: 943px; height: 520px; font-family: times new roman,times,serif;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Directory<br>
+      </td>
+      <td style="vertical-align: top;">Functionality<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Is Necessary</span><br
+ style="color: rgb(255, 0, 0);">
+      <span style="color: rgb(255, 0, 0);">Yes / </span><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span><span
+ style="color: rgb(255, 0, 0);">?</span><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\admin_servlets(
+java UI)<br>
+      </td>
+      <td style="vertical-align: top;">Contains Shutdown.java (source
+code of Servlet which Shutsdown WebNMS<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\adventnet_specifications
+
+
+      <br>
+      </td>
+      <td style="vertical-align: top;">Contains the link to AdventNet
+Home page when help information is clicked<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\bsh-scripts
+(integration&nbsp; team)<br>
+      </td>
+      <td style="vertical-align: top;">Provisioning related scripts <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary</span> if provisioning module
+is used. <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\builder_template
+
+      <br>
+      </td>
+      <td colspan="1" rowspan="3" style="vertical-align: top;">Used by
+Bean Builder. Removing this Directory will not affect the Web NMS or
+the
+customized EMS. After removing this Directory BeanBuilder you will not
+be
+able to work with Bean Builder, which will not be required in
+deployment.</td>
+      <td colspan="1" rowspan="3" style="vertical-align: top;"><br>
+      <span style="color: rgb(0, 153, 0); font-weight: bold;">No</span><br>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\builderconf <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\builderdata</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\ancillary</td>
+      <td style="vertical-align: top;">i18N (Internationalization)
+related information. Used only at installation time<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\ccs</td>
+      <td style="vertical-align: top;">Related to CLI protocol /
+Provisioning module <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary</span> when CLI /
+Provisioning module is used. </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\default_impl</td>
+      <td colspan="1" rowspan="2" style="vertical-align: top;">Contains
+example source (readymade)files <br>
+      <br>
+      </td>
+      <td colspan="1" rowspan="2" style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span><br>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\examples</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\genTrap</td>
+      <td style="vertical-align: top;">Used for testing Traps<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\idls</td>
+      <td style="vertical-align: top;">Corba Protocol related files <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary</span> when CORBA Protocol is
+used<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\mapdata</td>
+      <td style="vertical-align: top;">Client related xml files <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\Netmonitor</td>
+      <td style="vertical-align: top;">Client related jar files<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_Home&gt;\State</td>
+      <td style="vertical-align: top;">Empty Directorys in which Traps
+related info would be written<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br style="font-family: times new roman,times,serif;">
+<table
+ style="text-align: left; width: 932px; height: 495px; font-family: times new roman,times,serif;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Directory<br>
+      </td>
+      <td style="vertical-align: top;">What it contains?</td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Is Necessary</span><br
+ style="color: rgb(255, 0, 0);">
+      <span style="color: rgb(255, 0, 0);">Yes / </span><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span><span
+ style="color: rgb(255, 0, 0);">?</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\ejb_jars</td>
+      <td style="vertical-align: top;">EJB Related Jars<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary </span>when using EJB. </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\icons</td>
+      <td style="vertical-align: top;">Contains icon files (.png, .jpg,
+.ico extension) used to represent the icons used in AdventNet Web NMS.<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\java_client</td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(153, 0, 0);">There is no such Directory in WebNMS
+home</span><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\stylesheets</td>
+      <td style="vertical-align: top;">Contains stylesheet files for
+laying out provisioning templates.</td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary</span> when Provisionjing
+modules is used</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">NMS_HOME&gt;\reports</td>
+      <td style="vertical-align: top;">The reports generated are store
+in this Directory<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Yes</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\listmenus</td>
+      <td style="vertical-align: top;">Contains a list of .xml files
+required for the menus in the Network Database panel of AdventNet Web
+NMS.<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Corresponding menu files (used in
+client) should be restored.</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\projects</td>
+      <td style="vertical-align: top;">Contains Builder Projects,
+Sources, screens, and .proj files for the projects developed by the
+Client. <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\servlets</td>
+      <td style="vertical-align: top;">Contains the script to start the
+Web Server for Bean Builder.<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(255, 0, 0);">Necessary </span>whenusing Bean Builder<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\unauthenticatedservlets&nbsp;
+
+
+      <br>
+      </td>
+      <td style="vertical-align: top;">Contains the list of
+unauthenticated Servlets. (Java Source Files)<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&lt;NMS_HOME&gt;\web-inf/examples</td>
+      <td style="vertical-align: top;">Web Client related Java Source
+files <br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="color: rgb(0, 153, 0); font-weight: bold;">No</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br style="font-family: times new roman,times,serif;">
+<img style="width: 372px; height: 671px;" alt="" src="Folders.JPG"><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+</body>
+</html>

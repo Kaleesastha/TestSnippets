@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Testcases</title>
+</head>
+<body>
+1. JSP change: In Tomcat 5 the JSP compilation needs to be done<br>
+CATS-HCF-JSPC-030<br>
+<br>
+2. PrintMessage.java: Ensure that the timestamp of the server startup
+is logged. Also change the <span style="font-weight: bold;">DATE_FORMAT
+</span>variable in serverparameters.conf (as any one of the formats
+allowed in <a
+ href="http://training-server/javastuff/jdk1.4.1APIdocs/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a>)
+and restart the server &amp; check whether the configured format takes
+effect<br>
+<font color="#000000">tescase to be modified at SF-NORM-025 and as
+chinese machine<br>
+<br>
+</font>3. java_service.ini: Ensure that the following jars are present
+in java_service,ini:<br>
+<span style="font-weight: bold;">AdventNetCLIClient.jar,
+AdventNetSnmpDistributedAPI.jar, JimiProClasses.zip, jfreechart.jar,
+ftp.jar, jcommon.jar</span><br>
+4. <a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/installation_guide/installation_and_setup/ntservice.html">Install
+WebNMS as windows service</a>. Reinitialize and start the service.
+Ensure that web client connects without any issues. There should be mo
+Internal server error 500 sort of errors.<br>
+5. Now continue the above testcase and create a new user. Try to login
+as the new user. This should be properly connecting.<br>
+Testcases to be added as TAS-WIN-REG-043, TAS-WIN-REG-044,
+TAS-WIN-REG-045<br>
+<br>
+6. TransportXMLReader.java: Testcase to be carried out in the SSL
+enabled WebNMS setup:<br>
+From 4.7 SP3, the truststore &amp; keystore passwords can be encrypted
+and given in transportprovider.conf. <br>
+Encrypt the truststore and keystore passwords using the <a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/persistence_services/database_parameters.html#How%20to%20encrypt%20the%20database%20password">&lt;NMS_Home&gt;/bin/admintools/EncryptPassword.bat
+/ sh</a><br>
+But this should not affect the normal functionality. Hence check
+whether the server &amp; client (application / Webstart / Applet)
+starts properly in SSL mode.<br>
+Then modify the transportprovider.conf as follows:<br>
+Under the SSL protocol configurations, change the below lines as:<br>
+<br>
+&lt;TRUST_STORE_PASSWORD&gt;webnms&lt;/TRUST_STORE_PASSWORD&gt;<br>
+&lt;KEY_STORE_PASSWORD&gt;webnms&lt;/KEY_STORE_PASSWORD&gt;<br>
+<br style="color: rgb(102, 51, 51);">
+<span style="font-weight: bold; color: rgb(102, 51, 51);">&lt;ENCRYPTED_TRUST_STORE_PASSWORD&gt;<span
+ style="font-style: italic;">e6AB8r6v</span>&lt;/ENCRYPTED_TRUST_STORE_PASSWORD&gt;</span><br
+ style="font-weight: bold; color: rgb(102, 51, 51);">
+<span style="font-weight: bold; color: rgb(102, 51, 51);">&lt;ENCRYPTED_KEY_STORE_PASSWORD&gt;<span
+ style="font-style: italic;">e6AB8r6v</span>&lt;/ENCRYPTED_KEY_STORE_PASSWORD&gt;</span><br
+ style="font-weight: bold; color: rgb(102, 51, 51);">
+After the above modifications, check whether the server and client
+(application / Webstart / Applet) starts properly,<br>
+CATS-JCF-SSL-025, CATS-JCF-SSL-026 (identified)<br>
+CATS-JCF-SSL-027 (to be added for the encrypted case)<br>
+<br>
+7. ChangePasswordServlet.java, AuthenticationServlet.java,
+LoginAction.java<br>
+<a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/security_services/startup_options/security_fe.html">Configure
+the change_password_for_firsttime_login parameter as true </a>in the
+NmsAuthManager process in NmsProcessesBE.conf<br>
+Create some new users (say 6 users;) and assign password expiry (1 day)
+for them. Now start the server &amp; start the client &amp; login as
+the newly created user. There should not be any issues. After logging
+in Forward the system date (deliberatley making the password to expire)
+Now log out and login again for the same user. Check whether the
+password expiry UI behaves properly (i.e) On reconfiguring / reusing
+there should not be any issues and the client should properly login.
+Ensure that in both Java client as well as web client, there are no
+issues.<br>
+<br>
+for html UI, testcase to be added as SM-ADMN-HTML-TOOL-<span
+ style="font-weight: bold;">034A<br>
+</span>For JavaUI, SM-ADMN-JAVA-TOOL-134.4 (existing testcase)<br>
+SM-ADMN-JAVA-TOOL-034<br>
+<br>
+Failover in headless mode: <br>
+Telnet to a linux machine from a Windows Telnet prompt (<span
+ style="font-weight: bold;">not with XManager</span>, but in a command
+prompt) or from a <span style="font-weight: bold;">Linux </span>shell.
+<br>
+Edit the startnms.sh to include <span
+ style="font-weight: bold; font-family: courier new,courier,monospace;">-Djava.awt.headless=true</span>.
+Start the server before applying the licence (If the licence is already
+applied, replace the petinfo.dat &amp; product.dat under
+&lt;NMS_HOME&gt;\classes directory with a <a
+ href="http://nms4-demoxp/Fresh-PetInfo-Product-Files/4.7/">fresh copy
+of files</a>). There should not be any exception in the console.
+Instead, "<span style="font-style: italic; font-weight: bold;">Headless
+exception detected. Continuing in command mode</span>" should be logged
+in the console and the licence process should continue.<br>
+Testcase to be added as <font color="#000000">SF-NORM-026</font><br>
+SF-BEFOV-SER-017<br>
+<br>
+Start the primary server and the standby server as above. Now for the
+primary server connect a application client. Shutdown the primary
+server. Ensure that no headless exceptions are thrown in the console
+and the standby takes over as primary and the Application client
+connects to the standby as well.<br>
+<br>
+8. AuthSessionBE.java change: <a
+ href="http://ppt-server/build/RoboHelp/Publish/webnms_helpsource/webnms4/help/developer_guide/security_services/authorization/authorization.html#Fine%20Grain">Create
+an Authorized scope for a particular group for a operation</a> for a
+particular group for a particular parent operation. After creating the
+scope, modify the operation permission for the group over which the
+operation is created (For eg: exclude an already included child
+operation.) Delete the group. Now the authorized scope should also be
+deleted. For this check the ViewPropertiesTable &amp; ViewsToGroup
+Table and ensure that there ano traces of that operations. (The scope
+name will be &lt;user&gt; &lt;operation name&gt; Scope. This entry
+should not be present in both the tables after deleting the group).<br>
+Create a group with the same name and create an authorized scope over
+the same parent operation. This should be possible without any
+issues.&nbsp; <br>
+<span style="text-decoration: underline;">Testcases to be added:</span><br>
+SM-ADMN-JAVA-TOOL-326<br>
+SM-ADMN-JAVA-TOOL-327 <br>
+<br>
+</body>
+</html>

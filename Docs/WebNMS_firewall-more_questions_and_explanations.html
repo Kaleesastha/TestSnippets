@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>WebNMS firewall - more questions and explanations</title>
+</head>
+<body>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="font-family: verdana,arial,helvetica,sans-serif; font-size: 11px;">
+<div><a
+ href="http://nms-support.zohocorpin.com:8080/WorkOrder.do?woMode=viewWO&amp;woID=3082161"><span
+ class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="font-family: verdana,arial,helvetica,sans-serif; font-size: 11px;"><font
+ class="Apple-style-span" face="'times new roman', times, serif"
+ size="3"></font></span></span></a><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><a
+ href="http://nms-support.zohocorpin.com:8080/WorkOrder.do?woMode=viewWO&amp;woID=3082161">http://nms-support.zohocorpin.com:8080/WorkOrder.do?woMode=viewWO&amp;woID=3082161</a><br>
+Dear Johannes<br>
+<br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">WebNMS framework
+expects the following w.r.t firewall:</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">1.<span
+ class="Apple-converted-space">&nbsp;</span><b>BE, FE, STANDBY &amp;
+Database will be inside the same network &amp; no firewall exists
+between them</b></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">2. Only a Client is
+connected outside through firewall.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Now find our answers
+inline with your queries.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b><span
+ class="Apple-converted-space">&nbsp;</span>1. Is the Default RMI
+Registry Port (TCP 1099) needed in case of SSL communication between
+Client and Server ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;Yes!
+Even in case of SSL, we need RMI for telnet-to-device option in client.
+This is acheived through RMI only.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;2.
+I've seen, that in case of ssl client server communication three ports
+are opened and connected, the one to the tomcat (8443), the NMS FE
+Secondary Port and the WebNMS Client Server communication port. Is that
+o.k. ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;Yes!
+8443 if for https communication. For java client, 2 ports are needed -
+One (common socket) for SAS communication &amp; other port (Client
+Server communication port in transportProvider.conf for all other
+communication)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;3. Is
+the Web NMS Agent port accessed from the client directly on the BE ?
+-&gt; Which applications work over that port ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;I
+believe its not directly needed from the client.&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;4.
+For what is the SAS (SNMP Applet Port) Port needed ? -&gt; What does
+the SAServer ? The SAS Port has to be opened on the BE Server ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">
+<div><font size="3">
+<div><b style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;Kindly
+note that&nbsp;<a
+ href="http://www.webnms.com/snmp/snmpapi_datasheet.html">SNMP Applet
+Server (SAS) is to facilitate communication between applets and managed
+devices / across firewalls</a><br>
+(This is used when you SNMP-query the devices from the client. when we
+query devices from the Mib Manager in the client)<br>
+<br>
+</div>
+<div>Please go through the below docs to know more about SAS:<br>
+<a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv1/api_overview/sasapiarch.html">SAS
+API Architecture</a>,&nbsp;</div>
+<div><a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv2c/applet_development/sas_support.html">Support
+Through SAS</a></div>
+<div><a
+ href="http://www.webnms.com/snmp/help/snmpapi/snmpv2c/applet_development/appletapi_contents.html">Developing
+SNMP Application as Java Applet</a></div>
+</font></div>
+<div><font size="3"><br>
+When
+you enable debug as true (SAS_DEBUG true for NMSSAServer
+in&nbsp;NmsProcessesBE.conf) &amp; query the SNMP devices from client
+(SNMP
+TOOLS ==&gt; Mib Manager), then you will see the following details in
+the stdout.txt:<br>
+<i>Send Request on session, Send Request rem. host, Send Request port,
+Send data len, Sent PDU to (IP), Received PDU,</i></font></div>
+<div><font size="3"><br>
+You
+can comment NMSSAServer process in NmsProcessesBE.conf and SAServerFE,
+NmsSAServerFE process in NmsProcessesFE.conf to comment SAS module<br>
+</font></div>
+<div><font size="3"><br>
+</font></div>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;5.
+For what is the Config Server port needed ? It is opened on the BE, who
+accesses it ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;Config
+server port is required if you are going to use provisioning &amp;
+configuration modules. So you can comment the provisioning &amp;
+configuration processes (in both NmsProcessesBE &amp; NmsProcessesFE)
+if you are not using these modules.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">I believe its not
+directly needed from the client.&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;6.
+I didn't quite get the explanation with RMI Server Socket Port -&gt;
+"used when WebNMS is started behind a firewall", does it mean we have
+to program something, if we use firewalls ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;When we
+use RMI from client (as done for telnet-to-device option in client), in
+addition to 1099 port, another port is needed.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">This
+will be a random port by default. If you define a SocketFactory, then
+you can configure that port too. This is the RMI Server Socket port.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Please
+read this small document
+(http://www.webnms.com/webnms/help/developer_guide/common_server_configuration/starting_webnms_behind_a_firewall.html)
+to
+know how to set this port.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;7. Is
+the SUM port needed by the system ? What does the SUM Manager do ?
+Where is this port number to configure ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;SUM
+stands for Smart Update Manager. If you are not using an application
+client, you need not open these ports.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;8.
+Generally, in our case, when we use firewalls, can we communicate by
+only opening certain ports or do we have also to program something?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;Once
+you follow the steps in these 2 documents
+(http://www.webnms.com/webnms/help/developer_guide/common_server_configuration/starting_webnms_behind_a_firewall.html
+&amp;
+Configuring Web NMS Ports -
+http://www.webnms.com/webnms/help/developer_guide/common_server_configuration/webnms_ports.html
+-
+Exclude the ports which I said above), you need not worry about any
+other configuration.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;9.
+Which ports (on the FE) have to be opened if the FE is behind a
+firewall, which ports have to be opened (on the BE) , if the BE is
+behind a firewall?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b>&nbsp;On BE,
+the following ports should be opened:</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">1. WEBSERVER_PORT
+&amp; SSL_PORT (setEnv.sh)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">2. RMI_REG_PORT &amp;
+NMS FE Secondary Port (serverparameters.conf)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">3. Web NMS Client
+Server communication port (PORT_TO_LISTEN in transportProvider.conf)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">4. RMI Server Socket
+Port (another RMI port as explained earlier, configured in
+NmsInFireWall code)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">5.
+SUM Port (if you use Application client alone this is needed. It need
+not be opened when you can ensure that When you do not have application
+client)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">6. RMI Server Socket
+Port (configured as 6010 in the NmsInFireWall code)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">In FE too, all the
+above ports are needed.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">(I
+do not think the other ports in this document
+http://www.webnms.com/webnms/help/developer_guide/common_server_configuration/webnms_ports.html
+are
+needed)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Kindly
+test by opening these ports alone in a firewall &amp; check whether you
+are able to connect a webstart client (Simply check with Windows
+firewall which is easy)</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(0, 255, 0);">[MicroNoava]:</b>&nbsp;10.
+If the database is behind a firewall, which ports have to be opened
+(only the specified main port or probably also more because connection
+poolong is used) ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><b
+ style="background-color: rgb(255, 255, 0);">[WebNMS]:</b><span
+ class="Apple-converted-space">&nbsp;</span>No!
+We do not support this as of now. As said in the first, &nbsp;WebNMS
+expects
+BE, FE, STANDBY &amp; Database will be inside the same network &amp; no
+firewall exists between them.</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">We
+believe this answers your queries &amp; meets your requirement. Kindly
+get back to us for any further clarification in this regard.<br>
+<br>
+Thanks &amp; regards</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Venkatramanan<br>
+<br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&lt;Johannes
+Weinberger&gt; wrote--------------</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3"><br>
+</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Hi,</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">could you please
+answer me some questions concerning communication ports with respect to
+configuring firewalls ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">I've found the
+following description of ports on the docu:</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">http://www.webnms.com/webnms/help/developer_guide/common_server_configuration/webnms_ports.html</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Here are my questions:</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">1. Is the Default RMI
+Registry Port (TCP 1099) needed in case of SSL communication between
+Client and Server ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">2.
+I've seen, that in case of ssl client server communication three ports
+are opened and connected, the one to the tomcat (8443), the NMS FE
+Secondary Port and the WebNMS Client Server communication port. Is that
+o.k. ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">3. Is the Web NMS
+Agent port accessed from the client directly on the BE ? -&gt; Which
+applications work over that port ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">4.
+For what is the SAS (SNMP Applet Port) Port needed ? -&gt; What does
+the SAServer ? The SAS Port has to be opened on the BE Server ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">5. For what is the
+Config Server port needed ? It is opened on the BE, who accesses it ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">6.
+I didn't quite get the explanation with RMI Server Socket Port -&gt;
+"used when WebNMS is started behind a firewall", does it mean we have
+to program something, if we use firewalls ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">7. Is the SUM port
+needed by the system ? What does the SUM Manager do ? Where is this
+port number to configure ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">8.
+Generally, in our case, when we use firewalls, can we communicate by
+only opening certain ports or do we have also to program something ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">9.
+Which ports (on the FE) have to be opened if the FE is behind a
+firewall, which ports have to be opened (on the BE) , if the BE is
+behind a firewall ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">10.
+If the database is behind a firewall, which ports have to be opened
+(only the specified main port or probably also more because connection
+poolong is used) ?</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">&nbsp;</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Best Regards</font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif" size="3">Johannes Weinberger</font></div>
+</span></span>
+</body>
+</html>

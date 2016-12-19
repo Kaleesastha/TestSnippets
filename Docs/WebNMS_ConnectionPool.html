@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>WebNMS ConnectionPool</title>
+</head>
+<body>
+The following describes how connections are allocated in 4.7 SP3<br
+ clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ clear="none">
+Transactional Connection</span><br clear="none">
+<br clear="none">
+The Connection Pool in NMS maintains two data structures for holding
+the transactional connections namely<br clear="none">
+<ul>
+  <li> Free connections array<br clear="none">
+  </li>
+  <li>Currently used connections mapping (Thread Vs connection mapping
+) (Hashtable)<br clear="none">
+  </li>
+</ul>
+When NMS starts, it would create transactional connections as
+configured and store the same in the free connections array.<br
+ clear="none">
+<br clear="none">
+<span style="text-decoration: underline;">What happens when a thread
+tries to execute queries in transaction mode :</span><br clear="none">
+<ul>
+  <li>Whenever a thread begins a transaction, the Connection Pool moves
+a connection from the free connection array to the currently used array
+and it would be mapped to that particular thread. <br clear="none">
+  </li>
+  <li>The database queries performed by that particular thread are
+executed through the connection mapped with the thread<br clear="none">
+  </li>
+  <li>Once a commit or rollback occurs in that particular thread, the
+ConnectionPool is notified of the same and it would remove the
+respective connection from the currently used connection to the free
+connection array.</li>
+  <li>In case, a thread begins a transaction with a timeout value, the <span
+ style="font-style: italic;">TransactionAPI</span> would schedule a <span
+ style="font-style: italic;">TransactionTimeoutHandler</span> with the
+timeout after the Connection Pool associates a connection with the
+thread. If the thread does not commit before this timeout value, the
+timeout handler would be executed and a rollback would happen. Then the
+Connection Pool would remove the respective connection from the
+currently used connection to the free connection array.</li>
+  <li>The <span style="font-style: italic;">TransactionTimeoutHandler</span>
+would be scheduled in all cases except when the timeout value is set as
+-1. In such a case, there would be no time out check.<br clear="none">
+  </li>
+</ul>
+<br clear="none">
+<span style="text-decoration: underline;">What happens when a thread
+tries to execute queries in transaction mode when all the connections
+are currently used :</span><br clear="none">
+<br clear="none">
+In case all the transaction connections are being used when a new
+thread begins a transaction, the Connection Pool would would wait until
+a connection is available in the free connection array and then map the
+same with the thread. The Connection Pool would check the free
+connection array every second until it crosses its timeout value. In
+case it is not able to fetch a connection within the timeout value, an
+exception stating that Free connection is not available would be
+thrown. <br clear="none">
+Please note, if the timeout is set as -1, the Connection Pool would
+indefinitely check the free connection array until it gets one.<br
+ clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ clear="none">
+Non Transactional Connection<br clear="none">
+</span><span style="text-decoration: underline; font-weight: bold;"><br
+ clear="none">
+</span>The Connection Pool in NMS maintains a single array for holding
+the non transaction connections. It also maintains a tracker to keep
+track of the last connection given. The tracker's value fall within the
+range of the non transactional connections i.e if there are 2 non
+transactional connection its values would be 0,1. <br clear="none">
+<br clear="none">
+Whenever a thread requests for a connection, the tracker increments it
+value and return the non transactional connection present at that index
+in the connection array. When the tracker's value crosses the max
+value, it would be reset to its initial value. <br clear="none">
+For example, assume there are 2 non transactional connections (c1, c2)
+and 3 threads (t1, t2, t3) tries to obtain connections simultaneously.
+Then thread t1 would get connection c1 , t2 would get c2 and t3 would
+get c1. <br clear="none">
+As of now, there is no provision to lock the connection if it is used
+by another thread. The locking of connections was avoided as
+simultaneous execution of queries through a common connection by
+different threads is handled by the JDBC implementation. And hence
+there would not be any issues of data corruption.<br clear="none">
+<span style="text-decoration: underline; font-weight: bold;"><br
+ clear="none">
+Handling Non transactional connection similar to Transactional
+connections</span><br clear="none">
+<br clear="none">
+The locking of transaction connections has been implemented as the
+Connection Pool would be notified whenever the usage of a transactional
+connection starts and stops i.e through the begin and commit
+mechanisms. <br clear="none">
+However such a provision does not exist for non transactional
+connections. A module would request a connection and execute queries
+using the same. However it would not send any notification to the
+Connection Pool after using the same. Hence the Connection Pool would
+never know if the module/ thread has used the connection or not.<br
+ clear="none">
+<br clear="none">
+In order to implement locking of the non transaction connections, it
+would be necessary for the threads that request the connection to
+return the connection to the Connection Pool after using the same. This
+would help the Connection Pool in identifying the free and used non
+transactional connections. However the proposed implementation involves
+2 major changes as follows :<br clear="none">
+<ul>
+  <li>A major change of NMS modules so as to fetch a connection
+whenever it is required and return the same after using it. <br
+ clear="none">
+  </li>
+  <li>Modification of existing customer code so as to return the
+connection after using the same.<br clear="none">
+  </li>
+</ul>
+<span style="color: rgb(220, 20, 60);">We feel that the locking of non
+transactional connections would be an overkill and the performance gain
+achieved would be minimal when compared to the mammoth effort involved
+in implementing the same. Please let us know your views on the same.</span><br
+ clear="none">
+<span style="font-weight: bold;">(May need to rephrase the above)</span><br
+ clear="none">
+</body>
+</html>

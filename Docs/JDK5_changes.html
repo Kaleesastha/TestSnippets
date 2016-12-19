@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Changes with JAVA 5</title>
+</head>
+<body>
+<p>When using <span style="font-weight: bold;"><b>JDK 1.5</b></span>
+version along with Studio tools in the following exceptions are
+displayed in the console when using WebNMS IDEs:<br>
+<big><font face="Courier New, Courier, monospace"><b>java.io.FileNotFoundException:
+C:\WebNMS\Testing\AdventNet\WebNMS\StudioTools\Studio\projects\&lt;Tutorial_Name&gt;\config\Packager.</b><b>xml<br>
+</b></font></big>(The requested operation cannot be performed on a file
+with a user-mapped section open)<br>
+at java.io.FileOutputStream.open(Native Method)<br>
+...<br>
+To overcome this issue,<span style="font-weight: bold;"> </span>xalan.jar,
+crimson.jar &nbsp;and jaxp.jar classes of Java 1.4 should be used. To
+achieve this, the <a
+ href="http://java.sun.com/j2se/1.4.2/docs/guide/standards/"
+ target="_blank">Endorsed Standards Override Mechanism</a> should be
+followed.</p>
+To implement this,<br>
+1. Copy <span style="font-weight: bold;"><b>xalan.jar</b></span>, <span
+ style="font-weight: bold;"><b>crimson.jar</b></span>, and <span
+ style="font-weight: bold;"><b>jaxp.jar</b></span> to a folder, for
+example "endorsed_nms" under <span style="font-style: italic;">&lt;NMS_Home&gt;/classes</span>
+folder.<br>
+2. In the <i><span style="font-style: italic;"></span></i><span
+ style="font-weight: bold;"></span>&lt;NMS
+Home&gt;\StudioTools\Studio\bin\startWebNMSStudio.bat&nbsp; file, add
+the below content.<br>
+<font face="Courier New, Courier, monospace"><big><b>-Djava.endorsed.dirs=%WEBNMSHOME%\classes\endorsed_nms</b></big></font><br>
+<br>
+For example, after adding the above content, the <span
+ style="font-weight: bold;"><b>JAVA_CMD</b></span> entry would be:
+<p>set JAVA_CMD="%JAVA_HOME%\bin\java" -Xmx200M <font
+ face="Courier New, Courier, monospace"><big><b>-Djava.endorsed.dirs=%WEBNMSHOME%\classes\endorsed_nms</b></big></font><br>
+The above procedure must be used to overcome the same issue in other
+IDEs such as Configuration Wizard, Chassis Wizard also.<br>
+</p>
+<p>Als refer Changes needed for <a
+ href="http://www.adventnet.com/products/webnms/StudioTools/ClientBuilder/help/chassis_wizard/working_chassis_wizard/working_chassis_proj.html#New_Project">Chassis
+Wizard</a>, <a
+ href="http://www.adventnet.com/products/webnms/help/installation_guide/installation_and_setup/system_requirements/software_requirements.html#for_development">General
+Changes</a><br>
+</p>
+<p><br>
+</p>
+<p>Comparison between Old Backup &amp; New Backup<br>
+Windows 2003 setup. MySQL - WebNMS bundled MySQL. - 512 MB RAM<br>
+Oracle - Oracle 8i - installed in Linix 7.2 - 512 MB RAM 20 GB HardDisc<br>
+</p>
+<p><span style="font-weight: bold;">50 K Nodes, 50 K TopoObjects, 50K
+ManagedObject, 50 K Events, 5 K
+Alerts</span><br>
+</p>
+<table style="text-align: left; width: 638px; height: 249px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Database<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to old
+backup<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to new
+backup <br>
+      </td>
+      <td style="vertical-align: top;"><b><font color="#000066">Percentage<br>
+      </font></b> </td>
+      <td style="vertical-align: top; text-align: center;">Time to old
+Restore <br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to new
+Restore <br>
+      </td>
+      <td style="vertical-align: top;"><b><font color="#000066">Percentage<br>
+      </font></b> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Oracle (1)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">2:21.<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">1:32 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">34 %<br>
+      </font></b> </td>
+      <td style="vertical-align: top; text-align: center;">27:05 </td>
+      <td style="vertical-align: top; text-align: center;">14:53 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">45 %<br>
+      </font></b> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Oracle (2)</td>
+      <td style="vertical-align: top; text-align: center;">2:18 </td>
+      <td style="vertical-align: top; text-align: center;">1:35 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">31 %<br>
+      </font></b> </td>
+      <td style="vertical-align: top; text-align: center;">30:08 </td>
+      <td style="vertical-align: top; text-align: center;">14:21 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">53 %<br>
+      </font></b> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">MySQL(1)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">00:59 </td>
+      <td style="vertical-align: top; text-align: center;">00:36 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">38 %<br>
+      </font></b> </td>
+      <td style="vertical-align: top; text-align: center;">&nbsp; 4:05 </td>
+      <td style="vertical-align: top; text-align: center;"> 2:08 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">48 %<br>
+      </font></b> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">MySQL(2)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">1:00 </td>
+      <td style="vertical-align: top; text-align: center;"> 00:36 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">40 %<br>
+      </font></b> </td>
+      <td style="vertical-align: top; text-align: center;"> 4:10 </td>
+      <td style="vertical-align: top; text-align: center;">2:11 </td>
+      <td style="vertical-align: top;"><b><font color="#000066">47%<br>
+      </font></b> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<span style="font-weight: bold;">2L Nodes, 2L TopoObjects, 2L
+ManagedObject, 2L Events, 20 K
+Alerts, </span><br>
+<table style="text-align: left; width: 638px; height: 249px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Database<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to old
+backup 2L <br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to new
+backup <br>
+      </td>
+      <td style="vertical-align: top;"><font color="#000066"><b>Percentage<br>
+      </b></font> </td>
+      <td style="vertical-align: top; text-align: center;">Time to old
+Restore <br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">Time to new
+Restore <br>
+      </td>
+      <td style="vertical-align: top;"><font color="#000066"><b>Percentage<br>
+      </b></font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Oracle (1)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">08:23</td>
+      <td style="vertical-align: top; text-align: center;">06:37</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>21%<br>
+      </b></font> </td>
+      <td style="vertical-align: top; text-align: center;">1:48:34</td>
+      <td style="vertical-align: top; text-align: center;">57:22</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>47 %<br>
+      </b></font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">Oracle (2)</td>
+      <td style="vertical-align: top; text-align: center;">08:29</td>
+      <td style="vertical-align: top; text-align: center;">06:18</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>25 %<br>
+      </b></font> </td>
+      <td style="vertical-align: top; text-align: center;">1:48:28</td>
+      <td style="vertical-align: top; text-align: center;">58:51</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>45 %<br>
+      </b></font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">MySQL(1)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"> 05:12</td>
+      <td style="vertical-align: top; text-align: center;">03:17</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>36%<br>
+      </b></font> </td>
+      <td style="vertical-align: top; text-align: center;">17:50</td>
+      <td style="vertical-align: top; text-align: center;">09:28</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>46%<br>
+      </b></font> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">MySQL(2)<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">04:48</td>
+      <td style="vertical-align: top; text-align: center;"> 03:00</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>37 %<br>
+      </b></font> </td>
+      <td style="vertical-align: top; text-align: center;">15:46</td>
+      <td style="vertical-align: top; text-align: center;">09:41</td>
+      <td style="vertical-align: top;"><font color="#000066"><b>37%<br>
+      </b></font> </td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+Dear Sir/Madam,
+<br>
+<br>
+Please archive/zip your project/log files and upload them to our server
+using the following URL :
+<br>
+<a class="moz-txt-link-freetext"
+ href="http://bonitas.adventnet.com/upload/index.jsp?to=nms-support@adventnet.com">http://bonitas.adventnet.com/upload/index.jsp?to=nms-support@adventnet.com</a>
+<br>
+<br>
+Specify your e-mail address
+<br>
+Mention the Ticket ID and some details about the issue (if possible) in
+the Reason text area. This would help us identify the subject issue
+easily
+<br>
+Browse and choose the file to upload and click 'Upload'
+<br>
+<br>
+Note :
+<br>
+1. You can upload only one file at a time. So, please archive/zip your
+project/log files and upload them at a single shot.
+<br>
+2. You can upload files up to 200 MB.
+<br>
+<br>
+Once the upload is complete, you will receive a confirmation e-mail and
+we will also be automatically notified of the upload.
+<br>
+<br>
+We would analyze the uploaded files and get back to you as soon as
+possible.
+<br>
+<br>
+Thanks &amp; Regards,
+<br>
+venkatramanan
+<br>
+</p>
+</body>
+</html>

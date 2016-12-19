@@ -1,0 +1,243 @@
+<html><head><title>PostgreSQL versus MySQL.</title></head><body>
+<pre><h1>       PostgreSQL or MySQL?</h1>
+
+<p class="head">Don't hope one tool fits all your jobs.
+
+To choose between the two databases, you need to understand whether you need the transaction 
+support of Postgres or the large-text-area support in MySQL. 
+
+It's interesting that the two databases appear to be converging to meet in the middle somewhere. 
+While MySQL is working on adding transaction support and slowly adding features like subselects, 
+Postgres is making progress in the performance and stability. 
+
+Having foreign keys, views, subselects, and transactions can all be very attractive in PostgreSql - 
+if you need them and you will make any use of them. If you don't need them or won't use them, then 
+you're probably better off with MySQL and its superior performance. 
+</p>
+
+
+<h2>PostgreSQL versus MySQL: an unbiased comparison</h2>
+</pre>
+
+<table border="2">
+   <tbody><tr>
+      <th>&nbsp;</th>
+      <th>PostgreSQL</th>
+      <th>MySQL</th>
+   </tr>
+
+   <tr>
+      <th>SQL standard COMPLIANCE</th>
+
+<td valign="top">
+Postgres understands a good subset of SQL92/99 plus some object-oriented features 
+to these subsets. Postgres is capable of handling complex routines and rules as declarative SQL 
+queries, subqueries, views, multi-user support, transactions, query optimization, inheritance, and arrays.
+Does not support selecting data across different databases. 
+
+</td>
+
+<td valign="top">
+MySQL uses SQL92 as its foundation. Runs on countless platforms. Mysql can construct queries 
+that can join tables from different databases. Supports both left and right outer joins using 
+both ANSI and ODBC syntax. As of MySQL 4.1 from that release on, MySQL will handle subqueries.
+Views supported as of release 5.
+</td>
+   </tr>
+
+   <tr>
+      <th>PLATFORMS</th>
+
+<td valign="top">
+Lacks binary distribution for all the supported plataforms. 
+One of the problems is that PostgreSQL doesn't run properly on NT as a service by default, 
+you need something like firedaemon to start it. The PgAccess GUI is available on windows as 
+well, but it lacks a few features that psql supports.  Non-supported platforms: Windows9x/Me, 
+NextStep, Ultrix. 
+
+</td>
+
+<td valign="top">
+There are binary distribution for most of the supported plataforms. MySQL works better on Windows 
+than PostgreSQL does. MySQL runs as a native Windows application (a service on NT/Win2000/WinXP), 
+while PostgreSQL is run under the cygwin emulation. 
+</td>
+   </tr>
+
+
+   <tr>
+      <th>SPEED</th>
+
+<td valign="top">
+Postgres slower on low-end but has some options for improving. Postgres
+forks on every incoming connection - and the forking process and backend
+setup is a bit slow, but one can speed up PostgreSQL by coding things as stored procedures. 
+</td>
+
+<td valign="top">
+MySQL is very fast on both simple and complex SELECTs, but might require changing the database 
+type from MyISAM to InnoDB for UPDATE intense applications. MySQL handles connections very fast, 
+thus making it suitable to use MySQL for Web - if you have hundreds of CGIs connecting/disconnecting 
+all the time you'd like to avoid long startup procedures.
+</td>
+   </tr>
+
+   <tr>
+      <th>STABILITY</th>
+
+<td valign="top">
+PostgreSQL 6.x series and earlier were much worse in this aspect. Random disconnects, core dumps and
+memory leaks are usual. PostgreSQL 7.x series was a big improvement. Expect PostgreSQL 8.x to continue
+this trend. 
+</td>
+
+<td valign="top">
+MySQL does very good job even on the busiest sites; it certainly has some problems handling hundreds of 
+connections per second, but these problems are resolvable. Random disconnects and core dumps are 
+exceptionally rare. <br> MysSQL has a much larger user base than PostgreSQL, therefore the code is more 
+tested and has historically been more stable than PostgreSQL and more used in production environments.
+</td>
+   </tr>
+
+   <tr>
+      <th>DATA INTEGRITY</th>
+
+<td valign="top">
+Postgres does very good job supporting referential integrity, has transactions and rollbacks, 
+foreign keys ON DELETE CASCADE and ON UPDATE CASCADE.
+</td>
+
+<td valign="top">
+Mysql has some basic provisions for referential integrity and transactions/rollbacks.
+CHECK clause is allowed for compatibility only and has no effect on database operation.
+<br> InnoDB tables have FOREIGN KEYs for relational or multi-table delete, and support transaction processing.
+In MySAM tables FOREIGN KEY is for compatibility only and has no effect on database operation. 
+</td>
+   </tr>
+
+   <tr>
+      <th>SPECIAL server-side FEATURES</th>
+
+<td valign="top">
+Postgres has rules, triggers, server-side functions that can be
+written in C, pgsql, python, perl and tcl languages. <br> INSTEAD OF rules can be used for 
+updating data through views. <br> PostgreSQL has schemas that allow users to create objects in 
+separate namespaces, so two people or applications can have tables with the same name. 
+There is also a public schema for shared tables. Table/index creation can be restricted by 
+removing permissions on the public schema. 
+
+</td>
+
+<td valign="top">
+MySQL has simple (and probably inconvenient) mechanism for
+server-side shared libraries with C functions.  Rudimentary support for triggers was included 
+beginning with MySQL 5.0.2. An external development implemented in perl can be used as stored 
+procedures in Mysql. <br>
+MySql has more powerful admin tools included in the distribution (mysqladmin allows you to watch 
+processes and queries in-progress), including hot backup, a file corruption recovery tool and a of couple others. 
+Command-line tools - you can see database and table structures using describe and show commands.
+Postgres' commands are less obvious ( \d to show a list of tables for instance). 
+
+</td>
+   </tr>
+
+   <tr>
+      <th>SECURITY</th>
+
+<td valign="top">
+Postgres has similar features, but a little less fine-grained. For example,
+if user can connect to a database, user can CREATE TABLE, thus running
+Denial-of-Service. On the other hand Postgres can limit logins based on
+different criteria - network segment, ident string, etc.
+</td>
+
+<td valign="top">
+MySQL has exceptionally good fine-grained access control. You can GRANT and
+REVOKE whatever rights you want, based on user name, table name and client
+host name.
+</td>
+   </tr>
+
+   <tr>
+      <th>LOCKING and CONCURRENCY SUPPORT</th>
+
+<td valign="top">
+PostgreSQL has a mechanism called MVCC (MultiVersion Concurrency Control),
+comparable or superior to best commercial databases. It can do row-level
+locking, can lock rows for writing in one session but give these rows
+unaffected in another session. MVCC is considered better than row-level locking 
+because a reader is never blocked by writer. Instead, Postgres keeps track of all 
+transactions and is able to manage the records without waiting to become available.
+</td>
+
+<td valign="top">
+MySQL can do table locking for ISAM/MyISAM and HEAP tables, page level locking for BDB tables.  
+<br> InnoDB has full row level locking support.  
+</td>
+   </tr>
+
+   <tr>
+      <th>LARGE OBJECTS</th>
+
+<td valign="top">
+In Postgres, Large Objects are very special beasties. You need to create
+them using lo_create function and store the result of the function - OID -
+in a regular table. Later you can manipulate the LOB using the OID and
+other functions - lo_read/lo_write, etc. Large object support is broken in
+Postgres - pg_dump cannot dump LOBs; you need to develop your own backup
+mechanism. Tthe team is working on implementing large rows; this will
+replace current LOB support.
+</td>
+
+<td valign="top">
+In MySQL, text and binary LOBs are just fields in the table. Nothing
+special - just INSERT, UPDATE, SELECT and DELETE it the way you like. There
+are some limitations on indexing and applying functions to these fields.
+</td>
+   </tr>
+
+   <tr>
+      <th>ALTER TABLE</th>
+
+<td valign="top">
+Postgres supports ALTER TABLE to some extent. You can ADD COLUMN, RENAME
+COLUMN and RENAME TABLE.
+</td>
+
+<td valign="top">
+MySQL has all options in ALTER TABLE - you can ADD column, DROP it,
+RENAME or CHANGE its type on the fly - very good feature for busy servers,
+when you don't want to lock the entire database to dump it, change
+definition and reload it back.
+</td>
+   </tr>
+
+   <tr>
+      <th rowspan="2">NATIONAL LANGUAGE SUPPORT</th>
+
+<td valign="top">
+Postgres compiled with --enable-locale does some jobs based on its locale
+settings, and can change locale settings per client (not per database),
+which is a bit more flexible. Compiled --with-mb (Multibyte support)
+Postgres can translate on-the-fly between many predefined character sets.
+</td>
+
+<td valign="top">
+MySQL does some tasks based on its locale settings, but not many.
+</td>
+   </tr>
+
+   <tr>
+<td colspan="2" valign="top">
+Date/time formats parsing/generating need more work for both sides. Neither
+system can handle multicharset databases.
+</td>
+   </tr>
+</tbody></table>
+
+<p class="head">Last modified: February 15, 2005.</p>
+
+
+<p style="text-align: center;" align="center">Mail comments to:<a href="mailto:css-dsg@fnal.gov">css-dsg@fnal.gov</a><br>
+
+ </p></body></html>

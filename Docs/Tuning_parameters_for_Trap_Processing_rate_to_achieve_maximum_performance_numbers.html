@@ -1,0 +1,636 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Tuning parameters for Trap Processing rate to achieve maximum
+performance numbers</title>
+</head>
+<body>
+<span style="font-family: Times New Roman,Times,serif;"></span><span
+ style="font-family: Times New Roman,Times,serif;">We have
+herewith attached the Trap Tool (as TrapTool.zip) which helps you to
+test the trap rate.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">Configure the
+shell script (the home of WebNMS classes) &amp; run the trap tool.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">The image
+(TrapTool.JPG in the zip) will help you to configure the values.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">We have also
+got a tuning doc to this tool (which tells about the WebNMS changes to
+do).</span><br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;"><br>
+We would suggest you to use AdventNet Simulation toolkit to simulate
+nodes.</span><br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">The evaluation
+version is available at: <a
+ href="http://www.webnms.com/simulator/download_confirm.html">http://www.webnms.com/simulator/download_confirm.html</a></span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">Once you are
+satisfied with the evaluation version, you can buy the same &amp; use
+it for your testing.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<br>
+<span style="font-family: Times New Roman,Times,serif;">You can run the
+script as follows:</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">When you have a
+WebNMS in a test machine (in which DISPLAY is available) you can
+specify the &lt;NMS_Home&gt;/classes in the NMS_CLASSES variable &amp;
+can run the script.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">If not, you can
+ftp to the wind river machine (in which WebNMS is installed) &amp; you
+can download the AdventNetSnmp.jar &amp; SNMPDebugger.jar from
+/opt/motorola/webnms/classes/&amp; modify the CLASS_PATH varible
+accordingly (for these 2 jars)</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">Also specify
+the Java home (in the script, the WebNMS-bundled JRE is referred.)
+&amp; then invoke the script.</span><br
+ style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">A UI will be
+invoked.</span><br style="font-family: Times New Roman,Times,serif;">
+<span style="font-family: Times New Roman,Times,serif;">You can give
+the server machine in the Hostname variable &amp; then start sending
+traps. Kindly get back to us for any further clarification in this
+regard.</span><br style="font-family: Times New Roman,Times,serif;">
+<hr style="width: 100%; height: 2px;"><big
+ style="font-family: Times New Roman,Times,serif; font-weight: bold;">Performance
+Tuning Tips</big><br>
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+<div style="text-align: center;">
+<div style="text-align: left;"><a>Data Collection</a>
+<ol>
+  <li><a>Trap Processing</a></li>
+  <li><a>Status Polling</a></li>
+</ol>
+<br>
+<hr style="width: 1249px; height: 2px;"><br>
+</div>
+</div>
+<span style="font-weight: bold; text-decoration: underline;"><br>
+<a name="1"></a>1. Tuning parameters for Data Collection rate to
+achieve maximum performance numbers</span><br>
+<br>
+<table style="width: 1247px; text-align: left;" border="1"
+ cellpadding="2" cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">S.No<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">Parameters<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">Performance
+tuned value<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">Default
+Value<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">File
+to be changed<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); font-weight: bold; color: rgb(255, 255, 255);">Process<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.<br>
+      </td>
+      <td style="vertical-align: top;"><span
+ style="font-family: verdana;">MAX_OIDS_IN_ONE_POLL</span><br>
+      </td>
+      <td style="vertical-align: top;">50<br>
+      </td>
+      <td style="vertical-align: top;">15<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf<br>
+      </td>
+      <td style="vertical-align: top;">com.adventnet.nms.poll.Collector<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">2.<br>
+      </td>
+      <td style="vertical-align: top;">BULK_INSERVER_INTERVAL<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf<br>
+      </td>
+      <td style="vertical-align: top;">com.adventnet.nms.poll.Collector</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">3.<span
+ class="Apple-converted-space">&nbsp;</span><br>
+      </td>
+      <td style="vertical-align: top;">MAX_ALLOWABLE_INSERT<br>
+      </td>
+      <td style="vertical-align: top;">1000<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.poll.Collector</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">4.<br>
+      </td>
+      <td style="vertical-align: top;">Polling period<br>
+      </td>
+      <td style="vertical-align: top;">1 second<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">Polling.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">5.<br>
+      </td>
+      <td style="vertical-align: top;">No. of Data Poll threads<br>
+      </td>
+      <td style="vertical-align: top;">8<br>
+      </td>
+      <td style="vertical-align: top;">3<br>
+      </td>
+      <td style="vertical-align: top;">threads.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">6.<br>
+      </td>
+      <td style="vertical-align: top;">Java compiler<br>
+      </td>
+      <td style="vertical-align: top;">Enable JIT compiler by
+commenting out<br>
+"JAVA_COMPILER=NONE"<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">setEnv.bat/sh<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">7.<br>
+      </td>
+      <td style="vertical-align: top;">AgentProcess<br>
+      </td>
+      <td style="vertical-align: top;">Comment out the process:<br>
+"WebNMSAgentApp"<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">8.<br>
+      </td>
+      <td style="vertical-align: top;">Other Management funtions:<br>
+      <br>
+a. Discovery<br>
+b. Status Polling<br>
+c. No Input Traps<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">true<br>
+      </td>
+      <td style="vertical-align: top;">seed.file<br>
+serverparameters.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">9.<br>
+      </td>
+      <td style="vertical-align: top;">No. Of PolledData<br>
+      </td>
+      <td style="vertical-align: top;">5,000 PDs for 10,000 MOs<br>
+5,000 PDs for 100,000 MOs<br>
+25,000 PDs for 500,000 MOs<br>
+50,000 PDs for 1,000,000 MOs<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">10<br>
+      </td>
+      <td style="vertical-align: top;">TRANS_CONNECTIONS<br>
+      </td>
+      <td style="vertical-align: top;">6<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+      </td>
+      <td style="vertical-align: top;">database_params.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;"><a name="2"></a>2.
+Tuning parameters for Trap Processing rate to achieve maximum
+performance numbers<br>
+<br>
+</span>
+<table style="width: 1247px; text-align: left;" border="1"
+ cellpadding="2" cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">S.No<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">Parameters<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">Performance
+tuned Value<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">Default
+Value<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">File
+to be changed<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(102, 102, 204); color: rgb(255, 255, 255); font-weight: bold;">Process<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.<br>
+      </td>
+      <td style="vertical-align: top;">BATCH_UPDATE<br>
+      </td>
+      <td style="vertical-align: top;">true<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">2.<br>
+      </td>
+      <td style="vertical-align: top;">MAX_ALERTS_PER_BATCH<br>
+      </td>
+      <td style="vertical-align: top;">1000<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">3.<br>
+      </td>
+      <td style="vertical-align: top;">CREATE_ALERT_HISTORY<br>
+      </td>
+      <td style="vertical-align: top;">false<span
+ class="Apple-converted-space">&nbsp;</span><br>
+      </td>
+      <td style="vertical-align: top;">true<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">4.<br>
+      </td>
+      <td style="vertical-align: top;">eventCorrelator<br>
+      </td>
+      <td style="vertical-align: top;">com.adventnet.nms.example<br>
+.PerformanceCorrelator<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">nmsInterfaces.conf<br>
+      </td>
+      <td style="vertical-align: top;">The file
+PerformanceCorrelator.java under "WebNMS/examples/FaultManagement<br>
+/event_correlator" directory must be<br>
+compiled and it is to be added in server classpath<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">5.<br>
+      </td>
+      <td style="vertical-align: top;">AgentProcess</td>
+      <td style="vertical-align: top;">Comment out the process:<br>
+"WebNMSAgentApp"</td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">6.<br>
+      </td>
+      <td style="vertical-align: top;">ALERT_OBJECTS_IN_MEMORY<br>
+      </td>
+      <td style="vertical-align: top;">5000<br>
+      </td>
+      <td style="vertical-align: top;">250<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">7.<br>
+      </td>
+      <td style="vertical-align: top;">ALERT_WINDOW_SIZE<br>
+      </td>
+      <td style="vertical-align: top;">100,000<br>
+      </td>
+      <td style="vertical-align: top;">10,000<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">8.<br>
+      </td>
+      <td style="vertical-align: top;">ALERT_LOCK<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">9.<br>
+      </td>
+      <td style="vertical-align: top;">Trap Filter, Trap Parser, Event
+Filter, Event Parsers and Alert filters<br>
+      </td>
+      <td style="vertical-align: top;">minimium<br>
+      </td>
+      <td style="vertical-align: top;">4,4,1,0,1<br>
+      </td>
+      <td style="vertical-align: top;">trap.filters<br>
+trap.parsers<br>
+event.filters<br>
+event.parsers<br>
+alert.filters<br>
+      <br>
+      </td>
+      <td style="vertical-align: top;">com.adventnet.nms.eventdb.EventMgr</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">10.<br>
+      </td>
+      <td style="vertical-align: top;">Trap Observers, Event Observers
+and Alert Listeners<br>
+      </td>
+      <td style="vertical-align: top;">minimum<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">11.<br>
+      </td>
+      <td style="vertical-align: top;">Trap Input rate<br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;600 traps / sec<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">12.<br>
+      </td>
+      <td style="vertical-align: top;">Java compiler</td>
+      <td style="vertical-align: top;">Enable JIT compiler by
+commenting out<br>
+"JAVA_COMPILER=NONE"</td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">setEnv.bat / sh<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">13<br>
+      </td>
+      <td style="vertical-align: top;">Other Management funtions:<br>
+      <br>
+a. Discovery<br>
+b. Status Polling<br>
+c. Data Collection<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">true<br>
+      </td>
+      <td style="vertical-align: top;">seed.file<br>
+serverparameters.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">14<br>
+      </td>
+      <td style="vertical-align: top;">TRANS_CONNECTIONS<br>
+NON_TRANS_CONNECTIONS<br>
+      </td>
+      <td style="vertical-align: top;">4<br>
+3<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+3<br>
+      </td>
+      <td style="vertical-align: top;">database_params.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;"><a name="3"></a>3.
+Tuning parameters for Status Polling rate to achieve maximum
+performance numbers<br>
+<br>
+</span>
+<table style="width: 1247px; text-align: left;" border="1"
+ cellpadding="2" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">S.No<br>
+      </td>
+      <td style="vertical-align: top;">Parameter<br>
+      </td>
+      <td style="vertical-align: top;">Performance tuned value<br>
+      </td>
+      <td style="vertical-align: top;">Default Value<br>
+      </td>
+      <td style="vertical-align: top;">File to be changed<br>
+      </td>
+      <td style="vertical-align: top;">Process<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.<br>
+      </td>
+      <td style="vertical-align: top;">No. of Status Poll threads<br>
+      </td>
+      <td style="vertical-align: top;">6 for 10,000 MOs<br>
+6 for 100,000 MOs<br>
+10 for 500,000 MOs<br>
+10 for 1,000,000 MOs<br>
+      </td>
+      <td style="vertical-align: top;">3<br>
+      </td>
+      <td style="vertical-align: top;">threads.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">2.<br>
+      </td>
+      <td style="vertical-align: top;">Polling period<br>
+      </td>
+      <td style="vertical-align: top;">2 for 10,000 MOs<br>
+2 for 100,000 MOs<br>
+120 for 500,000 MOs<br>
+120 for 1,000,000 MOs</td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">3.<br>
+      </td>
+      <td style="vertical-align: top;">TOPO_OBJECTS_IN_MEMORY<br>
+      </td>
+      <td style="vertical-align: top;">10000 for 10,000 MOs<br>
+20000 for 100,000 MOs<br>
+30000 for 500,000 MOs<br>
+50000 for 1,000,000 MOs</td>
+      <td style="vertical-align: top;">50<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">DBServer<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">4.<br>
+      </td>
+      <td style="vertical-align: top;">ALERT_OBJECTS_IN_MEMORY</td>
+      <td style="vertical-align: top;">500 for 10,000 MOs<br>
+1000 for 100,000 MOs<br>
+2500 for 500,000 MOs<br>
+5000 for 1,000,000 MOs</td>
+      <td style="vertical-align: top;">250<br>
+      </td>
+      <td style="vertical-align: top;">NmsProcessesBE.conf</td>
+      <td style="vertical-align: top;">EventMgr<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">5.<br>
+      </td>
+      <td style="vertical-align: top;">TRANS_CONNECTIONS</td>
+      <td style="vertical-align: top;">6<br>
+      </td>
+      <td style="vertical-align: top;">0<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">6.<br>
+      </td>
+      <td style="vertical-align: top;">Java Compiler<br>
+      </td>
+      <td style="vertical-align: top;">Enable JIT compiler by
+commenting out:<br>
+"JAVA_COMPILER=NONE"</td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">setEnv.sh / bat<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">7.<br>
+      </td>
+      <td style="vertical-align: top;">Other Management Operations:<br>
+      <br>
+      <br>
+a. Discovery<br>
+b. No Trap Inputs<br>
+c. Data Collection<br>
+      </td>
+      <td style="vertical-align: top;">false<br>
+      </td>
+      <td style="vertical-align: top;">true<br>
+      </td>
+      <td style="vertical-align: top;">seed.file<br>
+serverparameters.conf<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-weight: bold; text-decoration: underline;"><br>
+</span></span><br>
+</body>
+</html>

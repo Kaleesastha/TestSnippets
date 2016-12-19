@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title></title>
+</head>
+<body>
+&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><u><font size="+3">TEST&nbsp; CASES&nbsp; FOR&nbsp; BE
+FAILOVER&nbsp;
+CLIENT&nbsp; MODULE</font></u></b>
+<p>Abrrevations Used :
+</p>
+<p>1. SF&nbsp;&nbsp;&nbsp; -&nbsp; Server Frame Work
+</p>
+<p>2. BEP&nbsp; -&nbsp; Primary Server
+</p>
+<p>3. BES&nbsp; -&nbsp; Standby Server.<br>
+<br>
+4. FOV&nbsp;&nbsp; -&nbsp; Fail Over <br>
+</p>
+<p>5. SER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; Server.
+</p>
+6FE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;
+Front End Server
+<br>
+<p>&nbsp;
+</p>
+<p><b><u>Initial Steps to be followed:</u></b>
+</p>
+<p>1. Start the BEP server (the machine in which Dual NIC mode is
+enabled) in machine1, with database in the same
+machine
+</p>
+<p>2. Start the BES server in machine2 with the DB in machine1
+</p>
+<p>3. Start the FE server with BE_HOST as BEP in machine 3
+</p>
+<p>4. Now connect the browser client to FE sever.
+</p>
+<p>5. After the start up of client, just go across all the nodes and
+check
+for the normal client functionality.
+</p>
+<p>6. Stop the BEP server.
+<br>
+&nbsp;
+</p>
+<p><b><u>Assumption:</u></b>&nbsp;&nbsp; It is assumed that all the
+test
+cases given below are done with the client started before Fail Over
+unless
+otherwise mentioned.
+<br>
+&nbsp;
+<table nosave="" border="1" cols="6" width="100%">
+  <tbody>
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>TEST CASE&nbsp;</b>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> DESCRIPTION</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>TEST CASE&nbsp;</b>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>PROCEDURE</b></td>
+      <td>&nbsp; <b>EXPECTED RESULT</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>SEVERITY</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>REMARKS</b></td>
+    </tr>
+    <tr>
+      <td>Test to check for the client(connected after FOV) startup
+after FOV.</td>
+      <td>After failover takes place, start a browser client to the FE
+server.</td>
+      <td>The client shoul get started in the same way and shoul work
+in the
+normal way as before failover without any problem.</td>
+      <td>&nbsp; CRITICAL-CT</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>Test to check for Mib Manager after FOV.&nbsp;</td>
+      <td>Befor FOV, from the client, do a GET variable through the Mib
+Manager
+and after FOV, through the same client do the GET variable for the same
+OID and check the response.</td>
+      <td>The response should be shown as before and there shouldn't be
+any requesr
+timed out or any exceptions in client logs, (assumed that the agent is
+Up in that device).</td>
+      <td>&nbsp; CRITICAL</td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p><b><u>TEST CASES FOR CLIENTAPI :</u></b>
+<br>
+&nbsp;
+</p>
+<p><b><u>Initial Steps To Be Followed :</u></b>
+</p>
+<p>The ClientAPI should be started before FOV unless otherwise
+mentioned.
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font size="+3">TEST CASES&nbsp; FOR&nbsp; BE&nbsp; FAILOVER&nbsp;
+SERVER
+MODULE.</font></u>
+</p>
+<p>&nbsp; &nbsp;
+<br>
+&nbsp;
+</p>
+<table nosave="" border="1" cols="6" width="100%">
+  <tbody>
+    <tr>
+      <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST CASE</b> <br>
+&nbsp;&nbsp;&nbsp;&nbsp; <b>DESCRIPTION</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>TEST
+CASE&nbsp;</b> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>PROCEDURE</b></td>
+      <td>&nbsp;&nbsp; <b>EXPECTED RESULT</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>SEVERITY</b></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>REMARKS</b></td>
+    </tr>
+    <tr>
+      <td>Test to check whether failover takes place when there is
+proper shutdown
+of BEP.</td>
+      <td>Start the BEP, BES, then stop the BEP by proper shutdown and
+check
+whether failover takes place.</td>
+      <td>The BES should take the job of Primary and another row gets
+added in
+the database with BES as Primary.&nbsp;</td>
+      <td>&nbsp; SHOWSTOPPER</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>Test to check whether failover takes place when there is
+improper shutdown
+of BEP(ctrl -c) or by killing the process.</td>
+      <td>Start the BEP, BES, then stop the BEP by ctrl-c or by killing
+the process
+and check whether failover takes place.</td>
+      <td>The BES should take the job of Primary and another row gets
+added in
+the database with BES as Primary.</td>
+      <td>&nbsp; SHOWSTOPPER</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>Test to check whether fail over when the BEP machine is down.</td>
+      <td>Start the BEP, BES and then stop then shutdown the machine in
+which
+Primary is running and check whether failover takes place.</td>
+      <td>The BES should take the job of Primary and another row gets
+added in
+the database with BES as Primary.</td>
+      <td>&nbsp; SHOWSTOPPER</td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p></p>
+<p></p>
+</body>
+</html>

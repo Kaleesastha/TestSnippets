@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>MySQL 4.X or 5.x Changes</title>
+</head>
+<body>
+<p><b style="font-weight: bold;">To run Web NMS with MySQL 4.x or MySQL
+5.x</b></p>
+<p>&nbsp;</p>
+<p>By default, the Web NMS runs with MySQL 3.23.58 which is bundled
+with the product. To run Web NMS with MySQL 4.x or 5.x, perform the
+following procedure.</p>
+<ol>
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered" style="font-weight: normal;"><b
+ style="font-weight: bold;"><span style="font-weight: normal;">Copy the
+file</span> </b><span style="font-weight: bold;"><b>snmpDatabaseSchema.config</b></span>
+located in <span style="font-style: italic;"><i>&lt;Web NMS
+Home&gt;/conf/MySQL</i></span> directory to <span
+ style="font-style: italic;"><i>&lt;Web NMS Home&gt;/conf</i></span>
+directory.</p>
+  </li>
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered" style="font-weight: normal;">Edit this file <span
+ style="font-weight: bold;"><b>snmpDatabaseSchema.config</b></span> and
+change the column name <span style="font-weight: bold;"><b>LOCALTIME </b></span>in<span
+ style="font-weight: bold;"><b> USMTABLE</b></span> to some other
+value, say <span style="font-weight: bold;"><b>USMLOCALTIME</b></span>.</p>
+  </li>
+</ol>
+<p class="whs14">Example:</p>
+<p class="whs15">&nbsp;</p>
+<p class="whs14"><span style="font-weight: bold;"><b># &nbsp;ColumnKey
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ColumnName
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Datatype
+</b></span></p>
+<p class="whs14">&nbsp;</p>
+<p class="whs14">&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: normal;">LOCALTIME</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USMLOCALTIME
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: normal;">VARCHAR(30)</span></p>
+<p class="whs14">&nbsp;</p>
+<p class="whs14">Note:<span style="font-weight: normal;"> Change only
+the ColumnName and retain the ColumnKey and Datatype.</span></p>
+<ol start="3">
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered" style="font-weight: normal;">Edit the file <span
+ style="font-weight: bold;"><b>DatabaseSchema.conf</b></span> located
+in <span style="font-style: italic;"><i>&lt;Web NMS Home&gt;/conf</i></span>
+directory and change the column name <span style="font-weight: bold;"><b>LOCALTIME</b></span>
+in <span style="font-weight: bold;"><b>USMTABLE</b></span> to the same
+value as configured in <span style="font-weight: bold;"><b>snmpDatabaseSchema.config</b></span>.</p>
+  </li>
+</ol>
+<p class="whs15"><span style="font-weight: bold;"><b>Example:</b></span>
+USMLOCALTIME varchar(30)</p>
+<p class="whs15">&nbsp;</p>
+<p class="whs15">This change is done because LOCALTIME is a reserved
+keyword in MySQL 4.x and MySQL 5.x.</p>
+<ol start="4" class="whs16" type="1">
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered" style="font-weight: normal;">To create MySQL
+tables as <span style="font-weight: bold;"><b>InnoDB</b></span>
+tables, start the <span style="font-weight: bold;"><b>mysql daemon</b></span>
+with the following option.</p>
+  </li>
+</ol>
+<p class="Code-Level-1">--default-table-type=InnoDB</p>
+<p class="Code-Level-1">&nbsp;</p>
+<p class="Code-Level-1">[<span style="font-weight: bold;"><b>Note:</b></span>
+The above line is Case sensitive]</p>
+<p class="Code-Level-1">&nbsp;</p>
+<p class="Code-Level-1">For information on specifying this option,
+refer to <a
+ href="http://dev.mysql.com/doc/mysql/en/Program_Options.html"
+ target="_blank">http://dev.mysql.com/doc/mysql/en/Program_Options.html</a></p>
+<ol start="5" class="whs16" type="1">
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered">Edit the <span style="font-weight: bold;"><b>setEnv</b></span>
+script file located in <span style="font-style: italic;"><i>&lt;Web
+NMS Home&gt;</i></span>. By default, the MySQL home is set as:</p>
+  </li>
+</ol>
+<p class="Code-Level-1">set MYSQL_HOME=%NMS_HOME%\mysql</p>
+<p class="whs15">&nbsp;</p>
+<p class="whs15">Change the MySQL home to the directory where you have
+installed MySQL 4.x or MySQL 5.x.</p>
+<p class="whs17">&nbsp;</p>
+<p class="whs18">&nbsp;</p>
+<p class="whs18">Changes specific to MySQL 5.x</p>
+<ol>
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered">The <span style="font-weight: bold;"><b>CONDITION</b></span>
+column name of the <span style="font-weight: bold;"><b>PollingAttributes</b></span>
+table is a reserved keyword in MySQL 5.x. Hence the DatabaseSchema.conf
+file should be modified to change the column &nbsp;<span
+ style="font-weight: bold;"><b>CONDITION</b></span> to <span
+ style="font-weight: bold;"><b>`CONDITION`</b></span> (the column name
+must be enclosed within backquote characters) as shown below:<span
+ style="margin-left: 0px;"><br>
+    <br>
+BeginCreateSchema<br>
+create table PollingAttributes(<br>
+"NAME" varchar(50),<br>
+"TYPE" varchar(10),<br>
+"PROPERTY" varchar(20),<br>
+"`CONDITION`" varchar(50),<br>
+"VALUE" varchar(100))<br>
+EndCreateSchema<br>
+&nbsp;</span></p>
+  </li>
+  <li class="kadov-p-CNumbered">
+    <p class="Numbered"><span style="margin-left: 0px;">T</span>o
+prevent MySQL deadlock when data collection happens at a faster rate,
+an index should be created on the <span style="font-weight: bold;"><b>PARENTOBJ</b></span>
+column of the <span style="font-weight: bold;"><b>PolledData</b></span>
+table. Edit the file DatabaseSchema.conf and add index on the PARENTOBJ
+column as shown below :<br>
+    <br>
+BeginCreateSchema<br>
+create table PolledData(<br>
+"NAME" varchar(50) NOT NULL ,<br>
+"ID" BIGINT NOT NULL ,<br>
+"AGENT" varchar(50) NOT NULL ,<br>
+"COMMUNITY" varchar(100) NOT NULL ,<br>
+-------------------------<br>
+-------------------------<br>
+-------------------------<br>
+"USERNAME" varchar(30),<br>
+"CONTEXTNAME" varchar(30),<br>
+PRIMARY KEY ("NAME","AGENT","OID","OWNERNAME"),<br>
+index PolledData0_ndx ( "NAME"),<br>
+index PolledData1_ndx ( "AGENT"),<br>
+index PolledData2_ndx ( "OID"),<br>
+index PolledData3_ndx ( "ID"),<br>
+index PolledData4_ndx ( "COMMUNITY"),<br>
+index PolledData5_ndx ( "PERIOD"),<br>
+index PolledData6_ndx ( "TIMEVAL"),<br>
+index PolledData7_ndx ( "OWNERNAME"),<span style="font-weight: bold;"><b><br>
+index PolledData8_ndx ( "PARENTOBJ"))</b></span><br>
+EndCreateSchema</p>
+  </li>
+</ol>
+</body>
+</html>

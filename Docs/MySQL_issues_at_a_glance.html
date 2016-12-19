@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>MySQL issues at a glance</title>
+</head>
+<body>
+<span class="f"><span class="f"><span
+ style="font-family: times new roman;"><span
+ style="text-decoration: underline;">MySQL issues at a glance:</span><br>
+</span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;"><br>
+</span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;"><span
+ style="text-decoration: underline;">Some FAQs:</span><br
+ style="text-decoration: underline;">
+<br>
+</span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;">Qn: The following print was
+printed on the console when NMS was started. Also NMS doesn't start<br>
+</span></span></span><span style="font-weight: bold;" class="f"><span
+ class="f"><span style="font-family: times new roman;">java.io.IOException:
+java.io.IOException: /usr/bin/mysqladmin: not found<br>
+&nbsp;&nbsp;&nbsp; at java.lang.UNIXProcess.&lt;init&gt;(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp; at java.lang.Runtime.execInternal(Native Method)<br>
+&nbsp;&nbsp;&nbsp; at java.lang.Runtime.exec(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp; at java.lang.Runtime.exec(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp; at java.lang.Runtime.exec(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp; at java.lang.Runtime.exec(Unknown Source)<br>
+&nbsp;&nbsp;&nbsp; at jdbc.CreateWebNmsDB.main(CreateWebNmsDB.java:428)<br>
+&nbsp;&nbsp;&nbsp; at
+jdbc.CreateSchema.checkForMysqlPresence(CreateSchema.java:537)<br>
+&nbsp;&nbsp;&nbsp; at jdbc.CreateSchema.init(CreateSchema.java:83)<br>
+&nbsp;&nbsp;&nbsp; at
+com.adventnet.nms.startnms.NmsMainBE.main(NmsMainBE.java:341)<br>
+&nbsp;&nbsp;&nbsp; at
+com.adventnet.launcher.nms.StartNmsJdbc.run(StartNmsJdbc.java:287)<br>
+</span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;"><span style="font-weight: bold;"><span
+ style="font-style: italic;"></span></span>It seems that NMS server
+always use "<span style="font-weight: bold;">/usr/bin/mysqladmin</span>"<span
+ style="font-weight: bold;"> </span>command to
+create database. <br>
+<br>
+<span style="font-style: italic;"><span style="font-weight: bold;">Ans:</span>&nbsp;
+</span>Yes. WebNMS
+always looks for the MySQL installation under /usr/bin in Linux&nbsp;
+So Kindly make sure that mysql
+is always installed using rpm under /<span style="font-weight: bold;">usr/bin</span>.
+Even if mysql is not installed in /usr/bin you could give a logical
+link from </span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;">mysql (that was bundled with
+WebNMS) to /usr/bin </span></span></span><span class="f"><span
+ class="f"><span style="font-family: times new roman;">as follows:</span></span></span><br>
+<span class="f"><span class="f"><br>
+</span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;"><span style="font-weight: bold;">ln&nbsp;
+-s &lt;NMS_HOME&gt;/mysql/bin/mysqladmin.exe /usr/bin/mysqladmin</span><br>
+Eg : </span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;">ln -s
+/home/tinku/WebNMS/mysql/bin/mysqladmin /usr/bin/mysqladmin</span></span></span><br>
+<span style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;"></span><br>
+<span style="font-weight: bold; font-style: italic;">Qn: </span>I am
+getting the following exeptions on starting WebNMS. WebNMS doesn't get
+started.<br>
+<span style="font-weight: bold;">syntax error or access violation
+message from server: "you have an error in your sql syntax.&nbsp; check
+the manual that corresponds to your mysql server version for the right
+syntax to use near 'localtime&nbsp; varchar(30), primary key ( dbkey
+))' at line 1"</span><br style="font-weight: bold;">
+java.sql.SQLException: Syntax error or access violation message from
+server: "You have an error in your SQL syntax.&nbsp; Check the manual
+that corresponds to your MySQL server version for the right syntax to
+use near 'LOCALTIME&nbsp; varchar(30), PRIMARY KEY ( DBKEY ))<br>
+' at line 1"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1997)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1167)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1278)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1224)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.Connection.execSQL(Connection.java:2248)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.Connection.execSQL(Connection.java:2196)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+com.mysql.jdbc.Statement.execute(Statement.java:906)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+jdbc.CreateSchema.createTables(CreateSchema.java:362)<br>
+<br>
+<span style="font-weight: bold; font-style: italic;">Ans: </span>This
+is due to the variable LOCALTIME introduced in MySQL 4.1. Since WebNMS
+also has a column name called LOCALTIME in USMTABLE, the exceptions
+arise. Please rename the LOCALTIME column as LOCALTIME1 (or any other
+name). <br>
+<br>
+<span class="f"><span class="f"></span></span><span class="f"><span
+ class="f"><span style="font-family: times new roman;"><span
+ style="font-weight: bold; font-style: italic;">Qn: </span>On
+executing <span style="font-weight: bold;">"startMySQL.sh" </span>by
+"root" user,&nbsp; the
+following message was shown.<br>
+<span style="font-weight: bold;">chown: 'mysql'： invalid user</span>.
+But after adding the "mysql" user in /etc/passwd file,&nbsp;
+"startMySQL.sh" can be executed. Is this an expected behaviour?<br>
+<br style="font-style: italic; font-weight: bold;">
+<span style="font-style: italic; font-weight: bold;">Ans:</span> Yes.
+This is indeed an expected behaviour. Since the data directory of
+&lt;NMS_HOME&gt;\mysql expects
+mysql user to be present, add mysql user in Linux using <br>
+<span style="font-weight: bold;">useradd mysql</span><br>
+</span></span></span><span class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span
+ style="font-weight: bold;" class="f"><span class="f"><span
+ style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">******************</span><span class="f"><span
+ class="f"><span style="font-family: times new roman;"></span></span></span><span
+ style="font-weight: bold;">*************<br>
+</span><font style="font-family: times new roman,times,serif;" size="3">From
+Ticket ID : <a
+ href="http://nms-support:8080/WorkOrder.do?woMode=viewWO&amp;woID=3031129&amp;">3031129</a></font><br>
+<font style="font-family: times new roman,times,serif;" size="3">
+Yes! MySQL in Linux is a <span style="font-style: italic;">little</span>
+messy &amp; you need to be </font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-style: italic;">littl</span></font><font
+ style="font-family: times new roman,times,serif;" size="3">e careful
+when you configure. Here are our pointers in this regard:<br>
+<br>
+When you install the <span style="font-weight: bold;">MySQL5.exe</span>
+in Windows, all your links, data, dll &amp; all other (MySQL) related
+stuff are completely copied into the installation directory alone.<br>
+But when you use RPM in </font><font
+ style="font-family: times new roman,times,serif;" size="3">Linux,</font><font
+ size="3"><span style="font-family: times new roman,times,serif;">
+contrary to Windows, it is not so completely packed. (&amp; in my
+knowledge, you cannot specify the location to install RPM)</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;"><span
+ style="font-family: times new roman,times,serif;">You will have your
+data under </span><big
+ style="font-family: courier new,courier,monospace; color: rgb(51, 51, 255);">/var/lib/mysql</big>,
+the start&amp;stop command under <big
+ style="color: rgb(51, 51, 255); font-family: courier new,courier,monospace;">/etc/rc.d/init.d/mysql</big><span
+ style="font-family: times new roman,times,serif;"> and mysql(client
+executable) in your system path, etc.</span><br
+ style="font-family: times new roman,times,serif;">
+But in production (since that MySQL will not be used for anything else
+&amp; only for WebNMS) you can use install RPM itself.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">When you would
+like to install MySQL in Linux in a single directory (all stuff under
+single directory), you can use the zips (available in </span><a
+ href="http://downloads.mysql.com/archives.php?p=mysql-5.0"
+ title="All MySQL 5 downloads - latest WebNMS supported is 5.0.45"
+ style="font-family: times new roman,times,serif;">MySQL download site</a><span
+ style="font-family: times new roman,times,serif;">)</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">And ensure that
+MySQL installation like this (unzipping) is better done as a normal
+user. When you do this as a root user, there </span><a
+ href="http://laffers.net/howtos/howto-install-mysql#prerequisites"
+ title="create a group &amp; user named as mysql; Change the permission of data directory to mysql user, etc."
+ style="font-family: times new roman,times,serif;">are some additional
+steps</a><span style="font-family: times new roman,times,serif;">, so
+better unzip this as a normal user.</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">When you opt
+for this, after unzipping the tar.gz, you should install the </span><big
+ style="font-family: courier new,courier,monospace;"><span
+ style="color: rgb(51, 51, 255);">print_defaults</span></big> <span
+ style="font-family: times new roman,times,serif;">script under </span><span
+ style="font-weight: bold; font-family: times new roman,times,serif;">$MySQL_Home/scripts</span><span
+ style="font-family: times new roman,times,serif;"> directory after
+unzipping</span><br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">And you should
+also create a soft link -</span> <big
+ style="font-family: courier new,courier,monospace;"><span
+ style="font-weight: bold;">/usr/bin/mysqladmin</span></big> <span
+ style="font-family: times new roman,times,serif;">to this MySQL's
+bin/mysqladmin</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">(in case of
+Linux, WebNMS has been hardcoded to use only this mysqladmin. This
+usability issue is fixed in the </span><a
+ href="http://www.adventnet.com/products/webnms/webnms5-beta-download.html"
+ style="font-family: times new roman,times,serif;">upcoming WebNMS 5</a><span
+ style="font-family: times new roman,times,serif;"> where MySQL_Home's
+mysqladmin will also be used alternatively)</span><br
+ style="font-family: times new roman,times,serif;">
+<br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">We believe the
+above pointers would have given you an insight as how to install MySQL
+for Linux</span><br style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">If you have any
+issues, kindly get back to us with the following information:</span><br
+ style="font-family: times new roman,times,serif;">
+<br>
+<span style="font-family: times new roman,times,serif;">1. Whether you
+have installed RPM or zip &amp; from which direct download link, you
+had downloaded it</span><br
+ style="font-family: times new roman,times,serif;">
+<span style="font-family: times new roman,times,serif;">2. The </span></font><font
+ style="font-family: times new roman,times,serif;" size="3"><span
+ style="font-weight: bold;">$MySQL_Home/data/*.err </span>file<br>
+3. What console error message you are getting while starting </font><font
+ size="3"><span style="font-family: times new roman,times,serif;"><big
+ style="color: rgb(51, 51, 255); font-family: courier new,courier,monospace;">/etc/rc.d/init.d/mysql
+</big></span></font><font
+ style="font-family: times new roman,times,serif;" size="3">or </font><font
+ size="3"><span style="font-family: times new roman,times,serif;"><big
+ style="color: rgb(51, 51, 255); font-family: courier new,courier,monospace;"><span
+ style="font-weight: bold;">&nbsp;</span>$MySQL_Home/bin/safe_mysqld</big></span></font><br>
+</body>
+</html>

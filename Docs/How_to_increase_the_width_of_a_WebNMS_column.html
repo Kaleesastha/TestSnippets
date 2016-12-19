@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+  <title>How to increase the width of a WebNMS column</title>
+</head>
+<body>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="font-family: verdana,arial,helvetica,sans-serif; font-size: 11px;">
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">Dear Pankaj<br>
+<br>
+We are sorry that we are not able to see the image.<br>
+But to know the impact of a specific text (say, if I keep<span
+ class="Apple-converted-space">&nbsp;</span><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">a
+mapName as a 150-character text, what columns need to be expanded</span></b></i>),
+do the following steps:<br>
+<br>
+<b>1</b>. Reinitialize the server.<br>
+<b>2</b>. Start the server &amp; client<br>
+<b>3</b>. Configure that particular text for a particular field (say
+mapName as a unique name - say&nbsp;</span></font><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">testxxxx</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;or
+security user as&nbsp;</span><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">masterxyz123</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)<br>
+<b>4</b>. Stop the client &amp; server.<br>
+<b>5</b>. Run $NMS_Home/bin/backup/BackupDB.bat script<br>
+<b>6</b>. Unzip the file -&nbsp;</span><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">$NMS_Home/backup/<b>BackUp_MMMDD_YYYY_HH_MM.data</b><span
+ class="Apple-converted-space">&nbsp;</span>file (its a<b><span
+ class="Apple-converted-space">&nbsp;</span>zip file<span
+ class="Apple-converted-space">&nbsp;</span></b>only)<br>
+<b>7</b>. Open the&nbsp;</span><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">BackUp_MMMDD_YYYY_HH_MM
+file (a flat file, not an XML file)<br>
+<b>8</b>. Search for the unique string (</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">testxxxx</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;or&nbsp;</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">masterxyz123</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)
+- Now you know in which columns this text appear.<br>
+<b>9</b>. Reinitialize the server</span></div>
+<div><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><b>10.</b><span
+ class="Apple-converted-space">&nbsp;</span>In DatabaseSchema.conf or
+hbm.xml file, increase the width &amp; restart the server.<br>
+<br>
+We believe this meets your requirement. If there are any issues, kindly
+provide (attach /<span class="Apple-converted-space">&nbsp;</span><a
+ href="mailto:http://bonitas.zohocorp.com/upload/index.jsp?to=nms-support@webnms.com">upload</a>)
+us the following:<br>
+<b>1.<span class="Apple-converted-space">&nbsp;</span></b>Modified
+DatabaseSchema.conf file &amp; all hbm.xml files<br>
+<b>2.&nbsp;</b>Created&nbsp;</span><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><b>BackUp_MMMDD_YYYY_HH_MM.data&nbsp;</b></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">file.<br>
+<b>3.&nbsp;</b>The unique text&nbsp;</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">(</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">testxxxx</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">&nbsp;or&nbsp;</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><i><b><span
+ class="Apple-style-span" style="background-color: rgb(255, 255, 0);">masterxyz123</span></b></i></span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">)&nbsp;</span><span
+ class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;">you
+had given.<br>
+<br>
+Kindly get back to us for any further clarification in this regard,<br>
+<br>
+Thanks &amp; regards<br>
+Venkatramanan</span></div>
+<div><span class="Apple-style-span"
+ style="font-family: 'times new roman',times,serif; font-size: medium;"><br>
+</span></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">&lt;KHATTAR1, PANKAJ (PANKAJ)&gt;
+wrote--------------</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">Hi Team,</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">We are facing the following problem in one
+of our server:</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">We have analyzed the problem and found that
+mysql &#8220;strict mode&#8221; was enabled.</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">To resolve this issue we have disabled the
+mysql &#8220;strict mode&#8221; as you suggested in WebNMS developer guide:</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">http://www.webnms.com/webnms/help/developer_guide/third_party_components/upgrading_mysql.html</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;"><br>
+</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">Also
+we have updated the column size if in case the mysql &#8220;strict mode&#8221; is
+enabled as you mentioned in the following link to resolve truncation
+error:</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">http://www.webnms.com/webnms/help/developer_guide/performance_management/developer_tips/perf_troubleshooting_tips.html</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">But if the mysql &#8220;strict mode&#8221; is enabled
+then we could face same problem again for other fields also.</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">So
+can you please suggest the name of other fields that needs to be
+update? Or What could be other exceptions which might come in
+webnms?&nbsp;</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">Regards,</span></font></div>
+<div><font class="Apple-style-span"
+ face="'times new roman', times, serif"><span class="Apple-style-span"
+ style="font-size: medium;">Pankaj Khattar<br>
+<br>
+https://discussions.zoho.com/intranet/topic/improving-mysql-performance-physical-size<br>
+https://discussions.zoho.com/intranet/topic/kill-the-query-if-it-runs-long-time<br>
+</span></font></div>
+</span></span>
+</body>
+</html>

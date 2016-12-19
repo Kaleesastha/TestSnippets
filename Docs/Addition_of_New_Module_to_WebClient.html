@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<!-- saved from url=(0038)file:///tmp/adding_new_module_825.html -->
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=windows-1252">
+  <title>How HTML Works</title>
+  <meta name="GENERATOR" content="OpenOffice.org 1.0.1  (Win32)">
+  <meta name="CREATED" content="20040819;21341352">
+  <meta name="CHANGED" content="20050603;10433679">
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+  <style>
+	<!--
+		P { font-family: "Trebuchet MS"; font-size: 10pt }
+	-->
+	</style>
+</head>
+<body lang="en-US">
+<p><br>
+<br>
+</p>
+<p align="CENTER"><font size="3"><b>Addition of New Module to WebClient</b></font></p>
+<p><b>Introduction:</b></p>
+<p>This document will helps you adding a new module to the webclient.
+You can achieve this requirements in six steps.</p>
+<p style="margin-left: 2cm;">1. Adding the module related node in
+tree.xml.<br>
+2. Creating struts-config.xml and tiles-defn.xml for the
+required module. Place this files under a new ( having module name)
+directory, under &lt;WebNMS Home&gt;/webclient directory.<br>
+3.
+Adding the mapping entry for the new module in &lt;WebNMS
+Home&gt;/WEB-INF/Web.xml file.<br>
+4. Write your own Action Class and
+JSP files to work with the module.<br>
+5. Module specific jar creation
+under &lt;WebNMS Home&gt;/<b>WEB-INF/lib </b>directory<br>
+6. Adding
+the module related entries in compileJSP.bat/sh file for JSP
+compilation.</p>
+<p><u><b>Let us see the above steps with examples:</b></u></p>
+<p><b>1. Adding the module in tree.xml. </b>
+</p>
+<p style="margin-left: 2cm;">For example, i would like to add a new
+module: <b>home</b></p>
+<p style="margin-left: 2cm;">To show the module as tab and tree in
+webclient page, module specific node has been added to the tree.xml
+with node name as "<b>Device</b>". The module should have
+all the below mentioned attributes.</p>
+<p style="margin-left: 2cm;">&lt;DEVICE
+DEFAULT-CLOSE-OPERATION="DISPOSE_ON_CLOSE"
+INIT-ON-STARTUP="false" TREE-NAME="Home"
+FRAME-TITLE="Admin" TARGET="center" <b>Client="HTML"</b>
+<b>URL</b>="/<b>home/Homepage.do</b>" <b>ID</b>="<b>Home</b>"
+MODULE-NAME="Default" TAB="true"&gt;<br>
+&lt;LEVEL-1
+TARGET="center" MODULE-NAME="Home" Client="<b>HTML</b>"
+TREE-NAME="Home" ID="overview" URL="/Homepage.do"
+PANEL-KEY="Home"&gt;<br>
+&lt;/LEVEL-1&gt;<br>
+&lt;/DEVICE&gt;</p>
+<p style="margin-left: 2cm;">Since both java client and webclient are
+using the same tree.xml, if you want to have the module only to
+WEBCLIENT provide the attribute <b>Client</b>="<b>HTML</b>".
+And there is an option to hide the tab in webclient using the
+attribute <b>TAB="false"</b>. "<b>Device</b>"
+node is used to construct Tab and "LEVEL-1", "LEVEL-2",
+"LEVEL-3" nodes are used to construct child tree to the
+left side of the pages. If the tab should be appeared to all users
+(root, guest..) then the above mentioned node has to be added to all
+the users specific <b>&lt;WebNMS
+Home&gt;/users/&lt;userName&gt;/tree.xml
+(for the existing users) </b>file and to the <b>&lt;WebNMS
+Home&gt;/html/defaultsToNewUsers/tree.xml. (for any newly created
+users.)</b></p>
+<p><br>
+<br>
+</p>
+<ol start="2">
+  <li>
+    <p><b>Creating struts-config.xml and tiles-defn.xml for the
+required module.</b></p>
+    <p>For each module we have created a separate directory structure
+under &lt;WebNMS Home&gt;/webclient directory.<br>
+The same pattern has to be followed. Referring other module config
+files will help.</p>
+  </li>
+</ol>
+<p style="margin-left: 2cm;">The name for struts-config and
+tiles-defn.xml should preceded with the &lt;<b>module&gt;</b> name.</p>
+<p style="margin-left: 2cm;">for home module, the names should
+be<br>
+home-struts-config.xml,<br>
+home-tiles-defs.xml<br>
+home-validation.xml
+(optional)<br>
+home-validator-rules.xml(optional)</p>
+<p style="margin-left: 2cm;">As the name implies, the validation.xml
+and validator-rules.xml files are used for form validation.The above
+files should be placed under &lt;WebNMS Home&gt;/webclient/home/<b>conf</b>/
+directory</p>
+<p><br>
+<br>
+</p>
+<p><b>3. Adding the mapping entry for home module in &lt;WebNMS
+Home&gt;/WEB-INF/web.xml file.</b></p>
+<p style="margin-left: 2cm;">The below mentioned init-param node has
+to be placed under</p>
+<p style="margin-left: 2cm;">&lt;servlet &gt;
+&lt;servlet-name&gt;action&lt;/servlet-name&gt;<br>
+&lt;servlet-class&gt;<a
+ href="http://org.apache.struts.action.actionservlet/">org.apache.struts.action.ActionServlet</a>&lt;/servlet-class&gt;
+tag</p>
+<p style="margin-left: 2cm;"><b>&lt;init-param&gt;<br>
+&lt;param-name&gt;config/home&lt;/param-name&gt;<br>
+&lt;param-value&gt;/webclient/home/conf/home-struts-config.xml&lt;/param-value&gt;<br>
+&lt;/init-param&gt;</b></p>
+<p style="margin-left: 2cm;">Any HttpRequest we made will be going
+through this <b>ActionServlet</b>. If any home request has been made,
+then that request will pass through this mapping and will forwarded
+to the home-struts-config.xml file. home-struts-config.xml will
+invoke the Action class specified in it</p>
+<p><b>4. Write your own Action Class and JSP files to work with the
+module.</b></p>
+<p style="margin-left: 2cm;">Putting the entry in tree.xml file will
+load a new module in the webclient pages. The default page to be
+loaded when clicking the home page has been provided in the attribute
+<b>URL="/home/Homepage.do</b>. The mapping for <b>/home/Homepage.do</b>
+should be given in the home-struts-config.xml file and
+home-tiles-defn.xml file.</p>
+<p style="margin-left: 2cm;">For example, the mapping for HomePage is
+given in the home-struts-config.xml and home-tiles-defn.xml file:</p>
+<p style="margin-left: 2cm;">&lt;action
+path="/Homepage"<br>
+type="<a href="http://com.adventnet.nms.webclient.home.homepageaction/">com.adventnet.nms.webclient.home.HomepageAction</a>"&gt;<br>
+&lt;forward
+name="homepage" path="homepagedef"/&gt;<br>
+&lt;/action&gt;</p>
+<p style="margin-left: 2cm;">&lt;definition name="homepagedef"
+path="/webclient/home/jsp/HomeLayout.jsp"&gt;<br>
+&lt;put
+name="accPanel"
+value="/webclient/fault/jsp/accPanelMain.jsp"/&gt;<br>
+&lt;put
+name="ListView"
+value="/webclient/fault/jsp/alarms.jsp"/&gt;<br>
+&lt;/definition&gt;</p>
+<p style="margin-left: 2cm;">HomepageAction.java and HomeLayout.jsp
+and other jsp files has to be written by the users. Similarly you can
+provide N number of &lt;action ..&gt; tags to the above mentioned
+conf files <b>path="/............ .do” will be the request
+URL and based on this request your Action class and JSP files will be
+invoked.</b></p>
+<p><b>5. Creating the webclient-&lt;module name&gt;.jar under
+&lt;WebNMS
+Home&gt;/WEB-INF/lib directory.</b></p>
+<p style="margin-left: 2cm;"><span style="">Once
+the jsp and the action classes are created they should be compiled
+and placed in &lt;Web NMS Home&gt;/WEB-INF/lib/webclient-home.jar
+file. The URL mapping for the created jsp files has to be updated in
+&lt;Web NMS Home&gt;/WEB-INF/web.xml files.</span></p>
+<p><b>6. To avoid the manual placing of jsp file mapping in the
+web.xml, you can put the entry in the compileJSP.bat/sh file. Running
+this file would automatically update the web.xml file.</b></p>
+<ol start="6">
+  <p>Steps to add a module related entries in compileJSP.bat/sh file.<br>
+  <b>For compileJSP.bat ( Windows) </b>there will be four steps:</p>
+</ol>
+<p style="margin-left: 2cm;">a) Once the jspC compilation is over,
+.java file will be created. We need to convert that into a <b>.class
+</b>file. For this, we need to add an entry to the following line:
+<b>%JDK_HOME%\bin\javac -encoding UTF-8 -d .\WEB-INF\classes
+-classpath...</b></p>
+<p style="margin-left: 2cm;">Search for the above
+line and append the <b>.\WEB-INF\webclient\home\jsp\*.java </b>to it.
+Considering <b>home</b> is the module directory name.</p>
+<p style="margin-left: 2cm;">b) Updating the
+compiled .class files to the module specific jars. </p>
+<p style="margin-left: 2cm;"><b>%JDK_HOME%\bin\jar
+-uvf ..\lib\webclient-home.jar webclient\home\jsp\*.class</b><br>
+Search
+for the above similar content provided for other modules and add the
+above line to it.</p>
+<p style="margin-left: 2cm;">c) Removing the
+.java and .class files from the modules. </p>
+<p style="margin-left: 2cm;"><b>rmdir /s/q
+.\WEB-INF\webclient\home </b>// (for removing .java files)</p>
+<p style="margin-left: 2cm;"><b>rmdir /s/q
+.\WEB-INF\classes\webclient\home </b>// (for removing .class files)</p>
+<p style="margin-left: 2cm;">Search for the above
+similar content provided for other modules and add the above line to
+it.</p>
+<p style=""> <b>For compileJSP.sh
+(Linux/Solaris): </b><span style="">there is only
+two steps:</span></p>
+<p style="margin-left: 2cm;">a) Once the jspC compilation is over,
+.java file will be created. We need to convert that into a <b>.class
+</b>file. For this, we need to add an entry to the following line:
+<b>${JDK_HOME}/bin/javac -encoding UTF-8 -d ./WEB-INF/classes
+-classpath ${CLASSPATH}:${WEBSERVER_CLASSPATH} ...</b></p>
+<p style="margin-left: 2cm;">Search for the above
+line and append the <b>./WEB-INF/webclient/home/jsp/*.java </b>to it.
+Considering <b>home</b> is the module directory name.</p>
+<p style="margin-left: 2cm;">b) Updating the
+compiled .class files to the module specific jars. </p>
+<p style="margin-left: 2cm;"> <b>for module in
+topo map fault perf admin common<br>
+do<br>
+$JDK_HOME/bin/jar
+-uvf $NMS_HOME/WEB-INF/lib/webclient-$module.jar
+webclient/$module/jsp/*.class</b></p>
+<p style="margin-left: 2cm;">Search for the above
+lines. All the module specific files has been packaged to its
+respective jars. In the for loop just add your module as follows:</p>
+<p style="margin-left: 2cm;"> <b>for module in
+topo map fault perf admin common <font color="#ff0000">home</font> </b>
+</p>
+<p style="margin-left: 2cm;">We believe the above steps would guide
+you in adding the new module to webclient. </p>
+<p style="margin-left: 2cm;">Note: 1. Any changes done to the Tree.xml
+file should be updated to the Database. This can be achieved either
+by running the DBXmlTool.bat/sh file or by deleting the tables the
+Database by running the reinitialize.bat/sh file.<br>
+2. Once
+the jsp compilation is done, the server needs to be restarted.</p>
+<p style="margin-left: 2cm;">If you have any queries, send us the
+support <br>
+mail to <a href="mailto:nms-support@webnms.com">nms-support@webnms.com</a></p>
+<p style="margin-left: 2cm;">Happy implementation !!!!!!!!!!!!!!!</p>
+<p><br>
+<br>
+</p>
+<p><br>
+<br>
+</p>
+<p><br>
+<br>
+</p>
+</body>
+</html>
