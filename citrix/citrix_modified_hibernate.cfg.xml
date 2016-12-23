@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+<session-factory>
+
+<!--property name="connection.driver_class">com.p6spy.engine.spy.P6SpyDriver</property-->		
+
+<!--For MYSQL,Starts From Here-->
+<!--
+<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="connection.url">jdbc:mysql://localhost/WebNmsDB?dumpQueriesOnException=true&amp;jdbcCompliantTruncation=false</property>
+<property name="connection.username">root</property>
+<property name="connection.password"></property>
+<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+<property name="databasename">MYSQL</property>
+<property name="engineType">InnoDB</property>
+-->
+<!--End Of MYSQL-->
+
+<!--For Using Oracle DB , Uncomment the below tags -->
+<!--
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+<property name="connection.url">jdbc:oracle:thin:@HOST_NAME:PORT_NUMBER:CONNECT_STRING</property>
+<property name="connection.username">scott</property>
+<property name="connection.password">tiger</property>
+<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+<property name="databasename">ORACLE</property>
+-->
+<!-- End of ORACLE ,Uncomment till here-->
+
+<!--For Using Sybase ASA DB , Uncomment the below tags -->
+<!--
+<property name="connection.driver_class">com.sybase.jdbc3.jdbc.SybDriver</property>
+<property name="connection.url">jdbc:sybase:Tds:localhost:2638/WebNmsDB</property>
+<property name="connection.username">dba</property>
+<property name="connection.password">sql</property>
+<property name="dialect">org.hibernate.dialect.SybaseAnywhereDialect</property>
+<property name="databasename">SYBASE</property>
+-->
+<!--END of SYBASE ASA ,Uncomment till here-->
+
+
+
+<property name="connection.driver_class">org.postgresql.Driver</property>
+<property name="connection.url">jdbc:postgresql://localhost:5432/citrix2</property>
+<property name="connection.username">postgres</property>
+<property name="connection.password">postgres</property>
+<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<property name="databasename">POSTGRESQL</property>
+<property name="connection.schemaname">public</property>
+<!--For Postgresql,Starts From Here-->
+<!--End Of Postgresql Uncomment till here-->
+
+
+<!--For MSSQL,Starts From Here-->
+<!--
+<property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+<property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=WebNmsDB</property>
+<property name="connection.username">admin</property>
+<property name="connection.password">public</property>
+<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+<property name="databasename">MSSQL</property>
+-->
+<!--End Of MSSQL Uncomment till here-->
+
+<!--Use Given Schema name for Qualified Tables -->
+<!--
+<property name="hibernate.default_schema">userName</property>
+-->
+<!-- JDBC connection pool (use the built-in) -->
+<!--property name="hibernate.connection.pool_size">6</property-->
+<property name="hibernate.c3p0.min_size">40</property>
+<property name="hibernate.c3p0.max_size">40</property>
+<property name="nontransaction.connection">15</property>
+<property name="hibernate.connection.autocommit">true</property>
+<!--property name="hibernate.c3p0.max_statements">1000</property-->
+<property name="hibernate.c3p0.acquire_increment">5</property>
+<property name="hibernate.jdbc.batch_size">1000</property>
+<property name="hibernate.connection.isolation">2</property>
+<property name="enablecache">true</property>
+<!-- Enable Hibernate's automatic session context management -->
+<property name="current_session_context_class">thread</property>
+<!-- Disable the second-level cache -->
+<!--<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+<property name="hibernate.cache.use_query_cache">true</property>
+<!-- Echo all executed SQL to stdout -->
+<property name="show_sql">false</property>
+<!-- Drop and re-create the database schema on startup -->
+<property name="hbm2ddl.auto">update</property>
+<!-- used internally by WebNMS and also used for database re-connection-->
+<property name="testQuery">select HOSTADDRESS from BEFailOver</property>
+<!-- c3p0 DB-Reconnection Properties -->
+<property name="hibernate.c3p0.acquireRetryAttempts">2</property>
+<property name="hibernate.c3p0.acquireRetryDelay">15000</property>
+<!--
+<property name="hibernate.c3p0.breakAfterAcquireFailure">false</property>
+-->
+<!-- End of c3p0 DB-Reconnection Properties. For more details:http://www.mchange.com/projects/c3p0/index.html#configuring_recovery-->
+
+<!-- ************************************** -->
+<!-- TOPOLOGY MODULE OBJECT MAPPING ENTRIES -->
+<!-- ************************************** -->
+<mapping resource="com/adventnet/nms/topodb/ManagedObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/TopoObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Network.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/IpAddress.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/SnmpInterface.hbm.xml"/>
+<mapping resource="test/SwitchObject.hbm.xml"/>
+<mapping resource="test/PortObject.hbm.xml"/>
+<mapping resource="test/Printer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Node.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1Interface.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/ManagedGroupObject.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/corba/CORBANode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayNode.hbm.xml"/>
+<mapping resource="com/adventnet/nms/topodb/tl1/TL1GatewayAccessSession.hbm.xml"/>
+<!-- *********************************** -->
+<!-- FAULT MODULE OBJECT MAPPING ENTRIES -->
+<!-- *********************************** -->
+<mapping resource="com/adventnet/nms/eventdb/Event.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/Alert.hbm.xml"/>
+<mapping resource="com/adventnet/nms/alertdb/AlertHistory.hbm.xml"/>
+
+<!-- ***************************************** -->
+<!-- PERFORMANCE MODULE OBJECT MAPPING ENTRIES -->
+<!-- ***************************************** -->
+<mapping resource="com/adventnet/nms/poll/PolledData.hbm.xml"/>
+
+<!-- ******************************** -->
+<!-- MAP MODULE OBJECT MAPPING ENTRIES -->
+<!-- ******************************** -->
+<mapping resource="com/adventnet/nms/mapdb/MapContainer.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapSymbol.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapLink.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapGroup.hbm.xml"/>
+<mapping resource="com/adventnet/nms/mapdb/MapDB.hbm.xml"/>
+
+<!-- ********JMX AGENT RELATED ENTRIES -->
+<!--mapping resource="com/adventnet/nms/jmxagent/AgentDefValObject.hbm.xml"/-->
+<!--
+<mapping resource="com/ns/ems/server/discovery/mo/CitrixDevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/CitrixHADevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/NSDevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/NSHADevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/WSDevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/WSHADevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/DeviceCustomProps.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/XenDevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/NicaeaDevice.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/mo/NSCluster.hbm.xml"/>
+<mapping resource="com/ns/ems/server/fault/CCEvent.hbm.xml"/>
+<mapping resource="com/ns/ems/server/fault/CCAlert.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/changemgmt/NSTemplate.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/changemgmt/NSTemplateCommands.hbm.xml"/>
+<mapping resource="com/ns/ems/common/chgmgmtbeans/NSSystemTemplateMapping.hbm.xml"/>
+<mapping resource="com/ns/ems/common/chgmgmtbeans/NSDeviceTemplateMapping.hbm.xml"/>
+<mapping resource="com/ns/ems/common/chgmgmtbeans/NSDeviceListTemplateMapping.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/changemgmt/NSAuditReport.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/changemgmt/NSAuditReportDeviceDetails.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/changemgmt/NSAuditReportDetails.hbm.xml"/>
+<mapping resource="com/ns/ems/common/chgmgmtbeans/NSAuditReportInputData.hbm.xml"/>
+<mapping resource="com/ns/ems/server/performance/CCPollIDInfo.hbm.xml"/>
+<mapping resource="com/ns/ems/server/performance/dao/BRStatsData.hbm.xml"/>
+<mapping resource="com/ns/ems/server/entitymon/dao/NSDashboardData.hbm.xml"/>
+<mapping resource="com/citrix/cmdctr/nitro/resource/discovery/CCConfBackup.hbm.xml"/>
+<mapping resource="com/ns/ems/server/syslog/dao/CCSYSLOG.hbm.xml"/>
+<mapping resource="com/ns/ems/server/syslog/appfw/dao/APPFW.hbm.xml"/>
+<mapping resource="com/ns/ems/server/syslog/sslvpn/dao/SSLVPN.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Deviceprofile.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Deviceprofiledetails.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Vpxcontainermappinginfo.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Flextenant.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Flextenantinfo.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Flextenantapp.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Flextenantappinfo.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Flextenantbackend.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Applicationfe.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Applicationbe.hbm.xml"/>
+<mapping resource="com/ns/ems/server/discovery/pojos/Applicationfeinfo.hbm.xml"/>
+<mapping resource="com/ns/ems/server/entitymon/pojos/NscertMonitor.hbm.xml"/>
+<mapping resource="com/ns/ems/server/utils/dao/CCServerConfig.hbm.xml"/>
+<mapping resource="com/ns/ems/server/utils/dao/PatchData.hbm.xml"/>
+<mapping resource="com/ns/ems/server/devops/dao/DevopsHistory.hbm.xml"/>
+<mapping resource="com/ns/ems/server/utils/dao/UIInternal.hbm.xml"/>
+<mapping resource="com/ns/ems/server/task/dao/ConfigProfileMapping.hbm.xml"/>
+<mapping resource="com/ns/ems/server/task/dao/ConfigProfileReport.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/utils/dao/CCAppLicenseDetails.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/failover/dao/ReplicationMonitor.hbm.xml"/>
+<mapping resource="com/ns/ems/server/failover/dao/ReplicationMonitorLog.hbm.xml"/>
+<mapping resource="com/ns/ems/server/utils/dao/CCSNMPAgentACL.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/utils/dao/CusViewToGrpMapping.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/syslog/dao/SyslogPurger.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/syslog/dao/SyslogFilter.hbm.xml"/>
+
+<mapping resource="com/ns/ems/server/fault/dao/FaultFilterRepeatInfo.hbm.xml"/>
+-->
+
+</session-factory>
+
+</hibernate-configuration><!-- $Id: hibernate.cfg.xml,v 1.40 2008/12/17 21:46:32 swaminathap Exp $ -->
