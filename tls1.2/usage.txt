@@ -1,0 +1,2 @@
+java -Djavax.net.ssl.keyStore=server.keystore -Djavax.net.ssl.keyStorePassword=webnms -Djavax.net.ssl.keyStorePassword=webnms  EchoServer "TLSv1.2"
+java  -Djavax.net.ssl.trustStore=Truststore.truststore -Djavax.net.ssl.trustStorePassword=webnms EchoClient localhost 9999 "TLSv1.2"
