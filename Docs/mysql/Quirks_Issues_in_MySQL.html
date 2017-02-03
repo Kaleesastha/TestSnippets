@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>MySQL Issues &amp; Quirks</title>
+  </head>
+  <body>
+    There are certain new restrictions in MySQL (I believe in 5.4+ but
+    not sure) which we have to be aware while setting up MySQL after
+    unzipping the tar file:<br>
+    <br>
+    1: <i><b>scripts/mysql_install_db</b></i> is no more available.<br>
+    Solution: Instead you need to call : <i><b>bin/mysqld
+        --initialize-insecure &nbsp;</b></i><br>
+    The --initialize-insecure option is to disable the random (or any)
+    password for the root account (not recommended for deployments. For
+    deployments you can set the password after initializing using the
+    old method)<br>
+    <br>
+    2. The '<b>grant all privileges</b>' too is disabled by default.<br>
+    Solution: This can be enabled by specifying
+    --sql_mode=ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+    while starting <i><b>mysqld</b></i> (The trick here is to avoid <b>NO_AUTO_CREATE_USER</b>
+    option which prevents the creation of new user when specifying
+    'grant' command).<br>
+    <br>
+    3. Some times, the old message file might be unacceptable to new
+    mysql version.<br>
+    Solution: Execute<br>
+    <i><b>mv /usr/share/mysql/english/errmsg.sys
+        /usr/share/mysql/english/errmsg.sys.old</b></i><i><b><br>
+      </b></i><i><b>sudo cp
+        &lt;NEW_MYSQL_VERSION_HOME&gt;/sql/share/english/errmsg.sys
+        /usr/share/mysql/english/errmsg.sys</b></i><i><b><br>
+      </b></i><br>
+    Reference: MySQL Docs: <a
+      href="https://dev.mysql.com/doc/refman/5.7/en/mysql-install-db.html">https://dev.mysql.com/doc/refman/5.7/en/mysql-install-db.html</a><br>
+    <a href="http://toastergremlin.com/?p=447">http://toastergremlin.com/?p=447</a>
+  </body>
+</html>
