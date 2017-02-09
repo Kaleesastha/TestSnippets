@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="false">
+
+<!-- MAIL APPENDER -->
+<!--appender name="mail" class="org.apache.log4j.net.SMTPAppender">
+    <param name="EvaluatorClass" value="com.adventnet.management.log.MessageBasedTEE"/>
+    <param name="To" value="webnms-admin@adventnet.com"/>
+    <param name="From" value="webnms-admin@adventnet.com"/>
+    <param name="BufferSize" value="512"/>
+    <param name="Subject" value="LOG4j mail testing"/>
+    <param name="SMTPHost" value="192.168.4.41"/>
+    <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+    </layout>
+</appender-->
+<!-- MAIL APPENDER -->
+
+<!-- FILE APPENDERS -->
+<appender name="nmserr_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+       <param name="File" value="logs/Central/CCMS/nmserr.txt"/>
+	   <param name="MaxFileSize" value="1MB"/>
+	   <param name="ScavengeInterval" value="-1"/>
+	   <param name="DatePattern" value=".yyyy-MM-dd"/>
+       	   <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+	   </layout>
+</appender>
+
+<appender name="nmsout_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/nmsout.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="alert_audit_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/alert_audit.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="security_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/security.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="gbbfinf_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/gbbfinf.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="topology_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/topology.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+<appender name="sysout_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/sysout.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="syserr_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/syserr.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="hbn_log" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+       <param name="File" value="logs/Central/CCMS/hbn.txt"/>
+           <param name="MaxFileSize" value="5MB"/>
+           <param name="ScavengeInterval" value="-1"/>
+       <param name="DatePattern" value=".yyyy-MM-dd"/>
+       <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+       </layout>
+ </appender>
+
+<appender name="threaddump_file" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+        <param name="File" value="logs/Central/CCMS/threaddump.txt"/>
+        <param name="MaxFileSize" value="5MB"/>
+        <param name="ScavengeInterval" value="-1"/>
+	<param name="DatePattern" value=".yyyy-MM-dd"/>
+        <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+        </layout>
+</appender>
+
+<!-- CMS Related Appenders -->
+<appender name="aic" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/aic.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="audit_trail" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/audit_trail.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="initialization" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/initialization.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="bws" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/bws.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="cal" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/cal.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="changereq" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/changereq.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="cmsinf" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/cmsinf.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="cnm" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/cnm.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="cms" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/cms.log"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="Append" value="true"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="config" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/config.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="diagnostics" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/diagnostics.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="eqm" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/eqm.txt"/>
+      <param name="MaxFileSize" value="10MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="fault" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/fault.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="fcm" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/fcm.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="performance" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/performance.txt"/>
+      <param name="MaxFileSize" value="10MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="pwr" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/pwr.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="pmt" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/pmt.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="reports" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/reports.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="sar" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/sar.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="scc" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/scc.txt"/>
+      <param name="MaxFileSize" value="15MB"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="sod" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/sod.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="tde" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/tde.txt"/>
+      <param name="MaxFileSize" value="50MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="tile" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/tile.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<appender name="tsv" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+      <param name="File" value="logs/Central/CCMS/tsv.txt"/>
+      <param name="MaxFileSize" value="5MB"/>
+      <param name="ScavengeInterval" value="-1"/>
+      <param name="DatePattern" value=".yyyy-MM-dd"/>
+      <layout  class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"  value="[%d{ISO8601}][%p]%m%n"/>
+      </layout>
+</appender>
+
+<!-- FILE APPENDERS ENDS -->
+
+
+<!-- NMSERR LOGGERS -->
+<logger name="POLLERR" additivity="false">
+	<level value="info"/>
+	<appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="POLICYERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="TOPOERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="EVENTERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="ALERTERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="MAPERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="CONFIGERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="PROVERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="MISCERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="AGENTERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+<logger name="CLIERR" additivity="false">
+    <level value="warn"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!--NMSERR LOGGERS ENDS -->
+
+<!-- NMSOUT LOGERERS STARTS -->
+<logger name="POLLUSER" additivity="false">
+	<level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="POLICYUSER" additivity="false">
+	<level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="TOPOUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="EVENTUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="ALERTUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="MAPUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="CONFIGUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="PROVUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="MISCUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="AGENTUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="CLIUSER" additivity="false">
+    <level value="warn"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!--NMSOUT LOGGERS ENDS -->
+
+<!-- DISCOVERY LOGGER  -->
+
+<logger name="DISCOVERYUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<logger name="PINGERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- DISCOVERY LOGGER ENDS -->
+
+<!-- TRANSACTION LOGGER -->
+
+<logger name="TUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- TRANSACTION LOGGER ENDS -->
+
+<!-- ALERT_AUDIT LOGGER  -->
+
+<logger name="ALERT_AUDITUSER" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="alert_audit_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- ALERT_AUDIT LOGGER ENDS -->
+
+<!-- STDOUT LOGGER  -->
+
+<logger name="SYS_OUT" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="sysout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- STDOUT LOGGER ENDS -->
+
+<!-- STDERR LOGGER -->
+
+<logger name="SYS_ERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="syserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- STDERR LOGGER ENDS -->
+
+<!-- MSOUT LOGGER  -->
+
+<logger name="MSOUT" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="nmsout_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+
+<!-- MSOUT LOGGER ENDS -->
+
+<!-- MSERR LOGGER  -->
+
+<logger name="MSERR" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- MSERR LOGGER ENDS -->
+
+
+<!-- HIBERNATE LOGGER -->
+
+<logger name="org.hibernate" additivity="false">
+    <level value="info"/>
+    <appender-ref ref="hbn_log"/>
+</logger>
+
+<!--Fixed No row with given idendifier exist issues fixed.This is temp fix.-->
+<logger name="org.hibernate.event.def.DefaultLoadEventListener" >
+    <level value="OFF"/>
+        <appender-ref ref="hbn_log"/>
+</logger>
+<!--To disable the log entry regarding the ReadWrite Cache expiration.-->
+<logger name="org.hibernate.cache.ReadWriteCache" >
+   <level value="OFF"/>
+       <appender-ref ref="hbn_log"/>
+</logger> 
+
+<!-- HIBERNATE LOGGER ENDS -->
+
+<!-- THREADDUMP LOGGER -->
+
+<logger name="THREADDUMP_USER" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="threaddump_file"/>
+        <!--appender-ref ref="mail"/-->
+</logger>
+
+<!-- THREADDUMP LOGGER ENDS -->
+
+<!-- CMS Loggers START -->
+<logger name="AIC" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="aic"/>
+</logger>
+
+<logger name="AUDIT_TRAIL" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="audit_trail"/>
+</logger>
+
+<logger name="INITIALIZATION" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="initialization"/>
+</logger>
+
+<logger name="BWSMGMT" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="bws"/>
+</logger>
+
+<logger name="CAL" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="cal"/>
+</logger>
+
+<logger name="CHANGEREQ" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="changereq"/>
+</logger>
+
+<logger name="CMSINF" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="cmsinf"/>
+</logger>
+
+<logger name="CNM" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="cnm"/>
+</logger>
+
+<logger name="CONFMGMT" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="config"/>
+</logger>
+
+<logger name="DIAGNOSTICS" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="diagnostics"/>
+</logger>
+
+<logger name="EQM" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="eqm"/>
+</logger>
+
+<logger name="FAULTMGMT" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="fault"/>
+</logger>
+
+<logger name="FCM" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="fcm"/>
+</logger>
+
+<logger name="GENERAL" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="cms"/>
+</logger>
+
+<logger name="GBBFINF" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="gbbfinf_file"/>
+</logger>
+
+<logger name="PERFORMANCE" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="performance"/>
+</logger>
+
+<logger name="PWR" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="pwr"/>
+</logger>
+
+<logger name="PMT" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="pmt"/>
+</logger>
+
+<logger name="REPORTS" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="reports"/>
+</logger>
+
+<logger name="SAR" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="sar"/>
+</logger>
+
+<logger name="SCC" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="scc"/>
+</logger>
+
+<logger name="SOD" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="sod"/>
+</logger>
+
+<logger name="SECURITY" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="security_file"/>
+</logger>
+
+<logger name="TDE" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="tde"/>
+</logger>
+
+<logger name="TILE" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="tile"/>
+</logger>
+
+<logger name="TOPOLOGY" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="topology_file"/>
+</logger>
+
+<logger name="TSV" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="tsv"/>
+</logger>
+
+<!-- CMS Loggers END -->
+
+<!-- Root Configuration -->
+<root>
+    <level value="warn"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="nmsout_file"/>
+</root>
+
+</log4j:configuration>
