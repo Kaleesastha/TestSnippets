@@ -1,0 +1,93 @@
+[14 Feb 2017 15:44:27:878]      : Logging started
+[14 Feb 2017 15:44:27:878]      : Messages on ********Tuesday, February 14, 2017********
+[14 Feb 2017 15:44:27:878]      :          -------General Information------
+	  Product = WebNMS 5.2
+	  Service Pack Version =AdventNet_Web_NMS-5.2-SP-1.12
+	  os name=Mac OS X
+	  os version=10.11.6
+	  os architecture=x86_64
+	  java version=1.6.0_65
+	  java vendor=Apple Inc.
+	  java specification=Java Platform API Specification
+	  java vm name=Java HotSpot(TM) 64-Bit Server VM
+	  java vm information =mixed mode
+	  java compiler=null
+	  ********************************************************
+
+[14 Feb 2017 15:44:27:878] SYS_ERR:          -------RDBMS related information------
+	  database product name = PostgreSQL
+	  database product version=9.4.5
+	  database driver name=PostgreSQL Native Driver
+	  database driver version=PostgreSQL 9.0 JDBC4 (build 801)
+	  database user name=postgres
+	  database URL=jdbc:postgresql://localhost/cienadb
+	  *****************************************************
+[14 Feb 2017 15:44:28:355] SYS_ERR: control come to run in connection mainetainer class and sends the queries to table 
+[14 Feb 2017 15:44:29:031] SYS_ERR: Traps cannot be received on port 162
+[14 Feb 2017 15:44:54:043] SYS_ERR: com.adventnet.nms.poll.NmsPollException: poll already exists for JVMPD_BE_16500_MonitorMemory	BE_172.24.14.98	((.1.3.6.1.4.1.42.2.145.3.163.1.1.2.11.0+.1.3.6.1.4.1.42.2.145.3.163.1.1.2.21.0)*100)/(.1.3.6.1.4.1.42.2.145.3.163.1.1.2.13.0+.1.3.6.1.4.1.42.2.145.3.163.1.1.2.23.0)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:667)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:539)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addMemoryPolledData(WebNMSBEResourceMonitoring.java:210)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addResourcePolledData(WebNMSBEResourceMonitoring.java:103)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at java.lang.reflect.Method.invoke(Method.java:597)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.management.WebNMSMgmtBEProcess.callMain(WebNMSMgmtBEProcess.java:158)
+[14 Feb 2017 15:44:54:046] SYS_ERR: 	at com.adventnet.nms.util.RunProcessSmall.runCommand(RunProcessSmall.java:97)
+[14 Feb 2017 15:44:54:047] SYS_ERR: 	at com.adventnet.nms.util.RunCmd.run(RunCmd.java:127)
+[14 Feb 2017 15:44:54:107] SYS_ERR: com.adventnet.nms.poll.NmsPollException: key is not formed correctly
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:659)
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:539)
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addCPUPolledData(WebNMSBEResourceMonitoring.java:285)
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addResourcePolledData(WebNMSBEResourceMonitoring.java:107)
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[14 Feb 2017 15:44:54:111] SYS_ERR: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[14 Feb 2017 15:44:54:112] SYS_ERR: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[14 Feb 2017 15:44:54:112] SYS_ERR: 	at java.lang.reflect.Method.invoke(Method.java:597)
+[14 Feb 2017 15:44:54:112] SYS_ERR: 	at com.adventnet.nms.management.WebNMSMgmtBEProcess.callMain(WebNMSMgmtBEProcess.java:158)
+[14 Feb 2017 15:44:54:112] SYS_ERR: 	at com.adventnet.nms.util.RunProcessSmall.runCommand(RunProcessSmall.java:97)
+[14 Feb 2017 15:44:54:112] SYS_ERR: 	at com.adventnet.nms.util.RunCmd.run(RunCmd.java:127)
+[14 Feb 2017 16:00:28:375] SYS_ERR: ==>, EventRate-1, ContainerBackgroundProcessor[StandardEngine[Catalina]], discovery-1, SendToClient - localhost, RMI TCP Accept-16000, KPIAggregationScheduler-1, fault-4, main-3, statuspoll-1, http-9090-Processor3, COMMONTRAPNOTIFIER, Process-Scheduler-2, SchedulerForFailOver-1, ReportsManagement-1, ReportsManagement-4, Thread-58, policy, MSXMLProcessorThread, http-9090-Processor1, DestroyJavaVM, Thread-69, Thread-29, Thread-57, AWT-AppKit, RMI Reaper, fault-1, KPIAggregationScheduler-4, KPIAggregationScheduler, SUMMainServerThread, StatusPollingRate, datapoll-1, discovery-4, com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1, DataCollectionRate, EventRate, ConfigServerSession, RMI RenewClean-[172.24.14.98:50628], main-1, Connection Maintainer, 1-1, Timer-0, SchedulerForFailOver-2, provisioning-1, pendingprovision-1, statuspoll, main-2, com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0, DataCollectionRate-1, RMI TCP Connection(idle), Thread-104, CommunicatorServer, KPIAggregationScheduler-2, Agent, TrapRate-1, BEModuleDispatcher-2, TrapRate, fault, config-1, policy-1, WebUpdateProcessor-3, BEModuleDispatcher-1, MainSocketServerFE, Thread-3, ThreadService-1, statuspoll-2, Finalizer, API-Thread-63, GC Daemon, TopoNotificationRegistry, KeepAliveMonitor, RMI TCP Accept-0, RMI Scheduler(0), com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#4, BEModuleDispatcher, Thread-70, main-4, Thread-75, Process-Scheduler-1, AlertRate, Thread-73, WebUpdateProcessor, SchedulerForFailOver, Reference Handler, RMI TCP Accept-0, datapoll, discovery-2, WebUpdateProcessor-2, main, WebUpdateProcessor-1, fault-3, Signal Dispatcher, Process-Scheduler, pendingprovision-2, Thread-68, Thread-4, fault-2, com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#3, ReportsManagement-2, AlertRate-1, 1, ReportsManagement-3, datapoll-3, http-9090-Processor2, discovery, KPIAggregationScheduler-5, MainSocketServer, Thread-107, StatusPollingRate-1, datapoll-2, ThreadService-0, config, Thread-15, TerminalSessionWatchdog, SESSION-Thread-71, http-9090-Monitor, WebUpdateProcessor-4, pendingprovision, ReportsManagement, statuspoll-3, TRAPINPUT, MainSocketServerBE, NMSSAServer, RMI TCP Accept-1099, Thread-67, GenericSocketServerFE, KPIAggregationScheduler-3, com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#5, Thread-105, discovery-3, provisioning, com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2
+[14 Feb 2017 16:00:43:812] SYS_ERR: =================== after runBackUp
+[14 Feb 2017 16:00:43:812] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[BEModuleDispatcher,5,main]
+[14 Feb 2017 16:00:43:812] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[policy,5,main]
+[14 Feb 2017 16:00:43:812] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[SchedulerForFailOver,5,main]
+[14 Feb 2017 16:00:43:812] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[TrapRate,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[fault,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[AlertRate,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[StatusPollingRate,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[discovery,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[DataCollectionRate,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[WebUpdateProcessor,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[main,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[statuspoll,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[KPIAggregationScheduler,5,main]
+[14 Feb 2017 16:00:43:813] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[config,5,main]
+[14 Feb 2017 16:00:43:822] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[datapoll,5,main]
+[14 Feb 2017 16:00:43:822] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[ReportsManagement,5,main]
+[14 Feb 2017 16:00:43:823] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[pendingprovision,5,main]
+[14 Feb 2017 16:00:43:823] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[EventRate,5,main]
+[14 Feb 2017 16:00:43:823] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[provisioning,5,main]
+[14 Feb 2017 16:00:43:823] SYS_ERR: DEBUG: Scheduler.resumeAll called. List of threads resumed : ,BEModuleDispatcher-1,BEModuleDispatcher-2,policy-1,SchedulerForFailOver-1,SchedulerForFailOver-2,TrapRate-1,fault-1,fault-2,fault-3,fault-4,AlertRate-1,StatusPollingRate-1,discovery-1,discovery-2,discovery-3,discovery-4,DataCollectionRate-1,WebUpdateProcessor-1,WebUpdateProcessor-2,WebUpdateProcessor-3,WebUpdateProcessor-4,main-1,main-2,main-3,main-4,statuspoll-1,statuspoll-2,statuspoll-3,KPIAggregationScheduler-1,KPIAggregationScheduler-2,KPIAggregationScheduler-3,KPIAggregationScheduler-4,KPIAggregationScheduler-5,config-1,datapoll-1,datapoll-2,datapoll-3,ReportsManagement-1,ReportsManagement-2,ReportsManagement-3,ReportsManagement-4,pendingprovision-1,pendingprovision-2,EventRate-1,provisioning-1
+[14 Feb 2017 16:54:11:596] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[BEModuleDispatcher,5,main]
+[14 Feb 2017 16:54:11:596] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[policy,5,main]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[SchedulerForFailOver,5,main]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[TrapRate,5,main]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[fault,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[AlertRate,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[StatusPollingRate,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[discovery,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[DataCollectionRate,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[WebUpdateProcessor,5,main]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[main,5,]
+[14 Feb 2017 16:54:11:597] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[statuspoll,5,]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[KPIAggregationScheduler,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[config,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[datapoll,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[ReportsManagement,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[pendingprovision,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[EventRate,5,]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.wakeUpScheduler called for Scheduler: Thread[provisioning,5,main]
+[14 Feb 2017 16:54:11:598] SYS_ERR: DEBUG: Scheduler.resumeAll called. List of threads resumed : ,BEModuleDispatcher-1,BEModuleDispatcher-2,policy-1,SchedulerForFailOver-1,SchedulerForFailOver-2,TrapRate-1,fault-1,fault-2,fault-3,fault-4,AlertRate-1,StatusPollingRate-1,discovery-1,discovery-2,discovery-3,discovery-4,DataCollectionRate-1,WebUpdateProcessor-1,WebUpdateProcessor-2,WebUpdateProcessor-3,WebUpdateProcessor-4,main-1,main-2,main-3,main-4,statuspoll-1,statuspoll-2,statuspoll-3,KPIAggregationScheduler-1,KPIAggregationScheduler-2,KPIAggregationScheduler-3,KPIAggregationScheduler-4,KPIAggregationScheduler-5,config-1,datapoll-1,datapoll-2,datapoll-3,ReportsManagement-1,ReportsManagement-2,ReportsManagement-3,ReportsManagement-4,pendingprovision-1,pendingprovision-2,EventRate-1,provisioning-1,BEModuleDispatcher-1,BEModuleDispatcher-2,policy-1,SchedulerForFailOver-1,SchedulerForFailOver-2,TrapRate-1,fault-1,fault-2,fault-3,fault-4,AlertRate-1,StatusPollingRate-1,discovery-1,discovery-2,discovery-3,discovery-4,DataCollectionRate-1,WebUpdateProcessor-1,WebUpdateProcessor-2,WebUpdateProcessor-3,WebUpdateProcessor-4,main-1,main-2,main-3,main-4,statuspoll-1,statuspoll-2,statuspoll-3,KPIAggregationScheduler-1,KPIAggregationScheduler-2,KPIAggregationScheduler-3,KPIAggregationScheduler-4,KPIAggregationScheduler-5,config-1,datapoll-1,datapoll-2,datapoll-3,ReportsManagement-1,ReportsManagement-2,ReportsManagement-3,ReportsManagement-4,pendingprovision-1,pendingprovision-2,EventRate-1,provisioning-1
+[14 Feb 2017 16:54:11:618] SYS_ERR: ExampleFE shutdown called
