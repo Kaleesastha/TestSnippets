@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>How to get my custom RMI API in WebNMS</title>
+  </head>
+  <body>
+    <meta charset="utf-8">
+    <p style="font-size: 11px; font-family: Verdana, Arial, Helvetica,
+      sans-serif; line-height: 1.8; color: rgb(0, 0, 0); font-style:
+      normal; font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-align: center;"><font size="3" face="times new roman, times,
+        serif"><span style="line-height: 28px;"><b><u>How to get my
+              custom RMI API in WebNMS</u></b></span></font></p>
+    <p style="font-size: 11px; font-family: Verdana, Arial, Helvetica,
+      sans-serif; line-height: 1.8; color: rgb(0, 0, 0); font-style:
+      normal; font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;"><font size="3" face="times new
+        roman, times, serif">Please follow the below steps.<br>
+      </font><font size="3" face="times new roman, times, serif"><br>
+      </font><font size="3" face="times new roman, times, serif">1.
+        Write your own Remote API<br>
+      </font><font size="3" face="times new roman, times, serif"><br>
+        2. Bind the implementation class in the server's RMI registry<span
+          class="Apple-converted-space">&nbsp;</span></font><font
+        size="3" face="times new roman, times, serif">using <a
+href="https://www.webnms.com/telecom/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/NmsUtil.html#bindObjectInRegistry%28java.rmi.Remote,%20java.lang.String,%20boolean%29">NmsUtil.bindObjectInRegistry()</a>
+        method.&nbsp;</font><font size="3" face="times new roman, times,
+        serif">javadoc: <a
+href="https://www.webnms.com/telecom/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/NmsUtil.html#bindObjectInRegistry%28java.rmi.Remote,%20java.lang.String,%20boolean%29">NmsUtil</a></font><font
+        size="3" face="times new roman, times, serif"><br>
+      </font><font size="3" face="times new roman, times, serif"><br>
+      </font><font size="3" face="times new roman, times, serif">3. You
+        can get this handle from your standalone java application by
+        Naming.lookup().</font><font size="3" face="times new roman,
+        times, serif"><br>
+      </font><font size="3" face="times new roman, times, serif"><br>
+        You have to bind the object during the server initialization
+        itself, by starting as one of the BE processes. You can make use
+        of our help documents for starting a BE process at WebNMS
+        developer guide at </font><font size="3" face="times new roman,
+        times, serif"><a
+href="https://webnms.com/telecom/help/developer_guide/module_services/module_services.html">https://webnms.com/telecom/help/developer_guide/module_services/module_services.html</a><br>
+      </font><font size="3" face="times new roman, times, serif">We have
+        also<span class="Apple-converted-space">&nbsp;</span><a
+href="https://nmskbase.wiki.zoho.com/_attach/1.0/How-to-get-my-RMI-related-Code-in-WebNMS.zip"
+          target="_blank" title="got an example" style="text-decoration:
+          none;">got an example</a><span class="Apple-converted-space">&nbsp;</span>code
+        snippet for your reference. Where<br>
+        <br>
+      </font><font size="3" face="times new roman, times, serif">1.
+        TestInvoker.java is the Remote interface, which has a
+        testInvoke() method.&nbsp;<br>
+      </font><font size="3" face="times new roman, times, serif">2.
+        TestInvokerImpl.java is the implemenation class, which binds
+        it's object in the name of "TestInvoker".<br>
+      </font><font size="3" face="times new roman, times, serif">3.
+        RemoteTest.java for starting as a process, which in turn will
+        invoke the Remote API implementation class.<br>
+      </font><font size="3" face="times new roman, times, serif">4.
+        Test.java is a standalone java application for getting the
+        TestInvoker API handle.<br>
+        5. TestInvokerProxyImpl.java is the implemenation class for
+        WebNMS FE, which binds it's object in the name of "TestInvoker"
+        <br>
+      </font></p>
+    <p style="font-size: 11px; font-family: Verdana, Arial, Helvetica,
+      sans-serif; line-height: 1.8; color: rgb(0, 0, 0); font-style:
+      normal; font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;"><font size="3" face="times new
+        roman, times, serif">Note that TestInvokerProxyImpl.java
+        implements </font><font size="3" face="times new roman, times,
+        serif"><font size="3" face="times new roman, times, serif"><a
+href="https://www.webnms.com/telecom/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/CommonModuleAPI.html"
+            title="CommonModuleAPI" target="_blank"
+            style="text-decoration: none;">CommonModuleAPI</a> </font>which
+        helps you to get the API instance by using NmsUtil.getAPI()
+        method<br>
+        Related javadocs,&nbsp;<span style="line-height: 28px;"><a
+href="https://www.webnms.com/telecom/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/NmsUtil.html#bindObjectInRegistry%28java.rmi.Remote,%20java.lang.String,%20boolean%29"
+            target="_blank"
+            title="NmsUtil.bindObjectInRegistry(Remote,String,boolean)"
+            style="text-decoration: none;">NmsUtil.bindObjectInRegistry(Remote,String,boolean)</a>&nbsp;&amp;&nbsp;</span><a
+href="https://www.webnms.com/telecom/help/javadocs/consolidated_javadocs/com/adventnet/nms/util/CommonModuleAPI.html"
+          title="CommonModuleAPI" target="_blank"
+          style="text-decoration: none;">CommonModuleAPI</a></font><br
+        class="Apple-interchange-newline">
+    </p>
+  </body>
+</html>
