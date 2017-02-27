@@ -1,4 +1,7 @@
 . ./setEnv.sh
+JAVA_HOME=/opt/motorola/java
+export JAVA_HOME
+export PATH=$JAVA_HOME/bin:$PATH
 echo ============================$NMS_HOME/classes/NmsServerClasses.jar====================
 cd $NMS_HOME/temp/
 jar -xf $NMS_HOME/classes/NmsServerClasses.jar
