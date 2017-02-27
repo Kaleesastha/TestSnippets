@@ -1,5 +1,4 @@
-NMS_HOME=/Users/venkat-0773/del/atca/migration_issues/24-02-2017/webnms52
-export NMS_HOME
+. ./setEnv.sh
 echo ============================$NMS_HOME/classes/NmsServerClasses.jar====================
 cd $NMS_HOME/temp/
 jar -xf $NMS_HOME/classes/NmsServerClasses.jar
