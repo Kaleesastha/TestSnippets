@@ -1,0 +1,69 @@
+[01 Mar 2017  09:55:04:640]  ~~~~~~~~~~~~~~~ Logging started ~~~~~~~~~~~~~~~~
+         -------General Information------
+	  Product = ESM R.6.8.0.91
+	  Service Pack Version =Ciena_ESM-6.8-ATT_MowTemplate_Set-2.5.0.19
+	  os name=Linux
+	  os version=2.6.18-409.el5
+	  os architecture=amd64
+	  java version=1.6.0_43
+	  java vendor=Sun Microsystems Inc.
+	  java specification=Java Platform API Specification
+	  java vm name=Java HotSpot(TM) 64-Bit Server VM
+	  java vm information =mixed mode
+	  java compiler=null
+	  ********************************************************
+
+[01 Mar 2017  09:55:04:641]  Messages on ********Wednesday, March 1, 2017********
+[01 Mar 2017  09:55:04:649]           -------RDBMS related information------
+	  database product name = MySQL
+	  database product version=5.0.95
+	  database driver name=MySQL-AB JDBC Driver
+	  database driver version=mysql-connector-java-5.0.4 ( $Date: 2006-10-19 17:47:48 +0200 (Thu, 19 Oct 2006) $, $Revision: 5908 $ )
+	  database user name=root@localhost
+	  database URL=jdbc:mysql://localhost:3306/ESMDB67ts22patch?dumpQueriesOnException=true&jdbcCompliantTruncation=false&sessionVariables=storage_engine=InnoDB
+	  *****************************************************
+[01 Mar 2017  09:55:06:165]  control come to run in connection mainetainer class and sends the queries to table 
+[01 Mar 2017  09:55:32:146]  com.adventnet.nms.poll.NmsPollException: poll already exists for JVMPD_BE_16500_MonitorMemory	BE_10.26.19.72	((.1.3.6.1.4.1.42.2.145.3.163.1.1.2.11.0+.1.3.6.1.4.1.42.2.145.3.163.1.1.2.21.0)*100)/(.1.3.6.1.4.1.42.2.145.3.163.1.1.2.13.0+.1.3.6.1.4.1.42.2.145.3.163.1.1.2.23.0)
+[01 Mar 2017  09:55:32:147]  	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:667)
+[01 Mar 2017  09:55:32:147]  	at com.adventnet.nms.poll.PollMgr.addPoll(PollMgr.java:539)
+[01 Mar 2017  09:55:32:147]  	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addMemoryPolledData(WebNMSBEResourceMonitoring.java:210)
+[01 Mar 2017  09:55:32:147]  	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addResourcePolledData(WebNMSBEResourceMonitoring.java:103)
+[01 Mar 2017  09:55:32:147]  	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[01 Mar 2017  09:55:32:147]  	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+[01 Mar 2017  09:55:32:147]  	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+[01 Mar 2017  09:55:32:147]  	at java.lang.reflect.Method.invoke(Unknown Source)
+[01 Mar 2017  09:55:32:148]  	at com.adventnet.nms.management.WebNMSMgmtBEProcess.callMain(WebNMSMgmtBEProcess.java:158)
+[01 Mar 2017  09:55:32:148]  	at com.adventnet.nms.util.RunProcessSmall.runCommand(RunProcessSmall.java:97)
+[01 Mar 2017  09:55:32:148]  	at com.adventnet.nms.util.RunCmd.run(RunCmd.java:127)
+[01 Mar 2017  09:59:23:749]  java.lang.NullPointerException
+[01 Mar 2017  09:59:23:750]  	at com.adventnet.cli.transport.ssh.sshv2.SshToolsProviderImpl.sendSessionData(SshToolsProviderImpl.java:827)
+[01 Mar 2017  09:59:23:750]  	at com.adventnet.cli.transport.ssh.sshv2.SshToolsProviderImpl.write(SshToolsProviderImpl.java:726)
+[01 Mar 2017  09:59:23:750]  	at com.adventnet.cli.transport.ssh.sshv2.SshToolsProviderImpl.write(SshToolsProviderImpl.java:914)
+[01 Mar 2017  09:59:23:750]  	at com.esm.server.communication.cli.SSHv2TransportProviderImpl.write(SSHv2TransportProviderImpl.java:68)
+[01 Mar 2017  09:59:23:750]  	at com.adventnet.cli.CLISession.syncSend(CLISession.java:877)
+[01 Mar 2017  09:59:23:750]  	at com.adventnet.management.cli.CLIProtocolProvider.syncSend(CLIProtocolProvider.java:293)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.MSRequestResponseServer.syncSend(MSRequestResponseServer.java:110)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.ManagementServer.syncSend(ManagementServer.java:365)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.configure(TelnetConfigProvider.java:249)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.setList(TelnetConfigProvider.java:106)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.configureDevice(TelnetConfigProvider.java:91)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.config.ConfigServer.runConfigTask(ConfigServer.java:2090)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.config.DeviceTaskMap.run(DeviceTaskMap.java:227)
+[01 Mar 2017  09:59:23:751]  	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+[01 Mar 2017  09:59:23:752]  ########## Exception in CLISession #######
+[01 Mar 2017  09:59:23:752]  java.io.IOException
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.cli.transport.ssh.sshv2.SshToolsProviderImpl.write(SshToolsProviderImpl.java:729)
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.cli.transport.ssh.sshv2.SshToolsProviderImpl.write(SshToolsProviderImpl.java:914)
+[01 Mar 2017  09:59:23:752]  	at com.esm.server.communication.cli.SSHv2TransportProviderImpl.write(SSHv2TransportProviderImpl.java:68)
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.cli.CLISession.syncSend(CLISession.java:877)
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.management.cli.CLIProtocolProvider.syncSend(CLIProtocolProvider.java:293)
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.management.MSRequestResponseServer.syncSend(MSRequestResponseServer.java:110)
+[01 Mar 2017  09:59:23:752]  	at com.adventnet.management.ManagementServer.syncSend(ManagementServer.java:365)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.configure(TelnetConfigProvider.java:249)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.setList(TelnetConfigProvider.java:106)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.config.telnet.TelnetConfigProvider.configureDevice(TelnetConfigProvider.java:91)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.config.ConfigServer.runConfigTask(ConfigServer.java:2090)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.config.DeviceTaskMap.run(DeviceTaskMap.java:227)
+[01 Mar 2017  09:59:23:753]  	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+[01 Mar 2017  09:59:23:753]  ########## Exception Message in CLISession ####### null
+

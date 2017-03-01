@@ -1,0 +1,128 @@
+[01 Mar 2017  09:55:04:576]  ~~~~~~~~~~~~~~~ Logging started ~~~~~~~~~~~~~~~
+[01 Mar 2017  09:55:04:577] Messages on ********Wednesday, March 1, 2017********
+[01 Mar 2017  09:55:04:577]          -------General Information------
+	  Product = ESM R.6.8.0.91
+	  Service Pack Version =Ciena_ESM-6.8-ATT_MowTemplate_Set-2.5.0.19
+	  os name=Linux
+	  os version=2.6.18-409.el5
+	  os architecture=amd64
+	  java version=1.6.0_43
+	  java vendor=Sun Microsystems Inc.
+	  java specification=Java Platform API Specification
+	  java vm name=Java HotSpot(TM) 64-Bit Server VM
+	  java vm information =mixed mode
+	  java compiler=null
+	  ********************************************************
+
+[01 Mar 2017  09:57:37:264] PROV_LOG: ------------- START of LeosBootConfigRestore - Stage1 --------------
+[01 Mar 2017  09:57:55:783] PROV_LOG: ------------- START of DeviceRestore - Stage2 --------------
+[01 Mar 2017  09:57:55:816] PROV_LOG: DeviceRestore CTOR(), processing form properties.... 
+[01 Mar 2017  09:57:55:849] PROV_LOG: UserInputed password = 4kPy1viGjrU=
+[01 Mar 2017  09:57:55:849] PROV_LOG: encrypt  = true
+[01 Mar 2017  09:57:55:869] PROV_LOG: defaultValue = 4kPy1viGjrU=
+[01 Mar 2017  09:57:55:870] PROV_LOG: ignorePasswordInputFlag = false
+[01 Mar 2017  09:57:55:898] PROV_LOG: password that will be sent to device = admin
+[01 Mar 2017  09:57:55:904] PROV_LOG: In Utils.pickTemplatePassword()
+[01 Mar 2017  09:57:55:904] PROV_LOG: Encrypted string: PkD7XMb14n1wIwdxMkP5ZQ==
+[01 Mar 2017  09:57:55:905] PROV_LOG: Value to be sent to the device: 3smAdm1n
+[01 Mar 2017  09:57:55:905] PROV_LOG: Calling DeviceRestore.performRestore() -- {telnetShellPrompt#=>, deviceList#=fdc3:4ef2:e073:322:0:0:5150:34, xftpServer#=3, telnetTimeout#=60000, sourcePath#=/tftpboot/, telnetPassword#=4kPy1viGjrU=, xftpServerPassword#=PkD7XMb14n1wIwdxMkP5ZQ==, telnetLoginPrompt#=username:, destFile#=startup-config, xftpServerSecret#=, telnetUserName#=roger, completeSourcePath#=startup-config_fdc3:4ef2:e073:322:0:0:5150:34_20170228.113430, telnetPasswordPrompt#=password:, telnetRetries#=3, sourceFile#=startup-config_fdc3:4ef2:e073:322:0:0:5150:34_20170228.113430, telnetPort#=22, installAction#=1, xftpServerLogin#=root, tftpServer#=2620:11b:d03d:f140:20c:29ff:fe8b:d421}
+[01 Mar 2017  09:57:55:906] PROV_LOG: ------------- START of DeviceRestore - Stage2, action= 1 --------------
+[01 Mar 2017  09:57:55:930] PROV_LOG: isCN39x= false,  deviceProperties=  loginName=roger; password=admin; loginPrompt=login:; passwordPrompt=Password:; shellPrompt=>; port=22; retries=3; timeout=60000
+[01 Mar 2017  09:57:55:937] PROV_LOG: dataSourceParams=  Prompt=>; Command=configuration install filename /tftpboot/startup-config_fdc3:4ef2:e073:322:0:0:5150:34_20170228.113430 sftp-server 2620:11b:d03d:f140:20c:29ff:fe8b:d421 login-id root  password 3smAdm1n 
+[01 Mar 2017  09:58:02:345] PROV_LOG: SUCCESS: Executed Configuration Install Operation.
+[01 Mar 2017  09:58:02:407] PROV_LOG: dataSourceParams=  Prompt=>; Command=file mv /flash0/config/startup-config_fdc3:4ef2:e073:322:0:0:5150:34_20170228.113430 /flash0/config/startup-config
+[01 Mar 2017  09:58:08:002] PROV_LOG: dataSourceParams=  Prompt=>; Command=configuration set default-load-filename startup-config
+[01 Mar 2017  09:58:13:591] PROV_LOG: dataSourceParams=  Prompt=>; Command=configuration set default-save-filename startup-config
+[01 Mar 2017  09:58:18:978] PROV_LOG: dataSourceParams=  Prompt=>; Command=configuration reset-to-user-config filename startup-config
+[01 Mar 2017  10:02:45:514] PROV_LOG: User : root fdc3:4ef2:e073:322:0:0:5150:34:   PortManager...
+[01 Mar 2017  10:02:45:516] PROV_LOG: ------------ Start of PortManager, InitChoice= 10 ------------
+[01 Mar 2017  10:02:46:608] PROV_LOG:  entering CESDTemplateUtils.isDeviceAccessible()
+[01 Mar 2017  10:02:46:609] PROV_LOG:        Start of snmpGet() oid= .1.3.6.1.2.1.1.2.0
+[01 Mar 2017  10:02:47:197] PROV_LOG:     snmpGet() var= .1.3.6.1.4.1.6141.1.80
+[01 Mar 2017  10:02:47:198] PROV_LOG:    results from snmp-get.1.3.6.1.4.1.6141.1.80
+[01 Mar 2017  10:02:47:198] PROV_LOG:    returning true
+[01 Mar 2017  10:02:47:206] PROV_LOG: 	Done calling PopulateTemplateParams.substituteParams()
+[01 Mar 2017  10:02:47:206] PROV_LOG: 	Calling GoTo Action: 10 for Port Configuration
+[01 Mar 2017  10:03:02:685] PROV_LOG: User : root fdc3:4ef2:e073:322:0:0:5150:34:  ---------------PortManager, stage_setPort. ---------------
+[01 Mar 2017  10:03:02:686] PROV_LOG: ------------ Start of PortManager, stage_setPort ------------
+[01 Mar 2017  10:03:02:687] PROV_LOG: 	Entering PortManager CTOR()... 
+[01 Mar 2017  10:03:02:687] PROV_LOG: Printing properties: {twampEnable#=, tftpRootDir#=, telnetShellPrompt#=>, augFileDir#=/tftpboot/, action#=10, telnetTimeout#=15000, lldpEnable#=, telnetPassword#=admin, port#=1.5, deviceId#=fdc3:4ef2:e073:322:0:0:5150:34, telnetLoginPrompt#=username:, duplex#=, telnetUserName#=roger, interfaceDescription#=asdfasdf, mode#=, telnetRetries#=1, telnetPort#=23, telnetPasswordPrompt#=password:, mtuSize#=, autoNegEnable#=, state#=, bw#=, tftpServer#=2620:11b:d03d:f140:20c:29ff:fe8b:d421}
+[01 Mar 2017  10:03:02:711] PROV_LOG:  ============= Starting PortManager =============
+[01 Mar 2017  10:03:02:720] PROV_LOG: Start of splitElementString() using fdc3:4ef2:e073:322:0:0:5150:34 ....
+[01 Mar 2017  10:03:02:722] PROV_LOG: len of tokensParam= 1
+[01 Mar 2017  10:03:02:722] PROV_LOG: tokensParam[0] = fdc3:4ef2:e073:322:0:0:5150:34
+[01 Mar 2017  10:03:02:723] PROV_LOG: paramList = [fdc3:4ef2:e073:322:0:0:5150:34]
+[01 Mar 2017  10:03:02:801] PROV_LOG: 		device-software.ver mapping entry: fdc3:4ef2:e073:322:0:0:5150:34, saos-06-15-00-0304
+[01 Mar 2017  10:03:03:341] PROV_LOG: validate mtu
+[01 Mar 2017  10:03:03:362] PROV_LOG: 	Successfully completed initialization sequence. 
+[01 Mar 2017  10:03:03:362] PROV_LOG: 	Received the following parameter values:
+[01 Mar 2017  10:03:03:362] PROV_LOG: 		deviceId#: fdc3:4ef2:e073:322:0:0:5150:34
+[01 Mar 2017  10:03:03:363] PROV_LOG: 		port#: 1.5
+[01 Mar 2017  10:03:03:363] PROV_LOG: 		action#: 10
+[01 Mar 2017  10:03:03:363] PROV_LOG: 		state#: 
+[01 Mar 2017  10:03:03:364] PROV_LOG: 		bw#: 
+[01 Mar 2017  10:03:03:364] PROV_LOG: 		duplex#: 
+[01 Mar 2017  10:03:03:364] PROV_LOG: 		lldpEnable#: 
+[01 Mar 2017  10:03:03:365] PROV_LOG: 		mtuSize#: 
+[01 Mar 2017  10:03:03:365] PROV_LOG: 		autoNegEnable#: 
+[01 Mar 2017  10:03:03:365] PROV_LOG: 		mode#: 
+[01 Mar 2017  10:03:03:366] PROV_LOG: 		twampEnable#: 
+[01 Mar 2017  10:03:03:366] PROV_LOG: 		interfaceDescription#: asdfasdf
+[01 Mar 2017  10:03:03:366] PROV_LOG: 		telnetUserName#: roger
+[01 Mar 2017  10:03:03:367] PROV_LOG: 		telnetPassword#: admin
+[01 Mar 2017  10:03:03:367] PROV_LOG: 		telnetLoginPrompt#: username:
+[01 Mar 2017  10:03:03:367] PROV_LOG: 		telnetPasswordPrompt#: password:
+[01 Mar 2017  10:03:03:368] PROV_LOG: 		telnetShellPrompt#: >
+[01 Mar 2017  10:03:03:368] PROV_LOG: 		telnetPort#: 23
+[01 Mar 2017  10:03:03:368] PROV_LOG: 		telnetRetries#: 1
+[01 Mar 2017  10:03:03:368] PROV_LOG: 		telnetTimeout#: 15000
+[01 Mar 2017  10:03:03:369] PROV_LOG: 		tftpServer#: 2620:11b:d03d:f140:20c:29ff:fe8b:d421
+[01 Mar 2017  10:03:03:369] PROV_LOG: 		tftpRootDir#: 
+[01 Mar 2017  10:03:03:369] PROV_LOG: 		augFileDir#: /tftpboot/
+[01 Mar 2017  10:03:03:502] PROV_LOG: 	Constructing Command Map...
+[01 Mar 2017  10:07:33:866] PROV_LOG: User : root fdc3:4ef2:e073:322:0:0:5150:34:   PortManager...
+[01 Mar 2017  10:07:33:867] PROV_LOG: ------------ Start of PortManager, InitChoice= 10 ------------
+[01 Mar 2017  10:07:34:166] PROV_LOG:  entering CESDTemplateUtils.isDeviceAccessible()
+[01 Mar 2017  10:07:34:166] PROV_LOG:        Start of snmpGet() oid= .1.3.6.1.2.1.1.2.0
+[01 Mar 2017  10:07:34:184] PROV_LOG:     snmpGet() var= .1.3.6.1.4.1.6141.1.80
+[01 Mar 2017  10:07:34:184] PROV_LOG:    results from snmp-get.1.3.6.1.4.1.6141.1.80
+[01 Mar 2017  10:07:34:184] PROV_LOG:    returning true
+[01 Mar 2017  10:07:34:188] PROV_LOG: 	Done calling PopulateTemplateParams.substituteParams()
+[01 Mar 2017  10:07:34:188] PROV_LOG: 	Calling GoTo Action: 10 for Port Configuration
+[01 Mar 2017  10:08:18:631] PROV_LOG: User : root fdc3:4ef2:e073:322:0:0:5150:34:  ---------------PortManager, stage_setPort. ---------------
+[01 Mar 2017  10:08:18:632] PROV_LOG: ------------ Start of PortManager, stage_setPort ------------
+[01 Mar 2017  10:08:18:633] PROV_LOG: 	Entering PortManager CTOR()... 
+[01 Mar 2017  10:08:18:633] PROV_LOG: Printing properties: {twampEnable#=, tftpRootDir#=, telnetShellPrompt#=>, augFileDir#=/tftpboot/, action#=10, telnetTimeout#=15000, lldpEnable#=, telnetPassword#=admin, port#=1.5, deviceId#=fdc3:4ef2:e073:322:0:0:5150:34, telnetLoginPrompt#=username:, duplex#=, telnetUserName#=roger, interfaceDescription#=adf, mode#=, telnetRetries#=1, telnetPort#=22, telnetPasswordPrompt#=password:, mtuSize#=, autoNegEnable#=, state#=, bw#=, tftpServer#=2620:11b:d03d:f140:20c:29ff:fe8b:d421}
+[01 Mar 2017  10:08:18:676] PROV_LOG:  ============= Starting PortManager =============
+[01 Mar 2017  10:08:18:679] PROV_LOG: Start of splitElementString() using fdc3:4ef2:e073:322:0:0:5150:34 ....
+[01 Mar 2017  10:08:18:680] PROV_LOG: len of tokensParam= 1
+[01 Mar 2017  10:08:18:691] PROV_LOG: tokensParam[0] = fdc3:4ef2:e073:322:0:0:5150:34
+[01 Mar 2017  10:08:18:691] PROV_LOG: paramList = [fdc3:4ef2:e073:322:0:0:5150:34]
+[01 Mar 2017  10:08:18:771] PROV_LOG: 		device-software.ver mapping entry: fdc3:4ef2:e073:322:0:0:5150:34, saos-06-15-00-0304
+[01 Mar 2017  10:08:19:102] PROV_LOG: validate mtu
+[01 Mar 2017  10:08:19:119] PROV_LOG: 	Successfully completed initialization sequence. 
+[01 Mar 2017  10:08:19:119] PROV_LOG: 	Received the following parameter values:
+[01 Mar 2017  10:08:19:120] PROV_LOG: 		deviceId#: fdc3:4ef2:e073:322:0:0:5150:34
+[01 Mar 2017  10:08:19:120] PROV_LOG: 		port#: 1.5
+[01 Mar 2017  10:08:19:121] PROV_LOG: 		action#: 10
+[01 Mar 2017  10:08:19:121] PROV_LOG: 		state#: 
+[01 Mar 2017  10:08:19:122] PROV_LOG: 		bw#: 
+[01 Mar 2017  10:08:19:122] PROV_LOG: 		duplex#: 
+[01 Mar 2017  10:08:19:123] PROV_LOG: 		lldpEnable#: 
+[01 Mar 2017  10:08:19:123] PROV_LOG: 		mtuSize#: 
+[01 Mar 2017  10:08:19:123] PROV_LOG: 		autoNegEnable#: 
+[01 Mar 2017  10:08:19:124] PROV_LOG: 		mode#: 
+[01 Mar 2017  10:08:19:125] PROV_LOG: 		twampEnable#: 
+[01 Mar 2017  10:08:19:125] PROV_LOG: 		interfaceDescription#: adf
+[01 Mar 2017  10:08:19:125] PROV_LOG: 		telnetUserName#: roger
+[01 Mar 2017  10:08:19:126] PROV_LOG: 		telnetPassword#: admin
+[01 Mar 2017  10:08:19:126] PROV_LOG: 		telnetLoginPrompt#: username:
+[01 Mar 2017  10:08:19:127] PROV_LOG: 		telnetPasswordPrompt#: password:
+[01 Mar 2017  10:08:19:127] PROV_LOG: 		telnetShellPrompt#: >
+[01 Mar 2017  10:08:19:128] PROV_LOG: 		telnetPort#: 22
+[01 Mar 2017  10:08:19:128] PROV_LOG: 		telnetRetries#: 1
+[01 Mar 2017  10:08:19:129] PROV_LOG: 		telnetTimeout#: 15000
+[01 Mar 2017  10:08:19:129] PROV_LOG: 		tftpServer#: 2620:11b:d03d:f140:20c:29ff:fe8b:d421
+[01 Mar 2017  10:08:19:130] PROV_LOG: 		tftpRootDir#: 
+[01 Mar 2017  10:08:19:130] PROV_LOG: 		augFileDir#: /tftpboot/
+[01 Mar 2017  10:08:19:238] PROV_LOG: 	Constructing Command Map...
