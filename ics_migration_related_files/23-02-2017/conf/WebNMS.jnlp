@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><jnlp codebase="http://venkat-0773.csez.zohocorpin.com:9090" href="conf/WebNMS.jnlp">
+
+ <information>
+    <title>EMS for ATCA-S</title>
+    <vendor>Nokia</vendor>
+    <homepage href="help/index.html"/> 
+    <description>Nokia ATCA-S EMS version 1.0 - Web Start Client</description> 
+    <icon href="./images/motorolaicon.jpg"/> 
+<offline-allowed/>
+ </information>
+
+ <resources>
+<j2se initial-heap-size="100M" max-heap-size="200M" version="1.6"/>
+<jar href="classes/NmsClientClasses.jar"/>
+<jar href="classes/CommonPlatformClient.jar"/>
+<jar href="classes/AdventNetSnmp.jar"/>
+<jar href="classes/Mail.jar"/>
+<jar href="classes/SNMPDebugger.jar"/>
+<jar href="classes/AdventNetSnmpV3USM.jar"/>
+<jar href="classes/ClientExamples.jar"/>
+<jar href="classes/JimiProClasses.jar"/>
+<jar href="classes/AdventNetUI.jar"/>
+<jar href="classes/ManagementClient.jar"/>
+<jar href="classes/AdventNetCLIClient.jar"/>
+<jar href="classes/AdventNetTL1.jar"/>
+<jar href="classes/AdventNetTL1Tools.jar"/>
+<jar href="classes/AdventNetUtils.jar"/>
+<jar href="classes/ApiUtils.jar"/>
+<jar href="NetMonitor/build/RuntimeConfigFrame.jar"/>
+<jar href="NetMonitor/build/AuthMain.jar"/>
+<jar href="NetMonitor/build/ConfigPanel.jar"/>
+<jar href="classes/AdventNetJta.jar"/>
+<jar href="classes/AdventNetAboutDialog.jar"/>
+<jar href="classes/AdventNetCCLLibrary.jar"/>
+<jar href="classes/AdventNetProBeans.jar"/>
+<jar href="classes/AdventNetDMPModels.jar"/>
+<jar href="classes/jfreechart.jar"/>
+<jar href="classes/jcommon.jar"/>
+<jar href="NetMonitor/build/PerformanceGraphs.jar"/>
+<jar href="classes/json.jar"/>
+</resources>
+
+
+ <application-desc main-class="com.motorola.atcas.ems.motoclient.MotoClient">
+<argument>venkat-0773.csez.zohocorpin.com</argument>
+<argument>9090</argument>
+<argument>yes</argument>
+<argument>en</argument>
+<argument>US</argument>
+</application-desc>
+
+
+</jnlp>
