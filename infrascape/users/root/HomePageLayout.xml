@@ -1,0 +1,50 @@
+<HOME_PAGE>
+	<INVENTORY_SNAPSHOT Severity="5,!5">
+		<DEVICE NAME="Desktops">
+                	<CRITERIA isNode="true" isRouter="false" classname="!SwitchObject" type="!Printer"/>
+                        <IMAGE imageName="/webclient/topo/images/node_icon.gif"/>
+                </DEVICE>
+                <DEVICE NAME="Switches">
+                	<CRITERIA classname="SwitchObject"/>
+                        <IMAGE imageName="/webclient/topo/images/switch_icon.gif"/>
+                </DEVICE>
+                <DEVICE NAME="Routers">
+	               	<CRITERIA isRouter="true"/>
+                        <IMAGE imageName="/webclient/topo/images/routers_icon.gif"/>
+                </DEVICE>
+                <DEVICE NAME="Printers">
+	                <CRITERIA classname="Printer"/>
+                        <IMAGE imageName="/webclient/topo/images/printer1_icon.gif"/>
+		</DEVICE>
+                <DEVICE NAME="Networks">
+	                <CRITERIA classname="Network"/>
+                        <IMAGE imageName="/webclient/topo/images/network_icon.gif"/>
+		</DEVICE>
+                <DEVICE NAME="TestDevices">
+	                <CRITERIA classname="TestMO"/>
+                        <IMAGE imageName="/webclient/topo/images/network_icon.gif"/>
+		</DEVICE>
+	</INVENTORY_SNAPSHOT>
+	<RECENT_ALARMS >
+                <ALERT ROW_COUNT="6">
+	                <CRITERIA severity="!5" entity="!IF-*"/>
+		</ALERT>
+	</RECENT_ALARMS>
+	<REPORTS_TABLE ROW_COUNT="6">
+		<REPORT POLLEDDATA_NAME="CPUUtilization">
+	                <CRITERIA displayName="CPU Utilization" moType="Devices" units="%"/>
+		</REPORT>
+		<REPORT POLLEDDATA_NAME="Device_INTERFACE_out_octets">
+	                <CRITERIA displayName="Tx Traffic" moType="Devices" units="Kbps"/> 
+                </REPORT>
+	</REPORTS_TABLE>
+       <ALARM_CATEGORY>
+                    <CATEGORY Name= "Topology"/>
+                    <CATEGORY Name="Public"/>
+                    <CATEGORY Name="Interface Update"/>
+        </ALARM_CATEGORY>
+        <ACTIVE_ALARMS category="All">
+        </ACTIVE_ALARMS>
+</HOME_PAGE>
+
+<!-- $Id: HomePageLayout.xml,v 1.1.1.1 2006/11/16 14:43:59 gramkumar Exp $-->
