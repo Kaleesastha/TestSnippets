@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<properties>
+<property name="ProductName" value="AdventNet Web NMS"/>
+<property name="SubProductName" value="BE"/>
+<property name="ProductVersion" value="5.2"/>
+<property name="HelpXmlFilePath" value="help/updatehelp.xml"/>
+<property name="HelpHtmlFilePath" value="help/installation_guide/installation_and_setup/installing_service_pack.html"/>
+<property name="EnableDeploymentTool" value="true"/>
+</properties>
+<!-- $Id: update_conf.xml,v 1.4 2011/04/25 07:20:47 prabakaran Exp $--> 
