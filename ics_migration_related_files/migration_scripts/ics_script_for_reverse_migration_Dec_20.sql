@@ -538,6 +538,7 @@ alter table UserDefinedEvent add column OWNERNAME varchar(25);
 alter table AttributeValueChangeEvent add column OWNERNAME varchar(25);
 alter table AvailabilityEvent add column OWNERNAME varchar(25);
 alter table RelationshipChangeEvent add column OWNERNAME varchar(25);
+alter table CNEOMIManagementEvent add column OWNERNAME varchar(25);
 
 create index Event0_ndx on Event (ID);
 
@@ -1530,6 +1531,12 @@ SELECT 'alter table XmlcNetworkConnectionLink populate NAME and drop MOID column
 alter table XmlcNetworkConnectionLink add column NAME varchar(100) default NULL, add column OWNERNAME varchar(25) NOT NULL after MOID;
 update XmlcNetworkConnectionLink set NAME=(select ManagedObject.NAME from ManagedObject where ManagedObject.MOID = XmlcNetworkConnectionLink.MOID group by ManagedObject.MOID);
 alter table XmlcNetworkConnectionLink drop column MOID;
+
+####Added on Feb-24-2017
+SELECT 'alter table PhysicalEntity populate NAME and drop MOID column' AS 'MIGRATION PROCESS STATUS ... ';
+alter table PhysicalEntity add column NAME varchar(100) default NULL, add column OWNERNAME varchar(25) NOT NULL after MOID;
+update PhysicalEntity set NAME=(select ManagedObject.NAME from ManagedObject where ManagedObject.MOID = PhysicalEntity.MOID group by ManagedObject.MOID);
+alter table PhysicalEntity drop column MOID;
 
 SELECT 'alter ManagedObject and hierarchy tables to drop MOID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table IpAddress drop column MOID;
