@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+<struts-config>
+
+ <!-- $Id: topo-struts-config.xml,v 1.3.8.1 2013/05/23 08:43:59 nishanthini.k Exp $ -->
+ <form-beans>
+
+<!-- Custom Reports Bean details -->
+
+<form-bean name="ReportViewForm" type="org.apache.struts.validator.DynaValidatorForm">
+<form-property name="name" type="java.lang.String"/>
+<form-property name="reportType" type="java.lang.String"/>
+<form-property name="graphType" type="java.lang.String"/>
+<form-property name="period" type="java.lang.String"/>
+<form-property name="startDate" type="java.lang.String"/>
+<form-property name="endDate" type="java.lang.String"/>
+<form-property name="rsubmit" type="java.lang.String"/>
+</form-bean>
+
+<!-- TOPO DETAILS PAGE FORM-BEAN CONFIG STARTS -->
+
+<form-bean name="ManagedObjectBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+</form-bean>
+
+
+<form-bean name="PortObjectBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="status" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="portIfIndex" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="portIfDescr" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="parentKey" type="java.lang.String"/>
+<form-property name="portState" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="portIfSpeed" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+</form-bean>
+
+
+<form-bean name="TopoObjectBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+ <form-property name="statusPollEnabled" type="java.lang.String"/>
+ <form-property name="name" type="java.lang.String"/>
+ <form-property name="classname" type="java.lang.String"/>
+ <form-property name="isInterface" type="java.lang.String"/>
+ <form-property name="netmask" type="java.lang.String"/>
+ <form-property name="statusChangeTime" type="java.lang.String"/>
+ <form-property name="writeCommunity" type="java.lang.String"/>
+ <form-property name="tester" type="java.lang.String"/>
+ <form-property name=" community" type="java.lang.String"/>
+ <form-property name="failureCount" type="java.lang.String"/>
+ <form-property name="isSNMP" type="java.lang.String"/>
+ <form-property name="isDHCP" type="java.lang.String"/>
+ <form-property name="managed" type="java.lang.String"/>
+ <form-property name="snmpport" type="java.lang.String"/>
+ <form-property name="contextName" type="java.lang.String"/>
+ <form-property name="statusUpdateTime" type="java.lang.String"/>
+ <form-property name="ipAddress" type="java.lang.String"/>
+ <form-property name="version" type="java.lang.String"/>
+ <form-property name="groupMembers" type="java.lang.String"/>
+ <form-property name="pollInterval" type="java.lang.String"/>
+ <form-property name="uClass" type="java.lang.String"/>
+ <form-property name="childrenKeys" type="java.lang.String"/>
+ <form-property name="status" type="java.lang.String"/>
+ <form-property name="failureThreshold" type="java.lang.String"/>
+ <form-property name="isRouter" type="java.lang.String"/>
+ <form-property name="userName" type="java.lang.String"/>
+ <form-property name="groupNames" type="java.lang.String"/>
+ <form-property name="stringstatus" type="java.lang.String"/>
+ <form-property name="isGroup" type="java.lang.String"/>
+ <form-property name="displayName" type="java.lang.String"/>
+ <form-property name="isNetwork" type="java.lang.String"/>
+ <form-property name="isNode" type="java.lang.String"/>
+ <form-property name="isContainer" type="java.lang.String"/>
+ <form-property name="baseMibs" type="java.lang.String"/>
+ <form-property name="type" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+<form-bean name="NetworkBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="InterfaceList" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="subNets" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="discover" type="java.lang.String"/>
+<form-property name="parentNetwork" type="java.lang.String"/>
+<form-property name="discoveryStatus" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="NodeList" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="subNetNetmasks" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="parentNetmask" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+<form-bean name="NodeBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="InterfaceList" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+<form-bean name="IpAddressBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="parentNodeKey" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+
+<form-bean name="SnmpNodeBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="sysName" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="InterfaceList" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="sysDescr" type="java.lang.String"/>
+<form-property name="sysOID" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="hostNetmask" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+<form-bean name="SnmpInterfaceBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="parentNodeKey" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="physAddr" type="java.lang.String"/>
+<form-property name="ifIndex" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="ifDescr" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="sysOID" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="physMedia" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="ifSpeed" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="hostNetmask" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+ <!-- Aditional Properties-->
+  </form-bean>
+
+<form-bean name="SwitchObjectBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="rootCost" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="rootPort" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="sysOID" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="InterfaceList" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="sysName" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="sysDescr" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="hostNetmask" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="numPorts" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="status" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+
+
+<form-bean name="PrinterBean" type="com.adventnet.nms.webclient.topo.details.ObjectDetailsForm">
+<form-property name="status" type="java.lang.String"/>
+<form-property name="deviceStatus" type="java.lang.String"/>
+<form-property name="isRouter" type="java.lang.String"/>
+<form-property name="snmpport" type="java.lang.String"/>
+<form-property name="parentNet" type="java.lang.String"/>
+<form-property name="classname" type="java.lang.String"/>
+<form-property name="sysOID" type="java.lang.String"/>
+<form-property name="InterfaceList" type="java.lang.String"/>
+<form-property name="failureThreshold" type="java.lang.String"/>
+<form-property name="isDHCP" type="java.lang.String"/>
+<form-property name="groupMembers" type="java.lang.String"/>
+<form-property name="pollInterval" type="java.lang.String"/>
+<form-property name="displayName" type="java.lang.String"/>
+<form-property name="hostNetmask" type="java.lang.String"/>
+<form-property name="isSNMP" type="java.lang.String"/>
+<form-property name="writeCommunity" type="java.lang.String"/>
+<form-property name="printerStatus" type="java.lang.String"/>
+<form-property name="isNetwork" type="java.lang.String"/>
+<form-property name="isGroup" type="java.lang.String"/>
+<form-property name="childrenKeys" type="java.lang.String"/>
+<form-property name="sysDescr" type="java.lang.String"/>
+<form-property name="consoleDispBufferText" type="java.lang.String"/>
+<form-property name="sysName" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="groupNames" type="java.lang.String"/>
+<form-property name="isNode" type="java.lang.String"/>
+<form-property name="consoleLightString" type="java.lang.String"/>
+<form-property name="tester" type="java.lang.String"/>
+<form-property name="type" type="java.lang.String"/>
+<form-property name="name" type="java.lang.String"/>
+<form-property name="failureCount" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String"/>
+<form-property name="isContainer" type="java.lang.String"/>
+<form-property name="managed" type="java.lang.String"/>
+<form-property name="statusChangeTime" type="java.lang.String"/>
+<form-property name="printerDetectedErrStatus" type="java.lang.String"/>
+<form-property name="statusUpdateTime" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String"/>
+<form-property name="stringstatus" type="java.lang.String"/>
+<form-property name="uClass" type="java.lang.String"/>
+<form-property name="statusPollEnabled" type="java.lang.String"/>
+<form-property name="baseMibs" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="isInterface" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<!-- View Configuration-->
+<form-property name="statusString" type="java.lang.String"/>
+<form-property name="statusImage" type="java.lang.String"/>
+<form-property name="typeImage" type="java.lang.String"/>
+<!-- Aditional Properties-->
+  </form-bean>
+
+<!-- TOPO DETAILS PAGE FORM-BEAN CONFIG ENDS -->
+
+
+<!-- For Add Node Operation Properties-->
+<form-bean name="AddNodeForm" type="org.apache.struts.validator.DynaValidatorForm">
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="community" type="java.lang.String" initial="public"/>
+<form-property name="netmask" type="java.lang.String" initial="255.255.255.0"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="contextName" type="java.lang.String"/>
+<form-property name="userName" type="java.lang.String"/>
+<form-property name="securityLevel" type="java.lang.String"/>
+<form-property name="authProtocol" type="java.lang.String"/>
+<form-property name="authPassword" type="java.lang.String"/>
+<form-property name="privProtocol" type="java.lang.String"/>
+<form-property name="privPassword" type="java.lang.String"/>
+<form-property name="configFlag" type="boolean" initial="false"/>
+<form-property name="reachFlag" type="boolean" initial="false"/>
+<form-property name="discoverParentNet" type="boolean" initial="false"/>
+<form-property name="writeToSeedFile" type="boolean" initial="false"/>
+<form-property name="snmpport" type="java.lang.String" initial="161"/>
+<form-property name="isSNMP" type="boolean" initial="false"/>
+<form-property name="asynFlag" type="boolean" initial="false"/>
+<form-property name="discovery" type="boolean" initial="false"/>
+</form-bean>
+
+<!-- For Add Network Operation Properties-->
+<form-bean name="AddNetworkForm" type="org.apache.struts.validator.DynaValidatorForm">
+<form-property name="ipAddress" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String" initial="255.255.255.0"/>
+<form-property name="configFlag" type="boolean" initial="false"/>
+<form-property name="discover" type="boolean" initial="false"/>
+<form-property name="managed" type="boolean" initial="false"/>
+<form-property name="writeToSeedFile" type="boolean" initial="false"/>
+<form-property name="asynFlag" type="boolean" initial="false"/>
+<form-property name="startipAddress" type="java.lang.String"/>
+<form-property name="endipAddress" type="java.lang.String"/>
+<form-property name="single" type="boolean" initial="false"/>
+<form-property name="discovery" type="boolean" initial="false"/>
+<form-property name="isDHCP" type="boolean" initial="false"/>
+</form-bean>
+
+<!-- For Refresh Node Operation Properties-->
+<form-bean name="refreshNodeForm" type="org.apache.struts.validator.DynaValidatorForm">
+<form-property name="name" type="java.lang.String"/>
+<form-property name="netmask" type="java.lang.String" initial="255.255.255.0"/>
+<form-property name="snmpport" type="java.lang.String" initial="161"/>
+<form-property name="version" type="java.lang.String" />
+<form-property name="v3username" type="java.lang.String" />
+<form-property name="contextName" type="java.lang.String" />
+
+</form-bean>
+
+<!-- For Refresh Node Operation Properties -->
+<form-bean name="querySnmpOIDsForm" type="org.apache.struts.validator.DynaValidatorForm">
+<form-property name="HOST" type="java.lang.String"/>
+<form-property name="COMMUNITY" type="java.lang.String"/>
+<form-property name="PORT" type="java.lang.String"/>
+<form-property name="mibColumns" type="java.lang.String" initial=""/>
+<form-property name="mibsToLoad" type="java.lang.String"/>
+<form-property name="mibTableName" type="java.lang.String"/>
+<form-property name="keyFortable" type="java.lang.String"/>
+<form-property name="RETRIES" type="java.lang.String"/>
+<form-property name="TIMEOUT" type="java.lang.String"/>
+<form-property name="version" type="java.lang.String"/>
+<form-property name="CONTEXTNAME" type="java.lang.String"/>
+<form-property name="USERNAME" type="java.lang.String"/>
+</form-bean>
+
+<form-bean name="searchForm" type="com.adventnet.nms.webclient.components.advancedsearch.SearchForm">
+<form-property name="selectedKeys" type="java.lang.String[]"/>
+<form-property name="selectedConditions" type="java.lang.String[]"/>
+<form-property name="criteriaValues" type="java.lang.String[]"/>
+<form-property name="logicalCondition" type="java.lang.String" initial="1"/>
+<form-property name="rows" type="java.lang.String" initial="1"/>
+<!-- CV Related property -->
+<form-property name="actionToPerform" type="java.lang.String" initial="search"/>
+</form-bean>
+
+<form-bean name="topoCVForm" type="com.adventnet.nms.webclient.components.advancedsearch.SearchForm">
+<form-property name="selectedKeys" type="java.lang.String[]"/>
+<form-property name="selectedConditions" type="java.lang.String[]"/>
+<form-property name="criteriaValues" type="java.lang.String[]"/>
+<form-property name="logicalCondition" type="java.lang.String" initial="2"/>
+<form-property name="rows" type="java.lang.String" initial="1"/>
+<!-- CV Related property -->
+<form-property name="cvName" type="java.lang.String"/>
+<form-property name="actionToPerform" type="java.lang.String" initial="create"/>
+</form-bean>
+
+
+</form-beans>
+
+
+<global-forwards>
+  <forward  name="addNodePage" path="addNodePageDef" contextRelative = "true"/>
+  <forward  name="addNetworkPage" path="addNetworkPageDef" contextRelative = "true"/>
+  <forward  name="refreshNodePage" path="refreshNodePageDef" contextRelative = "true"/>
+
+<!-- Note: The following actions forwarded from DetailsFetcherAction have been modified to jsp forwards. Since we will not be using form beans for
+XML based rendering of property form
+!-->
+	
+  <forward name="ManagedObject" path="managedObjectPage" />
+  <forward name="PortObject" path="portObjectPage" />
+  <forward name="TopoObject" path="topoObjectPage" />
+  <forward name="Network" path="networkPage" />
+  <forward name="Node" path="nodePage" />
+  <forward name="IpAddress" path="ipAddressPage" />
+  <forward name="SnmpNode" path="snmpNodePage" />
+  <forward name="SnmpInterface" path="snmpInterfacePage" />
+  <forward name="SwitchObject" path="switchObjectPage" />
+  <forward name="Printer" path="printerPage" />
+
+  <forward name="reloadobjectdetails" path="/objectdetails.do" />
+  <forward name="reloadview" path="/NetworkInventory.do" />
+
+  <forward name="responsePage"  path="responsePageDef"  contextRelative = "true"/>
+
+  <forward name ="updated" path = "/webclient/common/jsp/updated.jsp" contextRelative = "true"/>           
+
+  <forward name="querySnmpOIDsMenuPage"  path="querySnmpOIDsMenuDef"  contextRelative = "true"/>
+
+  <forward name="cvResult" path="/webclient/topo/jsp/cvStatus.jsp"  contextRelative="true"/>
+
+  <forward name="messagePage" path="message" contextRelative="true"/> 
+  <forward name="errorPage" path="errorPage" contextRelative="true"/>
+</global-forwards>
+
+<action-mappings>
+
+    <action name="searchForm" path="/deviceAdvancedSearch"	 
+            type="com.adventnet.nms.webclient.topo.cv.TopoCVAction"	 
+	    scope="request" parameter="method">	 
+            <forward name="searchView" path="deviceSearchDef" contextRelative="true"/>	 
+    </action>
+
+    <action name="searchForm" path="/topoAdvancedSearch" 
+        type="com.adventnet.nms.webclient.topo.cv.TopoCVAction" 
+        scope="request" parameter="method">
+    <forward name="searchView" path="topoSearchDef" contextRelative="true"/>
+
+    </action>
+
+
+    <action name="topoCVForm" path="/topoCVAction" 
+        type="com.adventnet.nms.webclient.topo.cv.TopoCVAction" 
+        scope="request" 
+        attribute="searchForm"
+        parameter="method" 
+        validate="false">
+     <forward name="searchView" path="addTopoCVDef" contextRelative="true"/>
+     <forward name="InventoryView" path="/NetworkInventory.do"/>
+    </action>
+
+  <!-- Remove Event Custom View -->
+    <action path="/removeTopoCV"
+            type="com.adventnet.nms.webclient.topo.cv.RemoveTopoCV"
+            scope="request">
+           <forward name="InventoryView" path="/NetworkInventory.do"/>
+    </action>
+
+
+      <!-- Inventory View Action -->
+    <action path="/NetworkInventory"
+            type="com.adventnet.nms.webclient.topo.list.InventoryViewAction"
+            scope="request">
+      <forward name="InventoryView" path="inventoryPageWithTab" contextRelative="true"/>
+    </action>
+
+      <!-- Inventory View Action -->
+    <action path="/PrintNetworkInventory"
+            type="com.adventnet.nms.webclient.topo.list.InventoryViewAction"
+            scope="request">
+            <forward name="InventoryView" path="/webclient/topo/jsp/printableInventoryList.jsp" contextRelative="true"/>
+    </action>
+
+
+     <action path="/TopoColumnCustomizer"
+            type="com.adventnet.nms.webclient.topo.list.TopoColumnCustomizer"
+            scope="request">
+	    <forward name="ShowColumns" path="/webclient/common/jsp/ShowColumns.jsp" contextRelative = "true"/>
+    </action>
+    <action path="/ModifyTopoCV"
+            type="com.adventnet.nms.webclient.topo.list.ModifyInventoryColumns"
+            scope="request">
+    </action>
+
+
+  <!-- ObjectDetailsFetcherAction -->
+  
+ <action path="/objectdetails"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.DetailsFetcherAction"
+   validate="false" parameter="method">
+    <forward name="onerror" path="detailsError" contextRelative = "true"/> 
+    <forward name="perfmonitors" path="/webclient/topo/jsp/PerformanceMonitors.jsp" contextRelative="true" />
+    <forward name="intftable" path="/webclient/topo/jsp/InterfaceTable.jsp" contextRelative="true" />
+    <forward name="grphs" path="/webclient/topo/jsp/MOGraphs.jsp" contextRelative="true" />
+    <forward name="routergrphs" path="/webclient/topo/jsp/RouterGraph.jsp" contextRelative="true" />
+  </action>
+
+      <!-- ManagedObject Details View Dispatch Action -->
+
+      <!-- Any changes made in the path, should also be updated in the global forwards -->
+
+  <action name="ManagedObjectBean" path="/ManagedObjectAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction" 
+   attribute="ObjectDetailsBean"
+    validate="false">
+    <forward name="details" path="managedObjectPage" contextRelative = "true"/> 
+    </action>
+
+  <action name="PortObjectBean" path="/PortObjectAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction" 
+   attribute="ObjectDetailsBean"
+   validate="false">
+    <forward name="details" path="portObjectPage" contextRelative = "true"/> 
+    </action>
+
+   <action name="TopoObjectBean" path="/TopoObjectAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction" 
+   attribute="ObjectDetailsBean"
+   validate="false">
+    <forward name="details" path="topoObjectPage" contextRelative = "true"/> 
+  </action>
+
+   <action name="NetworkBean" path="/NetworkAction"
+   scope="request"
+    type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+ attribute="ObjectDetailsBean" 
+ validate="false">
+    <forward name="details" path="networkPage" contextRelative = "true"/> 
+   </action>
+  <action name="NodeBean" path="/NodeAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+    attribute="ObjectDetailsBean"
+    validate="false">
+    <forward name="details" path="nodePage" contextRelative = "true"/> 
+  </action>
+
+  <action name="IpAddressBean" path="/IpAddressAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+  attribute="ObjectDetailsBean"
+ validate="false">
+ <forward name="details" path="ipAddressPage" contextRelative = "true"/> 
+  </action>
+
+  <!--action name="SnmpNodeBean" path="/SnmpNodeAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+   attribute="ObjectDetailsBean"
+   validate="false">
+    <forward name="details" path="snmpNodePage" contextRelative = "true"/> 
+  </action-->
+
+  <action name="SnmpInterfaceBean" path="/SnmpInterfaceAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+attribute="ObjectDetailsBean"
+   validate="false">
+   <forward name="details" path="snmpInterfacePage" contextRelative = "true"/> 
+  </action>
+
+  <action name="SwitchObjectBean" path="/SwitchObjectAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+   attribute="ObjectDetailsBean"
+   validate="false">
+    <forward name="details" path="switchObjectPage" contextRelative = "true"/> 
+  </action>
+
+  <action name="PrinterBean" path="/PrinterAction"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.ObjectDetailsAction"
+   attribute="ObjectDetailsBean"
+   validate="false">
+    <forward name="details" path="printerPage" contextRelative = "true"/> 
+  </action>
+
+
+     <!-- ManagedObject Details View Handling Dispatch Action -->
+<!--validation using struts has been disabled since we wont be using Form beans hence forth
+Validation if any has to be done in the client side js -->
+  <action name="ManagedObjectBean" path="/ManagedObjectHandler"
+   scope="request"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction" 
+   parameter="perform"
+   validate="false"
+   input="managedObjectPage">
+    <forward name="details" path="managedObjectPage" contextRelative = "true"/> 
+    </action>
+
+  <action name="PortObjectBean" path="/PortObjectHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction" 
+   validate="true"
+   input="portObjectPage">
+    <forward name="details" path="portObjectPage" contextRelative = "true"/> 
+    </action>
+
+
+   <action name="TopoObjectBean" path="/TopoObjectHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction" 
+   validate="true"
+   input="topoObjectPage">
+    <forward name="details" path="topoObjectPage" contextRelative = "true"/> 
+  </action>
+
+   <action name="NetworkBean" path="/NetworkHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+   input="networkPage">
+    <forward name="details" path="networkPage" contextRelative = "true"/> 
+   </action>
+  <action name="NodeBean" path="/NodeHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+   input="nodePage">
+    <forward name="details" path="nodePage" contextRelative = "true"/> 
+  </action>
+
+  <action name="IpAddressBean" path="/IpAddressHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+   input="ipAddressPage">
+    <forward name="details" path="ipAddressPage" contextRelative = "true"/> 
+  </action>
+
+  <!--action name="SnmpNodeBean" path="/SnmpNodeHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+   input="snmpNodePage">
+    <forward name="details" path="snmpNodePage" contextRelative = "true"/> 
+  </action-->
+
+  <action name="SnmpInterfaceBean" path="/SnmpInterfaceHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+  input="snmpInterfacePage">
+    <forward name="details" path="snmpInterfacePage" contextRelative = "true"/> 
+  </action>
+
+  <action name="SwitchObjectBean" path="/SwitchObjectHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+   validate="true"
+  input="switchObjectPage">
+    <forward name="details" path="switchObjectPage" contextRelative = "true"/> 
+  </action>
+
+  <action name="PrinterBean" path="/PrinterHandler"
+   scope="request"
+   parameter="perform"
+   type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+    validate="true"
+   input="printerPage">
+    <forward name="details" path="printerPage" contextRelative = "true"/> 
+  </action>
+<action name="Mosubmit" path="/MOSubmitHandler"
+	scope="request"
+	type="com.adventnet.nms.webclient.topo.details.DetailsHandlingAction"
+	parameter="perform"
+	validate="false"
+	>
+</action>
+
+
+    <action 
+            path="/addNode"
+            type="com.adventnet.nms.webclient.common.AuthorizationAction"
+            parameter="addNodePageDef"/>
+
+        <action 
+            path="/AddNodeAction"
+            type="com.adventnet.nms.webclient.topo.actions.AddNodeAction"
+            name="AddNodeForm"    
+            scope="request"
+            validate="false"
+            input="addNodePage">
+            <forward
+                name="response"
+                path="addNodeResponsePageDef"
+                contextRelative = "true"/>
+        </action>
+
+    <action 
+            path="/addNetwork"
+            type="com.adventnet.nms.webclient.common.AuthorizationAction"
+            parameter="addNetworkPageDef"/>
+
+        <action 
+            path="/AddNetworkAction"
+            type="com.adventnet.nms.webclient.topo.actions.AddNetworkAction"
+            name="AddNetworkForm"    
+            scope="request"
+            validate="false"
+            input="addNetworkPage">
+            <forward
+                name="response"
+                path="addNetworkResponsePageDef"
+                contextRelative = "true"/>
+        </action>
+
+       <action 
+            path="/refreshNode"
+            type="com.adventnet.nms.webclient.common.AuthorizationAction"
+            parameter="refreshNodePageDef"/>
+
+        <action 
+            path="/refreshNodeAction"
+            type="com.adventnet.nms.webclient.topo.actions.RefreshNodeAction"
+            name="refreshNodeForm"    
+            scope="request"
+            validate="true"
+            input="refreshNodePage">
+            <forward
+                name="response"
+                path="refreshNodeResponsePageDef"
+                contextRelative = "true"/>
+        </action>
+
+        <action 
+            path="/manageUnmanage"
+            type="com.adventnet.nms.webclient.topo.actions.ManageUnmanageAction"
+            scope="request"
+            validate="false">
+        </action>
+
+        <action 
+            path="/startStopDiscovery"
+            type="com.adventnet.nms.webclient.topo.actions.StartStopDiscoveryAction"
+            scope="request"
+            validate="false">
+        </action>
+
+        <action 
+            path="/deleteObject"
+            type="com.adventnet.nms.webclient.topo.actions.DeleteObjectAction"
+            scope="request"
+            validate="false">
+        </action>
+
+
+        <action 
+            path="/querySnmpOIDs"
+            name="querySnmpOIDsForm"
+            type="com.adventnet.nms.webclient.topo.actions.QuerySnmpOIDsAction"
+            scope="request"
+            validate="false">
+            <forward
+                name="results"
+                path="snmpOIDsQueryResultsDef"
+                contextRelative = "true"/>
+        </action>
+
+	<action path="/NetworkAdminPanel" type="com.adventnet.nms.webclient.topo.actions.NetworkAdminAction"> </action>
+
+	<action path="/MOUpdateAction" type="com.adventnet.nms.webclient.topo.details.MOUpdateAction">
+		<forward name="updatedetails" path="/webclient/topo/jsp/updatedDetailsLayout1.jsp" contextRelative="true" />
+		<forward name="updatedetails1" path="/webclient/topo/jsp/updatedDetailsLayout2.jsp" contextRelative="true" /> 
+	</action>
+
+</action-mappings>
+
+<controller inputForward="true" />
+
+<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames" value="/webclient/topo/conf/topo-validator-rules.xml,/webclient/topo/conf/topo-validation.xml"/>
+ </plug-in>
+
+
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+       value="/webclient/topo/conf/topo-tiles-defs.xml,/webclient/topo/conf/topo-details-tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+  </plug-in>
+
+
+</struts-config>
