@@ -1,0 +1,80 @@
+<!-- $Id: ehcache.xml,v 1.8 2008/12/22 11:08:02 sudharshan Exp $ -->
+<ehcache>
+
+	    <diskStore path="java.io.tmpdir"/>
+
+ 	    <cache name="org.hibernate.cache.StandardQueryCache"
+ 	         maxElementsInMemory="1000"
+ 	         eternal="false"
+ 	         timeToLiveSeconds="120"
+ 	         overflowToDisk="true"/>
+
+ 	      <cache name="org.hibernate.cache.UpdateTimestampsCache"
+ 	        maxElementsInMemory="1000"
+ 	        eternal="true"
+ 	        overflowToDisk="true"/>
+
+ 	     <!-- Object cache -->
+
+                   <!-- OBJECTS TO BE CACHED
+                     1. com.adventnet.nms.topodb.ManagedObject
+                     2. com.adventnet.nms.topodb.TopoObject
+                     3. com.adventnet.nms.topodb.Node
+                     4. com.adventnet.nms.topodb.SnmpNode
+                     5. com.adventnet.nms.topodb.SnmpInterface
+                     6. com.adventnet.nms.topodb.IpAddress
+                     7. com.adventnet.nms.topodb.Network
+                     8. com.adventnet.nms.topodb.GroupTable
+                     9. test.PortObject
+                     10. test.Printer
+                     11. SwitchObject
+                     -->
+
+ 	     <cache name="com.adventnet.nms.topodb.ManagedObject"
+ 	        maxElementsInMemory="10000"
+ 	        eternal="true"
+ 	        overflowToDisk="false"
+ 	        />
+
+
+ 	     <cache name="com.adventnet.nms.topodb.GroupTable"
+ 	        maxElementsInMemory="50"
+ 	        eternal="true"
+ 	        overflowToDisk="false"
+ 	        />
+
+         <cache name="com.adventnet.nms.eventdb.Event"
+            maxElementsInMemory="500"
+            eternal="true"
+            overflowToDisk="false"
+        />
+
+         <cache name="com.adventnet.nms.alertdb.Alert"
+            maxElementsInMemory="500"
+            eternal="true"
+            overflowToDisk="false"
+            />
+
+         <cache name="com.adventnet.nms.poll.PolledData"
+            maxElementsInMemory="5000"
+            eternal="true"
+            overflowToDisk="false"
+	    />
+
+<cache name="com.adventnet.nms.mapdb.MapDB"
+            maxElementsInMemory="500"
+            eternal="true"
+            overflowToDisk="false"
+	    />
+<cache name="com.adventnet.nms.mapdb.MapSymbol"
+            maxElementsInMemory="500"
+            eternal="true"
+            overflowToDisk="false"
+	    />
+
+                   <defaultCache
+ 	        maxElementsInMemory="10000"
+ 	        eternal="true"
+		overflowToDisk="false"/>
+
+</ehcache>
