@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><jnlp codebase="http://172.24.20.96:9090" href="conf/WebNMS.jnlp">
+
+<!-- SDM Customizations:
+     branding changes
+     j2se changed to 1.4.2
+     main-class set to sdm's WebStartMain
+
+#  IDENT        AUTHOR                  DATE            CHANGE
+#  ======       =====================   =========       ==========================================
+#               D. Blackman             05-Jan-2007     WebNMS->4.7-SP3
+#               B. Callahan             24-Nov-2008     remove SDM version # from title and description
+#               Dhandapani K             28-May-2009    Added reference to signed jar file list (SignedWebNMS.jnlp)
+#               Ramesh N	        31-Jan-2011         Added new hdmwebstartclient.jar
+#               Chaithra R              13-Sept-2013    Updated title and vendor information
+#               Hemant K                19-Sept-2013    Updated title and vendor information
+#               Dhandapani K            06-Aug-2014	Updated required jre version to 1.6
+
+-->
+
+ <information>
+    <title>SmartStream Device Manager</title>
+    <vendor>ARRIS Enterprises, Inc</vendor>
+    <homepage href="help/index.html"/>
+    <description>SmartStream Device Manager - Web Start Client</description>
+<offline-allowed/>
+ </information>
+
+
+ <resources>
+<j2se href="http://java.sun.com/products/autodl/j2se" initial-heap-size="100M" max-heap-size="200M" version="1.6.0_20+"/>
+<jar href="classes/NmsClientClasses.jar"/>
+<jar href="classes/hdmwebstartclient.jar"/>
+<jar href="classes/AdventNetSnmp.jar"/>
+<jar href="classes/Mail.jar"/>
+<jar href="classes/SNMPDebugger.jar"/>
+<jar href="classes/AdventNetSnmpV3USM.jar"/>
+<jar href="classes/ClientExamples.jar"/>
+<jar href="classes/JimiProClasses.jar"/>
+<jar href="classes/AdventNetUI.jar"/>
+<jar href="classes/ManagementClient.jar"/>
+<jar href="classes/AdventNetCLIClient.jar"/>
+<jar href="classes/AdventNetTL1.jar"/>
+<jar href="classes/AdventNetTL1Tools.jar"/>
+<jar href="classes/AdventNetUtils.jar"/>
+<jar href="classes/ApiUtils.jar"/>
+<jar href="NetMonitor/build/RuntimeConfigFrame.jar"/>
+<jar href="NetMonitor/build/AuthMain.jar"/>
+<jar href="NetMonitor/build/ConfigPanel.jar"/>
+<jar href="classes/AdventNetJta.jar"/>
+<jar href="classes/AdventNetAboutDialog.jar"/>
+<jar href="classes/AdventNetCCLLibrary.jar"/>
+<jar href="classes/AdventNetProBeans.jar"/>
+<jar href="classes/AdventNetDMPModels.jar"/>
+<jar href="classes/jfreechart.jar"/>
+<jar href="classes/jcommon.jar"/>
+<jar href="NetMonitor/build/PerformanceGraphs.jar"/>
+<jar href="classes/jbcl.jar"/>
+<jar href="classes/webnms-com.jar"/>
+<jar href="classes/hdmclient.jar"/>
+<jar href="classes/sdk/sdmsdk.jar"/>
+</resources>
+
+<security>
+  <all-permissions/>
+</security>
+
+<application-desc main-class="com.motorola.webnms.hdm.webstart.client.WebStartMain">
+<argument>172.24.20.96</argument>
+<argument>9090</argument>
+<argument>yes</argument>
+<argument>en</argument>
+<argument>US</argument>
+</application-desc>
+
+
+</jnlp>
