@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0161)http://nms-server/cgi-bin2/cvsweb.cgi/~checkout~/nms/build/patch/SP_README.html?rev=1.1.6.20.26.16;content-type=text%2Fhtml;cvsroot=%2Fadvent%2Fprojects%2Fwebnms -->
+<html class="gr__nms-server com-genius-Genius-js com-genius-Genius-no-touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>SP_README.html</title>
+  <meta name="GENERATOR" content="OpenOffice.org 3.3  (Unix)">
+  <meta name="CREATED" content="0;0">
+  <meta name="CHANGED" content="20120206;12394900">
+  <meta name="CHANGEDBY" content="prabakaran a">
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><style>@media print {#ghostery-purple-box {display:none !important}}</style><link rel="stylesheet" href="./fujitsu_SP_README_files/injection-7636495c947f3bd065e4aba95d3bc868.css" type="text/css"></head>
+<body dir="LTR" lang="en-US" data-gr-c-s-loaded="true" data-feedly-mini="yes">
+<table style="page-break-before: always;" bgcolor="#cccccc" border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tbody>
+    <tr>
+      <td bgcolor="#e4e4e4" height="30">
+      <p align="CENTER"><font size="5"><b>Fujitsu Patch to be applied
+over Web NMS 5.0 SP1</b></font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin-bottom: 0cm;"><br>
+</p>
+<hr>
+<p align="CENTER"><font face="Times New Roman, Times, serif"><font color="#330000">©</font>
+<font color="#330000">Copyright 1996-2010 ZohoCorp Inc </font><br>
+<font color="#330000">All
+Rights Reserved.</font></font></p>
+<hr>
+<p><font face="Times New Roman, Times, serif"><br>
+This patch contains
+the following fixes/features :</font></p>
+<ol>
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, Times, serif">[Ticket ID: 3079048] : Issue
+while starting discovery of network from client when Auto Discovery is
+being disabled in seed.file. This issue has been fixed.</font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, Times, serif">[Ticket ID: 3079217] : When
+'null' is given as the filter criteria for the owner field in the alarm
+custom view, the values are not retrieved properly. This has been fixed.</font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, Times, serif">[Ticket ID: 3079827] : Scheduler
+Details shows negative value for active/idle threads. This issue has
+been fixed.</font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, Times, serif">[Ticket ID: 3079800] : When a
+filtered alarm list is completely deleted, the entire alarm list is
+displayed instead of empty alarms panel. This issue has been fixed.</font></p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3079982]
+- database cursors exceeded<br>
+[Ticket ID : 3079830] - Configuring Custom Log files using Log
+Configurator<br>
+[Ticket ID:&nbsp; 3080124] - Fix for providing proper sorting in the
+Audit Trails List view.</font></p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3080965]
+- Queue size check included for Fault and Event threads in case of
+Multi Thread processing enabled.<br>
+[Ticket ID : 3081942] - WebNms discoverying device with version v1
+though SNMP_VERSION set as v2 for the network. This issue has been
+fixed.</font></p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3081898]
+: Customized MO Property form for displaying the properties in Others
+Tab and sorting the properties.</font></p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3082735]
+: Fix to update the frame title and label value while adding temporary
+custom view.</font></p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3086879]
+: </font>Fix for ClassCastException when opening TL1 Craft Interface.</p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3088805]
+: </font>Fix for updating column order into the database while saving
+custom view.</p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3088816]
+: </font>Fix for saving sorted column order into the database.</p>
+  </li>
+  <li>
+    <p><font face="Times New Roman, Times, serif">[Ticket ID : 3089991]
+: </font>Fix for set the type of associated object for the map link
+while adding link through client.</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3090685] : This issue is raised due to the
+assumption that there exist atleast one TID associated with a Gateway
+device during Tl1seed discovery. This was throwing a NPE due to missing
+TID entry, Now a change is done to allow a gateway alone to be
+discovered. </p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3090927] : Fix for sorting the image file list
+while clicking the browse button in the map properties client dialog.</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3091151] : Fix for NullPointerException in
+TL1EventProcess.java, when there is no TID's under a GNE. This issue
+has been fixed</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3091486] : NullPointerException in
+TL1GatewayProcess.java, when a Gateway is configured without any TID in
+tl1seed.file. This issue has been fixed</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3090595] : TL1 autonomous messages processed
+multiple times. This issue has been fixed</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3092273] : TL1GatewayProcess and TL1DiscProcess are
+initialized after the TL1EventProcess is initialized.</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3091883] : During warm start an critical event is
+generated for TL1GatewayNode with the message "Reconnection failed".
+This has been fixed</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3092524] : The TL1EventListener class is meant to
+be a singleton, but the getInstance() method is not synchronized. This
+has been fixed</p>
+  </li>
+  <li>
+    <p>[Ticket ID : 3092960] : Parser issue arise during heavy load.
+This issue is fixed</p>
+  </li>
+  <li>[Ticket ID : 3091229] : Patch to support Oracle Data-guard
+replication.<br>
+  </li>
+</ol>
+<ol>
+  <li>
+    <p><font face="Times New Roman, Times, serif"><font color="#993300"><font size="4">Steps for Installing the patch over Web NMS 5.0 SP1 (DO
+FOLLOW THESE STEPS AS THEY ARE)<br>
+    <br>
+    </font></font><b>Step 1:</b> Use <b>UpdateManager.bat/sh</b> file
+present in &lt;Web NMS Home&gt;/bin directory to install the patch. <br>
+    <b>Step 2:</b> Now you can start the Web NMS Server </font> </p>
+    <p><font face="Times New Roman, Times, serif">If you want to revert
+the changes, please follow the steps mentioned below.</font></p>
+    <p><font face="Times New Roman, Times, serif"><font color="#993300"><font size="4">Steps to Revert this patch (DO FOLLOW THESE STEPS AS THEY ARE)</font></font>
+    </font> </p>
+    <p><font face="Times New Roman, Times, serif"><b>Step 1:</b> Use <b>UpdateManager.bat/sh
+    </b>and revert to previous version. <br>
+    <b>Step 2:</b> Now you can start the Web NMS Server.</font></p>
+  </li>
+</ol>
+<p><br>
+<br>
+</p>
+<p style="margin-bottom: 0cm;"><br>
+</p>
+
+
+<div id="feedly-mini" title="feedly Mini tookit"></div><genius-back-page id="genius_back_page" style="visibility: hidden;"><iframe src="./fujitsu_SP_README_files/back_page.html"></iframe></genius-back-page><genius-back-page-mobile-clickjacker></genius-back-page-mobile-clickjacker></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
