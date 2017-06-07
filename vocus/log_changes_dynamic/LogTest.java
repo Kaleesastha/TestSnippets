@@ -1,3 +1,9 @@
+/*Configuration in NmsProcessesBE.conf
+
+PROCESS test.LogTest
+ARGS NULL
+
+*/
 package test;
 
 import com.adventnet.nms.util.*;
