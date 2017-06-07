@@ -43,18 +43,22 @@ public class snmpget {
     private static final int AUTH_PROTOCOL = 7;
     private static final int AUTH_PASSWORD = 8;
     private static final int PRIV_PASSWORD = 9;
-	private static final int CONTEXT_NAME = 10;
-	private static final int CONTEXT_ID = 11;
-    private static final int DEBUG = 12;
+    private static final int CONTEXT_NAME = 10;
+    private static final int CONTEXT_ID = 11;
+    private static final int SECURITY_LEVEL = 12;
+    private static final int PRIV_PROTOCOL = 13; 
+    private static final int DEBUG = 14;
 
     public static void main(String args[]) {
 
     // Take care of getting options
-    String usage = "snmpget [-v version(v1,v2,v3)] [-m MIB_files] [-c community] [-p port] [-t timeout] [-r retries] [-u user] [-a auth_protocol(MD5/SHA)] [-w auth_password] [-s priv_password] [-n contextName] [-i contextID] [-d] host OID [OID] ...";
-    String options[] = { "-v", "-c", "-p", "-r", "-t", "-m" , "-u", "-a", "-w", "-s", "-n", "-i", "-d" };
-    String values[] = { null, null, null, null, null, null, null, null, null, null, null, null, "None"};
+    String usage = "snmpget [-v version(v1,v2,v3)] [-m MIB_files] [-c community] [-p port] [-t timeout] [-r retries] [-u user] [-a auth_protocol(MD5/SHA)] [-w auth_password] [-s priv_password] [-n contextName] [-i contextID] [-l security-level(AuthPriv.AuthNoPriv/NoAuthNoPriv)] [-pp privProtocol (CBC-DES/CBC-3DES/CFB-AES-128/CFB-AES-192/CFB-AES-256] [-d] host OID [OID] ...";
+    String options[] = { "-v", "-c", "-p", "-r", "-t", "-m" , "-u", "-a", "-w", "-s", "-n", "-i", "-l", "-pp", "-d" };
+    String values[] = { null, null, null, null, null, null, null, null, null, null, null, null, null, null, "None"};
 
     String authProtocol = new String("NO_AUTH");
+    String securityLevel = "NoAuthNoPriv";
+    String privProtocol = "NO_PRIV";
 
 
     ParseOptions opt = new ParseOptions(args,options,values, usage);
@@ -103,16 +107,16 @@ public class snmpget {
         if(target.getSnmpVersion() == target.VERSION3) {
         if (values[USER_NAME] != null) 
             target.setPrincipal(values[USER_NAME]);
-        if (values[AUTH_PROTOCOL] != null) {
-            //System.out.println("authProtocol = " + authProtocol);
-            authProtocol = values[AUTH_PROTOCOL];
-        }
-           if(authProtocol.equals("SHA"))
-            target.setAuthProtocol(target.SHA_AUTH);
-        else if(authProtocol.equals("MD5"))
-            target.setAuthProtocol(target.MD5_AUTH);
-           else
-            target.setAuthProtocol(target.NO_AUTH);
+	if (values[AUTH_PROTOCOL] != null) {
+		//System.out.println("authProtocol = " + authProtocol);
+		authProtocol = values[AUTH_PROTOCOL];
+		if(authProtocol.equals("SHA"))
+			target.setAuthProtocol(target.SHA_AUTH);
+		else if(authProtocol.equals("MD5"))
+			target.setAuthProtocol(target.MD5_AUTH);
+		else
+			target.setAuthProtocol(target.NO_AUTH);
+	}
         if (values[AUTH_PASSWORD] != null) 
             target.setAuthPassword(values[AUTH_PASSWORD]);
         if (values[PRIV_PASSWORD] != null)
@@ -121,6 +125,36 @@ public class snmpget {
 			target.setContextName(values[CONTEXT_NAME]);
 		if(values[CONTEXT_ID]!= null)
 			target.setContextID(values[CONTEXT_ID]);
+		if(values[SECURITY_LEVEL] != null) {
+			securityLevel = values[SECURITY_LEVEL];
+			if(securityLevel.equalsIgnoreCase("AuthPriv")){
+				target.setSecurityLevel(SnmpTarget.AUTH_PRIV);
+			}
+			else if(securityLevel.equalsIgnoreCase("AuthNoPriv")){
+				target.setSecurityLevel(SnmpTarget.AUTH_NO_PRIV);
+			}
+			else if(securityLevel.equalsIgnoreCase("NoAuthNoPriv")){
+				target.setSecurityLevel(SnmpTarget.NO_AUTH_NO_PRIV);
+			}
+		} else { target.setSecurityLevel(SnmpTarget.NO_AUTH_NO_PRIV);}
+		if(values[PRIV_PROTOCOL] != null) {
+			privProtocol = values[PRIV_PROTOCOL];
+			if(privProtocol.equalsIgnoreCase("CBC-DES")){
+				target.setPrivProtocol(SnmpTarget.CBC_DES);
+			}
+			else if(privProtocol.equalsIgnoreCase("CBC-3DES")){
+				target.setPrivProtocol(SnmpTarget.CBC_3DES);
+			}
+			else if(privProtocol.equalsIgnoreCase("CFB-AES-128")){
+				target.setPrivProtocol(SnmpTarget.CFB_AES_128);
+			}
+			else if(privProtocol.equalsIgnoreCase("CFB-AES-192")){
+				target.setPrivProtocol(SnmpTarget.CFB_AES_192);
+			}
+			else if(privProtocol.equalsIgnoreCase("CFB-AES-256")){
+				target.setPrivProtocol(SnmpTarget.CFB_AES_256);
+			}
+		}
     }
 
     if (values[MIBS] != null) try { // Load the MIB files 
