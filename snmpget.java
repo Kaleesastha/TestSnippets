@@ -5,15 +5,15 @@
  * Please read the associated COPYRIGHTS file for more details.
  */
 
-/** 
- *  Get SNMP data based on command line arguments.  Loads MIBs 
- *  as specified, and converts to/from names for loaded MIB data. 
+/**
+ *  Get SNMP data based on command line arguments.  Loads MIBs
+ *  as specified, and converts to/from names for loaded MIB data.
  *
  * [-d]                - Debug output. By default off.
  * [-c] <community>    - community String. By default "public".
  * [-p] <port>         - remote port no. By default 161.
  * [-t] <Timeout>      - Timeout. By default 5000ms.
- * [-r] <Retries>      - Retries. By default 0.      
+ * [-r] <Retries>      - Retries. By default 0.
  * [-m] <mibs>           - The mibs to be loaded.
  *<img SRC="images/v3only.jpg" ALT="v3 only"> [-v] <version>      - version(v1 / v2 / v3). By default v1.
  * [-u] <username>     - The v3 principal/userName
@@ -26,6 +26,25 @@
  * OID  Mandatory      - Give multiple no. of Object Identifiers.
  */
 
+ /* Usage As follows:
+ AuthPriv: java snmpget -v v3 -p 8003 -u privUser -a MD5 -w authUser -s privUser -n priv -l AuthPriv -pp CBS-DES -d 172.21.112.25 .1.3.6.1.2.1.1.7.0
+
+ AuthNoPriv: java snmpget -v v3 -p 8003 -u authUser -a MD5 -w authUser -n auth -l AuthNoPriv -d 172.21.112.25 .1.3.6.1.2.1.1.7.0
+
+ NoAuthNoPriv: java snmpget -v v3 -p 8003 -u noAuthUser  -n noAuth -l NoAuthNoPriv -d 172.21.112.25 .1.3.6.1.2.1.1.7.0
+
+argument followed by its value:
+ -u : username
+ -p : portnumber
+ -a : AUTH_PROTOCOL (MD5/SHA)
+ -w : AUTH_PASSWORD
+-pp : PRIV_PROTOCOL (CBC-DES/CBC-3DES/CFB-AES-128/CFB-AES-192/CFB-AES-256)
+ -s : PRIV_PASSWORD
+ -n : Context (noAuth / auth /priv)
+ -l : SECURITY_LEVEL (NoAuthNoPriv / AuthNoPriv / AuthPriv)
+ -d : if specified will print the packets
+ */
+
 import com.adventnet.snmp.beans.*;
 
 public class snmpget {
@@ -36,8 +55,6 @@ public class snmpget {
     private static final int TIMEOUT = 4;
     private static final int MIBS = 5;
 
-
-
     private static final int VERSION = 0;
     private static final int USER_NAME = 6;
     private static final int AUTH_PROTOCOL = 7;
@@ -46,13 +63,15 @@ public class snmpget {
     private static final int CONTEXT_NAME = 10;
     private static final int CONTEXT_ID = 11;
     private static final int SECURITY_LEVEL = 12;
-    private static final int PRIV_PROTOCOL = 13; 
+    private static final int PRIV_PROTOCOL = 13;
     private static final int DEBUG = 14;
 
     public static void main(String args[]) {
 
     // Take care of getting options
-    String usage = "snmpget [-v version(v1,v2,v3)] [-m MIB_files] [-c community] [-p port] [-t timeout] [-r retries] [-u user] [-a auth_protocol(MD5/SHA)] [-w auth_password] [-s priv_password] [-n contextName] [-i contextID] [-l security-level(AuthPriv.AuthNoPriv/NoAuthNoPriv)] [-pp privProtocol (CBC-DES/CBC-3DES/CFB-AES-128/CFB-AES-192/CFB-AES-256] [-d] host OID [OID] ...";
+    String usage = "java snmpget [-v version(v1,v2,v3)] [-m MIB_files] [-c community] [-p port] [-t timeout] [-r retries] [-u user] [-a auth_protocol(MD5/SHA)] [-w auth_password] [-s priv_password] [-n contextName] [-i contextID] [-l security-level(AuthPriv.AuthNoPriv/NoAuthNoPriv)] [-pp privProtocol (CBC-DES/CBC-3DES/CFB-AES-128/CFB-AES-192/CFB-AES-256) [-d] host OID [OID] ...";
+    System.err.println("Usage is : "+usage);
+    
     String options[] = { "-v", "-c", "-p", "-r", "-t", "-m" , "-u", "-a", "-w", "-s", "-n", "-i", "-l", "-pp", "-d" };
     String values[] = { null, null, null, null, null, null, null, null, null, null, null, null, null, null, "None"};
 
@@ -84,7 +103,7 @@ public class snmpget {
         else if(values[VERSION].equals("v3"))
             target.setSnmpVersion( SnmpTarget.VERSION3 );
         else {
-            System.out.println("Invalid Version Number"); 
+            System.out.println("Invalid Version Number");
             System.exit(1);
         }
     }
@@ -94,18 +113,18 @@ public class snmpget {
         target.setCommunity( values[COMMUNITY] );
 
     try { // set the timeout/retries/port parameters, if specified
-        if (values[PORT] != null) 
+        if (values[PORT] != null)
             target.setTargetPort( Integer.parseInt(values[PORT]) );
-        if (values[RETRIES] != null) 
+        if (values[RETRIES] != null)
             target.setRetries( Integer.parseInt(values[RETRIES]) );
-        if (values[TIMEOUT] != null) 
+        if (values[TIMEOUT] != null)
             target.setTimeout( Integer.parseInt(values[TIMEOUT]) );
     } catch (NumberFormatException ex) {
         System.err.println("Invalid Integer Argument "+ex);
     }
 
         if(target.getSnmpVersion() == target.VERSION3) {
-        if (values[USER_NAME] != null) 
+        if (values[USER_NAME] != null)
             target.setPrincipal(values[USER_NAME]);
 	if (values[AUTH_PROTOCOL] != null) {
 		//System.out.println("authProtocol = " + authProtocol);
@@ -117,7 +136,7 @@ public class snmpget {
 		else
 			target.setAuthProtocol(target.NO_AUTH);
 	}
-        if (values[AUTH_PASSWORD] != null) 
+        if (values[AUTH_PASSWORD] != null)
             target.setAuthPassword(values[AUTH_PASSWORD]);
         if (values[PRIV_PASSWORD] != null)
             target.setPrivPassword(values[PRIV_PASSWORD]);
@@ -157,7 +176,7 @@ public class snmpget {
 		}
     }
 
-    if (values[MIBS] != null) try { // Load the MIB files 
+    if (values[MIBS] != null) try { // Load the MIB files
         System.err.println("Loading MIBs: "+values[MIBS]);
         target.loadMibs(values[MIBS]);
     } catch (Exception ex) {
@@ -171,13 +190,13 @@ public class snmpget {
     // create OID array from command line arguments
     String oids[] = new String[opt.remArgs.length-1];
     for (int i=1;i<opt.remArgs.length;i++) oids[i-1] = opt.remArgs[i];
-    
+
     // Set the OID List on the SnmpTarget instance
     target.setObjectIDList(oids);
 
 
     String result[] = target.snmpGetList();  // do a get request
-    
+
     if (result == null) {
         System.err.println("Request failed or timed out. \n"+
                    target.getErrorString());
@@ -185,7 +204,7 @@ public class snmpget {
     } else { // print the values
         System.out.println("Response received.  Values:");
 
-        for (int i=0;i<result.length;i++) { 
+        for (int i=0;i<result.length;i++) {
             System.out.println(target.getObjectID(i) + ": " + result[i]);
         }
     }
