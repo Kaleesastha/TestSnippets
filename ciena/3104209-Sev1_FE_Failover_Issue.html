@@ -1,0 +1,695 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>3104209 - Sev1:FE Failover Issue</title>
+  </head>
+  <body>
+    <meta charset="utf-8">
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Dear Krishna<br>
+        <br>
+        Apologies for the delay in this regard.<br>
+        <br>
+        Please note that the only reason for an FE to switch for the
+        failover BE is the break in communication in the 2000 port
+        between BE &amp; FE.<br>
+        But from your mails, we infer that although BE is in a
+        hang-state, BE-FE communication is still in tact - FE's
+        communication with BE in the 2000 port is still active.<br>
+        Hence FE is still connected to BE (since PRIMARY is not shutdown
+        even after the STANDBY becoming new PRIMARY)<br>
+        <br>
+        Hence this behaviour is well within the framework. But we do
+        understand that unavailability of service should not happen.<br>
+        <br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Although these type of deadlocks should be
+        prevented to the maximum extend possible, as of now, we can
+        suggest the following monitoring solutions to handle this
+        scenario:<br>
+        <br>
+        1. From an external JVM (other than the BE Server), monitor the
+        BEFailOver table of PRIMARY - If the value becomes stale,
+        shutdown the BE / kill BE server.<br>
+        2. Once the value becomes stale, a mail should be sent to the
+        administrator.<br>
+        3. Ensure&nbsp;</font><span style="font-family: &quot;times new
+        roman&quot;, times, serif; font-size: medium;">that the
+        possibility for a cable pullout (in any server) is next to
+        impossible.</span><font size="3" face="times new roman, times,
+        serif"><br>
+        <br>
+        Note that the real issue to be analyzed is the BE-hang-state.<br>
+        Please let us know what is&nbsp;</font><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">deadlock
+        situation in&nbsp;</span><span style="font-family: &quot;times
+        new roman&quot;, times, serif; font-size: medium;">BE. We ask
+        this since of the deadlocks we are aware (in database &amp;
+        java), the lock will be released once it is logged.<br>
+        Hence we are not sure of what is the reason behind this (We
+        believe its a flaw in code where 2 mutually dependent events
+        waiting for each other endlessly. But we would like to confirm
+        it).<br>
+        <br>
+        We believe once we resolve this issue, we will be able to
+        proceed further.<br>
+        <br>
+        Please get back to us for any further clarification in this
+        regard.<br>
+        <br>
+        Thanks &amp; regards<br>
+        Venkatramanan<br>
+        <br>
+      </span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">&lt;Krishnareddygari, Narasimha&gt;
+        wrote--------------</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Please let us know the update on this.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">From: Krishnareddygari, Narasimha&nbsp;</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Some more points:</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">1. There was no messages logged in FE log
+        for about 7 min, there were continues log messages when the BE
+        was working properly.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#0000ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:22:53:250] MISC: unknown type received
+        FRAME_COMMISSION_1: forwarding to Backend</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#0000ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:22:55:330] MISC: unknown type received
+        FRAME_COMMISSION_1: forwarding to Backend</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#0000ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:22:57:190] MISC: unknown type received
+        FRAME_COMMISSION_1: forwarding to Backend</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#0000ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:29:12:616] MISC: unknown type received
+        FRAME_COMMISSION_5: forwarding to Backend</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#0000ff"
+        face="courier new, courier, monospace"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">2. Then we see missed keepAlive messages
+        for clients in the FE corelog.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:33:47:875] MISC: KeepAliveMonitor - Missed a keepAlive
+        for : KeepAliveObject : Identity=ClientKeepAliveObject -
+        WAR-VPN-CLIENTB-13.clwr/172.27.28.13 GenericSocket 46,
+        keepAliveTime=30000, retries=6, lastCommunicatedTime=Mon Feb 04
+        10:32:30 GMT 2013 ackCount : 6</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:34:17:882] MISC: KeepAliveMonitor - Missed a keepAlive
+        for : KeepAliveObject : Identity=ClientKeepAliveObject -
+        WAR-VPN-CLIENTB-13.clwr/172.27.28.13 GenericSocket 46,
+        keepAliveTime=30000, retries=6, lastCommunicatedTime=Mon Feb 04
+        10:32:30 GMT 2013 ackCount : 5</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">From: Krishnareddygari, Narasimha&nbsp;</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Hi Team,</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Our case is not related to cable plugged
+        out or IP address disappearing.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">1. Customer has BEs(Primary BE and standby
+        BE) and FEs running on different Linux boxes</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">2. BE1 hanged(at 04 Feb 2013 &nbsp;10:20
+        refer to logs attached yesterday) dues to some deadlock
+        situation which we are trying to debug in our custom code.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">3. BE1 didn’t update the BEFailover table
+        for long time because of this deadlock situation and BE2 which
+        is a standby BE taken over as primary.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">4. But FEs connected to BE1 didn’t failover
+        to BE2, the following exceptions are seen in the FE logs.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">[04 Feb 2013
+        &nbsp;10:34:42:784] MISC: Exception in getting the challenge at:</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">java.rmi.ConnectIOException:
+        error during JRMP connection establishment; nested exception is:</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">&nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;java.net.SocketTimeoutException: Read timed out</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">&nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;at
+        sun.rmi.transport.tcp.TCPChannel.createConnection(Unknown
+        Source)</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">&nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;at
+        sun.rmi.transport.tcp.TCPChannel.newConnection(Unknown Source)</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="2" color="#3333ff"
+        face="courier new, courier, monospace">&nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;at
+        sun.rmi.server.UnicastRef.invoke(Unknown Source)</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">5. These exceptions continued till the BE1
+        (which was hanged) was killed and restarted as primary by our
+        support team.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">[04 Feb 2013 &nbsp;15:55:26:006] MISC:
+        Error communicating with Ethernet Services Manager Back End
+        Server.java.net.SocketException: Connection reset</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">[04 Feb 2013 &nbsp;15:55:36:119] MISC:
+        Connected to Ethernet Services Manager BackEnd Server at
+        &nbsp;Host = 172.27.1.76 Port = 2000</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">[04 Feb 2013 &nbsp;15:55:36:119] MISC:
+        &nbsp;Established connection to 172.27.1.76; TCP port : 2000;
+        RMI port : 1099</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">6. Customer was not able to connect to
+        clients from 10:30 to 16:00 until the BE1 was restarted as
+        primary by our support team. Our customer was upset about this
+        long outage.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Please let us know if you need any more
+        details.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Thanks</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Narasimha Reddy</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">From: nms-scp@zohocorp.com
+        [mailto:nms-scp@zohocorp.com] On Behalf Of ZohoCorp WebNMS
+        Support</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;">
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Dear&nbsp;Narasimha<br>
+          <br>
+          Apologies for the delay in reply.<br>
+          From what we&nbsp;<b><u><i>infer &amp; assume</i></u></b>, we
+          think the following happen in your environment. Please
+          confirm:<br>
+          <br>
+          1. BE &amp; FE are running in different Linux machines<br>
+          2. BE's cable is plugged out or its IP address '<i>somehow</i>'
+          disappears.<br>
+          3. Now FE takes so long (15 min.) to failover.<br>
+          <br>
+          Please let us know whether the above case is the one which you
+          had been reporting.<br>
+          If this is NOT the reported case, please explain us in detail
+          as which is the issue (Do not read the below text at all).<br>
+          <br>
+          If this is the case, please read on:</font></div>
+      <hr style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;">
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">We had faced this issue before and the&nbsp;root cause
+          to this issue is the underlying&nbsp;<a
+            href="http://www.kernel.org/doc/man-pages/online/pages/man7/tcp.7.html">tcp_keepalive_time</a><a
+href="http://www.kernel.org/doc/man-pages/online/pages/man7/tcp.7.html">&nbsp;which
+            gets timed out only after 15 minutes</a>.</font>
+        <div><font size="3" face="times new roman, times, serif"><br>
+          </font></div>
+        <div><font size="3" face="times new roman, times, serif">While a
+            BE shutdown will easily trigger an IOException, the cable
+            pull out case (esp. in Linux - where both app&nbsp; servers
+            reside in 2 separate Linux boxes) is a unique case (due to
+            the Linux socket case).<br>
+            <br>
+            Actually,&nbsp;when we tried to handle this case in WebNMS,
+            we had to prioritize between 2 cases as which is more
+            probable one -&nbsp;<span style="font-weight: bold;">a
+              momentary connection loss or a cable-pull out case.</span><br>
+            We decided that a network glitch (momentary connection loss)
+            is more common than a cable pullout case (which can happen
+            only with an intentional human intervention) and will not be
+            frequent.</font></div>
+        <div>
+          <div><font size="3" face="times new roman, times, serif">Hence
+              we decided to leave this case as such.</font></div>
+          <div><font size="3" face="times new roman, times, serif"><br>
+              Hence ensure that the cable pullover never happens,
+              &nbsp;to the maximum possible&nbsp;extent. We say this
+              since handling a cable pullout will create many other
+              sporadic issues and is not feasible to handle it at the
+              cost of the other valid scenarios<br>
+              <br>
+              A significant concern is that its&nbsp;<b><u><i>not</i></u></b>&nbsp;an
+              absolute case - Its a relative one - which case to
+              prioritize - cable pull out / momentary network glitch<br>
+              <br>
+              Hence there will be an increase time for failover. Please
+              note that this is is the reason we recommend our customers
+              to ensure that the possibility for a cable pullout is next
+              to impossible.<br>
+            </font></div>
+          <hr><font size="3" face="times new roman, times, serif">Thanks
+            &amp; regards<br>
+            Venkatramanan<br>
+            <br>
+          </font></div>
+      </div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">&lt;Krishnareddygari, Narasimha&gt; wrote--------------</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Hi Team,</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">We have FE failover issue in of our customer location,
+          primary BE is hanged and didn’t update the DB so standby BE
+          taken over but FEs didn’t failover to the BE, this might
+          because BE is hanged but still might have connection with FE.
+          BE hang is a different issue which we are trying to debug in
+          our custom code, but our customer is complaining that
+          automatic failover is not working for them and they have to do
+          FE failover manually with the help of our customer support
+          team and causes few hours of outage for the production
+          operations.</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Please review the logs and help us to resolve this
+          issue.</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Setup: Primary BE, Standby BE and 2 FEs on Linux
+          operating system, 2 DB servers with Mysql replication.</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Thanks</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Narasimha Reddy</font></div>
+    </div>
+  </body>
+</html>
