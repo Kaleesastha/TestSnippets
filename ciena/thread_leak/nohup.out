@@ -1,0 +1,1183 @@
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=64m; support was removed in 8.0
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=512m; support was removed in 8.0
+
+This OEM edition of WebNMS Framework is of Professional license type and has been licensed to OEM Professional User in WebNMS Development for WebNMS Framework.
+
+Starting WebNMS Framework "Primary" Server Modules, please wait  
+
+
+Process : StartTelnetClient                       [ Started ]
+Process : ProcessTest                             [ Started ]
+Process : WebNMSAgentApp                          [ Started ]
+Process : TL1DiscProcess                          [ Started ]
+Process : NMSTAServer                             [ Started ]
+Process : NmsPolicyMgr                            [ Started ]
+Process : NMSMServer                              [ Started ]
+Process : TL1EventProcess                         [ Started ]
+Process : UserConfigProcess                       [ Started ]
+Process : WebNMSMgmtBEProcess                     [ Started ]
+Process : NmsAuthenticationManager                [ Started ]
+Process : WebNMSBackUp                            [ Started ]
+Process : RunRmiRegistry                          [ Started ]
+Process : CLIFactoryBinder                        [ Started ]
+Process : DataMgmtRPI                             [ Started ]
+Process : TL1CustomViewsMgr                       [ Started ]
+Process : StorageServer                           [ Started ]
+Process : NmsSUM                                  [ Started ]
+Process : RunJSPModule                            [ Started ]
+Process : NmsTftpServer                           [ Started ]
+Process : TL1GatewayProcess                       [ Started ]
+Process : NMSSAServer                             [ Started ]
+Process : AdminModuleInit                         [ Started ]
+Process : NmsConfigurationServer                  [ Started ]
+WARNING : Traps cannot be received on port : 162
+Process : EventMgr                                [ Started ]
+Process : StartProvModule                         [ Started ]
+Process : NmsAuthManager                          [ Started ]
+Process : DBServer                                [ Started ]
+Process : Collector                               [ Started ]
+Process : MapServerBE                             [ Started ]
+Process : KPICollector                            [ Started ]
+Process : NmsMainFE                               [ Started ]
+Process : TAServerFE                              [ Started ]
+Process : SAServerFE                              [ Started ]
+Process : AuthenticationManagerFE                 [ Started ]
+Process : NmsSAServerFE                           [ Started ]
+Process : EventFE                                 [ Started ]
+Process : MapFE                                   [ Started ]
+Process : PolicyFE                                [ Started ]
+Process : AlertFE                                 [ Started ]
+Process : UserConfigProcessFE                     [ Started ]
+Process : ConfigFE                                [ Started ]
+Process : StorageServerFE                         [ Started ]
+Process : AuthorizationManagerFE                  [ Started ]
+Process : StartTelnetClientFE                     [ Started ]
+Process : PollFE                                  [ Started ]
+Process : ExampleFE                               [ Started ]
+Process : TopoFE                                  [ Started ]
+Process : MServerFE                               [ Started ]
+Process : ProvisioningFE                          [ Started ]
+Process : WebNMSMgmtFEProcess                     [ Started ]
+
+Verifying connection with web server ... verified 
+
+WebNMS Framework Server modules started successfully at Jun 15,2017 03:08:59 PM 
+
+Please connect your client to the web server on port: 8443
+
+2017-06-15 15:09:15
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.66-b17 mixed mode):
+
+"http-bio-8443-exec-2" #216 daemon prio=5 os_prio=31 tid=0x00007f930d031000 nid=0xfb07 waiting on condition [0x0000700006748000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000782737810> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:104)
+	at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:32)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(8)-172.24.108.167" #213 daemon prio=5 os_prio=31 tid=0x00007f930bd19000 nid=0x1620b runnable [0x00007000093f6000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x0000000780361ed0> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-8443-exec-1" #211 daemon prio=5 os_prio=31 tid=0x00007f9312910000 nid=0xb307 waiting on condition [0x00007000042dc000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000782737810> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:104)
+	at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:32)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+"GenericSocketServerFE" #190 prio=5 os_prio=31 tid=0x00007f930e969800 nid=0xcb07 runnable [0x0000700004f00000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at sun.security.ssl.SSLServerSocketImpl.accept(SSLServerSocketImpl.java:348)
+	at com.adventnet.management.transport.SSLServerTransportImpl.open(SSLServerTransportImpl.java:129)
+	at com.adventnet.nms.startnms.MainSocketServerFE.run(MainSocketServerFE.java:123)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-8443-AsyncTimeout" #188 daemon prio=5 os_prio=31 tid=0x00007f930bc93000 nid=0x15003 waiting on condition [0x00007000092f4000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.tomcat.util.net.JIoEndpoint$AsyncTimeout.run(JIoEndpoint.java:152)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-8443-Acceptor-0" #187 daemon prio=5 os_prio=31 tid=0x00007f930bf87800 nid=0xc707 runnable [0x0000700004cfa000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at sun.security.ssl.SSLServerSocketImpl.accept(SSLServerSocketImpl.java:348)
+	at org.apache.tomcat.util.net.jsse.JSSESocketFactory.acceptSocket(JSSESocketFactory.java:243)
+	at org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:222)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-9090-AsyncTimeout" #186 daemon prio=5 os_prio=31 tid=0x00007f9310858000 nid=0x14e03 waiting on condition [0x00007000091f1000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.tomcat.util.net.JIoEndpoint$AsyncTimeout.run(JIoEndpoint.java:152)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-9090-Acceptor-0" #185 daemon prio=5 os_prio=31 tid=0x00007f930aa07000 nid=0xc907 runnable [0x0000700004dfd000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at org.apache.tomcat.util.net.DefaultServerSocketFactory.acceptSocket(DefaultServerSocketFactory.java:60)
+	at org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:222)
+	at java.lang.Thread.run(Thread.java:745)
+
+"ContainerBackgroundProcessor[StandardEngine[Catalina]]" #184 daemon prio=5 os_prio=31 tid=0x00007f930c000000 nid=0x14c03 waiting on condition [0x00007000090ee000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1512)
+	at java.lang.Thread.run(Thread.java:745)
+
+"WebUpdateProcessor-4" #183 daemon prio=5 os_prio=31 tid=0x00007f930c708000 nid=0x14a03 in Object.wait() [0x0000700005003000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797b15a48> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"WebUpdateProcessor-3" #182 daemon prio=5 os_prio=31 tid=0x00007f930f5d7800 nid=0xce07 in Object.wait() [0x0000700008feb000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797c55898> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"WebUpdateProcessor-2" #181 daemon prio=5 os_prio=31 tid=0x00007f930f5d6800 nid=0x14803 in Object.wait() [0x0000700008ee8000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797b15bc8> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"WebUpdateProcessor-1" #180 daemon prio=5 os_prio=31 tid=0x00007f930f436800 nid=0x14603 in Object.wait() [0x0000700008de5000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797c55a18> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"WebUpdateProcessor" #179 daemon prio=5 os_prio=31 tid=0x00007f930f418800 nid=0x14403 in Object.wait() [0x0000700008ce2000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x0000000797eb2158> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"MainSocketServerFE" #178 prio=5 os_prio=31 tid=0x00007f930aff7800 nid=0x14203 runnable [0x0000700008bdf000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at sun.security.ssl.SSLServerSocketImpl.accept(SSLServerSocketImpl.java:348)
+	at com.adventnet.management.transport.SSLServerTransportImpl.open(SSLServerTransportImpl.java:129)
+	at com.adventnet.nms.startnms.MainSocketServerFE.run(MainSocketServerFE.java:123)
+	at java.lang.Thread.run(Thread.java:745)
+
+"SendToClient - localhost" #175 prio=5 os_prio=31 tid=0x00007f930f7a8800 nid=0xd507 in Object.wait() [0x000070000540f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at com.adventnet.nms.startnms.MainSocketSessionBE$SendToClient.run(MainSocketSessionBE.java:1012)
+	- locked <0x0000000797cf9aa0> (a java.lang.Integer)
+
+"statuspoll-3" #174 prio=5 os_prio=31 tid=0x00007f930e9e5800 nid=0x14003 in Object.wait() [0x0000700008adc000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797e67498> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"statuspoll-2" #173 prio=5 os_prio=31 tid=0x00007f930d03f800 nid=0x13607 in Object.wait() [0x00007000089d9000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797b15ec8> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"statuspoll-1" #172 prio=5 os_prio=31 tid=0x00007f930ac78800 nid=0x13e0f in Object.wait() [0x00007000088d6000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797b16048> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"statuspoll" #165 prio=5 os_prio=31 tid=0x00007f930f7a8000 nid=0xa807 in Object.wait() [0x00007000087d3000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x0000000797eef3f0> (a com.adventnet.nms.poll.NameScheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"Thread-70" #171 prio=5 os_prio=31 tid=0x00007f930c45a000 nid=0x440b in Object.wait() [0x000070000849f000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.snmp.snmp2.SnmpCallback.sleepUntilNotified(SnmpCallback.java:166)
+	- locked <0x0000000797b7a008> (a com.adventnet.snmp.snmp2.SnmpCallback)
+	at com.adventnet.snmp.snmp2.SnmpCallback.run(SnmpCallback.java:152)
+
+"ThreadService-0" #170 daemon prio=5 os_prio=31 tid=0x00007f930c153000 nid=0xad07 in Object.wait() [0x0000700003fd3000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at com.sun.jmx.snmp.tasks.ThreadService$ExecutorThread.run(ThreadService.java:180)
+	- locked <0x0000000795a49f28> (a java.util.ArrayList)
+
+"datapoll-3" #169 prio=5 os_prio=31 tid=0x00007f930a81b000 nid=0x430b in Object.wait() [0x0000700003ed0000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797b16348> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"datapoll-2" #168 prio=5 os_prio=31 tid=0x00007f931003a000 nid=0x130b in Object.wait() [0x0000700003cca000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797e67618> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"datapoll-1" #167 prio=5 os_prio=31 tid=0x00007f9310039800 nid=0x9d07 in Object.wait() [0x00007000037bb000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000797c55b98> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"datapoll" #166 prio=5 os_prio=31 tid=0x00007f930f436000 nid=0xab07 in Object.wait() [0x0000700001146000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x00000007974c30c8> (a com.adventnet.nms.poll.PollNameScheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"Thread-67" #161 daemon prio=5 os_prio=31 tid=0x00007f930ab04000 nid=0xaf07 waiting on condition [0x00007000040d6000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000797cd5728> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"TerminalSessionWatchdog" #160 daemon prio=5 os_prio=31 tid=0x00007f930c3aa800 nid=0x1010b waiting on condition [0x0000700006a51000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.sshtools.terminal.web.WebContextListener.run(WebContextListener.java:74)
+	at java.lang.Thread.run(Thread.java:745)
+
+"process reaper" #154 daemon prio=10 os_prio=31 tid=0x00007f930b21f800 nid=0x13b03 waiting on condition [0x00007000086d0000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000796f4b000> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1066)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"TRAPINPUT" #145 prio=5 os_prio=31 tid=0x00007f930e9ae800 nid=0x13903 in Object.wait() [0x00007000086a5000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.nms.eventdb.TrapInput.run(TrapInput.java:175)
+	- locked <0x0000000796de92e8> (a java.util.Vector)
+
+"COMMONTRAPNOTIFIER" #152 prio=5 os_prio=31 tid=0x00007f930a8e6000 nid=0x13703 in Object.wait() [0x00007000085a2000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.nms.eventdb.CommonTrapNotifier.run(CommonTrapNotifier.java:258)
+	- locked <0x0000000796f1f388> (a java.lang.Integer)
+
+"Thread-64" #150 prio=5 os_prio=31 tid=0x00007f930d1b2800 nid=0x13303 waiting on condition [0x000070000839c000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.adaptors.ProcessScheduler$SchedulingThread.run(ProcessScheduler.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Process-Scheduler-2" #149 prio=5 os_prio=31 tid=0x00007f930c4a1800 nid=0x13103 in Object.wait() [0x0000700008299000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utilities.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:49)
+	- locked <0x0000000796f9aad0> (a com.adventnet.utilities.scheduler.WorkerThread)
+	at com.adventnet.utilities.scheduler.WorkerThread.run(WorkerThread.java:61)
+
+"Process-Scheduler-1" #148 prio=5 os_prio=31 tid=0x00007f930ac81000 nid=0x12f03 in Object.wait() [0x0000700008196000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utilities.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:49)
+	- locked <0x0000000796f9cb80> (a com.adventnet.utilities.scheduler.WorkerThread)
+	at com.adventnet.utilities.scheduler.WorkerThread.run(WorkerThread.java:61)
+
+"Process-Scheduler" #147 prio=5 os_prio=31 tid=0x00007f930bf08000 nid=0x12d03 in Object.wait() [0x0000700008093000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utilities.scheduler.Scheduler.getTheWork(Scheduler.java:442)
+	- locked <0x0000000796f9e400> (a com.adventnet.utilities.scheduler.Scheduler)
+	at com.adventnet.utilities.scheduler.Scheduler.run(Scheduler.java:466)
+
+"SESSION-Thread-63" #146 prio=5 os_prio=31 tid=0x00007f930ace6800 nid=0x12907 runnable [0x0000700007e8d000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainDatagramSocketImpl.receive0(Native Method)
+	- locked <0x0000000796e4f478> (a java.net.PlainDatagramSocketImpl)
+	at java.net.AbstractPlainDatagramSocketImpl.receive(AbstractPlainDatagramSocketImpl.java:144)
+	- locked <0x0000000796e4f478> (a java.net.PlainDatagramSocketImpl)
+	at java.net.DatagramSocket.receive(DatagramSocket.java:812)
+	- locked <0x0000000796e4f408> (a java.net.DatagramPacket)
+	- locked <0x0000000796e4f430> (a java.net.DatagramSocket)
+	at com.adventnet.snmp.snmp2.UDPTransportImpl.read(UDPTransportImpl.java:317)
+	at com.adventnet.snmp.snmp2.SnmpSession.receiveFromTransportProvider(SnmpSession.java:4489)
+	at com.adventnet.snmp.snmp2.SnmpSession.run(SnmpSession.java:1395)
+
+"Thread-62" #144 prio=5 os_prio=31 tid=0x00007f930a8dc800 nid=0x12b03 in Object.wait() [0x0000700007f90000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utils.agent.HolderThread.WaitUntilAsked(HolderThread.java:63)
+	- locked <0x0000000796dbfb10> (a com.adventnet.utils.agent.HolderThread)
+	at com.adventnet.utils.agent.HolderThread.run(HolderThread.java:74)
+
+"Thread-61" #143 prio=5 os_prio=31 tid=0x00007f930d99f000 nid=0xbb0b in Object.wait() [0x00007000046e8000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utils.agent.HolderThread.WaitUntilAsked(HolderThread.java:63)
+	- locked <0x0000000796dbf8e0> (a com.adventnet.utils.agent.HolderThread)
+	at com.adventnet.utils.agent.HolderThread.run(HolderThread.java:74)
+
+"Agent" #142 prio=5 os_prio=31 tid=0x00007f930b0de000 nid=0xc507 in Object.wait() [0x0000700006645000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.utils.agent.ThreadScheduler.getTheWork(ThreadScheduler.java:109)
+	- locked <0x0000000796d7c880> (a com.adventnet.utils.agent.ThreadScheduler)
+	at com.adventnet.utils.agent.ThreadScheduler.run(ThreadScheduler.java:129)
+
+"ConfigServerSession" #139 prio=5 os_prio=31 tid=0x00007f930ac7d800 nid=0xf907 runnable [0x0000700004bf7000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at com.adventnet.management.config.ConfigServerSession.run(ConfigServerSession.java:106)
+
+"KPIAggregationScheduler-5" #138 prio=5 os_prio=31 tid=0x00007f930e980800 nid=0x12703 in Object.wait() [0x0000700007d8a000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796ad7188> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"KPIAggregationScheduler-4" #137 prio=5 os_prio=31 tid=0x00007f930e980000 nid=0x12503 in Object.wait() [0x0000700007c87000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796ad7308> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"KPIAggregationScheduler-3" #136 prio=5 os_prio=31 tid=0x00007f930e97f000 nid=0x12303 in Object.wait() [0x0000700007b84000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796abca00> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"KPIAggregationScheduler-2" #135 prio=5 os_prio=31 tid=0x00007f930c46b000 nid=0x12103 in Object.wait() [0x0000700007a81000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796b091d8> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"KPIAggregationScheduler-1" #134 prio=5 os_prio=31 tid=0x00007f930c11e000 nid=0x11f03 in Object.wait() [0x000070000797e000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796ad7488> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"KPIAggregationScheduler" #133 prio=5 os_prio=31 tid=0x00007f930c2cd800 nid=0x11d03 in Object.wait() [0x000070000787b000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x0000000796abcb80> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"API-Thread-58" #131 prio=5 os_prio=31 tid=0x00007f930e963800 nid=0xa907 waiting on condition [0x0000700003dcd000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.snmp.snmp2.SnmpAPI.run(SnmpAPI.java:1082)
+
+"policy-1" #130 prio=5 os_prio=31 tid=0x00007f930e883000 nid=0x11b03 in Object.wait() [0x0000700007778000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796abcd60> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"policy" #129 prio=5 os_prio=31 tid=0x00007f930d032000 nid=0x11903 in Object.wait() [0x0000700007675000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x0000000796ad77e0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"RMI TCP Connection(7)-172.24.108.167" #128 daemon prio=5 os_prio=31 tid=0x00007f930bc64000 nid=0x11703 runnable [0x0000700007571000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x0000000796b0b528> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(5)-172.24.108.167" #127 daemon prio=5 os_prio=31 tid=0x00007f930b2d8000 nid=0x11503 runnable [0x000070000746e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x000000079681b898> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(6)-172.24.108.167" #126 daemon prio=5 os_prio=31 tid=0x00007f930b29d000 nid=0x11303 runnable [0x000070000736b000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x000000079681fef0> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(4)-172.24.108.167" #125 daemon prio=5 os_prio=31 tid=0x00007f930c2ef800 nid=0x11103 runnable [0x0000700007268000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x0000000796817240> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI RenewClean-[172.24.108.167:52997]" #124 daemon prio=5 os_prio=31 tid=0x00007f930bc35800 nid=0x10f03 in Object.wait() [0x0000700007166000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+	- locked <0x0000000796807130> (a java.lang.ref.ReferenceQueue$Lock)
+	at sun.rmi.transport.DGCClient$EndpointEntry$RenewCleanThread.run(DGCClient.java:553)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(3)-172.24.108.167" #123 daemon prio=5 os_prio=31 tid=0x00007f930bf8b000 nid=0x10d03 runnable [0x0000700007062000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x00000007967f9340> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(2)-172.24.108.167" #122 daemon prio=5 os_prio=31 tid=0x00007f930d954800 nid=0x10b03 runnable [0x0000700006f5f000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x00000007967f4928> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI Scheduler(0)" #121 daemon prio=5 os_prio=31 tid=0x00007f930b533000 nid=0x10907 waiting on condition [0x0000700006e5d000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000795a50738> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Connection(1)-172.24.108.167" #120 daemon prio=5 os_prio=31 tid=0x00007f930a86b800 nid=0xd107 runnable [0x0000700005208000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	- locked <0x00000007967c7430> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(FilterInputStream.java:83)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:550)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$256(TCPTransport.java:683)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$2/1623328997.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+"MSXMLProcessorThread" #119 prio=5 os_prio=31 tid=0x00007f930bc44000 nid=0xa107 sleeping[0x00007000039c1000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.management.xml.MSXmlProcessor.listen(MSXmlProcessor.java:279)
+	at com.adventnet.management.xml.MSXmlProcessor.run(MSXmlProcessor.java:264)
+	at java.lang.Thread.run(Thread.java:745)
+
+"MainSocketServer" #118 prio=5 os_prio=31 tid=0x00007f930bbc4000 nid=0x10703 waiting on condition [0x0000700006d5a000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.nms.ms.NMSMServer.open(NMSMServer.java:130)
+	at com.adventnet.management.mstransport.MainSocketServer.run(MainSocketServer.java:98)
+	at java.lang.Thread.run(Thread.java:745)
+
+"config-1" #117 prio=5 os_prio=31 tid=0x00007f930d173000 nid=0x10503 in Object.wait() [0x0000700006c57000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x000000079670dd70> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"config" #116 prio=5 os_prio=31 tid=0x00007f930e1c7800 nid=0x10303 in Object.wait() [0x0000700006b54000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x00000007966f33c0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"Thread-55" #114 prio=5 os_prio=31 tid=0x00007f930e1c8800 nid=0xff03 runnable [0x000070000694e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainDatagramSocketImpl.receive0(Native Method)
+	- locked <0x00000007968a6420> (a java.net.PlainDatagramSocketImpl)
+	at java.net.AbstractPlainDatagramSocketImpl.receive(AbstractPlainDatagramSocketImpl.java:144)
+	- locked <0x00000007968a6420> (a java.net.PlainDatagramSocketImpl)
+	at java.net.DatagramSocket.receive(DatagramSocket.java:812)
+	- locked <0x00000007968a6450> (a java.net.DatagramPacket)
+	- locked <0x00000007968a6478> (a java.net.DatagramSocket)
+	at com.adventnet.snmp.snmp2.UDPTransportImpl.read(UDPTransportImpl.java:317)
+	at com.adventnet.snmp.snmp2.SnmpSession.receiveFromTransportProvider(SnmpSession.java:4489)
+	at com.adventnet.snmp.snmp2.SnmpSession.run(SnmpSession.java:1395)
+
+"Thread-54" #113 prio=5 os_prio=31 tid=0x00007f930e1ca000 nid=0xfd07 waiting on condition [0x000070000684b000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.snmp.snmp2.SnmpAPI.run(SnmpAPI.java:1082)
+
+"DestroyJavaVM" #112 prio=5 os_prio=31 tid=0x00007f930d181000 nid=0x1703 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"1-1" #108 prio=5 os_prio=31 tid=0x00007f930d167000 nid=0xcf07 in Object.wait() [0x0000700005106000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.util.WorkerThread.waitUntilAsked(WorkerThread.java:54)
+	- locked <0x00000007968cb610> (a com.adventnet.management.util.WorkerThread)
+	at com.adventnet.management.util.WorkerThread.run(WorkerThread.java:71)
+
+"SUMMainServerThread" #107 prio=5 os_prio=31 tid=0x00007f930d043000 nid=0xf703 runnable [0x0000700006542000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at com.adventnet.tools.sum.transport.SUMTcpServerImpl.open(SUMTcpServerImpl.java:153)
+	at com.adventnet.tools.sum.server.SUMCommunicationServer.run(SUMCommunicationServer.java:95)
+	at java.lang.Thread.run(Thread.java:745)
+
+"1" #106 prio=5 os_prio=31 tid=0x00007f930ab1e800 nid=0xf503 in Object.wait() [0x000070000643f000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.util.Scheduler.getTheWork(Scheduler.java:596)
+	- locked <0x00000007969622a0> (a com.adventnet.management.util.Scheduler)
+	at com.adventnet.management.util.Scheduler.run(Scheduler.java:642)
+
+"provisioning-1" #104 prio=5 os_prio=31 tid=0x00007f930e1c9800 nid=0xf303 in Object.wait() [0x000070000633c000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796894cf0> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"provisioning" #103 prio=5 os_prio=31 tid=0x00007f930ab03800 nid=0xf103 in Object.wait() [0x0000700006239000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x0000000796894e70> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"fault-4" #102 prio=5 os_prio=31 tid=0x00007f930d169000 nid=0xb90b in Object.wait() [0x000070000530c000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x00000007968cb790> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"fault-3" #101 prio=5 os_prio=31 tid=0x00007f930d03f000 nid=0xbf0b in Object.wait() [0x0000700004af4000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x00000007968cb910> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"fault-2" #100 prio=5 os_prio=31 tid=0x00007f930ab07000 nid=0xc307 in Object.wait() [0x00007000049f1000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796895050> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"fault-1" #99 prio=5 os_prio=31 tid=0x00007f930aa93800 nid=0xd307 in Object.wait() [0x00007000045e5000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x00000007968cba90> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"fault" #98 prio=5 os_prio=31 tid=0x00007f930c4c9800 nid=0xa507 in Object.wait() [0x0000700003bc7000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x00000007968951d0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"Connection Maintainer" #97 prio=5 os_prio=31 tid=0x00007f930d17d800 nid=0xc107 waiting on condition [0x0000700003ac4000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.snmp.sas.ConnectionMaintainer.run(ConnectionMaintainer.java:25)
+	at java.lang.Thread.run(Thread.java:745)
+
+"LockOutTimerScheduler-4" #96 prio=5 os_prio=31 tid=0x00007f930c464000 nid=0xef03 in Object.wait() [0x0000700006136000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x00000007968953b0> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"LockOutTimerScheduler-3" #95 prio=5 os_prio=31 tid=0x00007f930e95b800 nid=0xed03 in Object.wait() [0x0000700006033000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796934b08> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"LockOutTimerScheduler-2" #94 prio=5 os_prio=31 tid=0x00007f930bf13800 nid=0xeb03 in Object.wait() [0x0000700005f30000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796895530> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"LockOutTimerScheduler-1" #93 prio=5 os_prio=31 tid=0x00007f930bf13000 nid=0xe903 in Object.wait() [0x0000700005e2d000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000796934c88> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"LockOutTimerScheduler" #92 prio=5 os_prio=31 tid=0x00007f930bef5800 nid=0xe707 in Object.wait() [0x0000700005d2a000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x00000007968956b0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"Thread-44" #74 prio=5 os_prio=31 tid=0x00007f930bef1800 nid=0xa307 waiting on condition [0x00007000048ee000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.nms.tester.ProcessTest.run(ProcessTest.java:144)
+
+"ReportsManagement-4" #88 prio=5 os_prio=31 tid=0x00007f930e018800 nid=0xe503 in Object.wait() [0x0000700005c27000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d39c98> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"ReportsManagement-3" #87 prio=5 os_prio=31 tid=0x00007f930c472800 nid=0xe303 in Object.wait() [0x0000700005b24000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d39e18> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"ReportsManagement-2" #86 prio=5 os_prio=31 tid=0x00007f930d91a000 nid=0xe103 in Object.wait() [0x0000700005a21000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d39f98> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"ReportsManagement-1" #85 prio=5 os_prio=31 tid=0x00007f930d843800 nid=0xb507 in Object.wait() [0x00007000043df000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3a118> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"ReportsManagement" #84 prio=5 os_prio=31 tid=0x00007f930e823000 nid=0x9f07 in Object.wait() [0x00007000038be000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x000000079626e8c8> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"NMSSAServer" #83 prio=5 os_prio=31 tid=0x00007f930d16c800 nid=0xdf03 waiting on condition [0x000070000591e000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.nms.sas.NMSSAServer.open(NMSSAServer.java:261)
+	at com.adventnet.snmp.sas.SAServer.run(SAServer.java:422)
+	at com.adventnet.snmp.sas.SAServer.main(SAServer.java:372)
+	at com.adventnet.nms.sas.NMSSAServer.run(NMSSAServer.java:190)
+
+"pendingprovision-2" #81 prio=5 os_prio=31 tid=0x00007f930d044000 nid=0xdd03 in Object.wait() [0x000070000581b000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x000000079627f410> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"pendingprovision-1" #80 prio=5 os_prio=31 tid=0x00007f930b622000 nid=0xdb03 in Object.wait() [0x0000700005718000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3a598> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"pendingprovision" #79 prio=5 os_prio=31 tid=0x00007f930aca9800 nid=0x9907 in Object.wait() [0x00007000035b5000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x000000079626eaa8> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"RMI TCP Accept-1099" #78 daemon prio=5 os_prio=31 tid=0x00007f930c471000 nid=0xd903 runnable [0x0000700005615000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Thread-43" #73 prio=5 os_prio=31 tid=0x00007f930be59000 nid=0xd703 waiting on condition [0x0000700005511000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.waitForPollMgrToInitialize(WebNMSBEResourceMonitoring.java:704)
+	at com.adventnet.nms.management.WebNMSBEResourceMonitoring.addResourcePolledData(WebNMSBEResourceMonitoring.java:87)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.adventnet.nms.management.WebNMSMgmtBEProcess.callMain(WebNMSMgmtBEProcess.java:149)
+	at com.adventnet.nms.util.RunProcessSmall.runCommand(RunProcessSmall.java:97)
+	at com.adventnet.nms.util.RunCmd.run(RunCmd.java:127)
+
+"Thread-12" #42 prio=5 os_prio=31 tid=0x00007f930be61800 nid=0x9b03 runnable [0x00007000036b7000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at org.apache.catalina.core.StandardServer.await(StandardServer.java:453)
+	at org.apache.catalina.startup.Catalina.await(Catalina.java:777)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:723)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:294)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:428)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.adventnet.nms.util.RunJSPModule.startJSPModule(RunJSPModule.java:67)
+	at com.adventnet.nms.util.RunJSPModule.callMain(RunJSPModule.java:123)
+	at com.adventnet.nms.util.RunProcessSmall.runCommand(RunProcessSmall.java:97)
+	at com.adventnet.nms.util.RunCmd.run(RunCmd.java:127)
+
+"BEModuleDispatcher-2" #40 prio=5 os_prio=31 tid=0x00007f930c459800 nid=0x9703 in Object.wait() [0x00007000034b2000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3a718> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"BEModuleDispatcher-1" #39 prio=5 os_prio=31 tid=0x00007f930c451000 nid=0x9503 in Object.wait() [0x00007000033af000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3a898> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"BEModuleDispatcher" #38 prio=5 os_prio=31 tid=0x00007f930aab8000 nid=0x9303 in Object.wait() [0x00007000032ac000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.getTheWork(Scheduler.java:919)
+	- locked <0x0000000795cc38d0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1025)
+
+"KeepAliveMonitor" #37 prio=10 os_prio=31 tid=0x00007f930bc85000 nid=0x9103 in Object.wait() [0x00007000031a9000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.nms.util.KeepAliveMonitor.run(KeepAliveMonitor.java:133)
+	- locked <0x00000007958ba4a0> (a java.lang.Object)
+
+"main-4" #36 prio=5 os_prio=31 tid=0x00007f930d03e000 nid=0x8f03 in Object.wait() [0x00007000030a6000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3aa18> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"main-3" #35 prio=5 os_prio=31 tid=0x00007f930d04d800 nid=0x8d03 in Object.wait() [0x0000700002fa3000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3ab98> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"SchedulerForFailOver-2" #34 prio=5 os_prio=31 tid=0x00007f930ac7f000 nid=0x8b03 in Object.wait() [0x0000700002ea0000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3ad18> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"main-2" #33 prio=5 os_prio=31 tid=0x00007f930d04c800 nid=0x8903 in Object.wait() [0x0000700002d9d000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3ae98> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"SchedulerForFailOver-1" #32 prio=5 os_prio=31 tid=0x00007f930ac7e800 nid=0x8703 in Object.wait() [0x0000700002c9a000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3b018> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"main-1" #31 prio=5 os_prio=31 tid=0x00007f930e885000 nid=0x8503 in Object.wait() [0x0000700002b97000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.WorkerThread.waitUntilAsked(WorkerThread.java:51)
+	- locked <0x0000000795d3b198> (a com.adventnet.management.scheduler.WorkerThread)
+	at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:72)
+
+"SchedulerForFailOver" #30 prio=5 os_prio=31 tid=0x00007f930abee000 nid=0x8303 in Object.wait() [0x0000700002a94000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x0000000795cc3ab0> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"main" #29 prio=5 os_prio=31 tid=0x00007f930aa98800 nid=0x8207 in Object.wait() [0x0000700002991000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.adventnet.management.scheduler.Scheduler.waitAndIntimateStopping(Scheduler.java:1074)
+	- locked <0x0000000795cc3c90> (a com.adventnet.management.scheduler.Scheduler)
+	at com.adventnet.management.scheduler.Scheduler.run(Scheduler.java:1028)
+
+"GC Daemon" #28 daemon prio=2 os_prio=31 tid=0x00007f930bc80000 nid=0x8007 in Object.wait() [0x000070000288e000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at sun.misc.GC$Daemon.run(GC.java:117)
+	- locked <0x00000007958ba4d0> (a sun.misc.GC$LatencyLock)
+
+"RMI Reaper" #27 prio=5 os_prio=31 tid=0x00007f930bc7b800 nid=0x8107 in Object.wait() [0x000070000278b000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+	- locked <0x000000079582ef08> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+	at sun.rmi.transport.ObjectTable$Reaper.run(ObjectTable.java:351)
+	at java.lang.Thread.run(Thread.java:745)
+
+"AWT-AppKit" #26 daemon prio=5 os_prio=31 tid=0x00007f930b48b000 nid=0x50f runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#5" #25 daemon prio=5 os_prio=31 tid=0x00007f930d86f000 nid=0x7b03 in Object.wait() [0x0000700002688000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#4" #24 daemon prio=5 os_prio=31 tid=0x00007f930c326000 nid=0x7903 in Object.wait() [0x0000700002585000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#3" #23 daemon prio=5 os_prio=31 tid=0x00007f930c366000 nid=0x7703 in Object.wait() [0x0000700002482000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2" #22 daemon prio=5 os_prio=31 tid=0x00007f930d087000 nid=0x7503 in Object.wait() [0x000070000237f000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1" #21 daemon prio=5 os_prio=31 tid=0x00007f930be68800 nid=0x7303 in Object.wait() [0x000070000227c000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0" #20 daemon prio=5 os_prio=31 tid=0x00007f930be67800 nid=0x7103 in Object.wait() [0x0000700002179000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+	- locked <0x0000000796047308> (a com.mchange.v2.async.ThreadPoolAsynchronousRunner)
+
+"Timer-0" #19 daemon prio=5 os_prio=31 tid=0x00007f930c364000 nid=0x6f03 in Object.wait() [0x0000700002076000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.util.TimerThread.mainLoop(Timer.java:552)
+	- locked <0x00000007960a3010> (a java.util.TaskQueue)
+	at java.util.TimerThread.run(Timer.java:505)
+
+"Thread-3" #18 prio=5 os_prio=31 tid=0x00007f930a9e6000 nid=0x6d03 runnable [0x0000700001f73000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainDatagramSocketImpl.receive0(Native Method)
+	- locked <0x00000007957e9ab8> (a java.net.PlainDatagramSocketImpl)
+	at java.net.AbstractPlainDatagramSocketImpl.receive(AbstractPlainDatagramSocketImpl.java:144)
+	- locked <0x00000007957e9ab8> (a java.net.PlainDatagramSocketImpl)
+	at java.net.DatagramSocket.receive(DatagramSocket.java:812)
+	- locked <0x0000000795668558> (a java.net.DatagramPacket)
+	- locked <0x00000007957e9ae8> (a java.net.DatagramSocket)
+	at com.adventnet.snmp.snmp2.UDPTransportImpl.read(UDPTransportImpl.java:317)
+	at com.adventnet.snmp.snmp2.SnmpSession.receiveFromTransportProvider(SnmpSession.java:4489)
+	at com.adventnet.snmp.snmp2.SnmpSession.run(SnmpSession.java:1395)
+
+"Thread-2" #17 prio=5 os_prio=31 tid=0x00007f930bb1d800 nid=0x6b03 waiting on condition [0x0000700001e70000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.adventnet.snmp.snmp2.SnmpAPI.run(SnmpAPI.java:1082)
+
+"RMI TCP Accept-0" #16 daemon prio=5 os_prio=31 tid=0x00007f930bbb1800 nid=0x6703 runnable [0x0000700001c6a000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:52)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Accept-16000" #15 daemon prio=5 os_prio=31 tid=0x00007f930c035800 nid=0x6503 runnable [0x0000700001b67000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Accept-0" #14 daemon prio=5 os_prio=31 tid=0x00007f930c036800 nid=0x6303 runnable [0x0000700001a64000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+	at java.net.ServerSocket.accept(ServerSocket.java:513)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+
+"CommunicatorServer" #13 daemon prio=5 os_prio=31 tid=0x00007f930c034800 nid=0x610f runnable [0x0000700001961000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainDatagramSocketImpl.receive0(Native Method)
+	- locked <0x000000079557bc98> (a java.net.PlainDatagramSocketImpl)
+	at java.net.AbstractPlainDatagramSocketImpl.receive(AbstractPlainDatagramSocketImpl.java:144)
+	- locked <0x000000079557bc98> (a java.net.PlainDatagramSocketImpl)
+	at java.net.DatagramSocket.receive(DatagramSocket.java:812)
+	- locked <0x0000000797d0a258> (a java.net.DatagramPacket)
+	- locked <0x000000079557bcc8> (a java.net.DatagramSocket)
+	at com.sun.jmx.snmp.daemon.SnmpAdaptorServer.doReceive(SnmpAdaptorServer.java:1374)
+	at com.sun.jmx.snmp.daemon.CommunicatorServer.run(CommunicatorServer.java:837)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Service Thread" #10 daemon prio=9 os_prio=31 tid=0x00007f930c03a000 nid=0x5b03 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread3" #9 daemon prio=9 os_prio=31 tid=0x00007f930a804000 nid=0x5903 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread2" #8 daemon prio=9 os_prio=31 tid=0x00007f930c00e800 nid=0x5703 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #7 daemon prio=9 os_prio=31 tid=0x00007f930a81c000 nid=0x5503 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #6 daemon prio=9 os_prio=31 tid=0x00007f930b896000 nid=0x5303 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #5 daemon prio=9 os_prio=31 tid=0x00007f930b899000 nid=0x5103 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Surrogate Locker Thread (Concurrent GC)" #4 daemon prio=9 os_prio=31 tid=0x00007f930b00f000 nid=0x450b waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=31 tid=0x00007f930b8bc000 nid=0x3e03 in Object.wait() [0x0000700001043000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+	- locked <0x000000079571f2a0> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+
+"Reference Handler" #2 daemon prio=10 os_prio=31 tid=0x00007f930a810000 nid=0x3c03 in Object.wait() [0x0000700000f40000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:157)
+	- locked <0x0000000795851c98> (a java.lang.ref.Reference$Lock)
+
+"VM Thread" os_prio=31 tid=0x00007f930b8bb800 nid=0x3a03 runnable 
+
+"Gang worker#0 (Parallel GC Threads)" os_prio=31 tid=0x00007f930c005000 nid=0x2403 runnable 
+
+"Gang worker#1 (Parallel GC Threads)" os_prio=31 tid=0x00007f930c005800 nid=0x2603 runnable 
+
+"Gang worker#2 (Parallel GC Threads)" os_prio=31 tid=0x00007f930c006800 nid=0x2803 runnable 
+
+"Gang worker#3 (Parallel GC Threads)" os_prio=31 tid=0x00007f930a80c000 nid=0x2a03 runnable 
+
+"Gang worker#4 (Parallel GC Threads)" os_prio=31 tid=0x00007f930a80d000 nid=0x2c03 runnable 
+
+"Gang worker#5 (Parallel GC Threads)" os_prio=31 tid=0x00007f930a80d800 nid=0x2e03 runnable 
+
+"Gang worker#6 (Parallel GC Threads)" os_prio=31 tid=0x00007f930c007000 nid=0x3003 runnable 
+
+"Gang worker#7 (Parallel GC Threads)" os_prio=31 tid=0x00007f930c007800 nid=0x3203 runnable 
+
+"Concurrent Mark-Sweep GC Thread" os_prio=31 tid=0x00007f930b86c000 nid=0x3803 runnable 
+
+"Gang worker#0 (Parallel CMS Threads)" os_prio=31 tid=0x00007f930b86b000 nid=0x3403 runnable 
+
+"Gang worker#1 (Parallel CMS Threads)" os_prio=31 tid=0x00007f930b86b800 nid=0x3603 runnable 
+
+"VM Periodic Task Thread" os_prio=31 tid=0x00007f930bbb2000 nid=0x6903 waiting on condition 
+
+JNI global references: 396
+
+Heap
+ par new generation   total 39744K, used 36187K [0x0000000780000000, 0x0000000782b20000, 0x0000000795550000)
+  eden space 35328K,  89% used [0x0000000780000000, 0x0000000781f06e08, 0x0000000782280000)
+  from space 4416K,  99% used [0x00000007826d0000, 0x0000000782b1fff8, 0x0000000782b20000)
+  to   space 4416K,   0% used [0x0000000782280000, 0x0000000782280000, 0x00000007826d0000)
+ concurrent mark-sweep generation total 87424K, used 44023K [0x0000000795550000, 0x000000079aab0000, 0x00000007c0000000)
+ Metaspace       used 52930K, capacity 54554K, committed 54860K, reserved 1097728K
+  class space    used 5308K, capacity 5623K, committed 5708K, reserved 1048576K
+
