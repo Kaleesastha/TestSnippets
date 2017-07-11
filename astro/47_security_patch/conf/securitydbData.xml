@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<AUTHORIZATION-DATA>
+<USER-PASSWD>
+<DATA ownername="NULL" username="guest" password="R6fQQVHUX9v28aP0Lg19cWWlHaM1IsiJ52Dof1QTb5E="/>
+<DATA ownername="NULL" username="root" password="PUvCeQbqr3hYbagHlhn7+HeiBRIiAaaZjQA7jBP4yik="/>
+</USER-PASSWD>
+<USER-GROUP>
+<DATA ownername="NULL" groupname="Users" username="guest"/>
+<DATA ownername="NULL" groupname="Admin" username="root"/>
+<DATA ownername="NULL" groupname="Users" username="root"/>
+</USER-GROUP>
+<VIEW-GROUP>
+<DATA ownername="NULL" groupname="Admin" viewname="admin"/>
+<DATA ownername="NULL" groupname="Admin" viewname="authView"/>
+<DATA ownername="NULL" groupname="Admin" viewname="configView"/>
+<DATA ownername="NULL" groupname="Admin" viewname="default Admin View"/>
+<DATA ownername="NULL" groupname="Users" viewname="operatorView"/>
+<DATA ownername="NULL" groupname="Admin" viewname="policy"/>
+<DATA ownername="NULL" groupname="Users" viewname="printerView"/>
+<DATA ownername="NULL" groupname="Admin" viewname="topo"/>
+<DATA ownername="NULL" groupname="Admin" viewname="userConfig"/>
+</VIEW-GROUP>
+<VIEW-OPERATION>
+<DATA operationname="Administrative Operation" viewname="admin" operationtype="1"/>
+<DATA operationname="Topology" viewname="topo" operationtype="1"/>
+<DATA operationname="Policy" viewname="policy" operationtype="1"/>
+<DATA operationname="User Administration" viewname="userConfig" operationtype="1"/>
+<DATA operationname="Trap Parsers And Filters" viewname="authView" operationtype="1"/>
+<DATA operationname="Events" viewname="authView" operationtype="1"/>
+<DATA operationname="Alerts" viewname="authView" operationtype="1"/>
+<DATA operationname="Polling Units" viewname="authView" operationtype="1"/>
+<DATA operationname="Polling Object" viewname="authView" operationtype="1"/>
+<DATA operationname="Threshold Object" viewname="authView" operationtype="1"/>
+<DATA operationname="Poll Filters" viewname="authView" operationtype="1"/>
+<DATA operationname="Configuration" viewname="configView" operationtype="1"/>
+<DATA operationname="Map Editing Operations" viewname="authView" operationtype="1"/>
+<DATA operationname="Map Editing Operations" viewname="operatorView" operationtype="0"/>
+<DATA operationname="Runtime Administration" viewname="operatorView" operationtype="0"/>
+<DATA operationname="Security Administration" viewname="operatorView" operationtype="0"/>
+<DATA operationname="System Administration" viewname="operatorView" operationtype="0"/>
+<DATA operationname="Topology" viewname="operatorView" operationtype="0"/>
+<DATA operationname="Alert User Operations" viewname="operatorView" operationtype="1"/>
+<DATA operationname="Event User Operations" viewname="operatorView" operationtype="1"/>
+<DATA operationname="Event Filters And Parsers" viewname="authView" operationtype="1"/>
+<DATA operationname="Provisioning" viewname="default Admin View" operationtype="1"/>
+</VIEW-OPERATION>
+<VIEW-PROPERTY>
+<DATA viewname="printerView">
+<PROPERTY propvalue="255.255.255.0" propname="netmask"/>
+<PROPERTY propvalue="192.168.1.0" propname="network"/>
+<PROPERTY propvalue="printer" propname="type"/>
+</DATA>
+</VIEW-PROPERTY>
+<OPERATION-TREE>
+<DATA leaf="1" parent="Operation Tree Root" child="Administrative Operation"/>
+<DATA leaf="1" parent="Events" child="Event Filters And Parsers"/>
+<DATA leaf="1" parent="Administrative Operation" child="Services"/>
+<DATA leaf="1" parent="Security Administration" child="Operation Settings"/>
+<DATA leaf="1" parent="Security Administration" child="Scope Settings"/>
+<DATA leaf="1" parent="Administrative Operation" child="Group Operations"/>
+<DATA leaf="1" parent="Administrative Operation" child="Operation Settings"/>
+<DATA leaf="1" parent="Events" child="Event User Operations"/>
+<DATA leaf="1" parent="Security Administration" child="Group Operations"/>
+<DATA leaf="1" parent="Alerts" child="Alert User Operations"/>
+<DATA leaf="1" parent="Topology" child="Modify Object"/>
+<DATA leaf="1" parent="Administrative Operation" child="Scope Settings"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Provisioning"/>
+<DATA leaf="1" parent="Alerts" child="Alert Filters"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Events"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Topology"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Policy"/>
+<DATA leaf="1" parent="Operation Tree Root" child="User Administration"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Trap Parsers And Filters"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Alerts"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Configuration"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Maps"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Polling Units"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Polling Object"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Threshold Object"/>
+<DATA leaf="1" parent="Operation Tree Root" child="Poll Filters"/>
+<DATA leaf="0" parent="Threshold Object" child="Modify Threshold Object"/>
+<DATA leaf="0" parent="Threshold Object" child="Delete Threshold Object"/>
+<DATA leaf="0" parent="Trap Parsers And Filters" child="Get Trap Filters"/>
+<DATA leaf="0" parent="Poll Filters" child="Reload Poll Filters"/>
+<DATA leaf="0" parent="Threshold Object" child="Get Threshold Objects"/>
+<DATA leaf="0" parent="Poll Filters" child="Update Poll Filters"/>
+<DATA leaf="0" parent="Poll Filters" child="Get Poll Filters"/>
+<DATA leaf="0" parent="Trap Parsers And Filters" child="Set Trap Filters"/>
+<DATA leaf="0" parent="Threshold Object" child="Add Threshold Object"/>
+<DATA leaf="0" parent="Alert User Operations" child="Alert Pickup"/>
+<DATA leaf="0" parent="Alerts" child="Alert Pickup"/>
+<DATA leaf="0" parent="Alerts" child="Delete Alerts"/>
+<DATA leaf="0" parent="Configuration" child="Create Task"/>
+<DATA leaf="0" parent="Configuration" child="Execute Task"/>
+<DATA leaf="0" parent="Maps" child="Map Editing Operations"/>
+<DATA leaf="0" parent="Polling Units" child="Add Polling Units"/>
+<DATA leaf="0" parent="Polling Units" child="Remove Polling Units"/>
+<DATA leaf="0" parent="Polling Units" child="Modify Polling Units"/>
+<DATA leaf="0" parent="Polling Units" child="Get Polling Unit"/>
+<DATA leaf="0" parent="Polling Object" child="Add Polling Object"/>
+<DATA leaf="0" parent="Polling Object" child="Modify Polling Object"/>
+<DATA leaf="0" parent="Polling Object" child="Delete Polling Object"/>
+<DATA leaf="0" parent="Polling Object" child="Change Polling Object Status"/>
+<DATA leaf="0" parent="Polling Object" child="Get Polling Objects"/>
+<DATA leaf="0" parent="Alerts" child="Get Alert History"/>
+<DATA leaf="0" parent="Trap Parsers And Filters" child="Reload Trap Filters"/>
+<DATA leaf="0" parent="Administrative Operation" child="Set Group Permission"/>
+<DATA leaf="0" parent="Operation Settings" child="Add Operation"/>
+<DATA leaf="0" parent="Operation Settings" child="Remove Operation"/>
+<DATA leaf="0" parent="Security Administration" child="Add Operation"/>
+<DATA leaf="0" parent="Security Administration" child="Remove Operation"/>
+<DATA leaf="0" parent="Administrative Operation" child="Add Operation"/>
+<DATA leaf="0" parent="Administrative Operation" child="Remove Operation"/>
+<DATA leaf="0" parent="Scope Settings" child="Create Scope For Group"/>
+<DATA leaf="0" parent="Scope Settings" child="Modify Group Scope Relation"/>
+<DATA leaf="0" parent="Security Administration" child="Create Scope For Group"/>
+<DATA leaf="0" parent="Security Administration" child="Modify Group Scope Relation"/>
+<DATA leaf="0" parent="Administrative Operation" child="Create Scope For Group"/>
+<DATA leaf="0" parent="Administrative Operation" child="Remove Group"/>
+<DATA leaf="0" parent="Administrative Operation" child="Add Group"/>
+<DATA leaf="0" parent="Trap Parsers And Filters" child="Get Trap Parsers"/>
+<DATA leaf="0" parent="Trap Parsers And Filters" child="Set Trap Parsers"/>
+<DATA leaf="0" parent="Provisioning" child="View TemplateResult"/>
+<DATA leaf="0" parent="Security Administration" child="Set Group Permission"/>
+<DATA leaf="0" parent="User Administration" child="Set User Permission"/>
+<DATA leaf="0" parent="User Administration" child="Set User Profile"/>
+<DATA leaf="0" parent="User Administration" child="Clear Audit Trails"/>
+<DATA leaf="0" parent="Group Operations" child="Add Group"/>
+<DATA leaf="0" parent="Group Operations" child="Remove Group"/>
+<DATA leaf="0" parent="Group Operations" child="Set Group Permission"/>
+<DATA leaf="0" parent="Security Administration" child="Add Group"/>
+<DATA leaf="0" parent="Security Administration" child="Remove Group"/>
+<DATA leaf="0" parent="Administrative Operation" child="Modify Group Scope Relation"/>
+<DATA leaf="0" parent="Administrative Operation" child="Shutdown Web NMS Server"/>
+<DATA leaf="0" parent="Modify Object" child="Start And Stop Discovery"/>
+<DATA leaf="0" parent="Topology" child="Start And Stop Discovery"/>
+<DATA leaf="0" parent="Modify Object" child="Manage And Unmanage Objects"/>
+<DATA leaf="0" parent="Topology" child="Manage And Unmanage Objects"/>
+<DATA leaf="0" parent="Policy" child="Add Policy"/>
+<DATA leaf="0" parent="Policy" child="Update Policy"/>
+<DATA leaf="0" parent="Policy" child="Delete Policy"/>
+<DATA leaf="0" parent="User Administration" child="User Configuration"/>
+<DATA leaf="0" parent="User Administration" child="Add Users"/>
+<DATA leaf="0" parent="User Administration" child="Assign User To Group"/>
+<DATA leaf="0" parent="User Administration" child="Remove Users"/>
+<DATA leaf="0" parent="User Administration" child="Remove User From Group"/>
+<DATA leaf="0" parent="User Administration" child="Change Self Password"/>
+<DATA leaf="0" parent="Topology" child="Refresh Node"/>
+<DATA leaf="0" parent="Topology" child="Delete Object"/>
+<DATA leaf="0" parent="Administrative Operation" child="Configure Log Levels"/>
+<DATA leaf="0" parent="Administrative Operation" child="Runtime Administration"/>
+<DATA leaf="0" parent="Administrative Operation" child="Security Administration"/>
+<DATA leaf="0" parent="Administrative Operation" child="Terminate Client"/>
+<DATA leaf="0" parent="Administrative Operation" child="System Administration"/>
+<DATA leaf="0" parent="Services" child="Clear Discovery"/>
+<DATA leaf="0" parent="Administrative Operation" child="Clear Discovery"/>
+<DATA leaf="0" parent="Services" child="Start Backup"/>
+<DATA leaf="0" parent="Administrative Operation" child="Start Backup"/>
+<DATA leaf="0" parent="Services" child="Resume NMS"/>
+<DATA leaf="0" parent="Administrative Operation" child="Resume NMS"/>
+<DATA leaf="0" parent="Topology" child="Add Network"/>
+<DATA leaf="0" parent="Topology" child="Add Node"/>
+<DATA leaf="0" parent="User Administration" child="Change Password"/>
+<DATA leaf="0" parent="User Administration" child="Get List of Users"/>
+<DATA leaf="0" parent="Alerts" child="Set Alert Filters"/>
+<DATA leaf="0" parent="Alert User Operations" child="Set Alert Annotation"/>
+<DATA leaf="0" parent="Alerts" child="Set Alert Annotation"/>
+<DATA leaf="0" parent="Alert User Operations" child="Get Alert Details"/>
+<DATA leaf="0" parent="Alerts" child="Get Alert Details"/>
+<DATA leaf="0" parent="Alert User Operations" child="Save Alerts To File"/>
+<DATA leaf="0" parent="Alerts" child="Save Alerts To File"/>
+<DATA leaf="0" parent="Alert User Operations" child="Print Alert View"/>
+<DATA leaf="0" parent="Alerts" child="Print Alert View"/>
+<DATA leaf="0" parent="Alert User Operations" child="Clear Alerts"/>
+<DATA leaf="0" parent="Alerts" child="Clear Alerts"/>
+<DATA leaf="0" parent="Alert User Operations" child="Get Alert Annotation"/>
+<DATA leaf="0" parent="Alerts" child="Get Alert Annotation"/>
+<DATA leaf="0" parent="Alert Filters" child="Set Alert Filters"/>
+<DATA leaf="0" parent="Alerts" child="Get Alert Filters"/>
+<DATA leaf="0" parent="Event Filters And Parsers" child="Get Event Parsers"/>
+<DATA leaf="0" parent="Events" child="Get Event Parsers"/>
+<DATA leaf="0" parent="Event Filters And Parsers" child="Set Event Parsers"/>
+<DATA leaf="0" parent="Events" child="Set Event Parsers"/>
+<DATA leaf="0" parent="Event Filters And Parsers" child="Get Event Filters"/>
+<DATA leaf="0" parent="Events" child="Get Event Filters"/>
+<DATA leaf="0" parent="Event Filters And Parsers" child="Set Event Filters"/>
+<DATA leaf="0" parent="Events" child="Set Event Filters"/>
+<DATA leaf="0" parent="Event User Operations" child="Save Events To File"/>
+<DATA leaf="0" parent="Events" child="Save Events To File"/>
+<DATA leaf="0" parent="Event User Operations" child="Print Event View"/>
+<DATA leaf="0" parent="Events" child="Print Event View"/>
+<DATA leaf="0" parent="Alert Filters" child="Get Alert Filters"/>
+<DATA leaf="0" parent="Alert User Operations" child="Get Alert History"/>
+</OPERATION-TREE>
+<NAMED-AUTH>
+<DATA authorizedview="NULL" namedview="Events"/>
+<DATA authorizedview="NULL" namedview="Alerts"/>
+<DATA authorizedview="NULL" namedview="Network Database"/>
+<DATA authorizedview="NULL" namedview="Maps"/>
+<DATA authorizedview="NULL" namedview="Stats Admin"/>
+<DATA authorizedview="NULL" namedview="Provisioning"/>
+</NAMED-AUTH>
+<USER-CONF>
+<DATA passwordexpirytime="0" status="enabled" userexpirytime="0" passwordage="0" ownername="NULL" userage="0" username="root"/>
+<DATA passwordexpirytime="0" status="enabled" userexpirytime="0" passwordage="0" ownername="NULL" userage="0" username="guest"/>
+</USER-CONF>
+</AUTHORIZATION-DATA>
