@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp codebase="https://venkat-0773.csez.zohocorpin.com:8443" href="conf/WebNMS.jnlp">
+
+ <information>
+    <title>WebNMS Framework</title>
+    <vendor>Zoho Corp.</vendor>
+    <homepage href="help/index.html"/> 
+    <description>WebNMS Framework version 5.2 - Web Start Client</description> 
+    <icon href="images/adventneticon.jpg"/> 
+<offline-allowed/>
+ </information>
+
+
+<resources>
+<j2se initial-heap-size="100M" max-heap-size="200M" version="1.5+"/>
+<jar href="classes/NmsClientClasses.jar"/>
+<jar href="classes/AdventNetSnmp.jar"/>
+<jar href="classes/Mail.jar"/>
+<jar href="classes/SNMPDebugger.jar"/>
+<jar href="classes/AdventNetSnmpV3USM.jar"/>
+<jar href="classes/ClientExamples.jar"/>
+<jar href="classes/JimiProClasses.jar"/>
+<jar href="classes/AdventNetUI.jar"/>
+<jar href="classes/ManagementClient.jar"/>
+<jar href="classes/AdventNetCLIClient.jar"/>
+<jar href="classes/AdventNetTL1.jar"/>
+<jar href="classes/AdventNetTL1Tools.jar"/>
+<jar href="classes/AdventNetUtils.jar"/>
+<jar href="classes/ApiUtils.jar"/>
+<jar href="NetMonitor/build/RuntimeConfigFrame.jar"/>
+<jar href="NetMonitor/build/AuthMain.jar"/>
+<jar href="NetMonitor/build/ConfigPanel.jar"/>
+<jar href="classes/AdventNetJta.jar"/>
+<jar href="classes/AdventNetAboutDialog.jar"/>
+<jar href="classes/AdventNetCCLLibrary.jar"/>
+<jar href="classes/AdventNetProBeans.jar"/>
+<jar href="classes/AdventNetDMPModels.jar"/>
+<jar href="classes/jfreechart.jar"/>
+<jar href="classes/jcommon.jar"/>
+<jar href="NetMonitor/build/PerformanceGraphs.jar"/>
+<jar href="classes/json.jar"/>
+<jar href="classes/Mail.jar"/>
+<property name="javaws.LOGIN_FAIL_SLEEP_INTERVAL" value="5000"/>
+<property name="javaws.PASSWORD_ONEWAY_ENCRYPTION" value="com.adventnet.security.authentication.PasswordEncryptionImpl"/>
+<property name="javaws.ONEWAY_ENCRYPTION" value="true"/>
+</resources>
+
+<security>
+  <all-permissions/>
+</security>
+<application-desc main-class="com.adventnet.nms.startclient.WebNMSClient">
+<argument>venkat-0773.csez.zohocorpin.com</argument>
+<argument>8443</argument>
+<argument>yes</argument>
+<argument>en</argument>
+<argument>US</argument>
+<argument>-https</argument>
+</application-desc>
+
+</jnlp>
