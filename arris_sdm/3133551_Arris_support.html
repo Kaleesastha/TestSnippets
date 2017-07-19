@@ -1,0 +1,695 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>3133551 - Arris support</title>
+  </head>
+  <body>
+    <meta charset="utf-8">
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Hi Anoop,<br>
+        <br>
+        Please do the following steps which will help you to migrate
+        your data:<br>
+        <br>
+        1. With<span>&nbsp;</span><a
+href="https://www.webnms.com/telecom/help/developer_guide/backup/backupservice.html">NMS_HOME/bin/backup/BackupDB.sh</a>,
+        backup your existing 4.7 Sybase data</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">2. Create a new MySQL database and start
+        the MySQL server.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">3. Using&nbsp;</font><span
+        style="font-family: &quot;times new roman&quot;, times, serif;
+        font-size: medium;">NMS_HOME/bin/backup/RestoreBackUp.sh,<span>&nbsp;</span><a
+href="https://www.webnms.com/telecom/help/developer_guide/backup/backupservice.html#how_to_restore">restore
+          your data</a>.</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">(Please
+        &nbsp;<a href="http://bit.ly/backupnms">check this link too</a><span>&nbsp;</span>for
+        WebNMS backup)</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;"><br>
+        Now you can use the<span>&nbsp;</span><a
+          href="http://bit.ly/migratenms">WebNMS migration procedure</a><span>&nbsp;</span>to
+        migrate this database to 5.x.</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">Once
+        you successfully migrate the data to 5.x, you can backup the
+        database in MySQL &amp; restore the same in postgresql.</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;">
+      <div style="background-color: rgb(255, 255, 255); font-family:
+        verdana; font-size: medium; text-align: justify;"><span
+          style="font-family: &quot;times new roman&quot;, times,
+          serif;">Ensure to execute the following query in postgres
+          prompt before restoration in postgres:</span><br
+          style="font-family: &quot;times new roman&quot;, times,
+          serif;">
+        <span style="color: rgb(0, 0, 255); font-family: &quot;courier
+          new&quot;, courier, monospace; font-size: small; text-align:
+          start;">UPDATE pg_cast SET castcontext = 'i' WHERE oid IN
+          (SELECT c.oid FROM pg_cast c inner join pg_type src ON src.oid
+          = c.castsource inner join pg_type tgt ON tgt.oid =
+          c.casttarget WHERE src.typname LIKE 'int%' AND tgt.typname
+          LIKE 'bool%')&nbsp;</span></div>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><br>
+    </div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">If
+        you face any issues, please get back to us.</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;"><br>
+      </span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">Thanks
+        &amp; Regards,</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;">Venkatramanan.</span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><span style="font-family:
+        &quot;times new roman&quot;, times, serif; font-size: medium;"><br>
+      </span></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font style="font-family:
+        &quot;Times New Roman&quot;, Times, serif; background-color:
+        rgb(245, 245, 245);" size="2"><i style="font-family: Verdana;"><font
+            face="times new roman, times, serif"><span
+              style="background-color: rgb(204, 204, 204);"><font
+                style="font-family: &quot;Times New Roman&quot;, Times,
+                serif; font-style: normal; background-color: rgb(245,
+                245, 245);" size="2"><span style="font-family: Arial,
+                  Helvetica, sans-serif; background-color: rgb(204, 204,
+                  204);"><font face="times new roman, times, serif"><i><a
+                        href="http://bit.ly/mygit99">Public GitHub
+                        repository</a>&nbsp;|</i></font></span></font>&nbsp;<a
+                href="https://nmskbase.wiki.zoho.com/siteindex.zhtml">wiki</a>&nbsp;|&nbsp;</span></font></i></font><font
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;
+        background-color: rgb(245, 245, 245);" size="2"><i
+          style="font-family: Verdana;"><font face="times new roman,
+            times, serif"><span style="background-color: rgb(204, 204,
+              204);"><font style="font-family: &quot;Times New
+                Roman&quot;, Times, serif; font-style: normal;
+                background-color: rgb(245, 245, 245);" size="2"><i
+                  style="font-family: Verdana;"><font face="times new
+                    roman, times, serif"><span style="background-color:
+                      rgb(204, 204, 204);"><a
+                        href="http://kbase.webnms.com/kbasenmssearch.jsp">WebNMS
+                        KBase</a>&nbsp;|</span></font></i></font>&nbsp;&nbsp;</span></font></i></font><font
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;
+        background-color: rgb(245, 245, 245);" size="2"><i
+          style="font-family: Verdana;"><font face="times new roman,
+            times, serif"><span style="background-color: rgb(204, 204,
+              204);"><font style="font-family: &quot;Times New
+                Roman&quot;, Times, serif; font-style: normal;
+                background-color: rgb(245, 245, 245);" size="2"><span
+                  style="font-family: Arial, Helvetica, sans-serif;
+                  background-color: rgb(204, 204, 204);"><font
+                    face="times new roman, times, serif"><i><a
+                        href="http://bit.ly/testprograms">Test Programs</a>&nbsp;|&nbsp;</i></font></span></font></span></font></i></font><font
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;
+        background-color: rgb(245, 245, 245);" size="2"><i
+          style="font-family: Verdana;"><font face="times new roman,
+            times, serif"><span style="background-color: rgb(204, 204,
+              204);"><font style="font-family: &quot;Times New
+                Roman&quot;, Times, serif; font-style: normal;
+                background-color: rgb(245, 245, 245);" size="2"><span
+                  style="font-family: Arial, Helvetica, sans-serif;
+                  background-color: rgb(204, 204, 204);"><font
+                    face="times new roman, times, serif"><i><i><a
+                          href="https://nmskbase.wiki.zoho.com/fetchdocuments.im?sdomain=nmskbase">wiki
+                          attachments</a>&nbsp;|</i>&nbsp;</i></font></span></font><a
+                href="https://forums.webnms.com/webnms-framework">Developer
+                Community</a>&nbsp;&nbsp;|&nbsp;<a
+href="http://www.webnms.com/webnms/help/javadocs/consolidated_javadocs/index.html">JavaDocs</a>&nbsp;|&nbsp;<a
+href="https://www.webnms.com/telecom/help/developer_guide/">Developer
+                Guide</a>&nbsp;|&nbsp;<a
+                href="https://www.webnms.com/telecom/help/installation_guide/">Installation
+                Guide</a>&nbsp;| Facing issues?&nbsp;</span></font></i><span
+          style="font-family: Arial, Helvetica, sans-serif;
+          background-color: rgb(204, 204, 204);"><font face="times new
+            roman, times, serif"><i><a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger</a>&nbsp;&amp;&nbsp;</i></font></span></font><font
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;
+        background-color: rgb(245, 245, 245);" size="2"><span
+          style="font-family: Arial, Helvetica, sans-serif;
+          background-color: rgb(204, 204, 204);"><font face="times new
+            roman, times, serif"><i><font style="font-family:
+                &quot;Times New Roman&quot;, Times, serif; font-style:
+                normal; background-color: rgb(245, 245, 245);" size="2"><span
+                  style="font-family: Arial, Helvetica, sans-serif;
+                  background-color: rgb(204, 204, 204);"><font
+                    face="times new roman, times, serif"><i><a
+                        href="http://bit.ly/uploadlogs">upload</a>&nbsp;</i></font></span></font>logs</i></font></span></font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+        &lt;Tripathi, Anoop&gt; wrote--------------</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Hi Venkat</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">As you are aware, we are in the process of
+        migrating our SDM from webnms 4.7 (on Sybase) to webnms 5.2 (on
+        Postgresql)</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">We have gone through the below mentioned
+        documentation. But we still have a question regarding migration
+        of our DB from Sybase to Postgresql</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">The documentation talks about scripts and
+        utilities which will upgrade the DB schema, and patch up the DB
+        data to migrate the DB from webnms 4.7 to 5.2.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">However, during all this activity, the DB
+        vendor remains the same.&nbsp;</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">For instance, in our case, these scripts
+        will help us migrate our DB from webnms 4.7 to webnms 5.2,
+        maintaining the Sybase database all the while.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">How do we take care of migrating the
+        existing data from Sybase to Postgresql ?</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Sybase and Postgresql use totally different
+        set of files to save the data and schema.</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Should we write our own scripts to unload
+        contents of all the Sybase DB tables into CSV files, and then
+        load those CSV files back into Postgresql database ?</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Does webnms provide any such
+        scripts/utilities ?</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Regards</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">Anoop</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif"><br>
+      </font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">From: Ks, Ravikiran&nbsp;</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;"><font size="3" face="times new
+        roman, times, serif">From: ZohoCorp WebNMS Support
+        [mailto:nms-support@webnms.com]</font></div>
+    <div style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;">
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;">
+        <div><span style="background-color: rgb(255, 255, 255);"><font
+              face="times new roman, times, serif"><font size="3">Hi
+                Ravikiran,<br>
+              </font></font><br>
+            <font face="times new roman, times, serif"><font size="3">Please
+                download the 5.2SP1&nbsp;</font></font><font face="times
+              new roman, times, serif"><font size="3"><font face="times
+                  new roman, times, serif"><font size="3"><font
+                      face="times new roman, times, serif"><font
+                        size="3"><font size="3">(Linux / Windows)&nbsp;</font></font></font></font></font>64-bit
+                zips&nbsp;<a
+                  href="https://nmskbase.wiki.zoho.com/64bit.hlp">from
+                  here</a>.<br>
+              </font></font><font size="3" face="times new roman, times,
+              serif">Go through the&nbsp;<a
+                href="http://www.webnms.com/webnms/help/release_notes/index.html">release
+                notes</a>&nbsp;to know what is new in 5.x.<br>
+              <br>
+            </font><font face="times new roman, times, serif"><font
+                size="3">The&nbsp;<b>migration guide</b>&nbsp;(which
+                talks about&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/mig_47sp3_5/server_api_changes/server_api_changes_introduction.html">Server
+                  API Changes</a>,&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/mig_47sp3_5/java_client_apichanges/java_client_api_changes.html">Java
+                  Client API Changes</a>,&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/mig_47sp3_5/dbschema_changes_47sp3_5.html">Database
+                  Schema Changes</a>,&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/mig_47sp3_5/functional_changes_47sp3_5.html">Functional
+                  Changes</a>,<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/studio_project_upgrade.html#studio_project_upgrade_overview">Studio
+                  Project Upgrade</a>,&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/packagingchanges.html#packaging_changes_overview">Packaging
+                  Changes</a>,&nbsp;<a
+href="http://www.webnms.com/webnms/help/migration_guide/migration_guide/migration_process_webnms5.html">Process
+                  of Migration</a>) is available at:&nbsp;<a
+                  href="http://www.webnms.com/webnms/help/migration_guide/index.html">http://www.webnms.com/webnms/help/migration_guide/index.html<br>
+                </a><br>
+                The&nbsp;<b>DB Migration tool</b>&nbsp;is used to
+                migrate the existing 4.7 version database to schema of
+                Web NMS 5. The migration process include modification of
+                existing tables such as addition of column, removal of
+                column etc, creation of new tables and removal of
+                unwanted tables.<br>
+              </font><font size="3"><br>
+                Download the DBMigration.jar and DB_Migration.html
+                (guideline document for database migration) from&nbsp;</font></font><font
+              face="times new roman, times, serif"><font size="3"><font
+                  face="times new roman, times, serif"><font size="3"><a
+href="https://nmskbase.wiki.zoho.com/_attach/1.1/WebNMS_DB_Migration.zip">here</a></font></font><br>
+              </font><font size="3">Place this jar file in the classpath
+                and execute the class from
+                &lt;WebNMS_HOME&gt;&nbsp;directory of Web NMS 4.7
+                SP3/4.7 SP4.<br>
+                <br>
+                "<span style="font-weight: bold; font-style: italic;">java
+                  util.DBMigration</span>".<br>
+                <br>
+                This will generate a file by name "<span
+                  style="font-weight: bold; font-style: italic;">script_mysql</span>"
+                in the same directory. Kindly execute the script file as
+                mentioned in the guidelines document.<br>
+                <br>
+                Note: As a safety measure, take a&nbsp;<a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/backup/backupservice.html">backup
+                  of the database</a>&nbsp;using Backup.sh/bat file
+                available under &lt;WebNMS_HOME&gt;/bin/backup directory
+                before the start of migration process.<br>
+                <br>
+              </font></font></span>
+          <div><font style="background-color: rgb(255, 255, 255);"
+              size="3" face="times new roman, times, serif">Please
+              follow the below steps to start this build.<br>
+              <br>
+            </font></div>
+          <div><font style="background-color: rgb(255, 255, 255);"
+              size="3" face="times new roman, times, serif">1. Unzip
+              this in a Linux / Windows machine and unzip&nbsp;<a
+href="http://uploads.zohocorp.com/Internal_Useruploads/Web_NMS/p18fjrn4ukjh119kdo9519pupqa0/fresh_dat_files.zip">this
+                zip</a>&nbsp;under NMS_HOME/classes.</font></div>
+          <div><font style="background-color: rgb(255, 255, 255);"
+              size="3" face="times new roman, times, serif">2. Note down
+              the JRE-6 /&nbsp;JRE-7 (preferably) directory in your
+              machine and configure the same in JAVA_HOME in setEnv.sh</font></div>
+          <div><font style="background-color: rgb(255, 255, 255);"
+              size="3" face="times new roman, times, serif">3. Start the
+              server and choose evaluation mode (Your existing 4.7
+              license can also be applied).<br>
+            </font></div>
+          <div>
+            <div><font style="background-color: rgb(255, 255, 255);"
+                size="3" face="times new roman, times, serif"><br>
+                If you face any issues, please mail to WebNMS support
+                about the same along with the logs and the below files.</font></div>
+            <div><font style="background-color: rgb(255, 255, 255);"
+                size="3" face="times new roman, times, serif">&nbsp;
+                &nbsp; &nbsp; 1. files in NMS_HOME/lib directory</font></div>
+            <div><font style="background-color: rgb(255, 255, 255);"
+                size="3" face="times new roman, times, serif">&nbsp;
+                &nbsp; &nbsp; 2. wrapper executable under NMS_HOME</font></div>
+            <div><span style="background-color: rgb(255, 255, 255);"><font
+                  size="3" face="times new roman, times, serif">&nbsp;
+                  &nbsp; &nbsp; 3. NMS_HOME/conf/wrapper.conf file<br>
+                </font><font size="3" face="times new roman, times,
+                  serif">&nbsp; &nbsp; &nbsp; 4. NMS_HOME/logs<br>
+                </font></span>
+              <div><span style="background-color: rgb(255, 255, 255);"><span
+                    style="font-family: &quot;times new roman&quot;,
+                    times, serif; font-size: medium;"><br>
+                    You can also know about the performance advantages
+                    by seeing&nbsp;<a href="http://bit.ly/perfguide99">performance
+                      guide which shows the comparison between 4.7 &amp;
+                      5.2 WebNMS</a>.<br>
+                  </span><font size="3" face="times new roman, times,
+                    serif">(We can have up to 100 users when there are
+                    adequate no. of front end servers - one BE can
+                    support 15-20 java clients &amp; hence you will need
+                    1BE + 5 FEs to support 100 users).<br>
+                  </font><br>
+                </span></div>
+              <div><span style="background-color: rgb(255, 255, 255);"><span
+                    style="font-family: &quot;times new roman&quot;,
+                    times, serif; font-size: medium;">In addition,
+                    please go through the&nbsp;</span><a
+                    href="https://www.webnms.com/webnms/datasheet.html">WebNMS
+                    data sheet</a><span style="font-family: &quot;times
+                    new roman&quot;, times, serif; font-size: medium;">&nbsp;as
+                    well which shows the number of devices supported.</span></span></div>
+              <span style="background-color: rgb(255, 255, 255);"><br
+                  class="Apple-interchange-newline">
+                <span style="font-family: &quot;times new roman&quot;,
+                  times, serif; font-size: medium;">We believe this
+                  answers your query. Please get back to us for any
+                  further clarification in this regard.</span><br
+                  style="font-family: &quot;times new roman&quot;,
+                  times, serif; font-size: medium;">
+                <br style="font-family: &quot;times new roman&quot;,
+                  times, serif; font-size: medium;">
+                <span style="font-family: &quot;times new roman&quot;,
+                  times, serif; font-size: medium;">Thanks &amp;
+                  Regards,</span><br style="font-family: &quot;times new
+                  roman&quot;, times, serif; font-size: medium;">
+                <span style="font-family: &quot;times new roman&quot;,
+                  times, serif; font-size: medium;">Venkatramanan</span><br>
+              </span></div>
+          </div>
+        </div>
+        <font size="3" face="times new roman, times, serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font style="font-family: &quot;Times New
+          Roman&quot;, Times, serif; background-color: rgb(245, 245,
+          245);" size="2"><i style="font-family: Verdana;"><font
+              face="times new roman, times, serif"><span
+                style="background-color: rgb(204, 204, 204);"><font
+                  style="font-family: &quot;Times New Roman&quot;,
+                  Times, serif; font-style: normal; background-color:
+                  rgb(245, 245, 245);" size="2"><span
+                    style="font-family: Arial, Helvetica, sans-serif;
+                    background-color: rgb(204, 204, 204);"><font
+                      face="times new roman, times, serif"><i><a
+                          href="http://bit.ly/mygit99">Public GitHub
+                          repository</a>&nbsp;|</i></font></span></font>&nbsp;<a
+                  href="https://nmskbase.wiki.zoho.com/siteindex.zhtml">wiki</a>&nbsp;|&nbsp;</span></font></i></font><font
+          style="font-family: &quot;Times New Roman&quot;, Times, serif;
+          background-color: rgb(245, 245, 245);" size="2"><i
+            style="font-family: Verdana;"><font face="times new roman,
+              times, serif"><span style="background-color: rgb(204, 204,
+                204);"><font style="font-family: &quot;Times New
+                  Roman&quot;, Times, serif; font-style: normal;
+                  background-color: rgb(245, 245, 245);" size="2"><i
+                    style="font-family: Verdana;"><font face="times new
+                      roman, times, serif"><span
+                        style="background-color: rgb(204, 204, 204);"><a
+href="http://kbase.webnms.com/kbasenmssearch.jsp">WebNMS KBase</a>&nbsp;|</span></font></i></font>&nbsp;&nbsp;</span></font></i></font><font
+          style="font-family: &quot;Times New Roman&quot;, Times, serif;
+          background-color: rgb(245, 245, 245);" size="2"><i
+            style="font-family: Verdana;"><font face="times new roman,
+              times, serif"><span style="background-color: rgb(204, 204,
+                204);"><font style="font-family: &quot;Times New
+                  Roman&quot;, Times, serif; font-style: normal;
+                  background-color: rgb(245, 245, 245);" size="2"><span
+                    style="font-family: Arial, Helvetica, sans-serif;
+                    background-color: rgb(204, 204, 204);"><font
+                      face="times new roman, times, serif"><i><a
+                          href="http://bit.ly/testprograms">Test
+                          Programs</a>&nbsp;|&nbsp;</i></font></span></font></span></font></i></font><font
+          style="font-family: &quot;Times New Roman&quot;, Times, serif;
+          background-color: rgb(245, 245, 245);" size="2"><i
+            style="font-family: Verdana;"><font face="times new roman,
+              times, serif"><span style="background-color: rgb(204, 204,
+                204);"><font style="font-family: &quot;Times New
+                  Roman&quot;, Times, serif; font-style: normal;
+                  background-color: rgb(245, 245, 245);" size="2"><span
+                    style="font-family: Arial, Helvetica, sans-serif;
+                    background-color: rgb(204, 204, 204);"><font
+                      face="times new roman, times, serif"><i><i><a
+                            href="https://nmskbase.wiki.zoho.com/fetchdocuments.im?sdomain=nmskbase">Files
+                            in WebNMS wiki</a>&nbsp;|</i>&nbsp;</i></font></span></font><a
+                  href="https://forums.webnms.com/webnms-framework">Developer
+                  Community</a>&nbsp;&nbsp;| Facing issues?&nbsp;</span></font></i><span
+            style="font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(204, 204, 204);"><font face="times new
+              roman, times, serif"><i><a
+href="http://www.webnms.com/webnms/help4_7/developer_guide/troubleshooting_tips/general_tips.html">startdebugger</a>&nbsp;&amp;&nbsp;</i></font></span></font><font
+          style="font-family: &quot;Times New Roman&quot;, Times, serif;
+          background-color: rgb(245, 245, 245);" size="2"><span
+            style="font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(204, 204, 204);"><font face="times new
+              roman, times, serif"><i><font style="font-family:
+                  &quot;Times New Roman&quot;, Times, serif; font-style:
+                  normal; background-color: rgb(245, 245, 245);"
+                  size="2"><span style="font-family: Arial, Helvetica,
+                    sans-serif; background-color: rgb(204, 204, 204);"><font
+                      face="times new roman, times, serif"><i><a
+                          href="http://bonitas2.zohocorp.com/">upload</a>&nbsp;</i></font></span></font>logs<br>
+                <br>
+              </i></font></span></font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">&lt;Darryl Stork&gt; wrote--------------</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Hi Venkat</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Arris is now current on support. Can you please work
+          with Kiran to provide links / details for Arris team to
+          download V5.2 and if necessary schedule a support call to
+          guide with upgrade.</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif"><br>
+        </font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Best regards</font></div>
+      <div style="font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;"><font size="3" face="times new roman, times,
+          serif">Darryl</font></div>
+    </div>
+    <br style="color: rgb(0, 0, 0); font-family: Verdana, Arial,
+      Helvetica, sans-serif; font-size: 11px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: normal; letter-spacing: normal; orphans: 2;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration-style: initial;
+      text-decoration-color: initial;">
+  </body>
+</html>
