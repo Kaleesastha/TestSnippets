@@ -1,0 +1,107 @@
+	public void addEpapSnmpv3Node(Tek_inventory_epap node,boolean isOldEpapNodeReAddReq) throws Exception {
+		String remoteHost = "";
+		String userName = node.getSnmpv3username();
+		SnmpAPI api = new SnmpAPI();
+		api.setDebug(true);
+		SnmpSession session = new SnmpSession(api);
+		SnmpTarget target = null;
+
+		try{
+			int authProtocol = USMUserEntry.NO_AUTH;
+			String authPassword = "";
+			String privPassword = "";
+			remoteHost = node.getIpAddress();		
+			String[] remoteHostArr = { remoteHost };
+			if ("AuthPriv".equalsIgnoreCase(node.getSnmpv3Securitylevel())) {
+				authProtocol = USMUserEntry.SHA_AUTH;
+				authPassword =Coding.convertFromBase( node.getSnmpv3Authpassword());
+				privPassword = Coding.convertFromBase(node.getSnmpv3Privpassword());
+			}else if("AuthNoPriv".equalsIgnoreCase(node.getSnmpv3Securitylevel())){
+				authProtocol = USMUserEntry.SHA_AUTH;
+				authPassword = Coding.convertFromBase(node.getSnmpv3Authpassword());
+			}
+			session.setTimeout(10);
+			session.open();
+			try{
+				if(!isOldEpapNodeReAddReq){
+					USMUtils.init_v3_parameters(userName, authProtocol, authPassword, privPassword, remoteHost, PORT, session);//Sometimes we are getting exception for correct credential
+					}
+			}catch(SnmpException e){
+				e.printStackTrace();
+				throw e;
+			}
+			
+			target = getSnmpTarget(node);	
+			
+			target.create_v3_tables();
+			
+			if(!isOldEpapNodeReAddReq){
+				if(!checkForEntryInUSM(target,remoteHost,true)){
+					deleteUserTableEntry(remoteHostArr);
+					throw new Exception("Failed to Create USMTABLE Entries for given SNMPv3 Node, Error : "+ErrorMessages.getErrorString(target.getErrorCode()));
+				}
+				// target object getting from getSnmpTarget() method
+				String returnVal = target.snmpGet();  // Sometimes we are getting failure response(null) for correct credential/configuration
+				
+				if(returnVal != null && (returnVal.equals("0")||returnVal.equals("NULL"))){
+					addRequestResult = 1;
+				}else{
+					addRequestResult = -1;
+					throw new Exception("Error : "+ErrorMessages.getErrorString( target.getErrorCode())) ;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}finally{
+			session.close();
+			api.close();
+			if(target!= null)
+				target.releaseResources();
+		}		
+	}
+
+-----------------------------------------------------------------------------------
+/**
+	 * This method is use to return SNMP target object
+	 * @param node
+	 * @return
+	 * @throws Exception
+	 */
+	public  SnmpTarget getSnmpTarget(Tek_inventory_epap node) throws Exception {
+
+		String AuthPwd = "", PrivPwd = "";
+		SnmpTarget target = new SnmpTarget();
+
+		target.setTimeout(10);
+		target.setTargetHost(node.getEpapIp());// Server IP
+		target.setObjectID(OID);// OID
+		target.setTargetPort(PORT);/PORT-161
+		target.setDebug(true);
+		target.setSnmpVersion(VERSION);// VERSION- V2c/v3
+		target.validateUser(true);
+		target.setPrincipal(node.getSnmpv3username());// Epap User Name
+		if ("AuthPriv".equalsIgnoreCase(node.getSnmpv3Securitylevel())) {// Security level
+			AuthPwd = Coding.convertFromBase(node.getSnmpv3Authpassword());// auth password
+			PrivPwd = Coding.convertFromBase(node.getSnmpv3Privpassword());// priv password
+			target.setAuthPassword(AuthPwd);
+			target.setAuthProtocol(SnmpServer.SHA_AUTH);
+			String privProtocol = node.getSnmpv3Privprotocol();/
+			if(privProtocol.equalsIgnoreCase("CFB-AES-128")){
+				target.setPrivProtocol(SnmpServer.CFB_AES_128);
+			}else{
+				target.setPrivProtocol(SnmpServer.CBC_DES);	
+			}
+			target.setPrivPassword(PrivPwd);
+		} else if ("AuthNoPriv".equalsIgnoreCase(node.getSnmpv3Securitylevel())) {
+			//target.setSecurityLevel(SnmpServer.AUTH_NO_PRIV);
+			//target.setSecLevelForTimeSync(SnmpServer.AUTH_NO_PRIV);
+			AuthPwd = Coding.convertFromBase( node.getSnmpv3Authpassword());
+			target.setAuthPassword(AuthPwd);
+			target.setAuthProtocol(SnmpServer.SHA_AUTH);
+		}else{
+			target.setAuthProtocol(SnmpServer.NO_AUTH);
+		}
+
+		return target;
+	}
