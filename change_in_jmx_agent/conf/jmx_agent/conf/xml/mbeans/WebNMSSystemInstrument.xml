@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelMBean>
+    <ModelMBeanDescriptor name="com.adventnet.nms.jmxagent.WebNMSSystemInstrument"  descriptorType="mbean"  displayName="WebNMSSystemInstrument"  log="T"  logfile="jmxagent.log"  currencyTimeLimit="60"  export="null"  visibility="1"  persistPolicy="OnUpdate"  persistLocation="jmxstore"  persistName="WebNMSSystemInstrument"  description="Contains attribute of WebNMSSystem group"  presentationString="notValid" ></ModelMBeanDescriptor>
+    <attributeDescriptors>
+        <attribute name="WebNMSVersion"  descriptorType="attribute"  type="java.lang.String"  description="&quot;The version number of the AdventNet WebNMS System.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSVersion"  getMethod="getWebNMSVersion"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.1.1" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSHost"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSHost"  getMethod="getWebNMSHost"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.1.2" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSIpAddress"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSIpAddress"  getMethod="getWebNMSIpAddress"  iterable="F" >
+            <protocolMap name="SNMP"  type="IpAddress"  value=".1.3.6.1.4.1.2162.4.1.3" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSTotalMemory"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The Total memory of the device in which the WebNMS is running&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSTotalMemory"  getMethod="getWebNMSTotalMemory"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.4" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSFreeMemory"  descriptorType="attribute"  type="java.lang.Integer"  description="&quot;The Free memory available in the device in which the WebNMS is running&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSFreeMemory"  getMethod="getWebNMSFreeMemory"  iterable="F" >
+            <protocolMap name="SNMP"  type="Integer32"  value=".1.3.6.1.4.1.2162.4.1.5" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSStartTime"  descriptorType="attribute"  type="[B"  description="&quot;This variable states the time at which the NMS Server started&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSStartTime"  getMethod="getWebNMSStartTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="DateAndTime"  value=".1.3.6.1.4.1.2162.4.1.6" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSUpTime"  descriptorType="attribute"  type="java.lang.Long"  description="&quot;This variable states the duration for which the NMS Server has been running&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSUpTime"  getMethod="getWebNMSUpTime"  iterable="F" >
+            <protocolMap name="SNMP"  type="TimeTicks"  value=".1.3.6.1.4.1.2162.4.1.7" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSShutdown"  descriptorType="attribute"  type="java.lang.String"  description="description"  isReadable="T"  isWritable="T"  isIs="F"  displayName="WebNMSShutdown"  getMethod="getWebNMSShutdown"  setMethod="setWebNMSShutdown"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.1.8" ></protocolMap>
+        </attribute>
+        <attribute name="WebNMSVersiondummy"  descriptorType="attribute"  type="java.lang.String"  description="&quot;The version number of the AdventNet WebNMS System.&quot;"  isReadable="T"  isWritable="F"  isIs="F"  displayName="WebNMSVersiondummy"  getMethod="getWebNMSVersiondummy"  iterable="F" >
+            <protocolMap name="SNMP"  type="DisplayString"  value=".1.3.6.1.4.1.2162.4.1.12" ></protocolMap>
+        </attribute>
+    </attributeDescriptors>
+    <operationDescriptors>
+        <operation name="com.adventnet.nms.jmxagent.WebNMSSystemInstrument"  descriptorType="operation"  displayName="WebNMSSystemInstrumentDefaultConstructor"  description="default constructor"  role="constructor" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSVersion"  descriptorType="operation"  displayName="getWebNMSVersion"  description="gets the WebNMSVersionvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSHost"  descriptorType="operation"  displayName="getWebNMSHost"  description="gets the WebNMSHostvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSIpAddress"  descriptorType="operation"  displayName="getWebNMSIpAddress"  description="gets the WebNMSIpAddressvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSTotalMemory"  descriptorType="operation"  displayName="getWebNMSTotalMemory"  description="gets the WebNMSTotalMemoryvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSFreeMemory"  descriptorType="operation"  displayName="getWebNMSFreeMemory"  description="gets the WebNMSFreeMemoryvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Integer" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSStartTime"  descriptorType="operation"  displayName="getWebNMSStartTime"  description="gets the WebNMSStartTimevalues"  role="getter"  impact="INFO"  operResponseType="byte[]" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSUpTime"  descriptorType="operation"  displayName="getWebNMSUpTime"  description="gets the WebNMSUpTimevalues"  role="getter"  impact="INFO"  operResponseType="java.lang.Long" >
+            <params></params>
+        </operation>
+        <operation name="getWebNMSShutdown"  descriptorType="operation"  displayName="getWebNMSShutdown"  description="gets the WebNMSShutdownvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+        <operation name="setWebNMSShutdown"  descriptorType="operation"  displayName="setWebNMSShutdown"  description="Changes theWebNMSShutdownvalues"  role="setter"  impact="ACTION"  operResponseType="void" >
+            <params>
+                <param name="webNMSShutdown"  type="java.lang.String" ></param>
+            </params>
+        </operation>
+        <operation name="getWebNMSVersiondummy"  descriptorType="operation"  displayName="getWebNMSVersiondummy"  description="gets the WebNMSVersionvalues"  role="getter"  impact="INFO"  operResponseType="java.lang.String" >
+            <params></params>
+        </operation>
+    </operationDescriptors>
+    <notificationDescriptors></notificationDescriptors>
+</ModelMBean>
+<!--$Id: WebNMSSystemInstrument.xml,v 1.3 2007/08/09 14:01:31 barathv Exp $-->
