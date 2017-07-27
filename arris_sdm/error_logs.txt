@@ -1,0 +1,202 @@
+Issue:1
+for table "managedobject"
+  Position: 8: Storage exception while performing deleteObjectsERROR: missing FROM-clause entry for table "managedobject"
+  Position: 8
+        at com.motorola.webnms.common.server.util.MotTopoAPI.deleteObjects(MotTopoAPI.java:1882)
+        at com.motorola.webnms.hdm.server.disc.DiscFilter.rollback(DiscFilter.java:735)
+        at com.motorola.webnms.hdm.server.disc.DiscFilter.filterObject(DiscFilter.java:496)
+        at com.adventnet.nms.topodb.FoundFilterList.applyFilters(FoundFilterList.java:309)
+        at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2643)
+        at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2151)
+        at com.adventnet.nms.topodb.SetupNode.deepDiscovery(SetupN
+---
+Issue:2
+ [04 Apr 2017 14:46:27:616] SYS_ERR:     at java.lang.Thread.run(Thread.java:745)
+     53 [04 Apr 2017 14:47:37:916] SYS_ERR: org.postgresql.util.PSQLException: ERROR: missing FROM-clause entry for table "managedobject"
+     54   Position: 8
+     55 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2102)
+     56 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1835)
+     57 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:257)
+     58 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:500)
+     59 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:388)
+     60 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery(AbstractJdbc2Statement.java:273)
+     61 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeQuery(NewProxyPreparedStatement.java:76)
+     62 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.management.transaction.ConnectionPool.executeQuery(ConnectionPool.java:1120)
+     63 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.store.relational.RelationalAPI.executeQuery(RelationalAPI.java:612)
+     64 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.getLevelForObjectWithSubQuery(BulkOperationsHandler.java:869)
+     65 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.performDeletionWithInterface(BulkOperationsHandler.java:1512)
+     66 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.deleteObjects(BulkOperationsHandler.java:688)
+     67 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.TopoDB.deleteObjects(TopoDB.java:8632)
+     68 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.common.server.util.MotTopoAPI.deleteObjects(MotTopoAPI.java:1878)
+     69 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.hdm.server.disc.DiscFilter.rollback(DiscFilter.java:735)
+     70 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.hdm.server.disc.DiscFilter.filterObject(DiscFilter.java:496)
+     71 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.FoundFilterList.applyFilters(FoundFilterList.java:309)
+     72 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2643)
+     73 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2151)
+     74 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.deepDiscovery(SetupNode.java:509)
+     75 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.netwatch.AdvanceNetSearcher.executeTask(AdvanceNetSearcher.java:147)
+     76 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.netwatch.NetSearcher.run(NetSearcher.java:325)
+     77 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+
+---
+Issue:3
+ [04 Apr 2017 14:46:27:616] SYS_ERR:     at java.lang.Thread.run(Thread.java:745)
+     53 [04 Apr 2017 14:47:37:916] SYS_ERR: org.postgresql.util.PSQLException: ERROR: missing FROM-clause entry for table "managedobject"
+     54   Position: 8
+     55 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2102)
+     56 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1835)
+     57 [04 Apr 2017 14:47:37:916] SYS_ERR:     at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:257)
+     58 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:500)
+     59 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:388)
+     60 [04 Apr 2017 14:47:37:917] SYS_ERR:     at org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery(AbstractJdbc2Statement.java:273)
+     61 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeQuery(NewProxyPreparedStatement.java:76)
+     62 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.management.transaction.ConnectionPool.executeQuery(ConnectionPool.java:1120)
+     63 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.store.relational.RelationalAPI.executeQuery(RelationalAPI.java:612)
+     64 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.getLevelForObjectWithSubQuery(BulkOperationsHandler.java:869)
+     65 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.performDeletionWithInterface(BulkOperationsHandler.java:1512)
+     66 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.BulkOperationsHandler.deleteObjects(BulkOperationsHandler.java:688)
+     67 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.TopoDB.deleteObjects(TopoDB.java:8632)
+     68 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.common.server.util.MotTopoAPI.deleteObjects(MotTopoAPI.java:1878)
+     69 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.hdm.server.disc.DiscFilter.rollback(DiscFilter.java:735)
+     70 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.motorola.webnms.hdm.server.disc.DiscFilter.filterObject(DiscFilter.java:496)
+     71 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.FoundFilterList.applyFilters(FoundFilterList.java:309)
+     72 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2643)
+     73 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.addObject(SetupNode.java:2151)
+     74 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.topodb.SetupNode.deepDiscovery(SetupNode.java:509)
+     75 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.netwatch.AdvanceNetSearcher.executeTask(AdvanceNetSearcher.java:147)
+     76 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.nms.netwatch.NetSearcher.run(NetSearcher.java:325)
+     77 [04 Apr 2017 14:47:37:917] SYS_ERR:     at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+
+--
+Issue:4
+[07 Apr 2017 12:47:51:412] SYS_ERR: Cannot commit for thread : Thread[fault-3,5,main] Exception : org.hibernate.exception.DataException: Could not execute JDBC batch update
+[07 Apr 2017 12:47:51:412] SYS_ERR: Exception : com.adventnet.management.transaction.UserTransactionException: Could not execute JDBC batch update
+[07 Apr 2017 12:47:55:008] SYS_ERR: Cannot commit for thread : Thread[fault-1,5,main] Exception : org.hibernate.exception.DataException: Could not execute JDBC batch update
+[07 Apr 2017 12:47:55:008] SYS_ERR: Exception : com.adventnet.management.transaction.UserTransactionException: Could not execute JDBC batch update
+[07 Apr 2017 12:47:59:216] SYS_ERR: Cannot commit for thread : Thread[fault-3,5,main] Exception : org.hibernate.exception.DataException: Could not execute JDBC batch update
+[07 Apr 2017 12:47:59:217] SYS_ERR: Exception : com.adventnet.management.transaction.UserTransactionException: Could not execute JDBC batch update
+--
+Issue:5
+Apr 26, 2017 12:10:19 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+SEVERE: could not complete schema update
+org.hibernate.exception.SQLGrammarException: could not get table metadata: ALERTUSERPROPS
+        at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:67)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:29)
+        at org.hibernate.tool.hbm2ddl.DatabaseMetadata.getTableMetadata(DatabaseMetadata.java:105)
+        at org.hibernate.cfg.Configuration.generateSchemaUpdateScript(Configuration.java:954)
+        at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:140)
+        at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:314)
+        at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1300)
+        at com.adventnet.nms.util.hbn.HibernateUtil.<clinit>(HibernateUtil.java:55)
+        at jdbc.CreateSchema.init(CreateSchema.java:98)
+        at com.adventnet.nms.startnms.NmsMainBE.main(NmsMainBE.java:239)
+        at com.motorola.webnms.common.server.init.SDMMain.main(SDMMain.java:103)
+Caused by: org.postgresql.util.PSQLException: ERROR: column am.amcanorder does not exist
+  Position: 407
+        at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2102)
+        at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1835)
+        at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:257)
+        at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:500)
+        at org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:374)
+        at org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery(AbstractJdbc2Statement.java:254)
+        at org.postgresql.jdbc2.AbstractJdbc2DatabaseMetaData.getIndexInfo(AbstractJdbc2DatabaseMetaData.java:4023)
+        at com.mchange.v2.c3p0.impl.NewProxyDatabaseMetaData.getIndexInfo(NewProxyDatabaseMetaData.java:3166)
+        at org.hibernate.tool.hbm2ddl.TableMetadata.initIndexes(TableMetadata.java:130)
+        at org.hibernate.tool.hbm2ddl.TableMetadata.<init>(TableMetadata.java:35)
+        at org.hibernate.tool.hbm2ddl.DatabaseMetadata.getTableMetadata(DatabaseMetadata.java:90)
+        ... 8 more
+
+--
+Issue:6
+[09 May 2017 14:25:00:029] POLLERR: Exception while performing the Status Polling for MOID com.adventnet.management.transaction.UserTransactionException: Unable to commit transaction in thr        ead : Thread[statuspoll-1,5,main] Transaction not started properly 11 at:
+    853 [09 May 2017 14:25:00:029] POLLERR:
+    854 com.adventnet.management.transaction.UserTransactionException: Unable to commit transaction in thread : Thread[statuspoll-1,5,main] Transaction not started properly
+    855         at com.adventnet.nms.poll.ObjectScheduler.txnCommit(ObjectScheduler.java:285)
+    856         at com.adventnet.nms.poll.ObjectScheduler.run(ObjectScheduler.java:214)
+    857         at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+    858 Caused by: javax.transaction.SystemException: Unable to commit transaction in thread : Thread[statuspoll-1,5,main] Transaction not started properly
+    859         at com.adventnet.management.transaction.TransactionAPI.commitHbnTxn(TransactionAPI.java:1006)
+    860         at com.adventnet.management.transaction.TransactionAPI.commit(TransactionAPI.java:432)
+    861         at com.adventnet.nms.poll.ObjectScheduler.txnCommit(ObjectScheduler.java:273)
+    862         ... 2 more
+    863 [09 May 2017 14:25:00:073] POLLERR: Exception while performing the Status Polling for MOID com.adventnet.management.transaction.UserTransactionException: Unable to commit transaction in thr        ead : Thread[statuspoll-1,5,main] Transaction not started properly 681 at:
+    864 [09 May 2017 14:25:00:073] POLLERR:
+    865 com.adventnet.management.transaction.UserTransactionException: Unable to commit transaction in thread : Thread[statuspoll-1,5,main] Transaction not started properly
+    866         at com.adventnet.nms.poll.ObjectScheduler.txnCommit(ObjectScheduler.java:285)
+    867         at com.adventnet.nms.poll.ObjectScheduler.run(ObjectScheduler.java:214)
+    868         at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+    869 Caused by: javax.transaction.SystemException: Unable to commit transaction in thread : Thread[statuspoll-1,5,main] Transaction not started properly
+    870         at com.adventnet.management.transaction.TransactionAPI.commitHbnTxn(TransactionAPI.java:1006)
+    871         at com.adventnet.management.transaction.TransactionAPI.commit(TransactionAPI.java:432)
+    872         at com.adventnet.nms.poll.ObjectScheduler.txnCommit(ObjectScheduler.java:273)
+--
+Issue:7
+Exception while loading the class com.adventnet.management.transport.TcpClientTransportImpl quitting...
+com.adventnet.management.transport.TransportException: java.io.FileNotFoundException: http://10.237.163.75:9090/html/NMS_FE_SecondaryPort.html
+ at com.adventnet.management.transport.TransportUtil.readPort(TransportUtil.java:71)
+ at com.adventnet.management.transport.TcpClientTransportImpl.init(TcpClientTransportImpl.java:87)
+ at com.adventnet.nms.client.GenericSocketClient.createClientTransportProvider(GenericSocketClient.java:801)
+ at com.adventnet.nms.client.GenericSocketClient.establishConnection(GenericSocketClient.java:660)
+ at com.adventnet.nms.client.GenericSocketClient.<init>(GenericSocketClient.java:81)
+ at com.adventnet.nms.util.PureClientUtils.initGenericSocket(PureClientUtils.java:118)
+ at com.adventnet.nms.util.PureClientUtils.initializeCommonSocket(PureClientUtils.java:100)
+ at com.adventnet.nms.startclient.NmsMainApplet.start(NmsMainApplet.java:270)
+ at com.sun.deploy.uitoolkit.impl.awt.AWTAppletAdapter.start(Unknown Source)
+ at sun.plugin2.applet.Plugin2Manager$AppletExecutionRunnable.run(Unknown Source)
+ at java.lang.Thread.run(Unknown Source)
+---
+Issue:8
+org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.adventnet.nms.topodb.ManagedObject#62]
+        at org.hibernate.impl.SessionFactoryImpl$1.handleEntityNotFound(SessionFactoryImpl.java:377)
+        at org.hibernate.event.def.DefaultLoadEventListener.load(DefaultLoadEventListener.java:145)
+        at org.hibernate.event.def.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:195)
+        at org.hibernate.event.def.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:103)
+        at org.hibernate.impl.SessionImpl.fireLoad(SessionImpl.java:878)
+        at org.hibernate.impl.SessionImpl.internalLoad(SessionImpl.java:846)
+        at org.hibernate.type.EntityType.resolveIdentifier(EntityType.java:557)
+        at org.hibernate.type.ManyToOneType.assemble(ManyToOneType.java:196)
+        at org.hibernate.cache.StandardQueryCache.get(StandardQueryCache.java:130)
+        at org.hibernate.loader.Loader.getResultFromQueryCache(Loader.java:2163)
+        at org.hibernate.loader.Loader.listUsingQueryCache(Loader.java:2126)
+        at org.hibernate.loader.Loader.list(Loader.java:2096)
+        at org.hibernate.loader.criteria.CriteriaLoader.list(CriteriaLoader.java:94)
+        at org.hibernate.impl.SessionImpl.list(SessionImpl.java:1569)
+        at org.hibernate.impl.CriteriaImpl.list(CriteriaImpl.java:283)
+        at org.hibernate.impl.CriteriaImpl.uniqueResult(CriteriaImpl.java:305)
+        at com.adventnet.nms.store.relational.hbn.HbnTopoPersistence.get(HbnTopoPersistence.java:319)
+        at com.adventnet.nms.store.relational.hbn.HbnTopoPersistence.getObject(HbnTopoPersistence.java:257)
+        at com.adventnet.nms.topodb.CommonTopoAPI.getObject(CommonTopoAPI.java:497)
+        at com.adventnet.nms.topodb.TopoDB.getByName(TopoDB.java:4006)
+        at com.adventnet.nms.topodb.TopoDB.checkOut(TopoDB.java:378)
+        at com.adventnet.nms.store.relational.hbn.HbnMapPersistence.getSymbolObject(HbnMapPersistence.java:594)
+        at com.adventnet.nms.store.relational.hbn.HbnMapPersistence.getObject(HbnMapPersistence.java:666)
+        at com.adventnet.nms.mapdb.CommonMapAPI.getObject(CommonMapAPI.java:240)
+        at com.adventnet.nms.mapdb.MapCustomController.deleteSymbolIn
+--
+Issue:5
+SEVERE: Could not synchronize database state with session
+org.hibernate.exception.DataException: Could not execute JDBC batch update
+        at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:77)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+        at org.hibernate.jdbc.AbstractBatcher.executeBatch(AbstractBatcher.java:253)
+        at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:266)
+        at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:167)
+        at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+        at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+        at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+        at com.adventnet.nms.store.relational.hbn.HbnAlertPersistence.addObject(HbnAlertPersistence.java:58)
+        at com.adventnet.nms.alertdb.CommonAlertAPI.addObject(CommonAlertAPI.java:1294)
+        at com.adventnet.nms.alertdb.AlertLog.updateTheLog(AlertLog.java:354)
+        at com.adventnet.nms.alertdb.AlertLog.update(AlertLog.java:721)
+        at com.adventnet.nms.alertdb.FaultMgr.run(FaultMgr.java:697)
+        at com.adventnet.management.scheduler.WorkerThread.run(WorkerThread.java:82)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 insert into Alert (ID, CATEGORY, SEVERITY, PREVIOUSSEVERITY, CREATETIME, MODTIME, MMESSAGE, SOURCE, MODELNUMBER, SERIALNUMBER, CARD, PORT, IPADDRESS, DEVICETYPE, DEVICENAME, SHORTDESCRIPTION, CHANGEDOBJECTID, ADDITIONALINFOINTEGER1, ADDITIONALINFOINTEGER2, ADDITIONALINFOINTEGER3, NEAVAILSTATUS, NEOPERSTATE, NEADMINSTATE, CORRELATIONSTATE, ITUCATEGORY, FAILUREOBJ, FAILUREOBJDISPNAME, MANAGEMENTGROUP, PRIMNETWORK, MAPNAME, OWNERNAME, DISCRIMINATOR, ENTITY) values ('5301', 'Operational', '4', '-1', '1494590982678', '1494590982678', 'Overall Unconfigured Demod Status', '192.168.30.21', 'NC-1500', 'MXQ6060272', 'NULL', 'NULL', '192.168.30.21', 'NC', '192.168.30.21', 'The NC has received upstream traffic on one or more RPD demodulator that is not configured within the NC. This alarm is typically a sign of an incomplete (or erroneous) NC configuration, or of an upstream wiring problem.', 'NULL', 'NULL', 'NULL', 'NULL', '10', '1', '2', '1', 'Operational', 'UnconfiguredDemodStatus', 'NULL', 'Unassigned', 'lab', 'NULL', 'NULL', 'Alert', '192.168.30.21_UnconfiguredDemodStatus') was aborted.  Call getNextException to see the cause.
+        at org.postgresql.jdbc2.AbstractJdbc2Statement$BatchResultHandler.handleError(AbstractJdbc2Statement.java:2598)
+        at org.postgresql.core.v3.QueryExecutorImpl$1.handleError(QueryExecutorImpl.java:459)
+        at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1836)
+        at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:407)
+        at org.postgresql.jdbc2.AbstractJdbc2Statement.executeBatch(AbstractJdbc2Statement.java:2737)
+        at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeBatch(NewProxyPreparedStatement.java:1723)
+        at org.hibernate.jdbc.BatchingBatcher.doExecuteBatch(BatchingBatcher.java:48)
+        at org.hibernate.jdbc.AbstractBatcher.executeBatch(AbstractBatcher.java:246)
