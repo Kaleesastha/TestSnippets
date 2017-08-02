@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0154)http://nms-server/cgi-bin2/cvsweb.cgi/~checkout~/nms/build/patch/SP_README.html?rev=1.5.6.7;content-type=text%2Fhtml;cvsroot=%2Fadvent%2Fprojects%2Fwebnms -->
+<html class="gr__nms-server com-genius-Genius-js com-genius-Genius-no-touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title></title>
+  <meta name="GENERATOR" content="OpenOffice.org 3.1  (Linux)">
+  <meta name="CREATED" content="0;0">
+  <meta name="CHANGED" content="20100422;16511100">
+  <style type="text/css">
+	<!--
+		P { color: #000000 }
+	-->
+	</style>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link rel="stylesheet" href="./L3_52_SP_README_files/injection-7636495c947f3bd065e4aba95d3bc868.css" type="text/css"></head>
+<body dir="ltr" bgcolor="#ffffff" lang="en-US" text="#000000" data-gr-c-s-loaded="true" data-feedly-mini="yes">
+<p align="center"><font face="times new roman, times, serif"><font size="5"><b>L3 COMM Patch to be applied over Web NMS 5.2</b></font></font></p>
+<hr>
+<p align="center"><font face="times new roman, times, serif"><font color="#330000">©</font> <font color="#330000">Copyright 1996-2010
+AdventNet, Inc.</font><br>
+<font color="#330000">All Rights Reserved.</font></font></p>
+<hr>
+<p><br>
+This patch contains the following fixes/features :</p>
+<ol>
+  <p><font color="#000025">[Ticket ID : </font>3085654<font color="#000025">
+]&nbsp; Moved all the below 6 patches given over WebNMS5sp1
+(WEBNMS_5010_L3_COMM_BRANCH) to WebNMS5.2 (WEBNMS_5020_L3_COMM_BRANCH)
+  </font></p><li><font color="#000025">
+    <p><font color="#000025">[Ticket ID : </font>3072921<font color="#000025">
+]&nbsp; Support for scope zone IPv6 addresses in the SNMP APIs of Web
+NMS has
+been provided.</font></p>
+  </font></li><font color="#000025">
+  <li>
+    <p><font color="#000025">[Ticket ID : </font><font color="#000025"><font size="3">
+3071200</font></font><font color="#000025">] Encryption of auth and
+priv
+passwords in the USERTABLE (column size of AUTHPASSWORD and
+PRIVPASSWORD
+are to be changed to 255 for the USERTABLE, from the default 50).</font></p>
+  </li>
+  <li><font color="#000025">[Ticket ID : </font><span>10189694] The </span><span>
+ArrayIndexOutOfBoundsException got while decoding in </span><span>LeafSyntax.decodeInstanceString()
+is
+fixed.<br>
+    <br>
+    </span></li>
+  <li><font color="#000025">[Ticket ID : <b>3074304</b></font><span>]
+The
+following 2 issues are fixed:<br>
+All boolean values were restored </span><span>as true</span>. <br>
+When column name of tables contain keywords (defined in MySQL), tables
+were
+not properly restored. This issue is fixed.</li>
+  <br>
+  <li>[Ticket ID : 3075503] The StatusPoll MIN Time is updated
+unnecessarily on every statuspolling. This causes the statuspoll to
+stop after some time when the current time is always less than the MIN
+Time. This is fixed..</li>
+  <br>
+  <li>[Ticket ID : 3075503] Fix to avoid statuspolling stopped.While
+getting min value of ObjectSchedulerRUNNABLE, the where condition is
+removed in the DB query. This is not required due to some sometimes the
+min variable gets past the min value of DB and due to this the status
+polling never happens for that device. <br>
+    <br>
+  </li>
+  <li>[Ticket ID : 3095242] One of the variable(queryString) is
+declared as a global variable, which causes the UnKnownEngineID issue.
+Now we have changed the variable scope to local. This fixes the issue.<br>
+    <br>
+  </li>
+  <li>[Ticket ID : 3095563] : The issue in snmp retry and timeout
+getting overwritten from other target instances is fixed.<br>
+    <br>
+  </li>
+  <li>[Ticket ID : 3099504]&nbsp; : Postgres was not starting
+automatically when WebNMS is installed in a space sepatated directory.
+This issue is fixed<br>
+    <br>
+  </li>
+  <li><font color="#000025">[Ticket ID : 3103689]&nbsp; : Support
+provided for BigInteger type.<br>
+    <br>
+    </font></li>
+  <li><font color="#000025"><font color="#000025">[Ticket ID : </font></font><font color="#000025">3075503] : When there is a trap/Alert storm for an MO,
+the status is not propagated properly. Fixing this issue<br>
+    <br>
+    </font></li>
+  <li><font color="#000025">[Ticket ID : 3102143] -
+MibOperations.createVariableBinding Exception fixed<br>
+    </font></li>
+  </font><p></p>
+</ol>
+<p style="margin-bottom: 0in;"><br>
+</p>
+<ol>
+  <p><font color="#993300"><font face="times new roman, times, serif"><font size="4">Steps for Installing the patch over Web NMS 5.2 (DO
+FOLLOW THESE STEPS
+AS THEY ARE)<br>
+  <br>
+  </font></font></font><font face="times new roman, times, serif"><b>Step
+1:</b></font> <font face="times new roman, times, serif">Use </font><font face="times new roman, times, serif"><b>
+UpdateManager.bat/sh</b></font> <font face="times new roman, times, serif">
+file present in &lt;Web NMS Home&gt;/bin directory&nbsp; to install the
+patch.</font> <br>
+  <font face="times new roman, times, serif"><b>Step 2:</b></font> <font face="times new roman, times, serif">
+Now you can start the Web NMS Server</font> </p>
+  <p><font face="times new roman, times, serif">If you want to revert
+the
+changes, please follow the steps mentioned below.</font></p>
+  <p><font color="#993300"><font face="times new roman, times, serif"><font size="4">Steps to Revert this patch (DO FOLLOW THESE STEPS AS THEY ARE)</font></font></font>
+  </p>
+  <p><font face="times new roman, times, serif"><b>Step 1:</b> Use <b>UpdateManager.bat/sh
+
+
+  </b>and revert to previous version. <br>
+  <b>Step 2:</b> Now you can start the Web NMS Server.</font></p>
+</ol>
+
+
+<div id="feedly-mini" title="feedly Mini tookit"></div><genius-back-page id="genius_back_page" style="visibility: hidden;"><iframe src="./L3_52_SP_README_files/back_page.html"></iframe></genius-back-page><genius-back-page-mobile-clickjacker></genius-back-page-mobile-clickjacker><div class="CaretBrowsing_Caret" style="opacity: 1; left: 416px; top: 8px; width: 1px; height: 26px; color: rgb(0, 0, 0);"></div></body></html>
