@@ -1,305 +1,298 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+Hi Karim,
+Thank you for the email.
 
-\f0\fs24 \cf0 Hi Karim,\
-Thank you for the email.\
-\
-Moving to latest hibernate version involves lots of changes in existing schema and classes. Hence we have not taken it at present. \
-However we may consider to upgrade in any of our future release. \
-\
-Regards,\
-Ayush\
-\
-<Zamani, Karim> wrote--------------\
-Hi Ayush,\
-\
-We are fully aware however we needed to upgrade it because of certain missing features in 3.2.2. I believe we consulted with you on this in the past. We\'92ve been running it for almost 3 years now.\
-\
-Also please keep in mind that we don\'92t use any of the WebNMS features at this point except authentication.\
-\
-Would it be possible for you to use the hibernate version we provided? Really appreciate your help with this.\
-\
-Thanks,\
-Karim\
-\
-\
-On February 22, 2016 at 12:05:13 PM, nms-support (nms-support@webnms.com) wrote:\
-\
-Hi Spencer,\
-\
-Thank you for the reply.\
-\
-As mentioned, WebNMS bundled with hibernate 3.2.6 and the higher version which is been tested with WebNMS is 3.3.2 as mention in this link.\
-\
-WebNMS has not tested with 3.5.6 hibernate or other higher version. \
-\
-Regards,\
---\
-Ayush Kumar\
- \
-\
-\
-\
----- On Fri, 19 Feb 2016 20:24:41 +0530 Lu, Spencer <Spencer.Lu@viasat.com>wrote ----\
-\
-\
-Show content\
-\
-Ayush,\
- \
-We are using Hibernate 3.5.6.  I have attached the Hibernate jar files we are using.\
- \
-Thanks,\
-Spencer\
- \
-From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]\
-Sent: Friday, February 19, 2016 8:15 AM\
-To: Lu, Spencer\
-Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique\
-Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8\
- \
-Hi Spencer,\
-\
-Thank you for sending us the hibernate.cfg.xml file.\
-\
-We are still not able to start the WebNMS server after integrating your files. The below exception is been thrown :\
-\
-Initial SessionFactory creation failed.org.hibernate.MappingException: Could not determine type for: org.hibernate.type.EnumType, at table: ForwardLinkOrcaProfileData, for columns: [org.hibernate.mapping.Column(MODULATIONTYPE)]\
-Exception in thread "main" java.lang.ExceptionInInitializerError\
-    at com.adventnet.nms.util.hbn.HibernateUtil.<clinit>(HibernateUtil.java:60)\
-    at jdbc.CreateSchema.init(CreateSchema.java:98)\
-    at com.adventnet.nms.startnms.NmsMainBE.main(NmsMainBE.java:239)\
-Caused by: org.hibernate.MappingException: Could not determine type for: org.hibernate.type.EnumType, at table: ForwardLinkOrcaProfileData, for columns: [org.hibernate.mapping.Column(MODULATIONTYPE)]\
-    at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:269)\
-    at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:253)\
-    at org.hibernate.mapping.Property.isValid(Property.java:185)\
-    at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:440)\
-    at org.hibernate.mapping.JoinedSubclass.validate(JoinedSubclass.java:40)\
-    at org.hibernate.cfg.Configuration.validate(Configuration.java:1108)\
-    at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1293)\
-    at com.adventnet.nms.util.hbn.HibernateUtil.<clinit>(HibernateUtil.java:55)\
-    ... 2 more\
-\
-Could you please let us know if you have changed the hibernate version in your build. The default hibernate jar used in WebNMS 5.2 SP1 is 3.2.6.\
-\
-Regards,\
-Ayush\
-\
-<Lu, Spencer> wrote--------------\
- \
-Note to Customers : Please do not modify the mail Subject when you reply to this mail \
-Ticket ID : 3129222\
-Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8\
-\
-Ayush,\
- \
-Which types are you having difficulties with?  I have attached the hibernate.cfg.xml file we are using with Oracle 11g.\
- \
-Spencer\
- \
-From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]\
-Sent: Thursday, February 18, 2016 9:15 AM\
-To: Lu, Spencer\
-Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique\
-Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8\
- \
-\
-Hi Spencer,\
-\
-Thank you for your email.\
-\
-I am looking into your request to check if such option is available,  to create alias manually.\
-\
-I am working with the files you have provided and facing difficulties with new hibernate data types in your hbm files.\
-\
-Could you help me on how should I can applying the files you have provided on top of WebNMS 5.2 SP1.\
-\
-Regards,\
-Ayush\
-\
-<Lu, Spencer> wrote--------------\
- \
-Note to Customers : Please do not modify the mail Subject when you reply to this mail \
-Ticket ID : 3129222\
-Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8\
-\
-Ayush,\
- \
-I changed all of the column names in the *.hbm.xml files that you mentioned below, and we no longer see any of the errors in the log files.\
- \
-However, changing the column names is not a good solution for us, since we have already deployed a production database using the existing column names.  Also, changing the property names isn\'92t really a good solution either, since we would have to modify other classes in addition to the POJOs.\
- \
-Since we\'92ve been using the existing column names for a while now without any problems (I don\'92t know why we never saw those errors with Java 7), do you know if we can safely ignore those error messages with Java 8?\
- \
-Alternatively, is there a way to create aliases for the columns to resolve all of those errors while allowing us to continue using our existing column names?\
- \
-Thanks,\
-Spencer\
- \
-From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]\
-Sent: Wednesday, February 17, 2016 4:52 AM\
-To: Lu, Spencer\
-Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique\
-Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8\
- \
-\
-Hi Spencer,\
-\
-Thank you for sending us the needed files.\
-\
-After analyzing the hbm files, we found the below case which are conflicting the Schema restriction cases as mention in this link :\
-\
-CASE 1:\
-\
-vmt/VmtHubConfigData.hbm.xml:              \
-<property name="targetRate" column="targetRate" type="integer"/>\
-\
-CASE 2:\
-\
-ScpcReceiver.hbm.xml:   \
-<many-to-one name="crlData" column="CRL_ID" class="javaFiles.config.ReturnLinkCrlData"\
-vmt/VmtCrlAssociationData.hbm.xml:              \
-<many-to-one name="crlData" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>\
-\
-CASE 3:\
-\
-ForwardLinkFileDownloadConfiguration.hbm.xml:\
-<property name="bitrate" column="BITRATE" type="integer" />\
-CrmaModcode.hbm.xml:\
-<property name="bitRate" column="BITRATE" type="integer"/>\
-\
-ForwardLinkFileDownloadConfiguration.hbm.xml:               \
-<property name="flId" column="FLID" type="integer"/>\
-MulticastTrafficFlowFlAssocData.hbm.xml:               \
-<many-to-one name="fl" column="FLID" class="javaFiles.config.ForwardLinkProfileData" fetch="join"/>\
-\
-ReturnLinkCrmaData.hbm.xml:                   \
-<key column="RLID"/>\
-ReturnLinkModcodePair.hbm.xml:               \
-<many-to-one name="rl" column="RLID" class="javaFiles.config.ReturnLinkCrmaData" fetch="join"/>\
-vmt/VmtCrlAssociationData.hbm.xml:               \
-<many-to-one name="crlData" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>\
-vmt/VmtCrmaPcAssociationData.hbm.xml:               \
-<many-to-one name="rl" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>\
-\
-Please make the changes in the above files to satisfy the case mentioned in the link and then try to start the server.\
-\
-If the issue still persists, please enable the -Dstartup.debug=true in the startnms.sh as mentioned in the link and send us the console logs along with the modified hbm.xml files.\
-\
-Regards,\
-Ayush\
-\
-PS: We are not able to compile the POJO classes, due to missing dependencies. If you can provide us the NAR file which we can apply on plain vanila WebNMS 5.2, this will help us to reproduce the issue and resolving it quickly.\
-\
-\
-<Lu, Spencer> wrote--------------\
- \
-Note to Customers : Please do not modify the mail Subject when you reply to this mail \
-Ticket ID : 3129222\
-Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8\
-\
-Hi Ayush,\
- \
-I have attached the POJO classes and their mapping files. \
- \
-Thanks,\
-Spencer\
- \
-From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]\
-Sent: Tuesday, February 16, 2016 9:13 AM\
-To: Zamani, Karim\
-Cc: nms-support@webnms.com; Shiekh, Laique; Lu, Spencer\
-Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8\
- \
-\
-Hi Karim,\
-\
-We are located in IST time zone, and we can schedule call anytime before 11 AM (EST).\
-\
-We make sure that we reply back to support email within 24 hours. However we will provide priority for this specific issue and will ensure that the queries are addressed with a minimal delay.\
-\
-If you could send us all hibernate (.hbm) file under <WebNMS_Home>/classes/hbnlib folder with the respective POJO's classes, we can quickly check them to identify the root cause.\
-\
-Regards,\
-Ayush\
-\
-<Zamani, Karim> wrote--------------\
- \
-Note to Customers : Please do not modify the mail Subject when you reply to this mail \
-Ticket ID : 3129222\
-Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8\
-\
-Hi Ayush,\
- \
-Could you please advise your availability hours so we can plan accordingly and coordinate better.  We don\'92t want to be in a situation where it takes 24 hrs to exchange emails. We are in the US East Cost time zone.\
- \
-Thanks so much!\
-Karim\
- \
-From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]\
-Sent: Monday, February 15, 2016 2:16 AM\
-To: Zamani, Karim\
-Cc: nms-support@webnms.com; Shiekh, Laique; Lu, Spencer\
-Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8\
- \
-\
-Hi Karim,\
-\
-Thank you for your email.\
-\
-We assume that the issue you been facing could be due to common property between your modeled hbm.xml and WebNMS hbm.xml files. The similar issue was raised earlier where the property ipAddress is used in in your hbm file, for representing the COLUMN NAME "IP". The same property is used for TopoObject's IpAddress. Please make sure that if you still have ipAddress used in your hbm file, make the changes as shown below:\
-<property column="IP" length="40" name="ipAddr" type="string" update="true" insert="true" />\
-\
-Also please make sure that you are not mixing the java type with hibernate type in your hibernate hbm modeling files. Both types are different. For more information please refer this link.\
-\
-We believe that once you make the above changes, you should be able to start the server in Java 8.\
-\
-Do get back to us if you still not able to start the server in Java 8.\
-\
-Regards,\
-Ayush\
-\
-<Zamani, Karim> wrote--------------\
- \
-Note to Customers : Please do not modify the mail Subject when you reply to this mail \
-Ticket ID : 3129222\
-Ticket Title : Re: WebNMS and Java 8\
-\
-\
-Please note that Oracle has EOL'ed Java 7 since April 2015.\
- \
-Thanks,\
-Karim\
-\
-On Feb 12, 2016, at 6:52 PM, Lu, Spencer <Spencer.Lu@viasat.com> wrote:\
-\
-Hi,\
- \
-Has the WebNMS Framework been tested with Java 8?  We just upgraded to Java 8 and are now seeing some errors in the log files that we never saw with Java 7.  I have attached the stderr.txt and nmserr.txt log files.\
- \
-The stderr.txt has an exception saying:\
- \
-\'93Exception while constructing MetaDataInfo for the Table : ScpcReceiver : java.lang.ArrayIndexOutOfBoundsException: -1\
-Possible Causes are :\
-1. Schema for Table :ScpcReceiver defined in DatabaseSchema.conf  is not consistent with the one defined in Database\
-2. In a distributed server setup, DatabaseSchema.conf present in Front End Server is not same as the one present in the Back End Server\'94\
-\
-We aren\'92t running a distributed server setup.  I checked the Hibernate mapping file for the ScpcReceiver table and compared it with the table in the database and did not see any inconsistencies.  Then I ran the \'93reinitialize_nms.sh MODE ALL\'94 command to drop all the tables, restarted WebNMS, and saw the same error again.  So the same error happens even if the ScpcReceiver table doesn\'92t exist and Hibernate needs to create it.  But even with the error, saving objects to the ScpcReceiver table with Hibernate seems to work fine.\
-\
-The stderr.txt also has an error saying \'93control come to run in connection mainetainer class and sends the queries to table\'94, a NullPointerException coming from the call to PureServerUtilsFE.isPasswordCorrect(), and an error saying \'93TREETOPO:Problem in getting the Topo API handle\'94.\
- \
-The nmserr.txt has errors initializing the AuditAPI, running the poll Collector, and a TopoDB error.\
- \
-None of these errors occur when we use Java 7.\
- \
-Please advise us on how we can resolve these errors.\
- \
-Thank you,\
-Spencer Lu\
- \
-<stderr.txt>\
-<nmserr.txt>}
+Moving to latest hibernate version involves lots of changes in existing schema and classes. Hence we have not taken it at present. 
+However we may consider to upgrade in any of our future release. 
+
+Regards,
+Ayush
+
+<Zamani, Karim> wrote--------------
+Hi Ayush,
+
+We are fully aware however we needed to upgrade it because of certain missing features in 3.2.2. I believe we consulted with you on this in the past. We’ve been running it for almost 3 years now.
+
+Also please keep in mind that we don’t use any of the WebNMS features at this point except authentication.
+
+Would it be possible for you to use the hibernate version we provided? Really appreciate your help with this.
+
+Thanks,
+Karim
+
+
+On February 22, 2016 at 12:05:13 PM, nms-support (nms-support@webnms.com) wrote:
+
+Hi Spencer,
+
+Thank you for the reply.
+
+As mentioned, WebNMS bundled with hibernate 3.2.6 and the higher version which is been tested with WebNMS is 3.3.2 as mention in this link.
+
+WebNMS has not tested with 3.5.6 hibernate or other higher version. 
+
+Regards,
+--
+Ayush Kumar
+ 
+
+
+
+---- On Fri, 19 Feb 2016 20:24:41 +0530 Lu, Spencer <Spencer.Lu@viasat.com>wrote ----
+
+
+Show content
+
+Ayush,
+ 
+We are using Hibernate 3.5.6.  I have attached the Hibernate jar files we are using.
+ 
+Thanks,
+Spencer
+ 
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]
+Sent: Friday, February 19, 2016 8:15 AM
+To: Lu, Spencer
+Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique
+Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8
+ 
+Hi Spencer,
+
+Thank you for sending us the hibernate.cfg.xml file.
+
+We are still not able to start the WebNMS server after integrating your files. The below exception is been thrown :
+
+Initial SessionFactory creation failed.org.hibernate.MappingException: Could not determine type for: org.hibernate.type.EnumType, at table: ForwardLinkOrcaProfileData, for columns: [org.hibernate.mapping.Column(MODULATIONTYPE)]
+Exception in thread "main" java.lang.ExceptionInInitializerError
+    at com.adventnet.nms.util.hbn.HibernateUtil.<clinit>(HibernateUtil.java:60)
+    at jdbc.CreateSchema.init(CreateSchema.java:98)
+    at com.adventnet.nms.startnms.NmsMainBE.main(NmsMainBE.java:239)
+Caused by: org.hibernate.MappingException: Could not determine type for: org.hibernate.type.EnumType, at table: ForwardLinkOrcaProfileData, for columns: [org.hibernate.mapping.Column(MODULATIONTYPE)]
+    at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:269)
+    at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:253)
+    at org.hibernate.mapping.Property.isValid(Property.java:185)
+    at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:440)
+    at org.hibernate.mapping.JoinedSubclass.validate(JoinedSubclass.java:40)
+    at org.hibernate.cfg.Configuration.validate(Configuration.java:1108)
+    at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1293)
+    at com.adventnet.nms.util.hbn.HibernateUtil.<clinit>(HibernateUtil.java:55)
+    ... 2 more
+
+Could you please let us know if you have changed the hibernate version in your build. The default hibernate jar used in WebNMS 5.2 SP1 is 3.2.6.
+
+Regards,
+Ayush
+
+<Lu, Spencer> wrote--------------
+ 
+Note to Customers : Please do not modify the mail Subject when you reply to this mail 
+Ticket ID : 3129222
+Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8
+
+Ayush,
+ 
+Which types are you having difficulties with?  I have attached the hibernate.cfg.xml file we are using with Oracle 11g.
+ 
+Spencer
+ 
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]
+Sent: Thursday, February 18, 2016 9:15 AM
+To: Lu, Spencer
+Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique
+Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8
+ 
+
+Hi Spencer,
+
+Thank you for your email.
+
+I am looking into your request to check if such option is available,  to create alias manually.
+
+I am working with the files you have provided and facing difficulties with new hibernate data types in your hbm files.
+
+Could you help me on how should I can applying the files you have provided on top of WebNMS 5.2 SP1.
+
+Regards,
+Ayush
+
+<Lu, Spencer> wrote--------------
+ 
+Note to Customers : Please do not modify the mail Subject when you reply to this mail 
+Ticket ID : 3129222
+Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8
+
+Ayush,
+ 
+I changed all of the column names in the *.hbm.xml files that you mentioned below, and we no longer see any of the errors in the log files.
+ 
+However, changing the column names is not a good solution for us, since we have already deployed a production database using the existing column names.  Also, changing the property names isn’t really a good solution either, since we would have to modify other classes in addition to the POJOs.
+ 
+Since we’ve been using the existing column names for a while now without any problems (I don’t know why we never saw those errors with Java 7), do you know if we can safely ignore those error messages with Java 8?
+ 
+Alternatively, is there a way to create aliases for the columns to resolve all of those errors while allowing us to continue using our existing column names?
+ 
+Thanks,
+Spencer
+ 
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]
+Sent: Wednesday, February 17, 2016 4:52 AM
+To: Lu, Spencer
+Cc: nms-support@webnms.com; Zamani, Karim; Shiekh, Laique
+Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8
+ 
+
+Hi Spencer,
+
+Thank you for sending us the needed files.
+
+After analyzing the hbm files, we found the below case which are conflicting the Schema restriction cases as mention in this link :
+
+CASE 1:
+
+vmt/VmtHubConfigData.hbm.xml:              
+<property name="targetRate" column="targetRate" type="integer"/>
+
+CASE 2:
+
+ScpcReceiver.hbm.xml:   
+<many-to-one name="crlData" column="CRL_ID" class="javaFiles.config.ReturnLinkCrlData"
+vmt/VmtCrlAssociationData.hbm.xml:              
+<many-to-one name="crlData" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>
+
+CASE 3:
+
+ForwardLinkFileDownloadConfiguration.hbm.xml:
+<property name="bitrate" column="BITRATE" type="integer" />
+CrmaModcode.hbm.xml:
+<property name="bitRate" column="BITRATE" type="integer"/>
+
+ForwardLinkFileDownloadConfiguration.hbm.xml:               
+<property name="flId" column="FLID" type="integer"/>
+MulticastTrafficFlowFlAssocData.hbm.xml:               
+<many-to-one name="fl" column="FLID" class="javaFiles.config.ForwardLinkProfileData" fetch="join"/>
+
+ReturnLinkCrmaData.hbm.xml:                   
+<key column="RLID"/>
+ReturnLinkModcodePair.hbm.xml:               
+<many-to-one name="rl" column="RLID" class="javaFiles.config.ReturnLinkCrmaData" fetch="join"/>
+vmt/VmtCrlAssociationData.hbm.xml:               
+<many-to-one name="crlData" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>
+vmt/VmtCrmaPcAssociationData.hbm.xml:               
+<many-to-one name="rl" column="RLID" class="javaFiles.config.ReturnLinkData" fetch="join"/>
+
+Please make the changes in the above files to satisfy the case mentioned in the link and then try to start the server.
+
+If the issue still persists, please enable the -Dstartup.debug=true in the startnms.sh as mentioned in the link and send us the console logs along with the modified hbm.xml files.
+
+Regards,
+Ayush
+
+PS: We are not able to compile the POJO classes, due to missing dependencies. If you can provide us the NAR file which we can apply on plain vanila WebNMS 5.2, this will help us to reproduce the issue and resolving it quickly.
+
+
+<Lu, Spencer> wrote--------------
+ 
+Note to Customers : Please do not modify the mail Subject when you reply to this mail 
+Ticket ID : 3129222
+Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8
+
+Hi Ayush,
+ 
+I have attached the POJO classes and their mapping files. 
+ 
+Thanks,
+Spencer
+ 
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]
+Sent: Tuesday, February 16, 2016 9:13 AM
+To: Zamani, Karim
+Cc: nms-support@webnms.com; Shiekh, Laique; Lu, Spencer
+Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8
+ 
+
+Hi Karim,
+
+We are located in IST time zone, and we can schedule call anytime before 11 AM (EST).
+
+We make sure that we reply back to support email within 24 hours. However we will provide priority for this specific issue and will ensure that the queries are addressed with a minimal delay.
+
+If you could send us all hibernate (.hbm) file under <WebNMS_Home>/classes/hbnlib folder with the respective POJO's classes, we can quickly check them to identify the root cause.
+
+Regards,
+Ayush
+
+<Zamani, Karim> wrote--------------
+ 
+Note to Customers : Please do not modify the mail Subject when you reply to this mail 
+Ticket ID : 3129222
+Ticket Title : RE: [Ticket ID : ##3129222##] : WebNMS and Java 8
+
+Hi Ayush,
+ 
+Could you please advise your availability hours so we can plan accordingly and coordinate better.  We don’t want to be in a situation where it takes 24 hrs to exchange emails. We are in the US East Cost time zone.
+ 
+Thanks so much!
+Karim
+ 
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com]
+Sent: Monday, February 15, 2016 2:16 AM
+To: Zamani, Karim
+Cc: nms-support@webnms.com; Shiekh, Laique; Lu, Spencer
+Subject: Re: [Ticket ID : ##3129222##] : WebNMS and Java 8
+ 
+
+Hi Karim,
+
+Thank you for your email.
+
+We assume that the issue you been facing could be due to common property between your modeled hbm.xml and WebNMS hbm.xml files. The similar issue was raised earlier where the property ipAddress is used in in your hbm file, for representing the COLUMN NAME "IP". The same property is used for TopoObject's IpAddress. Please make sure that if you still have ipAddress used in your hbm file, make the changes as shown below:
+<property column="IP" length="40" name="ipAddr" type="string" update="true" insert="true" />
+
+Also please make sure that you are not mixing the java type with hibernate type in your hibernate hbm modeling files. Both types are different. For more information please refer this link.
+
+We believe that once you make the above changes, you should be able to start the server in Java 8.
+
+Do get back to us if you still not able to start the server in Java 8.
+
+Regards,
+Ayush
+
+<Zamani, Karim> wrote--------------
+ 
+Note to Customers : Please do not modify the mail Subject when you reply to this mail 
+Ticket ID : 3129222
+Ticket Title : Re: WebNMS and Java 8
+
+
+Please note that Oracle has EOL'ed Java 7 since April 2015.
+ 
+Thanks,
+Karim
+
+On Feb 12, 2016, at 6:52 PM, Lu, Spencer <Spencer.Lu@viasat.com> wrote:
+
+Hi,
+ 
+Has the WebNMS Framework been tested with Java 8?  We just upgraded to Java 8 and are now seeing some errors in the log files that we never saw with Java 7.  I have attached the stderr.txt and nmserr.txt log files.
+ 
+The stderr.txt has an exception saying:
+ 
+“Exception while constructing MetaDataInfo for the Table : ScpcReceiver : java.lang.ArrayIndexOutOfBoundsException: -1
+Possible Causes are :
+1. Schema for Table :ScpcReceiver defined in DatabaseSchema.conf  is not consistent with the one defined in Database
+2. In a distributed server setup, DatabaseSchema.conf present in Front End Server is not same as the one present in the Back End Server”
+
+We aren’t running a distributed server setup.  I checked the Hibernate mapping file for the ScpcReceiver table and compared it with the table in the database and did not see any inconsistencies.  Then I ran the “reinitialize_nms.sh MODE ALL” command to drop all the tables, restarted WebNMS, and saw the same error again.  So the same error happens even if the ScpcReceiver table doesn’t exist and Hibernate needs to create it.  But even with the error, saving objects to the ScpcReceiver table with Hibernate seems to work fine.
+
+The stderr.txt also has an error saying “control come to run in connection mainetainer class and sends the queries to table”, a NullPointerException coming from the call to PureServerUtilsFE.isPasswordCorrect(), and an error saying “TREETOPO:Problem in getting the Topo API handle”.
+ 
+The nmserr.txt has errors initializing the AuditAPI, running the poll Collector, and a TopoDB error.
+ 
+None of these errors occur when we use Java 7.
+ 
+Please advise us on how we can resolve these errors.
+ 
+Thank you,
+Spencer Lu
+ 
+<stderr.txt>
+<nmserr.txt>
