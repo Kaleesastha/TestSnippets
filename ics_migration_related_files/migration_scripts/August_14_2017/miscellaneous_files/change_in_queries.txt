@@ -1,0 +1,9 @@
+Find 
+add column NAME varchar(100) default NULL, add column OWNERNAME varchar(25) NOT NULL default 'NULL' after MOID;
+And Replace with
+add column NAME varchar(100) default NULL first;\nalter table zzz add column OWNERNAME varchar(25) NOT NULL default 'NULL' after NAME;
+
+Eg:
+alter table PhysicalEntity add column NAME varchar(100) default NULL first
+alter table PhysicalEntity add column OWNERNAME varchar(25) NOT NULL default 'NULL' after NAME;
+

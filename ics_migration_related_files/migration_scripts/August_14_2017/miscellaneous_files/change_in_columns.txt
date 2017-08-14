@@ -1,0 +1,13 @@
+PolledData: NAME & ID interchanged
+Alert: ENTITY to be added after PREVIOUSSEVERITY
+ANNOTATION: OWNERNAME to be added after MODTIME
+MapDB: ANCHORED to be added after AUTOPLACEMENT
+MapSymbol: OWNERNAME to be added after MAPNAME
+MapContainer: changes in the below columns
+| CURRENTTOPOLOGY | varchar(100) | YES  |     | NULL    |       |
+| TOPOLOGY        | varchar(100) | YES  |     | NULL    |       |
+| CONTAINMENT     | varchar(10)  | YES  |     | NULL    |       |
+| OBJTYPE         | int(11)      | YES  |     | NULL    |       |
+| PARENTNAME      | varchar(100) | YES  |     | NULL    |       |
+----
+
