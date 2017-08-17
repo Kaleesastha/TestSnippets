@@ -84,7 +84,7 @@ SELECT 'STEP 6 : alter EMHAlert table to change pk and populate ID' AS 'MIGRATIO
 alter table EMHAlert drop column OWNERNAME;
 alter table EMHAlert add constraint `FK6794709C196074E5` FOREIGN KEY (`ENTITY`) REFERENCES `Alert` (`ENTITY`) ON DELETE CASCADE;
 # index creation for EMHAlert
-create index `FK6794709C196074E5` on EMHAlert(ENTITY);
+#create index `FK6794709C196074E5` on EMHAlert(ENTITY);
 # alter table for ALERTUSERPROPS
 SELECT 'STEP 7 : alter ALERTUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
 alter table ALERTUSERPROPS drop column OWNERNAME;
@@ -184,7 +184,7 @@ alter table MapContainer drop column CONTAINMENT_STR;
 # drop index for MapContainer table
 drop index MapContainer0_ndx on MapContainer;
 drop index MapContainer1_ndx on MapContainer;
-create index `FKFA2B62A5334AE2DB` on MapContainer(NAME,MAPNAME);
+#create index `FKFA2B62A5334AE2DB` on MapContainer(NAME,MAPNAME);
 # alter table for MapLink
 SELECT 'STEP 13 : alter MapLink table' AS 'MIGRATION PROCESS STATUS ... ';
 alter table MapLink drop column OWNERNAME;
@@ -211,7 +211,7 @@ update MapLink set STATUS = STATUS_STR;
 alter table MapLink drop column STATUS_STR;
 alter table MapLink add CONSTRAINT `FK951453561311A184` FOREIGN KEY (`NAME`, `MAPNAME`) REFERENCES `MapSymbol` (`NAME`, `MAPNAME`) ON DELETE CASCADE;
 # create index for table MapLink
-create index `FK951453561311A184` on MapLink(NAME,MAPNAME);
+#create index `FK951453561311A184` on MapLink(NAME,MAPNAME);
 drop index MapLink0_ndx on MapLink;
 drop index MapLink1_ndx on MapLink;
 # alter table for MapGroup
@@ -234,7 +234,7 @@ alter table MapGroup add CONSTRAINT `FKD33BEA36F4BC0D9` FOREIGN KEY (`NAME`, `MA
 # alter index for table MapGroup
 drop index MapGroup0_ndx on MapGroup;
 drop index MapGroup1_ndx on MapGroup;
-create index `FKD33BEA36F4BC0D9` on MapGroup(NAME,MAPNAME);
+#create index `FKD33BEA36F4BC0D9` on MapGroup(NAME,MAPNAME);
 # alter table to create CRITERIAPROPERTIES
 SELECT 'STEP 15 : rename CUSTOMPROPS to CRITERIAPROPERTIES table' AS 'MIGRATION PROCESS STATUS ... ';
 alter table CUSTOMPROPS RENAME TO CRITERIAPROPERTIES;
@@ -246,7 +246,7 @@ alter table CRITERIAPROPERTIES add CONSTRAINT `FK435EDDD2977A5201` FOREIGN KEY (
 drop table if exists CUSTOMPROPS;
 # alter index for CRITERIAPROPERTIES
 drop index CUSTOMPROPS0_ndx on CRITERIAPROPERTIES;
-create index `FK435EDDD2977A5201` on CRITERIAPROPERTIES(`NAME`);
+#create index `FK435EDDD2977A5201` on CRITERIAPROPERTIES(`NAME`);
 # create table for MAPPEDPROPERTIES
 SELECT 'STEP 16 : create and populate MAPPEDPROPERTIES' AS 'MIGRATION PROCESS STATUS ... ';
 CREATE TABLE `MAPPEDPROPERTIES` (`NAME` varchar(100) NOT NULL,`PROPVAL` varchar(255) default NULL,`PROPNAME` varchar(255) NOT NULL, PRIMARY KEY  (`NAME`,`PROPNAME`), KEY `FK4D2F47A6977A5201` (`NAME`),CONSTRAINT `FK4D2F47A6977A5201` FOREIGN KEY (`NAME`) REFERENCES `MapDB` (`NAME`));
@@ -260,7 +260,7 @@ alter table MAPUSERPROPS add constraint `FK30B70EA9AF738122` FOREIGN KEY (`NAME`
 # create index for MAPUSERPROPS table
 drop index MAPUSERPROPS0_ndx on MAPUSERPROPS;
 drop index MAPUSERPROPS1_ndx on MAPUSERPROPS;
-create index `FK30B70EA9AF738122` on MAPUSERPROPS(`NAME`,`MAPNAME`);
+#create index `FK30B70EA9AF738122` on MAPUSERPROPS(`NAME`,`MAPNAME`);
 drop table if exists TOPODBSPECIALKEY;
 drop table if exists DBINTERFACES;
 # alter table for ManagedObject to add;
@@ -398,7 +398,7 @@ alter table Network add column DISCOVER bit(1) default NULL AFTER MOID;
 update Network set DISCOVER = DISCOVER_STR like 'true';
 alter table Network drop column DISCOVER_STR;
 # index creation for Network
-drop index Network2_ndx on Network;
+#drop index Network2_ndx on Network;
 create index `FKD119F20E5044AD45` on Network(MOID);
 # alter table for SnmpNode
 SELECT 'STEP 37 : alter SnmpNode table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
@@ -454,8 +454,8 @@ alter table IpAddress add primary key (MOID);
 alter table IpAddress add constraint `FKD8D77CAD7825E164` FOREIGN KEY (`MOID`) REFERENCES `ManagedObject` (`MOID`) ON DELETE CASCADE;
 alter table IpAddress drop column NAME;
 # index creation for IpA	ddress
-drop index IpAddress2_ndx on IpAddress;
-drop index IpAddress3_ndx on IpAddress;
+#drop index IpAddress2_ndx on IpAddress;
+#drop index IpAddress3_ndx on IpAddress;
 create index `FKD8D77CAD7825E164` on IpAddress(MOID);
 # alter table for SwitchObject
 SELECT 'STEP 42 : alter SwitchObject table to change pk and populate MOID' AS 'MIGRATION PROCESS STATUS ... ';
@@ -2240,55 +2240,55 @@ SELECT 'STEP 205 : alter CNEOMIManagementEvent table to change pk and populate I
 alter table CNEOMIManagementEvent drop column OWNERNAME;
 alter table CNEOMIManagementEvent add constraint `FK7A783126CD9C739B` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for CNEOMIManagementEvent
-create index `FK7A783126CD9C739B` on CNEOMIManagementEvent(ID);
+#create index `FK7A783126CD9C739B` on CNEOMIManagementEvent(ID);
 # alter table for EMHEvent
 SELECT 'STEP 206 : alter EMHEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table EMHEvent drop column OWNERNAME;
 alter table EMHEvent add constraint `FK67D159DA66FF875B` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for EMHEvent
-create index `FK67D159DA66FF875B` on EMHEvent(ID);
+#create index `FK67D159DA66FF875B` on EMHEvent(ID);
 # alter table for EMHInfoEvent
 SELECT 'STEP 207 : alter EMHInfoEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table EMHInfoEvent drop column OWNERNAME;
 alter table EMHInfoEvent add constraint `FK4FC121CCD07CAC4D` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for EMHInfoEvent
-create index `FK4FC121CCD07CAC4D` on EMHInfoEvent(ID);
+#create index `FK4FC121CCD07CAC4D` on EMHInfoEvent(ID);
 # alter table for ObjectCreationDeletionEvent
 SELECT 'STEP 208 : alter ObjectCreationDeletionEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table ObjectCreationDeletionEvent drop column OWNERNAME;
 alter table ObjectCreationDeletionEvent add constraint `FK69B254AE150BABA3` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for ObjectCreationDeletionEvent
-create index `FK69B254AE150BABA3` on ObjectCreationDeletionEvent(ID);
+#create index `FK69B254AE150BABA3` on ObjectCreationDeletionEvent(ID);
 # alter table for StateChangeEvent
 SELECT 'STEP 209 : alter StateChangeEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table StateChangeEvent drop column OWNERNAME;
 alter table StateChangeEvent add constraint `FK8A948F991CE6F71A` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for StateChangeEvent
-create index `FK8A948F991CE6F71A` on StateChangeEvent(ID);
+#create index `FK8A948F991CE6F71A` on StateChangeEvent(ID);
 # alter table for UserDefinedEvent
 SELECT 'STEP 210 : alter UserDefinedEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table UserDefinedEvent drop column OWNERNAME;
 alter table UserDefinedEvent add constraint `FKB4D6AD9C4729151D` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for UserDefinedEvent
-create index `FKB4D6AD9C4729151D` on UserDefinedEvent(ID);
+#create index `FKB4D6AD9C4729151D` on UserDefinedEvent(ID);
 # alter table for AttributeValueChangeEvent
 SELECT 'STEP 211 : alter AttributeValueChangeEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table AttributeValueChangeEvent drop column OWNERNAME;
 alter table AttributeValueChangeEvent add constraint `FK28B9493539AF4EAA` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for AttributeValueChangeEvent
-create index `FK28B9493539AF4EAA` on AttributeValueChangeEvent(ID);
+#create index `FK28B9493539AF4EAA` on AttributeValueChangeEvent(ID);
 # alter table for AvailabilityEvent
 SELECT 'STEP 212 : alter AvailabilityEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table AvailabilityEvent drop column OWNERNAME;
 alter table AvailabilityEvent add constraint `FKD2C5CDDF8ABECD54` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for AvailabilityEvent
-create index `FKD2C5CDDF8ABECD54` on AvailabilityEvent(ID);
+#create index `FKD2C5CDDF8ABECD54` on AvailabilityEvent(ID);
 # alter table for RelationshipChangeEvent
 SELECT 'STEP 213 : alter RelationshipChangeEvent table to change pk and populate ID' AS 'MIGRATION PROCESS STATUS ... ';
 alter table RelationshipChangeEvent drop column OWNERNAME;
 alter table RelationshipChangeEvent add constraint `FKF35DB352E4A0747` FOREIGN KEY (`ID`) REFERENCES `Event` (`ID`) ON DELETE CASCADE;
 # index creation for RelationshipChangeEvent
-create index `FKF35DB352E4A0747` on RelationshipChangeEvent(ID);
+#create index `FKF35DB352E4A0747` on RelationshipChangeEvent(ID);
 # alter table for EVENTUSERPROPS
 SELECT 'STEP 214 : alter EVENTUSERPROPS table' AS 'MIGRATION PROCESS STATUS ... ';
 alter table EVENTUSERPROPS drop column OWNERNAME;
@@ -2298,7 +2298,7 @@ alter table EVENTUSERPROPS add constraint `FK54B8432B87584B8F` FOREIGN KEY (`ID`
 alter table EVENTUSERPROPS drop column NAME;
 alter table EVENTUSERPROPS add primary key (ID,PROPNAME);
 # create index for EVENTUSERPROPS table
-create index `FK54B8432B87584B8F` on EVENTUSERPROPS(ID);
+# create index `FK54B8432B87584B8F` on EVENTUSERPROPS(ID);
 #To AuthAudit table and rename AuthAuditExt table as AuthAudit
 SELECT 'STEP 215 : drop AuthAudit table and rename AuthAuditExt to AuthAudit' AS 'MIGRATION PROCESS STATUS ... ';
 drop table if exists AuthAudit;
