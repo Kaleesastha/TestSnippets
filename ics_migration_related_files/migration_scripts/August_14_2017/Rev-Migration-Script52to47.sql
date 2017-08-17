@@ -127,7 +127,6 @@ create table PollFilters(CLASSNAME varchar(100) NOT NULL,PRIMARY KEY(CLASSNAME))
 SELECT 'alter PolledData table' AS 'MIGRATION PROCESS STATUS ... ';
 alter table PolledData drop primary key;
 alter table PolledData add column OWNERNAME varchar(25) default 'NULL' after FAILURETHRESHOLD;
-alter table PolledData add UNIQUE KEY(`NAME`,`AGENT`,`OID`);
 alter table PolledData drop column DISCRIMINATOR;
 
 SELECT 'create table DBPOLL' AS 'MIGRATION PROCESS STATUS ... ';
@@ -169,11 +168,15 @@ update PolledData set TIMEAVG_STR = 'false' where TIMEAVG is false;
 alter table PolledData drop column TIMEAVG;
 alter table PolledData change TIMEAVG_STR TIMEAVG varchar(10);
 alter table PolledData add column SAVEONTHRESHOLD_STR varchar(10) default NULL AFTER CURRENTSAVECOUNT;
-alter table PolledData change column NAME NAME varchar(50) first;
+alter table PolledData change column NAME NAME varchar(50) default 'NULL' first;
 update PolledData set SAVEONTHRESHOLD_STR = 'true' where SAVEONTHRESHOLD is true;
 update PolledData set SAVEONTHRESHOLD_STR = 'false' where SAVEONTHRESHOLD is false;
 alter table PolledData drop column SAVEONTHRESHOLD;
 alter table PolledData change SAVEONTHRESHOLD_STR SAVEONTHRESHOLD varchar(10);
+
+alter table PolledData change column OID OID varchar(200) default 'NULL' after ACTIVE, change column LOGDIRECTLY LOGDIRECTLY varchar(10) after OID, change column LOGFILE LOGFILE varchar(100) after LOGDIRECTLY, change column SSAVE SSAVE varchar(10) after LOGFILE, change column THRESHOLD THRESHOLD varchar(10) after SSAVE, change column ISMULTIPLEPOLLEDDATA ISMULTIPLEPOLLEDDATA varchar(10) after THRESHOLD, change column PREVIOUSSEVERITY PREVIOUSSEVERITY int(11) after ISMULTIPLEPOLLEDDATA, change column NUMERICTYPE NUMERICTYPE int(11) after PREVIOUSSEVERITY, change column SAVEABSOLUTES SAVEABSOLUTES varchar(10) after NUMERICTYPE, change column TIMEAVG TIMEAVG varchar(10) after SAVEABSOLUTES, change column PORT PORT int(11) after TIMEAVG, change column WEBNMS WEBNMS varchar(100) after PORT, change column GROUPNAME GROUPNAME varchar(100) after WEBNMS, change column LASTCOUNTERVALUE LASTCOUNTERVALUE bigint(20) after GROUPNAME, change column LASTTIMEVALUE LASTTIMEVALUE bigint(20) after LASTCOUNTERVALUE, change column TIMEVAL TIMEVAL bigint(20) not NULL after LASTTIMEVALUE, change column POLICYNAME POLICYNAME varchar(100) after TIMEVAL , change column THRESHOLDLIST THRESHOLDLIST varchar(200) after POLICYNAME, change column DNSNAME DNSNAME varchar(100) after THRESHOLDLIST, change column SUFFIX SUFFIX varchar(20) after DNSNAME, change column STATSDATATABLENAME STATSDATATABLENAME varchar(100) after SUFFIX , change column POLLERNAME POLLERNAME varchar(200) after STATSDATATABLENAME, change column FAILURECOUNT FAILURECOUNT int(11) after POLLERNAME, change column FAILURETHRESHOLD FAILURETHRESHOLD int(11) after FAILURECOUNT, change column OWNERNAME OWNERNAME varchar(25) default 'NULL' after FAILURETHRESHOLD, change column PARENTOBJ PARENTOBJ varchar(100) after OWNERNAME, change column PROTOCOL PROTOCOL varchar(50) after PARENTOBJ, change column SAVEPOLLCOUNT SAVEPOLLCOUNT int(11) after PROTOCOL, change column CURRENTSAVECOUNT CURRENTSAVECOUNT int(11) after SAVEPOLLCOUNT, change column SAVEONTHRESHOLD SAVEONTHRESHOLD varchar(10) after CURRENTSAVECOUNT, change column SNMPVERSION SNMPVERSION varchar(10) after SAVEONTHRESHOLD, change column USERNAME USERNAME varchar(30) after SNMPVERSION , change column CONTEXTNAME CONTEXTNAME varchar(30) after USERNAME;
+alter table PolledData add PRIMARY KEY(NAME,AGENT,OID);
+
 create index PolledData0_ndx ON PolledData (NAME);
 create index PolledData1_ndx ON PolledData (AGENT);
 create index PolledData2_ndx ON PolledData (OID);
@@ -399,7 +402,7 @@ alter table ManagedObject change column STATUSUPDATETIME STATUSUPDATETIME varcha
 alter table ManagedObject drop column DISCRIMINATOR;
 alter table ManagedObject drop column PARENTID;
 
-alter table ManagedObject change column DISPLAYNAME DISPLAYNAME varchar(100) after NAME, change column PARENTKEY PARENTKEY varchar(100) after DISPLAYNAME, change column TYPE TYPE varchar(100) after PARENTKEY, change column MANAGED MANAGED varchar(10) after TYPE, change column STATUS STATUS int(11) after MANAGED, change column FAILURETHRESHOLD FAILURETHRESHOLD int(11) after STATUS, change column FAILURECOUNT FAILURECOUNT int(11) after FAILURETHRESHOLD, change column POLLINTERVAL POLLINTERVAL int(11) after FAILURECOUNT, change column STATUSCHANGETIME STATUSCHANGETIME varchar(25) after POLLINTERVAL, change column STATUSUPDATETIME STATUSUPDATETIME varchar(25) after STATUSCHANGETIME, change column TESTER TESTER varchar(100) after STATUSUPDATETIME, change column UCLASS UCLASS varchar(100) after TESTER, change column CLASSNAME CLASSNAME varchar(100) after UCLASS, change column WEBNMS WEBNMS varchar(100) after CLASSNAME, change column OWNERNAME OWNERNAME varchar(25) after WEBNMS, change column STATUSPOLLENABLED STATUSPOLLENABLED varchar(10) after OWNERNAME, change column ISCONTAINER ISCONTAINER varchar(10) after STATUSPOLLENABLED, change column ISGROUP ISGROUP varchar(10) after ISCONTAINER, change column NENAME NENAME varchar(100) after ISGROUP;
+alter table ManagedObject change column DISPLAYNAME DISPLAYNAME varchar(100) not NULL default 'NULL'  after NAME, change column PARENTKEY PARENTKEY varchar(100) not NULL default 'NULL' after DISPLAYNAME, change column TYPE TYPE varchar(100) after PARENTKEY, change column MANAGED MANAGED varchar(10) after TYPE, change column STATUS STATUS int(11) after MANAGED, change column FAILURETHRESHOLD FAILURETHRESHOLD int(11) after STATUS, change column FAILURECOUNT FAILURECOUNT int(11) after FAILURETHRESHOLD, change column POLLINTERVAL POLLINTERVAL int(11) after FAILURECOUNT, change column STATUSCHANGETIME STATUSCHANGETIME varchar(25) after POLLINTERVAL, change column STATUSUPDATETIME STATUSUPDATETIME varchar(25) after STATUSCHANGETIME, change column TESTER TESTER varchar(100) after STATUSUPDATETIME, change column UCLASS UCLASS varchar(100) after TESTER, change column CLASSNAME CLASSNAME varchar(100) after UCLASS, change column WEBNMS WEBNMS varchar(100) after CLASSNAME, change column OWNERNAME OWNERNAME varchar(25) not NULL default 'NULL' after WEBNMS, change column STATUSPOLLENABLED STATUSPOLLENABLED varchar(10) after OWNERNAME, change column ISCONTAINER ISCONTAINER varchar(10) after STATUSPOLLENABLED, change column ISGROUP ISGROUP varchar(10) after ISCONTAINER, change column NENAME NENAME varchar(100) after ISGROUP;
 
 create index ManagedObject0_ndx on ManagedObject(NAME);
 create index ManagedObject1_ndx on ManagedObject (OWNERNAME);
@@ -410,7 +413,7 @@ alter table ManagedGroupObject add column NAME varchar(100) default NULL first;
 update ManagedGroupObject set NAME=(select ManagedObject.NAME from ManagedObject where ManagedObject.MOID = ManagedGroupObject.MOID group by ManagedObject.MOID);
 
 SELECT 'alter table TopoObject  populate NAME and drop MOID column' AS 'MIGRATION PROCESS STATUS ... ';
-alter table TopoObject add column NAME varchar(100) default NULL first;
+alter table TopoObject add column NAME varchar(100) not NULL default NULL first;
 alter table TopoObject add column OWNERNAME varchar(25) NOT NULL default 'NULL' after BASEMIBS;
 update TopoObject set NAME=(select ManagedObject.NAME from ManagedObject where ManagedObject.MOID = TopoObject.MOID group by ManagedObject.MOID);
 
@@ -434,8 +437,8 @@ alter table TopoObject change column ISSNMP ISSNMP varchar(10);
 update TopoObject set ISSNMP='true' where ISSNMP like '1';
 update TopoObject set ISSNMP='false' where ISSNMP like '0';
 
-alter table TopoObject change column IPADDRESS IPADDRESS varchar(100) after NAME, change column NETMASK NETMASK varchar(100) after IPADDRESS, change column COMMUNITY COMMUNITY varchar(100) after NETMASK, change column WRITECOMMUNITY WRITECOMMUNITY varchar(100) after COMMUNITY, change column SNMPPORT SNMPPORT INTEGER after WRITECOMMUNITY, change column ISDHCP ISDHCP varchar(10) after SNMPPORT, change column BASEMIBS BASEMIBS varchar(100) after ISDHCP, change column OWNERNAME OWNERNAME varchar(25) after BASEMIBS, change column VERSION VERSION varchar(100) after OWNERNAME, change column USERNAME USERNAME varchar(100) after VERSION, change column CONTEXTNAME CONTEXTNAME varchar(100) after USERNAME, change column ISSNMP ISSNMP varchar(10) after CONTEXTNAME, change column ISNODE ISNODE varchar(10) after ISSNMP, change column ISNETWORK ISNETWORK varchar(10) after ISNODE, change column ISINTERFACE ISINTERFACE varchar(10) after ISNETWORK;
- 
+alter table TopoObject change column IPADDRESS IPADDRESS varchar(100) after NAME, change column NETMASK NETMASK varchar(100) after IPADDRESS, change column COMMUNITY COMMUNITY varchar(100) after NETMASK, change column WRITECOMMUNITY WRITECOMMUNITY varchar(100) after COMMUNITY, change column SNMPPORT SNMPPORT INTEGER after WRITECOMMUNITY, change column ISDHCP ISDHCP varchar(10) after SNMPPORT, change column BASEMIBS BASEMIBS varchar(100) after ISDHCP, change column OWNERNAME OWNERNAME varchar(25) not NULL default 'NULL' after BASEMIBS, change column VERSION VERSION varchar(100) after OWNERNAME, change column USERNAME USERNAME varchar(100) after VERSION, change column CONTEXTNAME CONTEXTNAME varchar(100) after USERNAME, change column ISSNMP ISSNMP varchar(10) after CONTEXTNAME, change column ISNODE ISNODE varchar(10) after ISSNMP, change column ISNETWORK ISNETWORK varchar(10) after ISNODE, change column ISINTERFACE ISINTERFACE varchar(10) after ISNETWORK;
+alter table TopoObject add PRIMARY KEY(NAME,OWNERNAME);
 
 SELECT 'alter table Node  populate NAME and drop MOID column' AS 'MIGRATION PROCESS STATUS ... ';
 alter table Node add column NAME varchar(100) default NULL first;
