@@ -1,3 +1,8 @@
+/*
+To compile: javac -cp $NMS_CLASSES/NmsServerClasses.jar:$NMS_CLASSES/AdventNetUpdateManagerInstaller.jar:$NMS_CLASSES -d $NMS_CLASSES GetProductVersion.java
+To run : java -cp $NMS_CLASSES/NmsServerClasses.jar:$NMS_CLASSES/AdventNetUpdateManagerInstaller.jar:$NMS_CLASSES -d $NMS_CLASSES test.GetProductVersion <Absolute_Path_of_NMS_HOME>
+*/
+
 package test;
 import com.adventnet.tools.update.installer.*;
 import java.util.Properties;
@@ -26,5 +31,3 @@ public class GetProductVersion
 		{exp.printStackTrace();}
 	}
 }
-/* http://nms-support.zohocorpin.com:8080/WorkOrder.do?woMode=viewWO&woID=6715&
-http://nms-support.zohocorpin.com:8080/WorkOrder.do?woMode=viewWO&woID=3053724& */
