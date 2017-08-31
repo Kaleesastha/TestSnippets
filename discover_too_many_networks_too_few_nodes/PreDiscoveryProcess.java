@@ -1,4 +1,29 @@
 //package com.adventnet.nms.topodb;
+
+/*WebNMS Discovery involving many nodes to be individual discovered through addNode (rather than Network Discovery)
+----------------------------------------------------------------------------------------------------------------
+Scenario: The managed network consists of too many networks with too few nodes in each network.
+Hence its not possible to add networks (plus the network discovery will also be disabled by default)
+In this case, each new node (first node of a network) will take time to be discovered (due to the WebNMS Discovery Framework's design) and hence the whole discovery (for the first time) will be delayed.
+We have got a solution to speed up the discovery process:
+
+ Solution:
+
+1. Please download this file and conpile it  under NMS_HOME/classes
+2. Give the below entry as the last entry in NmsProcessesBE.conf
+PROCESS test.PreDiscoveryProcess
+ARGS NULL
+3.In seed.file, Ensure that DISCOVER_LOCALNET="false" is set.
+4. Restart the server for a fresh & new database.
+
+3rd & 4th steps are very important - a new db is required so that no nodes are present and enabling DISCOVER_LOCALNET (for so much of nodes in seed.file) will throw an exception
+
+Now check whether the node addition is faster.
+Note that the change in flow is - parse the seed.file and add all the networks beforehand in a single transaction - This took around 15 seconds for us (8500+ networks).
+This network addition will ensure that while addition of each node, its network will already be present. This fastens up the nodes addition.
+
+ This network addition will take place only for the cold start (either the very first start after installation or the start after a reinitialised database) start and not for further warm starts.
+*/
 package test;
 
 import com.adventnet.nms.topodb.*;
