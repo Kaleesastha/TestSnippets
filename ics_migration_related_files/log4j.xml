@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="null">
+
+<!-- MAIL APPENDER -->
+<appender class="org.apache.log4j.net.SMTPAppender" name="mail">
+    <param name="EvaluatorClass" value="com.adventnet.management.log.MessageBasedTEE"/>
+    <param name="To" value="webnms-admin@webnms.com"/>
+    <param name="From" value="webnms-admin@webnms.com"/>
+    <param name="BufferSize" value="512"/>
+    <param name="Subject" value="LOG4j mail testing"/>
+    <param name="SMTPHost" value="192.168.4.41"/>
+    <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+    </layout>
+</appender>
+<!-- MAIL APPENDER -->
+
+<!-- FILE APPENDERS -->
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="nmserr_file">
+       <param name="File" value="logs/nmserr.txt"/>
+	   <param name="MaxFileSize" value="1MB"/>
+	   <param name="MaxBackupIndex" value="10"/>
+       <layout class="org.apache.log4j.PatternLayout">
+		     <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+	   </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="nmsout_file">
+      <param name="File" value="logs/nmsout.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="discoveryLogs_file">
+      <param name="File" value="logs/discoveryLogs.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+	  </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="transactionLogs_file">
+      <param name="File" value="logs/transactionLogs.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="alert_audit_file">
+      <param name="File" value="logs/alert_audit.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="stdout_file">
+      <param name="File" value="logs/stdout.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="stderr_file">
+      <param name="File" value="logs/stderr.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="msout_file">
+      <param name="File" value="logs/msout.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-10c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="sendemail_file">
+	<param name="File" value="logs/sendEmaillogs.txt"/>
+	<param name="MaxFileSize" value="1MB"/>
+	<param name="MaxBackupIndex" value="10"/>
+	<layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-10c{2}: %m%n"/>
+	</layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="mserr_file">
+      <param name="File" value="logs/mserr.txt"/>
+      <param name="MaxFileSize" value="1MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-10c{2}: %m%n"/>
+      </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="hbn_log">
+       <param name="File" value="logs/hbn.txt"/>
+           <param name="MaxFileSize" value="1MB"/>
+           <param name="MaxBackupIndex" value="10"/>
+       <layout class="org.apache.log4j.PatternLayout">
+                     <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+       </layout>
+</appender>
+
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="ncout_file">
+						<param name="File" value="logs/netconf.log"/>
+						<param name="MaxFileSize" value="1MB"/>
+						<param name="MaxBackupIndex" value="10"/>
+						<layout class="org.apache.log4j.PatternLayout">
+						<param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+						</layout>
+						</appender>
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="smslib_file">
+                                                <param name="File" value="logs/smslib.txt"/>
+                                                <param name="MaxFileSize" value="1MB"/>
+                                                <param name="MaxBackupIndex" value="10"/>
+                                                <layout class="org.apache.log4j.PatternLayout">
+                                                <param name="ConversionPattern" value="%-6r %d [%t] %-5p %C %x - %m%n"/>
+                                                </layout>
+                                                </appender>
+<appender class="com.adventnet.management.log.NMSRollingFileAppender" name="threaddump_file">
+        <param name="File" value="logs/threaddump.txt"/>
+        <param name="MaxFileSize" value="1MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss:SSS}] %-5c{2}: %m%n"/>
+        </layout>
+</appender>
+
+<!-- FILE APPENDERS ENDS -->
+
+
+<!-- NMSERR LOGGERS -->
+<logger additivity="false" name="KPIERR">
+						<level value="info"/>
+						<appender-ref ref="nmserr_file"/>
+						<appender-ref ref="mail"/>
+						</logger>
+<logger additivity="false" name="smslib">
+                                                <level value="info"/>
+                                                <appender-ref ref="smslib_file"/>
+                                                <appender-ref ref="mail"/>
+                                                </logger>
+<logger additivity="false" name="POLLERR">
+	<level value="info"/>
+	<appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="POLICYERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="TOPOERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="EVENTERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="ALERTERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="MAPERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="CONFIGERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="PROVERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="MISCERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="AGENTERR">
+    <level value="info"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="REPORTERR">
+	<level value="info"/>
+	<appender-ref ref="nmserr_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="CLIERR">
+    <level value="warn"/>
+    <appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!--NMSERR LOGGERS ENDS -->
+
+<!-- NMSOUT LOGERERS STARTS -->
+<logger additivity="false" name="KPIUSER">
+						<level value="info"/>
+						<appender-ref ref="nmsout_file"/>
+						<appender-ref ref="mail"/>
+						</logger>
+<logger additivity="false" name="POLLUSER">
+	<level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="POLICYUSER">
+	<level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="TOPOUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="EVENTUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="ALERTUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="MAPUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="CONFIGUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="PROVUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="MISCUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="AGENTUSER">
+    <level value="info"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="REPORTUSER">
+	<level value="info"/>
+	<appender-ref ref="nmsout_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="CLIUSER">
+    <level value="warn"/>
+    <appender-ref ref="nmsout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!--NMSOUT LOGGERS ENDS -->
+
+<!-- DISCOVERY LOGGER  -->
+
+<logger additivity="false" name="DISCOVERYUSER">
+    <level value="info"/>
+    <appender-ref ref="discoveryLogs_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="PINGERR">
+    <level value="info"/>
+    <appender-ref ref="discoveryLogs_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!-- DISCOVERY LOGGER ENDS -->
+
+<!-- TRANSACTION LOGGER -->
+
+<logger additivity="false" name="TUSER">
+    <level value="info"/>
+    <appender-ref ref="transactionLogs_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!-- TRANSACTION LOGGER ENDS -->
+
+<!-- ALERT_AUDIT LOGGER  -->
+
+<logger additivity="false" name="ALERT_AUDITUSER">
+    <level value="info"/>
+    <appender-ref ref="alert_audit_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!-- ALERT_AUDIT LOGGER ENDS -->
+
+<!-- STDOUT LOGGER  -->
+
+<logger additivity="false" name="SYS_OUT">
+    <level value="info"/>
+    <appender-ref ref="stdout_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<!-- STDOUT LOGGER ENDS -->
+
+<!-- STDERR LOGGER -->
+
+<logger additivity="false" name="SYS_ERR">
+    <level value="info"/>
+    <appender-ref ref="stderr_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<!-- STDERR LOGGER ENDS -->
+
+<!-- MSOUT LOGGER  -->
+
+<logger additivity="false" name="MSOUT">
+    <level value="debug"/>
+    <appender-ref ref="msout_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+
+<!-- MSOUT LOGGER ENDS -->
+
+<!-- MSERR LOGGER  -->
+
+<logger additivity="false" name="SMOUT">
+	<level value="info"/>
+	<appender-ref ref="sendemail_file"/>
+	<appender-ref ref="mail"/>
+</logger>
+
+<logger additivity="false" name="MSERR">
+    <level value="info"/>
+    <appender-ref ref="mserr_file"/>
+    <appender-ref ref="mail"/>
+</logger>
+
+<!-- MSERR LOGGER ENDS -->
+
+
+<!-- HIBERNATE LOGGER -->
+
+<logger additivity="false" name="org.hibernate">
+    <level value="debug"/>
+    <appender-ref ref="hbn_log"/>
+</logger>
+<!--Fixed No row with given idendifier exist issues fixed.This is temp fix.-->
+<logger additivity="true" name="org.hibernate.event.def.DefaultLoadEventListener">
+    <level value="OFF"/>
+        <appender-ref ref="hbn_log"/>
+</logger>
+<!--To disable the log entry regarding the ReadWrite Cache expiration.-->
+<logger additivity="true" name="org.hibernate.cache.ReadWriteCache">
+   <level value="OFF"/>
+       <appender-ref ref="hbn_log"/>
+</logger> 
+
+<!-- HIBERNATE LOGGER ENDS -->
+
+<!-- THREADDUMP LOGGER -->
+
+<logger additivity="false" name="NETCONF_OUT">
+						<level value="info"/>
+						<appender-ref ref="ncout_file"/>
+						</logger>
+<logger additivity="false" name="THREADDUMP_USER">
+        <level value="info"/>
+        <appender-ref ref="threaddump_file"/>
+        <appender-ref ref="mail"/>
+</logger>
+
+<!-- THREADDUMP LOGGER ENDS -->
+
+<root>
+	<level value="warn"/>
+	<appender-ref ref="nmserr_file"/>
+    <appender-ref ref="mail"/>
+    <appender-ref ref="nmsout_file"/>
+</root>
+
+</log4j:configuration>

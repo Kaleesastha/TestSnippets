@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE DATA-MANAGEMENT SYSTEM "ReportsManagement.dtd">
+<DATA-MANAGEMENT>
+    <DATA_ARCHIVE className="com.adventnet.nms.server.dataarchiver.DefaultDataArchiveIfcImpl" executeInterval="1" executeIntervalUnit="HOURS" id="ARCHIVE_HOURLY_DATA">
+        <PROPERTY-GROUP>
+                 <PROPERTY name="SOURCE_TABLE_NAME" value="STATSDATA,DECIMALDATA"/>
+			<PROPERTY name="PARENT_TABLE_NAME" value="POLLEDDATA"/>
+                 <PROPERTY name="TARGET_TABLE_NAME" value="STATSAGGREGATIONHOURLY"/>
+
+                 <PROPERTY name="IS_ARCHIVED_TABLE" value="false"/>
+
+                 <PROPERTY name="SOURCE_AGENT_FIELD" value="AGENT"/>
+                 <PROPERTY name="TARGET_AGENT_FIELD" value="AGENT"/>
+
+                 <PROPERTY name="SOURCE_NAME_FIELD" value="NAME"/>
+                 <PROPERTY name="TARGET_NAME_FIELD" value="NAME"/>
+
+                 <PROPERTY name="SOURCE_PRIMARY_FIELD" value="ID"/>
+                 <PROPERTY name="TARGET_PRIMARY_FIELD" value="ID"/>
+
+                 <PROPERTY name="SOURCE_KEY_FIELD" value="POLLID"/>
+                 <PROPERTY name="TARGET_KEY_FIELD" value="POLLID"/>
+
+                 <PROPERTY name="SOURCE_VALUE_FIELD" value="VAL"/>
+                 <PROPERTY name="TARGET_AVG_VALUE_FIELD" value="VAL"/>
+                 <PROPERTY name="TARGET_MIN_VALUE_FIELD" value="MMINVALUE"/>
+                 <PROPERTY name="TARGET_MAX_VALUE_FIELD" value="MMAXVALUE"/>
+
+                 <PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+                 <PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>
+                 <PROPERTY name="TARGET_INTERVAL_FIELD" value="TINTERVAL"/>
+
+                 <PROPERTY name="SOURCE_ENTITY_FIELD" value="INSTANCE"/>
+                 <PROPERTY name="TARGET_ENTITY_FIELD" value="INSTANCE"/>
+
+                 <PROPERTY name="ENTITY_AS_DATA" value="true"/>
+
+		 <PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+		 <PROPERTY name="TYPE" value="PERFORMANCE"/>
+                <PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="HOURS"/>
+        </PROPERTY-GROUP>
+
+    </DATA_ARCHIVE>
+
+    <DATA_CLEANUP className="com.adventnet.nms.server.dataarchiver.DefaultDataCleanupIfcImpl" executeInterval="1" executeIntervalUnit="DAYS" id="CLEANUP_HOURLY_DATA">
+        <PROPERTY name="TABLE_LIST" value="STATSAGGREGATIONHOURLY"/>
+        <PROPERTY name="TIME_FIELD" value="TTIME"/>
+	<PROPERTY name="CLEANUP_DATA_OLDER_THAN" value="24"/>
+	<PROPERTY name="TYPE" value="PERFORMANCE"/>
+        <PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="HOURS"/>
+   </DATA_CLEANUP>
+
+  <DATA_ARCHIVE className="com.adventnet.nms.server.dataarchiver.DefaultDataArchiveIfcImpl" executeInterval="1" executeIntervalUnit="DAYS" id="ARCHIVE_DAILY_DATA">
+        <PROPERTY-GROUP>
+                 <PROPERTY name="SOURCE_TABLE_NAME" value="STATSAGGREGATIONHOURLY"/>
+                 <PROPERTY name="TARGET_TABLE_NAME" value="STATSAGGREGATIONDAILY"/>
+
+                 <PROPERTY name="IS_ARCHIVED_TABLE" value="true"/>
+
+                 <PROPERTY name="SOURCE_KEY_FIELD" value="POLLID"/>
+                 <PROPERTY name="TARGET_KEY_FIELD" value="POLLID"/>
+
+                 <PROPERTY name="SOURCE_VALUE_FIELD" value="VAL"/>
+                 <PROPERTY name="SOURCE_MIN_VALUE_FIELD" value="MMINVALUE"/>
+                 <PROPERTY name="SOURCE_MAX_VALUE_FIELD" value="MMAXVALUE"/>
+
+                 <PROPERTY name="TARGET_AVG_VALUE_FIELD" value="VAL"/>
+                 <PROPERTY name="TARGET_MIN_VALUE_FIELD" value="MMINVALUE"/>
+                 <PROPERTY name="TARGET_MAX_VALUE_FIELD" value="MMAXVALUE"/>
+
+                 <PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+                 <PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>
+                  <PROPERTY name="TARGET_INTERVAL_FIELD" value="TINTERVAL"/>
+
+                 <PROPERTY name="SOURCE_ENTITY_FIELD" value="INSTANCE"/>
+                 <PROPERTY name="TARGET_ENTITY_FIELD" value="INSTANCE"/>
+
+                 <PROPERTY name="ENTITY_AS_DATA" value="true"/>
+
+		 <PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+		 <PROPERTY name="TYPE" value="PERFORMANCE"/>
+                <PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="DAYS"/>
+        </PROPERTY-GROUP>
+
+    </DATA_ARCHIVE>
+
+    <DATA_ARCHIVE className="com.adventnet.nms.server.dataarchiver.DefaultDataArchiveIfcImpl" executeInterval="1" executeIntervalUnit="HOURS" id="ARCHIVE_HOURLY_KPI_DATA">
+					       <PROPERTY-GROUP>
+					       <PROPERTY name="SOURCE_TABLE_NAME" value="KPI_STATSDATA"/>
+					       <PROPERTY name="PARENT_TABLE_NAME" value="POLLEDDATA"/>
+					       <PROPERTY name="TARGET_TABLE_NAME" value="STATSAGGREGATIONHOURLY"/>
+
+					       <PROPERTY name="IS_ARCHIVED_TABLE" value="false"/>
+
+					       <PROPERTY name="SOURCE_AGENT_FIELD" value="AGENT"/>
+					       <PROPERTY name="TARGET_AGENT_FIELD" value="AGENT"/>
+
+					       <PROPERTY name="SOURCE_NAME_FIELD" value="NAME"/>
+					       <PROPERTY name="TARGET_NAME_FIELD" value="NAME"/>
+
+					       <PROPERTY name="SOURCE_PRIMARY_FIELD" value="ID"/>
+					       <PROPERTY name="TARGET_PRIMARY_FIELD" value="ID"/>
+
+					       <PROPERTY name="SOURCE_KEY_FIELD" value="POLLID"/>
+					       <PROPERTY name="TARGET_KEY_FIELD" value="POLLID"/>
+
+					       <PROPERTY name="SOURCE_VALUE_FIELD" value="VAL"/>
+					       <PROPERTY name="TARGET_AVG_VALUE_FIELD" value="VAL"/>
+					       <PROPERTY name="TARGET_MIN_VALUE_FIELD" value="MMINVALUE"/>
+					       <PROPERTY name="TARGET_MAX_VALUE_FIELD" value="MMAXVALUE"/>
+
+					       <PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+					       <PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>
+					       <PROPERTY name="TARGET_INTERVAL_FIELD" value="TINTERVAL"/>
+
+					       <PROPERTY name="SOURCE_ENTITY_FIELD" value="INSTANCE"/>
+					       <PROPERTY name="TARGET_ENTITY_FIELD" value="INSTANCE"/>
+
+					       <PROPERTY name="ENTITY_AS_DATA" value="true"/>
+					       <PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+					       <PROPERTY name="TYPE" value="PERFORMANCE"/>
+					       <PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="HOURS"/>
+					       </PROPERTY-GROUP>
+					       </DATA_ARCHIVE>
+<DATA_CLEANUP className="com.adventnet.nms.server.dataarchiver.DefaultDataCleanupIfcImpl" executeInterval="1" executeIntervalUnit="DAYS" id="CLEANUP_DAILY_DATA">
+        <PROPERTY name="TABLE_LIST" value="STATSAGGREGATIONDAILY"/>
+        <PROPERTY name="TIME_FIELD" value="TTIME"/>
+	<PROPERTY name="CLEANUP_DATA_OLDER_THAN" value="30"/>
+	<PROPERTY name="TYPE" value="PERFORMANCE"/>
+        <PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="DAYS"/>
+</DATA_CLEANUP>
+
+<DATA_ARCHIVE className="com.adventnet.nms.server.dataarchiver.FaultDataArchiveIfcImpl" executeInterval="1" executeIntervalUnit="HOURS" id="FAULTARCHIVE_HOURLY_DATA">
+							<PROPERTY-GROUP>
+								<PROPERTY name="SOURCE_TABLE_NAME" value="Event"/>
+								<PROPERTY name="SOURCE_ID" value="ID"/>		
+								<PROPERTY name="TARGET_TABLE_NAME" value="FAULTREPORTS_HOURLY"/>
+								<PROPERTY name="SOURCE_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="TARGET_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="SOURCE_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="TARGET_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_SEVERITYCOUNT_FIELD" value="SEVERITYCOUNT"/>
+								<PROPERTY name="SOURCE_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="TARGET_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="UNIT" value="HOURS"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="HOURS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_ARCHIVE>
+<DATA_ARCHIVE DAY_OF_THE_MONTH="*" HOUR="24" MINUTES="40" className="com.adventnet.nms.server.dataarchiver.FaultDataArchiveIfcImpl" id="FAULTARCHIVE_DAILY_DATA">
+							<PROPERTY-GROUP>
+								<PROPERTY name="SOURCE_TABLE_NAME" value="FAULTREPORTS_HOURLY"/>			
+								<PROPERTY name="TARGET_TABLE_NAME" value="FAULTREPORTS_DAILY"/>
+								<PROPERTY name="SOURCE_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="TARGET_CATEGORY_FIELD" value="CATEGORY"/>
+								<PROPERTY name="SOURCE_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="TARGET_SEVERITY" value="SEVERITY"/>
+								<PROPERTY name="SOURCE_TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="TARGET_TIME_FIELD" value="TTIME"/>		
+								<PROPERTY name="TARGET_SEVERITYCOUNT_FIELD" value="SEVERITYCOUNT"/>
+								<PROPERTY name="UNIT" value="DAYS"/>
+								<PROPERTY name="SOURCE_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="TARGET_SOURCEFIELD" value="SOURCE"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT" value="1"/>
+								<PROPERTY name="ARCHIVE_DATA_RECENT_UNIT" value="DAYS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_ARCHIVE>
+<DATA_CLEANUP className="com.adventnet.nms.server.dataarchiver.FaultDailyReportCleanUp" executeInterval="1" executeIntervalUnit="DAYS" id="FAULTCLEANUP_DAILY_DATA">
+							<PROPERTY-GROUP>
+								<PROPERTY name="TABLE_LIST" value="FAULTREPORTS_DAILY"/>
+								<PROPERTY name="TIME_FIELD" value="TTIME"/>
+								<PROPERTY name="CLEANUP_DATA_OLDER_THAN" value="30"/>
+								<PROPERTY name="CLEANUP_DATA_OLDER_THAN_UNIT" value="DAYS"/>
+								<PROPERTY name="TYPE" value="FAULT"/>
+							</PROPERTY-GROUP>
+						</DATA_CLEANUP>
+</DATA-MANAGEMENT>
