@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>README for Dual Authentication</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div>
+          <div align="center"><u><b>How to achieve dual authentication
+                (Falling back to WebNMS in-house authentication when the
+                external authentication server is
+                unavailable/unreachable)</b></u><br>
+          </div>
+          <br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">In
+              Radius server, we could successfully achieve&nbsp;<b><i>dual
+                  authentication</i></b>&nbsp;(<b>falling back to
+                in-house authentication</b>&nbsp;when Radius server is
+              not reachable/out-of-network).</span></span><br>
+        </div>
+        <div><span class="size" style="font-size:16px"><span
+              class="font" style="font-family:times new roman, times,
+              serif">We had got the&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/tree/master/radius_plus_inhouse_authentication">modified
+              files</a><span class="font" style="font-family:times new
+              roman, times, serif">&nbsp;-&nbsp;<b>RadiusAuthenticationImpl.java</b>&nbsp;&amp;&nbsp;<b>RadiusUtil.java</b>&nbsp;(along
+              with the&nbsp;</span><a
+href="https://github.com/ramanan99/TestSnippets/tree/master/radius_plus_inhouse_authentication/default_files">default
+              files</a><span class="font" style="font-family:times new
+              roman, times, serif">)</span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px"></span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">Here're
+              the changes in the files:</span></span><br>
+        </div>
+        <div><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">RadiusUtil:&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/default_files/RadiusUtil.java">default
+                file</a>&nbsp;|&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/RadiusUtil.java">changed
+                file</a>&nbsp;|&nbsp;<a
+                href="https://www.diffchecker.com/DuMZH8VW">diff</a></span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px"><b>Please
+                look at the below lines/changes</b></span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px"><b>Line
+                116</b>&nbsp;- Definition of&nbsp;<b><i>authenticateUser&nbsp;</i></b>method
+              - Its return type is&nbsp;<b><i><u>boolean</u></i></b>&nbsp;in
+              the default implementation, whereas its changed to&nbsp;<b><i><u>integer</u></i></b>&nbsp;in
+              the new one, so that we can handle the&nbsp;<b><i><u>radius-server-not-available</u></i></b>&nbsp;case
+              by handling that specific integer.</span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px"></span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">Line
+              152-165 - in <a
+                href="https://www.diffchecker.com/DuMZH8VW%C2%A0">https://www.diffchecker.com/DuMZH8VW&nbsp;</a>;</span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">The
+              integer is returned as such from the authenticateUser
+              method (the result is derived in the
+              RadiusAuthenticationImpl.verifyCredentials method)</span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px"></span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">RadiusAuthenticationImpl.java
+              :&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/default_files/RadiusAuthenticationImpl.java">default
+                file</a>&nbsp;|&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/RadiusAuthenticationImpl.java">changed
+                file</a>&nbsp;|&nbsp;<a
+                href="https://www.diffchecker.com/nPsdP4y0">diff</a></span></span><br>
+        </div>
+        <div><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">Check
+              the lines&nbsp;<b><i><u>130-157</u></i></b>&nbsp;- radius
+              authentication integer is handled here. Specifically look
+              at lines&nbsp;<b><i><u>151-153</u></i></b>, which handles
+              the integer 0.</span></span><br>
+        </div>
+        <div><span class="font" style="font-family:times new roman,
+            times, serif"><span class="size" style="font-size:16px">0
+              means, radius server is not reachable and we call&nbsp;<b><i>super.verfiyCredentials</i></b></span></span><br>
+        </div>
+      </div>
+      <div><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">In
+            addition,&nbsp;We get the&nbsp;<b>plain text password by
+              calling crypto.deCrypt</b>&nbsp;in
+            RadiusAuthenticationImpl (<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/default_files/RadiusAuthenticationImpl.java##L65">line
+              65</a>).</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px"></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">Note that the
+            above procedure is for radius server. Please take this as
+            the prototype and implement your changes for LDAP server.</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px"></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px"><b>Other
+              important changes are:</b></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px"></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">1.<b>
+              NmsProcessesBE.conf</b> should be changed to specify the
+            authentication implementation class (<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/NmsProcessesBE.conf##L39"><b>line
+                39</b></a>)</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">2. The
+            external authentication server's (in this case, Radius files
+            -&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/radius_server_files/clients.conf##L235-L240">client.conf</a>&nbsp;&amp;&nbsp;<a
+href="https://github.com/ramanan99/TestSnippets/blob/master/radius_plus_inhouse_authentication/radius_server_files/users##L205-L233">users</a>)
+            should be configured for authentication.</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">3.&nbsp;</span><span
+            class="size" style="font-size:medium">AuthenticationServlet
+            need not be changed for any of the above.</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:'times new roman',
+          times, serif"><span class="size" style="font-size:medium"></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:'times new roman',
+          times, serif"><span class="size" style="font-size:medium">Hope
+            this helps. Please get back to us with the modified files
+            for any further&nbsp;</span><span class="size"
+            style="font-size:16px">clarification in this regard.</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px"></span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">Thanks &amp;
+            Regards,</span></span><br>
+      </div>
+      <div><span class="font" style="font-family:times new roman, times,
+          serif"><span class="size" style="font-size:16px">Venkatramanan.</span></span><br>
+      </div>
+    </div>
+  </body>
+</html>
