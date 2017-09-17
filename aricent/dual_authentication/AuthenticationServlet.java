@@ -114,6 +114,7 @@ public class AuthenticationServlet extends HttpServlet{
                         {
                             messageDigest = URLDecoder.decode(messageDigest);
 			    System.err.println("messageDigest is : "+messageDigest);
+                            System.err.println("########### decrypted password is  : "+NmsUtil.getCryptoGraphAPI().deCrypt(messageDigest));
                         }
                         catch(Exception e)
                         {
