@@ -67,7 +67,7 @@ public class DynamicUpdateServlet extends HttpServlet implements ScriptSessionLi
         Scheduler sch = Scheduler.getScheduler("WebUpdateProcessor"); //No Internationalization
         if (sch == null)
         {
-            sch = Scheduler.createScheduler("WebUpdateProcessor", 10); //No Internationalization
+            sch = Scheduler.createScheduler("WebUpdateProcessor", 20); //No Internationalization
             sch.start();
         }
 	}
