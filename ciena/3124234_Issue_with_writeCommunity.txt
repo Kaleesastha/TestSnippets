@@ -1,0 +1,25 @@
+3124234 - Sev 1 :Issue with writeCommunity
+Created On : Mon, May 11 04:00:39 IST 2015
+Contact :	 User profilePiramanayangam, Sankaralingam ( Ciena )  
+
+<Piramanayangam, Sankaralingam> wrote--------------
+
+Tem,
+When we discover a node through RTA’s node discovery option, the MO is set with “public” as the write community. The one we configured in the seed file is “private” which is not set in the ManagedObject (that we receive in the discovery filter).
+I have tried our latest patch which doesn’t fix this issue.   This is been reported from our production server and we need a fix ASAP.
+Sankar.
+
+From: ZohoCorp WebNMS Support [mailto:nms-support@webnms.com] 
+Hi Sankar,
+Thanks for your mail.
+We are able to reproduce the reported issue in our environment.
+We will fix this issue and update you shortly.
+
+Regards,
+Thiyagu Sivalingam
+
+<Piramanayangam, Sankaralingam> wrote...........
+
+Hi Thiyagu,
+I have tested this fix and its working properly. Please integrate these changes into our official patch.
+Sankar.
