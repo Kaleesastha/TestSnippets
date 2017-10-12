@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<subclass discriminator-value="ChildMO" extends="com.adventnet.nms.topodb.ManagedObject" name="test.ChildMO" dynamic-insert="true" dynamic-update="true" select-before-update="true">
+<join fetch="select" table="ChildMO">
+<key on-delete="cascade">
+<column name="MOID"/>
+</key>
+<property column="SYSDESC" length="250" name="sysDesc" type="string"/>
+</join>
+</subclass>
+</hibernate-mapping>
